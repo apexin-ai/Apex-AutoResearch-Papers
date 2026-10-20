@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "85aa8b5ab20106ab613d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "research check 25pct beta params",
+  "task_key": "worker_research_check_25pct_beta_params_20260523T192728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_25pct_beta_params_20260523T192728.log",
+    "occurrence": 1,
+    "bytes": 776351,
+    "sha256": "74c13dac9fd30b0acef05a2f56585b0c228183ae6720804f917bbe5b3b02622e"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 15,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 9,
+      "tool_call": 15,
+      "tool_result": 15,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "85aa8b5ab20106ab613d-part-0001.json",
+          "message_count": 8
+        },
+        {
+          "path": "85aa8b5ab20106ab613d-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "85aa8b5ab20106ab613d-part-0003.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-check-25pct-beta-params.md"
+}

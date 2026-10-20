@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ce3690d375ecf9c483c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "debug grpo health check",
+  "task_key": "worker_debug_grpo-health-check_20260514T073123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_debug_grpo-health-check_20260514T073123_result.json",
+    "occurrence": 1,
+    "bytes": 1314,
+    "sha256": "fa01de492cd4b0f46fca7da91b263427be77a43b020b69c13d848319380d2a81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **PID 166574** | DEAD |\n| **tmux session** | 不存在 |\n| **GPU 状态** | cuda:0 — 0% util, 0 MiB / 97887 MiB; cuda:1 — 0% util, 0 MiB / 97887 MiB |\n| **训练进程** | 无任何 Python 训练进程 |\n\n### Step 3.5 结果\n**未通过** — 两个 eval（standard 和 rasp）都在 `eval_gsm8k.py:59` 崩溃。\n\n### 错误原因\n`eval_gsm8k.py` 第 59 行 `normalize_answer()` 函数：\n```python\nif val == int(val):  # line 59\n```\n模型生成了无法解析为有效数字的输出，被解析为 `float('inf')`，`int(inf)` 抛出 `OverflowError: cannot convert float infinity to integer`。\n\n- **standard 模型**：第 1 个样本就崩了（1/1319）\n- **rasp 模型**：第 7 个样本崩了（7/1319）\n\n### `results/` 目录\n只有 `importance_scores.pt` 和 `cka_scores.pt`（Step 1-2 的产物），**无 eval 结果文件**。\n\n### 修复方案\n\n在 `normalize_answer()` 中加 `inf`/`nan` 防护：\n```python\ndef normalize_answer(text):\n    ...\n    if not math.isfinite(val):\n        return text  # 或 return None 标记为错误\n    if val == int(val):\n        return str(int(val))\n    ...\n```\n\n修复后重新从 Step 3.5 resume 即可，无需重跑 Step 1-3（pruned 模型已存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/debug-grpo-health-check.md"
+}

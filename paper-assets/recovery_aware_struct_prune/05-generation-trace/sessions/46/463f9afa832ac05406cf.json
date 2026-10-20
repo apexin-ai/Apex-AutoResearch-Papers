@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "463f9afa832ac05406cf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo standard 20 fair early",
+  "task_key": "worker_analysis_grpo_standard_20_fair_early_20260518T015635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_standard_20_fair_early_20260518T015635_result.json",
+    "occurrence": 1,
+    "bytes": 693,
+    "sha256": "a80bdeb36cf1b1cac248d7153b5ab59dea8cf7c94738eeabd553a514c396646b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出文件已写入 `artifacts/grpo_standard_20_fair_early_metrics.md`。\n\n**结论：严重 collapse，GRPO 无法恢复 standard 20% 剪枝模型。**\n\n关键信号：\n- **Reward 极低**：全程 0.02-0.08，峰值 0.08 (step 40) 后持续下滑至 0.03 (step 90)。对比 CKA-only step 10 的 0.253，仅为其 1/5。\n- **frac_zero_std 始终 0.5+**：从未降至 0.3 以下。CKA-only 同期仅 0.175。\n- **grad_norm 崩塌至 0.017** (step 90)：模型已停止学习。\n- 训练已到 step 94/100，即将结束，结果不会改善。\n\n这从反面强力支持 recovery-aware 剪枝的核心论点：标准剪枝在 20% 剪枝率下造成不可逆损伤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-standard-20-fair-early.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "685f6c9fd2cface6fe2a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo standard 25 qwen math",
+  "task_key": "worker_analysis_grpo_standard_25_qwen_math_20260516T154213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_standard_25_qwen_math_20260516T154213_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "916b27997f7cd24b7118a043a42cfc94f76e7ee05c279bda4651ca07008d45d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n**结论: success** — Qwen2.5-Math-7B Standard 25% GRPO 展示了 **mild transient dip** pattern:\n- Reward dip: step 20-30 (0.20 → 0.106, -47%)，step 40 恢复至 0.211\n- frac_zero_std 峰值 0.425（未达 collapse 阈值 0.8）\n- 比 DeepSeek Standard 20% 的 dip 更早出现（step 20-30 vs step 60），符合\"更高稀疏度→更早 dip\"假设\n- 2 次极端 loss/KL spike（step 40: 3.7e14, step 80: 2.2e5）但均自行恢复，为 Qwen Math 特有的数值不稳定现象"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-standard-25-qwen-math.md"
+}

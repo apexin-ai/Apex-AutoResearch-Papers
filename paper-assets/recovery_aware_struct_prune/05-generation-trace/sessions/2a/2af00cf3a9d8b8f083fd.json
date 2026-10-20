@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2af00cf3a9d8b8f083fd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh scp and submit grpo cka only westd3",
+  "task_key": "worker_ssh_scp_and_submit_grpo_cka_only_westd3_20260523T050551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp_and_submit_grpo_cka_only_westd3_20260523T050551_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "1bbf76801d7c2a2162362968563ec47c6d66531b28b1d95ac48c5a0890bb2d3b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- **SCP**: 成功，用 `id_ed25519_transfer` 密钥从 westb-23072 拉取到 westd-32935\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/` (model.safetensors = 12.3GB)\n- **PID**: 105828 (tmux session: `eval_math500_grpo_cka_only_20_2048_v2`)\n- **GPU**: cuda:3，模型正在从 CPU 加载到 GPU（12.3GB safetensors 反序列化中）\n- **Registry**: `eval_math500_grpo_cka_only_20_2048_v2` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scp-and-submit-grpo-cka-only-westd3.md"
+}

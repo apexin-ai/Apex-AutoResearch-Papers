@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34bd5f9893830b7fe3ef",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh investigate alpha0p5 math500",
+  "task_key": "worker_ssh_investigate_alpha0p5_math500_20260522T221721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_investigate_alpha0p5_math500_20260522T221721_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "3b372bf70241e235d295297225a5eca64ec0d92dfbb1f4393a8866b354edbd8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **正常完成**，是 cron 误判。\n\n| 项目 | 状态 |\n|------|------|\n| PID 58276 | 已退出 |\n| 结果文件 | 存在，152KB，写入时间 May 23 06:15 |\n| MATH-500 Accuracy | **0.2540 ± 0.0195 (127/500)** |\n| 完成时间 | 2026-05-23 06:15:23，总耗时 ~6h55m |\n| GPU cuda:2 | 空闲（0 MiB / 97887 MiB，31°C） |\n\n日志末尾显示 500/500 全部跑完，结果已写入 JSON，无任何异常。EOS 统计：280 条自然结束，220 条被截断，平均回复长度 1086 tokens。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-investigate-alpha0p5-math500.md"
+}

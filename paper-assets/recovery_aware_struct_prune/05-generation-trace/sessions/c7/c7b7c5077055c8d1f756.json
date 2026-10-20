@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7b7c5077055c8d1f756",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code pass k eval script",
+  "task_key": "worker_code_pass_k_eval_script_20260516T155905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_pass_k_eval_script_20260516T155905_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "48def4d9e6c6798a30687dd111d6d752518667cebc49fcdfcf7841d29fe54c16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n- 新增 `pass_at_k_estimator()` — Chen et al. 2021 无偏估计器\n- 新增 `evaluate_pass_at_k()` — 每个 prompt 生成 n 个样本，逐样本判断正确性，计算 pass@k\n- 新增 CLI 参数 `--pass_k` (default=1) 和 `--num_samples_per_prompt` (default=1)\n- `--pass_k > 1` 时自动启用 sampling (temperature 默认 fallback 0.7)，`--pass_k == 1` 时行为完全不变\n- JSON 输出增加 `pass_at_k`, `k`, `temperature`, `num_samples_per_prompt`, `coverage` 字段，同时保留 `accuracy`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-pass-k-eval-script.md"
+}

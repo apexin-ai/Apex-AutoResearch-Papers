@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1471a1201eb1503c9a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pass k8 standard deepseek",
+  "task_key": "worker_diagnose_pass_k8_standard_deepseek_20260517T015005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pass_k8_standard_deepseek_20260517T015005_result.json",
+    "occurrence": 1,
+    "bytes": 329,
+    "sha256": "ee7e0b2931a9cb0515a6aaf902615e4edf6405258f2fa30a177770de30ebe5c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job，无需删除。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|------|-----|\n| pass@8 | **0.855** ± 0.0249 |\n| k | 8 |\n| n_problems | 200 |\n| temperature | 0.7 |\n| eos_rate | 99.56% |\n| avg_response_length | 164.15 tokens |\n\n评估成功完成，registry 已更新为 `success`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pass-k8-standard-deepseek.md"
+}

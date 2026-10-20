@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93034946bf980e5fe594",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix eos and verify westd",
+  "task_key": "worker_ops_fix_eos_and_verify_westd_20260516T114411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eos_and_verify_westd_20260516T114411_result.json",
+    "occurrence": 1,
+    "bytes": 1297,
+    "sha256": "ef89dc6e5f66ac28eba0cb5f21f7aa5ae8fa4db4a5b3680695eaafed67a03803"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### 1. EOS 修复 ✅\n两个文件已修改，`eos_token_id` 从 `[151643]` → `[151643, 151645]`：\n- `sft_qwen_math_rasp_20/generation_config.json`\n- `sft_qwen_math_standard_20/generation_config.json`\n\n### 2. SFT 25% 训练状态\n\n| 训练 | PID | GPU | 进度 | 状态 |\n|------|-----|-----|------|------|\n| sft_qwen_math_rasp_25 | 2530 | cuda:2 (85%, 48GB) | **1436/1870 (77%)**, epoch 1.027, ~1.15 it/s | **运行中** |\n| sft_qwen_math_standard_25 | 2621 | cuda:3 (89%, 48GB) | **1391/1870 (74%)**, epoch 1.027, ~1.14 it/s | **运行中** |\n\n两个都在正常训练，没有被杀。standard_25 的 PID 2621 是 bash wrapper（0% CPU），实际 python 子进程在 GPU 3 上跑着。预计剩余 ~7 分钟（rasp）/ ~7 分钟（standard）完成当前 epoch，总共还需约 6-7 小时完成 2 epoch。\n\n### 3. 旧 GRPO 进程 ✅\nPID 4199, 4277 已不存在，确认已死。\n\n### 4. GPU 可用性\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| cuda:0 | 0% | 0 MiB / 98GB | **空闲可用** |\n| cuda:1 | 0% | 0 MiB / 98GB | **空闲可用** |\n| cuda:2 | 85% | 48GB / 98GB | rasp_25 占用 |\n| cuda:3 | 89% | 48GB / 98GB | standard_25 占用 |\n\nGPU 0/1 已清空，可用于重新提交 GRPO 训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eos-and-verify-westd.md"
+}

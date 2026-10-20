@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e1bfc5cfff1cdb23faa2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix mbpp timeout audit and resubmit",
+  "task_key": "worker_fix_mbpp_timeout_audit_and_resubmit_20260519T202345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mbpp_timeout_audit_and_resubmit_20260519T202345_result.json",
+    "occurrence": 1,
+    "bytes": 1755,
+    "sha256": "1aae6c395edd1e601346191578c0d25f2e97a941dbf684a57ce7a1adea6b18bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_mbpp_grpo_rasp_20 实际在运行（220/374），之前看到的 \"Terminated\" 是旧 run 的日志残留。\n\n---\n\n## 报告\n\n### A. eval_mbpp_grpo_standard_20 重跑\n- **已启动**，westd cuda:0（cuda:2 被 HumanEval eval 占用，改用 cuda:0）\n- 无 timeout wrapper，用 tee 记录日志\n- Registry: retry_count=1, status=RUNNING\n- 模型正在加载，预计 ~4-6h 完成\n\n### B. Timeout 审计\n\n| 实验 | timeout | 进度 | 预估剩余 | 风险 |\n|------|---------|------|---------|------|\n| eval_mbpp_grpo_rasp_20 | 无 | 220/374 | ~51min | 安全 |\n| eval_mbpp_sft_rasp_20 | 86400s (24h) | ~161/374 | ~35min | 安全 |\n| eval_mbpp_sft_standard_20 | ~~14400s (4h)~~ | **被误杀** | — | 需重跑 |\n\n### 事故：eval_mbpp_sft_standard_20 被误杀\n\n杀 timeout wrapper 时用了 `kill`(SIGTERM) 而非 `kill -STOP`。timeout 进程退出时连带杀死了子进程 python。150/374 进度丢失，无部分结果文件。\n\n**当前所有 GPU 被占用**，等 grpo_rasp_20 或 sft_rasp_20 完成后（~30-50min）可在释放的 GPU 上重跑 sft_standard_20。\n\n### GPU 映射（当前）\n\n| GPU | 占用进程 | 显存 |\n|-----|---------|------|\n| 0 | eval_mbpp_grpo_standard_20 (加载中) | 即将占用 ~17GB |\n| 1 | eval_mbpp_grpo_rasp_20 | 17268 MiB |\n| 2 | 未知进程 PID 135726 | 14568 MiB |\n| 3 | eval_mbpp_sft_rasp_20 | 12802 MiB |\n\n### 建议\n\n1. **~35-50min 后**在释放的 GPU 上重跑 eval_mbpp_sft_standard_20\n2. **系统性修复**：框架对 MBPP eval 默认 timeout 应 ≥ 8h\n3. **操作教训**：杀 timeout wrapper 保留子进程应用 `kill -STOP` 冻结，不能用 `kill`\n\n需要我在 sft_rasp_20 完成后自动重跑 sft_standard_20 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mbpp-timeout-audit-and-resubmit.md"
+}

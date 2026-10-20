@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4bae5db8a6fb3f6ffb8d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval math500 sft random 20",
+  "task_key": "worker_diag_eval_math500_sft_random_20_20260522T004057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_math500_sft_random_20_20260522T004057_result.json",
+    "occurrence": 1,
+    "bytes": 379,
+    "sha256": "3e58e9d30e7aab08f00b5de38f8ab5402a6fb41c81b0c722ea7273b595c39188"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成：\n\n- **失败根因**：westd-29022 服务器宕机（port 29022 无法连接），实验无法执行\n- **服务器状态**：仍然离线，非本地网络问题（westb-23072 同时连接正常）\n- **能否重提交**：不能，需等服务器恢复或迁移至 westb-23072\n\n报告已写入 `artifacts/diag_eval_math500_sft_random_20.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-math500-sft-random-20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4ce0b41295df67ea09b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_8_1778869996.md",
+  "task_key": "loop_8_1778869996",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778869996.md",
+    "occurrence": 1,
+    "bytes": 5559,
+    "sha256": "4f3bb0779133e3444e330778e5985fd21faaefa007cbbad84ab6d705e0b13e97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T18:31:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westb-23072 GPU 白名单: cuda:0, cuda:1。westd-11672 GPU 白名单: cuda:0, cuda:1\n- westb 项目路径是 `/root/recovery_aware_struct_prune/`（注意：不是 `/root/autodl-tmp/recovery_aware_struct_prune/`，代码在前者，数据/模型在后者的 `/root/autodl-tmp/` 下）\n- westd 项目路径是 `/root/autodl-tmp/recovery_aware_struct_prune/`（代码和数据都在这里）\n- submit_training_job 的 command 必须用 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash，source/conda activate 不包会 EXIT_CODE=127）\n- GRPO 脚本 train_grpo_v5.py 有 monkey-patch 逻辑加载剪枝模型的 ref_model，对未剪枝模型会走标准 from_pretrained 路径（已验证无冲突）\n- GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- westb 磁盘曾多次接近满，checkpoint save 前检查 `df -h /root/autodl-tmp/`，低于 50GB 立即清理\n\n### 2. 🖥️ 基础设施快照\n**westb-23072** (2× A100 97.9GB):\n- 工作目录: `/root/recovery_aware_struct_prune/`（代码），`/root/autodl-tmp/recovery_aware_struct_prune/`（输出）\n- Python: `/root/miniconda3/bin/python` (conda base)\n- 模型: base model 正在下载到 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` (aria2c, shard1 ~18%, ETA ~11min from 18:35 UTC)\n- HF cache: `/root/autodl-tmp/.hf_cache/`\n- 活跃: grpo_stage2_standard_20_v8 (PID 534667, tmux=grpo_stage2_standard_20_v8, cuda:1, step ~30/100, HEALTHY)\n- cuda:0: 空闲，等 base model 下载完启动 unpruned GRPO\n- 磁盘: ~70GB free on /root/autodl-tmp/\n\n**westd-11672** (2× RTX PRO 6000 97.9GB):\n- 工作目录: `/root/autodl-tmp/recovery_aware_struct_prune/`\n- Python: `/root/miniconda3/bin/python` (conda base)\n- 模型: base model at `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` (完整), `/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B/` (也有)\n- 活跃: eval_sft_rasp_20_westd_n100 (tmux, cuda:0), eval_sft_standard_20_westd_n100 (tmux, cuda:1)\n- SFT checkpoints: sft_rasp_20_westd/ (loss=0.658), sft_standard_20_westd/ (loss=0.640)\n- 磁盘: ~46GB free (偏紧)\n\n### 3. 📊 当前状态\n**刚做完**:\n- RASP GRPO v8 killed at ~step 29 (conclusion=negative, registry DONE). 三次连续 collapse (v2/v5/v8)\n- westd 两个 SFT retrain 完成 (RASP loss=0.658/acc=0.830, Standard loss=0.640/acc=0.826)\n- N=100 eval 已提交 on westd (cuda:0 RASP, cuda:1 Standard)\n\n**Registry RUNNING**:\n- `grpo_stage2_standard_20_v8` — westb cuda:1, step ~30, **HEALTHY** (Director: 跑到 step 100, step 50 做 checkpoint + N=100 eval)\n- `sft_rasp_20_westd_retrain` — 实际已完成但 registry 可能仍 RUNNING (worker 更新了 conclusion=success)\n- `sft_standard_20_westd_retrain` — 同上\n\n**Registry PREPARING**:\n- `grpo_unpruned_baseline` — 等 base model 下载完成 on westb\n- `eval_sft_rasp_20_full` / `eval_sft_standard_20_full` — N=1319 full eval, 等 N=100 验证通过后启动\n\n**等待中的 Worker**:\n- `worker_ops_launch-unpruned-grpo-when-ready` (RUNNING, turn 15) — 监控 aria2c 下载，完成后自动提交 unpruned GRPO\n\n**等待中的 Cron**:\n- `grpo_stage2_standard_20_v8` — westb cuda:1\n- N=100 eval crons (如果 submit_training_job 注册了)\n\n### 4. 📋 待办（条件触发式）\n- **base model 下载完成** → Worker 自动验证 + submit_training_job 启动 unpruned GRPO on westb cuda:0 → 注册 cron\n- **N=100 RASP eval 完成** → 确认 ~57% (与 westb 一致) → update registry\n- **N=100 Standard eval 完成** → 确认 ~64% → update registry\n- **两个 N=100 都验证通过** → 立即双 GPU 并行启动 N=1319 full eval (westd cuda:0 + cuda:1)\n- **Standard GRPO v8 到 step 50** (~20:30 UTC) → checkpoint save → spawn worker 跑 N=100 eval 量化 accuracy\n- **Standard GRPO v8 到 step 100** (~22:00 UTC) → 完整评估 → 如果成功 = paper 核心证据\n- **unpruned GRPO step 10-20** → 检查是否 collapse → 如果健康 = 证明 GRPO 本身没问题\n- **如果 unpruned GRPO 也 collapse** → Framing 大调整: GRPO 方法本身对 7B 模型可能不适用（需要 red-section proposal）\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D027: Post-prune accuracy: RASP 31% > Standard 27% > GraSP 7% (CKA scoring works)\n- D027 修正: Post-SFT equalization effect — Standard 64% > RASP 57% > GraSP 41% (SFT 压缩了差距，ranking reversal)\n- D031: RASP GRPO 三次 collapse (v2/v5/v8)，Standard GRPO v8 健康 → **反转**: Standard 剪枝模型对 GRPO 更友好\n- α ablation: α=0.0(64%) > α=2.0≈α=4.0(62%) > α=1.0(57%)。SFT 阶段 α 几乎无显著影响\n\n**EMNLP 2026 ARR May 25 deadline = 10 天**\n\n**最容易判断错的事**:\n1. **不要假设 RASP > Standard**。当前数据反转了: post-SFT Standard > RASP，GRPO Standard 存活 RASP collapse。论文 narrative 需要从 \"RASP 更好\" 转向 \"pruning 方法影响 RLVR 恢复路径\" 的分析性 framing\n2. **不要在 N=100 eval 不一致时直接跑 N=1319**。westb 和 westd 结果必须 match (±3pp) 才能继续\n3. **westb 磁盘反复出问题**。Standard GRPO step 50 checkpoint (~24GB) 和 unpruned GRPO 同时跑会吃 ~50GB+，当前 70GB free 刚好够但没余量\n4. **下载 worker 容易因 context/timeout 失败**。aria2c 后台进程会继续跑，新 worker 先检查已有进程再决定是否重启\n5. **Director 明确说: 不要 fallback 思维**。不要建议降级 venue 或暗示时间不够。遇到瓶颈报告 \"需要什么资源来加速\"\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778869996.md"
+}

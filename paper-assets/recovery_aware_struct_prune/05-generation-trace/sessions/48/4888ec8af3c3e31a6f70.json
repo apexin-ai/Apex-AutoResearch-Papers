@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4888ec8af3c3e31a6f70",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd gpu and shortgpt results",
+  "task_key": "worker_check_westd_gpu_and_shortgpt_results_20260520T022150",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_gpu_and_shortgpt_results_20260520T022150_result.json",
+    "occurrence": 1,
+    "bytes": 1029,
+    "sha256": "6f3d29706e8b3645d3855363da78c3494723ce70b63c680bf8a54ea315cf13d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已全部补录完成。汇报如下：\n\n## GPU 状态\n\n| 服务器 | GPU | 显存占用 | 利用率 |\n|--------|-----|----------|--------|\n| westd-29022 | cuda:0-3 | 全部 0 MiB | 0% |\n| westb-23072 | cuda:0-1 | 全部 0 MiB | 0% |\n\n**6 GPU 全空，0 RUNNING 实验，无残留进程。**\n\n## ShortGPT MBPP 结果（已确认，文件含 `.done` 标记）\n\n| 模型 | pass@1 | n_correct | n_total | stderr |\n|------|--------|-----------|---------|--------|\n| ShortGPT SFT 20% | **10.43%** | 39 | 374 | ±1.58% |\n| ShortGPT GRPO 20% | **14.44%** | 54 | 374 | ±1.82% |\n\nReviewer 上轮报告的数字 (SFT 10.43%, GRPO 14.44%) **完全一致**，结果可信。\n\n## Registry 补录\n\n- `eval_mbpp_sft_shortgpt_20_v2`: QUEUED → **DONE/success**，metrics 已写入\n- `eval_mbpp_grpo_shortgpt_20_v2`: DONE/failed → **DONE/success**，metrics 已写入\n\n注：ShortGPT GRPO 在 MBPP 上反而比 SFT 提升 +4.01pp，与 GSM8K 上 GRPO 退化 (44.73→43.37%) 的趋势相反。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-gpu-and-shortgpt-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d4e4bc0a7b6fc054b1b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_11_1778895858.md",
+  "task_key": "loop_11_1778895858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778895858.md",
+    "occurrence": 1,
+    "bytes": 5338,
+    "sha256": "7058b37370bde40ee2ade845f722c3c74f94bb413ba216dc8731b3fdcef322b6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:44:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1（约束 C001），其他设备号绝对禁止\n- submit_training_job 命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（westb/westd 都是 conda 环境，无 .venv）\n- AutoDL 实例用前必须 `source /etc/network_turbo` + 设 `HF_HOME=/root/autodl-tmp/.hf_cache` + SSL 证书环境变量\n- RASP GRPO v9 (westb cuda:0) 和 Standard v8 (westb cuda:1) 是当前论文唯一核心证据来源——**不要 kill，不要重启，不要干扰**\n- GRPO 已到 v8/v9 迭代，v1-v7 全部因各种工程问题失败。不要回退参数，当前参数组合（8-bit AdamW, max_completion_length=1024, beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, lr=1e-6）是经过反复调试的稳定配置\n- sft_recovery.py 的 `--gpu` 参数会覆盖外层 CUDA_VISIBLE_DEVICES（第 19-22 行），启动时直接传 `--gpu 0`\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**：2× ~98GB GPU，工作目录 /root/autodl-tmp/recovery_aware_struct_prune/\n  - Python: /root/miniconda3/bin/python, conda base env\n  - cuda:0: GRPO RASP v9 (PID 566666, wandb mrikafz3, save_steps=5, max_steps=30)\n  - cuda:1: GRPO Standard v8 (wandb q34vz8j2)\n  - 模型: /root/autodl-tmp/ 下（具体路径需 SSH 确认，但 checkpoint 在各实验子目录）\n  - HF_HOME: /root/autodl-tmp/.hf_cache\n- **westd-11672**：2× ~95GB GPU，工作目录 /root/autodl-tmp/recovery_aware_struct_prune/\n  - cuda:0: GraSP SFT + eval（接近完成）\n  - cuda:1: α ablation SFT sweep（α=0.0/0.5/1.0/4.0 done, α=2.0 进行中）\n  - 注意：westd eval 脚本必须从 westb 同步（含 apply_chat_template 修复），旧版有 bug\n  - westd cal=256 vs westb cal=512 有约 5% group selection 差异，两组 α ablation 不能直接混用\n\n### 3. 📊 当前状态\n**刚完成**：\n- D044 narrative pivot：从\"RASP enables better recovery\"转向\"Collapse speed reveals redundancy-stability tradeoff\"\n- eval_grpo_standard_step50_full (N=1319): 58.91%，与 SFT 59.29% 无增益 → GRPO reward hacking 确认\n- alpha_ablation_sweep (westb cal=512): 非单调 U 形确认，α=1.0 最佳平衡点\n- Unpruned GRPO baseline: step ~80 也 collapse → collapse 不是剪枝特有，但剪枝加速 collapse\n\n**正在运行**：\n- grpo_stage2_rasp_20_v9 (westb cuda:0): save_steps=5 捕获 collapse 前 peak，**论文关键缺失数据**。RASP collapse onset ~step 10，预计 step 5/10 有 checkpoint\n- grpo_stage2_standard_20_v8 (westb cuda:1): 仍在运行（已过 step 50）\n- eval_sft_unpruned_full: 全量模型 SFT 基线 eval\n- GraSP SFT + eval_sft_grasp_20 (westd cuda:0)\n- α=2.0 SFT (westd cuda:1)\n\n**等待中**：\n- RASP v9 cron 回调 → 核心判断点\n- Standard v8 继续运行（已有 step-50 数据，后续 checkpoint 观察 post-collapse 行为）\n- Unpruned GRPO 排队：需先完成 unpruned SFT eval\n\n### 4. 📋 待办（条件触发式）\n- RASP v9 cron 回调到达 → spawn worker 分析 step 5/10 checkpoint accuracy + collapse curve → 与 Standard step-50 (58.91%) 对比 → 更新 paper_framing.md evidence table\n- RASP v9 collapse 确认 (step ~10) → 这是 Claim 2 的核心证据。如果 step 5 accuracy > SFT baseline → 短暂 peak 存在；如果 step 5 已 collapse → RASP 极其脆弱，narrative 更强\n- Unpruned SFT eval 完成 → 立即启动 unpruned GRPO (westb 或 westd 看哪块 GPU 先空出)\n- GraSP SFT eval 完成 → 三方对比表更新: Standard vs RASP vs GraSP post-SFT\n- α=2.0 SFT 完成 → 完整 α-SFT 曲线 (5 点)，与 post-prune U 形对比，验证\"SFT 均衡化效应\"\n- 所有 GRPO 实验完成 + unpruned baseline 就位 → 开始论文写作（EMNLP ARR May 25, 还剩 ~9 天）\n- 论文写作启动前 → 必须 Read red-section skill，按规范写\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D027: Post-prune RASP vs Standard 差异不显著 (4pp, p=0.54) → pre-recovery claim 失败\n- D029: Post-SFT Standard > RASP (64% vs 57%) → SFT story 反转\n- D039: Unpruned 也 collapse → \"pruning causes collapse\" claim 失效\n- D043: Standard step 60 collapse 确认 → 三模型 collapse timeline 建立\n- **D044 (当前 narrative)**: Collapse speed 是 structural damage 的诊断工具。RASP 不是更好的剪枝方法，而是一个暴露 redundancy-stability tradeoff 的诊断工具\n\n**最容易判断错的事**：\n1. **不要以为 RASP 是 positive result**——RASP 在 RLVR 下是 harmful 的（加速 collapse 6×），论文的 story 是\"diagnostic tool + negative finding\"而非\"better pruning\"\n2. **不要把 unpruned collapse 当作\"一切 collapse 所以无所谓\"**——collapse SPEED 的差异才是 evidence。三者都 collapse 是事实，但 RASP 10 / Standard 60 / Unpruned 80 的梯度是论文核心\n3. **SFT gap (p=0.248) 不能当 evidence 用**——只能作为 supplementary context，论文主 claim 是 GRPO failure + collapse dynamics\n4. **Self-Healing (2025) 是 25% unstructured pruning**，我们是 20% structured——直接对比不成立，Discussion 里需要 carefully 说明差异\n5. **westd 的 α ablation (cal=256) 和 westb (cal=512) 有 group selection 差异**，不要混用数据点画同一条曲线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778895858.md"
+}

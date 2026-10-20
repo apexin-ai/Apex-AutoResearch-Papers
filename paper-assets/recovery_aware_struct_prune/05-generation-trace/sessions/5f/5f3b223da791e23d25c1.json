@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f3b223da791e23d25c1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "figure paperbanana fig2 framework redraw",
+  "task_key": "worker_figure_paperbanana_fig2_framework_redraw_20260524T165852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_paperbanana_fig2_framework_redraw_20260524T165852_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "d2df6b7e3a1da3e36dd7b0bc2010892b247855ba6c344fd1485aaef38e5ac3ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- PaperBanana 生成了 2752×1536 的 framework 概念图（3 panel + 底部 Recovery Capacity Spectrum 条）\n- 已转 PDF 并替换 `docs/paper/figures/paper/fig1_method_framework.pdf`\n- 已推送到匿名仓库 `f76b29d`\n- Artifact 已注册 `art_20260524_11b1f0`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-paperbanana-fig2-framework-redraw.md"
+}

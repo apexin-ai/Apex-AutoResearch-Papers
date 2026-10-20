@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fd92ef1a60efc7bca0f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd32935 setup batch 20260522",
+  "task_key": "worker_ops_westd32935_setup_batch_20260522_20260522T034633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd32935_setup_batch_20260522_20260522T034633_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "45a0c0142ac0a8963c6530d87ea77bb93638f1dd9bc204a3fd45868773d403f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 连接 ==\nwestd-32935: OK\n\n== 环境 ==\nGPU: NVIDIA RTX PRO 6000 Blackwell Server Edition 96GB x 4\nPython: 3.12.3 (miniconda3)\nPyTorch: 2.11.0+cu128\ntransformers: 5.8.1\n\n== Checkpoint 检查 ==\nsft_alpha4_20: OK\ngrpo_alpha4_20/checkpoint-100: OK\ngrpo_stage2_standard_20_fair: OK\nsft_random_20: OK\n\n== 修复 ==\n- 安装了缺失的 sentencepiece（sft_random_20 tokenizer 依赖）\n- sft_alpha4_20 首次加载时 attention reshape 报错，第二次启动正常运行\n\n== 提交结果 ==\n| GPU | exp_id | PID | 验证 |\n|-----|--------|-----|------|\n| 0 | eval_math500_grpo_standard_20_fair_2048_v2 | 2234 | OK (16521 MiB, 97%) |\n| 1 | eval_math500_sft_random_20_v2 | 3886 | OK (12335 MiB, 加载中) |\n| 2 | eval_gsm8k_sft_alpha4_20_v5 | 3586 | OK (12675 MiB, 92%) |\n| 3 | eval_gsm8k_grpo_alpha4_20_v3 | 2737 | OK (12747 MiB, 90%) |\n\n== Cron ==\n全部已注册（120s 轮询）\n\n== 磁盘 ==\n/root/autodl-tmp: 650G 总量，280G 已用 (43%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd32935-setup-batch-20260522.md"
+}

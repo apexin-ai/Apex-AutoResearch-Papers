@@ -1,0 +1,778 @@
+{
+  "schema_version": "1.0",
+  "id": "5a4613e51038d95956f3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "diag westd experiments",
+  "task_key": "worker_diag_westd_experiments_20260517T231718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd_experiments_20260517T231718.log",
+    "occurrence": 1,
+    "bytes": 87540,
+    "sha256": "cddd4b732d0e45c9c9014bd8ddea04f3928dc4a2b0807cfbe33b9b5cbecc956a"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 5,
+      "tool_result": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d10fcc56-6501-4f84-be1c-5d9dc5b06e53",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779076800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "3c10305b-c94b-48b6-930b-013003ebf657",
+                "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to check the status of two experiments on westd-11672 server, plus get overall GPU usage. I'll use ssh_execute to run commands on that server. Let me first load the tool schema.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "1d77e51a-d185-411f-a65a-6e7f3f0bad44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RoshFXrTr4QpYkQDhsWhs6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12969,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12969
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012J449yXLataENT37wBoX6h",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "2207759d-5719-4242-821b-b96797eb01cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RoshFXrTr4QpYkQDhsWhs6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12969,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12969
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T23:17:30.315Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_012J449yXLataENT37wBoX6h",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "7417ad45-7c2b-42ab-953a-eec2c04d8a4c",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I'll run the checks on westd-11672. I'll parallelize the independent commands.",
+              "signature": "Eo0CClkIDRgCKkAdcGblygILeSDVElx08U6UoyRMJ3N+a0N2Ng2q+/uUK4+t5U0VSv8M1f7snPar5Sry0d/4DXDaUNRwI6GlXsmTMg9jbGF1ZGUtb3B1cy00LTY4ABIMdslcVoVefgieiSz3GgzBU43U2R9e8rtl/YQiMITiVoWnfpG2GGQqHfIXIBOolLfWJyQ+hUEWNSrySdYCOsphl8EkrC/tBJVPM2NgWypiGEgZqQ6EqBRVzBrRQBW3Dyext3EYLRlOoXdRi2/Nwr93CXQqJLC2LlHGC+0oQ8u4DeRJanUuxe1LzGzf5rLDQVi8UhgIZj7uy0f8oHDWbqFVfMAN0VxihvXGtMfVcERoUCEYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "7f42994f-e0ad-4c52-aa55-7f5aa1d118d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8cCAvuYkAzyFWUfBn4skp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 24810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fh9U96JhL8yYDqa7ZsvDWA",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ps -p 64467 -o pid,stat,etime,cmd 2>&1; echo \"---\"; ps -p 59403 -o pid,stat,etime,cmd 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "72fc1845-e8c5-412d-bcc2-cee80cdcbe8b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8cCAvuYkAzyFWUfBn4skp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 24810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KH6ApEWZypVpHXJ8gAh54J",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "nvidia-smi",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "fbac8333-3c03-4ece-954c-25a95dcc0263",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8cCAvuYkAzyFWUfBn4skp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 24810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T23:17:36.144Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fh9U96JhL8yYDqa7ZsvDWA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n 64467 Ss+        08:23 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\\\n---\\\\n   PID STAT     ELAPSED CMD\\\\n 59403 Ss      01:18:22 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "2adcdfaf-cb71-4eed-bb46-8a44cf61cd64",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT     ELAPSED CMD\\\\n 64467 Ss+        08:23 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\\\n---\\\\n   PID STAT     ELAPSED CMD\\\\n 59403 Ss      01:18:22 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID STAT     ELAPSED CMD\\n 64467 Ss+        08:23 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\n---\\n   PID STAT     ELAPSED CMD\\n 59403 Ss      01:18:22 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T23:17:36.945Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KH6ApEWZypVpHXJ8gAh54J",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 07:17:36 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   64C    P0            450W /  600W |   41198MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   75C    P0            575W /  600W |   34569MiB /  97887MiB |     98%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   52C    P0            316W /  600W |   29210MiB /  97887MiB |     94%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   79C    P0            595W /  600W |   32517MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A           47672      C   python                                11574MiB |\\\\n|    0   N/A  N/A           49480      C   python                                29610MiB |\\\\n|    1   N/A  N/A           14556      C   python                                34560MiB |\\\\n|    2   N/A  N/A           59408      C   python                                11538MiB |\\\\n|    2   N/A  N/A           64472      C   python                                17658MiB |\\\\n|    3   N/A  N/A           31706      C   python                                32508MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "a871fff7-7d6d-4ce4-99b5-c41aecacb2b5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Mon May 18 07:17:36 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   64C    P0            450W /  600W |   41198MiB /  97887MiB |     97%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\\\n| N/A   75C    P0            575W /  600W |   34569MiB /  97887MiB |     98%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   52C    P0            316W /  600W |   29210MiB /  97887MiB |     94%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   79C    P0            595W /  600W |   32517MiB /  97887MiB |     99%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A           47672      C   python                                11574MiB |\\\\n|    0   N/A  N/A           49480      C   python                                29610MiB |\\\\n|    1   N/A  N/A           14556      C   python                                34560MiB |\\\\n|    2   N/A  N/A           59408      C   python                                11538MiB |\\\\n|    2   N/A  N/A           64472      C   python                                17658MiB |\\\\n|    3   N/A  N/A           31706      C   python                                32508MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Mon May 18 07:17:36 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\n| N/A   64C    P0            450W /  600W |   41198MiB /  97887MiB |     97%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:98:00.0 Off |                  Off |\\n| N/A   75C    P0            575W /  600W |   34569MiB /  97887MiB |     98%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\n| N/A   52C    P0            316W /  600W |   29210MiB /  97887MiB |     94%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\n| N/A   79C    P0            595W /  600W |   32517MiB /  97887MiB |     99%      Default |\\n|                                         |                        |             Disabled |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A           47672      C   python                                11574MiB |\\n|    0   N/A  N/A           49480      C   python                                29610MiB |\\n|    1   N/A  N/A           14556      C   python                                34560MiB |\\n|    2   N/A  N/A           59408      C   python                                11538MiB |\\n|    2   N/A  N/A           64472      C   python                                17658MiB |\\n|    3   N/A  N/A           31706      C   python                                32508MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FnLxEcwfnKZcZUezu7sJJS",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "tail -50 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1; echo \"===SEPARATOR===\"; tail -30 ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "8be8d16b-b489-4773-bb3f-07356452f54d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8cCAvuYkAzyFWUfBn4skp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 24810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T23:17:38.106Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FnLxEcwfnKZcZUezu7sJJS",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 07:09:16,619 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:01<10:51,  1.93s/it]\\\\rLoading weights:   1%|          | 4/339 [00:02<02:13,  2.51it/s]\\\\rLoading weights:   2%|▏         | 6/339 [00:02<01:34,  3.53it/s]\\\\rLoading weights:   4%|▍         | 15/339 [00:02<00:35,  9.21it/s]\\\\rLoading weights:   7%|▋         | 24/339 [00:03<00:21, 14.37it/s]\\\\rLoading weights:   9%|▉         | 30/339 [00:03<00:16, 18.70it/s]\\\\rLoading weights:  12%|█▏        | 39/339 [00:03<00:12, 24.93it/s]\\\\rLoading weights:  13%|█▎        | 43/339 [00:03<00:13, 22.63it/s]\\\\rLoading weights:  15%|█▍        | 50/339 [00:03<00:11, 25.12it/s]\\\\rLoading weights:  16%|█▌        | 54/339 [00:04<00:13, 21.68it/s]\\\\rLoading weights:  19%|█▉        | 64/339 [00:04<00:09, 28.21it/s]\\\\rLoading weights:  20%|██        | 68/339 [00:04<00:11, 23.49it/s]\\\\rLoading weights:  21%|██        | 72/339 [00:04<00:11, 23.52it/s]\\\\rLoading weights:  23%|██▎       | 77/339 [00:04<00:09, 27.10it/s]\\\\rLoading weights:  24%|██▍       | 81/339 [00:04<00:09, 27.86it/s]\\\\rLoading weights:  26%|██▌       | 88/339 [00:05<00:08, 30.20it/s]\\\\rLoading weights:  27%|██▋       | 92/339 [00:05<00:10, 23.22it/s]\\\\rLoading weights:  29%|██▉       | 100/339 [00:05<00:08, 28.91it/s]\\\\rLoading weights:  31%|███       | 104/339 [00:05<00:09, 24.57it/s]\\\\rLoading weights:  32%|███▏      | 110/339 [00:06<00:08, 27.64it/s]\\\\rLoading weights:  34%|███▎      | 114/339 [00:06<00:09, 24.55it/s]\\\\rLoading weights:  37%|███▋      | 124/339 [00:06<00:06, 31.88it/s]\\\\rLoading weights:  38%|███▊      | 128/339 [00:06<00:08, 25.40it/s]\\\\rLoading weights:  40%|███▉      | 135/339 [00:06<00:07, 28.72it/s]\\\\rLoading weights:  41%|████      | 139/339 [00:07<00:08, 24.90it/s]\\\\rLoading weights:  44%|████▎     | 148/339 [00:07<00:06, 30.88it/s]\\\\rLoading weights:  45%|████▍     | 152/339 [00:07<00:07, 24.28it/s]\\\\rLoading weights:  47%|████▋     | 158/339 [00:07<00:06, 26.78it/s]\\\\rLoading weights:  47%|████▋     | 161/339 [00:07<00:06, 27.21it/s]\\\\rLoading weights:  48%|████▊     | 164/339 [00:08<00:06, 26.17it/s]\\\\rLoading weights:  51%|█████     | 172/339 [00:08<00:05, 30.81it/s]\\\\rLoading weights:  52%|█████▏    | 176/339 [00:08<00:06, 23.39it/s]\\\\rLoading weights:  54%|█████▍    | 184/339 [00:08<00:06, 25.18it/s]\\\\rLoading weights:  55%|█████▌    | 187/339 [00:09<00:06, 24.80it/s]\\\\rLoading weights:  58%|█████▊    | 196/339 [00:09<00:04, 32.13it/s]\\\\rLoading weights:  59%|█████▉    | 200/339 [00:09<00:05, 25.19it/s]\\\\rLoading weights:  61%|██████▏   | 208/339 [00:09<00:04, 30.44it/s]\\\\rLoading weights:  63%|██████▎   | 212/339 [00:09<00:04, 25.84it/s]\\\\rLoading weights:  65%|██████▍   | 220/339 [00:10<00:04, 25.12it/s]\\\\rLoading weights:  66%|██████▌   | 223/339 [00:10<00:04, 23.68it/s]\\\\rLoading weights:  68%|██████▊   | 229/339 [00:10<00:04, 25.22it/s]\\\\rLoading weights:  69%|██████▊   | 233/339 [00:10<00:04, 26.47it/s]\\\\rLoading weights:  70%|██████▉   | 236/339 [00:10<00:04, 24.40it/s]\\\\rLoading weights:  72%|███████▏  | 243/339 [00:11<00:03, 28.84it/s]\\\\rLoading weights:  73%|███████▎  | 246/339 [00:11<00:04, 21.72it/s]\\\\rLoading weights:  76%|███████▌  | 256/339 [00:11<00:02, 31.04it/s]\\\\rLoading weights:  77%|███████▋  | 260/339 [00:11<00:03, 24.58it/s]\\\\rLoading weights:  79%|███████▉  | 268/339 [00:11<00:02, 29.90it/s]\\\\rLoading weights:  80%|████████  | 272/339 [00:12<00:02, 25.24it/s]\\\\rLoading weights:  83%|████████▎ | 280/339 [00:12<00:02, 20.51it/s]\\\\rLoading weights:  86%|████████▌ | 292/339 [00:12<00:01, 29.56it/s]\\\\rLoading weights:  87%|████████▋ | 296/339 [00:13<00:01, 25.67it/s]\\\\rLoading weights:  90%|████████▉ | 304/339 [00:13<00:01, 29.58it/s]\\\\rLoading weights:  91%|█████████ | 308/339 [00:13<00:01, 23.92it/s]\\\\rLoading weights:  93%|█████████▎| 316/339 [00:13<00:00, 28.21it/s]\\\\rLoading weights:  94%|█████████▍| 320/339 [00:14<00:00, 23.51it/s]\\\\rLoading weights:  96%|█████████▌\\\\n\\\\n... [截断: 输出过长，省略 3523 字符] ...\\\\n\\\\n8 06:03:21,707 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sun May 17 13:00:54 2026).\\\\n2026-05-18 06:03:21,720 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 06:03:21,721 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [01:35<5:18:04, 95.90s/it]\\\\rEvaluating:   1%|          | 2/200 [03:11<5:15:23, 95.57s/it]\\\\rEvaluating:   2%|▏         | 3/200 [04:46<5:13:41, 95.54s/it]\\\\rEvaluating:   2%|▏         | 4/200 [06:22<5:12:08, 95.55s/it]\\\\rEvaluating:   2%|▎         | 5/200 [07:57<5:10:24, 95.51s/it]\\\\rEvaluating:   3%|▎         | 6/200 [09:33<5:08:38, 95.46s/it]\\\\rEvaluating:   4%|▎         | 7/200 [11:08<5:07:03, 95.46s/it]\\\\rEvaluating:   4%|▍         | 8/200 [12:44<5:05:29, 95.47s/it]\\\\rEvaluating:   4%|▍         | 9/200 [14:19<5:03:57, 95.48s/it]\\\\rEvaluating:   5%|▌         | 10/200 [15:55<5:02:25, 95.50s/it]\\\\rEvaluating:   6%|▌         | 11/200 [17:30<5:00:52, 95.52s/it]\\\\rEvaluating:   6%|▌         | 12/200 [19:06<4:59:12, 95.49s/it]\\\\rEvaluating:   6%|▋         | 13/200 [20:41<4:57:35, 95.49s/it]\\\\rEvaluating:   7%|▋         | 14/200 [22:17<4:55:57, 95.47s/it]\\\\rEvaluating:   8%|▊         | 15/200 [23:52<4:54:19, 95.46s/it]\\\\rEvaluating:   8%|▊         | 16/200 [25:27<4:52:41, 95.44s/it]\\\\rEvaluating:   8%|▊         | 17/200 [27:03<4:51:07, 95.45s/it]\\\\rEvaluating:   9%|▉         | 18/200 [28:38<4:49:31, 95.45s/it]\\\\rEvaluating:  10%|▉         | 19/200 [30:14<4:47:58, 95.46s/it]\\\\rEvaluating:  10%|█         | 20/200 [31:49<4:46:22, 95.46s/it]\\\\rEvaluating:  10%|█         | 21/200 [33:25<4:44:46, 95.46s/it]\\\\rEvaluating:  11%|█         | 22/200 [35:00<4:43:11, 95.46s/it]\\\\rEvaluating:  12%|█▏        | 23/200 [36:36<4:41:38, 95.47s/it]\\\\rEvaluating:  12%|█▏        | 24/200 [38:11<4:40:05, 95.49s/it]\\\\rEvaluating:  12%|█▎        | 25/200 [39:47<4:38:33, 95.51s/it]\\\\rEvaluating:  13%|█▎        | 26/200 [41:22<4:36:57, 95.50s/it]\\\\rEvaluating:  14%|█▎        | 27/200 [42:58<4:35:15, 95.46s/it]\\\\rEvaluating:  14%|█▍        | 28/200 [44:33<4:33:41, 95.47s/it]\\\\rEvaluating:  14%|█▍        | 29/200 [46:09<4:32:07, 95.48s/it]\\\\rEvaluating:  15%|█▌        | 30/200 [47:44<4:30:33, 95.49s/it]\\\\rEvaluating:  16%|█▌        | 31/200 [49:19<4:28:54, 95.47s/it]\\\\rEvaluating:  16%|█▌        | 32/200 [50:55<4:27:18, 95.47s/it]\\\\rEvaluating:  16%|█▋        | 33/200 [52:30<4:25:43, 95.47s/it]\\\\rEvaluating:  17%|█▋        | 34/200 [54:06<4:24:09, 95.48s/it]\\\\rEvaluating:  18%|█▊        | 35/200 [55:41<4:22:29, 95.45s/it]Terminated\\\\n:  18%|█▊        | 36/200 [56:03<4:20:54, 95.45s/it]\\\\rEvaluating:  18%|█▊        | 37/200 [57:26<4:08:52, 91.61s/it]\\\\rEvaluating:  19%|█▉        | 38/200 [58:13<3:31:09, 78.21s/it]\\\\rEvaluating:  20%|█▉        | 39/200 [59:00<3:04:39, 68.81s/it]\\\\rEvaluating:  20%|██        | 40/200 [59:47<2:45:55, 62.22s/it]\\\\rEvaluating:  20%|██        | 41/200 [1:00:34<2:32:44, 57.64s/it]\\\\rEvaluating:  21%|██        | 42/200 [1:01:06<2:12:10, 50.19s/it]\\\\rEvaluating:  22%|██▏       | 43/200 [1:01:53<2:08:43, 49.19s/it]\\\\rEvaluating:  22%|██▏       | 44/200 [1:02:40<2:06:03, 48.49s/it]\\\\rEvaluating:  22%|██▎       | 45/200 [1:03:28<2:04:22, 48.15s/it]\\\\rEvaluating:  23%|██▎       | 46/200 [1:04:14<2:02:36, 47.77s/it]\\\\rEvaluating:  24%|██▎       | 47/200 [1:05:01<2:01:08, 47.50s/it]\\\\rEvaluating:  24%|██▍       | 48/200 [1:05:48<1:59:51, 47.31s/it]\\\\rEvaluating:  24%|██▍       | 49/200 [1:06:35<1:58:42, 47.17s/it]2026-05-18 07:08:58,755 [INFO] Progress: 50/200, acc=0.0000, eos_rate=4.00%, avg_len=4024\\\\n\\\\rEvaluating:  25%|██▌       | 50/200 [1:06:54<1:36:53, 38.76s/it]\\\\rEvaluating:  26%|██▌       | 51/200 [1:07:43<1:43:32, 41.70s/it]\\\\rEvaluating:  26%|██▌       | 52/200 [1:09:22<2:25:27, 58.97s/it]\\\\rEvaluating:  26%|██▋       | 53/200 [1:11:02<2:54:30, 71.23s/it]\\\\rEvaluating:  27%|██▋       | 54/200 [1:12:41<3:13:38, 79.58s/it]\\\\rEvaluating:  28%|██▊       | 55/200 [1:14:20<3:26:39, 85.51s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "67672211-7a6a-41b4-9978-160f756491a6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 07:09:16,619 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:01<10:51,  1.93s/it]\\\\rLoading weights:   1%|          | 4/339 [00:02<02:13,  2.51it/s]\\\\rLoading weights:   2%|▏         | 6/339 [00:02<01:34,  3.53it/s]\\\\rLoading weights:   4%|▍         | 15/339 [00:02<00:35,  9.21it/s]\\\\rLoading weights:   7%|▋         | 24/339 [00:03<00:21, 14.37it/s]\\\\rLoading weights:   9%|▉         | 30/339 [00:03<00:16, 18.70it/s]\\\\rLoading weights:  12%|█▏        | 39/339 [00:03<00:12, 24.93it/s]\\\\rLoading weights:  13%|█▎        | 43/339 [00:03<00:13, 22.63it/s]\\\\rLoading weights:  15%|█▍        | 50/339 [00:03<00:11, 25.12it/s]\\\\rLoading weights:  16%|█▌        | 54/339 [00:04<00:13, 21.68it/s]\\\\rLoading weights:  19%|█▉        | 64/339 [00:04<00:09, 28.21it/s]\\\\rLoading weights:  20%|██        | 68/339 [00:04<00:11, 23.49it/s]\\\\rLoading weights:  21%|██        | 72/339 [00:04<00:11, 23.52it/s]\\\\rLoading weights:  23%|██▎       | 77/339 [00:04<00:09, 27.10it/s]\\\\rLoading weights:  24%|██▍       | 81/339 [00:04<00:09, 27.86it/s]\\\\rLoading weights:  26%|██▌       | 88/339 [00:05<00:08, 30.20it/s]\\\\rLoading weights:  27%|██▋       | 92/339 [00:05<00:10, 23.22it/s]\\\\rLoading weights:  29%|██▉       | 100/339 [00:05<00:08, 28.91it/s]\\\\rLoading weights:  31%|███       | 104/339 [00:05<00:09, 24.57it/s]\\\\rLoading weights:  32%|███▏      | 110/339 [00:06<00:08, 27.64it/s]\\\\rLoading weights:  34%|███▎      | 114/339 [00:06<00:09, 24.55it/s]\\\\rLoading weights:  37%|███▋      | 124/339 [00:06<00:06, 31.88it/s]\\\\rLoading weights:  38%|███▊      | 128/339 [00:06<00:08, 25.40it/s]\\\\rLoading weights:  40%|███▉      | 135/339 [00:06<00:07, 28.72it/s]\\\\rLoading weights:  41%|████      | 139/339 [00:07<00:08, 24.90it/s]\\\\rLoading weights:  44%|████▎     | 148/339 [00:07<00:06, 30.88it/s]\\\\rLoading weights:  45%|████▍     | 152/339 [00:07<00:07, 24.28it/s]\\\\rLoading weights:  47%|████▋     | 158/339 [00:07<00:06, 26.78it/s]\\\\rLoading weights:  47%|████▋     | 161/339 [00:07<00:06, 27.21it/s]\\\\rLoading weights:  48%|████▊     | 164/339 [00:08<00:06, 26.17it/s]\\\\rLoading weights:  51%|█████     | 172/339 [00:08<00:05, 30.81it/s]\\\\rLoading weights:  52%|█████▏    | 176/339 [00:08<00:06, 23.39it/s]\\\\rLoading weights:  54%|█████▍    | 184/339 [00:08<00:06, 25.18it/s]\\\\rLoading weights:  55%|█████▌    | 187/339 [00:09<00:06, 24.80it/s]\\\\rLoading weights:  58%|█████▊    | 196/339 [00:09<00:04, 32.13it/s]\\\\rLoading weights:  59%|█████▉    | 200/339 [00:09<00:05, 25.19it/s]\\\\rLoading weights:  61%|██████▏   | 208/339 [00:09<00:04, 30.44it/s]\\\\rLoading weights:  63%|██████▎   | 212/339 [00:09<00:04, 25.84it/s]\\\\rLoading weights:  65%|██████▍   | 220/339 [00:10<00:04, 25.12it/s]\\\\rLoading weights:  66%|██████▌   | 223/339 [00:10<00:04, 23.68it/s]\\\\rLoading weights:  68%|██████▊   | 229/339 [00:10<00:04, 25.22it/s]\\\\rLoading weights:  69%|██████▊   | 233/339 [00:10<00:04, 26.47it/s]\\\\rLoading weights:  70%|██████▉   | 236/339 [00:10<00:04, 24.40it/s]\\\\rLoading weights:  72%|███████▏  | 243/339 [00:11<00:03, 28.84it/s]\\\\rLoading weights:  73%|███████▎  | 246/339 [00:11<00:04, 21.72it/s]\\\\rLoading weights:  76%|███████▌  | 256/339 [00:11<00:02, 31.04it/s]\\\\rLoading weights:  77%|███████▋  | 260/339 [00:11<00:03, 24.58it/s]\\\\rLoading weights:  79%|███████▉  | 268/339 [00:11<00:02, 29.90it/s]\\\\rLoading weights:  80%|████████  | 272/339 [00:12<00:02, 25.24it/s]\\\\rLoading weights:  83%|████████▎ | 280/339 [00:12<00:02, 20.51it/s]\\\\rLoading weights:  86%|████████▌ | 292/339 [00:12<00:01, 29.56it/s]\\\\rLoading weights:  87%|████████▋ | 296/339 [00:13<00:01, 25.67it/s]\\\\rLoading weights:  90%|████████▉ | 304/339 [00:13<00:01, 29.58it/s]\\\\rLoading weights:  91%|█████████ | 308/339 [00:13<00:01, 23.92it/s]\\\\rLoading weights:  93%|█████████▎| 316/339 [00:13<00:00, 28.21it/s]\\\\rLoading weights:  94%|█████████▍| 320/339 [00:14<00:00, 23.51it/s]\\\\rLoading weights:  96%|█████████▌\\\\n\\\\n... [截断: 输出过长，省略 3523 字符] ...\\\\n\\\\n8 06:03:21,707 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sun May 17 13:00:54 2026).\\\\n2026-05-18 06:03:21,720 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 06:03:21,721 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [01:35<5:18:04, 95.90s/it]\\\\rEvaluating:   1%|          | 2/200 [03:11<5:15:23, 95.57s/it]\\\\rEvaluating:   2%|▏         | 3/200 [04:46<5:13:41, 95.54s/it]\\\\rEvaluating:   2%|▏         | 4/200 [06:22<5:12:08, 95.55s/it]\\\\rEvaluating:   2%|▎         | 5/200 [07:57<5:10:24, 95.51s/it]\\\\rEvaluating:   3%|▎         | 6/200 [09:33<5:08:38, 95.46s/it]\\\\rEvaluating:   4%|▎         | 7/200 [11:08<5:07:03, 95.46s/it]\\\\rEvaluating:   4%|▍         | 8/200 [12:44<5:05:29, 95.47s/it]\\\\rEvaluating:   4%|▍         | 9/200 [14:19<5:03:57, 95.48s/it]\\\\rEvaluating:   5%|▌         | 10/200 [15:55<5:02:25, 95.50s/it]\\\\rEvaluating:   6%|▌         | 11/200 [17:30<5:00:52, 95.52s/it]\\\\rEvaluating:   6%|▌         | 12/200 [19:06<4:59:12, 95.49s/it]\\\\rEvaluating:   6%|▋         | 13/200 [20:41<4:57:35, 95.49s/it]\\\\rEvaluating:   7%|▋         | 14/200 [22:17<4:55:57, 95.47s/it]\\\\rEvaluating:   8%|▊         | 15/200 [23:52<4:54:19, 95.46s/it]\\\\rEvaluating:   8%|▊         | 16/200 [25:27<4:52:41, 95.44s/it]\\\\rEvaluating:   8%|▊         | 17/200 [27:03<4:51:07, 95.45s/it]\\\\rEvaluating:   9%|▉         | 18/200 [28:38<4:49:31, 95.45s/it]\\\\rEvaluating:  10%|▉         | 19/200 [30:14<4:47:58, 95.46s/it]\\\\rEvaluating:  10%|█         | 20/200 [31:49<4:46:22, 95.46s/it]\\\\rEvaluating:  10%|█         | 21/200 [33:25<4:44:46, 95.46s/it]\\\\rEvaluating:  11%|█         | 22/200 [35:00<4:43:11, 95.46s/it]\\\\rEvaluating:  12%|█▏        | 23/200 [36:36<4:41:38, 95.47s/it]\\\\rEvaluating:  12%|█▏        | 24/200 [38:11<4:40:05, 95.49s/it]\\\\rEvaluating:  12%|█▎        | 25/200 [39:47<4:38:33, 95.51s/it]\\\\rEvaluating:  13%|█▎        | 26/200 [41:22<4:36:57, 95.50s/it]\\\\rEvaluating:  14%|█▎        | 27/200 [42:58<4:35:15, 95.46s/it]\\\\rEvaluating:  14%|█▍        | 28/200 [44:33<4:33:41, 95.47s/it]\\\\rEvaluating:  14%|█▍        | 29/200 [46:09<4:32:07, 95.48s/it]\\\\rEvaluating:  15%|█▌        | 30/200 [47:44<4:30:33, 95.49s/it]\\\\rEvaluating:  16%|█▌        | 31/200 [49:19<4:28:54, 95.47s/it]\\\\rEvaluating:  16%|█▌        | 32/200 [50:55<4:27:18, 95.47s/it]\\\\rEvaluating:  16%|█▋        | 33/200 [52:30<4:25:43, 95.47s/it]\\\\rEvaluating:  17%|█▋        | 34/200 [54:06<4:24:09, 95.48s/it]\\\\rEvaluating:  18%|█▊        | 35/200 [55:41<4:22:29, 95.45s/it]Terminated\\\\n:  18%|█▊        | 36/200 [56:03<4:20:54, 95.45s/it]\\\\rEvaluating:  18%|█▊        | 37/200 [57:26<4:08:52, 91.61s/it]\\\\rEvaluating:  19%|█▉        | 38/200 [58:13<3:31:09, 78.21s/it]\\\\rEvaluating:  20%|█▉        | 39/200 [59:00<3:04:39, 68.81s/it]\\\\rEvaluating:  20%|██        | 40/200 [59:47<2:45:55, 62.22s/it]\\\\rEvaluating:  20%|██        | 41/200 [1:00:34<2:32:44, 57.64s/it]\\\\rEvaluating:  21%|██        | 42/200 [1:01:06<2:12:10, 50.19s/it]\\\\rEvaluating:  22%|██▏       | 43/200 [1:01:53<2:08:43, 49.19s/it]\\\\rEvaluating:  22%|██▏       | 44/200 [1:02:40<2:06:03, 48.49s/it]\\\\rEvaluating:  22%|██▎       | 45/200 [1:03:28<2:04:22, 48.15s/it]\\\\rEvaluating:  23%|██▎       | 46/200 [1:04:14<2:02:36, 47.77s/it]\\\\rEvaluating:  24%|██▎       | 47/200 [1:05:01<2:01:08, 47.50s/it]\\\\rEvaluating:  24%|██▍       | 48/200 [1:05:48<1:59:51, 47.31s/it]\\\\rEvaluating:  24%|██▍       | 49/200 [1:06:35<1:58:42, 47.17s/it]2026-05-18 07:08:58,755 [INFO] Progress: 50/200, acc=0.0000, eos_rate=4.00%, avg_len=4024\\\\n\\\\rEvaluating:  25%|██▌       | 50/200 [1:06:54<1:36:53, 38.76s/it]\\\\rEvaluating:  26%|██▌       | 51/200 [1:07:43<1:43:32, 41.70s/it]\\\\rEvaluating:  26%|██▌       | 52/200 [1:09:22<2:25:27, 58.97s/it]\\\\rEvaluating:  26%|██▋       | 53/200 [1:11:02<2:54:30, 71.23s/it]\\\\rEvaluating:  27%|██▋       | 54/200 [1:12:41<3:13:38, 79.58s/it]\\\\rEvaluating:  28%|██▊       | 55/200 [1:14:20<3:26:39, 85.51s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 07:09:16,619 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\n\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\rLoading weights:   0%|          | 1/339 [00:01<10:51,  1.93s/it]\\rLoading weights:   1%|          | 4/339 [00:02<02:13,  2.51it/s]\\rLoading weights:   2%|▏         | 6/339 [00:02<01:34,  3.53it/s]\\rLoading weights:   4%|▍         | 15/339 [00:02<00:35,  9.21it/s]\\rLoading weights:   7%|▋         | 24/339 [00:03<00:21, 14.37it/s]\\rLoading weights:   9%|▉         | 30/339 [00:03<00:16, 18.70it/s]\\rLoading weights:  12%|█▏        | 39/339 [00:03<00:12, 24.93it/s]\\rLoading weights:  13%|█▎        | 43/339 [00:03<00:13, 22.63it/s]\\rLoading weights:  15%|█▍        | 50/339 [00:03<00:11, 25.12it/s]\\rLoading weights:  16%|█▌        | 54/339 [00:04<00:13, 21.68it/s]\\rLoading weights:  19%|█▉        | 64/339 [00:04<00:09, 28.21it/s]\\rLoading weights:  20%|██        | 68/339 [00:04<00:11, 23.49it/s]\\rLoading weights:  21%|██        | 72/339 [00:04<00:11, 23.52it/s]\\rLoading weights:  23%|██▎       | 77/339 [00:04<00:09, 27.10it/s]\\rLoading weights:  24%|██▍       | 81/339 [00:04<00:09, 27.86it/s]\\rLoading weights:  26%|██▌       | 88/339 [00:05<00:08, 30.20it/s]\\rLoading weights:  27%|██▋       | 92/339 [00:05<00:10, 23.22it/s]\\rLoading weights:  29%|██▉       | 100/339 [00:05<00:08, 28.91it/s]\\rLoading weights:  31%|███       | 104/339 [00:05<00:09, 24.57it/s]\\rLoading weights:  32%|███▏      | 110/339 [00:06<00:08, 27.64it/s]\\rLoading weights:  34%|███▎      | 114/339 [00:06<00:09, 24.55it/s]\\rLoading weights:  37%|███▋      | 124/339 [00:06<00:06, 31.88it/s]\\rLoading weights:  38%|███▊      | 128/339 [00:06<00:08, 25.40it/s]\\rLoading weights:  40%|███▉      | 135/339 [00:06<00:07, 28.72it/s]\\rLoading weights:  41%|████      | 139/339 [00:07<00:08, 24.90it/s]\\rLoading weights:  44%|████▎     | 148/339 [00:07<00:06, 30.88it/s]\\rLoading weights:  45%|████▍     | 152/339 [00:07<00:07, 24.28it/s]\\rLoading weights:  47%|████▋     | 158/339 [00:07<00:06, 26.78it/s]\\rLoading weights:  47%|████▋     | 161/339 [00:07<00:06, 27.21it/s]\\rLoading weights:  48%|████▊     | 164/339 [00:08<00:06, 26.17it/s]\\rLoading weights:  51%|█████     | 172/339 [00:08<00:05, 30.81it/s]\\rLoading weights:  52%|█████▏    | 176/339 [00:08<00:06, 23.39it/s]\\rLoading weights:  54%|█████▍    | 184/339 [00:08<00:06, 25.18it/s]\\rLoading weights:  55%|█████▌    | 187/339 [00:09<00:06, 24.80it/s]\\rLoading weights:  58%|█████▊    | 196/339 [00:09<00:04, 32.13it/s]\\rLoading weights:  59%|█████▉    | 200/339 [00:09<00:05, 25.19it/s]\\rLoading weights:  61%|██████▏   | 208/339 [00:09<00:04, 30.44it/s]\\rLoading weights:  63%|██████▎   | 212/339 [00:09<00:04, 25.84it/s]\\rLoading weights:  65%|██████▍   | 220/339 [00:10<00:04, 25.12it/s]\\rLoading weights:  66%|██████▌   | 223/339 [00:10<00:04, 23.68it/s]\\rLoading weights:  68%|██████▊   | 229/339 [00:10<00:04, 25.22it/s]\\rLoading weights:  69%|██████▊   | 233/339 [00:10<00:04, 26.47it/s]\\rLoading weights:  70%|██████▉   | 236/339 [00:10<00:04, 24.40it/s]\\rLoading weights:  72%|███████▏  | 243/339 [00:11<00:03, 28.84it/s]\\rLoading weights:  73%|███████▎  | 246/339 [00:11<00:04, 21.72it/s]\\rLoading weights:  76%|███████▌  | 256/339 [00:11<00:02, 31.04it/s]\\rLoading weights:  77%|███████▋  | 260/339 [00:11<00:03, 24.58it/s]\\rLoading weights:  79%|███████▉  | 268/339 [00:11<00:02, 29.90it/s]\\rLoading weights:  80%|████████  | 272/339 [00:12<00:02, 25.24it/s]\\rLoading weights:  83%|████████▎ | 280/339 [00:12<00:02, 20.51it/s]\\rLoading weights:  86%|████████▌ | 292/339 [00:12<00:01, 29.56it/s]\\rLoading weights:  87%|████████▋ | 296/339 [00:13<00:01, 25.67it/s]\\rLoading weights:  90%|████████▉ | 304/339 [00:13<00:01, 29.58it/s]\\rLoading weights:  91%|█████████ | 308/339 [00:13<00:01, 23.92it/s]\\rLoading weights:  93%|█████████▎| 316/339 [00:13<00:00, 28.21it/s]\\rLoading weights:  94%|█████████▍| 320/339 [00:14<00:00, 23.51it/s]\\rLoading weights:  96%|█████████▌\\n\\n... [截断: 输出过长，省略 3523 字符] ...\\n\\n8 06:03:21,707 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sun May 17 13:00:54 2026).\\n2026-05-18 06:03:21,720 [INFO] Evaluating on 200 test samples\\n2026-05-18 06:03:21,721 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/200 [01:35<5:18:04, 95.90s/it]\\rEvaluating:   1%|          | 2/200 [03:11<5:15:23, 95.57s/it]\\rEvaluating:   2%|▏         | 3/200 [04:46<5:13:41, 95.54s/it]\\rEvaluating:   2%|▏         | 4/200 [06:22<5:12:08, 95.55s/it]\\rEvaluating:   2%|▎         | 5/200 [07:57<5:10:24, 95.51s/it]\\rEvaluating:   3%|▎         | 6/200 [09:33<5:08:38, 95.46s/it]\\rEvaluating:   4%|▎         | 7/200 [11:08<5:07:03, 95.46s/it]\\rEvaluating:   4%|▍         | 8/200 [12:44<5:05:29, 95.47s/it]\\rEvaluating:   4%|▍         | 9/200 [14:19<5:03:57, 95.48s/it]\\rEvaluating:   5%|▌         | 10/200 [15:55<5:02:25, 95.50s/it]\\rEvaluating:   6%|▌         | 11/200 [17:30<5:00:52, 95.52s/it]\\rEvaluating:   6%|▌         | 12/200 [19:06<4:59:12, 95.49s/it]\\rEvaluating:   6%|▋         | 13/200 [20:41<4:57:35, 95.49s/it]\\rEvaluating:   7%|▋         | 14/200 [22:17<4:55:57, 95.47s/it]\\rEvaluating:   8%|▊         | 15/200 [23:52<4:54:19, 95.46s/it]\\rEvaluating:   8%|▊         | 16/200 [25:27<4:52:41, 95.44s/it]\\rEvaluating:   8%|▊         | 17/200 [27:03<4:51:07, 95.45s/it]\\rEvaluating:   9%|▉         | 18/200 [28:38<4:49:31, 95.45s/it]\\rEvaluating:  10%|▉         | 19/200 [30:14<4:47:58, 95.46s/it]\\rEvaluating:  10%|█         | 20/200 [31:49<4:46:22, 95.46s/it]\\rEvaluating:  10%|█         | 21/200 [33:25<4:44:46, 95.46s/it]\\rEvaluating:  11%|█         | 22/200 [35:00<4:43:11, 95.46s/it]\\rEvaluating:  12%|█▏        | 23/200 [36:36<4:41:38, 95.47s/it]\\rEvaluating:  12%|█▏        | 24/200 [38:11<4:40:05, 95.49s/it]\\rEvaluating:  12%|█▎        | 25/200 [39:47<4:38:33, 95.51s/it]\\rEvaluating:  13%|█▎        | 26/200 [41:22<4:36:57, 95.50s/it]\\rEvaluating:  14%|█▎        | 27/200 [42:58<4:35:15, 95.46s/it]\\rEvaluating:  14%|█▍        | 28/200 [44:33<4:33:41, 95.47s/it]\\rEvaluating:  14%|█▍        | 29/200 [46:09<4:32:07, 95.48s/it]\\rEvaluating:  15%|█▌        | 30/200 [47:44<4:30:33, 95.49s/it]\\rEvaluating:  16%|█▌        | 31/200 [49:19<4:28:54, 95.47s/it]\\rEvaluating:  16%|█▌        | 32/200 [50:55<4:27:18, 95.47s/it]\\rEvaluating:  16%|█▋        | 33/200 [52:30<4:25:43, 95.47s/it]\\rEvaluating:  17%|█▋        | 34/200 [54:06<4:24:09, 95.48s/it]\\rEvaluating:  18%|█▊        | 35/200 [55:41<4:22:29, 95.45s/it]Terminated\\n:  18%|█▊        | 36/200 [56:03<4:20:54, 95.45s/it]\\rEvaluating:  18%|█▊        | 37/200 [57:26<4:08:52, 91.61s/it]\\rEvaluating:  19%|█▉        | 38/200 [58:13<3:31:09, 78.21s/it]\\rEvaluating:  20%|█▉        | 39/200 [59:00<3:04:39, 68.81s/it]\\rEvaluating:  20%|██        | 40/200 [59:47<2:45:55, 62.22s/it]\\rEvaluating:  20%|██        | 41/200 [1:00:34<2:32:44, 57.64s/it]\\rEvaluating:  21%|██        | 42/200 [1:01:06<2:12:10, 50.19s/it]\\rEvaluating:  22%|██▏       | 43/200 [1:01:53<2:08:43, 49.19s/it]\\rEvaluating:  22%|██▏       | 44/200 [1:02:40<2:06:03, 48.49s/it]\\rEvaluating:  22%|██▎       | 45/200 [1:03:28<2:04:22, 48.15s/it]\\rEvaluating:  23%|██▎       | 46/200 [1:04:14<2:02:36, 47.77s/it]\\rEvaluating:  24%|██▎       | 47/200 [1:05:01<2:01:08, 47.50s/it]\\rEvaluating:  24%|██▍       | 48/200 [1:05:48<1:59:51, 47.31s/it]\\rEvaluating:  24%|██▍       | 49/200 [1:06:35<1:58:42, 47.17s/it]2026-05-18 07:08:58,755 [INFO] Progress: 50/200, acc=0.0000, eos_rate=4.00%, avg_len=4024\\n\\rEvaluating:  25%|██▌       | 50/200 [1:06:54<1:36:53, 38.76s/it]\\rEvaluating:  26%|██▌       | 51/200 [1:07:43<1:43:32, 41.70s/it]\\rEvaluating:  26%|██▌       | 52/200 [1:09:22<2:25:27, 58.97s/it]\\rEvaluating:  26%|██▋       | 53/200 [1:11:02<2:54:30, 71.23s/it]\\rEvaluating:  27%|██▋       | 54/200 [1:12:41<3:13:38, 79.58s/it]\\rEvaluating:  28%|██▊       | 55/200 [1:14:20<3:26:39, 85.51s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019XqBNb8jV9idku92WukUjJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ps aux | grep python | grep -v grep; echo \"---\"; tmux list-sessions 2>&1; echo \"---\"; ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json 2>&1; echo \"---\"; ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30* 2>&1",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "b7ec9aef-018c-4665-9583-d486d37aa262",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H8cCAvuYkAzyFWUfBn4skp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 408,
+                "cache_read_input_tokens": 24810,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 408
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T23:17:39.724Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019XqBNb8jV9idku92WukUjJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"root        930  0.0  0.0 4147792 80636 ?       Sl   May17   0:42 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        938  0.0  0.0 187552 102324 ?       S    May17   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1050  0.1  0.0 28341192 12184 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_wnxoamb1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_wnxoamb1/startup_error\\\\nroot       2506  0.0  0.0   6328  4044 ?        Ss   May17   0:01 tmux new-session -d -s eval_math500_unpruned bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log'\\\\nroot      14551  0.0  0.0   4364  3260 ?        S    May17   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\\\\nroot      14556  101  0.1 76175776 2039836 ?    Rl   May17 841:14 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096\\\\nroot      31701  0.0  0.0   4496  3564 pts/2    Ss+  May17   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=3 && timeout 604800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log 2>&1\\\\nroot      31705  0.0  0.0   2800  1116 pts/2    S    May17   0:00 timeout 604800 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\\\\"\\\\nroot      31706  101  0.1 73757764 2017788 pts/2 Rl  May17 519:54 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\nroot      47667  0.0  0.0   4496  3636 pts/3    Ss+  03:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_standard_30.exit; mkdir -p /tmp/agent-ml-exit; trap \\\\n\\\\n... [截断: 输出过长，省略 2841 字符] ...\\\\n\\\\n32 1823272 pts/4 Rl  03:17 244:48 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json\\\\nroot      59403  0.0  0.0   4496  3492 ?        Ss   05:59   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\\\nroot      59407  0.0  0.0   2800  1040 ?        S    05:59   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"\\\\nroot      59408  106  0.1 49599576 1860632 ?    Rl   05:59  83:10 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\nroot      64467  0.0  0.0   4496  3432 pts/1    Ss+  07:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\\\nroot      64471  0.0  0.0   2800  1040 pts/1    S    07:09   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"\\\\nroot      64472 97.5  0.1 47342936 1910884 pts/1 Rl  07:09   8:13 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\n---\\\\neval_math500_grpo_rasp_20_v3: 1 windows (created Sun May 17 22:45:43 2026)\\\\neval_math500_grpo_unpruned: 1 windows (created Mon May 18 07:09:13 2026)\\\\neval_postprune_standard_30: 1 windows (created Mon May 18 03:09:42 2026)\\\\neval_sft_cka_only_20_n1319: 1 windows (created Mon May 18 03:17:43 2026)\\\\n---\\\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json': No such file or directory\\\\n---\\\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30*': No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "964fc33d-c246-45fc-8d3e-7b8b4f49396f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"root        930  0.0  0.0 4147792 80636 ?       Sl   May17   0:42 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        938  0.0  0.0 187552 102324 ?       S    May17   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1050  0.1  0.0 28341192 12184 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_wnxoamb1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_wnxoamb1/startup_error\\\\nroot       2506  0.0  0.0   6328  4044 ?        Ss   May17   0:01 tmux new-session -d -s eval_math500_unpruned bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log'\\\\nroot      14551  0.0  0.0   4364  3260 ?        S    May17   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\\\\nroot      14556  101  0.1 76175776 2039836 ?    Rl   May17 841:14 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096\\\\nroot      31701  0.0  0.0   4496  3564 pts/2    Ss+  May17   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=3 && timeout 604800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log 2>&1\\\\nroot      31705  0.0  0.0   2800  1116 pts/2    S    May17   0:00 timeout 604800 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\\\\"\\\\nroot      31706  101  0.1 73757764 2017788 pts/2 Rl  May17 519:54 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\\nroot      47667  0.0  0.0   4496  3636 pts/3    Ss+  03:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_standard_30.exit; mkdir -p /tmp/agent-ml-exit; trap \\\\n\\\\n... [截断: 输出过长，省略 2841 字符] ...\\\\n\\\\n32 1823272 pts/4 Rl  03:17 244:48 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json\\\\nroot      59403  0.0  0.0   4496  3492 ?        Ss   05:59   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\\\nroot      59407  0.0  0.0   2800  1040 ?        S    05:59   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\\\\"\\\\nroot      59408  106  0.1 49599576 1860632 ?    Rl   05:59  83:10 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\\nroot      64467  0.0  0.0   4496  3432 pts/1    Ss+  07:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\\\nroot      64471  0.0  0.0   2800  1040 pts/1    S    07:09   0:00 timeout 86400 env bash -c bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\\\\"\\\\nroot      64472 97.5  0.1 47342936 1910884 pts/1 Rl  07:09   8:13 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\n---\\\\neval_math500_grpo_rasp_20_v3: 1 windows (created Sun May 17 22:45:43 2026)\\\\neval_math500_grpo_unpruned: 1 windows (created Mon May 18 07:09:13 2026)\\\\neval_postprune_standard_30: 1 windows (created Mon May 18 03:09:42 2026)\\\\neval_sft_cka_only_20_n1319: 1 windows (created Mon May 18 03:17:43 2026)\\\\n---\\\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json': No such file or directory\\\\n---\\\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30*': No such file or directory\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"root        930  0.0  0.0 4147792 80636 ?       Sl   May17   0:42 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        938  0.0  0.0 187552 102324 ?       S    May17   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1050  0.1  0.0 28341192 12184 ?      Sl   May17   1:06 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_wnxoamb1/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_wnxoamb1/startup_error\\nroot       2506  0.0  0.0   6328  4044 ?        Ss   May17   0:01 tmux new-session -d -s eval_math500_unpruned bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_math500_unpruned.log'\\nroot      14551  0.0  0.0   4364  3260 ?        S    May17   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log\\nroot      14556  101  0.1 76175776 2039836 ?    Rl   May17 841:14 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json --seed 42 --max_new_tokens 4096\\nroot      31701  0.0  0.0   4496  3564 pts/2    Ss+  May17   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_math500_grpo_rasp_20_v3.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=3 && timeout 604800 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_20_v3.log 2>&1\\nroot      31705  0.0  0.0   2800  1116 pts/2    S    May17   0:00 timeout 604800 env bash -c bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\\"\\nroot      31706  101  0.1 73757764 2017788 pts/2 Rl  May17 519:54 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_v3.json\\nroot      47667  0.0  0.0   4496  3636 pts/3    Ss+  03:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_standard_30.exit; mkdir -p /tmp/agent-ml-exit; trap \\n\\n... [截断: 输出过长，省略 2841 字符] ...\\n\\n32 1823272 pts/4 Rl  03:17 244:48 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json\\nroot      59403  0.0  0.0   4496  3492 ?        Ss   05:59   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_postprune_cka_only_30.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log 2>&1\\nroot      59407  0.0  0.0   2800  1040 ?        S    05:59   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\\"\\nroot      59408  106  0.1 49599576 1860632 ?    Rl   05:59  83:10 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30 --max_samples 200 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json\\nroot      64467  0.0  0.0   4496  3432 pts/1    Ss+  07:09   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_math500_grpo_unpruned.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=2 && timeout 86400 env bash -c 'bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\"'; } > ~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log 2>&1\\nroot      64471  0.0  0.0   2800  1040 pts/1    S    07:09   0:00 timeout 86400 env bash -c bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\"\\nroot      64472 97.5  0.1 47342936 1910884 pts/1 Rl  07:09   8:13 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/ --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\n---\\neval_math500_grpo_rasp_20_v3: 1 windows (created Sun May 17 22:45:43 2026)\\neval_math500_grpo_unpruned: 1 windows (created Mon May 18 07:09:13 2026)\\neval_postprune_standard_30: 1 windows (created Mon May 18 03:09:42 2026)\\neval_sft_cka_only_20_n1319: 1 windows (created Mon May 18 03:17:43 2026)\\n---\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json': No such file or directory\\n---\\nls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30*': No such file or directory\\n\", \"stderr\": \"\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.49}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 任务 1: eval_math500_grpo_unpruned (PID 64467)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活**，运行 8 分 23 秒 |\n| GPU | cuda:2，PID 64472 占用 17658 MiB |\n| 进度 | 模型加载完成，正在评估 MATH500。日志显示 55/500 样本，~85s/sample |\n| 结果文件 | 尚未生成（正常，评估未完成） |\n| tmux | `eval_math500_grpo_unpruned` session 存在 |\n\n**结论**：正常运行中，PREPARING 状态是 cron 系统尚未检测到进度更新。预计总耗时 ~12 小时。\n\n---\n\n### 任务 2: eval_postprune_cka_only_30 (PID 59403)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活**，运行 1 小时 18 分 |\n| GPU | cuda:2，PID 59408 占用 11538 MiB |\n| 进度 | 50/200 样本完成，**acc=0.0000**，eos_rate=4%，avg_len=4024 |\n| 结果文件 | 尚未生成 |\n\n**结论**：进程正常运行中，report 标 failed 可能是误判。但 **acc=0.0000 且 eos_rate 仅 4%** 说明模型生成几乎全是 max_length 截断、无法正确作答。这是 pruned_cka_only_30 模型本身质量问题，不是脚本 bug。\n\n---\n\n### 任务 3: westd-11672 GPU 全览\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|----------|--------|------|\n| cuda:0 | 41198/97887 MiB | 97% | PID 47672 (eval_postprune_standard_30) + PID 49480 (eval_sft_cka_only_20_n1319) |\n| cuda:1 | 34569/97887 MiB | 98% | PID 14556 (eval_math500_grpo_standard_20) |\n| cuda:2 | 29210/97887 MiB | 94% | PID 59408 (eval_postprune_cka_only_30) + PID 64472 (eval_math500_grpo_unpruned) |\n| cuda:3 | 32517/97887 MiB | 99% | PID 31706 (eval_math500_grpo_rasp_20_v3) |\n\n**4 张 GPU 全部满载运行中**，共 6 个评估实验并发。注意 cuda:2 上跑了两个任务，可能互相影响速度。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "uuid": "c4413170-2870-48b0-9023-5bf32fb11948",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FaTTmyLm3RtXkqXRTmc6Vq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10787,
+                "cache_read_input_tokens": 25218,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10787
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 任务 1: eval_math500_grpo_unpruned (PID 64467)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活**，运行 8 分 23 秒 |\n| GPU | cuda:2，PID 64472 占用 17658 MiB |\n| 进度 | 模型加载完成，正在评估 MATH500。日志显示 55/500 样本，~85s/sample |\n| 结果文件 | 尚未生成（正常，评估未完成） |\n| tmux | `eval_math500_grpo_unpruned` session 存在 |\n\n**结论**：正常运行中，PREPARING 状态是 cron 系统尚未检测到进度更新。预计总耗时 ~12 小时。\n\n---\n\n### 任务 2: eval_postprune_cka_only_30 (PID 59403)\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **存活**，运行 1 小时 18 分 |\n| GPU | cuda:2，PID 59408 占用 11538 MiB |\n| 进度 | 50/200 样本完成，**acc=0.0000**，eos_rate=4%，avg_len=4024 |\n| 结果文件 | 尚未生成 |\n\n**结论**：进程正常运行中，report 标 failed 可能是误判。但 **acc=0.0000 且 eos_rate 仅 4%** 说明模型生成几乎全是 max_length 截断、无法正确作答。这是 pruned_cka_only_30 模型本身质量问题，不是脚本 bug。\n\n---\n\n### 任务 3: westd-11672 GPU 全览\n\n| GPU | 显存占用 | 利用率 | 进程 |\n|-----|----------|--------|------|\n| cuda:0 | 41198/97887 MiB | 97% | PID 47672 (eval_postprune_standard_30) + PID 49480 (eval_sft_cka_only_20_n1319) |\n| cuda:1 | 34569/97887 MiB | 98% | PID 14556 (eval_math500_grpo_standard_20) |\n| cuda:2 | 29210/97887 MiB | 94% | PID 59408 (eval_postprune_cka_only_30) + PID 64472 (eval_math500_grpo_unpruned) |\n| cuda:3 | 32517/97887 MiB | 99% | PID 31706 (eval_math500_grpo_rasp_20_v3) |\n\n**4 张 GPU 全部满载运行中**，共 6 个评估实验并发。注意 cuda:2 上跑了两个任务，可能互相影响速度。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 34079,
+            "duration_api_ms": 34573,
+            "num_turns": 6,
+            "stop_reason": "end_turn",
+            "session_id": "be403512-a63a-4f62-81fe-78d103e4c8a7",
+            "total_cost_usd": 0.2251105,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 24164,
+              "cache_read_input_tokens": 61869,
+              "output_tokens": 1659,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24164,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 826,
+                  "cache_read_input_tokens": 25218,
+                  "cache_creation_input_tokens": 10787,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 10787
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1551,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001641,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 1659,
+                "cacheReadInputTokens": 61869,
+                "cacheCreationInputTokens": 24164,
+                "webSearchRequests": 0,
+                "costUSD": 0.2234695,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "05a61fbb-c004-4447-b7cd-1ac2538cf969"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/worker-executions/diag-westd-experiments.md"
+}

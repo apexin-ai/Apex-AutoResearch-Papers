@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c946e64ca53989b972c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval 1p5b cka only",
+  "task_key": "worker_analysis_eval_humaneval_1p5b_cka_only_20260519T132640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_1p5b_cka_only_20260519T132640_result.json",
+    "occurrence": 1,
+    "bytes": 1529,
+    "sha256": "d67458ad788735ffd68cb00ac09ff988b84dcea5550c9e17085a44b16ce79719"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1.5B CKA-only HumanEval @2048 结果\n\n| 指标 | SFT CKA-only 20% 1.5B | GRPO CKA-only 20% 1.5B |\n|------|----------------------|------------------------|\n| **pass@1** | **0.61%** (1/164) | **0.00%** (0/164) |\n| stderr | ±0.0061 | ±0.0000 |\n| avg_response_length | 1968.8 | 1977.7 |\n| median_response_length | 2048.0 | 2048.0 |\n| wall_clock | ~97 min | ~97 min |\n| EXIT_CODE | 0 | 0 |\n\n## 严重问题：模型输出自然语言而非代码\n\n两个模型几乎所有 164 题都产生 **SyntaxError**——生成的不是 Python 代码，而是自然语言描述（\"The function checks if...\"、\"Okay, I need to write...\"）。median_response_length = 2048 说明绝大多数 sample 都撞了 max_tokens 上限还在输出文本，没有产生有效代码。\n\nSFT 唯一通过的 1 题可能是碰巧生成了可执行片段。GRPO 则 0/164 全军覆没。\n\n## 1.5B vs 7B 对比\n\n| 方法 | 7B pass@1 | 1.5B pass@1 | 差距 |\n|------|-----------|-------------|------|\n| CKA-only SFT | 20.12% (33/164) | 0.61% (1/164) | -19.51pp |\n| CKA-only GRPO | 20.12% (33/164) | 0.00% (0/164) | -20.12pp |\n\n1.5B CKA-only 模型在 HumanEval 上实质性地丧失了代码生成能力。7B 的 CKA-only 至少还保留了约 20% pass@1，1.5B 直接退化为自然语言输出模式。这说明 **1.5B 模型在 20% 结构化剪枝 + CKA-only 恢复后，代码能力完全崩溃**——模型容量不足以在剪枝后仅靠 CKA alignment 恢复编程技能。SFT/GRPO 微调也未能挽救。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-1p5b-cka-only.md"
+}

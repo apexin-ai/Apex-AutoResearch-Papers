@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8eb9c9fdbe994e497ef5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix pass k8 params",
+  "task_key": "worker_ops_fix-pass-k8-params_20260517T000217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-pass-k8-params_20260517T000217_result.json",
+    "occurrence": 1,
+    "bytes": 463,
+    "sha256": "7a2d3346157b25b68170109ec62d91ace8989f098cb78c003f4d2429661151ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修复总结：\n\n| 项目 | 修复前 | 修复后 |\n|------|--------|--------|\n| 脚本 | `eval_gsm8k.py` | `eval_pass_k.py` |\n| max_new_tokens | 512 | 4096 |\n| 参数格式 | `--voting --num_samples_per_question 8 --voting_temperature 0.7` | `--k 8 --temperature 0.7` |\n\n两个实验现在完全对齐（同脚本、同参数，只换 model_path）。新 RASP eval PID 61473 在 westd-11672 cuda:0 上正常运行，进度 ~10%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-pass-k8-params.md"
+}

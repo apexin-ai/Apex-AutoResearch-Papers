@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0123bf80e44a5ffdeb1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops step50 eval collect",
+  "task_key": "worker_ops_step50-eval-collect_20260515T223239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_step50-eval-collect_20260515T223239_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "798d8703e678cc371af2924e511dc53c3b071a07adfe4c39fc4af77afd543461"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## GRPO Standard v8 Step-50 Checkpoint Eval (N=1319, westd)\n\n| Metric | Value |\n|--------|-------|\n| Accuracy | **58.91%** ±1.35% |\n| N | 777/1319 |\n| EOS Rate | 98.10% |\n| Avg Len | 222.1 |\n| Truncated | 25/1319 |\n| vs SFT baseline | **Δ = -0.38pp** |\n\n**结论: negative。** GRPO step-50 checkpoint (58.91%) 略低于 SFT baseline (59.29%)，差值 -0.38pp 在统计误差范围内（stderr ±1.35%）。Standard GRPO 在 step 50 没有带来显著的 accuracy recovery，尽管中间进度报告（300/1319 时 acc=62%）曾显示积极信号，最终结果回归均值。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-step50-eval-collect.md"
+}

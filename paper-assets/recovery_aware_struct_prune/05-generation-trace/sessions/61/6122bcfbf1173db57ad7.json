@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6122bcfbf1173db57ad7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix sft eos restart",
+  "task_key": "worker_code_fix-sft-eos-restart_20260514T235437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-sft-eos-restart_20260514T235437_result.json",
+    "occurrence": 1,
+    "bytes": 874,
+    "sha256": "0ab35f296c39aa4e7c52daa5b9f3f48cf8fa727920927f161961256d25d5621a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个 SFT 训练已经在运行，无需修复。**\n\n诊断结果：\n- `sft_rasp_20` 和 `sft_standard_20` 均已启动，tmux session 活跃\n- EOS 断言**通过**了：`Dataset prepared: 7473 samples. EOS verified (token='<｜end▁of▁sentence｜>', id=151643)`\n- `apply_chat_template()` 对 DeepSeek-R1-Distill-Qwen-7B 的 tokenizer（包括 pruned 版本）会正确追加 `<｜end▁of▁sentence｜>` EOS token\n- 当前进度：两个 job 均在 step ~365/1870（epoch 1 约 19%），约 1.07s/step\n\nloss 值暂未在日志文件中直接可见（HuggingFace Trainer 的 loss 通过 `\\r` 覆盖式进度条输出，重定向到文件后会被截断）。第 10 步（`logging_steps=10`）后的 loss 应出现在 trainer 内部记录中。可以等到 epoch 1 结束时查看 checkpoint 的 `trainer_state.json` 获取完整 loss 曲线。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-sft-eos-restart.md"
+}

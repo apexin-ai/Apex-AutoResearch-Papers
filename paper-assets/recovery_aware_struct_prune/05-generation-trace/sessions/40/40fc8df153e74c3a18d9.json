@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40fc8df153e74c3a18d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_14_1778961943.md",
+  "task_key": "loop_14_1778961943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778961943.md",
+    "occurrence": 1,
+    "bytes": 4483,
+    "sha256": "e294aba3a3d2e81b7effb501ff9a042f08b5f441cfc7dc7038d2fe187f9112a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T20:03:19+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb cuda:0/1, westd cuda:0/1（共 4 张）。config 写 cuda:0-3 但物理上是两台各 2 张\n- westb↔westd 无 SSH 互信，模型不能 SCP 直传，需中转或 HF Hub\n- eval 类实验不走 W&B → cron 会误判 failed。收到 eval failed 回调先查 registry 有无 metrics\n- Qwen2.5 系列必须加 eos_token_id=[151643, 151645]，否则生成不停止（5min/sample）\n- sft_recovery.py 参数名：--learning_rate / --num_train_epochs / --gradient_accumulation_steps / --batch_size / --max_seq_len（不是 --lr / --epochs）\n- EMNLP ARR May 25 提交，距今 ~9 天，所有决策以此 DDL 为锚\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, 工作目录 /root/recovery_aware_struct_prune, Python /root/miniconda3/bin/python, conda base\n  - 模型: /root/autodl-tmp/ 下各 checkpoint（pruned_rasp_25, pruned_standard_25, sft_* 等）\n  - 数据: GSM8K via HF datasets cache\n- **westd-11672**: root@westd-11672, 同结构 /root/recovery_aware_struct_prune, conda base\n  - Qwen2.5-Math-7B 相关模型在 westd\n  - Alpha ablation checkpoints 在 westd\n- W&B project: 项目内各 GRPO run 有 wandb ID（见 registry spec 字段）\n- 活跃进程:\n  - eval_grpo_standard_25: RUNNING（服务器/PID 需 SSH 确认）\n  - eval_grpo_rasp_rlvr_20_qwen_math: RUNNING\n  - eval_pass_k8_standard_20_grpo_qwen_math: RUNNING\n  - grpo_rasp_rlvr_20: RUNNING\n- 活跃 Worker: `worker_pipeline_alpha_ablation_phaseB_parallel_20260516T200148`（alpha ablation Phase B SFT）\n- Cron: reconcile 返回 0 条活跃（可能 eval 类无 cron 监控）\n\n### 3. 📊 当前状态\n**刚完成**: D044-D050 narrative pivot 全部落地。Core 20% 数据完整（3 claims fully supported）。25% expansion SFT 完成、eval 部分完成。Qwen Math Phase 2 进行中。Paper Agent Step 2 (Plot Generation) 进行中。\n\n**RUNNING (4)**:\n- `eval_grpo_standard_25`: Standard 25% post-GRPO eval (N=200)，验证 near-collapse 后 accuracy\n- `eval_grpo_rasp_rlvr_20_qwen_math`: Qwen Math RASP-RLVR post-GRPO eval，验证 C1 decoupling\n- `eval_pass_k8_standard_20_grpo_qwen_math`: Standard post-GRPO pass@8 diversity 对照\n- `grpo_rasp_rlvr_20`: DeepSeek RASP-RLVR 20% GRPO（D050 ablation）\n\n**PREPARING (11)**: 含 grpo_standard_20_v8, grpo_rasp_20_v8, eval_sft_standard_20_n1319, eval_sft_rasp_20_full, eval_postprune_25, alpha ablation 等\n\n**等待中**:\n- Alpha ablation Worker running（Phase B SFT）\n- 4 个 RUNNING 实验的 cron/完成回调\n- Paper Agent Step 2 产出\n\n### 4. 📋 待办（条件触发式）\n- eval_grpo_standard_25 完成 → 对比 sft_standard_25 (51.25%)，更新 paper Table，25% collapse 比 20% 更严重则加强 C2\n- eval_grpo_rasp_rlvr_20_qwen_math 完成 → 对比 pre-GRPO 73%，若 decoupling 则 C1 跨模型确认；若 accuracy 提升则 RASP-RLVR 有独特价值（D050 revisit）\n- grpo_rasp_rlvr_20 完成 → eval 其 accuracy，D050 ablation 最终数据点\n- Alpha ablation Worker 完成 → 收集 SFT eval 结果，完成 α 曲线图\n- 所有 25% eval 就绪 → 启动 25% GRPO（westb 2 卡 standard+rasp 并行）\n- Qwen Math 剪枝完成 → SFT → GRPO（westd 2 卡）\n- Paper Agent Step 2 plots 就绪 → 审查 → Step 3 Draft\n\n### 5. 🎯 战略上下文\n**核心结论**: GRPO reward-accuracy decoupling 是 universal 的（unpruned 也有），pruning 特有的是 training collapse。论文 story = \"Redundancy-Stability Tradeoff\"——SFT 最优剪枝策略 ≠ RLVR 最优策略。\n\n**决策链要点**:\n- D044: 从 \"RASP enables better RLVR recovery\" pivot 到 \"GRPO fundamentally fails on pruned models\"\n- D045: Core 20% data 全部完成\n- D048: C3 reframe 为 \"recovery method conditions optimal pruning\"\n- D049: 不采纳 \"pruning disables GRPO\" 叙事，维持 C1 universal decoupling\n- D050: RASP-RLVR 降级为 ablation（negative result），主线不依赖它\n\n**易错点**:\n- RASP-RLVR group selection 与 Standard 近似（cka^α 调制幅度小），不要过度 claim RLVR-specific pruning 的结构差异\n- N=1319 下 RASP vs Standard SFT 差异不显著 (p=0.25)，论文只能说 \"marginal advantage\" 不能 claim significance\n- alpha ablation westb (cal=512) vs westd (cal=256) 有 ~5% group 差异，论文需 footnote\n- 4 张 GPU 都应该在跑——当前有 4 个 RUNNING 但需确认实际占用（eval 可能 CPU-only 或已完成）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778961943.md"
+}

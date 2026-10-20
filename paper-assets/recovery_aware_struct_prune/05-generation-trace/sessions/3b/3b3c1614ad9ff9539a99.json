@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3c1614ad9ff9539a99",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest gsm8k grpo standard 25 final",
+  "task_key": "worker_ssh_harvest_gsm8k_grpo_standard_25_final_20260521T123618",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_gsm8k_grpo_standard_25_final_20260521T123618_result.json",
+    "occurrence": 1,
+    "bytes": 358,
+    "sha256": "9df8480b7bc1952a8aab0f731943488d20bc82e7a392218661943de54394e0f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_gsm8k_grpo_standard_25 最终结果：**\n\n| 指标 | 值 |\n|---|---|\n| **GSM8K Accuracy** | **0.5186 ± 0.0138** |\n| Correct / Total | 684 / 1319 |\n| EOS Rate | 95.75% |\n| Avg Response Length | 314.47 tokens |\n\n**Registry**: status=DONE, conclusion=success, metrics/checkpoint_path/log_path 已写入。\n**Cron**: 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-gsm8k-grpo-standard-25-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e472dd57aa4c26ad3d3f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westb gpu confirm",
+  "task_key": "worker_monitor_westb_gpu_confirm_20260516T133849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westb_gpu_confirm_20260516T133849_result.json",
+    "occurrence": 1,
+    "bytes": 1067,
+    "sha256": "37b7507f28e2e4ff7fcbbc20553c4c433c72e9b8fe635d5657ca48107cea1041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### nvidia-smi\n\n| GPU | Util | VRAM | 总显存 | 型号 |\n|-----|------|------|--------|------|\n| cuda:0 | **99%** | 28,931 MiB | 97,887 MiB | RTX PRO 6000 Blackwell |\n| cuda:1 | **0%** | 0 MiB | 97,887 MiB | RTX PRO 6000 Blackwell |\n\n### 进程状态\n\n**cuda:0 — eval_sft_rasp_25 (PID 602990)**: 正常运行\n- 运行时间：5h16m09s\n- 命令：`python src/eval_gsm8k.py --model_path .../sft_rasp_25 --max_samples 1319 --seed 42`\n\n**cuda:1 — sft_rasp_rlvr_20 (PID 619848)**: 已崩溃，进程不存在\n\n### 异常：cuda:1 空闲\n\n`sft_rasp_rlvr_20` 启动即失败，原因是**参数名错误**。日志显示：\n\n```\nsft_recovery.py: error: unrecognized arguments: --lr 2e-5 --epochs 2 --grad_accum 8\nEXIT_CODE=2\n```\n\n脚本期望的参数名是：\n| 传入的（错误） | 正确的 |\n|----------------|--------|\n| `--lr` | `--learning_rate` |\n| `--epochs` | `--num_train_epochs` |\n| `--grad_accum` | `--gradient_accumulation_steps` |\n\n需要用正确的参数名重新启动 sft_rasp_rlvr_20。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westb-gpu-confirm.md"
+}

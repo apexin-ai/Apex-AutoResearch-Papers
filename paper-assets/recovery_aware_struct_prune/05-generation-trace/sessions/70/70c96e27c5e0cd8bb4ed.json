@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "70c96e27c5e0cd8bb4ed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper intro rewrite d056",
+  "task_key": "worker_paper_intro-rewrite-d056_20260517T234428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_intro-rewrite-d056_20260517T234428_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "65948ca862c73da92c733311689b6cf49e4a0d7a1c6dedab151907443b42300f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No violations. Both `ing,` hits are false positives (line 14 is `without + gerund`, line 36 is a noun appositive).\n\nIntroduction rewritten and saved. Key changes from D045:\n\n- **Hook**: opens with \"pruning criterion determines RL recovery capacity\" instead of generic LLM intro\n- **C1**: redefined from \"universal decoupling\" to **in-distribution saturation effect** (GSM8K ceiling + MATH-500 marginal gains)\n- **C2 (main)**: **Recovery Capacity Gradient** across 4 methods (CKA-only > Random > Standard > RASP), with CKA-only super-recovery as the headline result\n- **C3**: SFT equalization + 30% sparsity cliff as observation, establishing 20-25% operating regime\n- **Core mechanism**: gradient importance scoring destroys representationally unique structures needed for RL exploration\n- All existing citations preserved, no new ones fabricated, no AI style violations"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-intro-rewrite-d056.md"
+}

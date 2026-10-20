@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4beb0e7134721f58a91",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis sft rasp 20",
+  "task_key": "worker_analysis_sft_rasp_20_20260515T002952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_rasp_20_20260515T002952_result.json",
+    "occurrence": 1,
+    "bytes": 2028,
+    "sha256": "8db24a1e46ea6877919122c31bc70ca57123f4c93b084ceea06136cf672821b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EOS 测试完成，结果优秀。写总结。\n\n---\n\n## sft_rasp_20 分析总结\n\n### 训练状态：**成功**\n\n| 指标 | 值 |\n|------|-----|\n| 总 steps | 1870 (2 epochs) |\n| 训练时间 | 36:38 (~37 min) |\n| 平均 train loss | 0.7736 |\n| 初始 loss | 1.863 |\n| 最终 loss | ~0.63-0.65 |\n| 最终 mean_token_accuracy | ~0.83 |\n| W&B | 无（report_to=\"none\"） |\n\n### EOS 生成测试：**100% 通过 (5/5)**\n\n| Prompt | Gen tokens | Has EOS | 质量 |\n|--------|-----------|---------|------|\n| 12 + 15 | 225 | Yes | 正确，稍冗长 |\n| 3 apples × $2 | 31 | Yes | 精准，GSM8K 格式 |\n| 60 mph × 2.5h | 54 | Yes | 精准 |\n| 7 - 3 marbles | 25 | Yes | 精准 |\n| 25 × 4 | 51 | Yes | 正确 |\n\n平均生成长度 77 tokens，全部正常终止。生成质量遵循 GSM8K 格式（`<<计算>>` + `#### 答案`）。\n\n### Checkpoint\n\n- 路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`\n- 最终模型：`model.safetensors` 12GB（完整权重，非 LoRA）\n- 中间 checkpoint：`checkpoint-935`（epoch 1）、`checkpoint-1870`（epoch 2，含 optimizer 23GB）\n\n### 结论：**SUCCESS**\n\nSFT warmup 完全达成目标：\n1. EOS 生成能力从 0% 恢复到 100%\n2. 模型遵循 GSM8K 推理格式\n3. 生成长度合理（平均 77 tokens），无重复循环\n4. Loss 从 1.86 降至 0.64，token accuracy 83%\n\n### GRPO Stage 2 推荐参数\n\n```bash\npython src/grpo_train.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20 \\\n  --gpu 0,1 \\\n  --num_train_epochs 1 \\\n  --learning_rate 5e-7 \\\n  --max_new_tokens 512 \\\n  --temperature 0.7 \\\n  --num_generations 4 \\\n  --gradient_accumulation_steps 4\n```\n\n关键点：\n- LR 用 5e-7（比 SFT 低 40x），GRPO 需要小 LR 防止忘掉 SFT 修复的 EOS 能力\n- 可以用双卡（cuda:0,1）加速 generation\n- num_generations=4 提供足够的 reward variance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-rasp-20.md"
+}

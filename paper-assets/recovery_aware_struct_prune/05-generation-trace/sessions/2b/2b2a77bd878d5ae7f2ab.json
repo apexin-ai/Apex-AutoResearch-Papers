@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b2a77bd878d5ae7f2ab",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "survey westd full status",
+  "task_key": "worker_survey_westd_full_status_20260521T235529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_survey_westd_full_status_20260521T235529_result.json",
+    "occurrence": 1,
+    "bytes": 1079,
+    "sha256": "6578268067ad9166b7a8005edf4cdd5d8911c896e7861454576ecf4d9632cb29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 GPU 状态总结\n\n| GPU | 任务 | PID | 进度 | 最新 Acc | 状态 |\n|-----|------|-----|------|---------|------|\n| 0 | eval_gsm8k_sft_alpha4_20_v4 | 426311 | **820/1319 (62%)** | 0.6125 (@800) | 运行中 |\n| 1 | eval_math500_grpo_random_20_v2 | 382472 | **498/500 (99.6%)** | 0.1244 (@450) | 即将完成 |\n| 2 | eval_math500_grpo_alpha4_20 | 412822 | **388/500 (78%)** | 0.2743 (@350) | 运行中 |\n| 3 | eval_math500_sft_random_20 | 385685 | **466/500 (93%)** | 0.1200 (@450) | 运行中 |\n\n**关键发现：**\n- **无空闲 GPU**，4 张卡全部占满\n- **GPU 1** 还剩 2 个样本，预计几分钟内完成\n- **GPU 3** 还剩 34 个样本，预计 ~40min 完成\n- **GPU 2** 还剩 112 个样本，预计 ~2h 完成\n- **GPU 0 (D100 critical)** 还剩 499 个样本，预计 ~1.5h 完成\n\n**Accuracy 速览：**\n- GSM8K sft_alpha4_20: **61.25%** (trending, 进行中)\n- MATH500 grpo_random_20: **12.44%** (接近最终)\n- MATH500 grpo_alpha4_20: **27.43%** (进行中)\n- MATH500 sft_random_20: **12.00%** (接近最终)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/survey-westd-full-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c398e24c9221b9601f65",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 sft standard 20 2048 v2",
+  "task_key": "worker_analyze_eval_math500_sft_standard_20_2048_v2_20260519T085554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_sft_standard_20_2048_v2_20260519T085554_result.json",
+    "occurrence": 1,
+    "bytes": 850,
+    "sha256": "6898129470c68c81b5294a70a7b0fe899b1acc45de1856bd8f9e9a42cc393245"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已提取。\n\n**final_accuracy: 25.8% (129/500)**\n\n| 指标 | 值 |\n|---|---|\n| Accuracy | 25.8% (129/500) |\n| Stderr | ±1.96% |\n| Checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20` |\n| Natural EOS | 53.4% (267/500) |\n| Truncated | 46.6% (233/500) |\n| Avg response length | 1145.7 tokens |\n| Median response length | 1501.5 tokens |\n\n**异常/错误**: 无。日志中有 HuggingFace Hub 网络不可达警告，但成功使用了本地缓存，500 题全部评测完成。\n\n**W&B run**: 日志中未记录 W&B 信息。\n\n**对比上下文**: ROADMAP 中中间进度显示 20.8% (104/500)，最终结果为 25.8% (129/500)。在所有 20% 剪枝方法中，SFT Standard (25.8%) 低于 CKA-only SFT (29.0%) 和 GRPO Standard (26.4%)，但高于 SFT RASP (22.6%) 和 GRPO RASP (24.0%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-sft-standard-20-2048-v2.md"
+}

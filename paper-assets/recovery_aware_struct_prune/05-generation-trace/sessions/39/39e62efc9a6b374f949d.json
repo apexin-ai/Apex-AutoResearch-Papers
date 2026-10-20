@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e62efc9a6b374f949d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e4 25pct or math500 sft westd",
+  "task_key": "worker_code_e4_25pct_or_math500_sft_westd_20260518T131807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e4_25pct_or_math500_sft_westd_20260518T131807_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "6f34df526bfcc76b12e2746898f764a0fa554aff7005ae0f35960fefd689497c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n**汇报**:\n\n- **分支**: B-b（Dense Unpruned MATH-500 eval）\n  - `sft_cka_only_25` 不存在 → 分支 B\n  - `sft_cka_only_20` eval 已在 cuda:2 上运行（PID 2529，另一个任务提交的）→ 跳到 B-b\n- **cuda:3 任务**: Dense Unpruned baseline MATH-500 eval\n  - PID: 4223\n  - 模型: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`\n  - 输出: `/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_unpruned.json`\n  - 状态: 模型已加载（17585 MiB），正在加载 MATH 数据集\n  - 预计时长: ~40-60 min（500 题生成式评测）\n\n当前 westd-29022 GPU 占用：\n| GPU | 任务 | PID |\n|-----|------|-----|\n| cuda:1 | math500_grpo_standard_20_fair | 2261 |\n| cuda:2 | math500_sft_cka_only_20 | 2529 |\n| cuda:3 | math500_dense_unpruned | 4223 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e4-25pct-or-math500-sft-westd.md"
+}

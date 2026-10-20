@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f7eff114a1201396218c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code find and submit grpo standard math500",
+  "task_key": "worker_code_find_and_submit_grpo_standard_math500_20260517T092514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_find_and_submit_grpo_standard_math500_20260517T092514_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "3019dd9ab1fd843ad252fecaa2594e655b9ce25531f453081ed42c5572f3361d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载，检测到了剪枝后的非均匀 MLP 结构。\n\n**报告：**\n\n| 项目 | 详情 |\n|---|---|\n| **模型路径** | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50` (westd-11672) |\n| **模型大小** | 12GB |\n| **运行设备** | westd-11672 cuda:1 |\n| **输出路径** | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20.json` |\n| **日志路径** | `/root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log` |\n| **状态** | 模型加载中，进程 PID 14556 |\n\n不需要从 westb 传输，westd 本地已有模型。MATH-500 eval 预计运行 2-3 小时（参考其他 eval 的运行时间）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-find-and-submit-grpo-standard-math500.md"
+}

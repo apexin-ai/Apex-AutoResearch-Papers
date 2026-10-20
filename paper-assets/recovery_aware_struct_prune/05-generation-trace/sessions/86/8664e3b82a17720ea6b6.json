@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8664e3b82a17720ea6b6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prep inference bench cka only",
+  "task_key": "worker_code_prep_inference_bench_cka_only_20260518T065319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_inference_bench_cka_only_20260518T065319_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "95522f0249aa009077e8215d4208701d600d24dadafc5beb092cb6e1a04624b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本只支持 `--dense_path` / `--rasp_path` / `--standard_path` 三个固定 slot，没有额外参数。CKA-only SFT 模型在 `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20`。\n\n最简方案：把 CKA-only 塞进 `--standard_path` slot，其余保持不变（重跑 dense + RASP 保证同条件对比）。输出 JSON 中 `standard_20` key 实际对应 CKA-only。\n\n命令：\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python src/benchmark_inference.py \\\n  --dense_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --rasp_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 \\\n  --standard_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 \\\n  --n_prompts 50 \\\n  --max_new_tokens 512 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/inference_benchmark_with_cka.json\n```\n\n要点：\n- GPU: `CUDA_VISIBLE_DEVICES=0` (westb cuda:0)\n- `--standard_path` 替换为 CKA-only SFT 模型路径\n- output 写到新文件避免覆盖之前结果\n- 结果中 `standard_20` 实际是 CKA-only 的数据，读结果时注意映射\n\n需要我提交执行吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-inference-bench-cka-only.md"
+}

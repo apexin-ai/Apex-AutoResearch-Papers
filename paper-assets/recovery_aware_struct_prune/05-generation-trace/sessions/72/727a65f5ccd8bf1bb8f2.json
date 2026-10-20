@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "727a65f5ccd8bf1bb8f2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd cuda1 download or eval",
+  "task_key": "worker_ops_westd-cuda1-download-or-eval_20260516T052324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-cuda1-download-or-eval_20260516T052324_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "e7acf841f403799548a48a1c187e1f2103935043e53b66ae9183c70ea8f32f8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**Qwen2.5-Math-7B 下载状态：已完成 ✓**\n\n- 下载于 2026-05-16 12:49:31 完成（ModelScope，耗时约 2 小时）\n- 4 个 safetensors 分片 + config.json 齐全\n- 模型路径：`/root/autodl-tmp/models/Qwen2.5-Math-7B/Qwen/Qwen2___5-Math-7B/`\n- 总大小：15GB\n- 日志标记：`DOWNLOAD_COMPLETE`\n\n**未执行备用任务**（下载已完成，无需 post-prune eval）。\n\n下一步可以开始计算 Qwen2.5-Math-7B 的 importance scores / CKA scores 用于剪枝。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda1-download-or-eval.md"
+}

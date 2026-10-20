@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6c1eade64642a51511",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "probe sparsity 20pct",
+  "task_key": "worker_probe_sparsity_20pct_20260514T151501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_probe_sparsity_20pct_20260514T151501.log",
+    "occurrence": 1,
+    "bytes": 654610,
+    "sha256": "5946488779aa576334649a99044799cd1b61d83724f23dbff703311bb94b4ba8"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 0,
+    "tool_calls": 174,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 78,
+      "tool_call": 174,
+      "tool_result": 174
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 429,
+      "chunks": [
+        {
+          "path": "7e6c1eade64642a51511-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e6c1eade64642a51511-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e6c1eade64642a51511-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/probe-sparsity-20pct.md"
+}

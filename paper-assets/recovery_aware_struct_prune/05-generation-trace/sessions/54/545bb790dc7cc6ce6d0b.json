@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "545bb790dc7cc6ce6d0b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check floor 0p3 0p5 progress",
+  "task_key": "worker_ssh_check_floor_0p3_0p5_progress_20260523T101329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_floor_0p3_0p5_progress_20260523T101329_result.json",
+    "occurrence": 1,
+    "bytes": 1036,
+    "sha256": "280491418bd123fc433bce7cb5d5becd6c8eca81221db3f66a7344f638ab2aad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## floor=0.3 pipeline (PID 120742, GPU 0)\n\n| 步骤 | 状态 |\n|------|------|\n| ① Prune | ✅ 完成 (15:51) |\n| ② SFT (2ep) | ✅ 完成 (16:21) |\n| ③ GRPO (100 steps) | ✅ 完成 (17:48), checkpoint-100 已保存 |\n| ④ GSM8K eval | **进行中** — 247/1319 (18.7%), 均速 ~2.8s/it |\n\n200 样本时中间 acc = **70.5%**。按当前速度剩余 1072 条约 50 分钟，预计 **~19:10 CST** 完成。\n\n## floor=0.5 pipeline (PID 120474, GPU 3)\n\n| 步骤 | 状态 |\n|------|------|\n| ① Prune | ✅ 完成 (17:23) |\n| ② SFT (2ep) | ✅ 完成 (17:54) |\n| ③ GRPO (100 steps) | **进行中** — 79/100 (79%), ~12.5s/step |\n\n剩余 21 steps 约 4.5 分钟，GRPO 约 **~18:19 CST** 结束。之后还有 GSM8K eval (~1319 条, ~70min)，整个 pipeline 预计 **~19:30 CST** 完成。\n\n## 资源\n\n- GPU 0: 92% util, 29.6/97.9 GB 显存 (eval 推理中)\n- GPU 3: 90% util, 56.1/97.9 GB 显存 (GRPO 训练中)\n- 磁盘: 542G/650G used (84%), 109G 可用，充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-floor-0p3-0p5-progress.md"
+}

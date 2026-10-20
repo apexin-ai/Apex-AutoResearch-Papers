@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bfe45aa96372ee0f32b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit math500 grpo alpha3p0",
+  "task_key": "worker_ssh_submit_math500_grpo_alpha3p0_20260523T032225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_math500_grpo_alpha3p0_20260523T032225_result.json",
+    "occurrence": 1,
+    "bytes": 320,
+    "sha256": "6c97ad1984be40250d332c789508d7498737e53bdd6059db822aa8889ff88ab8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已在运行，无需重复提交。\n\n**状态**：`eval_math500_grpo_rasp_alpha3p0_20` 在 westd-32935 cuda:0 上运行中（PID 100223，占用 12916 MiB），命令行与预期完全匹配。已注册每 12 分钟 cron 监控（job c7719b21），完成后自动汇报结果并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-math500-grpo-alpha3p0.md"
+}

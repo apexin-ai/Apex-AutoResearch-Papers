@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27b53826c273c2406966",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent kill eval start grpo",
+  "task_key": "worker_ops_urgent-kill-eval-start-grpo_20260514T221739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent-kill-eval-start-grpo_20260514T221739_result.json",
+    "occurrence": 1,
+    "bytes": 626,
+    "sha256": "e3abf91976cad14aaaf369a98b71bde98a9e448ada9cf3d24400fa5fd144a0d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n| Step | 状态 |\n|------|------|\n| Kill GPU1 eval (PID 239929) | ✅ pruned_standard_20 eval 已终止 |\n| 确认 GPU1 释放 | ✅ 0MiB / 0% |\n| 取消 eval 队列 | ✅ master script 及所有 bash 子进程已 kill |\n| Baseline eval (GPU0) | ✅ PID 239932 继续运行 (reparented to init) |\n| 磁盘清理 | ✅ 删除 recovered_rasp_20 + recovered_standard_20，释放 162GB → 190GB 可用 |\n| D010 GRPO 4096 | ✅ 已提交 (tmux: grpo_standard_20_4096, PID 242237)，模型加载中 |\n\n模型 ~15GB 正在 CPU 加载，预计 1-2 分钟后上 GPU1 开始训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-kill-eval-start-grpo.md"
+}

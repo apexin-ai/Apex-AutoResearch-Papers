@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4673054dcd48c179a7b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval alpha sweep restart",
+  "task_key": "worker_eval_alpha_sweep_restart_20260517T015311",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_alpha_sweep_restart_20260517T015311_result.json",
+    "occurrence": 1,
+    "bytes": 694,
+    "sha256": "fb5271c8534ed359f9690571fc44c260ad291905c889092f653b50843fb24e90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Alpha sweep 已经全部完成了。所有 eval 文件都是今天 (May 17) 生成的，N=200，greedy：\n\n| Alpha | Accuracy | 时间 |\n|-------|----------|------|\n| 0.0 | 70.0% | 04:07 |\n| 0.3 | 73.0% | 04:49 |\n| 0.5 | 74.0% | 05:31 |\n| 0.7 | 73.5% | 06:13 |\n| 1.0 | 75.5% | 06:56 |\n| 2.0 | 75.5% | 07:43 |\n\n路径：`/root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_*.json`\n\nα=0.5 已成功完成（148/200 correct, accuracy=74%）。实际 checkpoint 覆盖的是 α∈{0.0, 0.3, 0.5, 0.7, 1.0, 2.0}（而非原计划的 {0, 0.25, 0.5, 1, 2}）。N=200 比指定的 N=100 更充分。\n\n需要我将结果注册到 registry 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-alpha-sweep-restart.md"
+}

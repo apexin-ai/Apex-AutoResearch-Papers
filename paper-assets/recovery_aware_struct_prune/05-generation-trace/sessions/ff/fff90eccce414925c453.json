@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fff90eccce414925c453",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit mbpp dense cuda2",
+  "task_key": "worker_ops_submit_mbpp_dense_cuda2_20260519T134543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_mbpp_dense_cuda2_20260519T134543_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "f55e22db4f89cdc89aa46e595921653cdce3022360ca5a27e32fd438107858c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **GPU**: westd-29022 cuda:2 空闲 ✓\n- **模型**: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` (dense unpruned)\n- **脚本**: `eval_mbpp.py` 存在，加载 374 题\n- **tmux session**: `eval_mbpp_dense_unpruned` 已启动，模型加载完成，正在跑评估\n- **Registry**: `eval_mbpp_dense_unpruned` 状态 RUNNING，spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-mbpp-dense-cuda2.md"
+}

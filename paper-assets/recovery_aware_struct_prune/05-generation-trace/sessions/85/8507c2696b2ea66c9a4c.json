@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8507c2696b2ea66c9a4c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify 4 grpo 15 training",
+  "task_key": "worker_ssh_verify_4_grpo_15_training_20260520T205554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_4_grpo_15_training_20260520T205554_result.json",
+    "occurrence": 1,
+    "bytes": 1155,
+    "sha256": "acc56ca9d9fe1a7faaa43789f7761322b76e00f942eef72ab8b4ed816a3136c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M023 验证结果\n\n### 4 个训练状态：全部 **running**（初始化阶段）\n\n| 训练 | PID | GPU | 状态 | 日志进度 |\n|------|-----|-----|------|---------|\n| grpo_cka_only_15_seed123 | 281647 | cuda:0 | running | 加载 ref_model，检测到非均匀 MLP |\n| grpo_cka_only_15_seed456 | 281727 | cuda:1 | running | 加载 ref_model，检测到非均匀 MLP |\n| grpo_standard_15_seed123 | 281874 | cuda:2 | running | 加载 pruned model |\n| grpo_standard_15_seed456 | 282025 | cuda:3 | running | 加载 pruned model |\n\n### GPU 利用率\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 13.2 / 95.6 GB | 0% |\n| cuda:1 | 13.2 / 95.6 GB | 0% |\n| cuda:2 | 13.2 / 95.6 GB | 0% |\n| cuda:3 | 2.9 / 95.6 GB | 12% |\n\ncka_only 两组已加载完 ref_model 进入训练准备，standard 两组还在加载模型中。GPU 利用率暂时为 0%（模型加载阶段），GPU 3 刚开始有计算活动。\n\n### 磁盘空间\n\n数据盘 `/root/autodl-tmp/`: 552G / 619G used (90%), **剩余 68GB**。4 个 GRPO checkpoint（每个约 5-7GB）足够存放，但空间偏紧，后续需关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-4-grpo-15-training.md"
+}

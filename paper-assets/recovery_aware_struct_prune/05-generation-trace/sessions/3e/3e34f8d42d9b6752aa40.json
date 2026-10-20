@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e34f8d42d9b6752aa40",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest gsm8k sft standard 25 final v3",
+  "task_key": "worker_ssh_harvest_gsm8k_sft_standard_25_final_v3_20260521T143202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_gsm8k_sft_standard_25_final_v3_20260521T143202_result.json",
+    "occurrence": 1,
+    "bytes": 579,
+    "sha256": "b036c4a540baa66f0e955bfd10c44a8e129c00d9938763c017dc91fb13a11fe2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成。最终结果：\n\n## eval_gsm8k_sft_standard_25 最终 Metrics\n\n| Metric | Value |\n|--------|-------|\n| **gsm8k_accuracy** | **0.5087 ± 0.0138** |\n| correct | 671 |\n| n_total | 1319 |\n| eos_rate | 95.30% (1257 natural / 62 truncated) |\n| avg_response_length | 333.15 |\n| max_response_length | 4096 |\n| min_response_length | 37 |\n\n模型：`sft_standard_25/checkpoint-1870`，greedy decoding，总耗时 6h28m。\n\n结果 JSON：`/root/recovery_aware_struct_prune/results/eval_checkpoint-1870_greedy.json`（已写 .done sentinel）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-gsm8k-sft-standard-25-final-v3.md"
+}

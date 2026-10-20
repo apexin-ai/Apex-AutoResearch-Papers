@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "520bf6a572cbaee1abc4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest sft random20 gsm8k",
+  "task_key": "worker_ssh_harvest_sft_random20_gsm8k_20260521T084545",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_sft_random20_gsm8k_20260521T084545_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "de1bf4f221807b652e8b892a1f28866fbaa26aa91bd3bf51c7b313f82b6687e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_gsm8k_sft_random_20 结果：**\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | 正常完成 |\n| GSM8K Accuracy | **51.25% ± 1.38%** |\n| Correct / Total | 676 / 1319 |\n| EOS Rate | 99.32% (9 truncated) |\n| Avg Response Length | 182.4 tokens |\n| 结果文件 | `results/eval_sft_random_20_greedy.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-sft-random20-gsm8k.md"
+}

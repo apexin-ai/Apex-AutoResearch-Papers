@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "6460345c220adb3eba7c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "research dose response hyperparams",
+  "task_key": "worker_research_dose_response_hyperparams_20260523T184941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dose_response_hyperparams_20260523T184941.log",
+    "occurrence": 1,
+    "bytes": 1039766,
+    "sha256": "01e0afe754d992649ca4910c96c609314a194d3250f9858fc9f72ecbef95760c"
+  },
+  "statistics": {
+    "messages": 187,
+    "user_turns": 2,
+    "tool_calls": 58,
+    "roles": {
+      "log": 1,
+      "system": 59,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 58,
+      "tool_result": 58,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "6460345c220adb3eba7c-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "6460345c220adb3eba7c-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "6460345c220adb3eba7c-part-0003.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 103,
+      "chunks": [
+        {
+          "path": "6460345c220adb3eba7c-part-0003.json",
+          "message_count": 103
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 72,
+      "chunks": [
+        {
+          "path": "6460345c220adb3eba7c-part-0003.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-dose-response-hyperparams.md"
+}

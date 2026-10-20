@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e156ef651aeb74669ca9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent gpu check and eval results",
+  "task_key": "worker_ssh_urgent_gpu_check_and_eval_results_20260523T194932",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_gpu_check_and_eval_results_20260523T194932_result.json",
+    "occurrence": 1,
+    "bytes": 1785,
+    "sha256": "e73388d8125671e064c8dcd7389273c1ebd8be5edc7cbeb1614b6cdeebbf7321"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-32935\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 91% | 16,833 / 97,887 MiB |\n| 1 | 98% | 17,541 / 97,887 MiB |\n| 2 | 99% | 19,251 / 97,887 MiB |\n| 3 | 97% | 19,251 / 97,887 MiB |\n\n### Eval 状态\n| 任务 | GPU | 进度 | 结果文件 |\n|------|-----|------|----------|\n| eval_math500_sft_standard_25_fixed | cuda:0 | **17/500 (3.4%)** — 刚启动 ~22min | 未生成 |\n| eval_math500_grpo_rasp_alpha1p0_20_fixed | cuda:1 | **375/500 (75%)** — 运行 ~4h | 未生成 |\n| eval_math500_grpo_standard_20_fixed | cuda:2 | **340/500 (68%)** — 运行 ~4.75h | 未生成 |\n| eval_math500_sft_standard_20_fixed | — | **无进程运行** — 日志停在 328/500，无结果文件 | 未生成 |\n\n额外运行：`eval_math500_sft_rasp_alpha1p0_20_v2` 在 cuda:3（tmux session）\n\n无 `train_grpo` 残留进程。\n\n**注意**：`eval_math500_sft_standard_20_fixed` 异常 — 日志记录到 328/500 但进程已不存在，结果文件也未生成，疑似中途崩溃或被杀。\n\n---\n\n## westb-23072\n\n### GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 99% | 16,555 / 97,887 MiB |\n| 1 | 98% | 15,135 / 97,887 MiB |\n\n### Eval 状态\n| 任务 | GPU | 进度 | 结果文件 |\n|------|-----|------|----------|\n| eval_math500_grpo_cka_only_20_fixed | cuda:0 | **7/500 (1.4%)** — 刚启动 ~15min | 未生成 |\n| eval_math500_sft_random_20_fixed | cuda:1 | **25/500 (5%)** — 刚启动 ~13min | 未生成 |\n\n两个进程均正常运行中。\n\n---\n\n**总结**：6 个 eval 中 5 个正在跑，`sft_standard_20_fixed`（westd-32935）进程丢失需排查。grpo_rasp_alpha1p0_20_fixed 和 grpo_standard_20_fixed 预计 1-2h 内完成，其余刚启动需数小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu-check-and-eval-results.md"
+}

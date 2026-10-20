@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc5d6dd2c99dd9ed4678",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code eval humaneval grpo rasp 20 2048 submit",
+  "task_key": "worker_code_eval_humaneval_grpo_rasp_20_2048_submit_20260517T135658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_humaneval_grpo_rasp_20_2048_submit_20260517T135658_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "0b5543ad7150a801817c366908f4fe869c023ee3b5d34729f701591bf1d5c00a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "旧 tmux session 已清理（或本身不存在）。\n\n但 **cuda:0 当前不空闲**，4 张 GPU 全部被占用：\n\n| GPU | 显存占用 | GPU 利用率 | 进程 |\n|-----|---------|-----------|------|\n| cuda:0 | 13,551 / 97,887 MiB | 98% | python (PID 28136) |\n| cuda:1 | 31,527 / 97,887 MiB | 99% | python (PID 14556) |\n| cuda:2 | 16,521 / 97,887 MiB | 98% | python (PID 27199) |\n| cuda:3 | 31,527 / 97,887 MiB | 99% | python (PID 11896) |\n\n所有 GPU 都在高负载运行，不适合强行提交。需要等当前任务完成或手动终止某个进程后再启动 HumanEval eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-humaneval-grpo-rasp-20-2048-submit.md"
+}

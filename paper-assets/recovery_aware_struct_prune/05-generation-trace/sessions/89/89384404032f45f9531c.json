@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89384404032f45f9531c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code cka figure prep v2",
+  "task_key": "worker_code_cka-figure-prep-v2_20260515T052834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka-figure-prep-v2_20260515T052834_result.json",
+    "occurrence": 1,
+    "bytes": 1064,
+    "sha256": "5966e8009d3b189024db9eebb93e46ff6aac5e80211f6d6c30db16aab69a7092"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。产出汇总：\n\n**CKA 数据结构**（`cka_scores.pt`，122KB）：\n- `attn_overlap`: 28 层 × 4 heads 的 overlap 值\n- `mlp_overlap`: 28 层 × 28 neurons 的 overlap 值\n- `attn_cka_matrix`: 28 层，每层 4×4 head 间 CKA 相似度矩阵\n- `mlp_cka_matrix`: 28 层，每层 28×28 neuron 间 CKA 矩阵\n\n**关键统计**：\n| 指标 | Attn overlap | MLP overlap |\n|------|-------------|-------------|\n| Mean | 0.7817 | 0.9223 |\n| Std | 0.0909 | 0.0332 |\n| Range | [0.31, 0.88] | [0.88, 1.00] |\n| 最低层 | 0, 27, 1 | 25, 15, 26 |\n| 最高层 | 9, 13, 18 | 0, 2, 1 |\n\n**生成文件**：\n- `results/cka_per_layer.json`（30KB）— 每层 attn/mlp overlap 值 + 全局统计\n- `results/cka_heatmap.json`（629KB）— 每层完整 CKA 矩阵 + cross-layer off-diagonal 均值\n- `src/extract_cka_for_figures.py` — 提取脚本\n\nMLP overlap 普遍很高（>0.88），说明 MLP neuron 间冗余大；Attn 头间差异更显著，layer 0 和 27（首尾层）overlap 最低，中间层（9, 13, 18）最高。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cka-figure-prep-v2.md"
+}

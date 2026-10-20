@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c13f3eea2cc91239ff62",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb status",
+  "task_key": "worker_check_westb_status_20260517T110521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_status_20260517T110521_result.json",
+    "occurrence": 1,
+    "bytes": 1628,
+    "sha256": "e7d7a04bb4b812ff2c2c968e83a30992a784df897d76bf445ee4d103b8a1b8cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 服务器状态汇总\n\n### GPU 使用情况\n| GPU | 状态 | 显存 | GPU-Util | 温度 |\n|-----|------|------|----------|------|\n| cuda:0 | **占用** — PID 704557 (random SFT recovery) | 50411 / 97887 MiB | 97% | 61°C |\n| cuda:1 | **空闲** | 0 MiB | 0% | 34°C |\n\n### PID 696141 (random eval)\n**已结束**。PID 不存在。当前 cuda:0 上运行的是新进程 PID 704557（SFT recovery）。\n\n### Random Eval 结果 (post-prune, 无 SFT)\n- **Accuracy: 34.0% ± 3.35%** (68/200)\n- EOS rate: 45.5%, 平均 response 长度 2634 tokens\n- 结果文件: `eval_postprune_random_20.json` (18:57 完成)\n\n### Tmux Sessions\n| Session | 创建时间 | 状态 |\n|---------|----------|------|\n| `scoring_ablation_random` | 16:54 | **运行中** — SFT recovery 进行中，261/1870 steps (14%)，~1.08s/it，预计还需约 29 分钟 |\n| `scoring_ablation_v2` | 15:37 | **已完成** — gradient SFT recovery 于 18:02 完成，模型保存至 `sft_gradient_20` |\n\n### results/ 目录最新文件（今日）\n| 文件 | 时间 | 说明 |\n|------|------|------|\n| `random_cka_ablation_log.txt` | 19:05 | random ablation 运行日志（持续写入） |\n| `eval_postprune_random_20.json` | 18:57 | random 剪枝 post-prune eval: **34.0%** |\n| `eval_gradient_postsft.json` | 18:23 | gradient SFT 后 eval |\n| `eval_gradient_sft.log` | 18:14 | gradient SFT eval 日志 |\n| `ablation_log.txt` | 17:07 | ablation 日志 |\n| `eval_unstructured_20_n1319.json` | 16:48 | 非结构化剪枝 eval |\n| `eval_postprune_gradient_20.json` | 16:48 | gradient 剪枝 post-prune eval |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-status-copy-2.md"
+}

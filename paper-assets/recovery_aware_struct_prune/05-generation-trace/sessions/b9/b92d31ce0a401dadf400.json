@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b92d31ce0a401dadf400",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops final compile push v2",
+  "task_key": "worker_ops_final_compile_push_v2_20260524T155018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_compile_push_v2_20260524T155018_result.json",
+    "occurrence": 1,
+    "bytes": 398,
+    "sha256": "97d9f75a83db09dabd37e91bbf93f8d58e6bf0a1f4ec52ff3141e035d95968e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **编译**：成功，15页，零 overfull/error\n- **Table 2 脚注**：正常渲染。添加了 `$^\\ddagger$` 标注 Unpruned 行，脚注说明所有行（含 dense baseline）使用 SFT-warmup checkpoint，pre-warmup dense 模型 GSM8K 为 90.83%\n- **Push**：`c549c03..d2d7621 main -> main` 成功推送到 `anonymous-nlp-2026/recovery_aware_struct_prune`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-compile-push-v2.md"
+}

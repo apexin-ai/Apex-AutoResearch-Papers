@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93a79410a84d0bb26265",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "pipeline qwen math rasp rlvr v2",
+  "task_key": "worker_pipeline_qwen_math_rasp_rlvr_v2_20260516T170645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_qwen_math_rasp_rlvr_v2_20260516T170645_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "73ca32c3729cd8daf7aec803ce39ab39fa30e4af8ac69a77f6c95eb1c4c9b154"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 2 Prune 完成**：RASP-RLVR 模式剪枝 Qwen2.5-Math-7B，实际稀疏度 19.09%（200/784 MLP groups pruned，0 attn groups pruned）。\n\n**Step 3 SFT 已启动**：tmux session `sft_rasp_rlvr_qwen_math`，westd cuda:0，预计 ~30min。3 分钟后自动轮询进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-qwen-math-rasp-rlvr-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ade20c820ba75428c90d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research check grpo hyperparams",
+  "task_key": "worker_research_check_grpo_hyperparams_20260523T184142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_grpo_hyperparams_20260523T184142_result.json",
+    "occurrence": 1,
+    "bytes": 1349,
+    "sha256": "c7ccf0a7b08eb678e39750dc77273c59b578b0e1eb17cd168510c421ab0f9a21"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO max_completion_length 审计\n\n脚本默认值: `train_grpo_v5.py --max_completion_length default = 512` (第191行)\n\nTable 1 使用的成功实验（killed 的原始版本已排除）：\n\n| 实验 | exp_id | 命令中显式设置? | 实际值 | 备注 |\n|------|--------|---------------|--------|------|\n| CKA-only GRPO 20% | grpo_cka_only_20 | **Yes** (1024) | **1024** | |\n| Standard GRPO 20% | grpo_standard_20_fair | **Yes** (1024) | **1024** | |\n| RASP α=1.0 GRPO 20% | grpo_rasp_20_fair | **No** | **512** | 使用脚本默认值 |\n| Random GRPO 20% | grpo_random_20 | **No** | **512** | 使用脚本默认值 |\n\n**不一致?: Yes**\n\n**具体差异:** CKA-only 和 Standard 显式设了 `--max_completion_length 1024`，而 RASP 和 Random 未设置该参数，使用脚本默认值 512。Reviewer 怀疑方向正确但猜反了对象——不是 Random 用默认值 512 vs Standard 用 1024，而是 **RASP 和 Random 都用了 512，CKA-only 和 Standard 用了 1024**。\n\n此外，这两组实验的其他超参也不一致：CKA-only 和 Standard 显式设了 `--temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit`，而 RASP 和 Random 全部使用脚本默认值。论文声称 \"identical GRPO hyperparameters\" 不成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-grpo-hyperparams.md"
+}

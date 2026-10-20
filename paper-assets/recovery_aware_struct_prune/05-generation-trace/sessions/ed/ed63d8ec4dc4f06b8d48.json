@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed63d8ec4dc4f06b8d48",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westb full status",
+  "task_key": "worker_diagnose_westb_full_status_20260522T121352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westb_full_status_20260522T121352_result.json",
+    "occurrence": 1,
+    "bytes": 1372,
+    "sha256": "e7c9a7b23ebf6d130153a10ab396302d702e73c89da892f6e0b043631b232b38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU STATUS ===\n0, 0 MiB, 97887 MiB, 0 %\n1, 27395 MiB, 97887 MiB, 100 %\n\n=== MF3 N=500 eval (GPU 1, PID 202364) ===\n202364       07:08  261\nRUNNING\ntail -5 eval_gsm8k_grpo_qwen_math_cka_only_20_n500.log:\n2026-05-22 20:08:52,193 [INFO] Loading GSM8K test set...\n2026-05-22 20:08:53,206 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \"HTTP/1.1 404 Not Found\"\n2026-05-22 20:08:53,270 [INFO] Evaluating on 500 test samples\n2026-05-22 20:08:53,273 [INFO] Generation config: do_sample=False, temperature=0.0\nEvaluating:   0%|          | 0/500 [00:00<?, ?it/s]\n\n=== SFT random_20 transfer status ===\n-rw-r--r-- 1 root root 6042042368 May 22 20:14 model.safetensors\n8.0G\t/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20/\n\n=== GPU 0 processes ===\n202364, 27824 MiB, python\n(no other eval/train processes besides PID 202364)\n\n=== DISK ===\nFilesystem      Size  Used Avail Use% Mounted on\n/dev/md0        250G  230G   21G  92% /root/autodl-tmp\n```\n\n**摘要：**\n- **GPU 0**: 空闲（0 MiB）\n- **GPU 1**: PID 202364 占用 27.8GB / 95.6GB，运行 7h08m，利用率 100%。eval 刚开始（0/500），正在生成中\n- **SFT random_20**: model.safetensors 5.6GB 已就位，目录总计 8.0GB\n- **数据盘**: 230G/250G 已用（92%），剩余 21GB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westb-full-status.md"
+}

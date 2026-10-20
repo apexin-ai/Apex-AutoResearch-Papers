@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e639eac492536a1db416",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval status batch",
+  "task_key": "worker_check_eval_status_batch_20260516T051702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_status_batch_20260516T051702_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "d88b4a7910b175ca885b1ce704edfe348a6e1c2e444645b8bf4c95552f23314e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| exp_id | 状态 | accuracy | 详情 |\n|--------|------|----------|------|\n| eval_grpo_rasp_v9_step10 | **运行中** (19%, 249/1319) | — | 进程仍在执行，~2s/it，预计还需 ~35min 完成 |\n| eval_grpo_unpruned_v2_step100 | **完成** | **81.27%** (1072/1319) | greedy, eos_rate=99.7%, avg_len=209 |\n| eval_grpo_unpruned_v2_step90 | **完成** | **80.59%** (1063/1319) | greedy, eos_rate=99.6%, avg_len=213 |\n\n备注：\n- eval_grpo_rasp_v9_step10 在 westb-23072 上当前只完成了 19%（日志最后时间戳 13:12 UTC，约 15 分钟前才跑到 249 样本）。可能是重启过或晚启动的。按 ~2s/it 估算，还需约 35-40 分钟完成。\n- unpruned_v2 两个 checkpoint 对比：step100 (81.27%) 略优于 step90 (80.59%)，差距 0.68pp，在 stderr 范围内基本持平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-status-batch.md"
+}

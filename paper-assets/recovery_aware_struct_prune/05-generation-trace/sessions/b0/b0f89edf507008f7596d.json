@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0f89edf507008f7596d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd connectivity",
+  "task_key": "worker_diagnose_westd_connectivity_20260522T002148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_connectivity_20260522T002148_result.json",
+    "occurrence": 1,
+    "bytes": 1109,
+    "sha256": "d5398b31c8ad7c4a11ec0a69b562c6aefab2505bd3cbfd1fca6cc0a1ebd31cab"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告：westd-29022\n\n| 项目 | 状态 |\n|------|------|\n| **连接状态** | **失败** |\n| **错误信息** | `[Errno None] Unable to connect to port 29022 on 36.103.198.204` |\n| **响应时间** | 0.36s（立即拒绝，非超时） |\n| **实验进程** | 无法检查 |\n| **日志** | 无法检查 |\n| **GPU/磁盘** | 无法检查 |\n\n### 判断\n\n连接被立即拒绝（0.36s），说明端口 29022 未在监听。最可能的原因：\n\n1. **AutoDL 实例已关机或重启，SSH 端口已变更**（最大概率）——AutoDL 重启后会分配新端口\n2. 实例被释放\n\n### 需要你做的\n\n去 AutoDL 控制台查看 westd-29022 实例的当前状态：\n- 如果实例还在运行：查看新的 SSH 端口，更新 `~/.ssh/config` 中 westd-29022 的端口配置\n- 如果实例已关机：需要重新开机，开机后端口会变\n- 如果实例已释放：需要新建实例\n\n之前在该服务器上运行的实验（包括 PID 412817 的 eval_math500_grpo_alpha4_20 等）如果实例重启过，进程已全部丢失，需要重新启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-connectivity-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c5b9114ffb0dfea48cd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research related work survey",
+  "task_key": "worker_research_related-work-survey_20260515T043918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-survey_20260515T043918_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "a0870b08a030a6ecd148ff3f6970b685a1928736e43e517eb5c52db74cb63bcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/literature_notes.md`。5 篇核心对比文献 + 6 篇补充相关工作，均通过 WebSearch/WebFetch 验证真实性，包含完整 BibTeX。\n\n要点：\n- **Self-Healing** 无 arXiv ID，仅在 OpenReview（ICLR 2026）\n- **RESP** 与 **SSGR** 都叫 \"Think Before You Prune\" 但是不同团队的不同论文，已区分\n- **RAC**（NeurIPS 2025）是新增的重要补充——CoT 重建式剪枝校准，与 RASP 互补"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-survey.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "627d775afb7a5677a3f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 seed123 v2",
+  "task_key": "worker_ssh_harvest_cka_only_15_seed123_v2_20260521T001619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_seed123_v2_20260521T001619_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "ab69bced7f5c5afc4e83b78bf4002a2de384f0e4777ed12a50f50ecb3835e7af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有活跃的 cron job（可能已在之前的 session 中创建，当前 session 无法访问）。\n\n**结果汇总：**\n\n| Metric | Value |\n|--------|-------|\n| Accuracy | **73.09%** (964/1319) |\n| Stderr | ±1.22% |\n| EOS rate | 98.79% |\n| Truncated | 16/1319 |\n\n**CKA-only 15% 三 seed 对比：**\n\n| Seed | Accuracy |\n|------|----------|\n| seed42 | 73.09% |\n| seed123 | **73.09%** |\n| seed456 | 72.10% |\n| **Mean** | **72.76% ± 0.57%** |\n\nseed123 完美复现了 seed42 的结果，三 seed 方差极小（σ=0.57pp），CKA-only 15% 的优势非常稳定。Registry 已更新为 DONE/success。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-seed123-v2.md"
+}

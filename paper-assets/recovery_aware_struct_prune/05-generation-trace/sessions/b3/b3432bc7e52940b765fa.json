@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3432bc7e52940b765fa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd full status harvest",
+  "task_key": "worker_ops_westd_full_status_harvest_20260518T211029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_full_status_harvest_20260518T211029_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "547aad9c51b6c112b50fafea53a9b261c2d9aa8a7bf05ba8b38ccdc1eb7791eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部在跑，无异常。\n\n**cuda:0 — grpo_cka_only_20_extended_300**\n286/300 (95%)，ETA ~26min。训练正常推进，无需操作。完成后再提取 reward 轨迹并更新 registry。\n\n**cuda:1 — eval_math500_grpo_standard_20_fair_v2**\n192/500 (38%)，未崩溃。结果文件尚未生成。Interim acc@150 = **0.3133**。数据集加载时网络不可达，已回退到缓存版本，运行正常。ETA ~3-4h。无需操作。\n\n**cuda:2 — math500_sft_cka_only_20_v4**\n389/500 (78%)，Interim acc@350 = **0.3029**。ETA ~1-2h。无需操作。\n\n**cuda:3 — math500_grpo_rasp_20_fair**\n283/500 (57%)，Interim acc@250 = **0.2760**。ETA ~2-3h。无需操作。\n\n**总结**：4 卡满载运行，无崩溃无卡死。cuda:0 训练最先完成（~30min），其余 3 个 eval 任务按序完成。当前无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-status-harvest.md"
+}

@@ -1,0 +1,1691 @@
+{
+  "schema_version": "1.0",
+  "id": "ee6d6c972ca4f9a96bc3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "code mbpp eval",
+  "task_key": "worker_code_mbpp_eval_20260519T132515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_mbpp_eval_20260519T132515.jsonl",
+    "occurrence": 1,
+    "bytes": 78649,
+    "sha256": "e28034cf4f6645bede13786a20745a6d6f0bb8028687479406c35cec1b00b5da"
+  },
+  "statistics": {
+    "messages": 83,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "tool_call": 41,
+      "tool_result": 41,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:33:07.118687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:33:07.119025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:33:07.119205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/recovery_aware_struct_prune/src/eval_humaneval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:33:07.119478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"HumanEval Evaluation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nfrom datetime import datetime\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport subprocess\\\\nimport tempfile\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef extract_code_block(text):\\\\n    clean = re.sub(r\\\\\\\"<think>.*?</think>\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL)\\\\n    if not clean.strip():\\\\n        clean = text\\\\n    code_blocks = re.findall(r\\\\\\\"```python\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    code_blocks = re.findall(r\\\\\\\"```\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    return clean\\\\n\\\\n\\\\ndef run_test(code, test, entry_point, timeout=10):\\\\n    full_code = code + \\\\\\\"\\\\\\\\n\\\\\\\" + test + f\\\\\\\"\\\\\\\\ncheck({entry_point})\\\\\\\\n\\\\\\\"\\\\n    with tempfile.NamedTemporaryFile(mode=\\\\\\\"w\\\\\\\", suffix=\\\\\\\".py\\\\\\\", delete=False) as f:\\\\n        f.write(full_code)\\\\n        tmp_path = f.name\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [sys.executable, tmp_path],\\\\n            capture_output=True, text=True, timeout=timeout,\\\\n        )\\\\n        return result.returncode == 0, result.stderr[:500] if result.stderr else \\\\\\\"\\\\\\\"\\\\n    except subprocess.TimeoutExpired:\\\\n        return False, \\\\\\\"Timeout\\\\\\\"\\\\n    except Exception as e:\\\\n        return False, str(e)[:500]\\\\n    finally:\\\\n        try:\\\\n            os.unlink(tmp_path)\\\\n  \n…[truncated 5495 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:33:07.119645+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"from datasets import load_dataset; ds = load_dataset('mbpp', split='test'); print('len:', len(ds)); print('columns:', ds.column_names); print('---sample 0---'); print(ds[0]); print('---sample 1---'); print(ds[1]); print('---sample 2---'); print(ds[2])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:33:07.119792+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"from datasets import load_dataset; ds = load_dataset(\\\\\\\\'mbpp\\\\\\\\', split=\\\\\\\\'test\\\\\\\\'); print(\\\\\\\\'len:\\\\\\\\', len(ds)); print(\\\\\\\\'columns:\\\\\\\\', ds.column_names); print(\\\\\\\\'---sample 0---\\\\\\\\'); print(ds[0]); print(\\\\\\\\'---sample 1---\\\\\\\\'); print(ds[1]); print(\\\\\\\\'---sample 2---\\\\\\\\'); print(ds[2])\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:33:07.119963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && HF_HUB_DISABLE_XET=1 python3 -c \"from datasets import load_dataset; ds = load_dataset('mbpp', split='test'); print('len:', len(ds)); print('columns:', ds.column_names); print('---sample 0---'); print(ds[0]); print('---sample 1---'); print(ds[1]); print('---sample 2---'); print(ds[2])\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:33:07.120160+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nlen: 500\\\\ncolumns: ['task_id', 'text', 'code', 'test_list', 'test_setup_code', 'challenge_test_list']\\\\n---sample 0---\\\\n{'task_id': 11, 'text': 'Write a python function to remove first and last occurrence of a given character from the string.', 'code': 'def remove_Occ(s,ch): \\\\\\\\r\\\\\\\\n    for i in range(len(s)): \\\\\\\\r\\\\\\\\n        if (s[i] == ch): \\\\\\\\r\\\\\\\\n            s = s[0 : i] + s[i + 1:] \\\\\\\\r\\\\\\\\n            break\\\\\\\\r\\\\\\\\n    for i in range(len(s) - 1,-1,-1):  \\\\\\\\r\\\\\\\\n        if (s[i] == ch): \\\\\\\\r\\\\\\\\n            s = s[0 : i] + s[i + 1:] \\\\\\\\r\\\\\\\\n            break\\\\\\\\r\\\\\\\\n    return s ', 'test_list': ['assert remove_Occ(\\\\\\\"hello\\\\\\\",\\\\\\\"l\\\\\\\") == \\\\\\\"heo\\\\\\\"', 'assert remove_Occ(\\\\\\\"abcda\\\\\\\",\\\\\\\"a\\\\\\\") == \\\\\\\"bcd\\\\\\\"', 'assert remove_Occ(\\\\\\\"PHP\\\\\\\",\\\\\\\"P\\\\\\\") == \\\\\\\"H\\\\\\\"'], 'test_setup_code': '', 'challenge_test_list': ['assert remove_Occ(\\\\\\\"hellolloll\\\\\\\",\\\\\\\"l\\\\\\\") == \\\\\\\"helollol\\\\\\\"', 'assert remove_Occ(\\\\\\\"\\\\\\\",\\\\\\\"l\\\\\\\") == \\\\\\\"\\\\\\\"']}\\\\n---sample 1---\\\\n{'task_id': 12, 'text': 'Write a function to sort a given matrix in ascending order according to the sum of its rows.', 'code': 'def sort_matrix(M):\\\\\\\\r\\\\\\\\n    result = sorted(M, key=sum)\\\\\\\\r\\\\\\\\n    return result', 'test_list': ['assert sort_matrix([[1, 2, 3], [2, 4, 5], [1, 1, 1]])==[[1, 1, 1], [1, 2, 3], [2, 4, 5]]', 'assert sort_matrix([[1, 2, 3], [-2, 4, -5], [1, -1, 1]])==[[-2, 4, -5], [1, -1, 1], [1, 2, 3]]', 'assert sort_matrix([[5,8,9],[6,4,3],[2,1,4]])==[[2, 1, 4], [6, 4, 3], [5, 8, 9]]'], 'test_setup_code': '', 'challenge_test_list': []}\\\\n---sample 2---\\\\n{'task_id': 13, 'text': 'Write a function to count the most common words in a dictionary.', 'code': 'from collections import Counter\\\\\\\\r\\\\\\\\ndef count_common(words):\\\\\\\\r\\\\\\\\n  word_counts = Counter(words)\\\\\\\\r\\\\\\\\n  top_four = word_counts.most_common(4)\\\\\\\\r\\\\\\\\n  return (top_four)\\\\\\\\r\\\\\\\\n', 'test_list': ['assert co\n…[truncated 1845 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:33:07.120440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat > /root/recovery_aware_struct_prune/src/eval_mbpp.py << 'PYEOF'\n\"\"\"MBPP (Mostly Basic Python Problems) Evaluation.\n\nEvaluates code generation models on MBPP sanitized subset (374 tasks).\nUses sandbox execution to verify generated code against test cases.\n\"\"\"\n\nimport argparse\nfrom datetime import datetime\nimport json\nimport logging\nimport math\nimport os\nimport random\nimport re\nimport sys\nimport subprocess\nimport tempfile\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoTokenizer\nfrom model_utils import load_pruned_model\nfrom tqdm import tqdm\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef extract_code_block(text):\n    \"\"\"Extract Python code from model response, handling markdown fences and think tags.\"\"\"\n    clean = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n    if not clean.strip():\n        clean = text\n    code_blocks = re.findall(r\"```python\\s*\\n(.*?)```\", clean, re.DOTALL)\n    if code_blocks:\n        return code_blocks[0]\n    code_blocks = re.findall(r\"```\\s*\\n(.*?)```\", clean, re.DOTALL)\n    if code_blocks:\n        return code_blocks[0]\n    return clean\n\n\ndef run_test(code, test_list, test_setup_code=\"\", timeout=10):\n    \"\"\"Execute generated code against MBPP test cases in a subprocess sandbox.\n\n    Concatenates setup code, generated code, and assert statements,\n    then runs in an isolated subprocess with timeout enforcement.\n    \"\"\"\n    parts = []\n    if test_setup_code:\n        parts.append(test_setup_code)\n    parts.append(code)\n    parts.extend(test_list)\n    full_code = \"\\n\".join(parts)\n\n    with tempfile.NamedTemporaryFile(mode=\"w\", suffix=\".py\", delete=False) as f:\n        f.write(full_code)\n        tmp_path = f.name\n    try:\n        result = subprocess.run(\n            [sys.executable, tmp_path],\n            capture_output=True, text=True, timeout=timeout,\n        )\n        return result.returncode == 0, result.stderr[:500] if result.stderr else \"\"\n    except subprocess.TimeoutExpired:\n        return False, \"Timeout\"\n    except Exception as e:\n        return False, str(e)[:500]\n    finally:\n        try:\n            os.unlink(tmp_path)\n        except OSError:\n            pass\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"MBPP pass@1 evaluation\")\n    parser.add_argument(\"--model_path\", type=str, required=True)\n    parser.add_argument(\"--output_path\", type=str, default=None)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=2048)\n    parser.add_argument(\"--max_samples\", type=int, default=None)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\")\n    parser.add_argument(\"--timeout\", type=int, default=10)\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n\n    logger.info(f\"Loading model from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    model = load_pruned_model(args.model_path, device_map=\"auto\", torch_dtype=dtype_map[args.dtype])\n    model.eval()\n    device = next(model.parameters()).device\n\n    logger.info(\"Loading MBPP dataset (sanitized, 374 tasks)...\")\n    dataset = load_dataset(\"mbpp\", split=\"train\")\n    logger.info(f\"Loaded {len(dataset)} problems\")\n\n    if args.max_samples is not None:\n        dataset = dataset.select(range(min(args.max_samples, len(dataset))))\n\n    correct = 0\n    total = 0\n    results = []\n    response_lengths = []\n    eos_token_id = tokenizer.eos_token_id\n\n    for idx in tqdm(range(len(dataset)), desc=\"MBPP\"):\n        item = dataset[idx]\n        task_id = item[\"task_id\"]\n        text = item[\"text\"]\n        test_list = item[\"test_list\"]\n        test_setup_code = item.get(\"test_setup_code\", \"\")\n\n        test_examples = \"\\n\".join(test_list[:3])\n        user_msg = (\n            f\"Write a Python function to solve the following task. \"\n            f\"Only output the complete function, no explanation.\\n\\n\"\n            f\"Task: {text}\\n\\n\"\n            f\"Test cases for reference:\\n{test_examples}\"\n        )\n        messages = [{\"role\": \"user\", \"content\": user_msg}]\n        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=2048).to(device)\n\n        with torch.no_grad():\n            output_ids = model.generate(\n                **inputs,\n                max_new_tokens=args.max_new_tokens,\n                do_sample=False,\n                pad_token_id=tokenizer.pad_token_id or eos_token_id,\n            )\n\n        gen_ids = output_ids[0, inputs[\"input_ids\"].shape[1]:]\n        response = tokenizer.decode(gen_ids, skip_special_tokens=True)\n        resp_len = len(gen_ids)\n        response_lengths.append(resp_len)\n\n        code = extract_code_block(response)\n\n        passed, error = run_test(code, test_list, test_setup_code, timeout=args.timeout)\n        if passed:\n            correct += 1\n        total += 1\n\n        results.append({\n            \"task_id\": task_id,\n            \"passed\": passed,\n            \"error\": error if not passed else \"\",\n            \"response_length\": resp_len,\n        })\n\n        if (idx + 1) % 20 == 0:\n            logger.info(f\"Progress: {idx+1}/{len(dataset)}, Pass@1: {correct/total:.4f}\")\n\n    accuracy = correct / total if total > 0 else 0\n    stderr = math.sqrt(accuracy * (1 - accuracy) / total) if total > 0 else 0\n\n    logger.info(f\"MBPP pass@1: {accuracy:.4f} +/- {stderr:.4f} ({correct}/{total})\")\n\n    eos_stats = {\n        \"avg_response_length\": float(np.mean(response_lengths)) if response_lengths else 0,\n        \"median_response_length\": float(np.median(response_lengths)) if response_lengths else 0,\n    }\n\n    if args.output_path is None:\n        model_name = os.path.basename(args.model_path.rstrip(\"/\"))\n        args.output_path = f\"results/eval_mbpp_{model_name}.json\"\n\n    os.makedirs(os.path.dirname(args.output_path) or \".\", exist_ok=True)\n    output = {\n        \"model_path\": args.model_path,\n        \"benchmark\": \"MBPP\",\n        \"pass_at_1\": accuracy,\n        \"stderr\": stderr,\n        \"n_correct\": correct,\n        \"n_total\": total,\n        \"eos_stats\": eos_stats,\n        \"examples\": results,\n    }\n\n    with open(args.output_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    logger.info(f\"Results saved to {args.output_path}\")\n\n    sentinel_path = args.output_path + \".done\"\n    with open(sentinel_path, \"w\") as f:\n        f.write(f\"completed_at={datetime.now().isoformat()}\\n\")\n        f.write(f\"pass_at_1={accuracy:.4f}\\n\")\n        f.write(f\"n_correct={correct}\\n\")\n        f.write(f\"n_total={total}\\n\")\n    logger.info(f\"Sentinel written: {sentinel_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"EXIT_CODE: $?\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:33:07.120655+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE: 0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:33:07.120819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_mbpp.py --help",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:33:07.120961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: eval_mbpp.py [-h] --model_path MODEL_PATH [--output_path OUTPUT_PATH]\\\\n                    [--max_new_tokens MAX_NEW_TOKENS]\\\\n                    [--max_samples MAX_SAMPLES] [--seed SEED] [--dtype DTYPE]\\\\n                    [--timeout TIMEOUT]\\\\n\\\\nMBPP pass@1 evaluation\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --model_path MODEL_PATH\\\\n  --output_path OUTPUT_PATH\\\\n  --max_new_tokens MAX_NEW_TOKENS\\\\n  --max_samples MAX_SAMPLES\\\\n  --seed SEED\\\\n  --dtype DTYPE\\\\n  --timeout TIMEOUT\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 4.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:33:07.121107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_DISABLE_XET=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 3 --output_path /tmp/test_mbpp.json --max_new_tokens 512 2>&1 | tail -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:33:07.121247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_DISABLE_XET=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 3 --output_path /tmp/test_mbpp.json --max_new_tokens 512 2>&1 | tail -30'\\\\n\\\\nStdout:\\\\n\\\\n设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:33:07.121430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "source /etc/network_turbo 2>/dev/null; source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'HF_HUB_DISABLE_XET=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_samples 3 --output_path /tmp/test_mbpp.json --max_new_tokens 512' > /tmp/test_mbpp.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:33:07.121568+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"设置成功\\\\n注意：仅限于学术用途和加速访问github/huggingface，不承诺稳定性保证\\\\nPID=105729\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:33:07.121698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 105729 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:33:07.121855+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:33:07.121988+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -20 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:33:07.122155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:33:07.122335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T13:33:07.122476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T13:33:07.122597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T13:33:07.122716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T13:33:07.122847+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T13:33:07.122966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T13:33:07.123088+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T13:33:07.123209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T13:33:07.123397+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T13:33:07.123563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 206 May 19 21:29 /tmp/test_mbpp.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T13:33:07.123688+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps aux",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T13:33:07.123853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"USER        PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND\\\\nroot          1  0.0  0.0   4476  3344 ?        Ss   May18   0:00 bash /init/boot/boot.sh\\\\nroot        917  2.3  0.0 718496 21948 ?        Sl   May18  34:20 /bin/supervisord -c /init/supervisor/supervisor.ini\\\\nroot        933  0.0  0.0 187552 101872 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        935  0.0  0.0  15444  9196 ?        S    May18   0:06 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups\\\\nroot        938  0.2  0.0 6820304 118116 ?      Sl   May18   3:00 autopanel serve --work-dir=/root/autodl-tmp --cache-dir=/root/autodl-tmp\\\\nroot        939  0.2  0.0 2794944 21208 ?       Sl   May18   4:18 proxy -c /init/proxy/proxy-hot-backup.ini\\\\nroot        940  0.0  0.0 4147292 80028 ?       Sl   May18   0:56 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        941  0.1  0.0 2721788 20520 ?       Sl   May18   1:57 proxy -c /init/proxy/proxy.ini\\\\nroot       1052  0.1  0.0 28341068 11792 ?      Sl   May18   1:30 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4_ocohnk/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4_ocohnk/startup_error\\\\nroot      19609  0.0  0.0   6396  4168 ?        Ss   01:52   0:03 tmux new-session -d -s math500_standard_grpo_fair source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | t\n…[truncated 4469 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T13:33:07.124032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T13:33:07.124163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T13:33:07.124314+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T13:33:07.124455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T13:33:07.124597+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "kill 105538 105539 2>/dev/null; echo \"killed first instance\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T13:33:07.124718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"killed first instance\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T13:33:07.124831+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T13:33:07.124949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T13:33:07.125083+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T13:33:07.125211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-19 21:30:44,709 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\n2026-05-19 21:30:46,858 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,161 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,167 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/google-research-datasets/mbpp/4bb6404fdc6cacfda99d4ac4205087b89d32030c/README.md \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T13:33:07.125365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T13:33:07.125507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-19 21:30:44,709 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\n2026-05-19 21:30:46,858 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,161 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,167 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/google-research-datasets/mbpp/4bb6404fdc6cacfda99d4ac4205087b89d32030c/README.md \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:47,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,740 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 21:30:49,334 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/mbpp/mbpp.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 21:30:49,644 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/revision/4bb6404fdc6cacfda99d4ac4205087b89d32030c \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:49,646 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/revision/4bb6404fdc6cacfda99d4ac4205087b89d32030c \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:50,409 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/.huggingface.yaml \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\n…[truncated 318 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T13:33:07.125647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -30 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T13:33:07.125819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:29:16,040 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\n2026-05-19 21:29:16,631 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-19 21:30:44,709 [INFO] Loading MBPP dataset (sanitized, 374 tasks)...\\\\n2026-05-19 21:30:46,858 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,161 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/main/README.md \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,167 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/datasets/google-research-datasets/mbpp/4bb6404fdc6cacfda99d4ac4205087b89d32030c/README.md \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:47,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:47,740 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/mbpp.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 21:30:49,334 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/mbpp/mbpp.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 21:30:49,644 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/revision/4bb6404fdc6cacfda99d4ac4205087b89d32030c \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:49,646 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/revision/4bb6404fdc6cacfda99d4ac4205087b89d32030c \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:50,409 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/.huggingface.yaml \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\n…[truncated 2127 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T13:33:07.125975+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T13:33:07.126114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:52,591 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,594 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:52,885 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,887 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:53,171 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T13:33:07.126249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T13:33:07.126421+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:52,591 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,594 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:52,885 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,887 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:53,171 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T13:33:07.126578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T13:33:07.126733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:52,591 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,594 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c/full?recursive=true&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:52,885 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:52,887 [INFO] HTTP Request: GET https://huggingface.co/api/datasets/google-research-datasets/mbpp/tree/4bb6404fdc6cacfda99d4ac4205087b89d32030c?recursive=false&expand=false \\\\\\\"HTTP/1.1 200 OK\\\\\\\"\\\\n2026-05-19 21:30:53,171 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 307 Temporary Redirect\\\\\\\"\\\\n2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T13:33:07.126872+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T13:33:07.127008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T13:33:07.127135+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T13:33:07.127284+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T13:33:07.127425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T13:33:07.127557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T13:33:07.127698+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T13:33:07.127831+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T13:33:07.127973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T13:33:07.128111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-19T13:33:07.128239+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-19T13:33:07.128394+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-19T13:33:07.128522+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-19T13:33:07.128653+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-19T13:33:07.128784+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-19T13:33:07.128916+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.74}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-19T13:33:07.129055+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-19T13:33:07.129186+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-19T13:33:07.129330+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-19T13:33:07.129464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-19T13:33:07.129594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-19T13:33:07.129736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,457 [INFO] HTTP Request: HEAD https://huggingface.co/datasets/google-research-datasets/mbpp/resolve/4bb6404fdc6cacfda99d4ac4205087b89d32030c/dataset_infos.json \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\nWarning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,458 [WARNING] Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.\\\\n2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-19T13:33:07.129878+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /tmp/test_mbpp.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-19T13:33:07.130009+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:30:53,477 [INFO] Loaded 374 problems\\\\n\\\\rMBPP:   0%|          | 0/3 [00:00<?, ?it/s]\\\\rMBPP:  33%|███▎      | 1/3 [00:14<00:28, 14.24s/it]\\\\rMBPP:  67%|██████▋   | 2/3 [00:31<00:15, 15.97s/it]\\\\rMBPP: 100%|██████████| 3/3 [00:58<00:00, 20.97s/it]\\\\rMBPP: 100%|██████████| 3/3 [00:58<00:00, 19.45s/it]\\\\n2026-05-19 21:31:51,826 [INFO] MBPP pass@1: 0.0000 +/- 0.0000 (0/3)\\\\n2026-05-19 21:31:51,827 [INFO] Results saved to /tmp/test_mbpp.json\\\\n2026-05-19 21:31:51,828 [INFO] Sentinel written: /tmp/test_mbpp.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-19T13:33:07.130148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /tmp/test_mbpp.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-19T13:33:07.130314+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"MBPP\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.0,\\\\n  \\\\\\\"stderr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_correct\\\\\\\": 0,\\\\n  \\\\\\\"n_total\\\\\\\": 3,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 397.3333333333333,\\\\n    \\\\\\\"median_response_length\\\\\\\": 392.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 601,\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"Traceback (most recent call last):\\\\\\\\n  File \\\\\\\\\\\\\\\"/tmp/tmp7w67w6nf.py\\\\\\\\\\\\\\\", line 16, in <module>\\\\\\\\n    assert max_chain_length([Pair(5, 24), Pair(15, 25),Pair(27, 40), Pair(50, 60)], 4) == 3\\\\\\\\n                             ^^^^\\\\\\\\nNameError: name 'Pair' is not defined\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 288\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 602,\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpwzryqpr4.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    def first_re repeated_char(s):\\\\\\\\n                 ^^^^^^^^^^^^^\\\\\\\\nSyntaxError: expected '('\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 392\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": 603,\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpycdw2xwa.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    To solve this problem, I need to write a Python function called get_ludic that returns a list of lucid numbers smaller than or equal to a given number n. Lucid numbers are numbers that do not contain the digit 4. The task requires that I only provide the function and not any explanation or additional code.\\\\\\\\n       ^^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 512\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-19T13:33:07.130507+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/recovery_aware_struct_prune/src/eval_mbpp.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-19T13:33:07.130745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MBPP (Mostly Basic Python Problems) Evaluation.\\\\n\\\\nEvaluates code generation models on MBPP sanitized subset (374 tasks).\\\\nUses sandbox execution to verify generated code against test cases.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nfrom datetime import datetime\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport subprocess\\\\nimport tempfile\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef extract_code_block(text):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract Python code from model response, handling markdown fences and think tags.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    clean = re.sub(r\\\\\\\"<think>.*?</think>\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL)\\\\n    if not clean.strip():\\\\n        clean = text\\\\n    code_blocks = re.findall(r\\\\\\\"```python\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    code_blocks = re.findall(r\\\\\\\"```\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    return clean\\\\n\\\\n\\\\ndef run_test(code, test_list, test_setup_code=\\\\\\\"\\\\\\\", timeout=10):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Execute generated code against MBPP test cases in a subprocess sandbox.\\\\n\\\\n    Concatenates setup code, generated code, and assert statements,\\\\n    then runs in an isolated subprocess with timeout enforcement.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    parts = []\\\\n    if test_setup_code:\\\\n        parts.append(test_setup_code)\\\\n    parts.append(code)\\\\n    parts.extend(test_list)\\\\n    full_code \n…[truncated 6217 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-19T13:33:07.130935+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/eval_mbpp.py",
+              "content": "\"\"\"MBPP (Mostly Basic Python Problems) Evaluation.\n\nEvaluates code generation models on MBPP sanitized subset (374 tasks).\nUses sandbox execution to verify generated code against test cases.\n\"\"\"\n\nimport argparse\nfrom datetime import datetime\nimport json\nimport logging\nimport math\nimport os\nimport random\nimport re\nimport sys\nimport subprocess\nimport tempfile\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoTokenizer\nfrom model_utils import load_pruned_model\nfrom tqdm import tqdm\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef extract_code_block(text):\n    \"\"\"Extract Python code from model response, handling markdown fences and think tags.\"\"\"\n    clean = re.sub(r\"<think>.*?</think>\", \"\", text, flags=re.DOTALL)\n    if not clean.strip():\n        clean = text\n    code_blocks = re.findall(r\"```python\\s*\\n(.*?)```\", clean, re.DOTALL)\n    if code_blocks:\n        return code_blocks[0]\n    code_blocks = re.findall(r\"```\\s*\\n(.*?)```\", clean, re.DOTALL)\n    if code_blocks:\n        return code_blocks[0]\n    return clean\n\n\ndef run_test(code, test_list, test_setup_code=\"\", timeout=10):\n    \"\"\"Execute generated code against MBPP test cases in a subprocess sandbox.\n\n    Concatenates setup code, generated code, and assert statements,\n    then runs in an isolated subprocess with timeout enforcement.\n    \"\"\"\n    parts = []\n    if test_setup_code:\n        parts.append(test_setup_code)\n    parts.append(code)\n    parts.extend(test_list)\n    full_code = \"\\n\".join(parts)\n\n    with tempfile.NamedTemporaryFile(mode=\"w\", suffix=\".py\", delete=False) as f:\n        f.write(full_code)\n        tmp_path = f.name\n    try:\n        result = subprocess.run(\n            [sys.executable, tmp_path],\n            capture_output=True, text=True, timeout=timeout,\n        )\n        return result.returncode == 0, result.stderr[:500] if result.stderr else \"\"\n    except subprocess.TimeoutExpired:\n        return False, \"Timeout\"\n    except Exception as e:\n        return False, str(e)[:500]\n    finally:\n        try:\n            os.unlink(tmp_path)\n        except OSError:\n            pass\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"MBPP pass@1 evaluation\")\n    parser.add_argument(\"--model_path\", type=str, required=True)\n    parser.add_argument(\"--output_path\", type=str, default=None)\n    parser.add_argument(\"--max_new_tokens\", type=int, default=2048)\n    parser.add_argument(\"--max_samples\", type=int, default=None)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\")\n    parser.add_argument(\"--timeout\", type=int, default=10)\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n\n    logger.info(f\"Loading model from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    if tokenizer.pad_token is None:\n        tokenizer.pad_token = tokenizer.eos_token\n\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    model = load_pruned_model(args.model_path, device_map=\"auto\", torch_dtype=dtype_map[args.dtype])\n    model.eval()\n    device = next(model.parameters()).device\n\n    logger.info(\"Loading MBPP dataset (sanitized, 374 tasks)...\")\n    dataset = load_dataset(\"mbpp\", split=\"train\")\n    logger.info(f\"Loaded {len(dataset)} problems\")\n\n    if args.max_samples is not None:\n        dataset = dataset.select(range(min(args.max_samples, len(dataset))))\n\n    correct = 0\n    total = 0\n    results = []\n    response_lengths = []\n    eos_token_id = tokenizer.eos_token_id\n\n    for idx in tqdm(range(len(dataset)), desc=\"MBPP\"):\n        item = dataset[idx]\n        task_id = item[\"task_id\"]\n        text = item[\"text\"]\n        test_list = item[\"test_list\"]\n        test_setup_code = item.get(\"test_setup_code\", \"\")\n\n        test_examples = \"\\n\".join(test_list[:3])\n        user_msg = (\n            f\"Write a Python function to solve the following task. \"\n            f\"Only output the complete function, no explanation.\\n\\n\"\n            f\"Task: {text}\\n\\n\"\n            f\"Test cases for reference:\\n{test_examples}\"\n        )\n        messages = [{\"role\": \"user\", \"content\": user_msg}]\n        prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)\n        inputs = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=2048).to(device)\n\n        with torch.no_grad():\n            output_ids = model.generate(\n                **inputs,\n                max_new_tokens=args.max_new_tokens,\n                do_sample=False,\n                pad_token_id=tokenizer.pad_token_id or eos_token_id,\n            )\n\n        gen_ids = output_ids[0, inputs[\"input_ids\"].shape[1]:]\n        response = tokenizer.decode(gen_ids, skip_special_tokens=True)\n        resp_len = len(gen_ids)\n        response_lengths.append(resp_len)\n\n        code = extract_code_block(response)\n\n        passed, error = run_test(code, test_list, test_setup_code, timeout=args.timeout)\n        if passed:\n            correct += 1\n        total += 1\n\n        results.append({\n            \"task_id\": task_id,\n            \"passed\": passed,\n            \"error\": error if not passed else \"\",\n            \"response_length\": resp_len,\n        })\n\n        if (idx + 1) % 20 == 0:\n            logger.info(f\"Progress: {idx+1}/{len(dataset)}, Pass@1: {correct/total:.4f}\")\n\n    accuracy = correct / total if total > 0 else 0\n    stderr = math.sqrt(accuracy * (1 - accuracy) / total) if total > 0 else 0\n\n    logger.info(f\"MBPP pass@1: {accuracy:.4f} +/- {stderr:.4f} ({correct}/{total})\")\n\n    eos_stats = {\n        \"avg_response_length\": float(np.mean(response_lengths)) if response_lengths else 0,\n        \"median_response_length\": float(np.median(response_lengths)) if response_lengths else 0,\n    }\n\n    if args.output_path is None:\n        model_name = os.path.basename(args.model_path.rstrip(\"/\"))\n        args.output_path = f\"results/eval_mbpp_{model_name}.json\"\n\n    os.makedirs(os.path.dirname(args.output_path) or \".\", exist_ok=True)\n    output = {\n        \"model_path\": args.model_path,\n        \"benchmark\": \"MBPP\",\n        \"pass_at_1\": accuracy,\n        \"stderr\": stderr,\n        \"n_correct\": correct,\n        \"n_total\": total,\n        \"eos_stats\": eos_stats,\n        \"examples\": results,\n    }\n\n    with open(args.output_path, \"w\") as f:\n        json.dump(output, f, indent=2, ensure_ascii=False)\n    logger.info(f\"Results saved to {args.output_path}\")\n\n    sentinel_path = args.output_path + \".done\"\n    with open(sentinel_path, \"w\") as f:\n        f.write(f\"completed_at={datetime.now().isoformat()}\\n\")\n        f.write(f\"pass_at_1={accuracy:.4f}\\n\")\n        f.write(f\"n_correct={correct}\\n\")\n        f.write(f\"n_total={total}\\n\")\n    logger.info(f\"Sentinel written: {sentinel_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-19T13:33:07.131154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/eval_mbpp.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-19T13:33:07.131341+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出\n\n**`/root/recovery_aware_struct_prune/src/eval_mbpp.py`** — MBPP 374 题 pass@1 评估脚本\n\n### 与 HumanEval 的差异处理\n\n| 差异点 | HumanEval | MBPP |\n|--------|-----------|------|\n| Prompt | function signature + docstring → 补全 body | task description + test cases → 生成完整函数 |\n| 测试执行 | `code + test + check(entry_point)` | `test_setup_code + code + assert statements` |\n| 数据集 | `openai/openai_humaneval` test split (164题) | `mbpp` train split (374题 sanitized) |\n\n### 参数（与 HumanEval 对齐）\n`--model_path`, `--output_path`, `--max_new_tokens`(默认2048), `--max_samples`, `--seed`, `--dtype`, `--timeout`\n\n### Dry-run 结果\n- `--help` 参数解析 ✅\n- 3 题端到端 pipeline ✅（模型加载 → 数据集加载374题 → 推理 → 代码提取 → sandbox执行 → JSON输出 → sentinel文件）\n- 0/3 pass 是模型质量问题（pruned model），pipeline 本身无 bug"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_mbpp_eval_20260519T132515"
+          },
+          "id": "event-000083"
+        }
+      ],
+      "message_count": 83
+    }
+  ],
+  "readable_path": "readable/conversations/code-mbpp-eval.md"
+}

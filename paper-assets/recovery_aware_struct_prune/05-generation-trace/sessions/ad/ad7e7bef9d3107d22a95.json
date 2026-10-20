@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad7e7bef9d3107d22a95",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify grpo random 20 gpu",
+  "task_key": "worker_ops_verify_grpo_random_20_gpu_20260517T133942",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_grpo_random_20_gpu_20260517T133942_result.json",
+    "occurrence": 1,
+    "bytes": 1394,
+    "sha256": "82d297e4b1e7f803b083fe1c9181a575b1812348703b3dfceced2bfc64c2b2f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. nvidia-smi（21:43:05）\n\n| GPU | PID | 进程 | 显存 |\n|-----|-----|------|------|\n| 1 | 715803 | eval_gsm8k (pruned_cka_only_20) | 12994 MiB |\n| 1 | 719684 | **grpo_random_20** | 12374 MiB |\n\n- 总显存占用：25382 MiB / 97887 MiB（26%）\n- GPU 利用率：78-81%\n- cuda:0 空闲\n\n### 2. 启动状态：正常，无致命错误\n\n日志时间线：\n```\n21:39:32  Loading pruned model from sft_random_20\n21:39:33  Non-uniform MLP detected: intermediate_size range [10832, 17592]\n21:41:17  Preparing GSM8K training dataset...\n21:42:38  [WARNING] Network unreachable → retry 1/5\n21:42:39  Fell back to cached dataset ✓\n21:42:39  Training on 7473 samples\n21:42:39  Loading pruned ref_model from sft_random_20\n```\n\n- 唯一问题：HuggingFace 网络不可达，但自动 fallback 到本地缓存，无影响\n- ref_model 正在加载中，预计还需 ~1-2 分钟\n\n### 3. 第一个 step metrics\n\n尚未输出——ref_model 仍在加载。GRPO 完整初始化（policy + ref + first generation batch）预计总共 ~5-8 分钟。\n\n### 注意事项\n\ncuda:1 上同时跑着 eval_gsm8k（PID 715803，pruned_cka_only_20, 200 samples），已运行 75 分钟。两者共用 25GB/97GB 显存，空间充裕。当 GRPO 进入训练（显存可能涨到 ~50GB），加上 eval 的 13GB ≈ 63GB，仍在 97GB 安全范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-grpo-random-20-gpu.md"
+}

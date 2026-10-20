@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ce72118f8b3a8afe774",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval math500 sft cka25 cuda2",
+  "task_key": "worker_ssh_eval_math500_sft_cka25_cuda2_20260521T084843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_math500_sft_cka25_cuda2_20260521T084843_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "d1565d05c2c7003c400ab19daaf3e1cb8d87d1c20e34d40fea89b38da4ba9cff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MATH-500 eval 已成功启动并在运行中。\n\n**产出汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 模型路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25/model.safetensors` (11G, 339 keys) |\n| PID | 338876 |\n| GPU | cuda:2 (`00000000:B8:00.0`), 12294 MiB |\n| 进度 | 1/500, ~3.14s/it, 预计 ~26 分钟完成 |\n| 日志 | `/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_25.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-math500-sft-cka25-cuda2.md"
+}

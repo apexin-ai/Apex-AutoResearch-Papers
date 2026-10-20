@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65876a24159831ba1ff5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check status westd",
+  "task_key": "worker_ops_check_status_westd_20260516T092924",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_status_westd_20260516T092924_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "e43c4b35b66c9304aef553277ba86c324d6ca6beff37a8f90fc7de44c07eea59"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 实验状态汇总\n\n### GPU 状态\n| GPU | 型号 | 状态 | 显存占用 |\n|-----|------|------|----------|\n| cuda:0 | RTX PRO 6000 (96GB) | **空闲** | 0 MiB |\n| cuda:1 | RTX PRO 6000 (96GB) | **空闲** | 0 MiB |\n\n无 Python 训练进程运行，无 tmux session。\n\n### 实验状态\n\n| 实验 | 状态 | Checkpoint |\n|------|------|------------|\n| sft_qwen_math_rasp_20 (RASP 20%) | **已完成** | `model.safetensors` (11.5GB), 写入时间 16:58 |\n| sft_qwen_math_standard_20 (Standard 20%) | **已完成** | `model.safetensors` (11.4GB), 写入时间 16:59 |\n\n两个 checkpoint 目录均包含完整模型文件（config.json, model.safetensors, tokenizer, training_args.bin）。\n\n实际路径为：\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20/`\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20/`\n\n### 训练 Metrics\n**无法获取最终 loss/token accuracy。** 训练脚本使用了 `save_strategy=\"no\"` + `report_to=\"none\"`，没有保存 trainer_state.json，也没有 wandb 记录。stdout 输出未被重定向到文件，训练进程已退出，日志已丢失。\n\n### 磁盘空间\n\n| 分区 | 容量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| / (根分区) | 30G | 5.0G | 26G | 17% |\n| /root/autodl-tmp (数据盘) | 250G | 248G | **2.3G** | **100%** |\n\n**数据盘几乎满了，仅剩 2.3G。** 后续实验（eval/GRPO）前需要清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-status-westd.md"
+}

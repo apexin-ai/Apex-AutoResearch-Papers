@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "529c3801c2494c15bd61",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify eval readiness",
+  "task_key": "worker_ops_verify_eval_readiness_20260514T200247",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_eval_readiness_20260514T200247_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "34cbfbcf2710f23a935a36888ba65212f3daf87ef8ae75cccde608ee49bde975"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证报告\n\n### eval_full_gsm8k.sh — **不存在，需创建**\n\n服务器上没有 `eval_full_gsm8k.sh`。最接近的是：\n- `run_full_eval_d008_parallel.sh` — 2 GPU 并行 eval 4 个模型（pruned + recovered），full 1319 samples，max_new_tokens=4096。**缺 baseline**。\n- `run_full_eval_d008.sh` — 串行版本，同样 4 个模型，**缺 baseline**。\n\n**差距**：现有脚本覆盖 4/5 模型，缺少 baseline (`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`)。\n\n### eval_gsm8k.py — **OK，就绪**\n\n- `--max_samples` 默认 `None`（全量 1319 samples）\n- `--max_new_tokens` 默认 4096（满足 ≥2048）\n- 无硬编码限制\n- 答案提取支持 `\\boxed{}`、`####`、纯数字回退\n\n### 训练进度快照\n\n| 训练任务 | 进度 | 速度 | 预计剩余 |\n|---------|------|------|---------|\n| grpo_rasp_20_fast (cuda:0) | 294/500 (58.8%) | ~24.8s/step | ~85 min |\n| grpo_standard_20_fast (cuda:1) | 293/500 (58.6%) | ~24.9s/step | ~86 min |\n\n两个训练进度基本同步，reward 趋势暂不可见（日志显示的是 TRL 训练表格 UI）。\n\n### 结论\n\n**需创建 `eval_full_gsm8k.sh`**。建议基于现有 `run_full_eval_d008_parallel.sh` 改造：\n1. 在 GPU0 任务队列开头加 baseline eval（`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`）\n2. 保持其余 4 个模型不变\n3. 输出路径统一到 `results/eval_*_full.json`\n\n是否需要我现在创建这个脚本？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-eval-readiness.md"
+}

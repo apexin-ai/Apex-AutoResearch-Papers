@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd6911c3a8587f6eba72",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent gpu check and submit westd",
+  "task_key": "worker_ops_urgent_gpu_check_and_submit_westd_20260517T181945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_gpu_check_and_submit_westd_20260517T181945_result.json",
+    "occurrence": 1,
+    "bytes": 507,
+    "sha256": "31c45f26190327ccbe863e8c6e81b83598147166552e7899fc4f53ce15b888a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| GPU | 状态 | 任务 |\n|-----|------|------|\n| cuda:0 | **已提交** | eval_sft_cka_only_20_n1319 (PID 43815) |\n| cuda:1 | 运行中 | eval_math500_grpo_standard_20 (PID 14556) |\n| cuda:2 | **已提交** | eval_postprune_rasp_30 (PID 43906) |\n| cuda:3 | 运行中 | eval_math500_grpo_rasp_20_v3 (PID 31706) |\n\n30% pruning 模型状态：`pruned_rasp_30` 和 `pruned_standard_30` 均存在（~10.1GB each，生成于 01:37-01:38）。\n\n4 张 GPU 现在全部满载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-gpu-check-and-submit-westd.md"
+}

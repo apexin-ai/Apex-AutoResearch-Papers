@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbffd11da0da0e42f0e9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval sft alpha 0p5",
+  "task_key": "worker_eval_sft_alpha_0p5_20260517T010939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_alpha_0p5_20260517T010939_result.json",
+    "occurrence": 1,
+    "bytes": 517,
+    "sha256": "9cda79929ce63c99c8a958a8aae7f9db0b4caef2466ce76712757e4e2c6c4c0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认：\n\n- **PID 64889** 在 GPU 3 上运行，占用 12464 MiB\n- 模型加载完成，GSM8K 数据集加载中\n- Registry 已更新为 RUNNING\n\n**总结**：`eval_sft_alpha_0p5` 已在 westd-11672 cuda:3 启动。\n- Checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5`\n- PID: 64889\n- Log: `/root/runs/recovery_aware_struct_prune/eval_sft_alpha_0p5.log`\n- N=100, greedy, seed=42\n- 预计 ~15-30 min 完成（非均匀 MLP 结构推理较慢）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-alpha-0p5.md"
+}

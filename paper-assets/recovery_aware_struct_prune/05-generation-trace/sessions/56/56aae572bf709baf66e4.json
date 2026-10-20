@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56aae572bf709baf66e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_22_1779506274.md",
+  "task_key": "loop_22_1779506274",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_22_1779506274.md",
+    "occurrence": 1,
+    "bytes": 5980,
+    "sha256": "37d6d9fbf7c53edf012e242e6e4835bc219219feaf082edf8abd90833716156b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-22T23:04:39+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-32935 cuda:0,1,2,3; westb-23072 cuda:0,1。不得使用白名单外 GPU\n- **westd-32935 网络离线**: 所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF HEAD 请求崩溃\n- **westd-29022 已退役**: 本项目不再使用 westd-29022（之前磁盘满 619GB/619GB 导致多次失败）。当前只有 westd-32935 和 westb-23072\n- **Cron 误判常见**: eval 实验（不用 W&B）经常被 cron 误标 failed。收到 failed 回调时**必须先 tail 日志确认是否实际完成**，再决定是否重跑\n- **submit_training_job 命令必须自带环境激活**: westd 用 `bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && ...'`；westb 同理\n- **EMNLP 2026 ARR 截止 2026-05-25**: 距今 ~2.5 天，所有实验都在为 paper 最终数据服务\n- **D107 数据修正**: α=1.0 SFT GSM8K = 61.49%（registry 溯源），不是之前的 63.31%。paper 中引用必须用 registry 值\n- **C1 decoupling max |Δ| = 1.14pp (GSM8K), 1.34pp (含 MBPP)**: paper 中不得声称更低的 bound\n\n### 2. 🖥️ 基础设施快照\n- **westd-32935**: 4× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - Python: `/root/miniconda3/bin/python` (conda base), 不走 venv\n  - 磁盘: 根 18%, 数据盘约 48% 可用\n- **westb-23072**: 2× RTX PRO 6000, 工作目录 `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - Python: `/root/miniconda3/bin/python` (conda base)\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/` 下各子目录 (sft_*, grpo_*, pruned_*)\n- **结果路径**: `/root/autodl-tmp/recovery_aware_struct_prune/results/` (westd), `/root/recovery_aware_struct_prune/results/` (部分 westd)\n- **活跃进程**:\n  - westd:0 — eval_math500_grpo_rasp_alpha2p0_20 (PID 83709, cron 监控中)\n  - westd:1 — eval_math500_sft_cka_only_20_westd (PID 75284, cron 监控中, ~58% 进度)\n  - westd:2 — eval_math500_grpo_random_20_v3 (PID=eval_math500_grpo_random, cron 监控中)\n  - westb:1 — eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3 (PID 220343, MF3 cross-arch, cron 监控中)\n- **westd:3 和 westb:0 状态**: 上轮 ROADMAP 说有实验在跑（westd:3 α=1.0 SFT MATH-500, westb:0 Qwen-Math SFT MATH-500），但 registry 无对应 RUNNING 条目——可能已完成但未被回调更新，**需要 SSH 核查**\n- **W&B**: 项目 `recovery_aware_struct_prune`，eval 实验不用 W&B\n\n### 3. 📊 当前状态\n**正在做**: Round 6 收尾——Must-Fix 清单 5/6 done，仅剩 MF3 (cross-arch Qwen-Math)。同时收集 MATH-500 数据完善 N1 表格。\n\n**RUNNING 实验 (4)**:\n| exp_id | 服务器:GPU | 用途 |\n|--------|-----------|------|\n| eval_math500_grpo_rasp_alpha2p0_20 | westd:0 | MATH-500 GRPO α=2.0, C1 decoupling |\n| eval_math500_sft_cka_only_20_westd | westd:1 | MATH-500 SFT CKA-only, dose-response 上界 |\n| eval_math500_grpo_random_20_v3 | westd:2 | MATH-500 GRPO Random, C1 decoupling |\n| eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3 | westb:1 | MF3 cross-arch GSM8K GRPO |\n\n**等待中**:\n- 4 个 cron 监控活跃，等回调\n- westd:3 和 westb:0 可能空闲（需核查）\n- 无活跃 Worker（0 running）\n- MATH-500 SFT dose-response 4/5 done（flat, 23.2-26.6%），第 5 个 α=1.0 v2 可能已完成未回调\n- E_MATH500_SFT_QWEN_CKA (MF3 SFT MATH-500) 标记 failed——需诊断\n\n### 4. 📋 待办（条件触发式）\n- **eval_math500_sft_cka_only_20_westd cron 回调 → 提取 accuracy → 更新 registry → MATH-500 主表 SFT CKA-only 行**\n- **eval_math500_grpo_rasp_alpha2p0_20 完成 → 提取 accuracy → 与 SFT α=2.0 (24.0%) 对比 → C1 decoupling on MATH-500**\n- **eval_math500_grpo_random_20_v3 完成 → MATH-500 GRPO Random 行填入**\n- **eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v3 完成 → MF3 cross-arch GRPO GSM8K 结论 → 与 Qwen-Math SFT 对比 → C1 decoupling on Qwen-Math → MF3 Done**\n- **MF3 + MATH-500 表全部齐 → spawn Paper Agent 集成最终数据 → 全文 review → submit**\n- **westd:3 空闲确认 → 可提交 eval_math500_grpo_alpha1p0_20 (GRPO α=1.0 MATH-500, PREPARING) 完善 dose-response**\n- **westb:0 空闲确认 → 可提交 E_MATH500_SFT_QWEN_CKA 重试（如 MF3 需要）或其他 PREPARING 实验**\n- **所有 MATH-500 数据齐 → 更新 paper MATH-500 表 → 确认 C1 decoupling 在 MATH-500 成立 → 最终 review**\n\n### 5. 🎯 战略上下文\n- **核心结论**: Pruning criterion shapes recovery capacity。CKA-only（纯表征多样性保留）在所有测试中一致最优。α=2.0 是 RASP 系列最优点（inverted U-shape on GSM8K）。C1 decoupling（SFT ≈ GRPO accuracy, |Δ| ≤ 1.14pp on GSM8K）是关键 claim。\n- **投稿目标**: EMNLP 2026 Main, ARR May 25——**~2.5 天后截止**\n- **Must-Fix 进度**: 5/6 done。MF3 (cross-arch Qwen-Math) 是最后一个，westb 上两个实验在跑\n- **GSM8K dose-response 5/5 完成**: α=0.5/1.0/2.0/3.0/4.0 SFT+GRPO 全有数据，inverted U-shape 确认\n- **MATH-500 数据**: SFT 4/5 done (flat 23-27%), GRPO 1/3 done (Standard 26.4%)。MATH-500 对 C1 的支撑力度弱于 GSM8K（因为 flat），但仍需完整数据\n- **易错点**:\n  1. **不要混淆 westd-29022 和 westd-32935**——29022 已退役（磁盘满），32935 是当前主力\n  2. **eval 实验 cron 误判是常态**——收到 failed 先查日志\n  3. **MATH-500 SFT 结果 flat (23-27%)**——不要期望看到 GSM8K 那样的清晰 gradient，这在 MATH 难度下是正常的\n  4. **α=1.0 SFT GSM8K = 61.49%** (D107 修正)，之前有人用过 63.31%，那是错的\n  5. **32 个 PREPARING 实验大多是历史残留**——不要盲目提交，只提交 ROADMAP 近期任务列出的\n  6. **Paper 语言审计已做完**——inverted-U claim 已限定 GSM8K scope，不要再扩展到 MATH-500\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779506274.md"
+}

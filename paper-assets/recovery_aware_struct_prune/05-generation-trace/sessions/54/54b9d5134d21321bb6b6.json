@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54b9d5134d21321bb6b6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check seed456 eval and cuda3",
+  "task_key": "worker_check_seed456_eval_and_cuda3_20260520T133703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_seed456_eval_and_cuda3_20260520T133703_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "d45678bf7eedeba936a6c0dd462fa8de887cdf117c580de04303858c5c596a13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n## GSM8K Full Eval Results (N=1319) — Standard GRPO 20%\n\n| Seed | Accuracy | n_correct / n_total |\n|------|----------|---------------------|\n| 42 | 59.44% | 784 / 1319 |\n| 123 | **59.89%** | 790 / 1319 |\n| 456 | **60.20%** | 794 / 1319 |\n| **3-seed mean** | **59.84%** | — |\n\nN=200 quick eval 的高分 (seed456: 66.5%, seed123: 64.0%) 确认是小样本噪声，full eval 收敛到 ~60% 附近，三个 seed 标准差极小 (~0.3pp)。\n\n## westd-29022 GPU 状态\n\n| GPU | Utilization | Memory |\n|-----|-------------|--------|\n| cuda:0 | 90% | 12.9 / 97.9 GB |\n| cuda:1 | 99% | 18.8 / 97.9 GB |\n| cuda:2 | **0% — 空闲** | 0 / 97.9 GB |\n| cuda:3 | **0% — 空闲** | 0 / 97.9 GB |\n\n**cuda:2 和 cuda:3 均已空闲**，可用于下一步实验。还有 4 个 RUNNING 实验待检查（CKA-only 15% eval、CKA-only seed456 eval、两个 Qwen SFT eval）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-seed456-eval-and-cuda3.md"
+}

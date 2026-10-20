@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f0e4243b950896d945",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops investigate v3 crash",
+  "task_key": "worker_ops_investigate_v3_crash_20260519T134836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate_v3_crash_20260519T134836_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "fb900c574ea7706a2812646ae366d3fc4e861c8766e651710c09e65e9529ab67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/v3_crash_investigation.md`。\n\n**结论：正常完成，非 crash。**\n\n- pass_at_1 = 13.41%（22/164）\n- 根因：eval 脚本未写 sentinel 文件，reconcile 误报\n- median_response_length = 2048 说明大量样本被截断，模型在生成代码前输出了长段思考文本，耗尽 token budget"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-v3-crash.md"
+}

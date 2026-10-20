@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7e5c5e183cc7ef24bbb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval sft rasp 20 full",
+  "task_key": "worker_diagnose_eval_sft_rasp_20_full_20260517T012539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_rasp_20_full_20260517T012539_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "09b19a6a4a65c057d7cb98e0d66c3c98d333d3263d169243272998a4600a63d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估**正常完成**，无任何 error/traceback。\n\n**日志路径**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log`\n\n**关键结果**:\n- **Accuracy: 61.56% (812/1319)**，95% CI ± 1.34%\n- EOS rate: 98.41% (natural_eos=1298, truncated=21)\n- 平均生成长度: 210.95 tokens\n- 总耗时: ~2h53m\n- 结果 JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json`\n\n**日志末尾关键行**:\n```\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\n2026-05-17 09:22:53,837 [INFO] Results saved to .../eval_sft_rasp_20_full_n1319.json\n```\n\n进程正常退出，只是没有写 sentinel 文件导致 cron 误判为异常。N=100 预估 57% → 全量 61.56%，略有上升。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-rasp-20-full.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6aec14781d6e42bb193b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo rasp 20 fair",
+  "task_key": "worker_analysis_grpo_rasp_20_fair_20260518T010430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_rasp_20_fair_20260518T010430_result.json",
+    "occurrence": 1,
+    "bytes": 2676,
+    "sha256": "a742bf4cad3fe1d1353c1cc7faa3659e450ae90f35c48932c20a356a4852c2cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整，以下是汇总报告。\n\n---\n\n## grpo_rasp_20_fair 实验分析报告\n\n### 1. 训练状态\n- **状态**: 正常完成，EXIT_CODE=0\n- **步数**: 100/100 (1h02m27s)\n- **W&B run**: `s5zf5akl` (W&B summary metrics 为空，但日志有完整数据)\n- **Checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair/` (含 checkpoint-80/90/100 + 最终模型 12.3GB)\n\n### 2. 核心指标趋势\n\n| Step | reward | frac_zero_std | comp_length |\n|------|--------|---------------|-------------|\n| 10   | 0.017  | 85%           | 993.5       |\n| 20   | 0.021  | 85%           | 998.7       |\n| 30   | 0.023  | 80%           | 965.9       |\n| 40   | 0.021  | 85%           | 958.4       |\n| **50** | **0.061** | 72.5%     | 973.5       |\n| 60   | 0.053  | 75%           | 978.9       |\n| 70   | 0.056  | 67.5%         | 930.2       |\n| 80   | 0.030  | 77.5%         | 981.2       |\n| 90   | 0.015  | 90%           | 990.9       |\n| 100  | **0.010** | 85%         | 963.0       |\n\n**趋势**: 微弱上升到 step 50 (peak 0.061) 后坍塌回 0.01。全程 reward 始终在 0.01-0.06 区间，远低于有效学习阈值。\n\n### 3. 病理特征\n- **frac_reward_zero_std 67-90%**: 绝大多数 batch 所有 generation 的 reward 完全相同（全错或全对），GRPO 无法计算有效 advantage，无梯度信号\n- **completion_length ~930-999/1024**: 模型持续生成接近最大长度的输出，未能学会在 `\\boxed{}` 处终止。clipped_ratio 92-96%\n- **reward 最终 < 起始**: step 100 (0.01) 低于 step 10 (0.017)，训练实质为负增长\n\n### 4. 三方法公平对比（均为 20% 剪枝，v5 config）\n\n| Method | Final Reward | Peak Reward | Trend |\n|--------|-------------|-------------|-------|\n| **CKA-only** | 0.30+ | 0.30+ | 持续上升 |\n| **Random** | 0.15-0.20 | ~0.20 | 缓慢上升 |\n| **RASP (fair)** | **0.01** | **0.06** | 停滞→坍塌 |\n\n### 5. 结论\n\n**Negative result confirmed**: RASP fair retrain 复现了旧版的 reward stagnation，排除了 D058 confound（config 差异）。\n\nRecovery capacity gradient 在公平条件下得到验证：\n- CKA-guided pruning (保留对齐关键层) >> Random >> RASP (仅按权重冗余剪枝)\n- RASP 剪掉的层虽然在权重统计意义上\"冗余\"，但包含 GRPO 恢复所必需的表征结构\n- 这支持论文核心 claim：结构化剪枝的恢复能力取决于保留的 representation alignment，而非简单的参数量\n\n**建议**: 将此结果作为 Table 1 / Figure 2 的关键证据，展示 recovery capacity gradient (CKA > Random >> RASP) 在公平条件下的稳健性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-rasp-20-fair.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8caa6f0121588a76fe28",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779391473.md",
+  "task_key": "loop_20_1779391473",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779391473.md",
+    "occurrence": 1,
+    "bytes": 4328,
+    "sha256": "a005cb08b6deaf1c259744688e0d6962316706ca8c5a9d772c7358be6fbb9019"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T19:19:09+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-29022 cuda:0/1/2/3。超出必须 push back Director\n- westb 用 conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不要假设 .venv\n- westd 同理用 conda（aml-train 镜像）\n- eval 脚本统一用 N=1319 样本（GSM8K）或 N=500（MATH-500），论文数据全部基于此口径\n- `eval_math500_sft_standard_25` 是幽灵实验（PREPARING 状态被 cron 误判），不要尝试修复其状态机——v2 才是真实实验\n- 30% sparsity 已证实 collapse（CKA-only 1.6%, Standard 2.8%），不要再跑 30% 实验\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**：工作目录 `/root/recovery_aware_struct_prune`，数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - Python: `/root/miniconda3/bin/python`\n  - 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/` 下 sft_standard_25/, pruned_standard_25/, grpo_standard_25/ 等\n  - 磁盘: 根分区 393G/439G(6%), 数据盘 7.4T/14T(48%)\n- **westd-29022**：同结构，数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - 磁盘: 根分区 816G/879G(3%), 数据盘 5.3T/7.3T(24%)\n- **活跃进程**：\n  - `grpo_cka_only_25` PID=310542 westd-29022:cuda:2（cron 监控中）\n  - `eval_math500_sft_standard_25_v2` PID=62714 westb-23072（cron 监控中）\n- **Workers 运行中**：\n  - `worker_ssh_random_20_pipeline` — Random 20% pruning baseline pipeline（D095 补强）\n  - `worker_ssh_westb_standard_25_grpo` — westb Standard 25% GRPO + eval pipeline\n\n### 3. 📊 当前状态\n我刚处理 `eval_math500_sft_standard_25` 的重复 cron 失败回调——已确认是幽灵实验，v2 在跑，Director 已收到汇报。\n\n**RUNNING**: grpo_cka_only_25 (westd:cuda:2, CKA-only 25% GRPO 训练)\n**PREPARING**: ~30 个实验条目（大部分是待提交的 eval/pipeline 任务）\n**关键等待**:\n- grpo_cka_only_25 完成 → eval GSM8K/MATH-500/HumanEval pipeline（25% CKA-only 的关键数据点）\n- eval_math500_sft_standard_25_v2 完成 → Standard 25% SFT MATH-500 数据点\n- 2 个 Worker 回调待处理（random_20_pipeline, westb_standard_25_grpo）\n\n**资源警告**: 6 GPU 分配但仅 1 张在跑。Workers 正在提交任务填充空闲 GPU，但需要在 Worker 回调后确认是否全部饱和。\n\n### 4. 📋 待办（条件触发式）\n- grpo_cka_only_25 cron 回调(success) → spawn worker 跑 eval_gsm8k + eval_math500 + eval_humaneval（三个 benchmark，CKA-only 25%）→ 这是 ROADMAP 25% 行的核心数据点\n- grpo_cka_only_25 cron 回调(failed) → 诊断 + 重提交，25% CKA-only GRPO 是 D093 cross-sparsity 必做项\n- eval_math500_sft_standard_25_v2 完成 → 更新 ROADMAP 25% SFT 行\n- worker_ssh_random_20_pipeline 完成 → 检查 Random 20% pruning 是否成功，这是 D095 W7 修复（Random accuracy 脚注）\n- worker_ssh_westb_standard_25_grpo 完成 → 检查 westb 上 Standard 25% GRPO 是否已提交 + eval pipeline 是否铺开\n- 所有 25% 数据收齐 → 更新论文 Table（cross-sparsity: 15%/20%/25% 三个点），向 Director 汇报 D093 完成度\n- 5 张 GPU 空闲持续 → Worker 回调后若仍空闲，立即铺 PREPARING 队列中的 eval 任务\n\n### 5. 🎯 战略上下文\n- **投稿目标**: EMNLP 2026 Main (ARR May 25)，**~4 天**。Round 1→2.5, Round 2→3.0, 目标≥4.0\n- **核心结论**: CKA-only pruning >> Standard importance-based pruning 在 GRPO recovery。15% Δ=+7.20pp (p<0.001), 20% Δ=+4.55pp (p=0.0009)\n- **当前补强**: D093 要求 25% 作为第 3 个 sparsity point（cross-sparsity curve），D095 要求 Random baseline + RASP 2nd seed\n- **易错点**:\n  - Standard 25% GRPO 已有结果 51.10%（单种子），CKA-only 25% 是 TBD——grpo_cka_only_25 的结果决定 25% 行的 Δ\n  - `eval_math500_sft_standard_25` (无 v2) 是幽灵实验，不要诊断/重提交它\n  - 论文已提交 Round 3 验证审稿，W6-W8 是 camera-ready 级修复（RASP/Random 脚注、超参表、orphan bib），这些需要 D095 实验数据才能填\n  - 决策链: D083(30% collapse) → D084(20% 3-seed) → D085(Qwen-Math) → D088(15% SFT) → D092(15% 3-seed) → D093(25% pipeline) → D094(Round 2 修复) → D095(补强)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779391473.md"
+}

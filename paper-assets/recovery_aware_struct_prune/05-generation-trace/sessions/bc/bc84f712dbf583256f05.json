@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "bc84f712dbf583256f05",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260514T021115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260514T021115_result.json",
+    "occurrence": 1,
+    "bytes": 2382502,
+    "sha256": "10428c3d94b6fdbe9b88ee532998178f285a6fedcd31c95cfb18ada6a551ab94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "log": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2986337,
+                "serialized_sha256": "8f7afec5d71c4e1aa15cd1d9dfd16ee37e2b0d5845484769dc71076251df29cb",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup.md"
+}

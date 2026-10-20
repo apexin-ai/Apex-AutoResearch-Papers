@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b767ce55c6f8d51ea3a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval pass k8 standard 20 grpo qwen math v2",
+  "task_key": "worker_eval_pass_k8_standard_20_grpo_qwen_math_v2_20260516T215336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pass_k8_standard_20_grpo_qwen_math_v2_20260516T215336_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "c487de75f50a9094f80677784ed96a05782edb1ec53577a0f09b48075df20b1a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估已正常启动：\n\n- **模式**: pass@8, n=8 samples/prompt, T=0.7, top_p=0.95\n- **数据**: 200 test samples\n- **速度**: ~20.7s/problem (1/200 done), GPU utilization 91%\n- **预计完成**: ~68 min (~1h 8min)\n- **PID**: 51283 on cuda:2, 12.5GB VRAM\n- **日志**: `/root/runs/recovery_aware_struct_prune/eval_pass_k8_standard_20_v2.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math_v2.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pass-k8-standard-20-grpo-qwen-math-v2.md"
+}

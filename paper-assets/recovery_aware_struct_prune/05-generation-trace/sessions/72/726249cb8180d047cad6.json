@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "726249cb8180d047cad6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_9_1778875750.md",
+  "task_key": "loop_9_1778875750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778875750.md",
+    "occurrence": 1,
+    "bytes": 5468,
+    "sha256": "bf8abe79f08fd129dcfa95c8b8ccbe04159ed0e3475084adb8968ffc55fc2894"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T18:33:16+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1 + westd-11672 cuda:0/1，共 4 卡。超出必须 push back Director（C001/C003）\n- 大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，根分区 30GB 禁止写模型/checkpoint（C002）\n- westb cuda:0 刚空出（RASP v8 killed）→ Director 已批准 unpruned GRPO baseline 优先占此卡，不要挪作他用\n- RASP GRPO 已连续 3 次 collapse (v2/v5/v8)，不要再尝试同参数重跑——任何 RASP GRPO 重试必须有本质不同的方案并经 Director 审批\n- grpo_stage2_rasp_20_v8 conclusion=negative，**必须产 Framing 调整提案**（red-section skill），禁止默默跑下一个实验\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**（2× ~98GB GPU, A100-class）\n  - 工作目录：`/root/recovery_aware_struct_prune`（代码）+ `/root/autodl-tmp/recovery_aware_struct_prune/`（模型/数据）\n  - Python：系统 python3（非 conda/venv）\n  - cuda:0 — **空闲**（RASP v8 已 kill）\n  - cuda:1 — `grpo_stage2_standard_20_v8` PID=534667, cron 监控中, step 30/100, HEALTHY\n  - HF cache: `/root/autodl-tmp/.hf_cache`（v8 修复后迁移到数据盘）\n  - 磁盘：65% 使用, 88GB 可用\n- **westd-11672**（2× ~95GB GPU, RTX PRO 6000）\n  - 工作目录同上结构\n  - Python：`/root/miniconda3/bin/python`（conda base 环境，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n  - cuda:0 — `sft_rasp_20_westd_retrain` RUNNING\n  - cuda:1 — `sft_standard_20_westd_retrain` RUNNING\n  - 磁盘：空间充足（之前释放 93GB）\n- **活跃 cron**：`grpo_stage2_standard_20_v8`（PID 534667 存活确认）\n- **活跃 Worker**：\n  - `worker_eval_westd-sft-n100-dual_20260515T174151`（eval N=100 双模型）\n  - `worker_diag_westd-eval-status-check_20260515T183120`（诊断检查）\n\n### 3. 📊 当前状态\n**刚发生的关键事件**：RASP GRPO v8 在 step 23 collapse（frac_zero_std=0.90, grad_norm=0.011, reward=0.026），D036 kill 门槛全部触发，conclusion=negative。这是 RASP 第 3 次连续 GRPO collapse。\n\n**RUNNING 实验**（3 个）：\n| exp_id | 服务器/GPU | 摘要 |\n|--------|-----------|------|\n| grpo_stage2_standard_20_v8 | westb cuda:1 | step 30/100, HEALTHY, frac_zero_std 回落到 0.525（反转趋势），Director 决定跑到 100 不设 kill |\n| sft_standard_20_westd_retrain | westd cuda:1 | 跨服务器 SFT 重训，预计 ~28min |\n| sft_rasp_20_westd_retrain | westd cuda:0 | 跨服务器 SFT 重训，预计 ~28min |\n\n**待处理（尚未完成）**：\n- grpo_stage2_rasp_20_v8 negative → **Framing 调整提案尚未产出**，这是最紧急的待办\n- westb cuda:0 空闲 → 需启动 unpruned GRPO baseline（`grpo_unpruned_baseline` PREPARING）\n- 两个 westd SFT retrain 完成后 → 需跑 N=100 eval（`eval_sft_standard_20_westd_n100` / `eval_sft_rasp_20_westd_n100`）\n- GraSP post-SFT eval (`eval_sft_grasp_20_westd`) 待 westd GPU 空出\n\n### 4. 📋 待办（条件触发式）\n- **立即**：产出 RASP GRPO v8 negative 的 Framing 调整提案 → 汇报 Director（red-section 规范，3 套 narrative 备选）\n- **立即**：westb cuda:0 空闲 → spawn Worker 启动 `grpo_unpruned_baseline`（参数与 v8 完全一致，用未剪枝 DeepSeek-R1-Distill-Qwen-7B）\n- westd SFT retrain Worker 回调 → spawn eval Worker 跑 N=100 快速验证（预期 Standard ~64%, RASP ~57%）\n- N=100 westd eval 完成 → 确认跨服务器可复现 → 跑 N=1319 full eval（`eval_sft_standard_20_full` / `eval_sft_rasp_20_full`）\n- grpo_stage2_standard_20_v8 cron 回调（~step 100, ETA ~5/16 中午 UTC）→ 分析结果，关键判定点\n- Standard GRPO v8 若 success → 论文 story 转 \"GRPO recovery 对 Standard pruning 有效，但对 CKA-aware pruning 有 collapse 风险——pruning strategy 与 recovery method 的交互效应\"\n- Standard GRPO v8 若也 collapse → 两组都 collapse = GRPO 在剪枝模型上普遍失败 → 等 unpruned baseline 确认后重大 pivot\n\n### 5. 🎯 战略上下文\n**项目核心结论链**：\n- D027：Post-prune RASP 31% vs Standard 27%，仅 4pp (p=0.54)，**pre-recovery claim 已崩塌**\n- D029：SFT recovery Standard 64% > RASP 57%，**SFT 层 RASP 反而更差**\n- D033：α ablation SFT 无显著趋势，CKA 权重对 SFT recovery 不敏感\n- D034：GraSP 41% post-SFT，三方对比 Standard > RASP > GraSP 成立\n- D035/D036：RASP GRPO v8 第 3 次 collapse，**GRPO 是唯一核心假设验证路径且 RASP 已失败**\n\n**最容易判断错的事**：\n1. Standard GRPO v8 step 30 看起来 HEALTHY（frac_zero_std 反转到 0.525），但 **不要乐观**——v5 也是前期存活后期 collapse。必须跑完 100 步才能下结论\n2. `grpo_unpruned_baseline` 是**必须的控制实验**——如果 unpruned 也 collapse，说明 GRPO 方法本身有问题（不是剪枝导致），整个 story 要大改\n3. EMNLP ARR May 25 = **10 天**。GRPO Standard v8 结果 5/16 出，留 ~9 天写作+补实验。时间极紧\n4. 论文 story 已不可能是 \"RASP enables better recovery\"（SFT 和 GRPO 都 RASP 更差）。最可能的 pivot 方向：pruning strategy × recovery method 交互效应（\"which structures to prune depends on how you plan to recover\"）\n5. `sft_recovery.py` 不支持 `--save_strategy` 和 `--overwrite_output_dir`；westd 用 conda 不用 venv\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778875750.md"
+}

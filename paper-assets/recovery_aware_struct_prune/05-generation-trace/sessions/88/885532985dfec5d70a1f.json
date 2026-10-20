@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "885532985dfec5d70a1f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb full status and harvest",
+  "task_key": "worker_ops_westb_full_status_and_harvest_20260519T030812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_full_status_and_harvest_20260519T030812_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "4cca0e9983cf4d2b00e51dbdbaa4f355dbbd9fd3508b3447703bb305c9fe1ad5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态审计结果\n\n### 1. GPU 状态\n\n| GPU | Utilization | Memory Used | Memory Total |\n|-----|------------|-------------|--------------|\n| cuda:0 | 0% | 0 MiB | 97887 MiB |\n| cuda:1 | 96% | 6537 MiB | 97887 MiB |\n\n### 2. eval_gsm8k_sft_rasp_20_1p5b (cuda:0) — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **26.91%** |\n| n_correct | 355 |\n| n_total | 1319 |\n| eos_rate | 94.16% |\n| avg_response_length | 378.6 |\n\n进程已退出，结果已写入 JSON。\n\n### 3. eval_gsm8k_sft_standard_20_1p5b (cuda:1) — 运行中\n\n- 进度: **1282/1319 (97.2%)**，即将完成\n- 最近一次中间报告 (1250/1319): acc=0.2296, eos_rate=90.56%, avg_len=512\n- 预计几分钟内完成\n\n### 4. 空闲 GPU\n\n- **cuda:0 完全空闲**（0% utilization, 0 MiB）\n- cuda:1 被 standard 评估占用，预计很快释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-full-status-and-harvest.md"
+}

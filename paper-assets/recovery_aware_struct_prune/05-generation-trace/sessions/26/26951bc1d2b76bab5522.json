@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "26951bc1d2b76bab5522",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "cron hook eval humaneval grpo cka only 20 2048",
+  "task_key": "cron_hook_eval_humaneval_grpo_cka_only_20_2048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_eval_humaneval_grpo_cka_only_20_2048.jsonl",
+    "occurrence": 1,
+    "bytes": 29016,
+    "sha256": "5f21d52775875feb8abbd12aee8cbecce74a4abeae9e8321be660d37ff0bd9d0"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T07:32:53.589343+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval_humaneval_grpo_cka_only_20_2048\n- project: recovery_aware_struct_prune\n- server: westd-29022"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T07:33:06.632132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__list_workers,mcp__agent-ml-research__save_project_file",
+              "max_results": "10"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T07:33:06.682882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T07:33:09.998402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T07:33:09.998838+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T07:33:10.502537+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T07:33:10.962856+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (366,000 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 964
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T07:33:10.963362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T07:33:11.264708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "status": "running"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T07:33:26.767422+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 5, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_math500_sft_standard_20_2048_v2\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=56146)\\\"]}, {\\\"exp_id\\\": \\\"grpo_cka_only_20_seed123\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=grpo_cka_only_20_seed123)\\\"]}, {\\\"exp_id\\\": \\\"eval_gsm8k_grpo_unstructured_20\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=865250)\\\"]}, {\\\"exp_id\\\": \\\"eval_humaneval_grpo_rasp_20_fair_2048\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=74303)\\\"]}, {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_fair_2048_v3\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=76392)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 16768
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T07:33:26.768342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T07:32:51Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 229 个实验 — ANALYZING 2, DONE 196, PREPARING 27, RUNNING 4\\\\n**DONE 分布**: failed 37, killed 15, negative 17, success 127\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-29022:cuda:0, westd-29022:cuda:1, westd-29022:cuda:2, westd-29022:cuda:3\\\\n- **实际运行**: 2 张 — westd-29022:cuda:0(eval_math500_sft_standard_20_2048_v2), westd-29022:cuda:3(eval_humaneval_grpo_rasp_20_fair_2048)\\\\n- **空闲（分配了没跑）**: westd-29022:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-23072**:\\\\n  - `/autodl-pub`: 6.6T/14T 可用（已用 53%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\\\n- **westd-29022**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_math500_sft_standard_20_2048_v2` | westd-29022 | cuda:0 | 56146 | `…re_struct_prune/results/math500_sft_standard_20_2048_v2.log` |\\\\n| `eval_gsm8k_grpo_unstructured_20` | westb-23072 | ? | ? | `—` |\\\\n| `eval_humaneval_grpo_rasp_20_fair_2048` | westd-29022 | cuda:3 | ? | `…e_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.log` |\\\\n| `eval_humaneval_grpo_standard_20_fair_2048_v3` | westd-29022 | ? | ? | `…t_prune/results/humaneval_grpo_standard_20_fair_2048_v3.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `eval_humaneval_grpo_standard_20_fair_2048` [failed] — 2026-05-19T07:09:37\\\\n- `eval_humaneval_sft_cka_only_20_2048` [success] — 2026-05-19T07:02:33\\\\n- `eval_humaneval_grpo_standard_20_fair_2048_v2` [failed] — 2026-05-19T06:42:53\\\\n- `grpo_standard_20_fair` [success] — 2026-05-19T06:39:\n…[truncated 5598 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 16265
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T07:33:26.769031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 03:12 UTC | 更新原因: D068 aggressive expansion: Reviewer gap analysis + GPU reallocation + CKA-only HumanEval P0 dispatched\\\\n\\\\n## 核心方向\\\\nPruning criterion determines post-RLVR recovery capacity. Recovery capacity gradient: CKA-only >> importance-based methods (Standard ≈ RASP). Holds across 7B and 1.5B scales. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: Aggressive Expansion (D068) + Writing\\\\n\\\\n### 已完成核心数据\\\\n- **C2 Recovery Gradient (7B)**: ✅ Fair 4-method (v5): CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\\\n- **E2 Extended Training**: ✅ CKA-only 300步 0.22-0.44 sustained. Standard 0.056 permanent collapse. 5.5x gap.\\\\n- **E3 CKA Heatmap**: ✅ 4-panel figure. CKA-only diag 0.620 vs Standard 0.904.\\\\n- **1.5B Cross-Scale**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%.\\\\n- **C1 Decoupling**: ✅ GRPO delta ≈ 0 everywhere (ID/OOD/scale).\\\\n- **Alpha Ablation**: ✅ U-shape confirmed.\\\\n- **MATH-500 @2048**: ✅ Config audit 7/7. GRPO CKA-only final: **29.2%**. Recovery gradient persists OOD.\\\\n- **Inference TPS**: ✅ Honest framing (0.81x TPS).\\\\n\\\\n### MATH-500 @2048 (D064 resolved)\\\\n| Method | SFT @2048 | GRPO @2048 | GRPO Δ |\\\\n|--------|-----------|------------|--------|\\\\n| Dense | **53.0%** ✅ | N/A | — |\\\\n| CKA-only | **29.0%** ✅ | **29.2%** ✅ | +0.2pp |\\\\n| Standard | 🔄 20.8% (104/500) | **26.4%** ✅ | — |\\\\n| RASP | **22.6%** ✅ | **24.0%** ✅ | +1.4pp |\\\\n\\\\n### 1.5B GRPO Delta\\\\n| Method | GRPO | SFT | Delta |\\\\n|--------|------|-----|-------|\\\\n| CKA-only | 35.48% | 35.63% | -0.15pp ✅ |\\\\n| RASP | 26.16% | 26.91% | -0.75pp ✅ |\\\\n| Standard | 22.29% | 🔄 97.2% done | — |\\\\n\\\\n## D068 Aggressive Expansion Plan (Reviewer gap analysis)\\\\n\\\\n### P0 (不做就不可能 4.0)\\\\n| # | 实验 | GPU | 状态 | 预计完成 |\\\\n|---|------|-----|------|--\n…[truncated 4219 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 15805
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T07:33:26.920905+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 15656
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T07:33:35.039465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# Find the target experiment\nfor e in exps:\n    if e['exp_id'] == 'eval_humaneval_grpo_cka_only_20_2048':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract eval_humaneval_grpo_cka_only_20_2048 from registry"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T07:33:35.444060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 8, in <module>\n    if e['exp_id'] == 'eval_humaneval_grpo_cka_only_20_2048':\n       ~^^^^^^^^^^\nTypeError: string indices must be integers, not 'str'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 404
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T07:33:41.982160+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult_str = data['result']\nresult = json.loads(result_str)\n# Check structure\ninner = result.get('data', result)\nif isinstance(inner, str):\n    inner = json.loads(inner)\n# inner might be a dict with 'experiments' or directly a list\nif isinstance(inner, dict):\n    exps = inner.get('experiments', inner)\n    if isinstance(exps, dict):\n        # keyed by exp_id\n        target = exps.get('eval_humaneval_grpo_cka_only_20_2048')\n        if target:\n            print(json.dumps(target, indent=2))\n        else:\n            print('Keys sample:', list(exps.keys())[:5])\n    elif isinstance(exps, list):\n        for e in exps:\n            if isinstance(e, dict) and e.get('exp_id') == 'eval_humaneval_grpo_cka_only_20_2048':\n                print(json.dumps(e, indent=2))\n                break\nelse:\n    print('Unexpected type:', type(inner))\n\"",
+              "description": "Extract target experiment with structure probing"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T07:33:42.133364+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T04:11:28.637Z\",\n  \"updated_at\": \"2026-05-19T07:32:48.290Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log\\\"\",\n    \"server\": \"westd-29022\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"66521\",\n    \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_2048.log\",\n    \"submitted_at\": \"2026-05-19T04:11:28.118Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-19T07:32:48.290Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-19T07:32:52.921144+00:00\"\n      }\n    ]\n  }\n}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T07:34:04.487226+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_humaneval_grpo_cka_only_20_2048'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T07:34:07.402452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6159}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2915
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T07:34:07.654892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']\n# Find related humaneval experiments\ntargets = ['eval_humaneval_sft_cka_only_20_2048', 'eval_humaneval_grpo_standard_20_fair_2048', 'eval_humaneval_grpo_rasp_20_fair_2048', 'eval_humaneval_sft_standard_20_2048', 'eval_humaneval_sft_rasp_20_2048', 'eval_humaneval_grpo_cka_only_20']\nfor k in targets:\n    if k in exps:\n        e = exps[k]\n        print(f'{k}: status={e.get(\\\"status\\\")}, conclusion={e.get(\\\"conclusion\\\")}, metrics={e.get(\\\"metrics\\\")}')\n\"",
+              "description": "Find related HumanEval experiments for context"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T07:34:07.806686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 151
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T07:34:14.446300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']\n# Check if it's keyed by exp_id\nif isinstance(exps, dict):\n    # Find humaneval experiments\n    for k, v in exps.items():\n        if 'humaneval' in k.lower():\n            if isinstance(v, dict):\n                print(f'{k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}, metrics={json.dumps(v.get(\\\"metrics\\\", {}))[:200]}')\n            else:\n                print(f'{k}: {str(v)[:100]}')\n\" 2>&1 | head -30",
+              "description": "Find HumanEval experiments in registry"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T07:34:14.650794+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 204
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T07:34:21.132427+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# Probe structure\nprint('top keys:', list(result.keys())[:5])\nd = result.get('data')\nprint('data type:', type(d).__name__)\nif isinstance(d, dict):\n    print('data keys:', list(d.keys())[:10])\n    exps = d.get('experiments')\n    print('experiments type:', type(exps).__name__)\n    if isinstance(exps, dict):\n        keys = list(exps.keys())\n        print('num experiments:', len(keys))\n        print('first 5 keys:', keys[:5])\n        # Check first value type\n        if keys:\n            v = exps[keys[0]]\n            print('value type:', type(v).__name__)\n            if isinstance(v, str):\n                print('value sample:', v[:200])\n\" 2>&1",
+              "description": "Probe registry data structure"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T07:34:21.285748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "top keys: ['success', 'data', 'error', 'metadata']\ndata type: dict\ndata keys: ['experiments', 'count', 'total', 'baseline']\nexperiments type: dict\nnum experiments: 229\nfirst 5 keys: ['eval_humaneval_grpo_cka_only_20_2048', 'eval_humaneval_grpo_standard_20_fair_2048', 'eval_humaneval_grpo_standard_20_fair_2048_v3', 'eval_humaneval_sft_cka_only_20_2048', 'eval_humaneval_grpo_standard_20_fair_2048_v2']\nvalue type: dict"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 153
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T07:34:28.081634+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-889450aa/36fd8bc0-ffe1-46ff-844c-98fdea9f194a/tool-results/mcp-agent-ml-research-read_registry-1779175990898.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\n# Target experiment\ntarget = exps.get('eval_humaneval_grpo_cka_only_20_2048', {})\nprint('=== eval_humaneval_grpo_cka_only_20_2048 ===')\nprint(json.dumps(target, indent=2))\n\nprint()\nprint('=== Related HumanEval experiments ===')\nfor k, v in exps.items():\n    if 'humaneval' in k.lower() and k != 'eval_humaneval_grpo_cka_only_20_2048':\n        print(f'{k}: status={v.get(\\\"status\\\")}, conclusion={v.get(\\\"conclusion\\\")}, metrics={json.dumps(v.get(\\\"metrics\\\", {}))[:300]}')\n\" 2>&1",
+              "description": "Get target and related HumanEval experiments"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T07:34:28.184368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "=== eval_humaneval_grpo_cka_only_20_2048 ===\n{\n  \"status\": \"PREPARING\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T04:11:28.637Z\",\n  \"updated_at\": \"2026-05-19T07:32:48.290Z\",\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log\\\"\",\n    \"server\": \"westd-29022\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"66521\",\n    \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_2048.log\",\n    \"submitted_at\": \"2026-05-19T04:11:28.118Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\"\n  },\n  \"reproduce\": {\n    \"finished_at\": \"2026-05-19T07:32:48.290Z\"\n  },\n  \"extra\": {\n    \"hook_events\": [\n      {\n        \"event\": \"on_complete\",\n        \"action\": \"agent\",\n        \"ts\": \"2026-05-19T07:32:52.921144+00:00\"\n      }\n    ]\n  }\n}\n\n=== Related HumanEval experiments ===\neval_humaneval_grpo_standard_20_fair_2048: status=DONE, conclusion=failed, metrics={\"error\": \"model path not found: /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_fair \\u2014 correct path is grpo_stage2_standard_20_fair\"}\neval_humaneval_grpo_standard_20_fair_2048_v3: status=RUNNING, conclusion=None, metrics={}\neval_humaneval_sft_cka_only_20_2048: status=DONE, conclusion=success, metrics={\"pass_at_1\": 0, \"n_correct\": 0, \"n_total\": 164}\neval_humaneval_grpo_standard_20_fair_2048_v2: status=DONE, conclusion=failed, metrics={}\neval_humaneval_grpo_rasp_20_fair_2048: status=RUNNING, conclusion=None, metrics={}\neval_humaneval_sft_standard_20_2048_v2: status=DONE, conclusion=success, metrics={\"avg_response_leng\n…[truncated 2229 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "Bash",
+            "elapsed_ms": 102
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T07:34:46.083542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__load_project_config",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T07:34:46.134289+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T07:34:49.538307+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__load_project_config"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "tool_args": {
+              "project_name": "recovery_aware_struct_prune",
+              "section": "execution"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T07:34:49.640687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"section\\\": \\\"execution\\\", \\\"config\\\": {\\\"execution\\\": {\\\"gpu_ids\\\": [\\\"cuda:0\\\", \\\"cuda:1\\\", \\\"cuda:2\\\", \\\"cuda:3\\\"], \\\"project_path\\\": \\\"/root/recovery_aware_struct_prune\\\", \\\"servers\\\": [{\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westb-23072\\\"}, {\\\"account\\\": \\\"root\\\", \\\"server\\\": \\\"westd-29022\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__load_project_config",
+            "elapsed_ms": 102
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T07:35:05.620918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval_humaneval_grpo_cka_only_20_2048",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "## 任务\nSSH 到 westd-29022 读取 HumanEval 评估结果并分析。\n\n## 步骤\n\n1. SSH 到 westd-29022（account: root），读取以下文件：\n   - `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json` — 结果 JSON\n   - `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log` — 运行日志（尾部 50 行即可）\n\n2. 从 JSON 中提取关键指标：\n   - pass@1（正确率）\n   - n_correct / n_total\n   - stderr（如果有）\n   - avg_response_length / median_response_length（如果有）\n   - wall_time（如果有）\n   - 任何 failure mode 信息\n\n3. 用 `update_registry` 更新实验：\n   - 先设 status=ANALYZING\n   - 设 hypothesis: \"GRPO recovery training on CKA-only 20% pruned model recovers code generation ability on HumanEval from SFT baseline of 0% pass@1, because CKA-only preserves structural similarity that GRPO can exploit for cross-task recovery\"\n   - 设 parent: \"grpo_cka_only_20\"\n   - 设 metrics: 包含 pass@1, n_correct, n_total, stderr 等\n   - 设 checkpoint_path: 模型路径 \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20\"\n   - 设 log_path: \"/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log\"\n\n4. 判断 conclusion：\n   - 对比基准：SFT CKA-only HumanEval @2048 = 0% (0/164)\n   - 对比其他 GRPO @2048 方法：\n     - Unpruned: 45.12% (74/164)\n     - GRPO RASP 20%: 14.63% (24/164)\n     - GRPO Standard 20%: 10.37% (17/164)（非 fair 版本）\n   - 如果 pass@1 > 0，说明 GRPO 恢复了 SFT 完全丧失的能力 → success\n   - 如果 pass@1 = 0，说明 CKA-only 的代码生成能力不可恢复 → negative\n\n5. 设 status=DONE, conclusion=判断结果\n\n6. 在最终输出中清晰报告：\n   - pass@1 精确值\n   - 与上述各基准的对比\n   - 结论判断理由\n",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T07:35:08.685818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506 started. Use get_worker_status('worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3064
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T07:35:16.917455+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发分析 eval_humaneval_grpo_cka_only_20_2048 的结果。Worker 完成后系统会回调，届时汇报 Director。\n\n当前状态：\n- **分析中**: eval_humaneval_grpo_cka_only_20_2048（Worker 刚派发）\n- **运行中**: eval_math500_sft_standard_20_2048_v2, grpo_cka_only_20_seed123, eval_gsm8k_grpo_unstructured_20, eval_humaneval_grpo_rasp_20_fair_2048, eval_humaneval_grpo_standard_20_fair_2048_v3\n- **Worker 池**: 1 个 running\n\n需要注意 Worker 池 < 2 的硬约束。当前只有 1 个 Worker 在跑分析任务，但没有其他可并行的任务需要立即启动——其余实验都在 GPU 上运行中，等结果回调即可。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_humaneval_grpo_cka_only_20_2048"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-humaneval-grpo-cka-only-20-2048.md"
+}

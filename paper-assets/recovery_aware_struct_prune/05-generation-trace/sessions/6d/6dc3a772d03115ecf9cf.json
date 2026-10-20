@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6dc3a772d03115ecf9cf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops full status westb v2",
+  "task_key": "worker_ops_full_status_westb_v2_20260518T174958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_status_westb_v2_20260518T174958_result.json",
+    "occurrence": 1,
+    "bytes": 1333,
+    "sha256": "cc86d4e8d273f6ece9a6f0c2f9353935d643f26d6ae3669c95aff1f0992d7b4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态汇报\n\n### GPU 状态\n\n| GPU | PID | 任务 | 进度 | Interim Acc | Avg Len | ETA (服务器时间) |\n|-----|-----|------|------|-------------|---------|-----------------|\n| cuda:0 | 823050 | `eval_gsm8k_grpo_cka_only_20_1p5b` | **695/1319 (52.7%)** | **36.77%** | 315 | ~02:55 (约65min) |\n| cuda:1 | 822503 | `eval_gsm8k_grpo_standard_20_1p5b` | **413/1319 (31.3%)** | **23.25%** | 434 | ~04:25 (约155min) |\n\n### tmux sessions\n- `eval_gsm8k_cka_only` — 承载 GPU 0 任务\n- `scoring_ablation_v2` — 旧 session（May 17）\n\n### 已完成的 quick eval（pruned-only baselines, pre-GRPO）\n| Model | GSM8K Quick Acc |\n|-------|----------------|\n| standard_20_1p5b | 6% |\n| cka_only_20_1p5b | 2% |\n| rasp_20_1p5b | 8% |\n\n### 结果 JSON\n三个 GRPO full eval 的 JSON 均**未生成**（仍在运行）。\n\n### RASP eval 启动\n`eval_gsm8k_grpo_rasp_20_1p5b` checkpoint 已就绪（`/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/checkpoint-100`），但两张 GPU 都被占用。**预计 GPU 0 在 ~65 分钟后空闲**，届时可启动 RASP eval。\n\n### 初步观察\nGRPO 后提升显著：CKA-only 从 2% → 36.77%（interim），Standard 从 6% → 23.25%（interim）。CKA-only 在 1.5B 上也大幅领先 Standard，与 7B 趋势一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-status-westb-v2.md"
+}

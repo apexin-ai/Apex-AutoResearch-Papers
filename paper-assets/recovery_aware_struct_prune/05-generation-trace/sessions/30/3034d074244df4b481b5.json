@@ -1,0 +1,1366 @@
+{
+  "schema_version": "1.0",
+  "id": "3034d074244df4b481b5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis sft alpha4 20 v2",
+  "task_key": "worker_analysis_sft_alpha4_20_v2_20260521T185627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_alpha4_20_v2_20260521T185627.log",
+    "occurrence": 1,
+    "bytes": 82710,
+    "sha256": "3673d94c975a04eb9e4879f6709e7bbf9c5f78c70ce953f9ba31f82f229032c7"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__compare_wandb_runs",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__fetch_wandb_metrics",
+                  "mcp__agent-ml-research__fetch_wandb_run_history",
+                  "mcp__agent-ml-research__get_best_wandb_run",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__list_wandb_runs",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "e3a5e1f7-3c18-43d3-9bb5-f9f74ac627b8",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779405000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "b55f14d9-3d46-4774-92fc-c254edbb2995",
+                "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me analyze the sft_alpha4_20_v2 experiment results. I need to:\n1. Read the training log\n2. Check checkpoint files\n3. Check W&B metrics\n4. Summarize\n\nLet me start by reading the log and checking the checkpoint directory in parallel, plus fetching W&B metrics.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "d94a688b-2f48-4d82-9649-649f8342d6d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Em1mTfPPbBbrKTaX45DdQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12908,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12908
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KWtiyEWXUfhrzNRrE4xjng",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "a47a3d57-30d8-4760-a8a4-fb444bee4b09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012Em1mTfPPbBbrKTaX45DdQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12908,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12908
+                },
+                "output_tokens": 42,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:56:37.980Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01KWtiyEWXUfhrzNRrE4xjng",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__fetch_wandb_metrics"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "2e5719ab-ded2-497e-ae9e-5fdcc2ec23c7",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__fetch_wandb_metrics"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics",
+              "total_deferred_tools": 31
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "开始分析 sft_alpha4_20_v2 实验结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "1d56d848-a7d0-4e4b-b04c-a350ea4835d5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uTmB357kGgcdmuFQ6wAA1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F9o9J2bkZExFTvohTmtTvH",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29022",
+                "command": "tail -100 /root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "972b21dc-9cd7-4ad7-adc0-434ebd3fabb5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uTmB357kGgcdmuFQ6wAA1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Mvo9Voehy4mi1pyEtH31aC",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29022",
+                "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "ea5a6d59-8f5f-474c-9b71-77f68a88653a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uTmB357kGgcdmuFQ6wAA1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:56:42.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F9o9J2bkZExFTvohTmtTvH",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': '1.093', 'grad_norm': '3.344', 'learning_rate': '1.874e-05', 'entropy': '1.07', 'num_tokens': '1.774e+05', 'mean_token_accuracy': '0.7487', 'epoch': '0.1284'}\\\\n{'loss': '1.017', 'grad_norm': '3.578', 'learning_rate': '1.853e-05', 'entropy': '1.062', 'num_tokens': '2.053e+05', 'mean_token_accuracy': '0.7606', 'epoch': '0.1499'}\\\\n{'loss': '0.9852', 'grad_norm': '3.156', 'learning_rate': '1.831e-05', 'entropy': '1.01', 'num_tokens': '2.355e+05', 'mean_token_accuracy': '0.7636', 'epoch': '0.1713'}\\\\n{'loss': '0.9737', 'grad_norm': '3.094', 'learning_rate': '1.81e-05', 'entropy': '0.9672', 'num_tokens': '2.647e+05', 'mean_token_accuracy': '0.7648', 'epoch': '0.1927'}\\\\n{'loss': '0.931', 'grad_norm': '4.25', 'learning_rate': '1.788e-05', 'entropy': '0.927', 'num_tokens': '2.942e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.2141'}\\\\n{'loss': '0.9257', 'grad_norm': '3.172', 'learning_rate': '1.767e-05', 'entropy': '0.9107', 'num_tokens': '3.236e+05', 'mean_token_accuracy': '0.7715', 'epoch': '0.2355'}\\\\n{'loss': '0.9191', 'grad_norm': '3.281', 'learning_rate': '1.746e-05', 'entropy': '0.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515',\\\\n\\\\n... [截断: 输出过长，省略 36247 字符] ...\\\\n\\\\n1.604'}\\\\n{'loss': '0.7177', 'grad_norm': '2.938', 'learning_rate': '3.782e-06', 'entropy': '0.7404', 'num_tokens': '2.25e+06', 'mean_token_accuracy': '0.8149', 'epoch': '1.625'}\\\\n{'loss': '0.6986', 'grad_norm': '2.734', 'learning_rate': '3.568e-06', 'entropy': '0.707', 'num_tokens': '2.281e+06', 'mean_token_accuracy': '0.8193', 'epoch': '1.647'}\\\\n{'loss': '0.6724', 'grad_norm': '2.938', 'learning_rate': '3.355e-06', 'entropy': '0.7116', 'num_tokens': '2.311e+06', 'mean_token_accuracy': '0.8243', 'epoch': '1.668'}\\\\n{'loss': '0.6861', 'grad_norm': '2.812', 'learning_rate': '3.141e-06', 'entropy': '0.7189', 'num_tokens': '2.341e+06', 'mean_token_accuracy': '0.823', 'epoch': '1.689'}\\\\n{'loss': '0.6833', 'grad_norm': '3.141', 'learning_rate': '2.927e-06', 'entropy': '0.7128', 'num_tokens': '2.37e+06', 'mean_token_accuracy': '0.8201', 'epoch': '1.711'}\\\\n{'loss': '0.709', 'grad_norm': '2.844', 'learning_rate': '2.714e-06', 'entropy': '0.7358', 'num_tokens': '2.4e+06', 'mean_token_accuracy': '0.8192', 'epoch': '1.732'}\\\\n{'loss': '0.678', 'grad_norm': '3.047', 'learning_rate': '2.5e-06', 'entropy': '0.7066', 'num_tokens': '2.429e+06', 'mean_token_accuracy': '0.8238', 'epoch': '1.754'}\\\\n{'loss': '0.6877', 'grad_norm': '2.812', 'learning_rate': '2.286e-06', 'entropy': '0.7103', 'num_tokens': '2.458e+06', 'mean_token_accuracy': '0.8233', 'epoch': '1.775'}\\\\n{'loss': '0.7107', 'grad_norm': '2.734', 'learning_rate': '2.073e-06', 'entropy': '0.7269', 'num_tokens': '2.488e+06', 'mean_token_accuracy': '0.8147', 'epoch': '1.796'}\\\\n{'loss': '0.6585', 'grad_norm': '2.688', 'learning_rate': '1.859e-06', 'entropy': '0.6973', 'num_tokens': '2.519e+06', 'mean_token_accuracy': '0.8276', 'epoch': '1.818'}\\\\n{'loss': '0.7255', 'grad_norm': '3.094', 'learning_rate': '1.645e-06', 'entropy': '0.7488', 'num_tokens': '2.549e+06', 'mean_token_accuracy': '0.8142', 'epoch': '1.839'}\\\\n{'loss': '0.6711', 'grad_norm': '2.984', 'learning_rate': '1.432e-06', 'entropy': '0.7067', 'num_tokens': '2.577e+06', 'mean_token_accuracy': '0.825', 'epoch': '1.861'}\\\\n{'loss': '0.7209', 'grad_norm': '3.125', 'learning_rate': '1.218e-06', 'entropy': '0.7348', 'num_tokens': '2.606e+06', 'mean_token_accuracy': '0.8136', 'epoch': '1.882'}\\\\n{'loss': '0.7198', 'grad_norm': '2.984', 'learning_rate': '1.004e-06', 'entropy': '0.7375', 'num_tokens': '2.637e+06', 'mean_token_accuracy': '0.8128', 'epoch': '1.903'}\\\\n{'loss': '0.7007', 'grad_norm': '2.891', 'learning_rate': '7.906e-07', 'entropy': '0.72', 'num_tokens': '2.667e+06', 'mean_token_accuracy': '0.8202', 'epoch': '1.925'}\\\\n{'loss': '0.6758', 'grad_norm': '2.797', 'learning_rate': '5.769e-07', 'entropy': '0.6949', 'num_tokens': '2.699e+06', 'mean_token_accuracy': '0.8256', 'epoch': '1.946'}\\\\n{'loss': '0.6779', 'grad_norm': '2.844', 'learning_rate': '3.632e-07', 'entropy': '0.7003', 'num_tokens': '2.728e+06', 'mean_token_accuracy': '0.8216', 'epoch': '1.968'}\\\\n{'loss': '0.7055', 'grad_norm': '3.031', 'learning_rate': '1.496e-07', 'entropy': '0.7354', 'num_tokens': '2.758e+06', 'mean_token_accuracy': '0.8164', 'epoch': '1.989'}\\\\n\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\\\u001b[A\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\\\n\\\\r                                                 \\\\r\\\\r100%|██████████| 936/936 [18:49<00:00,  1.17it/s]\\\\r100%|██████████| 936/936 [18:49<00:00,  1.21s/it]\\\\n2026-05-22 02:52:44,637 [INFO] Saving SFT model to /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\\\n{'train_runtime': '1130', 'train_samples_per_second': '13.23', 'train_steps_per_second': '0.829', 'train_loss': '0.8118', 'entropy': '0.7426', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.8165', 'epoch': '2'}\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\\\n2026-05-22 02:52:59,399 [INFO] SFT warmup complete.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "82460819-80e2-448d-903d-9615fa4e6db8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': '1.093', 'grad_norm': '3.344', 'learning_rate': '1.874e-05', 'entropy': '1.07', 'num_tokens': '1.774e+05', 'mean_token_accuracy': '0.7487', 'epoch': '0.1284'}\\\\n{'loss': '1.017', 'grad_norm': '3.578', 'learning_rate': '1.853e-05', 'entropy': '1.062', 'num_tokens': '2.053e+05', 'mean_token_accuracy': '0.7606', 'epoch': '0.1499'}\\\\n{'loss': '0.9852', 'grad_norm': '3.156', 'learning_rate': '1.831e-05', 'entropy': '1.01', 'num_tokens': '2.355e+05', 'mean_token_accuracy': '0.7636', 'epoch': '0.1713'}\\\\n{'loss': '0.9737', 'grad_norm': '3.094', 'learning_rate': '1.81e-05', 'entropy': '0.9672', 'num_tokens': '2.647e+05', 'mean_token_accuracy': '0.7648', 'epoch': '0.1927'}\\\\n{'loss': '0.931', 'grad_norm': '4.25', 'learning_rate': '1.788e-05', 'entropy': '0.927', 'num_tokens': '2.942e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.2141'}\\\\n{'loss': '0.9257', 'grad_norm': '3.172', 'learning_rate': '1.767e-05', 'entropy': '0.9107', 'num_tokens': '3.236e+05', 'mean_token_accuracy': '0.7715', 'epoch': '0.2355'}\\\\n{'loss': '0.9191', 'grad_norm': '3.281', 'learning_rate': '1.746e-05', 'entropy': '0.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515',\\\\n\\\\n... [截断: 输出过长，省略 36247 字符] ...\\\\n\\\\n1.604'}\\\\n{'loss': '0.7177', 'grad_norm': '2.938', 'learning_rate': '3.782e-06', 'entropy': '0.7404', 'num_tokens': '2.25e+06', 'mean_token_accuracy': '0.8149', 'epoch': '1.625'}\\\\n{'loss': '0.6986', 'grad_norm': '2.734', 'learning_rate': '3.568e-06', 'entropy': '0.707', 'num_tokens': '2.281e+06', 'mean_token_accuracy': '0.8193', 'epoch': '1.647'}\\\\n{'loss': '0.6724', 'grad_norm': '2.938', 'learning_rate': '3.355e-06', 'entropy': '0.7116', 'num_tokens': '2.311e+06', 'mean_token_accuracy': '0.8243', 'epoch': '1.668'}\\\\n{'loss': '0.6861', 'grad_norm': '2.812', 'learning_rate': '3.141e-06', 'entropy': '0.7189', 'num_tokens': '2.341e+06', 'mean_token_accuracy': '0.823', 'epoch': '1.689'}\\\\n{'loss': '0.6833', 'grad_norm': '3.141', 'learning_rate': '2.927e-06', 'entropy': '0.7128', 'num_tokens': '2.37e+06', 'mean_token_accuracy': '0.8201', 'epoch': '1.711'}\\\\n{'loss': '0.709', 'grad_norm': '2.844', 'learning_rate': '2.714e-06', 'entropy': '0.7358', 'num_tokens': '2.4e+06', 'mean_token_accuracy': '0.8192', 'epoch': '1.732'}\\\\n{'loss': '0.678', 'grad_norm': '3.047', 'learning_rate': '2.5e-06', 'entropy': '0.7066', 'num_tokens': '2.429e+06', 'mean_token_accuracy': '0.8238', 'epoch': '1.754'}\\\\n{'loss': '0.6877', 'grad_norm': '2.812', 'learning_rate': '2.286e-06', 'entropy': '0.7103', 'num_tokens': '2.458e+06', 'mean_token_accuracy': '0.8233', 'epoch': '1.775'}\\\\n{'loss': '0.7107', 'grad_norm': '2.734', 'learning_rate': '2.073e-06', 'entropy': '0.7269', 'num_tokens': '2.488e+06', 'mean_token_accuracy': '0.8147', 'epoch': '1.796'}\\\\n{'loss': '0.6585', 'grad_norm': '2.688', 'learning_rate': '1.859e-06', 'entropy': '0.6973', 'num_tokens': '2.519e+06', 'mean_token_accuracy': '0.8276', 'epoch': '1.818'}\\\\n{'loss': '0.7255', 'grad_norm': '3.094', 'learning_rate': '1.645e-06', 'entropy': '0.7488', 'num_tokens': '2.549e+06', 'mean_token_accuracy': '0.8142', 'epoch': '1.839'}\\\\n{'loss': '0.6711', 'grad_norm': '2.984', 'learning_rate': '1.432e-06', 'entropy': '0.7067', 'num_tokens': '2.577e+06', 'mean_token_accuracy': '0.825', 'epoch': '1.861'}\\\\n{'loss': '0.7209', 'grad_norm': '3.125', 'learning_rate': '1.218e-06', 'entropy': '0.7348', 'num_tokens': '2.606e+06', 'mean_token_accuracy': '0.8136', 'epoch': '1.882'}\\\\n{'loss': '0.7198', 'grad_norm': '2.984', 'learning_rate': '1.004e-06', 'entropy': '0.7375', 'num_tokens': '2.637e+06', 'mean_token_accuracy': '0.8128', 'epoch': '1.903'}\\\\n{'loss': '0.7007', 'grad_norm': '2.891', 'learning_rate': '7.906e-07', 'entropy': '0.72', 'num_tokens': '2.667e+06', 'mean_token_accuracy': '0.8202', 'epoch': '1.925'}\\\\n{'loss': '0.6758', 'grad_norm': '2.797', 'learning_rate': '5.769e-07', 'entropy': '0.6949', 'num_tokens': '2.699e+06', 'mean_token_accuracy': '0.8256', 'epoch': '1.946'}\\\\n{'loss': '0.6779', 'grad_norm': '2.844', 'learning_rate': '3.632e-07', 'entropy': '0.7003', 'num_tokens': '2.728e+06', 'mean_token_accuracy': '0.8216', 'epoch': '1.968'}\\\\n{'loss': '0.7055', 'grad_norm': '3.031', 'learning_rate': '1.496e-07', 'entropy': '0.7354', 'num_tokens': '2.758e+06', 'mean_token_accuracy': '0.8164', 'epoch': '1.989'}\\\\n\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\u001b[A\\\\n\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\\\u001b[A\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\\\n\\\\r                                                 \\\\r\\\\r100%|██████████| 936/936 [18:49<00:00,  1.17it/s]\\\\r100%|██████████| 936/936 [18:49<00:00,  1.21s/it]\\\\n2026-05-22 02:52:44,637 [INFO] Saving SFT model to /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\\\n{'train_runtime': '1130', 'train_samples_per_second': '13.23', 'train_steps_per_second': '0.829', 'train_loss': '0.8118', 'entropy': '0.7426', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.8165', 'epoch': '2'}\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\\\n2026-05-22 02:52:59,399 [INFO] SFT warmup complete.\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{'loss': '1.093', 'grad_norm': '3.344', 'learning_rate': '1.874e-05', 'entropy': '1.07', 'num_tokens': '1.774e+05', 'mean_token_accuracy': '0.7487', 'epoch': '0.1284'}\\n{'loss': '1.017', 'grad_norm': '3.578', 'learning_rate': '1.853e-05', 'entropy': '1.062', 'num_tokens': '2.053e+05', 'mean_token_accuracy': '0.7606', 'epoch': '0.1499'}\\n{'loss': '0.9852', 'grad_norm': '3.156', 'learning_rate': '1.831e-05', 'entropy': '1.01', 'num_tokens': '2.355e+05', 'mean_token_accuracy': '0.7636', 'epoch': '0.1713'}\\n{'loss': '0.9737', 'grad_norm': '3.094', 'learning_rate': '1.81e-05', 'entropy': '0.9672', 'num_tokens': '2.647e+05', 'mean_token_accuracy': '0.7648', 'epoch': '0.1927'}\\n{'loss': '0.931', 'grad_norm': '4.25', 'learning_rate': '1.788e-05', 'entropy': '0.927', 'num_tokens': '2.942e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.2141'}\\n{'loss': '0.9257', 'grad_norm': '3.172', 'learning_rate': '1.767e-05', 'entropy': '0.9107', 'num_tokens': '3.236e+05', 'mean_token_accuracy': '0.7715', 'epoch': '0.2355'}\\n{'loss': '0.9191', 'grad_norm': '3.281', 'learning_rate': '1.746e-05', 'entropy': '0.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515',\\n\\n... [截断: 输出过长，省略 36247 字符] ...\\n\\n1.604'}\\n{'loss': '0.7177', 'grad_norm': '2.938', 'learning_rate': '3.782e-06', 'entropy': '0.7404', 'num_tokens': '2.25e+06', 'mean_token_accuracy': '0.8149', 'epoch': '1.625'}\\n{'loss': '0.6986', 'grad_norm': '2.734', 'learning_rate': '3.568e-06', 'entropy': '0.707', 'num_tokens': '2.281e+06', 'mean_token_accuracy': '0.8193', 'epoch': '1.647'}\\n{'loss': '0.6724', 'grad_norm': '2.938', 'learning_rate': '3.355e-06', 'entropy': '0.7116', 'num_tokens': '2.311e+06', 'mean_token_accuracy': '0.8243', 'epoch': '1.668'}\\n{'loss': '0.6861', 'grad_norm': '2.812', 'learning_rate': '3.141e-06', 'entropy': '0.7189', 'num_tokens': '2.341e+06', 'mean_token_accuracy': '0.823', 'epoch': '1.689'}\\n{'loss': '0.6833', 'grad_norm': '3.141', 'learning_rate': '2.927e-06', 'entropy': '0.7128', 'num_tokens': '2.37e+06', 'mean_token_accuracy': '0.8201', 'epoch': '1.711'}\\n{'loss': '0.709', 'grad_norm': '2.844', 'learning_rate': '2.714e-06', 'entropy': '0.7358', 'num_tokens': '2.4e+06', 'mean_token_accuracy': '0.8192', 'epoch': '1.732'}\\n{'loss': '0.678', 'grad_norm': '3.047', 'learning_rate': '2.5e-06', 'entropy': '0.7066', 'num_tokens': '2.429e+06', 'mean_token_accuracy': '0.8238', 'epoch': '1.754'}\\n{'loss': '0.6877', 'grad_norm': '2.812', 'learning_rate': '2.286e-06', 'entropy': '0.7103', 'num_tokens': '2.458e+06', 'mean_token_accuracy': '0.8233', 'epoch': '1.775'}\\n{'loss': '0.7107', 'grad_norm': '2.734', 'learning_rate': '2.073e-06', 'entropy': '0.7269', 'num_tokens': '2.488e+06', 'mean_token_accuracy': '0.8147', 'epoch': '1.796'}\\n{'loss': '0.6585', 'grad_norm': '2.688', 'learning_rate': '1.859e-06', 'entropy': '0.6973', 'num_tokens': '2.519e+06', 'mean_token_accuracy': '0.8276', 'epoch': '1.818'}\\n{'loss': '0.7255', 'grad_norm': '3.094', 'learning_rate': '1.645e-06', 'entropy': '0.7488', 'num_tokens': '2.549e+06', 'mean_token_accuracy': '0.8142', 'epoch': '1.839'}\\n{'loss': '0.6711', 'grad_norm': '2.984', 'learning_rate': '1.432e-06', 'entropy': '0.7067', 'num_tokens': '2.577e+06', 'mean_token_accuracy': '0.825', 'epoch': '1.861'}\\n{'loss': '0.7209', 'grad_norm': '3.125', 'learning_rate': '1.218e-06', 'entropy': '0.7348', 'num_tokens': '2.606e+06', 'mean_token_accuracy': '0.8136', 'epoch': '1.882'}\\n{'loss': '0.7198', 'grad_norm': '2.984', 'learning_rate': '1.004e-06', 'entropy': '0.7375', 'num_tokens': '2.637e+06', 'mean_token_accuracy': '0.8128', 'epoch': '1.903'}\\n{'loss': '0.7007', 'grad_norm': '2.891', 'learning_rate': '7.906e-07', 'entropy': '0.72', 'num_tokens': '2.667e+06', 'mean_token_accuracy': '0.8202', 'epoch': '1.925'}\\n{'loss': '0.6758', 'grad_norm': '2.797', 'learning_rate': '5.769e-07', 'entropy': '0.6949', 'num_tokens': '2.699e+06', 'mean_token_accuracy': '0.8256', 'epoch': '1.946'}\\n{'loss': '0.6779', 'grad_norm': '2.844', 'learning_rate': '3.632e-07', 'entropy': '0.7003', 'num_tokens': '2.728e+06', 'mean_token_accuracy': '0.8216', 'epoch': '1.968'}\\n{'loss': '0.7055', 'grad_norm': '3.031', 'learning_rate': '1.496e-07', 'entropy': '0.7354', 'num_tokens': '2.758e+06', 'mean_token_accuracy': '0.8164', 'epoch': '1.989'}\\n\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\u001b[A\\n\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\u001b[A\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.47s/it]\\n\\r                                                 \\r\\r100%|██████████| 936/936 [18:49<00:00,  1.17it/s]\\r100%|██████████| 936/936 [18:49<00:00,  1.21s/it]\\n2026-05-22 02:52:44,637 [INFO] Saving SFT model to /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\n{'train_runtime': '1130', 'train_samples_per_second': '13.23', 'train_steps_per_second': '0.829', 'train_loss': '0.8118', 'entropy': '0.7426', 'num_tokens': '2.772e+06', 'mean_token_accuracy': '0.8165', 'epoch': '2'}\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.51s/it]\\n2026-05-22 02:52:59,399 [INFO] SFT warmup complete.\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.09}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T4N4LLgzLTy7zywrVGYDdf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29022",
+                "command": "head -50 /root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "283c0aa5-9ff0-40f0-a4ac-cd34ef7b64f4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018uTmB357kGgcdmuFQ6wAA1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 835,
+                "cache_read_input_tokens": 24749,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 835
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T18:56:43.018Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Mvo9Voehy4mi1pyEtH31aC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12046292\\\\ndrwxr-xr-x  3 root root        4096 May 22 02:52 .\\\\ndrwxr-xr-x 37 root root        4096 May 22 02:33 ..\\\\n-rw-r--r--  1 root root        1323 May 22 02:52 README.md\\\\n-rw-r--r--  1 root root        2246 May 22 02:52 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 22 02:52 checkpoint-936\\\\n-rw-r--r--  1 root root        1733 May 22 02:52 config.json\\\\n-rw-r--r--  1 root root         240 May 22 02:52 generation_config.json\\\\n-rw-r--r--  1 root root 12323931256 May 22 02:52 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 22 02:52 tokenizer.json\\\\n-rw-r--r--  1 root root         420 May 22 02:52 tokenizer_config.json\\\\n-rw-r--r--  1 root root        5841 May 22 02:52 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "f97e3f4f-e08b-4f9e-a56f-66ae6f19dbea",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12046292\\\\ndrwxr-xr-x  3 root root        4096 May 22 02:52 .\\\\ndrwxr-xr-x 37 root root        4096 May 22 02:33 ..\\\\n-rw-r--r--  1 root root        1323 May 22 02:52 README.md\\\\n-rw-r--r--  1 root root        2246 May 22 02:52 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 22 02:52 checkpoint-936\\\\n-rw-r--r--  1 root root        1733 May 22 02:52 config.json\\\\n-rw-r--r--  1 root root         240 May 22 02:52 generation_config.json\\\\n-rw-r--r--  1 root root 12323931256 May 22 02:52 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 22 02:52 tokenizer.json\\\\n-rw-r--r--  1 root root         420 May 22 02:52 tokenizer_config.json\\\\n-rw-r--r--  1 root root        5841 May 22 02:52 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 12046292\\ndrwxr-xr-x  3 root root        4096 May 22 02:52 .\\ndrwxr-xr-x 37 root root        4096 May 22 02:33 ..\\n-rw-r--r--  1 root root        1323 May 22 02:52 README.md\\n-rw-r--r--  1 root root        2246 May 22 02:52 chat_template.jinja\\ndrwxr-xr-x  2 root root        4096 May 22 02:52 checkpoint-936\\n-rw-r--r--  1 root root        1733 May 22 02:52 config.json\\n-rw-r--r--  1 root root         240 May 22 02:52 generation_config.json\\n-rw-r--r--  1 root root 12323931256 May 22 02:52 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 22 02:52 tokenizer.json\\n-rw-r--r--  1 root root         420 May 22 02:52 tokenizer_config.json\\n-rw-r--r--  1 root root        5841 May 22 02:52 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T18:56:43.537Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T4N4LLgzLTy7zywrVGYDdf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 02:31:09,563 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20 (GPU 0)\\\\n2026-05-22 02:31:10,150 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-22 02:32:31,840 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-22 02:33:52,145 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-22 02:33:52,146 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-22 02:33:53,148 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\\\n2026-05-22 02:33:53,149 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\\\n2026-05-22 02:33:53,171 [INFO] Dataset prepared: 7473 samples\\\\n[transformers] `logging_dir` is deprecated and will be removed in v5.2. Please set `TENSORBOARD_LOGGING_DIR` instead.\\\\n2026-05-22 02:33:54,886 [INFO] Starting SFT warmup (7473 samples, 2 epochs)...\\\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 151646, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/936 [00:00<?, ?it/s]\\\\r  0%|          | 1/936 [00:01<26:25,  1.70s/it]\\\\r  0%|          | 2/936 [00:02<21:03,  1.35s/it]\\\\r  0%|          | 3/936 [00:03<19:29,  1.25s/it]\\\\r  0%|          | 4/936 [00:05<18:39,  1.20s/it]\\\\r  1%|          | 5/936 [00:06<18:29,  1.19s/it]\\\\r  1%|          | 6/936 [00:07<19:26,  1.25s/it]\\\\r  1%|          | 7/936 [00:08<19:01,  1.23s/it]\\\\r  1%|          | 8/936 [00:10<19:06,  1.24s/it]\\\\r  1%|          | 9/936 [00:11<18:45,  1.21s/it]\\\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\\\r                                                \\\\r\\\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\\\r  1%|          | 11/936 [00:13<18:21,  1.19s/it]\\\\r  1%|▏         | 12/936 [00:14<18:13,  1.18s/it]\\\\r  1%|▏         | 13/936 [00:15<18:08,  1.18s/it]\\\\r  1%|▏         | 14/936 [00:16<17:35,  1.14s/it]\\\\r  2%|▏         | 15/936 [00:18<17:27,  1.14s/it]\\\\r  2%|▏         | 16/936 [00:19<17:19,  1.13s/it]\\\\r  2%|▏         | 17/936 [00:20<17:25,  1.14s/it]\\\\r  2%|▏         | 18/936 [00:21<17:51,  1.17s/it]\\\\r  2%|▏         | 19/936 [00:22<17:36,  1.15s/it]\\\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\\\r                                                \\\\r\\\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\\\r  2%|▏         | 21/936 [00:25<17:38,  1.16s/it]\\\\r  2%|▏         | 22/936 [00:26<17:37,  1.16s/it]\\\\r  2%|▏         | 23/936 [00:27<17:32,  1.15s/it]\\\\r  3%|▎         | 24/936 [00:28<18:05,  1.19s/it]\\\\r  3%|▎         | 25/936 [00:29<18:01,  1.19s/it]\\\\r  3%|▎         | 26/936 [00:30<17:30,  1.15s/it]\\\\r  3%|▎         | 27/936 [00:31<17:28,  1.15s/it]\\\\r  3%|▎         | 28/936 [00:33<17:28,  1.15s/it]\\\\r  3%|▎         | 29/936 [00:34<18:04,  1.20s/it]\\\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\\\r                                                \\\\r\\\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\\\r  3%|▎         | 31/936 [00:36<18:02,  1.20s/it]\\\\r  3%|▎         | 32/936 [00:37<17:52,  1.19s/it]\\\\r  4%|▎         | 33/936 [00:39<18:18,  1.22s/it]\\\\r  4%|▎         | 34/936 [00:40<18:43,  1.25s/\\\\n\\\\n... [截断: 输出过长，省略 27919 字符] ...\\\\n\\\\n.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515', 'num_tokens': '8.558e+05', 'mean_token_accuracy': '0.7853', 'epoch': '0.6208'}\\\\n{'loss': '0.8201', 'grad_norm': '3', 'learning_rate': '1.361e-05', 'entropy': '0.8221', 'num_tokens': '8.867e+05', 'mean_token_accuracy': '0.7928', 'epoch': '0.6422'}\\\\n{'loss': '0.8824', 'grad_norm': '2.812', 'learning_rate': '1.34e-05', 'entropy': '0.8663', 'num_tokens': '9.156e+05', 'mean_token_accuracy': '0.7826', 'epoch': '0.6636'}\\\\n{'loss': '0.8597', 'grad_norm': '3.125', 'learning_rate': '1.318e-05', 'entropy': '0.8508', 'num_tokens': '9.443e+05', 'mean_token_accuracy': '0.7824', 'epoch': '0.685'}\\\\n{'loss': '0.8203', 'grad_norm': '3.047', 'learning_rate': '1.297e-05', 'entropy': '0.8466', 'num_tokens': '9.73e+05', 'mean_token_accuracy': '0.7909', 'epoch': '0.7064'}\\\\n{'loss': '0.8359', 'grad_norm': '3.031', 'learning_rate': '1.276e-05', 'entropy': '0.8387', 'num_tokens': '1.003e+06', 'mean_token_accuracy': '0.7864', 'epoch': '0.7279'}\\\\n{'loss': '0.8196', 'grad_norm': '2.953', 'learning_rate': '1.254e-05', 'entropy': '0.8349', 'num_tokens': '1.032e+06', 'mean_token_accuracy': '0.7914', 'epoch': '0.7493'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "6592d5c7-96b9-4b26-a141-436ab50d3720",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 02:31:09,563 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20 (GPU 0)\\\\n2026-05-22 02:31:10,150 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-22 02:32:31,840 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-22 02:33:52,145 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-22 02:33:52,146 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-22 02:33:53,148 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\\\n2026-05-22 02:33:53,149 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\\\n2026-05-22 02:33:53,171 [INFO] Dataset prepared: 7473 samples\\\\n[transformers] `logging_dir` is deprecated and will be removed in v5.2. Please set `TENSORBOARD_LOGGING_DIR` instead.\\\\n2026-05-22 02:33:54,886 [INFO] Starting SFT warmup (7473 samples, 2 epochs)...\\\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 151646, 'pad_token_id': 151643}.\\\\n\\\\r  0%|          | 0/936 [00:00<?, ?it/s]\\\\r  0%|          | 1/936 [00:01<26:25,  1.70s/it]\\\\r  0%|          | 2/936 [00:02<21:03,  1.35s/it]\\\\r  0%|          | 3/936 [00:03<19:29,  1.25s/it]\\\\r  0%|          | 4/936 [00:05<18:39,  1.20s/it]\\\\r  1%|          | 5/936 [00:06<18:29,  1.19s/it]\\\\r  1%|          | 6/936 [00:07<19:26,  1.25s/it]\\\\r  1%|          | 7/936 [00:08<19:01,  1.23s/it]\\\\r  1%|          | 8/936 [00:10<19:06,  1.24s/it]\\\\r  1%|          | 9/936 [00:11<18:45,  1.21s/it]\\\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\\\r                                                \\\\r\\\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\\\r  1%|          | 11/936 [00:13<18:21,  1.19s/it]\\\\r  1%|▏         | 12/936 [00:14<18:13,  1.18s/it]\\\\r  1%|▏         | 13/936 [00:15<18:08,  1.18s/it]\\\\r  1%|▏         | 14/936 [00:16<17:35,  1.14s/it]\\\\r  2%|▏         | 15/936 [00:18<17:27,  1.14s/it]\\\\r  2%|▏         | 16/936 [00:19<17:19,  1.13s/it]\\\\r  2%|▏         | 17/936 [00:20<17:25,  1.14s/it]\\\\r  2%|▏         | 18/936 [00:21<17:51,  1.17s/it]\\\\r  2%|▏         | 19/936 [00:22<17:36,  1.15s/it]\\\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\\\r                                                \\\\r\\\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\\\r  2%|▏         | 21/936 [00:25<17:38,  1.16s/it]\\\\r  2%|▏         | 22/936 [00:26<17:37,  1.16s/it]\\\\r  2%|▏         | 23/936 [00:27<17:32,  1.15s/it]\\\\r  3%|▎         | 24/936 [00:28<18:05,  1.19s/it]\\\\r  3%|▎         | 25/936 [00:29<18:01,  1.19s/it]\\\\r  3%|▎         | 26/936 [00:30<17:30,  1.15s/it]\\\\r  3%|▎         | 27/936 [00:31<17:28,  1.15s/it]\\\\r  3%|▎         | 28/936 [00:33<17:28,  1.15s/it]\\\\r  3%|▎         | 29/936 [00:34<18:04,  1.20s/it]\\\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\\\r                                                \\\\r\\\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\\\r  3%|▎         | 31/936 [00:36<18:02,  1.20s/it]\\\\r  3%|▎         | 32/936 [00:37<17:52,  1.19s/it]\\\\r  4%|▎         | 33/936 [00:39<18:18,  1.22s/it]\\\\r  4%|▎         | 34/936 [00:40<18:43,  1.25s/\\\\n\\\\n... [截断: 输出过长，省略 27919 字符] ...\\\\n\\\\n.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515', 'num_tokens': '8.558e+05', 'mean_token_accuracy': '0.7853', 'epoch': '0.6208'}\\\\n{'loss': '0.8201', 'grad_norm': '3', 'learning_rate': '1.361e-05', 'entropy': '0.8221', 'num_tokens': '8.867e+05', 'mean_token_accuracy': '0.7928', 'epoch': '0.6422'}\\\\n{'loss': '0.8824', 'grad_norm': '2.812', 'learning_rate': '1.34e-05', 'entropy': '0.8663', 'num_tokens': '9.156e+05', 'mean_token_accuracy': '0.7826', 'epoch': '0.6636'}\\\\n{'loss': '0.8597', 'grad_norm': '3.125', 'learning_rate': '1.318e-05', 'entropy': '0.8508', 'num_tokens': '9.443e+05', 'mean_token_accuracy': '0.7824', 'epoch': '0.685'}\\\\n{'loss': '0.8203', 'grad_norm': '3.047', 'learning_rate': '1.297e-05', 'entropy': '0.8466', 'num_tokens': '9.73e+05', 'mean_token_accuracy': '0.7909', 'epoch': '0.7064'}\\\\n{'loss': '0.8359', 'grad_norm': '3.031', 'learning_rate': '1.276e-05', 'entropy': '0.8387', 'num_tokens': '1.003e+06', 'mean_token_accuracy': '0.7864', 'epoch': '0.7279'}\\\\n{'loss': '0.8196', 'grad_norm': '2.953', 'learning_rate': '1.254e-05', 'entropy': '0.8349', 'num_tokens': '1.032e+06', 'mean_token_accuracy': '0.7914', 'epoch': '0.7493'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 02:31:09,563 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20 (GPU 0)\\n2026-05-22 02:31:10,150 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-22 02:32:31,840 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\n2026-05-22 02:33:52,145 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-22 02:33:52,146 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\n2026-05-22 02:33:53,148 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\n2026-05-22 02:33:53,149 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 02:09:01 2026).\\n2026-05-22 02:33:53,171 [INFO] Dataset prepared: 7473 samples\\n[transformers] `logging_dir` is deprecated and will be removed in v5.2. Please set `TENSORBOARD_LOGGING_DIR` instead.\\n2026-05-22 02:33:54,886 [INFO] Starting SFT warmup (7473 samples, 2 epochs)...\\n[transformers] The tokenizer has new PAD/BOS/EOS tokens that differ from the model config and generation config. The model config and generation config were aligned accordingly, being updated with the tokenizer's values. Updated tokens: {'bos_token_id': 151646, 'pad_token_id': 151643}.\\n\\r  0%|          | 0/936 [00:00<?, ?it/s]\\r  0%|          | 1/936 [00:01<26:25,  1.70s/it]\\r  0%|          | 2/936 [00:02<21:03,  1.35s/it]\\r  0%|          | 3/936 [00:03<19:29,  1.25s/it]\\r  0%|          | 4/936 [00:05<18:39,  1.20s/it]\\r  1%|          | 5/936 [00:06<18:29,  1.19s/it]\\r  1%|          | 6/936 [00:07<19:26,  1.25s/it]\\r  1%|          | 7/936 [00:08<19:01,  1.23s/it]\\r  1%|          | 8/936 [00:10<19:06,  1.24s/it]\\r  1%|          | 9/936 [00:11<18:45,  1.21s/it]\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\r                                                \\r\\r  1%|          | 10/936 [00:12<18:35,  1.21s/it]\\r  1%|          | 11/936 [00:13<18:21,  1.19s/it]\\r  1%|▏         | 12/936 [00:14<18:13,  1.18s/it]\\r  1%|▏         | 13/936 [00:15<18:08,  1.18s/it]\\r  1%|▏         | 14/936 [00:16<17:35,  1.14s/it]\\r  2%|▏         | 15/936 [00:18<17:27,  1.14s/it]\\r  2%|▏         | 16/936 [00:19<17:19,  1.13s/it]\\r  2%|▏         | 17/936 [00:20<17:25,  1.14s/it]\\r  2%|▏         | 18/936 [00:21<17:51,  1.17s/it]\\r  2%|▏         | 19/936 [00:22<17:36,  1.15s/it]\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\r                                                \\r\\r  2%|▏         | 20/936 [00:23<17:29,  1.15s/it]\\r  2%|▏         | 21/936 [00:25<17:38,  1.16s/it]\\r  2%|▏         | 22/936 [00:26<17:37,  1.16s/it]\\r  2%|▏         | 23/936 [00:27<17:32,  1.15s/it]\\r  3%|▎         | 24/936 [00:28<18:05,  1.19s/it]\\r  3%|▎         | 25/936 [00:29<18:01,  1.19s/it]\\r  3%|▎         | 26/936 [00:30<17:30,  1.15s/it]\\r  3%|▎         | 27/936 [00:31<17:28,  1.15s/it]\\r  3%|▎         | 28/936 [00:33<17:28,  1.15s/it]\\r  3%|▎         | 29/936 [00:34<18:04,  1.20s/it]\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\r                                                \\r\\r  3%|▎         | 30/936 [00:35<17:52,  1.18s/it]\\r  3%|▎         | 31/936 [00:36<18:02,  1.20s/it]\\r  3%|▎         | 32/936 [00:37<17:52,  1.19s/it]\\r  4%|▎         | 33/936 [00:39<18:18,  1.22s/it]\\r  4%|▎         | 34/936 [00:40<18:43,  1.25s/\\n\\n... [截断: 输出过长，省略 27919 字符] ...\\n\\n.9112', 'num_tokens': '3.525e+05', 'mean_token_accuracy': '0.7727', 'epoch': '0.2569'}\\n{'loss': '0.9078', 'grad_norm': '3.047', 'learning_rate': '1.724e-05', 'entropy': '0.9028', 'num_tokens': '3.836e+05', 'mean_token_accuracy': '0.7716', 'epoch': '0.2783'}\\n{'loss': '0.8864', 'grad_norm': '2.703', 'learning_rate': '1.703e-05', 'entropy': '0.8801', 'num_tokens': '4.134e+05', 'mean_token_accuracy': '0.7788', 'epoch': '0.2997'}\\n{'loss': '0.9155', 'grad_norm': '3', 'learning_rate': '1.682e-05', 'entropy': '0.8996', 'num_tokens': '4.419e+05', 'mean_token_accuracy': '0.7738', 'epoch': '0.3211'}\\n{'loss': '0.8619', 'grad_norm': '2.859', 'learning_rate': '1.66e-05', 'entropy': '0.8683', 'num_tokens': '4.713e+05', 'mean_token_accuracy': '0.7807', 'epoch': '0.3425'}\\n{'loss': '0.8776', 'grad_norm': '2.812', 'learning_rate': '1.639e-05', 'entropy': '0.8717', 'num_tokens': '5.014e+05', 'mean_token_accuracy': '0.7816', 'epoch': '0.3639'}\\n{'loss': '0.8795', 'grad_norm': '2.906', 'learning_rate': '1.618e-05', 'entropy': '0.8686', 'num_tokens': '5.307e+05', 'mean_token_accuracy': '0.7833', 'epoch': '0.3853'}\\n{'loss': '0.8526', 'grad_norm': '2.953', 'learning_rate': '1.596e-05', 'entropy': '0.8466', 'num_tokens': '5.602e+05', 'mean_token_accuracy': '0.7865', 'epoch': '0.4067'}\\n{'loss': '0.8847', 'grad_norm': '2.984', 'learning_rate': '1.575e-05', 'entropy': '0.8723', 'num_tokens': '5.896e+05', 'mean_token_accuracy': '0.78', 'epoch': '0.4282'}\\n{'loss': '0.8586', 'grad_norm': '3.062', 'learning_rate': '1.553e-05', 'entropy': '0.8587', 'num_tokens': '6.198e+05', 'mean_token_accuracy': '0.7838', 'epoch': '0.4496'}\\n{'loss': '0.8755', 'grad_norm': '3.047', 'learning_rate': '1.532e-05', 'entropy': '0.891', 'num_tokens': '6.485e+05', 'mean_token_accuracy': '0.7763', 'epoch': '0.471'}\\n{'loss': '0.8766', 'grad_norm': '2.891', 'learning_rate': '1.511e-05', 'entropy': '0.8692', 'num_tokens': '6.79e+05', 'mean_token_accuracy': '0.7817', 'epoch': '0.4924'}\\n{'loss': '0.862', 'grad_norm': '3.109', 'learning_rate': '1.489e-05', 'entropy': '0.8468', 'num_tokens': '7.089e+05', 'mean_token_accuracy': '0.7857', 'epoch': '0.5138'}\\n{'loss': '0.8643', 'grad_norm': '2.906', 'learning_rate': '1.468e-05', 'entropy': '0.8632', 'num_tokens': '7.391e+05', 'mean_token_accuracy': '0.7827', 'epoch': '0.5352'}\\n{'loss': '0.8401', 'grad_norm': '3.125', 'learning_rate': '1.447e-05', 'entropy': '0.8533', 'num_tokens': '7.695e+05', 'mean_token_accuracy': '0.7873', 'epoch': '0.5566'}\\n{'loss': '0.8484', 'grad_norm': '2.922', 'learning_rate': '1.425e-05', 'entropy': '0.8465', 'num_tokens': '7.979e+05', 'mean_token_accuracy': '0.786', 'epoch': '0.578'}\\n{'loss': '0.8398', 'grad_norm': '2.734', 'learning_rate': '1.404e-05', 'entropy': '0.8405', 'num_tokens': '8.259e+05', 'mean_token_accuracy': '0.7878', 'epoch': '0.5994'}\\n{'loss': '0.8446', 'grad_norm': '2.922', 'learning_rate': '1.382e-05', 'entropy': '0.8515', 'num_tokens': '8.558e+05', 'mean_token_accuracy': '0.7853', 'epoch': '0.6208'}\\n{'loss': '0.8201', 'grad_norm': '3', 'learning_rate': '1.361e-05', 'entropy': '0.8221', 'num_tokens': '8.867e+05', 'mean_token_accuracy': '0.7928', 'epoch': '0.6422'}\\n{'loss': '0.8824', 'grad_norm': '2.812', 'learning_rate': '1.34e-05', 'entropy': '0.8663', 'num_tokens': '9.156e+05', 'mean_token_accuracy': '0.7826', 'epoch': '0.6636'}\\n{'loss': '0.8597', 'grad_norm': '3.125', 'learning_rate': '1.318e-05', 'entropy': '0.8508', 'num_tokens': '9.443e+05', 'mean_token_accuracy': '0.7824', 'epoch': '0.685'}\\n{'loss': '0.8203', 'grad_norm': '3.047', 'learning_rate': '1.297e-05', 'entropy': '0.8466', 'num_tokens': '9.73e+05', 'mean_token_accuracy': '0.7909', 'epoch': '0.7064'}\\n{'loss': '0.8359', 'grad_norm': '3.031', 'learning_rate': '1.276e-05', 'entropy': '0.8387', 'num_tokens': '1.003e+06', 'mean_token_accuracy': '0.7864', 'epoch': '0.7279'}\\n{'loss': '0.8196', 'grad_norm': '2.953', 'learning_rate': '1.254e-05', 'entropy': '0.8349', 'num_tokens': '1.032e+06', 'mean_token_accuracy': '0.7914', 'epoch': '0.7493'}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me now try to check W&B for this run. Let me also check the checkpoint-936 directory size.",
+              "signature": "EqMCCmMIDRgCKkCglbp9+QWqrdIGLQYFYfnA6rWDepONiGZjavli979ViC7X8OfBhFL2I66vDaHVv8s9Q4HqfySnWgkzdsFQ10aVMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDO3++G0crHpMF5ttohoMskU4m1HFzV6do16zIjDw069KWY51736hnLZQBL/NkkvBgbyJHucwx1+TnsfI84/2wOhEKFU5KRyBf7Cpad4qbowpY97+I/SaEvjVyA703+iiFc/P+xoLJLIwRsy8K5goCjqhxqYdxJ+QToCN9025LGK8B2z07qTjx0lkCb0dog48jpiXmaiuxgqunqtonjAN6ZhbP47H0i8vdVAS/GWwZodOjJaCjfA+fdiuR1srGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "f4400ebf-2cc2-4972-806f-cebbf896ded8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018hia1TtR85C7GLsoHStdUy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8981,
+                "cache_read_input_tokens": 25584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8981
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check W&B and the checkpoint size."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "353a3dba-283b-41df-a389-3fc124474c50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018hia1TtR85C7GLsoHStdUy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8981,
+                "cache_read_input_tokens": 25584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8981
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HtDJsC5JKYNYrECxDKFUGf",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__list_wandb_runs",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "86df0173-b60b-4cce-a943-7b829caa4faa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018hia1TtR85C7GLsoHStdUy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8981,
+                "cache_read_input_tokens": 25584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8981
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T18:56:48.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01HtDJsC5JKYNYrECxDKFUGf",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__list_wandb_runs"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "df71dd85-c5ee-4c3c-aefa-de835607d588",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__list_wandb_runs"
+              ],
+              "query": "select:mcp__agent-ml-research__list_wandb_runs",
+              "total_deferred_tools": 31
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ENTJ4vp4gAFyJmiFpX2Zcf",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29022",
+                "command": "du -sh /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "dfd01345-0aac-4020-86ea-975ec09c22a2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018hia1TtR85C7GLsoHStdUy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8981,
+                "cache_read_input_tokens": 25584,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8981
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T18:56:50.198Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ENTJ4vp4gAFyJmiFpX2Zcf",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "ea4abb40-8dd7-4b0e-a9d0-d99ffd6a7f3f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"23G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"23G\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EXCXoha8gCHxpLbEqQnhPV",
+              "name": "mcp__agent-ml-research__list_wandb_runs",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "filters": {
+                  "display_name": {
+                    "$regex": "sft_alpha4"
+                  }
+                },
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "e06e22c8-c5c4-4164-a1ec-e98dfc03b17a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CtpJdHLVEFfLVafzLRtNmn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 753,
+                "cache_read_input_tokens": 34565,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 753
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T18:56:53.151Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'",
+              "is_error": true,
+              "tool_use_id": "toolu_01EXCXoha8gCHxpLbEqQnhPV"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "177366a4-48fc-46c5-b710-e05a092d58ad",
+            "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HG6AA7UBDznZnVP1ed2TmW",
+              "name": "mcp__agent-ml-research__list_wandb_runs",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "57577a27-27f8-4166-a150-62464de778a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EvTBVrZvV6qghXYAxn2rsn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 173,
+                "cache_read_input_tokens": 35318,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 173
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T18:56:55.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'",
+              "is_error": true,
+              "tool_use_id": "toolu_01HG6AA7UBDznZnVP1ed2TmW"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "a49be234-79ab-4bce-a706-8f57ab35e217",
+            "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The list_wandb_runs tool seems to have an issue with the parameter. Let me try without the filters parameter.",
+              "signature": "ErICCmMIDRgCKkDjLfoNOew005bZItXxsvT4Oh4dI7lVtSbUgxnUYXOBUHcCYWKIRFqZRgOWA3lmYUnewYjTJyBWwUOu/PtIRhBXMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDFVbh2okUnEqgU2uAhoM79Lho9b8N5VSptjjIjCgeuhekt2wMpAg5fNSdAPuPjA1h+woquvYc0q7fkQFUAAWRO+moQeFeytiL8ihTfQqfRgzyIhvcKsll0iKRz+kg3jF3zY739OIqS0nWmVpUQ3OkC7lhGejI+J5KMIaBL1Pg9WSxpxkWsOwXuZtTPVuCxhr+XkTO9Pdn8uYw1BTaLjS3+9IPDDaK5h6yOw0q0zjaxJ2e+K7PFiYrs1LXVKzcG1AEMcAtdktjP15b9RcGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "0215cb89-5982-44c4-ab72-6dc38a760d97",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172jYbMF9orZuwrts8kUJXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 35491,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 241
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wpeur6vAyCtWaAicQEVizN",
+              "name": "mcp__agent-ml-research__list_wandb_runs",
+              "input": {},
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "18a3fd0e-6a01-4a06-a7d2-8fee87ac7c42",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0172jYbMF9orZuwrts8kUJXT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 35491,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 241
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T18:56:58.416Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'",
+              "is_error": true,
+              "tool_use_id": "toolu_01Wpeur6vAyCtWaAicQEVizN"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "54f5162c-72aa-45ed-b4be-7f45225c6638",
+            "tool_use_result": "Error: Error executing tool list_wandb_runs: list_wandb_runs() got an unexpected keyword argument 'wandb_project'"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The tool seems buggy - it's adding a `wandb_project` parameter even though I didn't pass it. Let me check if maybe the training didn't log to W&B (network was unreachable). Let me check the log for W&B references.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "f234861a-e305-4c4d-b420-721723833dcf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QoSHuyYccUDn9W6i6U4UQQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 137,
+                "cache_read_input_tokens": 35732,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 137
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B 工具有 bug，跳过。日志显示网络不可达（`[Errno 101] Network is unreachable`），W&B 可能未上传。让我确认下。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "ddbf8611-0110-4dba-a7f7-21de391f7c90",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QoSHuyYccUDn9W6i6U4UQQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 137,
+                "cache_read_input_tokens": 35732,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 137
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxuPASsAXp32bdg78AHYUX",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-29022",
+                "command": "grep -i \"wandb\" /root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "6bc5fe6a-437f-45d4-9eec-e6e829f476d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QoSHuyYccUDn9W6i6U4UQQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 137,
+                "cache_read_input_tokens": 35732,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 137
+                },
+                "output_tokens": 11,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T18:57:04.842Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxuPASsAXp32bdg78AHYUX",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "e076c573-8479-493e-83fa-8bca5d80a608",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中无 W&B 记录，网络不通导致未上传。已有足够信息汇总。\n\n---\n\n## sft_alpha4_20_v2 实验结果\n\n**Conclusion: SUCCESS**\n\n### 训练概况\n| 指标 | 值 |\n|------|-----|\n| 状态 | 正常完成 (EXIT_CODE=0) |\n| 总 steps | 936 (2 epochs × 468 steps) |\n| 训练样本 | 7,473 (GSM8K) |\n| 训练时长 | ~18 min 49 sec |\n| GPU | cuda:0 (CUDA_VISIBLE_DEVICES=2) |\n\n### Loss 趋势\n| 阶段 | Loss | Token Accuracy |\n|------|------|---------------|\n| 开始 (epoch 0.02) | 1.295 | 0.711 |\n| 中间 (epoch 1.0) | ~0.78 | ~0.80 |\n| 结束 (epoch 2.0) | ~0.70 | ~0.82 |\n| **平均 train_loss** | **0.8118** | **0.8165** |\n\nLoss 从 1.295 稳定下降至 ~0.70，收敛良好，无异常波动。\n\n### Checkpoint\n| 项目 | 值 |\n|------|-----|\n| checkpoint_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/` |\n| 模型文件 | `model.safetensors` (11.5 GB) |\n| 总大小 | 23 GB (含 checkpoint-936 子目录) |\n| 格式 | safetensors, 1 shard |\n| log_path | `/root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log` |\n\n### 备注\n- `save_only_model=True` 修复了 parent 的磁盘溢出问题，checkpoint 成功保存到数据盘\n- 网络不可达，W&B 未记录，数据仅在本地日志中\n- 无 eval metrics（SFT 阶段不评估，等后续 GRPO→eval pipeline）\n- 模型已就绪，可进入下一步 GRPO 训练"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "uuid": "ef7a1959-380a-4f6d-bca9-8e2e451c489d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014L55yiSYQdSA7mDcYwx6ws",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 35869,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中无 W&B 记录，网络不通导致未上传。已有足够信息汇总。\n\n---\n\n## sft_alpha4_20_v2 实验结果\n\n**Conclusion: SUCCESS**\n\n### 训练概况\n| 指标 | 值 |\n|------|-----|\n| 状态 | 正常完成 (EXIT_CODE=0) |\n| 总 steps | 936 (2 epochs × 468 steps) |\n| 训练样本 | 7,473 (GSM8K) |\n| 训练时长 | ~18 min 49 sec |\n| GPU | cuda:0 (CUDA_VISIBLE_DEVICES=2) |\n\n### Loss 趋势\n| 阶段 | Loss | Token Accuracy |\n|------|------|---------------|\n| 开始 (epoch 0.02) | 1.295 | 0.711 |\n| 中间 (epoch 1.0) | ~0.78 | ~0.80 |\n| 结束 (epoch 2.0) | ~0.70 | ~0.82 |\n| **平均 train_loss** | **0.8118** | **0.8165** |\n\nLoss 从 1.295 稳定下降至 ~0.70，收敛良好，无异常波动。\n\n### Checkpoint\n| 项目 | 值 |\n|------|-----|\n| checkpoint_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/` |\n| 模型文件 | `model.safetensors` (11.5 GB) |\n| 总大小 | 23 GB (含 checkpoint-936 子目录) |\n| 格式 | safetensors, 1 shard |\n| log_path | `/root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log` |\n\n### 备注\n- `save_only_model=True` 修复了 parent 的磁盘溢出问题，checkpoint 成功保存到数据盘\n- 网络不可达，W&B 未记录，数据仅在本地日志中\n- 无 eval metrics（SFT 阶段不评估，等后续 GRPO→eval pipeline）\n- 模型已就绪，可进入下一步 GRPO 训练"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 44643,
+            "duration_api_ms": 44366,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "26a4a915-cc9c-407b-aca3-fbe6ec0cf09e",
+            "total_cost_usd": 0.32452424999999996,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 24367,
+              "cache_read_input_tokens": 239149,
+              "output_tokens": 2017,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24367,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 632,
+                  "cache_read_input_tokens": 35869,
+                  "cache_creation_input_tokens": 339,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 339
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2051,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002166,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 2017,
+                "cacheReadInputTokens": 239149,
+                "cacheCreationInputTokens": 24367,
+                "webSearchRequests": 0,
+                "costUSD": 0.32235824999999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "9a8b85d3-89f9-48a0-bc35-37ac7fbda22e"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sft-alpha4-20-v2.md"
+}

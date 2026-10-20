@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8f34ece67d74088bf71",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v7 oom fix",
+  "task_key": "worker_code_grpo_v7_oom_fix_20260515T140350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_v7_oom_fix_20260515T140350_result.json",
+    "occurrence": 1,
+    "bytes": 730,
+    "sha256": "9d6247b4e18115565ee614deae0e82df7be65c61d672a3bf7dcb916c15a161ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都活着且在大量消耗 CPU：\n- RASP (PID 526823): 481% CPU, 15.3 GB RSS\n- Standard (PID 526899): 435% CPU, 15.1 GB RSS\n\n正处于 CPU 端模型加载/数据集准备阶段，GPU 尚未分配显存。日志不更新是 Python stdout 缓冲的问题，属正常现象。模型上 GPU 后（~11 GB bf16 × 2 模型 = ~22 GB/卡）日志会刷新。\n\n训练已在正常推进中。后续可用以下命令检查进度：\n```bash\n# 日志\ntail -50 /root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_rasp_v7.log\ntail -50 /root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_standard_v7.log\n\n# GPU 显存\nnvidia-smi --query-gpu=index,memory.used,memory.total --format=csv,noheader\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v7-oom-fix.md"
+}

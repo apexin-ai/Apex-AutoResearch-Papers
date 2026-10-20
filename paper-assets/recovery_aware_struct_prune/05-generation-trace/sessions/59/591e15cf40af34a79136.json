@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "id": "591e15cf40af34a79136",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd32935 status check",
+  "task_key": "worker_diagnose_westd32935_status_check_20260522T111802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd32935_status_check_20260522T111802_result.json",
+    "occurrence": 1,
+    "bytes": 6999,
+    "sha256": "cad1948e16181fa6d47f3a6bce1f884bfb7b242131ccd3345a5966af3f5fbbc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"server\": \"westd-32935\",\n  \"timestamp\": \"2026-05-22 ~19:18 CST\",\n\n  \"gpu_status\": {\n    \"gpu0\": {\"mem_used\": \"0 MiB\", \"mem_total\": \"97887 MiB\", \"util\": \"0%\", \"status\": \"IDLE\"},\n    \"gpu1\": {\"mem_used\": \"17651 MiB\", \"mem_total\": \"97887 MiB\", \"util\": \"98%\", \"status\": \"BUSY\"},\n    \"gpu2\": {\"mem_used\": \"16261 MiB\", \"mem_total\": \"97887 MiB\", \"util\": \"92%\", \"status\": \"BUSY\"},\n    \"gpu3\": {\"mem_used\": \"16243 MiB\", \"mem_total\": \"97887 MiB\", \"util\": \"93%\", \"status\": \"BUSY\"}\n  },\n\n  \"experiments\": {\n    \"pipeline_depth_first_20\": {\n      \"pid\": 40073,\n      \"alive\": true,\n      \"elapsed\": \"11m19s\",\n      \"gpu\": \"cuda:3\",\n      \"phase\": \"Phase 4 — eval_gsm8k (GRPO model)\",\n      \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20\",\n      \"output_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_depth_first_20.json\",\n      \"progress\": \"84/1319 (~6%)\",\n      \"note\": \"GRPO training completed, model saved. 50-sample checkpoint showed acc=0.08 (very low — possibly warm-up samples or genuine poor perf). NOT failed.\"\n    },\n\n    \"eval_gsm8k_sft_alpha3p0_20\": {\n      \"pid\": 37026,\n      \"alive\": true,\n      \"elapsed\": \"47m48s\",\n      \"gpu\": \"cuda:2\",\n      \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\",\n      \"output_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha3p0_20.json\",\n      \"progress\": \"450/1319 (34%)\",\n      \"accuracy_so_far\": 0.6356,\n      \"eos_rate\": \"98.44%\",\n      \"avg_len\": 196,\n      \"note\": \"⚠️ PID 37026 is running sft_rasp_alpha3p0_20, NOT grpo_random_20_seed123 as memory.md stated. NOT failed.\"\n    },\n\n    \"eval_math500_sft_random_20_v3\": {\n      \"pid\": 5241,\n      \"alive\": true,\n      \"elapsed\": \"432min (7h+)\",\n      \"gpu\": \"cuda:1\",\n      \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20\",\n      \"output_path\": \"/root/recovery_aware_struct_prune/results/eval_math500_sft_random_20_v3.json\",\n      \"note\": \"Untracked long-running process. 7 hours is abnormally long for MATH-500 eval — may be stuck.\"\n    },\n\n    \"eval_math500_grpo_standard_20_fair_2048_v2\": {\n      \"status\": \"COMPLETE\",\n      \"file\": \"/root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\",\n      \"accuracy\": 0.264,\n      \"n_correct\": 132,\n      \"n_total\": 500,\n      \"natural_eos_pct\": 0.556,\n      \"truncated_pct\": 0.444,\n      \"avg_response_length\": 1127.8\n    }\n  },\n\n  \"disk\": {\n    \"root_partition\": {\"used\": \"5.2G\", \"total\": \"30G\", \"pct\": \"18%\"},\n    \"autodl_tmp\": {\"used\": \"636G\", \"total\": \"650G\", \"pct\": \"98%\", \"warning\": \"⚠️ 数据盘几乎满\"}\n  },\n\n  \"action_items\": [\n    \"PID 5241 (eval_math500 sft_random_20, cuda:1) 运行 7 小时异常——建议检查是否卡死\",\n    \"数据盘 /root/autodl-tmp 98% 满 (仅剩 15G)——需要清理旧 checkpoint\",\n    \"memory.md 关于 PID 37026 的记录有误：实际跑的是 sft_rasp_alpha3p0_20，不是 grpo_random_20_seed123\",\n    \"3 个被 cron 误判 failed 的实验（depth_first pipeline, alpha3p0 eval, random_20 math500 eval）实际均在运行中\"\n  ]\n}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "server": "westd-32935",
+              "timestamp": "2026-05-22 ~19:18 CST",
+              "gpu_status": {
+                "gpu0": {
+                  "mem_used": "0 MiB",
+                  "mem_total": "97887 MiB",
+                  "util": "0%",
+                  "status": "IDLE"
+                },
+                "gpu1": {
+                  "mem_used": "17651 MiB",
+                  "mem_total": "97887 MiB",
+                  "util": "98%",
+                  "status": "BUSY"
+                },
+                "gpu2": {
+                  "mem_used": "16261 MiB",
+                  "mem_total": "97887 MiB",
+                  "util": "92%",
+                  "status": "BUSY"
+                },
+                "gpu3": {
+                  "mem_used": "16243 MiB",
+                  "mem_total": "97887 MiB",
+                  "util": "93%",
+                  "status": "BUSY"
+                }
+              },
+              "experiments": {
+                "pipeline_depth_first_20": {
+                  "pid": 40073,
+                  "alive": true,
+                  "elapsed": "11m19s",
+                  "gpu": "cuda:3",
+                  "phase": "Phase 4 — eval_gsm8k (GRPO model)",
+                  "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20",
+                  "output_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_depth_first_20.json",
+                  "progress": "84/1319 (~6%)",
+                  "note": "GRPO training completed, model saved. 50-sample checkpoint showed acc=0.08 (very low — possibly warm-up samples or genuine poor perf). NOT failed."
+                },
+                "eval_gsm8k_sft_alpha3p0_20": {
+                  "pid": 37026,
+                  "alive": true,
+                  "elapsed": "47m48s",
+                  "gpu": "cuda:2",
+                  "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935",
+                  "output_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha3p0_20.json",
+                  "progress": "450/1319 (34%)",
+                  "accuracy_so_far": 0.6356,
+                  "eos_rate": "98.44%",
+                  "avg_len": 196,
+                  "note": "⚠️ PID 37026 is running sft_rasp_alpha3p0_20, NOT grpo_random_20_seed123 as memory.md stated. NOT failed."
+                },
+                "eval_math500_sft_random_20_v3": {
+                  "pid": 5241,
+                  "alive": true,
+                  "elapsed": "432min (7h+)",
+                  "gpu": "cuda:1",
+                  "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20",
+                  "output_path": "/root/recovery_aware_struct_prune/results/eval_math500_sft_random_20_v3.json",
+                  "note": "Untracked long-running process. 7 hours is abnormally long for MATH-500 eval — may be stuck."
+                },
+                "eval_math500_grpo_standard_20_fair_2048_v2": {
+                  "status": "COMPLETE",
+                  "file": "/root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json",
+                  "accuracy": 0.264,
+                  "n_correct": 132,
+                  "n_total": 500,
+                  "natural_eos_pct": 0.556,
+                  "truncated_pct": 0.444,
+                  "avg_response_length": 1127.8
+                }
+              },
+              "disk": {
+                "root_partition": {
+                  "used": "5.2G",
+                  "total": "30G",
+                  "pct": "18%"
+                },
+                "autodl_tmp": {
+                  "used": "636G",
+                  "total": "650G",
+                  "pct": "98%",
+                  "warning": "⚠️ 数据盘几乎满"
+                }
+              },
+              "action_items": [
+                "PID 5241 (eval_math500 sft_random_20, cuda:1) 运行 7 小时异常——建议检查是否卡死",
+                "数据盘 /root/autodl-tmp 98% 满 (仅剩 15G)——需要清理旧 checkpoint",
+                "memory.md 关于 PID 37026 的记录有误：实际跑的是 sft_rasp_alpha3p0_20，不是 grpo_random_20_seed123",
+                "3 个被 cron 误判 failed 的实验（depth_first pipeline, alpha3p0 eval, random_20 math500 eval）实际均在运行中"
+              ]
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd32935-status-check.md"
+}

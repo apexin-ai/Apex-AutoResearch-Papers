@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b95762d493ea6d93b9fb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "prep mbpp eval",
+  "task_key": "worker_prep_mbpp_eval_20260522T080533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mbpp_eval_20260522T080533.log",
+    "occurrence": 1,
+    "bytes": 742533,
+    "sha256": "92ec06c95c127455d7ba941abee2124f83307012e274b2874f5df6f6bfb0fe29"
+  },
+  "statistics": {
+    "messages": 64,
+    "user_turns": 0,
+    "tool_calls": 23,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 14,
+      "tool_call": 23,
+      "tool_result": 23,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "b95762d493ea6d93b9fb-part-0001.json",
+          "message_count": 19
+        },
+        {
+          "path": "b95762d493ea6d93b9fb-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-mbpp-eval.md"
+}

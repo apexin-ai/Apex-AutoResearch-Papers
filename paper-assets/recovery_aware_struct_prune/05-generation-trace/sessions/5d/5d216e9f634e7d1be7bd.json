@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d216e9f634e7d1be7bd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code kill v4 restart v5",
+  "task_key": "worker_code_kill-v4-restart-v5_20260515T093216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill-v4-restart-v5_20260515T093216_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "d5e1056bbff7c4bf1472bec8b8b62f53c43f9b714c04a3a22785ec83555d19d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v5 已启动，PID 498474，tmux session `grpo_stage2_rasp_20_v5`。等 ~12 分钟后检查前 3 步速度。\n\n## 当前状态汇总\n\n| 项目 | 状态 |\n|------|------|\n| **v4 kill** | ✅ 已 force kill (339111) |\n| **v5 启动** | ✅ PID 498474, cuda:0, tmux=grpo_stage2_rasp_20_v5 |\n| **SFT retrain** | 🔄 运行中 PID 239076, cuda:1, step 1176/1870 (63%), ~4.3s/it, 预计还需 ~50 min |\n| **D023 CPU re-eval** | ⚠️ 两个都卡在 `Evaluating: 0%` — CPU 推理极慢，20 样本可能需要很长时间 |\n| **磁盘** | 根分区 8.6G/30G (29%), 数据盘 176G/250G (71%) — OK |\n| **GPU** | cuda:0 = 0 MiB (v5 刚启动待加载), cuda:1 = 51581 MiB (SFT retrain) |\n\nv5 修改: `max_completion_length` 从 2048→512，其他参数完全一致。预期每步从 ~29min 降到 ~7-10min。\n\n等 12 分钟后回来检查 v5 前几步时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-v4-restart-v5.md"
+}

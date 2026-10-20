@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b55a0aa70cb4df805cf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest westb launch next",
+  "task_key": "worker_ops_harvest_westb_launch_next_20260518T181225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_westb_launch_next_20260518T181225_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "caaec7c72a79d040259f0759f9af6f71a7113585b75f3222f4a0a9e59a6a120b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都还在跑，GPU 全占满：\n\n| Eval | GPU | 进度 | 当前 acc | 预估剩余 |\n|------|-----|-------|----------|----------|\n| CKA-only (grpo_cka_only_20_1p5b) | cuda:1 | 836/1319 (63%) | 0.3538 | ~55 min |\n| Standard (grpo_standard_20_1p5b) | cuda:0 | 528/1319 (40%) | 0.2320 | ~2h |\n\n两个 GPU 都满载（98%/95%），无法启动新任务。CKA-only 预计约 1 小时内完成，Standard 约 2 小时。需要等它们跑完后再收割结果、启动下一批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-westb-launch-next.md"
+}

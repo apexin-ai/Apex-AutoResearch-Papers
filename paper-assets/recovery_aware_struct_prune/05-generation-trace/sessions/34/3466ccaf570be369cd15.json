@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3466ccaf570be369cd15",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3 westb1 v2",
+  "task_key": "worker_launch_alpha3_westb1_v2_20260522T080610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3_westb1_v2_20260522T080610_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "c81c5e2a6805e771db7d18eeb66e14856c4d4f81af61850afecab7db4d3e6d5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GPU 都被占用：\n\n| GPU | PID | 进程 | 显存 | 运行时间 |\n|-----|-----|------|------|----------|\n| 0 | 162850 | `sft_recovery.py` α=3.0（带 `--gpu 0` 旧参数） | 51.5 GiB | 18min |\n| 1 | 164710 | `train_grpo_v5.py` cka_only_20 | 58.5 GiB | 8min |\n\n两个问题：\n\n1. **GPU 1 不空闲** — 正在跑 cka_only_20 的 GRPO，无法立即启动 α=3.0 pipeline。\n2. **GPU 0 上已有一个 α=3.0 SFT** — 但用了旧的 `--gpu 0` 参数（你提到的 bug）。这个跑了 18 分钟的结果可能不可靠。\n\n需要你决定：\n- 等 GPU 1 的 GRPO 跑完再启动？\n- 还是 kill 掉某个进程腾出 GPU？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3-westb1-v2.md"
+}

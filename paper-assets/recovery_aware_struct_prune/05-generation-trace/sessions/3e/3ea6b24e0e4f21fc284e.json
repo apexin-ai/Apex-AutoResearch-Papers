@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ea6b24e0e4f21fc284e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis e5 bootstrap ci reward",
+  "task_key": "worker_analysis_e5_bootstrap_ci_reward_20260518T100946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_e5_bootstrap_ci_reward_20260518T100946_result.json",
+    "occurrence": 1,
+    "bytes": 1121,
+    "sha256": "7ccee2d0473ce6be7868281975d92dd65ad9c3d3c0dd65144e26e38c7227ad09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**数据限制**: W&B 只存 aggregate metrics（mean, std），无 per-sample rewards。使用 parametric bootstrap（假设 CLT，n_eff=80 per interval）。\n\n**Trajectory 级别平均 gap（95% CI，全部显著）**:\n\n| Comparison | Gap | 95% CI | Favors |\n|---|---|---|---|\n| CKA-only vs Standard | +0.2351 | [0.205, 0.265] | CKA-only |\n| CKA-only vs RASP | +0.2539 | [0.224, 0.282] | CKA-only |\n| CKA-only vs Random | +0.1137 | [0.077, 0.151] | CKA-only |\n| Standard vs RASP | +0.0187 | [0.006, 0.032] | Standard |\n| Standard vs Random | -0.1153 | [-0.141, -0.091] | Random |\n| RASP vs Random | -0.1313 | [-0.156, -0.107] | Random |\n\n**关键发现**:\n- CKA-only 显著优于所有其他方法（gap 0.11-0.25）\n- Random pruning 显著优于 Standard 和 RASP（即 magnitude/RASP 剪枝反而不如 random）\n- Standard 仅 marginally 优于 RASP（gap 0.019，CI 刚好不含 0）\n- 所有结论对 n_eff∈{40,80,160} 稳健\n\nRandom 缺 step 100 数据（crash before sync）。结果已保存至 `artifacts/bootstrap_ci_reward_trajectories.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-e5-bootstrap-ci-reward.md"
+}

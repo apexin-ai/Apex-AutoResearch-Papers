@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe1f6aee450955b30fb9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag westb status harvest 20260522",
+  "task_key": "worker_diag_westb_status_harvest_20260522_20260522T020941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westb_status_harvest_20260522_20260522T020941_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "5a3eda8ad6d4f6485b7882c14279d4c76e1129e6b1ce0c44d8375cb6dbc96c77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== GPU 状态 ==\nGPU 0: 17053/97887 MiB (17%), utilization 97%\nGPU 1: 19195/97887 MiB (20%), utilization 99%\n\n== eval_math500_sft_cka_only_20_v7 (GPU 0, PID 133850) ==\n状态: RUNNING\n进度: 203/500 (41%)\n启动时间: 2026-05-22 08:38\n已运行: ~1.5h\n预计剩余: ~2-3h\nInterim accuracy: 日志中无中间 accuracy 输出（仅 tqdm 进度条）\n\n== eval_math500_sft_standard_25 (GPU 1, PID 104592) ==\n状态: RUNNING\n进度: 483/500 (97%)\n启动时间: 2026-05-21 23:20\n已运行: ~10.8h\n预计剩余: ~25min\nInterim accuracy: 日志中无中间 accuracy 输出\n注: v1 结果 (13.0%) 已存在于 /root/autodl-tmp/.../results/eval_math500_sft_standard_25.json，当前为 v2 重跑\n\n== 可用 checkpoint（/root/autodl-tmp/recovery_aware_struct_prune/）==\nsft_cka_only_20, sft_standard_25/checkpoint-1870, sft_cka_only_20_1p5b,\nsft_rasp_20_1p5b, sft_standard_20_1p5b, sft_rasp_rlvr_20,\nsft_qwen_math_cka_only_20_final, sft_standard_20_qwen_math_final,\ngrpo_cka_only_20, grpo_standard_25_westb, grpo_cka_only_20_seed123,\npruned_* (6 variants), grpo_*_1p5b (3 variants)\n\n== 可用结果文件 ==\n/root/recovery_aware_struct_prune/results/: 30+ JSON（含 eval_checkpoint-100_greedy.json 等）\n/root/autodl-tmp/.../results/: 60+ JSON（含 gsm8k, humaneval, mbpp, math500, inference_benchmark 等）\n```\n\nstandard_25 还差 17 个样本，~25 分钟内完成。cka_only_20_v7 预计还需 2-3 小时。两个结果 JSON 都尚未生成，无法收割。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westb-status-harvest-20260522.md"
+}

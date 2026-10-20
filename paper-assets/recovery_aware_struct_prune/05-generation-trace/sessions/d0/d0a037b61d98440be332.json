@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d0a037b61d98440be332",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code grpo stage2 prep",
+  "task_key": "worker_code_grpo_stage2_prep_20260515T003122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_stage2_prep_20260515T003122.log",
+    "occurrence": 1,
+    "bytes": 670664,
+    "sha256": "8f882a3fe6d796f210db4dec336f35c948112da06211b3728e170e41e21604a3"
+  },
+  "statistics": {
+    "messages": 305,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 305,
+      "chunks": [
+        {
+          "path": "d0a037b61d98440be332-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d0a037b61d98440be332-part-0002.json",
+          "message_count": 125
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-stage2-prep.md"
+}

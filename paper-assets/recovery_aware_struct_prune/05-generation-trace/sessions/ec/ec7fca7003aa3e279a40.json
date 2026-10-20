@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec7fca7003aa3e279a40",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing limitations",
+  "task_key": "worker_paper_writing_limitations_20260515T052115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_limitations_20260515T052115_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "7cd879e0619c2e7ec68326dec5bf286e9e7c72b810ea7e44e5033630657a985f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`paper/limitations.tex` 已写入，约 270 词，覆盖四个 Dream 三档一致的结构性问题：\n\n1. **Single model and architecture** — 仅在 DeepSeek-R1-Distill-Qwen-7B 验证，GQA 动态可能因架构不同而异\n2. **Single benchmark and sparsity ratio** — 仅 GSM8K + 20% sparsity，未覆盖其他推理模态和更高剪枝率\n3. **No inference speedup measurement** — 结构化剪枝但未报告实际推理延迟/吞吐\n4. **Limited seed diversity** — 单一 seed=42，未捕获 calibration 和 GRPO 训练的随机性方差\n\n语气坦诚但不自我否定，每项说明了限制存在的原因（计算资源、scope）和 future work 方向。引用了 `references.bib` 中的 `deepseek2025r1`、`cobbe2021gsm8k`、`hendrycks2021mmlu`、`chen2021humaneval`，使用了 `\\rasp{}` 宏。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-limitations.md"
+}

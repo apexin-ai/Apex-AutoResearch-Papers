@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61649213be931300388f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit grpo cka only 20",
+  "task_key": "worker_ops_submit_grpo_cka_only_20_20260517T145107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_grpo_cka_only_20_20260517T145107_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "b0edcc0dfbcf1f91a5a0d74b735fe17b9a13caebd366b440168780b6f6b1eab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已完成。报告如下：\n\n---\n\n**grpo_cka_only_20 提交成功**\n\n| 项目 | 详情 |\n|------|------|\n| **tmux session PID** | 725227 |\n| **python 进程 PID** | 725232 |\n| **GPU** | cuda:0 (CUDA_VISIBLE_DEVICES=0) |\n| **状态** | 模型加载中（CPU→GPU 传输阶段），进程正常运行 |\n| **超时** | 168h |\n\n**nvidia-smi 当前状态：**\n- **cuda:0**: 3MiB / 97887MiB — grpo_cka_only_20 正在加载模型（预计分钟级别完成加载后占用 ~20-30GB）\n- **cuda:1**: 73165MiB / 97887MiB, 99% util — grpo_random_20 (PID 719684) 正常训练中\n\n两个实验进程均正常。cuda:0 的显存将在模型加载完成并 `.to(cuda)` 后分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-grpo-cka-only-20.md"
+}

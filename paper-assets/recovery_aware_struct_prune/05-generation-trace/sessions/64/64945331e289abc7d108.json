@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "64945331e289abc7d108",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp grpo cka only 20",
+  "task_key": "worker_diagnose_eval_mbpp_grpo_cka_only_20_20260519T180955",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_grpo_cka_only_20_20260519T180955_result.json",
+    "occurrence": 1,
+    "bytes": 1507,
+    "sha256": "99e2c4ffa06a2c829eb362c6a84aac132b7dc6dbaeecce69a328543a3b296282"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型权重在 `checkpoint-100/` 子目录（12.3GB safetensors）。实际可用模型路径是 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/`。\n\n```json\n{\"root_cause\":\"python: can't open file '/root/recovery_aware_struct_prune/src/eval_mbpp.py': [Errno 2] No such file or directory\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"eval_mbpp.py 存在于本地但未同步到服务器\",\"已通过 base64 传输将 eval_mbpp.py 部署到服务器 src/ 目录\",\"dry-run --help 验证通过\",\"注意：模型权重在 grpo_cka_only_20/checkpoint-100/ 而非 grpo_cka_only_20/，重跑时需确认 --model_path 指向正确路径\"],\"can_auto_fix\":true,\"fixed\":true,\"model_path\":\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "python: can't open file '/root/recovery_aware_struct_prune/src/eval_mbpp.py': [Errno 2] No such file or directory",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "eval_mbpp.py 存在于本地但未同步到服务器",
+                "已通过 base64 传输将 eval_mbpp.py 部署到服务器 src/ 目录",
+                "dry-run --help 验证通过",
+                "注意：模型权重在 grpo_cka_only_20/checkpoint-100/ 而非 grpo_cka_only_20/，重跑时需确认 --model_path 指向正确路径"
+              ],
+              "can_auto_fix": true,
+              "fixed": true,
+              "model_path": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-grpo-cka-only-20.md"
+}

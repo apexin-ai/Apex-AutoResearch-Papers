@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f64269971bb8718ab30",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check math500 sft cka only v3",
+  "task_key": "worker_ops_check_math500_sft_cka_only_v3_20260518T170320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_math500_sft_cka_only_v3_20260518T170320_result.json",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "cecd22cc51e9d6a188219cad9c1819d40fd72fe47869511bc4a8aed37be66d27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/failed。\n\n**结果汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 失败 (timeout) |\n| EXIT_CODE | 124 (被 `timeout` 命令杀掉) |\n| 进度 | 170/500 (34%) |\n| 运行时间 | ~3h55m (21:01 → 00:57) |\n| 中间准确率 | 150题时 36.67% |\n| 结果文件 | 无（未完成，未写入） |\n\n**失败原因**：评估脚本被外层 `timeout` 命令终止。MATH-500 推理速度非常慢（平均每题约 1.4 分钟），按此速度跑完 500 题需要 ~11.5 小时，远超设定的 timeout 阈值。\n\n如需重跑，建议延长 timeout 或加 `--max_new_tokens` 限制生成长度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-math500-sft-cka-only-v3.md"
+}

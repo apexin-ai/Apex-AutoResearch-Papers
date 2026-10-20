@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fadca7f02151254be49",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 grpo cka only 20 2048",
+  "task_key": "worker_analysis_eval_math500_grpo_cka_only_20_2048_20260519T030922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_grpo_cka_only_20_2048_20260519T030922_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "d3840d1448150c03fd53b10801d71dccf198a54b32e8e744a54e79711efe5e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**GRPO CKA-only 20% 在 MATH-500 @2048 的最终 accuracy: 29.2%** (146/500)\n\n与 interim 29.7% 基本一致，最终略降 0.5pp。\n\n关键对比：\n- GRPO vs SFT for CKA-only: **+0.2pp**（几乎持平，GRPO 未给 CKA-only 带来显著提升）\n- CKA-only 是所有剪枝方案中最强的：比 GRPO Standard 高 2.8pp，比 GRPO RASP 高 5.2pp\n- 22% 的样本在 2048 tokens 处截断"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-grpo-cka-only-20-2048.md"
+}

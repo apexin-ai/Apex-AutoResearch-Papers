@@ -1,0 +1,1099 @@
+{
+  "schema_version": "1.0",
+  "id": "7d47b5cad7717f08cfc8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ssh submit qwen math sft math500 westb0",
+  "task_key": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846.jsonl",
+    "occurrence": 1,
+    "bytes": 32321,
+    "sha256": "a580ab12d044ef1bdd7ce19f115ba40791dc13d14066abe59f593261ef9aacae"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 26,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T23:12:00.876693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T23:12:00.877213+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T23:12:00.877491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,name,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T23:12:00.877697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T23:12:00.877901+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, NVIDIA RTX PRO 6000 Blackwell Server Edition, 0 MiB, 97887 MiB, 0 %\\\\n1, NVIDIA RTX PRO 6000 Blackwell Server Edition, 16547 MiB, 97887 MiB, 98 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T23:12:00.878102+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/src/eval_math500.py /root/recovery_aware_struct_prune/src/eval_math500.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T23:12:00.878325+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/checkpoint-935/config.json': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T23:12:00.878537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_math500.py\\\\n\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/src/eval_math500.py': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T23:12:00.878767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T23:12:00.878970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T23:12:00.879203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -name \"sft_qwen*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T23:12:00.879434+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/ -maxdepth 3 -name \"checkpoint-935\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T23:12:00.879702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T23:12:00.879919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T23:12:00.880147+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T23:12:00.880376+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T23:12:00.880632+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -80 /root/recovery_aware_struct_prune/src/eval_math500.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T23:12:00.880980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nMATH-500 Evaluation.\\\\n\\\\nEvaluates model accuracy on the HuggingFaceH4/MATH-500 subset (500 problems)\\\\nby generating reasoning traces and comparing extracted answers against gold.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport re\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef normalize_answer(ans: str) -> str:\\\\n    if ans is None:\\\\n        return \\\\\\\"\\\\\\\"\\\\n    ans = ans.strip()\\\\n    ans = ans.rstrip(\\\\\\\".\\\\\\\")\\\\n    ans = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\1\\\\\\\", ans)\\\\n    ans = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf|operatorname)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", ans)\\\\n    ans = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(left|right|displaystyle)\\\\\\\", \\\\\\\"\\\\\\\", ans)\\\\n    ans = ans.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\ \\\\\\\", \\\\\\\"\\\\\\\")\\\\n    ans = ans.replace(\\\\\\\"\\\\\\\\\\\\\\\\$\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"$\\\\\\\", \\\\\\\"\\\\\\\")\\\\n    ans \n…[truncated 753 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T23:12:00.881250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"add_argument\\|argparse\" /root/recovery_aware_struct_prune/src/eval_math500.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T23:12:00.881474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T23:12:00.881677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"add_argument\" /root/recovery_aware_struct_prune/src/eval_math500.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T23:12:00.881896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"188:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True)\\\\n189:    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, default=None)\\\\n190:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n191:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None)\\\\n192:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n193:    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n194:    parser.add_argument(\\\\\\\"--device_map\\\\\\\", type=str, default=\\\\\\\"auto\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-22T23:12:00.882162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-22T23:12:00.882381+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-22T23:12:00.882595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-22T23:12:00.882782+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T23:12:00.883040+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/.cache/huggingface/datasets -maxdepth 2 -name \"*math*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-22T23:12:00.883242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp -maxdepth 3 -name \"*MATH*\" -type d",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T23:12:00.883471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/.cache/huggingface/datasets/HuggingFaceH4___math-500\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-22T23:12:00.883666+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T23:12:00.883886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048' > /tmp/eval_math500_sft_qwen_cka_only_20.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T23:12:00.884098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\\\\\\\\' > /tmp/eval_math500_sft_qwen_cka_only_20.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=250766\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-22T23:12:00.884349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 250766 -o pid,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-22T23:12:00.884550+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -20 /tmp/eval_math500_sft_qwen_cka_only_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-22T23:12:00.884755+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"250766 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048' > /tmp/eval_math500_sft_qwen_cka_only_20.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-22T23:12:00.884959+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 07:10:20,403 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final\\\\n2026-05-23 07:10:21,106 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.68}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-22T23:12:00.885191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called CronCreate"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "CronCreate",
+            "tool_args": {
+              "cron": "*/8 * * * *",
+              "prompt": "Check eval_math500_sft_qwen_math_cka_only_20 on westb-23072 (PID 250766, GPU:0). Use ssh_read_only to check: 1) `ps -p 250766 -o pid= 2>/dev/null` to see if still running, 2) `tail -5 /tmp/eval_math500_sft_qwen_cka_only_20.log` for progress, 3) `ls /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json` to check if output exists. If done, read the result file and update registry exp_id=eval_math500_sft_qwen_math_cka_only_20 to DONE with metrics. Then delete this cron job."
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-22T23:12:00.885424+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Scheduled recurring job b4d98c3d (Every 8 minutes). Session-only (not written to disk, dies when Claude exits). Auto-expires after 7 days. Use CronDelete to cancel sooner."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "CronCreate",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-22T23:12:00.885621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "hypothesis",
+              "value": "Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-22T23:12:00.885835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_qwen_math_cka_only_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9046}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-22T23:12:00.886037+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "parent",
+              "value": "sft_qwen_math_cka_only_20",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-22T23:12:00.886247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_qwen_math_cka_only_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:11:13.833Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6885}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-22T23:12:00.886483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048', 'server': 'westb-23072', 'gpu': 'cuda:0', 'data_path': 'HuggingFaceH4/MATH-500', 'data_count': 500, 'model_name': 'Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1', 'seed': 42, 'checkpoint_source': 'sft_qwen_math_cka_only_20_final', 'eval_data': 'MATH-500 (N=500, max_new_tokens=2048)', 'pid': 250766, 'log_path': '/tmp/eval_math500_sft_qwen_cka_only_20.log'}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-22T23:12:00.886717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9543}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-22T23:12:00.886942+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "status",
+              "value": "PENDING",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-22T23:12:00.887148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_qwen_math_cka_only_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:11:23.518Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2794}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-22T23:12:00.887360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048', 'server': 'westb-23072', 'gpu': 'cuda:0', 'data_path': 'HuggingFaceH4/MATH-500', 'data_count': 500, 'model_name': 'Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1', 'seed': 42, 'checkpoint_source': 'sft_qwen_math_cka_only_20_final', 'eval_data': 'MATH-500 (N=500, max_new_tokens=2048)', 'pid': 250766, 'log_path': '/tmp/eval_math500_sft_qwen_cka_only_20.log'}"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-22T23:12:00.887579+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PENDING → RUNNING. Allowed: ['DONE', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9055}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-22T23:12:00.887777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-22T23:12:00.887986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_qwen_math_cka_only_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:11:40.975Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.9373}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-22T23:12:00.888203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_sft_qwen_math_cka_only_20",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048', 'server': 'westb-23072', 'gpu': 'cuda:0', 'data_path': 'HuggingFaceH4/MATH-500', 'data_count': 500, 'model_name': 'Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1', 'seed': 42, 'checkpoint_source': 'sft_qwen_math_cka_only_20_final', 'eval_data': 'MATH-500 (N=500, max_new_tokens=2048)', 'pid': 250766, 'log_path': '/tmp/eval_math500_sft_qwen_cka_only_20.log'}"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-22T23:12:00.888476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_sft_qwen_math_cka_only_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T23:11:09.017Z\\\", \\\"updated_at\\\": \\\"2026-05-22T23:11:49.277Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B CKA-only 20% SFT MATH-500 eval @2048. Cross-architecture validation: if CKA-only criterion generalizes from DeepSeek-R1-Distill to Qwen-Math on MATH-500. SFT GSM8K = 51.5% (N=200). Paired with westb:1 GRPO GSM8K for C1 decoupling cross-arch.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_qwen_math_cka_only_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"HuggingFaceH4/MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"Qwen2.5-Math-7B-CKA-only-20%-SFT-ep1\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_qwen_math_cka_only_20_final\\\", \\\"eval_data\\\": \\\"MATH-500 (N=500, max_new_tokens=2048)\\\", \\\"pid\\\": 250766, \\\"log_path\\\": \\\"/tmp/eval_math500_sft_qwen_cka_only_20.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0952}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-22T23:12:00.888747+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **任务已提交**: westb-23072 GPU:0, PID=250766\n- **模型路径修正**: 实际路径为 `sft_qwen_math_cka_only_20_final/`（合并后的最终模型，非 checkpoint-935 子目录）\n- **eval 脚本路径**: `/root/recovery_aware_struct_prune/src/eval_math500.py`\n- **Registry**: `eval_math500_sft_qwen_math_cka_only_20` → RUNNING\n- **Cron 监控**: 每 8 分钟检查进程状态和输出文件（job b4d98c3d）\n- **westb:1 未触碰**: GRPO GSM8K eval (PID 220343) 继续运行\n\n日志显示模型已开始加载，检测到 non-uniform MLP（符合剪枝后结构）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846"
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-submit-qwen-math-sft-math500-westb0.md"
+}

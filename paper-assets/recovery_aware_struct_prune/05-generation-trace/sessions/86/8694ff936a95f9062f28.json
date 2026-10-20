@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8694ff936a95f9062f28",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo cka only seed123",
+  "task_key": "worker_diagnose_grpo_cka_only_seed123_20260519T151959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_cka_only_seed123_20260519T151959_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "dc480ddb19a024193f0596b8a693fa3a2da570f8a087307944c2a00e60ef6e67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**grpo_cka_only_20_seed123：训练成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| 训练步数 | 100/100 |\n| train_loss | 0.1361 (聚合), 0.0505 (末步) |\n| 最终 reward | 0.2975 (std: 0.41) |\n| 训练耗时 | ~11h 38m |\n| WandB | `j8kn0sqd` |\n| Checkpoint | 完整 (model.safetensors 12.3GB + config + tokenizer) |\n\n**GPU 状态**：\n- cuda:0: 95% 利用率（有任务在跑）\n- cuda:1: 空闲，0 MiB 占用，可用于下一任务\n\n**Registry 已更新**：status=DONE, conclusion=success, metrics 已写入。\n\n**下一步**：需要在 seed 123 checkpoint 上跑 GSM8K eval，与 seed 42 的 64.37% 对比。cuda:1 当前空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-cka-only-seed123.md"
+}

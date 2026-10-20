@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b05cfa7673afe4c7275b",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "train set maxsteps and restart",
+  "task_key": "worker_train_set-maxsteps-and-restart_20260512T115727",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_set-maxsteps-and-restart_20260512T115727_result.json",
+    "occurrence": 1,
+    "bytes": 662,
+    "sha256": "05f0485605b8406059b55c87937449945186c9e6cd916f469f552af4806c95cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n### 产出汇总\n\n| | Group A (baseline) | Group B (conformance+GDPO) |\n|---|---|---|\n| **PID** | 25841 (python: 25842) | 26252 (python: 26253) |\n| **GPU** | GPU 0, 22340MiB, 88% util | GPU 1, 22340MiB, 84% util |\n| **进度条** | `0/500` | `0/500` |\n| **Config** | `max_steps: 500` | `max_steps: 500` |\n\n### 额外修复\n\n`train_grpo.py` line 216 有 bug：YAML 中的 `max_steps` 被忽略，代码只读命令行参数。已修改为：\n```python\nmax_steps = args.max_steps if args.max_steps else config.get(\"max_steps\", -1 if not args.dry_run else 5)\n```\n服务器和本地代码均已同步修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-set-maxsteps-and-restart.md"
+}

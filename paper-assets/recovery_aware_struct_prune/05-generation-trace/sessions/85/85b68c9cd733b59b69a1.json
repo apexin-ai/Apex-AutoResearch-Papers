@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b68c9cd733b59b69a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo random20 math500 westd2",
+  "task_key": "worker_ssh_submit_grpo_random20_math500_westd2_20260522T222358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_random20_math500_westd2_20260522T222358_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "43064b62bd2889b2cf0b20de95080d0a9ead08bc6ef84055d22c06482b2eb3f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并在运行中：\n\n- **exp_id**: `eval_math500_grpo_random_20_v2`\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100`\n- **GPU**: cuda:2 (`GPU-3bc5bcb7`)，已占用 12454 MiB\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2.log`\n- 模型已加载，检测到非均匀剪枝结构（MLP intermediate_size 11508-17592, heads 7-28），正在推理中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-random20-math500-westd2.md"
+}

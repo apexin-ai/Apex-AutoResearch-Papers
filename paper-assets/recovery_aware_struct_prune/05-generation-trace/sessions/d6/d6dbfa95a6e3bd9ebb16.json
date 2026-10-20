@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6dbfa95a6e3bd9ebb16",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd status check d097",
+  "task_key": "worker_ssh_westd_status_check_d097_20260521T135147",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_status_check_d097_20260521T135147_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "5971b454e2c26c0073ad7ec03c7b2b624d1c9ca4ed3442d5794842916d7286d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **cuda:0 @2048 (grpo_cka_only_25_v2)**: ALIVE — PID 379999, 运行 22min, 42/500 (8%)\n2. **cuda:2 @2048 (sft_cka_only_25_v2)**: ALIVE — PID 380074, 运行 22min, 43/500 (9%)\n3. **v1 SFT Standard 25% MATH-500 max_new_tokens**: **2048** — JSON 无显式 config 字段，但 response_length 上限恰好 2048，318/500 截断 (63.6%)，确认 v1 已用 2048。accuracy=0.13 (65/500)，模型本身过于冗长导致高截断率，不是 token 限制设太低的问题\n4. **eval_gsm8k_sft_standard_25**: **1181/1319 (90%)** — PID 335301 存活 5h44m，最近 checkpoint acc=0.5078, eos_rate=95.39%, avg_len=330。预计约 30-40min 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-status-check-d097.md"
+}

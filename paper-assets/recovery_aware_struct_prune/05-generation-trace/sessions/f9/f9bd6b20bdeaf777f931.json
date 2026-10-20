@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9bd6b20bdeaf777f931",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh launch depth first evals westd",
+  "task_key": "worker_ssh_launch_depth_first_evals_westd_20260522T142126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_depth_first_evals_westd_20260522T142126_result.json",
+    "occurrence": 1,
+    "bytes": 665,
+    "sha256": "b08094097f705bd5f6ba40a152d1dcd7525f6ba5a802744aa0824e12b0f8a267"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已成功启动。\n\n## 汇报\n\n1. **磁盘可用**: 77GB（89% 已用）\n2. **GRPO eval**: 启动成功，PID 51981，GPU 3 占用 12.6GB，已开始评估（7/1319 samples，~2s/it）\n3. **SFT eval 结果**: 不存在，需要重跑\n4. **SFT eval**: 启动成功，PID 52146，正在加载模型（检测到非均匀 MLP/Attention 结构），GPU 1 尚未完全加载\n5. **model_path**:\n   - GRPO: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20/checkpoint-100`\n   - SFT: `/root/autodl-tmp/recovery_aware_struct_prune/sft_depth_first_20`\n\n预计 GRPO eval 耗时 ~44 分钟（1319 samples × ~2s/it）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-depth-first-evals-westd.md"
+}

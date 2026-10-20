@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "990b0e761dcaf1631ab0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d019 kill v2 launch rasp v3",
+  "task_key": "worker_code_d019-kill-v2-launch-rasp-v3_20260515T075721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d019-kill-v2-launch-rasp-v3_20260515T075721_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "d0da1f8e1bc39ca1e97a48629d1bd6d7bfe8252183451f6d2b5adef3df813255"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 执行报告\n\n### 1. v2 进程 Kill\n- PID 274151 (GRPO v2 RASP) + PID 274156 (子进程 python) → 已 kill\n- PID 276973 (GRPO v2 Standard) + PID 276978 (子进程 python) → 已 kill\n- GPU 内存已完全释放（cuda:0: 3MiB, cuda:1: 0MiB）\n\n### 2. v3 脚本修改\n- `src/train_grpo_v3.py` line 253: 在 GRPOConfig 中添加 `gradient_checkpointing=True`（紧接 `save_strategy=\"steps\"` 之后）\n- shell 脚本无需修改（gradient_checkpointing 已硬编码在 Python 中）\n\n### 3. v3 RASP 启动状态\n- **tmux session**: `grpo_stage2_rasp_20_v3`\n- **PID**: 233484 (wrapper) → 233489 (python)\n- **日志**: `~/runs/recovery_aware_struct_prune/grpo_stage2_rasp_20_v3.log`\n- **当前状态**: 模型从磁盘加载中（CPU RSS 9.1GB 持续增长，加载完成后 dispatch 到 cuda:0）\n- 日志已确认 `Non-uniform MLP detected: intermediate_size range [8128, 18944]`\n\n### 4. 磁盘空间\n- `/root`: 30G 总量，8.6G 已用，**22G 可用 (29%)**\n\n### 注意\n- cuda:1 上有一个 `sft_standard_20_retrain` 任务（PID 239077）正在运行，也在模型加载阶段\n- 两个旧 `eval_gsm8k.py` 进程（PID 279598, 279950）仍在 CPU 上运行（各占 ~15GB RAM），无 GPU 占用，可能是僵尸进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d019-kill-v2-launch-rasp-v3.md"
+}

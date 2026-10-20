@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ee1fd6efa9aa44daf68",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval sft cka only 20 n1319",
+  "task_key": "worker_analysis_eval_sft_cka_only_20_n1319_20260517T234752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_sft_cka_only_20_n1319_20260517T234752_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "de59bf8ce3a03b85e8e9a453d109dcdad1f6c5de5b8cbc476e8afd3cf4853145"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**eval_sft_cka_only_20_n1319 最终结果：63.91% accuracy (843/1319), ±1.32% stderr**\n\n| Method (20%) | Post-Prune | Post-SFT (N=1319) | SFT Recovery |\n|---|---|---|---|\n| Standard | 17.5% | 59.7% | +42.2pp |\n| RASP | 29.0% | 61.4% | +32.4pp |\n| **CKA-only** | **38.5%** | **63.9%** | +25.4pp |\n\n**Hypothesis 判断**: CKA-only post-SFT 确实最高，排序 CKA-only > RASP > Standard 在 SFT 前后一致。SFT 将 21pp spread 压缩至 4.2pp，部分均等化但未完全抹平差异。Pre-SFT 结构保留质量可预测 post-SFT ranking。\n\nRegistry 已更新（hypothesis 已补充，其余字段此前已由 on_complete hook 自动填充：status=DONE, conclusion=success, metrics 完整）。memory.md 已追加全方法对比表和分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-sft-cka-only-20-n1319.md"
+}

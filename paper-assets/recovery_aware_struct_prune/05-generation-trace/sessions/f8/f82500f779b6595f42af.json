@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f82500f779b6595f42af",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd tmux status",
+  "task_key": "worker_check_westd_tmux_status_20260519T220216",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_tmux_status_20260519T220216_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "3b031eda6fe2a22a0b446ba710f0d08bff46ffd6b619f159ec1e3cf377601c68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n### 1. cka_scoring_stability_ablation — **已完成** ✓\n\nPID 143187 已退出。结果文件存在，核心指标：\n\n| 对比 | Attn ρ | MLP ρ | Combined ρ |\n|------|--------|-------|------------|\n| 256 vs 512 | 0.9890 | 0.9683 | **0.9788** |\n| 256 vs 1024 | 0.9762 | 0.9464 | **0.9641** |\n| 512 vs 1024 | 0.9950 | 0.9908 | **0.9938** |\n\n**Summary**: min_combined_ρ = 0.964, mean = 0.979, **stable = true**（阈值 0.95）。CKA scoring 在不同 calibration size 下高度稳定。\n\n---\n\n### 2. eval_mbpp_sft_standard_20_clean — **失败** ✗\n\n日志时间 `2026-05-20 04:35`，模型加载成功但下载 MBPP 数据集时因 **网络不可达** (`[Errno 101] Network is unreachable`) 崩溃。没有缓存可用，没有结果文件产出。\n\n**原因**: 未执行 `source /etc/network_turbo`，AutoDL 实例无法访问 HuggingFace。\n\n---\n\n### 3. eval_mbpp_grpo_standard_20_v4 — **未找到**\n\n没有任何对应的日志或结果文件。可能从未成功启动，或者命名不同。\n\n注意：`eval_mbpp_grpo_rasp_20` 是存在且已完成的（pass@1 = **0.1310 ± 0.0174**, 49/374），但这是 RASP 变体，不是 standard v4。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-tmux-status.md"
+}

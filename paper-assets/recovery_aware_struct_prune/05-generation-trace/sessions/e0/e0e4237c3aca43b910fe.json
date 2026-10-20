@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0e4237c3aca43b910fe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prep mf2 multiseed grpo",
+  "task_key": "worker_prep_mf2_multiseed_grpo_20260522T074505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mf2_multiseed_grpo_20260522T074505_result.json",
+    "occurrence": 1,
+    "bytes": 5291,
+    "sha256": "8fac7f98f1f0dab81c0e4669458ceca2b715dbcd9f3532158fd19c020a021958"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息收集完毕。以下是完整汇报：\n\n---\n\n```\n== SFT Checkpoints ==\nRASP α=1.0:\n  westd-32935: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd/ (12G) ✅\n  westb-23072: ❌ 不存在（仅有 sft_rasp_rlvr_20, sft_rasp_20_1p5b）\nRandom:\n  westd-32935: /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20/ (12G) ✅\n  westb-23072: ❌ 不存在\n\n== Seed 控制 ==\n方式: --seed 参数（train_grpo_v5.py L200, default=42）\n验证:\n  - L61-65: set_seed() 覆盖 random/np/torch/cuda\n  - L218:   set_seed(args.seed) 在 main() 开头调用\n  - L239:   prepare_dataset(seed=args.seed)\n  - L262:   GRPOConfig(seed=args.seed)\n  完备 ✅\n\n== Dry-run ==\nStatus: PASS ✅\n  RASP Tokenizer: vocab=151643\n  Random Tokenizer: vocab=151643\n  Dataset: 7473 samples (GSM8K train)\n  Prompt 格式: \"Solve the following math problem step by step. Put your final answer in \\boxed{}.\"\n\n== GPU 状态 ==\nwestd-32935 (4× RTX PRO 6000, 98GB each):\n  GPU 0: 19GB/98GB — eval_math500 (grpo_stage2_standard_20_fair), 已跑 4h\n  GPU 1: 17GB/98GB — eval_math500 (sft_random_20), 已跑 3.7h\n  GPU 2: 16GB/98GB — eval_gsm8k (grpo_rasp_alpha2p0_20), 已跑 30min\n  GPU 3: 16GB/98GB — eval_gsm8k (grpo_rasp_alpha0p5_20), 已跑 30min\n  每张 GPU 剩余 ~80GB，GRPO 单卡需约 40-50GB，可共存但偏紧\n\nwestb-23072 (2× RTX PRO 6000, 98GB each):\n  GPU 0: 4.4GB/98GB — 基本空闲\n  GPU 1: 0GB/98GB — 完全空闲\n  但无 SFT checkpoint，需先 scp 过去\n```\n\n## Ready-to-submit commands (westd-32935)\n\n```bash\n# RASP seed 123 (GPU 0)\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && \\\nCUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_seed123 \\\n  --seed 123 --max_steps 100 --gradient_checkpointing true \\\n  --run_name grpo_mf2_rasp_seed123 --gpu 0 && \\\nCUDA_VISIBLE_DEVICES=0 python3 src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_seed123 \\\n  --output_path results/eval_grpo_mf2_rasp_seed123.json' \\\n> /tmp/grpo_rasp_seed123.log 2>&1 &\n\n# RASP seed 456 (GPU 1)\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && \\\nCUDA_VISIBLE_DEVICES=1 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_seed456 \\\n  --seed 456 --max_steps 100 --gradient_checkpointing true \\\n  --run_name grpo_mf2_rasp_seed456 --gpu 1 && \\\nCUDA_VISIBLE_DEVICES=1 python3 src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_seed456 \\\n  --output_path results/eval_grpo_mf2_rasp_seed456.json' \\\n> /tmp/grpo_rasp_seed456.log 2>&1 &\n\n# Random seed 123 (GPU 2)\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && \\\nCUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_seed123 \\\n  --seed 123 --max_steps 100 --gradient_checkpointing true \\\n  --run_name grpo_mf2_random_seed123 --gpu 2 && \\\nCUDA_VISIBLE_DEVICES=2 python3 src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_seed123 \\\n  --output_path results/eval_grpo_mf2_random_seed123.json' \\\n> /tmp/grpo_random_seed123.log 2>&1 &\n\n# Random seed 456 (GPU 3)\nnohup bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && \\\nCUDA_VISIBLE_DEVICES=3 HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \\\npython3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_seed456 \\\n  --seed 456 --max_steps 100 --gradient_checkpointing true \\\n  --run_name grpo_mf2_random_seed456 --gpu 3 && \\\nCUDA_VISIBLE_DEVICES=3 python3 src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_seed456 \\\n  --output_path results/eval_grpo_mf2_random_seed456.json' \\\n> /tmp/grpo_random_seed456.log 2>&1 &\n```\n\n```\n== 阻塞项 ==\n1. **GPU 白名单冲突**: C005 白名单为 westb-23072 + westd-29022，westd-32935 不在其中。\n   如在 westd-32935 跑需确认白名单是否已更新。\n2. **GPU 共存风险**: westd-32935 四张 GPU 均有 eval 进程（16-19GB），\n   GRPO 单卡需 ~40-50GB（model+ref_model+optimizer+grad），合计 ~60-70GB/卡，\n   98GB 应够但建议等 eval 跑完后再启动，避免 OOM。\n3. **westb-23072 无 checkpoint**: 若要在 westb 跑需先 scp 过去\n   （sft_rasp_20_westd + sft_random_20 各 12GB）。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-mf2-multiseed-grpo.md"
+}

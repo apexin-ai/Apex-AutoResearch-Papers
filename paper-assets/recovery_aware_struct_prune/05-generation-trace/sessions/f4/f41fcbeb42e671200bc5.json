@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f41fcbeb42e671200bc5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval progress check",
+  "task_key": "worker_ssh_eval_progress_check_20260523T205045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_progress_check_20260523T205045_result.json",
+    "occurrence": 1,
+    "bytes": 1286,
+    "sha256": "c6df169e4bfed838226267ba364e7b94c8cb282ea4485ba76f306525ce39999b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个进程均存活，GPU 负载正常。\n\n| # | Eval | 服务器 | GPU | 进度 | 速率 | 预估剩余 |\n|---|------|--------|-----|------|------|----------|\n| 1 | sft_standard_25_fixed | westd | cuda:0 | **83/500** (17%) | ~81s/it | ~9h20m |\n| 2 | grpo_rasp_alpha1p0_20_fixed | westd | cuda:1 | **462/500** (92%) | ~34s/it | **~22min** |\n| 3 | grpo_standard_20_fixed | westd | cuda:2 | **416/500** (83%) | ~60s/it | ~1h24m |\n| 4 | sft_standard_20_fixed_v2 | westd | cuda:3 | **21/500** (4%) | ~98s/it | ~13h |\n| 5 | grpo_cka_only_20_fixed | westb | cuda:0 | **140/500** (28%) | ~48s/it | ~4h47m |\n| 6 | sft_random_20_fixed | westb | cuda:1 | **61/500** (12%) | ~54s/it | ~6h35m |\n\n**GPU 状态**：\n- westd: 4 卡全部 94-99% 利用率，温度 73-80°C，显存 16.8-36.0 GB\n- westb: 2 卡 92-99% 利用率，温度 71-80°C，显存 15.4-16.8 GB\n\n**关键观察**：\n- `grpo_rasp_alpha1p0_20_fixed` 约 22 分钟内完成，最快出结果\n- `grpo_standard_20_fixed` 约 1.5h 后完成\n- `sft_standard_25_fixed` 和 `sft_standard_20_fixed_v2` 速率最慢（SFT 25% 剪枝和 v2），预计还需 9-13h\n- cuda:3 上的 `sft_standard_20_fixed_v2` 显存占用 36GB，显著高于其他任务（可能是更大模型或 batch size 差异）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "304e13fbbca8f4de8d1a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check sft alpha4 20 v2 status",
+  "task_key": "worker_check_sft_alpha4_20_v2_status_20260521T183312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_sft_alpha4_20_v2_status_20260521T183312_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "b6cbc31e04aa0e4edf9833ed7bd4b29c2ac9f0a0c91def5c97187456daf62c4d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n- **PID**: 401581 → **ALIVE**\n- **Python 进程** (PID 401586): 运行 ~3 分钟，CPU 254%，RSS ~2GB\n- **训练进度**: 刚启动，模型已加载到 cuda:0 (CUDA_VISIBLE_DEVICES=2)，日志只有 3 行，尚未开始训练 step — 可能正在加载数据集/tokenizer 或初始化 optimizer\n- **参数**: `--num_epochs 2 --lr 2e-5 --model_path pruned_alpha4_20 --output_dir sft_alpha4_20`\n\n进程活跃且 CPU 占用正常（254% 表示多核工作中），属于训练前初始化阶段。再等几分钟应该会看到训练 step 日志输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-sft-alpha4-20-v2-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6543fa9b21a07321480a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo qwen math v3 pair",
+  "task_key": "worker_analysis_grpo_qwen_math_v3_pair_20260516T154824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_qwen_math_v3_pair_20260516T154824_result.json",
+    "occurrence": 1,
+    "bytes": 1334,
+    "sha256": "e6249b22711525bf3579e4efc27f1229100239cf6939075062fac786c553d5d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是核心结论：\n\n---\n\n## Qwen2.5-Math-7B GRPO v3 分析总结\n\n### 跨模型验证结果：**部分失败**\n\n**Standard 20% (negative)**:\n- frac_zero_std 全程 0.75-0.90，reward 0.03-0.07，无 clear recovery\n- 与 Llama 的 \"transient dip→recovery\" 不一致，表现为 **persistent reward-signal starvation**\n- Entropy 健康 (~0.18)，模型生成多样但全错\n\n**RASP 20% (partial)**:\n- **没有** Llama-like 的 reward crash (reward 0.05-0.10，反而比 Standard 高)\n- **没有** frac_zero_std 飙升 (0.55-0.70，比 Standard 还低)\n- **但有** entropy collapse (0.07 vs Standard 0.18) + length pathology (clipped_ratio ~0.98)\n- RASP 损伤在强模型上表现为 **mode collapse**（输出多样性崩塌），而非 reward collapse\n\n### 关键发现\n\n| | Llama-3.2-3B | Qwen2.5-Math-7B |\n|---|---|---|\n| Standard | Transient dip→recovery | Persistent high frac_zero_std |\n| RASP | Reward collapse (→0.04) | Entropy collapse (→0.07) |\n| 机制差异 | 能力不足 → 做不出题 | 多样性丧失 → 重复做题 |\n\nCollapse 的**存在性**跨模型一致，但**机制**取决于模型容量。论文应 frame 为 \"pruning-method-dependent GRPO fragility\" 而非 \"universal collapse signature\"。\n\n报告和 registry 已更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-qwen-math-v3-pair.md"
+}

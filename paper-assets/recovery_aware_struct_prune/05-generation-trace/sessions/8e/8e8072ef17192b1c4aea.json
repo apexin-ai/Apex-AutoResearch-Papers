@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e8072ef17192b1c4aea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd emergency cleanup and audit",
+  "task_key": "worker_ops_westd_emergency_cleanup_and_audit_20260520T055610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_emergency_cleanup_and_audit_20260520T055610_result.json",
+    "occurrence": 1,
+    "bytes": 2815,
+    "sha256": "dbe47cded79afe28f3ffed9b4b9afa7324c7eccd5b405b21b368c2162479446f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 汇报\n\n### 1. Checkpoint 列表\n\n| 目录 | Checkpoints | Final Step | 备注 |\n|------|------------|------------|------|\n| grpo_stage2_standard_20_fair | ~~checkpoint-80~~, ~~checkpoint-90~~, **checkpoint-100** | 100 | ✅ 完整 (model 12G + optimizer 15G) |\n| grpo_cka_only_20 | **checkpoint-100** | 100 | ✅ 完整 (model 12G + optimizer 15G, rng_state.pth.bak) |\n| grpo_stage2_rasp_20_fair | ~~checkpoint-80~~, ~~checkpoint-90~~, **checkpoint-100** | 100 | ✅ 完整 (model 12G, 无 optimizer) |\n| grpo_random_20 | 无 checkpoint（仅 completions 目录） | step-97 中断 | ⚠️ 在 westb-23072 上，非 westd |\n\n**15% GRPO（已 crash）：**\n\n| 目录 | Checkpoints | 状态 |\n|------|------------|------|\n| grpo_cka_only_15 | ~~checkpoint-10~~, checkpoint-20 (3.7G) | checkpoint-20 可用于重启 |\n| grpo_standard_15 | ~~checkpoint-10~~, checkpoint-20 (48KB) | ⚠️ checkpoint-20 **损坏** (model.safetensors 仅 40KB) — 无法用于重启 |\n\n### 2. Patience 参数\n\n| Run | reward_desert_patience | 来源 |\n|-----|----------------------|------|\n| grpo_stage2_standard_20_fair | **50** (default) | W&B config 无显式设置 |\n| grpo_cka_only_20 | **50** (default) | 同上 |\n| grpo_stage2_rasp_20_fair | **50** (default) | 同上 |\n| grpo_random_20 | **50** | 日志明确打印 |\n| grpo_cka_only_15 | **50** | 日志明确打印 |\n| grpo_standard_15 | **50** | 日志明确打印 |\n\n**Random step-97 停止原因：`EXIT_CODE=124` (timeout 命令超时杀进程)，非 patience 触发。** 日志末尾 `97/100 [11:47:40] EXIT_CODE=124`。\n\n### 3. 清理报告\n\n| 删除项 | 大小 |\n|--------|------|\n| standard_20_fair/checkpoint-80 | 12G |\n| standard_20_fair/checkpoint-90 | 12G |\n| rasp_20_fair/checkpoint-80 | 12G |\n| rasp_20_fair/checkpoint-90 | 12G |\n| cka_only_15/checkpoint-10 | 28G |\n| standard_15/checkpoint-10 | 28G |\n| __pycache__ + *.pyc | ~微量 |\n| **总计释放** | **~104G** |\n\n**清理前后：** 619G/619G (100%) → 518G/619G (84%)，**可用 102GB**。\n\n### 4. v5 step-100 Checkpoint 可用性\n\n| Run | Eval 可用 | model.safetensors | optimizer.pt |\n|-----|-----------|-------------------|--------------|\n| Standard (fair) | ✅ | 12,323,931,184 bytes | ✅ 15.7GB |\n| CKA-only | ✅ | 12,323,931,248 bytes | ✅ 15.7GB |\n| RASP (fair) | ✅ | 12,323,931,224 bytes | ❌ 无 optimizer |\n\n三个 checkpoint-100 的 model.safetensors 均完整（~12GB），可直接用于 eval。RASP 无 optimizer 不影响推理。\n\n### ⚠️ 需注意\n\n1. **grpo_standard_15/checkpoint-20 损坏**：重启 15% Standard GRPO 需从 pruned model 重新开始（或从 SFT 重来）\n2. **grpo_random_20 无 model 产出**：因 timeout 中断且 save_steps 对齐在 100，无可用 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-emergency-cleanup-and-audit.md"
+}

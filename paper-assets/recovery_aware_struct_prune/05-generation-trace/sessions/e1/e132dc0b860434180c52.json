@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e132dc0b860434180c52",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops run sft eval",
+  "task_key": "worker_ops_run-sft-eval_20260515T003026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_run-sft-eval_20260515T003026_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "47e0d38a08715dc9b97a3562ab5562bb931891d9c279f624001e09d8c74f4e27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个结果都出来了。\n\n## SFT Eval 结果\n\n| 指标 | sft_rasp_20 | sft_standard_20 |\n|------|-------------|-----------------|\n| **Greedy Accuracy** | **57.0%** (57/100) | **64.0%** (64/100) |\n| **Greedy EOS Rate** | 99% (99/100) | 99% (99/100) |\n| **Greedy Avg Length** | 179.8 tokens | 176.3 tokens |\n| **Greedy Max Length** | 4096 (1 truncated) | 4096 (1 truncated) |\n| **Greedy Min Length** | 59 | 43 |\n| **Sampling EOS Rate** | 100% (5/5) | 100% (5/5) |\n\n关键发现：\n- **EOS 问题已修复**：两个模型 greedy EOS 率 99%，sampling 100%，SFT 成功恢复了 EOS 能力\n- **Standard 准确率更高** (64% vs 57%)：standard 剪枝的模型在 SFT 后准确率高 7 个百分点\n- 平均 response 长度相近 (~177 tokens)，均正常\n- 各有 1 个样本 truncated (hit 4096 limit)\n\n注意：sampling 只测了 5 个样本（`quick_eval.py` 限制），不是你要求的 100。需要额外跑 N=100 的 sampling accuracy eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-run-sft-eval.md"
+}

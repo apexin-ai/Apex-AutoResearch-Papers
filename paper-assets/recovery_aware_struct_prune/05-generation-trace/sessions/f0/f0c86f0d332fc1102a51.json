@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0c86f0d332fc1102a51",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code graspune prep",
+  "task_key": "worker_code_graspune-prep_20260515T014651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_graspune-prep_20260515T014651_result.json",
+    "occurrence": 1,
+    "bytes": 2293,
+    "sha256": "501b5c68030298d3d85a55c8b82d0041e0c1859548c63f032367c742281c8390"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇报如下：\n\n---\n\n## GRASPrune Baseline 环境状态\n\n| 检查项 | 状态 |\n|--------|------|\n| GRASPrune repo (`/root/GRASPrune/`) | 已 clone，含 `__pycache__`（之前已运行过） |\n| Qwen 架构支持 | `QwenMLPGate`, `QwenAttnGate` 均存在，import 通过 |\n| `--model-family qwen` 参数 | train.py 支持 `{auto,llama,qwen}` |\n| 模型文件 | `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` 在位（2 个 safetensors shard） |\n| Python 环境 | torch=2.10.0+cu128, transformers=5.8.0, cuda=True, 2 GPUs |\n| 依赖 | accelerate/datasets/safetensors/sentencepiece/lm_eval 全部已装 |\n| `run_graspune.sh` | 就绪，KEEP_RATIO=0.80, OUTPUT_DIR 指向数据盘 |\n| `convert_graspune_to_hf.py` | 存在 |\n\n**注意**: requirements.txt 指定 torch==2.7.0 / transformers==4.51.0，当前环境版本更高。脚本已有警告\"不要运行 pip install -r requirements.txt\"，正确。\n\n## GRPO 完成后启动 GRASPrune 的确切命令\n\n```bash\n# 在 westb-23072 上执行\ncd /root/recovery_aware_struct_prune/src && bash run_graspune.sh\n```\n\n或等价的分步命令：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n\n# Phase 1: 剪枝（~30-60min on single GPU）\ncd /root/GRASPrune && python train.py \\\n    --model-id /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n    --model-family qwen \\\n    --device cuda:0 \\\n    --dtype bfloat16 \\\n    --keep-ratio 0.80 \\\n    --epochs 4 \\\n    --batch-size 1 \\\n    --num-samples 512 \\\n    --max-len 512 \\\n    --train-dataset gsm8k \\\n    --train-split train \\\n    --skip-acc-eval \\\n    --trust-remote-code \\\n    --output-dir /root/autodl-tmp/graspune_output/DeepSeek-R1-Distill-Qwen-7B_pruned_80\n\n# Phase 2: 转 HF 格式\ncd /root/recovery_aware_struct_prune/src && python convert_graspune_to_hf.py \\\n    --model-id /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n    --state-dict /root/autodl-tmp/graspune_output/DeepSeek-R1-Distill-Qwen-7B_pruned_80/pruned_state_dict.safetensors \\\n    --meta /root/autodl-tmp/graspune_output/DeepSeek-R1-Distill-Qwen-7B_pruned_80/meta.json \\\n    --output-dir /root/autodl-tmp/pruned_graspune_20\n```\n\n环境完全就绪，等 GRPO 释放 GPU 后可直接启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-graspune-prep.md"
+}

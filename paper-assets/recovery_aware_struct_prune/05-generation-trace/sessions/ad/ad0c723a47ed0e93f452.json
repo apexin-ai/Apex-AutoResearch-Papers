@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad0c723a47ed0e93f452",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prep alpha dose response 20260522",
+  "task_key": "worker_prep_alpha_dose_response_20260522_20260522T050234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_alpha_dose_response_20260522_20260522T050234_result.json",
+    "occurrence": 1,
+    "bytes": 3894,
+    "sha256": "8c73131b0d0c8823565d2b4b9c33379f78b75cc02eafa2f1f37565a1aed19ca5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_humaneval.py 同步完成（6948 bytes，匹配 westb）。eval_mbpp.py 两边都是 7086 bytes，无需同步。\n\n```\n== Scores 文件 (westd-32935) ==\nimportance_scores: 缺失\ncka_scores: 缺失\n\n== Scores 文件 (westb-23072) ==\nimportance_scores_1p5b.pt: /root/autodl-tmp/recovery_aware_struct_prune/ (16KB)\nimportance_scores_qwen_math_7b.pt: /root/autodl-tmp/recovery_aware_struct_prune/ (20KB)\ncka_scores_1p5b.pt: /root/autodl-tmp/recovery_aware_struct_prune/ (48KB)\ncka_scores_qwen_math_7b.pt: /root/autodl-tmp/recovery_aware_struct_prune/ (124KB)\n\n== prune.py 参数 ==\n--model_path       (required) Path to pretrained model\n--importance_path  Path to importance scores .pt\n--cka_path         Path to CKA overlap scores .pt\n--mode             {standard, rasp, rasp-rlvr, cka_only, random} (required)\n--sparsity         Target sparsity ratio (default: 0.35)\n--alpha            RASP alpha parameter (default: 1.0)\n--output_path      (required) Output path for pruned model\n--seed             (default: 42)\n--dtype            {float16, bfloat16, float32} (default: bfloat16)\n\n== prune.py RASP 逻辑 ==\n必需输入: model_path, importance_path, cka_path\n模式判断:\n  - standard: needs importance only → score = I(h)\n  - rasp: needs importance + CKA → S(h) = I(h) * (1 - F(h))^α\n  - rasp-rlvr: needs importance + CKA → S(h) = I(h) * F(h)^α  (反向 CKA)\n  - cka_only: needs CKA only → score = 1 - F(h)\n  - random: torch.rand (seed=42)\n\nimportance_data keys: attn_importance, mlp_importance\ncka_data keys: attn_overlap, mlp_overlap\n\n== 完整剪枝命令模板 ==\npython src/prune.py \\\n  --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --importance_path <IMP_SCORES_PATH> \\\n  --cka_path <CKA_SCORES_PATH> \\\n  --mode rasp \\\n  --sparsity 0.2 \\\n  --alpha <ALPHA> \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_alpha<ALPHA>_20\n\n== SFT 训练脚本 ==\nsft_recovery.py (D013 Stage 1, GSM8K SFT warmup):\n  --model_path, --output_dir (required)\n  --gpu (default: 0), --num_train_epochs (2), --learning_rate (2e-5)\n  --batch_size (1), --gradient_accumulation_steps (8), --max_seq_length (2048)\n  --max_samples, --logging_steps (10), --seed (42)\n\ntrain_sft_warmup.py (轻量 SFT):\n  --model_path, --output_dir (required)\n  --gpu_id (default: 0), --num_epochs (1), --lr (2e-5)\n  --batch_size (2), --gradient_accumulation_steps (8)\n  --max_samples, --max_seq_length (2048), --logging_steps (10), --seed (42)\n\n== GRPO 训练脚本 ==\ntrain_grpo_v5.py (v4, GRPO RLVR recovery):\n  --model_path (required), --output_dir\n  --gpu (0), --learning_rate (1e-6), --num_train_epochs (3)\n  --per_device_train_batch_size (2), --gradient_accumulation_steps (8)\n  --max_completion_length (512), --temperature (0.4), --repetition_penalty (1.15)\n  --num_generations (4), --beta (0.01), --loss_type (dapo)\n  --format_reward_weight (0.1), --gradient_checkpointing (true)\n  --optim (adamw_8bit), --max_steps (-1), --resume_from_checkpoint\n  --report_to (wandb), --wandb_project (recovery_aware_struct_prune)\n\n== Eval 脚本同步 ==\neval_humaneval.py: 已同步 (westb 6948 bytes → westd 6948 bytes ✓)\neval_mbpp.py: 已一致 (两边均 7086 bytes ✓)\n\n== 基础模型路径 ==\nDeepSeek-R1-Distill-Qwen-7B: /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\n\n== 已有剪枝模型 (westd-32935) ==\npruned_alpha4_20, pruned_cka_only_15, pruned_cka_only_25, pruned_cka_only_30\npruned_rasp_25, pruned_standard_15, pruned_standard_25, pruned_standard_30\n\n== ⚠️ 待解决 ==\nscores 文件只在 westb-23072 上，westd-32935 上完全没有。需要：\n1. 从 westb 中转到 westd（两台无直连，需通过本地中转 base64 或 scp 跳板）\n2. 或在 westd 上重新计算（src/importance_score.py + src/compute_layer_cka.py 脚本已存在）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-alpha-dose-response-20260522.md"
+}

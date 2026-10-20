@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7014b6b5f6a8eb20515d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose and submit westd2",
+  "task_key": "worker_ssh_diagnose_and_submit_westd2_20260524T030752",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_and_submit_westd2_20260524T030752_result.json",
+    "occurrence": 1,
+    "bytes": 504,
+    "sha256": "dc36af37d8c1eb55718420a39f96408d18d3939c85228f90cb5b4995adfff7cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载中，GPU 2 尚未分配显存（加载阶段用 CPU）。进程正常启动。\n\n**汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| **eval_math500_sft_rasp_alpha2p0_20_fixed** | accuracy=0.256 (128/500), stderr=0.0195, truncated_pct=0.31, avg_len=805.8 |\n| Registry | conclusion=success, metrics/checkpoint_path/log_path 已设置 |\n| Cron | 已删除 |\n| **eval_math500_sft_rasp_alpha4p0_20_fixed** | 已提交 westd-32935 GPU 2, PID 185966, 模型加载中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-and-submit-westd2.md"
+}

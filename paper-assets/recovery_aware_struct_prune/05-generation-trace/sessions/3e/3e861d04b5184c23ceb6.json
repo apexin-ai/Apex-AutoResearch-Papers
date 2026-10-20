@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e861d04b5184c23ceb6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code plan 015 alpha ablation prep",
+  "task_key": "worker_code_plan_015_alpha_ablation_prep_20260515T033556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan_015_alpha_ablation_prep_20260515T033556_result.json",
+    "occurrence": 1,
+    "bytes": 2042,
+    "sha256": "720db6b6d5588a4047490678adadbbe0dab6c0e9cdd89cb0289d0c9dc388e293"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码已就绪。有一个磁盘空间风险需要注意：每个 pruned model 约 12GB，4 个新 α 值需要 ~48GB，但数据盘只剩 29GB。\n\n## 产出报告\n\n### 代码结构\n| 文件 | 作用 |\n|------|------|\n| `src/prune.py` | 剪枝主逻辑，已支持 `--alpha` 参数（line 166），直接在 scoring 公式中使用 |\n| `src/rasp_scoring.py` | RASP 评分：`S(h) = I(h) * (1-F(h))^alpha`，独立工具 |\n| `src/eval_gsm8k.py` | GSM8K 评估，支持 `--max_samples` 控制样本数 |\n| `src/run_alpha_ablation.sh` | **主脚本（仅 prune + eval）** α ∈ {0, 0.5, 1, 2, 4} |\n| `scripts/run_alpha_ablation.sh` | 全流程版（prune → SFT → GRPO → eval）同步更新 |\n\n### α 参数注入\n**不需要改 prune.py**。`--alpha` 已原生支持，scoring 直接在 prune.py:202 计算：\n```python\nattn_scores[k] = attn_importance[k].float() * (1.0 - attn_overlap[k].float()).pow(args.alpha)\n```\n\n### CKA 分数\n**已缓存**：`results/cka_scores.pt`（122KB），28 层 × 4 attn groups + 28 MLP groups。α sweep 只重新计算 scoring，不需重跑 CKA。\n\n### 运行命令\n```bash\n# GRPO 完成后执行（仅 prune + GSM8K eval，无 SFT/GRPO）\nCUDA_VISIBLE_DEVICES=0,1 bash src/run_alpha_ablation.sh\n\n# 如果想快速验证（N=100 而非全量 1319），手动加 --max_samples 100\n```\n\nα=1.0 结果自动通过 symlink 复用 `/root/autodl-tmp/pruned_rasp_20`。\n\n### 预估 GPU 时间\n- 剪枝：每个 α ~2-3 min（加载模型 + 重排 + 剪枝 + 保存），4 个新 α 用 2 GPU 并行 ≈ **6 min**\n- Eval：每个 α ~25-30 min（GSM8K full 1319 samples），5 个 α 用 2 GPU 并行 ≈ **75 min**\n- **总计 ~80 min**\n\n### ⚠️ 磁盘空间风险\n数据盘剩余 29GB，每个 pruned model 12GB，4 个新 α 需要 ~48GB。**需要先清理旧文件**（如 `pruned_standard_20`、`pruned_standard_25`、`pruned_rasp_25` 等不再需要的模型），或改为顺序执行：prune → eval → 删除 pruned model → 下一个 α。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-015-alpha-ablation-prep.md"
+}

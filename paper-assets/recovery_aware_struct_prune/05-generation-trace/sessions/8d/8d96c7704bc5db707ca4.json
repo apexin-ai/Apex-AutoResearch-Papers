@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "id": "8d96c7704bc5db707ca4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ssh check westb models for math500",
+  "task_key": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_check_westb_models_for_math500_20260521T123943.jsonl",
+    "occurrence": 1,
+    "bytes": 11617,
+    "sha256": "073f5fd21066fbf6e201d7ada49b2ee7d62ce845325a0f5fa23e6093aaedef74"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 0,
+    "tool_calls": 5,
+    "roles": {
+      "tool_call": 5,
+      "tool_result": 5,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T12:40:41.331709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T12:40:41.332037+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T12:40:41.332225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -d /root/autodl-tmp/recovery_aware_struct_prune/*/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T12:40:41.332408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"model.safetensors\" -maxdepth 3",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T12:40:41.332581+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/models/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_qwen_math/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b/\\\\\n…[truncated 323 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T12:40:41.332763+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-1.5B/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b/checkpoint-100/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b/checkpoint-100/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_qwen_math/model.safetensors\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20_\n…[truncated 643 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T12:40:41.332955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"model.safetensors\" -maxdepth 3 -exec ls -lh {} \\;",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T12:40:41.333112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T12:40:41.333254+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "du -sh /root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-1.5B/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/model.safetensors /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/model.safetensors",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T12:40:41.333435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"3.4G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-1.5B/model.safetensors\\\\n11G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_20/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/model.safetensors\\\\n2.8G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/model.safetensors\\\\n11G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/checkpoint-100/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final/model.safetensors\\\\n12G\\\\t/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math_final/model.safetensors\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T12:40:41.333616+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 上可用模型汇总（`/root/autodl-tmp/recovery_aware_struct_prune/` 下）：\n\n### Base 模型\n| 路径 | 大小 |\n|------|------|\n| `models/DeepSeek-R1-Distill-Qwen-1.5B/` | 3.4G |\n\n### 7B 剪枝模型（20% / 25%）\n| 路径 | 大小 |\n|------|------|\n| `pruned_standard_20/` | 12G |\n| `pruned_standard_25/` | 11G |\n| `pruned_cka_only_20/` | 12G |\n| `pruned_rasp_20/` | 12G |\n| `pruned_rasp_rlvr_20/` | 12G |\n| `pruned_cka_only_20_qwen_math/` | 12G |\n| `pruned_standard_20_qwen_math/` | 12G |\n\n### 7B SFT 恢复模型\n| 路径 | 大小 |\n|------|------|\n| `sft_cka_only_20/` (根目录) | 12G |\n| `sft_standard_25/checkpoint-1870/` | 12G |\n| `sft_rasp_rlvr_20/checkpoint-1870/` | 12G |\n| `sft_qwen_math_cka_only_20/checkpoint-935/` | 12G |\n| `sft_qwen_math_cka_only_20_final/` | 12G |\n| `sft_standard_20_qwen_math/checkpoint-935/` | 12G |\n| `sft_standard_20_qwen_math_final/` | 12G |\n\n### 7B GRPO 模型\n| 路径 | 大小 |\n|------|------|\n| `grpo_cka_only_20/checkpoint-100/` | 12G |\n| `grpo_cka_only_20_seed123/` (根目录) | 12G |\n| `grpo_standard_25_westb/checkpoint-100/` | 11G |\n| `grpo_random_20/` | （无 model.safetensors）|\n\n### 1.5B 系列\n| 路径 | 大小 |\n|------|------|\n| `pruned_standard_20_1p5b/` | — |\n| `pruned_cka_only_20_1p5b/` | — |\n| `pruned_rasp_20_1p5b/` | — |\n| `sft_cka_only_20_1p5b/` | — |\n| `sft_standard_20_1p5b/` | — |\n| `sft_rasp_20_1p5b/` | — |\n| `grpo_cka_only_20_1p5b/checkpoint-100/` | — |\n| `grpo_standard_20_1p5b/` | 2.8G |\n| `grpo_rasp_20_1p5b/checkpoint-100/` | — |\n\n共 **27 个含 model.safetensors 的模型路径**可用于 MATH-500 eval。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_check_westb_models_for_math500_20260521T123943"
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-check-westb-models-for-math500.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "57480b1a968e8ce6518f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "exp qwen math sft cka only",
+  "task_key": "worker_exp_qwen_math_sft_cka_only_20260520T063552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen_math_sft_cka_only_20260520T063552.log",
+    "occurrence": 1,
+    "bytes": 679182,
+    "sha256": "e86616e04736c997b6e9ba1391f8510375eadf1802ba2f1dbfba982ec067450a"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 65,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "57480b1a968e8ce6518f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "57480b1a968e8ce6518f-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-qwen-math-sft-cka-only.md"
+}

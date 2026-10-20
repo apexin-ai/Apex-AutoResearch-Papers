@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "fedbe6883886a9edc787",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft cka only 20",
+  "task_key": "worker_diagnose_eval_math500_sft_cka_only_20_20260518T023345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_cka_only_20_20260518T023345_result.json",
+    "occurrence": 1,
+    "bytes": 1797,
+    "sha256": "ba8587b04549092724d713870e166ae7f5989ccba6ba6eb1aa1b9a9b2a9cb2e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认：从 `src/` 目录运行就能导入 `model_utils`。\n\n根因确定：实验命令从项目根目录执行 `python src/eval_math500.py`，但 `eval_math500.py` 内部 `from model_utils import load_pruned_model` 需要 `model_utils.py`（同在 `src/` 下）。Python 不会自动把脚本所在目录加到搜索路径，导致 `ModuleNotFoundError` 启动即崩。无日志是因为 crash 发生在 logging 初始化之前的 import 阶段。\n\n```json\n{\"root_cause\":\"ModuleNotFoundError: No module named 'model_utils' — 从项目根目录运行 python src/eval_math500.py 时，src/ 不在 sys.path 中，无法导入同目录下的 model_utils.py\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"方案A: cd /root/recovery_aware_struct_prune/src && CUDA_VISIBLE_DEVICES=2 python eval_math500.py --model_path ... --output_path ...\",\"方案B: PYTHONPATH=/root/recovery_aware_struct_prune/src CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py ...\",\"方案C: 在 eval_math500.py 开头加 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "ModuleNotFoundError: No module named 'model_utils' — 从项目根目录运行 python src/eval_math500.py 时，src/ 不在 sys.path 中，无法导入同目录下的 model_utils.py",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "方案A: cd /root/recovery_aware_struct_prune/src && CUDA_VISIBLE_DEVICES=2 python eval_math500.py --model_path ... --output_path ...",
+                "方案B: PYTHONPATH=/root/recovery_aware_struct_prune/src CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py ...",
+                "方案C: 在 eval_math500.py 开头加 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-cka-only-20.md"
+}

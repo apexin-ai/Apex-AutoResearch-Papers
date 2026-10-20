@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f28824b272e8070d814",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "emergency disk cleanup westd",
+  "task_key": "worker_emergency_disk_cleanup_westd_20260519T172250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_disk_cleanup_westd_20260519T172250_result.json",
+    "occurrence": 1,
+    "bytes": 324,
+    "sha256": "440f793514d41f7829fcf22bf3104e2b5f35c13d1609fc2fe40bd3b654421a14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个进程全部存活。\n\n```\n磁盘清理: 删除了 ~127GB (两个 extended_300 目录)\n当前可用: 128GB\n进程状态:\n  PID 122867 (shortgpt gsm8k): 存活，运行 4分24秒\n  PID 120188 (mbpp standard): 存活，运行 1小时2分\n  PID 123029 (mbpp sft cka): 存活，运行 4分14秒\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-disk-cleanup-westd.md"
+}

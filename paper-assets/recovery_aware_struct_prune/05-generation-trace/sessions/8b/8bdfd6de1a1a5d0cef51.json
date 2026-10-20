@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bdfd6de1a1a5d0cef51",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb disk cleanup approved",
+  "task_key": "worker_ssh_westb_disk_cleanup_approved_20260523T125248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_disk_cleanup_approved_20260523T125248_result.json",
+    "occurrence": 1,
+    "bytes": 252,
+    "sha256": "1fdf82ff053b1037927a6a7c5b4197328fc1b23510f01a47c7e96e41510b2fb4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n清理前: 241G/250G (97%)\n清理后: 208G/250G (83%)\n释放空间: ~33G\n验证: final model 完整性 OK\n  - grpo_qwen_math_cka_only_20/model.safetensors: 12.3GB ✓\n  - grpo_rasp_alpha0p5_20/model.safetensors: 12.3GB ✓\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-disk-cleanup-approved.md"
+}

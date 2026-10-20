@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c159929038e38da8626b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check stale experiments westd",
+  "task_key": "worker_ops_check_stale_experiments_westd_20260519T101704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_stale_experiments_westd_20260519T101704_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "3188e7be214eb146cb4f3f2e5573c7351679006096f812553b804781833354a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n| # | PID | 实验名 | 进程状态 | 结果文件 | 结果 |\n|---|-----|--------|---------|---------|------|\n| 1 | 63783 | eval_humaneval_sft_cka_only_20_2048 | **DEAD** | 存在 | **pass@1 = 0.00%** (PATH bug，全部 `No such file or directory: 'python'`) |\n| 2 | 66521 | eval_humaneval_grpo_cka_only_20_2048 | **DEAD** | 存在 | **pass@1 = 20.12%** (33/164) |\n| 3 | 72393 | eval_humaneval_grpo_standard_20_fair_2048 | **DEAD** | 不存在 (.json 无, .log 停在 0%) | 旧版无结果。**替代 v3 (PID 76392) 仍在运行**，已跑 3h14m，进度 129/164，当前 pass@1 约 10% |\n| 4 | 56146 | eval_math500_sft_standard_20_2048_v2 | **DEAD** | 存在 | **accuracy = 25.8%** (129/500) |\n\n关键发现：\n- 4 个旧 PID 全部已死，可安全标记为非 RUNNING\n- PID 63783 的结果是废数据（v1 PATH bug），需要 v2 重跑\n- PID 76392 (v3 替代) 还活着，预计还需约 30 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-stale-experiments-westd.md"
+}

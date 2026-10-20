@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f9ba49248783b203b49",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify grpo eos and fix 25",
+  "task_key": "worker_ops_verify_grpo_eos_and_fix_25_20260516T120722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_grpo_eos_and_fix_25_20260516T120722_result.json",
+    "occurrence": 1,
+    "bytes": 1509,
+    "sha256": "60b50500f72276cfd43b38d206964ab563a06e7915a653bc088df28fdc0ba983"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 20% GRPO 状态：❌ EOS 无效 — 进程卡死\n\n| 指标 | RASP (PID 5033/5038) | Standard (PID 5111/5116) |\n|------|---------------------|--------------------------|\n| 运行时间 | 8h25m | 8h23m |\n| 步数完成 | 0/100 | 0/100 |\n| GPU 利用率 | 100% | 100% |\n| 显存占用 | 35GB | 30GB |\n| wandb 更新 | 无（启动后 4 分钟停止写入） | 无 |\n| checkpoint | 无 | 无 |\n\n**诊断**：generation_config.json 修复在磁盘上是正确的（20% 模型在 19:44 已修为 `[151643, 151645]`），GRPO 在 20:03 启动。但进程卡死在第一步 generation 调用——8 小时零完成。`max_completion_length=1024` 本应硬限制生成长度，但看起来 generation 根本没有返回。\n\n**可能原因**：非均匀剪枝架构（intermediate_size range [8128, 18944]）与 TRL GRPOTrainer 的 batched generation 不兼容，导致 `model.generate()` 挂死。\n\n**需要 kill 重启。** PID 5033 和 5111（及其子进程 5038、5116）需要终止，排查 generation 兼容性问题后重启。\n\n### 2. 25% generation_config.json：✅ 已修复\n\n两个文件均已更新为 `eos_token_id: [151643, 151645]`：\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25/generation_config.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25/generation_config.json`\n\n### 3. 附加发现\n\nGPU 2/3 上正在跑 25% rasp 模型的 eval_gsm8k（PID 6140/6220），利用率 92-95%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-grpo-eos-and-fix-25.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be5e73859b838ed0667c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo qwen prompt",
+  "task_key": "worker_fix_grpo_qwen_prompt_20260522T064053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_qwen_prompt_20260522T064053_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "60b351fe2403ce4421e583fb89ffdfc4fef7955441f0a45cc8762fffbbd52aff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整 `prepare_dataset` 也通过验证。\n\n```\n== Fix 1: Chat template ==\n修改位置: line 168-176 (prepare_dataset 内 format_prompt)\n修改内容: 新增 is_qwen 检测（line 168），format_prompt 中对 Qwen 模型用 tokenizer.apply_chat_template 包装 prompt，非 Qwen 保持原逻辑\n\n== Fix 2: System prompt ==\n修改位置: line 172-175\n修改内容: Qwen 分支的 messages 中注入 system prompt \"Please reason step by step, and put your final answer within \\boxed{}.\"\n\n== 验证 ==\nDry-run: PASS\nSample prompt: <|im_start|>system\\nPlease reason step by step, and put your final answer within \\\\boxed{}.<|im_end|>\\n<|im_start|>user\\nMimi picked up 2 dozen seashells...\nContains chat template: yes\nContains system prompt: yes\n\n== 文件同步 ==\n本地: 已修改\nwestb: 已修改\n一致性: 确认\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-qwen-prompt.md"
+}

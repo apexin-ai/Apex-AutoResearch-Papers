@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf5a7d134721d14da0a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prep mf5 depth baseline",
+  "task_key": "worker_prep_mf5_depth_baseline_20260522T072429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mf5_depth_baseline_20260522T072429_result.json",
+    "occurrence": 1,
+    "bytes": 3651,
+    "sha256": "fcb8bb5c6e32681a49828ac9a6c64320db39c1382e00a1c5ec14ab346fbd63c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证完成。汇报如下：\n\n```\n== synthetic_depth_scores.pt 格式 ==\nKeys: ['attn_importance', 'mlp_importance']\nattn: layers=28, shape=(4,)/layer, dtype=float32\n  layer 0-9: 1.0 (保留), layer 27: 0.001 (剪掉)\nmlp: layers=28, shape=(28,)/layer, dtype=float32\n  layer 0-9: 1.0 (保留), layer 27: 0.001 (剪掉)\n与 prune.py 兼容: ✅ (key names 完全匹配，standard mode 直接用 attn/mlp_importance)\n\n== Dry-run prune ==\nExit code: 0\nOutput model: 12GB (model.safetensors)\nActual sparsity: 19.12% (target 20%)\nPer-layer config:\n  Layer 0-9, 11-17: MLP 18944 (100%), Attn 28 heads (100%) — 完全保留\n  Layer 10: MLP 14212 (75%), Attn 7 heads (25%) — 过渡层\n  Layer 18-27: MLP 8128 (43%), Attn 7 heads (25%) — 重剪\n  → 深层大砍、浅层完好，符合 depth-first 设计意图\nForward validation: OK (output shape [1,32,152064])\n\n== SFT 加载测试 ==\nStatus: ✅ (via load_pruned_model)\nModel params: 6.16B\n\n== 推荐服务器 ==\nwestb-23072 cuda:1\n原因：\n  1. C005 白名单内（westd-32935 不在白名单）\n  2. cuda:1 空闲 (0 MiB / 97887 MiB)\n  3. DeepSeek-7B 已在 /root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-7B\n  4. scores 仅 18KB，scp 秒级拷贝\n\n== Ready-to-submit commands (westb-23072) ==\n\n# 0. 拷贝 scores (从 westd-32935)\nscp westd-32935:/root/autodl-tmp/recovery_aware_struct_prune/synthetic_depth_scores.pt \\\n    westb-23072:/root/autodl-tmp/recovery_aware_struct_prune/\n\n# 1. Prune\ncd /root/recovery_aware_struct_prune && python src/prune.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-7B \\\n  --importance_path /root/autodl-tmp/recovery_aware_struct_prune/synthetic_depth_scores.pt \\\n  --mode standard \\\n  --sparsity 0.2 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_depth_first_20\n\n# 2. SFT\npython src/sft_recovery.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_depth_first_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_depth_first_20 \\\n  --gpu 1\n\n# 3. GRPO seed 123\npython src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_depth_first_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20_seed123 \\\n  --gpu 1 \\\n  --max_steps 100 \\\n  --seed 123 \\\n  --wandb_project recovery_aware_struct_prune \\\n  --run_name grpo_depth_first_20_seed123\n\n# 4. GRPO seed 456\npython src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_depth_first_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20_seed456 \\\n  --gpu 1 \\\n  --max_steps 100 \\\n  --seed 456 \\\n  --wandb_project recovery_aware_struct_prune \\\n  --run_name grpo_depth_first_20_seed456\n\n# 5. GSM8K eval × 2\npython src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20_seed123 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/artifacts/eval_gsm8k_depth_first_20_seed123.json\n\npython src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20_seed456 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/artifacts/eval_gsm8k_depth_first_20_seed456.json\n\n== 阻塞项 ==\n1. westd-32935 不在 C005 GPU 白名单内 — 若要用 westd-32935 需先确认白名单更新\n2. westb-23072 需拷贝 synthetic_depth_scores.pt（18KB，秒级）\n3. westb-23072 cuda:0 被占用，pipeline 全部需指定 --gpu 1\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-mf5-depth-baseline.md"
+}

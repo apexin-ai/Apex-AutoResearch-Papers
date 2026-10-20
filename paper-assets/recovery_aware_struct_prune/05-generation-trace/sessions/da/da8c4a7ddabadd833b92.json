@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da8c4a7ddabadd833b92",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval westb cuda0 1p5b",
+  "task_key": "worker_eval_westb_cuda0_1p5b_20260519T124839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westb_cuda0_1p5b_20260519T124839_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "4576622ddc5b8abbe6e29a947195199d89d6e92930c3738c5072446b60da5dc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 两张 GPU 均已被占用：\n\n- **cuda:0** — `eval_humaneval_sft_standard_20_1p5b_2048` 正在运行（PID 890564，97% 利用率，4.1GB 显存）。Registry 已从 QUEUED 更新为 RUNNING。\n- **cuda:1** — `grpo_cka_only_20_seed123` 训练中（PID 857962，100% 利用率，67.9GB 显存）。\n\n优先级 1 的 `eval_humaneval_grpo_standard_20_1p5b_2048` 需等 cuda:0 当前 eval 完成后再提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westb-cuda0-1p5b.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47834ea200a50a0306f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb harvest and launch",
+  "task_key": "worker_ops_westb_harvest_and_launch_20260518T194813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_harvest_and_launch_20260518T194813_result.json",
+    "occurrence": 1,
+    "bytes": 752,
+    "sha256": "1cef02ab273aea3fb01be0ed3acf147e455817188373170501dacac2791bb976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在运行中。\n\n**汇报：**\n\n| GPU | 状态 | 实验 | 详情 |\n|-----|------|------|------|\n| **cuda:0** | 忙碌 (96%, 6537MiB) | eval_gsm8k_grpo_standard_20_1p5b | 仍在运行（已跑 ~3h10m），结果文件尚未生成 |\n| **cuda:1** | 刚启动 | eval_gsm8k_grpo_rasp_20_1p5b | PID 832359，模型加载中 |\n\n**收割结果：**\n- **eval_gsm8k_grpo_cka_only_20_1p5b** → DONE (success)\n  - accuracy = **35.48%** (468/1319), stderr = 0.0132\n\n**新启动实验：**\n- **eval_gsm8k_grpo_rasp_20_1p5b** on cuda:1 → RUNNING\n  - checkpoint: grpo_rasp_20_1p5b/checkpoint-100\n\n**未启动：**\n- eval_gsm8k_sft_cka_only_20_1p5b — cuda:0 被 Standard eval 占用，等 Standard 完成后启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-harvest-and-launch.md"
+}

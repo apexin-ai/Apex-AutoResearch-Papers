@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffd1b83632059dce5bde",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops rasp v9 completion check",
+  "task_key": "worker_ops_rasp-v9-completion-check_20260516T033742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rasp-v9-completion-check_20260516T033742_result.json",
+    "occurrence": 1,
+    "bytes": 805,
+    "sha256": "3ff63d2198eeda1192d631751de3da623e36b1c043a665510a4448c0e8c6acca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 已删除。汇报：\n\n**训练状态**: 成功完成 30/30 steps，耗时 3h28m25s，无 error。\n\n**Reward 轨迹** (展示 collapse):\n| Step | Reward | frac_zero_std |\n|------|--------|---------------|\n| 10 | 0.015 | 87.5% |\n| 20 | **0.039** (peak) | 80.0% |\n| 30 | 0.021 ↓ | **95.0%** |\n\nReward 在 step 20 达到峰值 0.039 后回落，frac_zero_std 升至 95%——确认 RASP 模型发生了 collapse。Peak checkpoint 在 **checkpoint-15 或 checkpoint-20** 附近。\n\n**Checkpoints**: checkpoint-10, checkpoint-15, checkpoint-20, checkpoint-25, checkpoint-30（save_steps=5 成功捕获了 collapse 前的 checkpoints，符合 v9 设计目标）\n\n**wandb**: `mrikafz3`\n\n**westb-23072 cuda:0 现在空闲**，可用于下一个任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rasp-v9-completion-check.md"
+}

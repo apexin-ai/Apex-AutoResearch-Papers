@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "c4cd3a939e8712fa8596",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval postprune rasp 30",
+  "task_key": "worker_diagnose_eval_postprune_rasp_30_20260517T194121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_postprune_rasp_30_20260517T194121_result.json",
+    "occurrence": 1,
+    "bytes": 2156,
+    "sha256": "26c8bff1ca702f6a261f33fcb43801a9756c27025c5a6f3777bfab3e4a59acdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。**实验并未真正失败，进程仍在运行。**\n\n关键发现：\n- **PID 43911** (python eval_gsm8k.py) 仍存活，当前进度 54/200，输出仍写入日志\n- **PID 44265** 已不存在，是被 kill 的 tmux 会话中的 shell 进程\n- tmux 会话 `eval_postprune_rasp_30` 已不在 `tmux ls` 中（被外部销毁），但 python 子进程存活\n- 日志中 sample 46 处的 \"Terminated\" 是 shell 收到 SIGTERM 时的 job notification 输出，非 python 进程本身终止\n- nvidia-smi 确认 cuda:2 上 PID 43911 占用 11568MiB，GPU 利用率 86%\n\n时间线推断：约 03:09-03:17 之间有新 tmux 会话创建（eval_postprune_standard_30、eval_sft_cka_only_20_n1319），可能有自动化脚本误杀了 eval_postprune_rasp_30 的 tmux session，导致 shell（PID 44265）被 SIGTERM，但 python 进程因未绑定终端信号而继续运行。\n\n```json\n{\"root_cause\":\"tmux session被外部销毁(可能是启动新实验的自动化脚本误杀),shell进程PID 44265收到SIGTERM(exit 143),但python进程PID 43911未受影响仍在运行,当前54/200\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复-实验仍在正常运行中\",\"可选:用 tmux new-session -d -s eval_postprune_rasp_30_monitor 重新挂载监控\",\"预计剩余运行时间约2-2.5h(按当前~55s/it计算146样本)\"],\"can_auto_fix\":true,\"partial_result_usable\":false,\"partial_accuracy\":\"0.0000 at 50/200 (实验仍在继续,非最终结果)\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "tmux session被外部销毁(可能是启动新实验的自动化脚本误杀),shell进程PID 44265收到SIGTERM(exit 143),但python进程PID 43911未受影响仍在运行,当前54/200",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复-实验仍在正常运行中",
+                "可选:用 tmux new-session -d -s eval_postprune_rasp_30_monitor 重新挂载监控",
+                "预计剩余运行时间约2-2.5h(按当前~55s/it计算146样本)"
+              ],
+              "can_auto_fix": true,
+              "partial_result_usable": false,
+              "partial_accuracy": "0.0000 at 50/200 (实验仍在继续,非最终结果)"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-postprune-rasp-30.md"
+}

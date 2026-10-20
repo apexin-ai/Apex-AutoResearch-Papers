@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3dde307abb1b332b8feb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops disk cleanup westb",
+  "task_key": "worker_ops_disk_cleanup_westb_20260518T110324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_westb_20260518T110324_result.json",
+    "occurrence": 1,
+    "bytes": 926,
+    "sha256": "6e86bf5594f8a98e47f68d653b70589eec28413bea526d248624320ae1d178f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。`grpo_cka_only_20/checkpoint-100` 完好（含 optimizer.pt）。\n\n## 汇报\n\n| 项目 | 数值 |\n|---|---|\n| **清理前可用** | 1.9G (100%) |\n| **清理后可用** | **23G (92%)** |\n| **释放空间** | ~21G |\n\n### 清理内容\n\n| 目标 | 释放 |\n|---|---|\n| `pruned_rasp_30/` | ~11G |\n| `pruned_standard_30/` | ~11G |\n| `wandb/` (根分区) | ~122M |\n| `__pycache__` | 微量 |\n\n`sft_rasp_30/` 和 `sft_standard_30/` 不存在，无需处理。\n\n### 当前最大目录 (Top 5)\n\n| 目录 | 大小 |\n|---|---|\n| `grpo_cka_only_20/` | 38G (含 checkpoint-100 27G + model 12G) |\n| `sft_rasp_rlvr_20/` | 12G |\n| `sft_random_20/` | 12G |\n| `sft_gradient_20/` | 12G |\n| `sft_cka_only_20/` | 12G |\n\n当前共 15 个 ~11-12G 的模型目录 + 1 个 38G 的 GRPO 目录，占 ~228G。如需进一步释放空间，需要判断哪些 20%/25% 实验模型可以清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-westb.md"
+}

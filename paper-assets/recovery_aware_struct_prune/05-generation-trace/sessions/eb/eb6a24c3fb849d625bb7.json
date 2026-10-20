@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb6a24c3fb849d625bb7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prepare post recovery eval",
+  "task_key": "worker_prepare_post_recovery_eval_20260514T183617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_post_recovery_eval_20260514T183617_result.json",
+    "occurrence": 1,
+    "bytes": 1152,
+    "sha256": "bfcce52b947a5b4620e6f9bd7de56a0d1bb60f95ec383f6d97c51d6f6ce62395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n### 产出总结\n\n**脚本已创建并验证**：`/root/recovery_aware_struct_prune/src/run_post_recovery_eval.sh`\n\n**eval_gsm8k.py 参数确认**：\n- `--model_path`：必需，接受目录路径，通过 `load_pruned_model` 加载（支持剪枝后的非均匀结构）\n- `--output_path`：输出 JSON 路径（注意是 `--output_path` 不是 `--output_file`）\n- `--max_samples`、`--max_new_tokens`、`--dtype`（默认 bfloat16）、`--seed`（默认 42）\n\n**Checkpoint 格式**：`train_grpo.py` 训练结束后调 `trainer.save_model(output_dir)` 直接保存到 output_dir 根目录，不是 checkpoint 子目录。脚本已处理两种情况。\n\n**当前状态**：两个目录目前只有 `completions/` 子目录（步骤 10-80 的 parquet），模型文件尚未写入（训练未完成）。\n\n### GRPO 完成后执行命令\n\n```bash\n# RASP recovery eval on cuda:0\nbash src/run_post_recovery_eval.sh rasp 20 0\n\n# Standard recovery eval on cuda:1 (if checkpoint exists)\nbash src/run_post_recovery_eval.sh standard 20 1\n```\n\n两个 eval 可并行跑（各用一张 GPU），互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-post-recovery-eval.md"
+}

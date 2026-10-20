@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5dbf229af6af45b77b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft standard 15 eval",
+  "task_key": "worker_ssh_submit_sft_standard_15_eval_20260520T142409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_standard_15_eval_20260520T142409_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "874403c2d946e7da06c2cf4c9df1d9c8c40035f8da06020831509cb239d31b79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_gsm8k_sft_standard_15 提交结果\n- PID: 256743（父 shell 256738）\n- 验证：进程存活 ✓ | GPU memory 9220MiB ✓ | 日志输出 ✓\n- 状态：**RUNNING**\n- 速度：~3.45s/it，1319 samples，预计 ~76 分钟\n- 日志：`~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_15.log`\n- 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-standard-15-eval.md"
+}

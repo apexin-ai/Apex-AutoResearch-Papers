@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31c2160d2df29e8080f7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prune cka only 30 dummy importance",
+  "task_key": "worker_ops_prune_cka_only_30_dummy_importance_20260517T215102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prune_cka_only_30_dummy_importance_20260517T215102_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "eed53c655c15320933274e4bc849a7526f883377d450e001a27216b1645b2bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常运行，正在加载模型。检测到非均匀 MLP 结构（intermediate_size range [8128, 18944]），说明剪枝生效。\n\n## 产出汇总\n\n| 项目 | 结果 |\n|---|---|\n| Dummy importance | `results/importance_scores_dummy_ones.pt` — 28层 attn+mlp 全 1，已验证 |\n| 剪枝 | 成功。MLP 303/784 groups pruned, 0 attn pruned, 实际 sparsity 28.92%。产出 11G @ `/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_30/` |\n| Eval | PID **58841**, cuda:2, tmux session `eval_postprune_cka_only_30`, log: `~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prune-cka-only-30-dummy-importance.md"
+}

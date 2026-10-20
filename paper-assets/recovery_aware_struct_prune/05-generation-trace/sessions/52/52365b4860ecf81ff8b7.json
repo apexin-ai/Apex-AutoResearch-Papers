@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52365b4860ecf81ff8b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp sft unpruned baseline",
+  "task_key": "worker_exp_sft-unpruned-baseline_20260515T222828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_sft-unpruned-baseline_20260515T222828_result.json",
+    "occurrence": 1,
+    "bytes": 630,
+    "sha256": "840034ee8d135e06c58d592be8984ad81cb590ff6e183c853c9eedb7dd20bc3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training launched and monitoring scheduled. Summary:\n\n- **Experiment**: `sft_unpruned_baseline` — unpruned DeepSeek-R1-Distill-Qwen-7B SFT on GSM8K\n- **Server**: westd-11672 cuda:1, tmux session `sft_unpruned`\n- **Config**: 2 epochs, lr=2e-5, batch=1, grad_accum=8, max_seq_len=2048, seed=42, save_strategy=no\n- **Progress**: step 14/1870, loss=1.234, token_accuracy=0.76, ~2.05s/step\n- **ETA**: ~07:34 UTC (about 63 min total)\n- **Disk cleanup**: deleted `sft_ablation/alpha_4.0/checkpoint-1870` (35G), freed disk from 96% → 82%\n- **Registry**: status=RUNNING, cron set to check completion at 07:43 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-sft-unpruned-baseline.md"
+}

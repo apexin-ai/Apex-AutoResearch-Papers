@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "265d5d587bac4df68a04",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo random 20 fixed",
+  "task_key": "worker_diagnose_eval_math500_grpo_random_20_fixed_20260524T073915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_random_20_fixed_20260524T073915_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "e700f2c20fb2e5525803b36b32d9573474c515d8ac58bde0ab3637e9b93a64e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清除）。\n\n**诊断结果：实验成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| accuracy | 15.0% |\n| n_correct | 75 |\n| n_total | 500 |\n| stderr | 0.01597 |\n\nRegistry 已更新：conclusion=success，metrics 已写入。监控 cron 已无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-random-20-fixed.md"
+}

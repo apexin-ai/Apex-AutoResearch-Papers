@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b92710e652e65fce56ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis gradient flow v3 wilcoxon",
+  "task_key": "worker_analysis_gradient_flow_v3_wilcoxon_20260519T162402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_flow_v3_wilcoxon_20260519T162402.log",
+    "occurrence": 1,
+    "bytes": 604171,
+    "sha256": "52ad2cd1b9f4f68ed3e8c47a2980edc415733a5ebce252b97aa8696d7a7c90d3"
+  },
+  "statistics": {
+    "messages": 314,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 3,
+      "assistant": 72,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 314,
+      "chunks": [
+        {
+          "path": "b92710e652e65fce56ea-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b92710e652e65fce56ea-part-0002.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gradient-flow-v3-wilcoxon.md"
+}

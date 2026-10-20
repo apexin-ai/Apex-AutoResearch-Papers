@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd044d01317ffb89cbbf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch humaneval sft cka only 20 cuda2",
+  "task_key": "worker_ops_launch_humaneval_sft_cka_only_20_cuda2_20260519T031235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_humaneval_sft_cka_only_20_cuda2_20260519T031235_result.json",
+    "occurrence": 1,
+    "bytes": 1211,
+    "sha256": "652bab57693b28823980a182f00f2351f361ff776adf5f9e00278d892438db34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check the GRPO model and prepare the command.\n\n**已启动的任务状态:**\n- **Eval**: HumanEval SFT CKA-only @2048 \n- **服务器**: westd-29022 cuda:2\n- **tmux**: `eval_humaneval_sft_cka_only_20_2048`\n- **PID**: 63783\n- **GPU**: 96% 利用率，12989 MiB\n- **进度**: 推理已开始，164 problems\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048.json`\n\n**GRPO CKA-only HumanEval 准备命令**（等 cuda:1 释放后使用）:\n\nGRPO 模型确认存在：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/model.safetensors`（12GB）\n\n```bash\n# 在 westd-29022 上执行\ntmux new-session -d -s eval_humaneval_grpo_cka_only_20_2048 \\\n  \"cd /root/recovery_aware_struct_prune/src && \\\n   CUDA_VISIBLE_DEVICES=1 /root/miniconda3/bin/python eval_humaneval.py \\\n   --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 \\\n   --max_new_tokens 2048 \\\n   --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json \\\n   2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.log\"\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-humaneval-sft-cka-only-20-cuda2.md"
+}

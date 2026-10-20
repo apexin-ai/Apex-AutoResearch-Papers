@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eff037988ac625ed52d6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "infra verify westd grpo ready",
+  "task_key": "worker_infra_verify_westd_grpo_ready_20260516T014718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_verify_westd_grpo_ready_20260516T014718_result.json",
+    "occurrence": 1,
+    "bytes": 1142,
+    "sha256": "7e91943d9f76acda32171de52e7b949a72db43a78a16a71747bc914629ad35d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 环境检查汇总\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| **SFT 模型路径** | ✓ | `/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/` — `model.safetensors` 14.2GB |\n| **GRPO 脚本** | ✓ | `/root/recovery_aware_struct_prune/src/train_grpo_v5.py` 存在 (11.7KB) |\n| **eval 进程** | 运行中 | PID 74129, 已运行 8h15m, cuda:0 上评估 sft_unpruned_baseline GSM8K (1319 samples) |\n| **cuda:0** | 占用 | RTX PRO 6000, 17.6GB/95.6GB used, 91% util (eval 在跑) |\n| **cuda:1** | ⚠️ | RTX PRO 6000, 17.2GB/95.6GB used, **0% util** — 有显存占用但无计算 |\n| **磁盘** | ❌ | 250GB 总量, **仅 38GB 可用** (项目占 199GB), 不满足 50GB 要求 |\n\n### 需要关注的问题\n\n1. **磁盘不足**: 38GB < 50GB 要求。GRPO 训练 save_total_limit=5 × ~12GB = 60GB 峰值。启动前需要清理空间（可清理旧 checkpoint 或已完成的实验产物）。\n\n2. **cuda:1 显存占用 17.2GB**: 虽然 utilization 为 0%，但有 ~17GB 显存被占用。可能是之前某个进程残留。启动 GRPO 前需要释放这部分显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-verify-westd-grpo-ready.md"
+}

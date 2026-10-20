@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca7a6e2fcdfa31c8807e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "director / loop_21.md",
+  "task_key": "loop_21",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_21.md",
+    "occurrence": 1,
+    "bytes": 3471,
+    "sha256": "191f68c93369ec409c0bcedcf3c6a1962e7eec3d8c67cb3cca9e15c26c76b2a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: max_messages\nupdated: '2026-05-25T08:28:08+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- EMNLP 2026 ARR DDL 是 2026-05-25（今天），论文已基本定稿，所有修改都是最终润色\n- Git push 到 `anonymous-nlp-2026/recovery_aware_struct_prune` 仍然不通——deploy key 只有 `caoxiaoyuyuyuyuyu/agent-ml-research` 的权限。本地 commit 在 `/tmp/recovery_aware_struct_prune_push/`，需要用户解决 access\n- 论文正文严格 8 页限制（附录/参考文献不限），`paper_compile_and_check` 报 16 页是含附录的总页数，不是真超页\n- Abstract 不超 200 words（当前 153 words，已达标）\n- RASP 永远带 α 值标注（bare \"RASP\" 已全部消除，用\"RASP at α=X.0\"或\"parameterized family\"）\n\n### 2. 🖥️ 基础设施快照\n- 本项目无活跃远程服务器——所有实验已完成，当前阶段是论文写作/审稿\n- 论文源码：`/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/`\n- 编译后 PDF：`docs/paper/main.pdf`（已通过 `feishu_upload_file` 发给用户）\n- 项目知识文件：`projects/recovery_aware_struct_prune/` 下的 `ROADMAP.md`, `paper_framing.md`, `experiment_plan.yaml`, `report.md`, `decisions.yaml`, `constraints.yaml`, `mistakes.yaml`\n- 审稿追踪：`artifacts/review_issues.yaml`（Round 1-8 全部 issue）\n- 审稿阶段已激活：`review_chat_id = oc_40839c097b00df44480b45ab767f59cf`\n- 无活跃进程 / tmux / cron\n\n### 3. 📊 当前状态\n刚完成最终一轮修改并交付 PDF：\n- 帖桂尧提的 8 项一致性修复 + 6 项写作质量修复全部完成\n- Abstract 重写（153 words，去掉 MLP channel groups 等术语）\n- ShortGPT 跨任务分析、MATH-500 双因素分析（截断 73.6% + 难度）已加入正文\n- 表 1/2 字体放大、脚注删除\n- 参考文献验证完成（Self-Healing→OpenReview preprint, Bonsai→arXiv, RAC→Workshop）\n- Discussion 扩展为两段（GRPO as diagnostic probe + Implications）\n- PDF 已编译并上传给用户\n\nRegistry 无 RUNNING/PREPARING 实验。无等待中的 Worker 回调或 Cron。\n\n### 4. 📋 待办\n- 用户反馈 PDF 有问题 → 按具体反馈修改，重新编译上传\n- 用户解决 git push 权限 → 立即推送所有本地 commit\n- 用户说\"提交审稿\" / \"进入审稿阶段\" → 调 `submit_paper_to_review`\n- 周俊伟之前提的图表美化任务（统一配色、统计图美观度）→ 状态不明，Agent idle 10h 可能丢失，需要检查是否完成或重新派发\n\n### 5. 🎯 战略上下文\n- 核心发现：reward-accuracy decoupling（GRPO vs SFT 在 20-25% MLP sparsity 下准确率几乎一致，mean |Δ|=0.54pp）+ recovery capacity spectrum（CKA diversity 决定 RL 训练动态）\n- 论文定位：controlled study / empirical analysis，不是 method paper。RASP 是 parameterized family 用于控制变量，不是 proposed method\n- Round 8 审稿评分 3.0 (Findings level)，升 3.5 需要额外 GPU 实验（multi-seed RASP、1000-step GRPO、non-Qwen arch），DDL 前不可能完成\n- CKA invariance 已修正为\"orthogonal transformations and isotropic scaling\"（不是 arbitrary invertible linear）\n- 所有 definitive claims 已加 hedging（\"appears to\", \"may serve as\"），scoped to \"20-25% fine-grained MLP sparsity on Qwen2.5-family models\"\n- 易踩坑：paper_compile_and_check 的页数检查会报 FAIL（因为算总页数含附录），这不是真问题\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21.md"
+}

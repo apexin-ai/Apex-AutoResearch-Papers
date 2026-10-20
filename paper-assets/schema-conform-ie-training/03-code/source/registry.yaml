@@ -1,0 +1,923 @@
+baseline: null
+experiments:
+  exp_001_grpo_baseline:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T11:05:25.079Z'
+    updated_at: '2026-05-13T03:14:43.482Z'
+    spec:
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python -m src.train_grpo
+        --config configs/grpo_baseline.yaml --data_dir /root/autodl-tmp/data/scierc
+        --dataset scierc --output_dir /root/autodl-tmp/output/formal_A
+      server: seetacloud-westb-2xpro6000
+      gpu: cuda:0
+      pid: 26252
+      log_path: /root/autodl-tmp/logs/train_A.log
+      checkpoint_path: /root/autodl-tmp/output/formal_A
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      model_name: Qwen/Qwen3.5-9B
+      seed: 42
+      metrics:
+        training_steps_completed: 500
+        eval_ref: eval_A_v2
+    conclusion: success
+    metrics:
+      training_steps_completed: 500
+      eval_ref: eval_A_v2
+    completed_at: '2026-05-13T03:14:43.482Z'
+  exp_002_grpo_conformance:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T11:05:29.954Z'
+    updated_at: '2026-05-13T03:14:22.274Z'
+    spec:
+      hypothesis: GRPO with 5-component schema-conformance rewards + GDPO improves
+        zero-shot IE transfer over F1-only baseline
+      model_name: Qwen/Qwen3.5-9B
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu: cuda:1
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1 python -m src.train_grpo
+        --config configs/grpo_conformance.yaml --data_dir /root/autodl-tmp/data/scierc
+        --dataset scierc --output_dir /root/autodl-tmp/output/formal_B
+      hyperparams:
+        learning_rate: 5.0e-06
+        lora_r: 64
+        lora_alpha: 128
+        num_generations: 8
+        per_device_train_batch_size: 2
+        gradient_accumulation_steps: 8
+        max_steps: 500
+        use_gdpo: true
+        reward_weights:
+          f1_correctness: 0.4
+          structural_validity: 0.2
+          type_conformance: 0.15
+          relational_constraint: 0.15
+          structural_completeness: 0.1
+      pid: 26253
+      log_path: /root/autodl-tmp/logs/train_B.log
+      total_steps: 500
+      checkpoint_path: /root/autodl-tmp/output/formal_B
+    conclusion: success
+    completed_at: '2026-05-13T03:13:50.297Z'
+  exp_003_base_zero_shot:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-12T12:52:54.743Z'
+    updated_at: '2026-05-12T21:49:19.362Z'
+    spec:
+      hypothesis: Base Qwen3.5-9B zero-shot as sanity check — A and B should not regress
+        below this
+      model_name: Qwen/Qwen3.5-9B
+      server: seetacloud-westb-2xpro6000
+      gpu: cuda:0 (shared with training)
+      command: CUDA_VISIBLE_DEVICES=0 python -m src.inference_base --model_name /root/autodl-tmp/models/Qwen/Qwen3.5-9B
+        --data_dir /root/autodl-tmp/data --eval_datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/base_zero_shot
+      checkpoint_source: pretrained
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data/
+      data_count: 0
+      seed: 42
+      pid: 29235
+      log_path: /tmp/base_zero_shot.log
+      checkpoint_path: N/A (inference only)
+      results_path: /root/autodl-tmp/output/base_zero_shot/base_model_results.json
+      metrics:
+        scierc_test:
+          entity_f1: 0
+          relation_f1: 0
+          valid_json_rate: 0
+          f1_correctness: 0
+        crossner_politics:
+          entity_f1: 0
+          relation_f1: 0
+          valid_json_rate: 0.3917
+          f1_correctness: 0
+        crossner_science:
+          entity_f1: 0
+          relation_f1: 0
+          valid_json_rate: 0.0847
+          f1_correctness: 0
+    conclusion: success
+    completed_at: '2026-05-12T21:49:19.362Z'
+  eval_A_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T00:06:26.119Z'
+    updated_at: '2026-05-13T03:08:40.825Z'
+    spec:
+      command: python -m src.evaluate --model_path formal_A/merged --max_new_tokens
+        1024
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      pid: '58088'
+      log_path: /root/autodl-tmp/logs/eval_A_v2.log
+      submitted_at: '2026-05-13T00:06:26.113Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: Re-eval group A (F1-only GRPO) with fixed thinking-mode disable
+      parent: exp_001_grpo_baseline
+      checkpoint_source: /root/autodl-tmp/output/formal_A/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      data_count: 0
+      model_name: Qwen/Qwen3.5-9B + LoRA (F1-only)
+      seed: 42
+      checkpoint_path: /root/autodl-tmp/output/formal_A/merged
+      metrics:
+        scierc_test:
+          f1_correctness: 0.2725
+          entity_f1: 0.4404
+          relation_f1: 0
+          structural_validity: 1
+          type_conformance: 0.9002
+          relational_constraint: 0.3371
+          structural_completeness: 0.9002
+          valid_json_rate: 1
+        crossner_politics:
+          f1_correctness: 0.446
+          entity_f1: 0.446
+          structural_validity: 1
+          type_conformance: 1
+          relational_constraint: 0
+          structural_completeness: 1
+          valid_json_rate: 1
+        crossner_science:
+          f1_correctness: 0.5697
+          entity_f1: 0.5697
+          structural_validity: 1
+          type_conformance: 0.9842
+          relational_constraint: 0
+          structural_completeness: 0.9945
+          valid_json_rate: 1
+      wall_clock_seconds: 10934.7
+      gpu_hours: 3.04
+    conclusion: success
+    completed_at: '2026-05-13T03:08:40.825Z'
+  eval_B_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T00:06:48.655Z'
+    updated_at: '2026-05-13T03:08:45.011Z'
+    spec:
+      command: python -m src.evaluate --model_path formal_B/merged --max_new_tokens
+        1024
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      pid: '58301'
+      log_path: /root/autodl-tmp/logs/eval_B_v2.log
+      submitted_at: '2026-05-13T00:06:48.646Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+      hypothesis: Re-eval group B (5-comp conformance + GDPO) with fixed thinking-mode
+        disable
+      parent: exp_002_grpo_conformance
+      checkpoint_source: /root/autodl-tmp/output/formal_B/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      data_count: 0
+      model_name: Qwen/Qwen3.5-9B + LoRA (5-comp + GDPO)
+      seed: 42
+      checkpoint_path: /root/autodl-tmp/output/formal_B/merged
+      metrics:
+        scierc_test:
+          f1_correctness: 0.2244
+          entity_f1: 0.4209
+          relation_f1: 0
+          structural_validity: 0.9764
+          type_conformance: 0.9559
+          relational_constraint: 0.8361
+          structural_completeness: 0.9564
+          valid_json_rate: 0.9764
+        crossner_politics:
+          f1_correctness: 0.3833
+          entity_f1: 0.4187
+          relation_f1: 0
+          structural_validity: 0.9969
+          type_conformance: 0.9578
+          relational_constraint: 0
+          structural_completeness: 0.9076
+          valid_json_rate: 0.9969
+        crossner_science:
+          f1_correctness: 0.4335
+          entity_f1: 0.5635
+          relation_f1: 0
+          structural_validity: 0.9963
+          type_conformance: 0.9177
+          relational_constraint: 0
+          structural_completeness: 0.8447
+          valid_json_rate: 0.9963
+      wall_clock_seconds: 10916.4
+      gpu_hours: 3.03
+    conclusion: success
+    completed_at: '2026-05-13T03:08:45.011Z'
+  eval_C_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T03:12:52.450Z'
+    updated_at: '2026-05-13T10:08:36.217Z'
+    spec:
+      hypothesis: Re-eval base Qwen3.5-9B zero-shot with fixed thinking-mode defense
+      parent: exp_003_base_zero_shot
+      checkpoint_source: pretrained (Qwen/Qwen3.5-9B)
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      data_count: 0
+      model_name: Qwen/Qwen3.5-9B (base, no fine-tuning)
+      seed: 42
+      log_path: /root/autodl-tmp/logs/eval_C_v2.log
+      checkpoint_path: N/A (inference only)
+      server: seetacloud-westb-2xpro6000
+      command: python -m src.evaluate --model_path /root/autodl-tmp/models/Qwen/Qwen3.5-9B
+      metrics:
+        scierc_test:
+          entity_f1: 0.3949
+          f1_correctness: 0.2184
+          relation_f1: 0
+          structural_validity: 0.9964
+          type_conformance: 0.9537
+          relational_constraint: 0.7191
+          structural_completeness: 0.9543
+          valid_json_rate: 0.9964
+        crossner_politics:
+          entity_f1: 0.4158
+          f1_correctness: 0.4116
+          relation_f1: 0
+          structural_validity: 1
+          type_conformance: 0.9997
+          relational_constraint: 0
+          structural_completeness: 0.9932
+          valid_json_rate: 1
+        crossner_science:
+          entity_f1: 0.5514
+          f1_correctness: 0.5329
+          relation_f1: 0
+          structural_validity: 0.9982
+          type_conformance: 0.9781
+          relational_constraint: 0
+          structural_completeness: 0.9678
+          valid_json_rate: 0.9982
+    conclusion: success
+    completed_at: '2026-05-13T09:53:30.183Z'
+  exp_004_d1_f1_dominant:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-13T03:23:17.592Z'
+    updated_at: '2026-05-13T03:41:04.613Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/autodl-tmp/schema-conform-ie-training/code && echo 'IyBEMTogRjEtZG9taW5hbnQgd2VpZ2h0cyAoNzU6MjUpLCBubyBHRFBPCiMgVHVuaW5nIGZyb20gQjogcmFpc2UgRjEgd2VpZ2h0LCByZW1vdmUgR0RQTyBub3JtYWxpemF0aW9uCiMgSHlwb3RoZXNpczogY29uZm9ybWFuY2UgYXMgc29mdCByZWd1bGFyaXplciByYXRoZXIgdGhhbiBlcXVhbCBwYXJ0bmVyCm1vZGVsX25hbWU6ICJRd2VuL1F3ZW4zLjUtOUIiCm91dHB1dF9kaXI6ICIuL291dHB1dC9ncnBvX2QxIgpydW5fbmFtZTogImdycG8tZDEtZjEtZG9taW5hbnQiCgojIEdSUE8gZ2VuZXJhdGlvbgpudW1fZ2VuZXJhdGlvbnM6IDgKbWF4X25ld190b2tlbnM6IDEwMjQKbWF4X3Byb21wdF9sZW5ndGg6IDE1MzYKCiMgVHJhaW5pbmcKbnVtX3RyYWluX2Vwb2NoczogMwpwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU6IDIKZ3JhZGllbnRfYWNjdW11bGF0aW9uX3N0ZXBzOiA4CmxlYXJuaW5nX3JhdGU6IDUuMGUtNgp3YXJtdXBfcmF0aW86IDAuMQpiZjE2OiB0cnVlCmdyYWRpZW50X2NoZWNrcG9pbnRpbmc6IHRydWUKCiMgUmV3YXJkIOKAlCBGMS1kb21pbmFudCwgc2ltcGxlIHdlaWdodGVkIHN1bSAobm8gR0RQTykKdXNlX2dkcG86IGZhbHNlCnJld2FyZF93ZWlnaHRzOgogIGYxX2NvcnJlY3RuZXNzOiAwLjc1CiAgc3RydWN0dXJhbF92YWxpZGl0eTogMC4wNQogIHR5cGVfY29uZm9ybWFuY2U6IDAuMDgKICByZWxhdGlvbmFsX2NvbnN0cmFpbnQ6IDAuMDgKICBzdHJ1Y3R1cmFsX2NvbXBsZXRlbmVzczogMC4wNAoKIyBMb1JBCnVzZV9sb3JhOiB0cnVlCmxvcmFfcjogNjQKbG9yYV9hbHBoYTogMTI4CmxvcmFfZHJvcG91dDogMC4wNQpsb3JhX3RhcmdldF9tb2R1bGVzOgogIC0gcV9wcm9qCiAgLSBrX3Byb2oKICAtIHZfcHJvagogIC0gb19wcm9qCiAgLSBnYXRlX3Byb2oKICAtIHVwX3Byb2oKICAtIGRvd25fcHJvagoKIyBSZXdhcmQgaGFja2luZyBkZXRlY3Rpb24KaGFja2luZ193YXJtdXBfc2FtcGxlczogMjAwCgojIExvZ2dpbmcKcmVwb3J0X3RvOiAid2FuZGIiCndhbmRiX3Byb2plY3Q6ICJzY2hlbWEtY29uZm9ybS1pZSIKbG9nZ2luZ19zdGVwczogMTAKc2F2ZV9zdGVwczogMTAwCnNlZWQ6IDQyCg=='
+        | base64 -d > configs/grpo_d1.yaml && WANDB_MODE=offline python -m src.train_grpo
+        --config configs/grpo_d1.yaml --data_dir /root/autodl-tmp/data/scierc --dataset
+        scierc --output_dir /root/autodl-tmp/output/formal_D1 --max_steps 500 2>&1
+        | tee /root/autodl-tmp/logs/train_D1.log"
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      pid: '66204'
+      log_path: ~/runs/schema-conform-ie-training/exp_004_d1_f1_dominant.log
+      submitted_at: '2026-05-13T03:23:17.574Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    conclusion: failed
+  exp_004_d1_v2:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-13T03:40:49.464Z'
+    updated_at: '2026-05-13T04:57:15.552Z'
+    spec:
+      hypothesis: F1-dominant weights (75:25) + no GDPO recovers F1 while retaining
+        some conformance benefit
+      parent: exp_002_grpo_conformance
+      model_name: Qwen/Qwen3.5-9B (LoRA, F1=0.75 conformance=0.25, no GDPO)
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1 python -m src.train_grpo
+        --config configs/grpo_d1.yaml --output_dir /root/autodl-tmp/output/formal_D1
+        --max_steps 500
+      hyperparams:
+        learning_rate: 5.0e-06
+        lora_r: 64
+        lora_alpha: 128
+        num_generations: 8
+        per_device_train_batch_size: 2
+        gradient_accumulation_steps: 8
+        max_steps: 500
+        use_gdpo: false
+        reward_weights:
+          f1_correctness: 0.75
+          structural_validity: 0.05
+          type_conformance: 0.08
+          relational_constraint: 0.08
+          structural_completeness: 0.04
+      log_path: /root/autodl-tmp/logs/train_D1_v2.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D1
+    conclusion: killed
+  exp_004_d1_v3:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-13T04:54:02.680Z'
+    updated_at: '2026-05-13T05:41:17.052Z'
+    spec:
+      command: bash -c "kill 67210 2>/dev/null; sleep 2; source /root/miniconda3/etc/profile.d/conda.sh
+        && conda activate base && cd /root/autodl-tmp/schema-conform-ie-training/code
+        && echo 'aW1wb3J0IG9zCm9zLmNoZGlyKCcvcm9vdC9hdXRvZGwtdG1wL3NjaGVtYS1jb25mb3JtLWllLXRyYWluaW5nL2NvZGUnKQoKIyA9PT0gRml4IDE6IGRhdGFfdXRpbHMucHkg4oCUIGFkZCBEWUdJRVBQX1RPX1NDSEVNQV9SRUxfVFlQRSBtYXBwaW5nID09PQp0ID0gb3Blbignc3JjL2RhdGFfdXRpbHMucHknKS5yZWFkKCkKCiMgQWRkIG1hcHBpbmcgdGFibGUgYWZ0ZXIgU0NJRVJDX1JFTEFUSU9OX0RFU0NSSVBUSU9OUwptYXBwaW5nX2NvZGUgPSAnJycKCkRZR0lFUFBfVE9fU0NIRU1BX1JFTF9UWVBFID0gewogICAgIlVTRUQtRk9SIjogIlVzZWQtZm9yIiwKICAgICJGRUFUVVJFLU9GIjogIkZlYXR1cmUtb2YiLAogICAgIkhZUE9OWU0tT0YiOiAiSHlwb255bS1vZiIsCiAgICAiUEFSVC1PRiI6ICJQYXJ0LW9mIiwKICAgICJDT01QQVJFIjogIkNvbXBhcmUiLAogICAgIkNPTkpVTkNUSU9OIjogIkNvbmp1bmN0aW9uIiwKICAgICJFVkFMVUFURS1GT1IiOiAiRXZhbHVhdGUtZm9yIiwKfScnJwoKYW5jaG9yID0gJyJFdmFsdWF0ZS1mb3IiOiAiRXZhbHVhdGUtZm9yIOKAlCBBIChtZXRyaWMpIGV2YWx1YXRlcyBCICh0YXNrL21ldGhvZCkiLFxufScKaWYgJ0RZR0lFUFBfVE9fU0NIRU1BX1JFTF9UWVBFJyBub3QgaW4gdDoKICAgIHQgPSB0LnJlcGxhY2UoYW5jaG9yLCBhbmNob3IgKyBtYXBwaW5nX2NvZGUpCgojIEFwcGx5IG1hcHBpbmcgaW4gX2NvbnZlcnRfZHlnaWVwcF9kb2MKb2xkX3JlbCA9ICcgICAgICAgICAgICAgICAgcmVsYXRpb25zLmFwcGVuZCh7InR5cGUiOiByZWxfdHlwZSwgImFyZzEiOiBhcmcxLCAiYXJnMiI6IGFyZzJ9KScKbmV3X3JlbCA9ICcgICAgICAgICAgICAgICAgbWFwcGVkX3R5cGUgPSBEWUdJRVBQX1RPX1NDSEVNQV9SRUxfVFlQRS5nZXQocmVsX3R5cGUsIHJlbF90eXBlKVxuICAgICAgICAgICAgICAgIHJlbGF0aW9ucy5hcHBlbmQoeyJ0eXBlIjogbWFwcGVkX3R5cGUsICJhcmcxIjogYXJnMSwgImFyZzIiOiBhcmcyfSknCmlmICdtYXBwZWRfdHlwZScgbm90IGluIHQ6CiAgICB0ID0gdC5yZXBsYWNlKG9sZF9yZWwsIG5ld19yZWwpCgpvcGVuKCdzcmMvZGF0YV91dGlscy5weScsICd3Jykud3JpdGUodCkKcHJpbnQoJ1tPS10gZGF0YV91dGlscy5weSBwYXRjaGVkJykKCiMgPT09IEZpeCAyOiByZXdhcmRzLnB5IOKAlCBfbm9ybWFsaXplX3JlbGF0aW9uICsgX2FyZ19zaW1pbGFyaXR5ICsgdGhyZXNob2xkID09PQp0ID0gb3Blbignc3JjL3Jld2FyZHMucHknKS5yZWFkKCkKCiMgQ2hlY2sgaWYgYWxyZWFkeSBwYXRjaGVkCmlmICdfbm9ybWFsaXplX3JlbGF0aW9uJyBpbiB0OgogICAgcHJpbnQoJ1tTS0lQXSByZXdhcmRzLnB5IGFscmVhZHkgaGFzIF9ub3JtYWxpemVfcmVsYXRpb24nKQplbHNlOgogICAgIyBSZXBsYWNlIG9sZCBfbWF0Y2hfcmVsYXRpb25zIHdpdGggbmV3IHZlcnNpb24gaW5jbHVkaW5nIGhlbHBlcnMKICAgIG9sZF9tYXRjaCA9ICcnJ2RlZiBfbWF0Y2hfcmVsYXRpb25zKAogICAgcHJlZF9yZWxhdGlvbnM6IGxpc3RbZGljdF0sCiAgICBnb2xkX3JlbGF0aW9uczogbGlzdFtkaWN0XSwKICAgIHRocmVzaG9sZDogZmxvYXQgPSAwLjUsCikgLT4gdHVwbGVbaW50LCBpbnQsIGludF06CiAgICAiIiJNYXRjaCBwcmVkaWN0ZWQgcmVsYXRpb25zIHRvIGdvbGQuIFJldHVybnMgKHRwLCBmcCwgZm4pLiIiIgogICAgbWF0Y2hlZF9nb2xkOiBzZXRbaW50XSA9IHNldCgpCiAgICB0cCA9IDAKCiAgICBmb3IgcHJlZCBpbiBwcmVkX3JlbGF0aW9uczoKICAgICAgICBpZiBub3QgaXNpbnN0YW5jZShwcmVkLCBkaWN0KToKICAgICAgICAgICAgY29udGludWUKICAgICAgICBmb3IgaSwgZ29sZCBpbiBlbnVtZXJhdGUoZ29sZF9yZWxhdGlvbnMpOgogICAgICAgICAgICBpZiBpIGluIG1hdGNoZWRfZ29sZCBvciBub3QgaXNpbnN0YW5jZShnb2xkLCBkaWN0KToKICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgIGlmIHByZWQuZ2V0KCJ0eXBlIikgIT0gZ29sZC5nZXQoInR5cGUiKToKICAgICAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgICAgIGFyZzFfc2ltID0gX2VudGl0eV9zaW1pbGFyaXR5KAogICAgICAgICAgICAgICAgcHJlZC5nZXQoImFyZzEiLCB7fSksIGdvbGQuZ2V0KCJhcmcxIiwge30pCiAgICAgICAgICAgICkKICAgICAgICAgICAgYXJnMl9zaW0gPSBfZW50aXR5X3NpbWlsYXJpdHkoCiAgICAgICAgICAgICAgICBwcmVkLmdldCgiYXJnMiIsIHt9KSwgZ29sZC5nZXQoImFyZzIiLCB7fSkKICAgICAgICAgICAgKQogICAgICAgICAgICBpZiBhcmcxX3NpbSA+PSB0aHJlc2hvbGQgYW5kIGFyZzJfc2ltID49IHRocmVzaG9sZDoKICAgICAgICAgICAgICAgIHRwICs9IDEKICAgICAgICAgICAgICAgIG1hdGNoZWRfZ29sZC5hZGQoaSkKICAgICAgICAgICAgICAgIGJyZWFrCgogICAgZnAgPSBsZW4oW3IgZm9yIHIgaW4gcHJlZF9yZWxhdGlvbnMgaWYgaXNpbnN0YW5jZShyLCBkaWN0KV0pIC0gdHAKICAgIGZuID0gbGVuKGdvbGRfcmVsYXRpb25zKSAtIGxlbihtYXRjaGVkX2dvbGQpCiAgICByZXR1cm4gdHAsIGZwLCBmbicnJwoKICAgIG5ld19tYXRjaCA9ICcnJ2RlZiBfbm9ybWFsaXplX3JlbGF0aW9uKHJlbDogZGljdCkgLT4gZGljdDoKICAgICIiIk5vcm1hbGl6ZSByZWxhdGlvbiBkaWN0IHRvIGNhbm9uaWNhbCB7dHlwZSwgYXJnMSwgYXJnMn0gZm9ybWF0LiIiIgogICAgcmVsX3R5cGUgPSByZWwuZ2V0KCJ0eXBlIikgb3IgcmVsLmdldCgicmVsYXRpb24iKSBvciByZWwuZ2V0KCJsYWJlbCIpCiAgICBpZiBpc2luc3RhbmNlKHJlbF90eXBlLCBzdHIpOgogICAgICAgIHJlbF90eXBlID0gcmVsX3R5cGUubG93ZXIoKS5yZXBsYWNlKCJfIiwgIi0iKQogICAgYXJnMSA9IHJlbC5nZXQoImFyZzEiKSBvciByZWwuZ2V0KCJoZWFkIikgb3IgcmVsLmdldCgic3ViamVjdCIpIG9yIHJlbC5nZXQoInNvdXJjZSIpCiAgICBhcmcyID0gcmVsLmdldCgiYXJnMiIpIG9yIHJlbC5nZXQoInRhaWwiKSBvciByZWwuZ2V0KCJvYmplY3QiKSBvciByZWwuZ2V0KCJ0YXJnZXQiKQogICAgaWYgaXNpbnN0YW5jZShhcmcxLCBzdHIpOgogICAgICAgIGFyZzEgPSB7InRleHQiOiBhcmcxfQogICAgaWYgaXNpbnN0YW5jZShhcmcyLCBzdHIpOgogICAgICAgIGFyZzIgPSB7InRleHQiOiBhcmcyfQogICAgcmV0dXJuIHsidHlwZSI6IHJlbF90eXBlLCAiYXJnMSI6IGFyZzEgb3Ige30sICJhcmcyIjogYXJnMiBvciB7fX0KCgpkZWYgX2FyZ19zaW1pbGFyaXR5KHByZWQ6IGRpY3QsIGdvbGQ6IGRpY3QpIC0+IGZsb2F0OgogICAgIiIiVGV4dC1mb2N1c2VkIHNpbWlsYXJpdHkgZm9yIHJlbGF0aW9uIGFyZ3VtZW50cyDigJQgZW50aXR5IHR5cGUgbWF0Y2ggbm90IHJlcXVpcmVkLiIiIgogICAgcHJlZF90ZXh0ID0gcHJlZC5nZXQoInRleHQiLCAiIikKICAgIGdvbGRfdGV4dCA9IGdvbGQuZ2V0KCJ0ZXh0IiwgIiIpCiAgICBpZiBwcmVkX3RleHQgYW5kIGdvbGRfdGV4dDoKICAgICAgICByZXR1cm4gX3RleHRfb3ZlcmxhcF9zY29yZShwcmVkX3RleHQsIGdvbGRfdGV4dCkKICAgIHJldHVybiBfZW50aXR5X3NpbWlsYXJpdHkocHJlZCwgZ29sZCkKCgpkZWYgX21hdGNoX3JlbGF0aW9ucygKICAgIHByZWRfcmVsYXRpb25zOiBsaXN0W2RpY3RdLAogICAgZ29sZF9yZWxhdGlvbnM6IGxpc3RbZGljdF0sCiAgICB0aHJlc2hvbGQ6IGZsb2F0ID0gMC4zLAopIC0+IHR1cGxlW2ludCwgaW50LCBpbnRdOgogICAgIiIiTWF0Y2ggcHJlZGljdGVkIHJlbGF0aW9ucyB0byBnb2xkLiBSZXR1cm5zICh0cCwgZnAsIGZuKS4iIiIKICAgIG1hdGNoZWRfZ29sZDogc2V0W2ludF0gPSBzZXQoKQogICAgdHAgPSAwCgogICAgZm9yIHByZWQgaW4gcHJlZF9yZWxhdGlvbnM6CiAgICAgICAgaWYgbm90IGlzaW5zdGFuY2UocHJlZCwgZGljdCk6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgcHJlZF9uID0gX25vcm1hbGl6ZV9yZWxhdGlvbihwcmVkKQogICAgICAgIGlmIHByZWRfblsidHlwZSJdIGlzIE5vbmU6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgZm9yIGksIGdvbGQgaW4gZW51bWVyYXRlKGdvbGRfcmVsYXRpb25zKToKICAgICAgICAgICAgaWYgaSBpbiBtYXRjaGVkX2dvbGQgb3Igbm90IGlzaW5zdGFuY2UoZ29sZCwgZGljdCk6CiAgICAgICAgICAgICAgICBjb250aW51ZQogICAgICAgICAgICBnb2xkX24gPSBfbm9ybWFsaXplX3JlbGF0aW9uKGdvbGQpCiAgICAgICAgICAgIGlmIHByZWRfblsidHlwZSJdICE9IGdvbGRfblsidHlwZSJdOgogICAgICAgICAgICAgICAgY29udGludWUKICAgICAgICAgICAgYXJnMV9zaW0gPSBfYXJnX3NpbWlsYXJpdHkocHJlZF9uWyJhcmcxIl0sIGdvbGRfblsiYXJnMSJdKQogICAgICAgICAgICBhcmcyX3NpbSA9IF9hcmdfc2ltaWxhcml0eShwcmVkX25bImFyZzIiXSwgZ29sZF9uWyJhcmcyIl0pCiAgICAgICAgICAgIGlmIGFyZzFfc2ltID49IHRocmVzaG9sZCBhbmQgYXJnMl9zaW0gPj0gdGhyZXNob2xkOgogICAgICAgICAgICAgICAgdHAgKz0gMQogICAgICAgICAgICAgICAgbWF0Y2hlZF9nb2xkLmFkZChpKQogICAgICAgICAgICAgICAgYnJlYWsKCiAgICBmcCA9IGxlbihbciBmb3IgciBpbiBwcmVkX3JlbGF0aW9ucyBpZiBpc2luc3RhbmNlKHIsIGRpY3QpXSkgLSB0cAogICAgZm4gPSBsZW4oZ29sZF9yZWxhdGlvbnMpIC0gbGVuKG1hdGNoZWRfZ29sZCkKICAgIHJldHVybiB0cCwgZnAsIGZuJycnCgogICAgdCA9IHQucmVwbGFjZShvbGRfbWF0Y2gsIG5ld19tYXRjaCkKICAgIG9wZW4oJ3NyYy9yZXdhcmRzLnB5JywgJ3cnKS53cml0ZSh0KQogICAgcHJpbnQoJ1tPS10gcmV3YXJkcy5weSBwYXRjaGVkJykKCiMgQWxzbyBmaXggc2NoZW1hX3V0aWxzLnB5IHJlZ2V4IGlmIG5vdCBhbHJlYWR5IGRvbmUKdCA9IG9wZW4oJ3NyYy9zY2hlbWFfdXRpbHMucHknKS5yZWFkKCkKaWYgJ3IiKDx0aGluaz4pJyBub3QgaW4gdDoKICAgIHQgPSB0LnJlcGxhY2UoJ3IiPHRoaW5rPi4qPzwvdGhpbms+IicsICdyIig8dGhpbms+KT8uKj88L3RoaW5rPiInKQogICAgb3Blbignc3JjL3NjaGVtYV91dGlscy5weScsICd3Jykud3JpdGUodCkKICAgIHByaW50KCdbT0tdIHNjaGVtYV91dGlscy5weSByZWdleCBwYXRjaGVkJykKZWxzZToKICAgIHByaW50KCdbU0tJUF0gc2NoZW1hX3V0aWxzLnB5IGFscmVhZHkgcGF0Y2hlZCcpCgojID09PSBWZXJpZnkgPT09CnByaW50KCdcbj09PSBWZXJpZmljYXRpb24gPT09JykKdCA9IG9wZW4oJ3NyYy9kYXRhX3V0aWxzLnB5JykucmVhZCgpCmFzc2VydCAnRFlHSUVQUF9UT19TQ0hFTUFfUkVMX1RZUEUnIGluIHQsICdNSVNTSU5HOiBtYXBwaW5nIHRhYmxlJwphc3NlcnQgJ21hcHBlZF90eXBlID0gRFlHSUVQUF9UT19TQ0hFTUFfUkVMX1RZUEUuZ2V0KHJlbF90eXBlLCByZWxfdHlwZSknIGluIHQsICdNSVNTSU5HOiBtYXBwaW5nIHVzYWdlJwpwcmludCgnW1ZFUklGWV0gZGF0YV91dGlscy5weTogbWFwcGluZyB0YWJsZSBwcmVzZW50LCB1c2VkIGluIF9jb252ZXJ0X2R5Z2llcHBfZG9jJykKCnQgPSBvcGVuKCdzcmMvcmV3YXJkcy5weScpLnJlYWQoKQphc3NlcnQgJ19ub3JtYWxpemVfcmVsYXRpb24nIGluIHQsICdNSVNTSU5HOiBfbm9ybWFsaXplX3JlbGF0aW9uJwphc3NlcnQgJ19hcmdfc2ltaWxhcml0eScgaW4gdCwgJ01JU1NJTkc6IF9hcmdfc2ltaWxhcml0eScKYXNzZXJ0ICd0aHJlc2hvbGQ6IGZsb2F0ID0gMC4zJyBpbiB0LCAnTUlTU0lORzogdGhyZXNob2xkIDAuMycKcHJpbnQoJ1tWRVJJRlldIHJld2FyZHMucHk6IG5vcm1hbGl6ZSArIGFyZ19zaW1pbGFyaXR5ICsgdGhyZXNob2xkPTAuMycpCgpwcmludCgnXG5BbGwgcGF0Y2hlcyBhcHBsaWVkIGFuZCB2ZXJpZmllZCBzdWNjZXNzZnVsbHknKQo='
+        | base64 -d > /tmp/patch_reltype.py && python3 /tmp/patch_reltype.py && rm
+        -rf /root/autodl-tmp/output/formal_D1 && echo 'IyBEMTogRjEtZG9taW5hbnQgd2VpZ2h0cyAoNzU6MjUpLCBubyBHRFBPCiMgVHVuaW5nIGZyb20gQjogcmFpc2UgRjEgd2VpZ2h0LCByZW1vdmUgR0RQTyBub3JtYWxpemF0aW9uCiMgSHlwb3RoZXNpczogY29uZm9ybWFuY2UgYXMgc29mdCByZWd1bGFyaXplciByYXRoZXIgdGhhbiBlcXVhbCBwYXJ0bmVyCm1vZGVsX25hbWU6ICIvcm9vdC9hdXRvZGwtdG1wL21vZGVscy9Rd2VuL1F3ZW4zLjUtOUIiCm91dHB1dF9kaXI6ICIuL291dHB1dC9ncnBvX2QxIgpydW5fbmFtZTogImdycG8tZDEtZjEtZG9taW5hbnQiCgojIEdSUE8gZ2VuZXJhdGlvbgpudW1fZ2VuZXJhdGlvbnM6IDgKbWF4X25ld190b2tlbnM6IDEwMjQKbWF4X3Byb21wdF9sZW5ndGg6IDE1MzYKCiMgVHJhaW5pbmcKbnVtX3RyYWluX2Vwb2NoczogMwpwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU6IDIKZ3JhZGllbnRfYWNjdW11bGF0aW9uX3N0ZXBzOiA4CmxlYXJuaW5nX3JhdGU6IDUuMGUtNgp3YXJtdXBfcmF0aW86IDAuMQpiZjE2OiB0cnVlCmdyYWRpZW50X2NoZWNrcG9pbnRpbmc6IHRydWUKCiMgUmV3YXJkIOKAlCBGMS1kb21pbmFudCwgc2ltcGxlIHdlaWdodGVkIHN1bSAobm8gR0RQTykKdXNlX2dkcG86IGZhbHNlCnJld2FyZF93ZWlnaHRzOgogIGYxX2NvcnJlY3RuZXNzOiAwLjc1CiAgc3RydWN0dXJhbF92YWxpZGl0eTogMC4wNQogIHR5cGVfY29uZm9ybWFuY2U6IDAuMDgKICByZWxhdGlvbmFsX2NvbnN0cmFpbnQ6IDAuMDgKICBzdHJ1Y3R1cmFsX2NvbXBsZXRlbmVzczogMC4wNAoKIyBMb1JBCnVzZV9sb3JhOiB0cnVlCmxvcmFfcjogNjQKbG9yYV9hbHBoYTogMTI4CmxvcmFfZHJvcG91dDogMC4wNQpsb3JhX3RhcmdldF9tb2R1bGVzOgogIC0gcV9wcm9qCiAgLSBrX3Byb2oKICAtIHZfcHJvagogIC0gb19wcm9qCiAgLSBnYXRlX3Byb2oKICAtIHVwX3Byb2oKICAtIGRvd25fcHJvagoKIyBSZXdhcmQgaGFja2luZyBkZXRlY3Rpb24KaGFja2luZ193YXJtdXBfc2FtcGxlczogMjAwCgojIExvZ2dpbmcKcmVwb3J0X3RvOiAid2FuZGIiCndhbmRiX3Byb2plY3Q6ICJzY2hlbWEtY29uZm9ybS1pZSIKbG9nZ2luZ19zdGVwczogMTAKc2F2ZV9zdGVwczogMTAwCnNlZWQ6IDQyCg=='
+        | base64 -d > configs/grpo_d1.yaml && WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1
+        python -m src.train_grpo --config configs/grpo_d1.yaml --data_dir /root/autodl-tmp/data/scierc
+        --dataset scierc --output_dir /root/autodl-tmp/output/formal_D1 --max_steps
+        500 2>&1 | tee /root/autodl-tmp/logs/train_D1_v3.log"
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      pid: '70696'
+      log_path: ~/runs/schema-conform-ie-training/exp_004_d1_v3.log
+      submitted_at: '2026-05-13T04:54:02.661Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root
+    hypothesis: F1-dominant weights (75:25) + no GDPO + fixed relation type mapping.
+      First training with correct relation reward signal (DYGIEPP_TO_SCHEMA_REL_TYPE
+      mapping + _normalize_relation + _arg_similarity).
+    conclusion: killed
+  exp_005_d1_v4:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T06:51:52.235Z'
+    updated_at: '2026-05-13T15:53:38.896Z'
+    spec:
+      hypothesis: F1-dominant weights (75:25) + no GDPO + thinking-fix (enable_thinking=false).
+        Correct relation type mapping + normalized matching.
+      parent: exp_004_d1_v3
+      model_name: Qwen/Qwen3.5-9B (LoRA r=64 alpha=128)
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1 python -m src.train_grpo
+        --config configs/grpo_d1.yaml --output_dir /root/autodl-tmp/output/formal_D1_v4
+        --max_steps 500
+      hyperparams:
+        learning_rate: 5.0e-06
+        lora_r: 64
+        lora_alpha: 128
+        num_generations: 8
+        per_device_train_batch_size: 2
+        gradient_accumulation_steps: 8
+        max_steps: 500
+        use_gdpo: false
+        reward_weights:
+          f1_correctness: 0.75
+          structural_validity: 0.05
+          type_conformance: 0.08
+          relational_constraint: 0.08
+          structural_completeness: 0.04
+      log_path: /root/autodl-tmp/logs/train_D1_v4.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D1_v4
+      pid: 77066
+      training_final_metrics:
+        steps_completed: 500
+        wall_time: 4h01m
+    conclusion: success
+    metrics:
+      eval_ref: eval_D1_v4
+      training_steps_completed: 500
+      wall_time: 4h01m
+    completed_at: '2026-05-13T15:53:38.896Z'
+  exp_006_d2_phase2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T06:51:58.352Z'
+    updated_at: '2026-05-13T15:53:39.222Z'
+    spec:
+      hypothesis: 'Curriculum learning: resume from A''s merged checkpoint (F1-only
+        500 steps) + add conformance rewards (75:25).'
+      parent: exp_001_grpo_baseline
+      model_name: Qwen/Qwen3.5-9B + LoRA from formal_A/merged
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python -m src.train_grpo
+        --config configs/grpo_d2_phase2.yaml --output_dir /root/autodl-tmp/output/formal_D2
+        --max_steps 500
+      hyperparams:
+        learning_rate: 5.0e-06
+        lora_r: 64
+        lora_alpha: 128
+        num_generations: 8
+        per_device_train_batch_size: 2
+        gradient_accumulation_steps: 8
+        max_steps: 500
+        use_gdpo: false
+        reward_weights:
+          f1_correctness: 0.75
+          structural_validity: 0.05
+          type_conformance: 0.08
+          relational_constraint: 0.08
+          structural_completeness: 0.04
+      log_path: /root/autodl-tmp/logs/train_D2_phase2.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D2
+      checkpoint_source: /root/autodl-tmp/output/formal_A/merged
+      pid: 77141
+      mode_collapse_warning: 'step 460: frac_reward_zero_std=0.55, grad_norm=0'
+      training_final_metrics:
+        steps_completed: 500
+        wall_time: 3h17m55s
+        loss: -0.00318
+        reward: 0.5025
+        reward_std: 0.11
+        step490_reward: 0.545
+    conclusion: success
+    metrics:
+      eval_ref: eval_D2_ckpt400, eval_D2_final
+      training_steps_completed: 500
+      wall_time: 3h17m55s
+      mode_collapse_warning: step 460
+    completed_at: '2026-05-13T15:53:39.222Z'
+  eval_D2_ckpt400:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T10:08:50.515Z'
+    updated_at: '2026-05-13T15:53:01.691Z'
+    spec:
+      metrics:
+        scierc_test:
+          entity_f1: 0.5325
+          relation_f1: 0.2379
+          f1_correctness: 0.3912
+          structural_validity: 1
+          type_conformance: 0.9873
+          relational_constraint: 0.918
+          structural_completeness: 0.9873
+          valid_json_rate: 1
+        crossner_politics:
+          entity_f1: 0.478
+          relation_f1: 0
+          f1_correctness: 0.4744
+          structural_validity: 1
+          type_conformance: 0.9971
+          relational_constraint: 0
+          structural_completeness: 0.989
+          valid_json_rate: 1
+        crossner_science:
+          entity_f1: 0.6057
+          relation_f1: 0
+          f1_correctness: 0.5753
+          structural_validity: 0.9982
+          type_conformance: 0.9793
+          relational_constraint: 0
+          structural_completeness: 0.9561
+          valid_json_rate: 0.9982
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: success
+    completed_at: '2026-05-13T15:15:17.060Z'
+  eval_D2_final:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T10:08:53.153Z'
+    updated_at: '2026-05-13T15:53:04.461Z'
+    spec:
+      metrics:
+        scierc_test:
+          entity_f1: 0.5211
+          relation_f1: 0.2363
+          f1_correctness: 0.3844
+          structural_validity: 1
+          type_conformance: 0.98
+          relational_constraint: 0.9298
+          structural_completeness: 0.98
+          valid_json_rate: 1
+        crossner_politics:
+          entity_f1: 0.4821
+          relation_f1: 0
+          f1_correctness: 0.4764
+          structural_validity: 1
+          type_conformance: 0.997
+          relational_constraint: 0
+          structural_completeness: 0.9878
+          valid_json_rate: 1
+        crossner_science:
+          entity_f1: 0.6053
+          relation_f1: 0
+          f1_correctness: 0.5699
+          structural_validity: 0.9982
+          type_conformance: 0.9711
+          relational_constraint: 0
+          structural_completeness: 0.9544
+          valid_json_rate: 0.9982
+    failure_reason: 'startup recovery: RUNNING with no cron and no server/pid info'
+    conclusion: success
+    completed_at: '2026-05-13T15:15:17.314Z'
+  eval_D1_v4:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T10:50:37.489Z'
+    updated_at: '2026-05-13T15:53:07.498Z'
+    spec:
+      metrics:
+        scierc_test:
+          entity_f1: 0.4966
+          relation_f1: 0.2913
+          f1_correctness: 0.3924
+          structural_validity: 1
+          type_conformance: 1
+          relational_constraint: 0.972
+          structural_completeness: 1
+          valid_json_rate: 1
+        crossner_politics:
+          entity_f1: 0.4783
+          relation_f1: 0
+          f1_correctness: 0.3069
+          structural_validity: 0.9923
+          type_conformance: 0.9209
+          relational_constraint: 0
+          structural_completeness: 0.6714
+          valid_json_rate: 0.9923
+        crossner_science:
+          entity_f1: 0.628
+          relation_f1: 0
+          f1_correctness: 0.384
+          structural_validity: 0.9982
+          type_conformance: 0.8589
+          relational_constraint: 0
+          structural_completeness: 0.7221
+          valid_json_rate: 0.9982
+    failure_reason: 'startup recovery: process dead, no active cron monitor'
+    conclusion: success
+    completed_at: '2026-05-13T15:15:22.961Z'
+  eval_D1_v4_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T15:47:20.009Z'
+    updated_at: '2026-05-13T17:42:13.876Z'
+    spec:
+      hypothesis: 'D1 v4 eval retry (v2): F1-dominant weights (75:25) + thinking fix
+        + relation type fix. Full re-run after server restart.'
+      parent: exp_005_d1_v4
+      checkpoint_source: /root/autodl-tmp/output/formal_D1_v4/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (D1 v4)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      log_path: /root/autodl-tmp/logs/eval_D1_v4_v2.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D1_v4/merged
+      command: CUDA_VISIBLE_DEVICES=1 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_D1_v4/merged
+        --data_dir /root/autodl-tmp/data --datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_D1_v4_v2 --max_new_tokens
+        1024
+      data_count: 0
+      pid: 98692
+    conclusion: killed
+    completed_at: '2026-05-13T17:42:13.876Z'
+  eval_D2_ckpt400_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T15:47:23.688Z'
+    updated_at: '2026-05-13T17:42:28.890Z'
+    spec:
+      hypothesis: 'D2 ckpt400 eval retry (v2): pre-mode-collapse checkpoint. Full
+        re-run after server restart.'
+      parent: exp_006_d2_phase2
+      checkpoint_source: /root/autodl-tmp/output/formal_D2/checkpoint-400-merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (D2 ckpt400)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      log_path: /root/autodl-tmp/logs/eval_D2_ckpt400_v2.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D2/checkpoint-400-merged
+      command: CUDA_VISIBLE_DEVICES=0 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_D2/checkpoint-400-merged
+        --data_dir /root/autodl-tmp/data --datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_D2_ckpt400_v2 --max_new_tokens
+        1024
+      data_count: 0
+      pid: 98615
+    conclusion: killed
+    completed_at: '2026-05-13T17:42:28.890Z'
+  eval_D2_final_v2:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T15:47:25.900Z'
+    updated_at: '2026-05-13T17:42:37.753Z'
+    spec:
+      hypothesis: 'D2 final merged eval retry (v2): 500 steps, may be affected by
+        mode collapse after step 460. Full re-run after server restart.'
+      parent: exp_006_d2_phase2
+      checkpoint_source: /root/autodl-tmp/output/formal_D2/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (D2 final)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      log_path: /root/autodl-tmp/logs/eval_D2_final_v2.log
+      checkpoint_path: /root/autodl-tmp/output/formal_D2/merged
+      command: CUDA_VISIBLE_DEVICES=0 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_D2/merged
+        --data_dir /root/autodl-tmp/data --datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_D2_final_v2 --max_new_tokens
+        1024
+      data_count: 0
+    conclusion: killed
+    completed_at: '2026-05-13T17:42:37.753Z'
+  exp_007_a_continued:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T16:01:04.970Z'
+    updated_at: '2026-05-13T20:57:32.709Z'
+    spec:
+      eval_plan: 'Dual checkpoint eval: checkpoint-400 (900 effective steps, matches
+        D2 ckpt400) + final merged (1000 effective steps)'
+      wandb_mode: offline (WANDB_MODE=offline in launch command)
+      code_requirements: thinking-disabled train_grpo.py + fixed data_utils.py (relation
+        type mapping) + fixed rewards.py (_normalize_relation + _arg_similarity)
+      command: WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python -m src.train_grpo
+        --config configs/grpo_a_continued.yaml --data_dir /root/autodl-tmp/data/scierc
+        --dataset scierc --output_dir /root/autodl-tmp/output/formal_A_continued --max_steps
+        500
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      data_path: /root/autodl-tmp/data/scierc/
+      data_count: 1861
+      model_name: Qwen/Qwen3.5-9B + LoRA from formal_A/merged (F1-only continuation)
+      seed: 42
+      pid: 104689
+      checkpoint_source: /root/autodl-tmp/output/formal_A/merged
+      log_path: /root/autodl-tmp/logs/train_A_continued.log
+      checkpoint_path: /root/autodl-tmp/output/formal_A_continued
+    conclusion: success
+    metrics:
+      training_steps_completed: 500
+      wall_time: 3h08m
+      eval_ref: eval_A_continued_ckpt400, eval_A_continued_final
+    completed_at: '2026-05-13T20:57:32.709Z'
+  eval_A_v3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T17:43:26.894Z'
+    updated_at: '2026-05-13T19:40:42.663Z'
+    spec:
+      hypothesis: A re-eval with fixed evaluate.py (thinking disable + relation type
+        fix). Fair comparison baseline.
+      parent: exp_001_grpo_baseline
+      checkpoint_source: /root/autodl-tmp/output/formal_A/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (F1-only)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      log_path: /root/autodl-tmp/logs/eval_A_v3.log
+      checkpoint_path: /root/autodl-tmp/output/formal_A/merged
+      output_dir: /root/autodl-tmp/output/eval_A_v3
+      command: CUDA_VISIBLE_DEVICES=1 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_A/merged
+        --data_dir /root/autodl-tmp/data --eval_datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_A_v3 --max_new_tokens
+        1024
+      data_count: 0
+      pid: 104831
+    conclusion: success
+    metrics:
+      scierc_test:
+        entity_f1: 0.4404
+        relation_f1: 0.181
+        f1_correctness: 0.3395
+        structural_validity: 1
+        type_conformance: 0.9002
+        relational_constraint: 0.3371
+        structural_completeness: 0.9002
+        valid_json_rate: 1
+      crossner_politics:
+        entity_f1: 0.446
+        relation_f1: 0
+        f1_correctness: 0.446
+        structural_validity: 1
+        type_conformance: 1
+        relational_constraint: 0
+        structural_completeness: 1
+        valid_json_rate: 1
+      crossner_science:
+        entity_f1: 0.5697
+        relation_f1: 0
+        f1_correctness: 0.5697
+        structural_validity: 1
+        type_conformance: 0.9842
+        relational_constraint: 0
+        structural_completeness: 0.9945
+        valid_json_rate: 1
+    completed_at: '2026-05-13T19:40:42.663Z'
+  eval_B_v3:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T17:43:29.636Z'
+    updated_at: '2026-05-13T23:10:00.215Z'
+    spec:
+      hypothesis: B re-eval with fixed evaluate.py (thinking disable + relation type
+        fix). Fair comparison for 5-comp+GDPO.
+      parent: exp_002_grpo_conformance
+      checkpoint_source: /root/autodl-tmp/output/formal_B/merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (5-comp + GDPO)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:1
+      log_path: /root/autodl-tmp/logs/eval_B_v3.log
+      checkpoint_path: /root/autodl-tmp/output/formal_B/merged
+      output_dir: /root/autodl-tmp/output/eval_B_v3
+      command: CUDA_VISIBLE_DEVICES=1 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_B/merged
+        --data_dir /root/autodl-tmp/data --eval_datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_B_v3 --max_new_tokens
+        1024
+      data_count: 0
+    conclusion: success
+    metrics:
+      scierc_test:
+        entity_f1: 0.4209
+        relation_f1: 0.2348
+        f1_correctness: 0.3349
+        structural_validity: 0.9764
+        type_conformance: 0.9559
+        relational_constraint: 0.8361
+        structural_completeness: 0.9564
+        valid_json_rate: 0.9764
+      crossner_politics:
+        entity_f1: 0.4187
+        relation_f1: 0
+        f1_correctness: 0.3833
+        structural_validity: 0.9969
+        type_conformance: 0.9578
+        relational_constraint: 0
+        structural_completeness: 0.9076
+        valid_json_rate: 0.9969
+      crossner_science:
+        entity_f1: 0.5635
+        relation_f1: 0
+        f1_correctness: 0.4335
+        structural_validity: 0.9963
+        type_conformance: 0.9177
+        relational_constraint: 0
+        structural_completeness: 0.8447
+        valid_json_rate: 0.9963
+    completed_at: '2026-05-13T23:10:00.215Z'
+  eval_A_continued_ckpt400:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T20:57:41.659Z'
+    updated_at: '2026-05-13T23:10:00.431Z'
+    spec:
+      hypothesis: A-continued ckpt400 eval (900 effective steps = A 500 + A-cont 400).
+        Direct ablation comparison with D2 ckpt400 (900 effective = A 500 + D2 400).
+        Same steps, different reward.
+      parent: exp_007_a_continued
+      checkpoint_source: /root/autodl-tmp/output/formal_A_continued/checkpoint-400-merged
+      eval_data: scierc_test, crossner_politics, crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: Qwen/Qwen3.5-9B + LoRA (A-continued ckpt400)
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      log_path: /root/autodl-tmp/logs/eval_A_continued_ckpt400.log
+      checkpoint_path: /root/autodl-tmp/output/formal_A_continued/checkpoint-400-merged
+      output_dir: /root/autodl-tmp/output/eval_A_continued_ckpt400
+      command: CUDA_VISIBLE_DEVICES=0 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_A_continued/checkpoint-400-merged
+        --data_dir /root/autodl-tmp/data --eval_datasets scierc_test crossner_politics
+        crossner_science --output_dir /root/autodl-tmp/output/eval_A_continued_ckpt400
+        --max_new_tokens 1024
+      data_count: 0
+    conclusion: success
+    metrics:
+      scierc_test:
+        entity_f1: 0.5158
+        relation_f1: 0.2951
+        f1_correctness: 0.4175
+        structural_validity: 1
+        type_conformance: 0.971
+        relational_constraint: 0.7108
+        structural_completeness: 0.971
+        valid_json_rate: 1
+      crossner_politics:
+        entity_f1: 0.4816
+        relation_f1: 0
+        f1_correctness: 0.4816
+        structural_validity: 1
+        type_conformance: 0.9998
+        relational_constraint: 0
+        structural_completeness: 0.9995
+        valid_json_rate: 1
+      crossner_science:
+        entity_f1: 0.6017
+        relation_f1: 0
+        f1_correctness: 0.5956
+        structural_validity: 1
+        type_conformance: 0.9914
+        relational_constraint: 0
+        structural_completeness: 0.9892
+        valid_json_rate: 1
+    completed_at: '2026-05-13T23:10:00.431Z'
+  eval_A_continued_final:
+    status: DONE
+    retry_count: 0
+    created_at: '2026-05-13T20:57:44.558Z'
+    updated_at: '2026-05-14T00:41:52.715Z'
+    spec:
+      hypothesis: A-continued final eval (1000 effective steps = A 500 + A-cont 500).
+        Comparison with D2 final (1000 effective = A 500 + D2 500).
+      parent: formal_A_continued
+      checkpoint_source: /root/autodl-tmp/output/formal_A_continued/merged
+      eval_data: scierc_test,crossner_politics,crossner_science
+      data_path: /root/autodl-tmp/data
+      model_name: formal_A_continued_merged
+      seed: 42
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      log_path: /root/autodl-tmp/logs/eval_A_continued_final.log
+      checkpoint_path: /root/autodl-tmp/output/formal_A_continued/merged
+      output_dir: /root/autodl-tmp/output/eval_A_continued_final
+      command: python -m src.evaluate --model_path /root/autodl-tmp/output/formal_A_continued/merged
+        --eval_datasets scierc_test crossner_politics crossner_science --output_dir
+        /root/autodl-tmp/output/eval_A_continued_final
+      data_count: 1745
+    conclusion: success
+    completed_at: '2026-05-13T23:24:52.256Z'
+    metrics:
+      scierc_test:
+        n_samples: 551
+        entity_f1: 0.5172
+        relation_f1: 0.3004
+        f1_correctness: 0.4185
+        structural_validity: 1
+        type_conformance: 0.9814
+        relational_constraint: 0.7102
+        structural_completeness: 0.9819
+        valid_json_rate: 1
+      crossner_politics:
+        n_samples: 651
+        entity_f1: 0.4784
+        relation_f1: 0
+        f1_correctness: 0.4784
+        structural_validity: 0.9985
+        type_conformance: 0.9982
+        relational_constraint: 0
+        structural_completeness: 0.998
+        valid_json_rate: 0.9985
+      crossner_science:
+        n_samples: 543
+        entity_f1: 0.5959
+        relation_f1: 0
+        f1_correctness: 0.5891
+        structural_validity: 1
+        type_conformance: 0.9917
+        relational_constraint: 0
+        structural_completeness: 0.9892
+        valid_json_rate: 1
+  eval_C_v3:
+    status: PREPARING
+    retry_count: 0
+    created_at: '2026-05-14T01:54:48.039Z'
+    updated_at: '2026-05-14T01:57:30.786Z'
+    spec:
+      command: bash -c "source /root/miniconda3/etc/profile.d/conda.sh && conda activate
+        base && cd /root/schema-conform-ie-training && python -m src.evaluate --model_path
+        /root/autodl-tmp/models/Qwen/Qwen3.5-9B --data_dir /root/autodl-tmp/data --eval_datasets
+        scierc_test crossner_politics crossner_science --output_dir /root/autodl-tmp/output/eval_C_v3
+        --max_new_tokens 1024 2>&1 | tee /root/autodl-tmp/logs/eval_C_v3.log"
+      server: seetacloud-westb-2xpro6000
+      gpu:
+      - cuda:0
+      pid: unknown
+      log_path: ~/runs/schema-conform-ie-training/eval_C_v3.log
+      submitted_at: '2026-05-14T01:57:30.717Z'
+      submitted_via: submit_training_job
+      backend: tmux
+      account: root

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58e66f744a30e2623c16",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha ablation westd resume",
+  "task_key": "worker_code_alpha-ablation-westd-resume_20260515T084042",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-ablation-westd-resume_20260515T084042_result.json",
+    "occurrence": 1,
+    "bytes": 1503,
+    "sha256": "d234a579afd1a3014439ce9014657fcda19da59143fb95d8d824181810347bd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 状态报告\n\n### 1. 进程状态\n- **PID 7186 存活**，已运行 ~1h05m，nohup 方式（非 tmux）\n- 当前双卡并行执行 Phase A Eval：\n  - GPU0: α=2.0 eval — ~48/100（约 22 min 剩余）\n  - GPU1: α=4.0 eval — ~14/100（约 43 min 剩余）\n\n### 2. GPU / 磁盘\n| 资源 | 状态 |\n|------|------|\n| GPU0 | 83%, 12969 MiB |\n| GPU1 | 84%, 12957 MiB |\n| 根分区 | 6.6/30GB (22%) |\n| 数据盘 | 72/250GB (29%) |\n\n### 3. 已完成的计算结果\n\n**Phase 0:** ✅\n- `importance_scores.pt` (17KB)\n- `cka_scores.pt` (122KB)\n\n**Phase A Prune:** ✅ 全部 5 个 α 值已完成\n- `/root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/alpha_{0.0,0.5,1.0,2.0,4.0}/`\n\n**Phase A Eval（已完成 3/5）:**\n\n| α | Accuracy |\n|---|----------|\n| 0.0 | 0.30 |\n| 0.5 | 0.25 |\n| 1.0 | 0.27 |\n| 2.0 | 🔄 运行中 |\n| 4.0 | 🔄 运行中 |\n\n**Phase B (SFT + Post-SFT Eval):** 尚未开始\n\n### 4. 后续进度预估\n\nPipeline 会自动按顺序执行：\n1. Phase A Eval 完成 — ~43 min\n2. Phase B SFT（5 个 α，双卡并行，2 epochs）— ~2-3h\n3. Phase B Post-SFT Eval — ~1-1.5h\n\n**预计全部完成：~4-5h 后（约 UTC 21:00-22:00）**\n\n### 5. 无需干预\n\nPipeline 通过 nohup 运行，状态健康，无需 kill 或重启。自动跳过已完成步骤（脚本有 `[SKIP]` 逻辑）。唯一风险是 nohup 进程可能因 OOM 或其他原因死亡——建议过几小时后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-ablation-westd-resume.md"
+}

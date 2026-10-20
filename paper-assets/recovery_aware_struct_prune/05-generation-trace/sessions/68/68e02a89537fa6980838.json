@@ -1,0 +1,416 @@
+{
+  "schema_version": "1.0",
+  "id": "68e02a89537fa6980838",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analysis eval humaneval sft standard 20 1p5b 2048",
+  "task_key": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322.jsonl",
+    "occurrence": 1,
+    "bytes": 21925,
+    "sha256": "4995149c3d82384de0d5a58fecea8c8b325ff6740841c2b142d7af0626cff140"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:54:14.849785+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:54:14.850120+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:54:14.850309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:54:14.850458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -50 /root/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:54:14.850842+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.006097560975609756,\\\\n  \\\\\\\"stderr\\\\\\\": 0.006078942425350188,\\\\n  \\\\\\\"n_passed\\\\\\\": 1,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 90\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/3\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/4\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/5\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/6\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/7\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/8\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/9\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/10\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/11\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"completion_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\"\n…[truncated 8883 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:54:14.851111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 20:23:36,093 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\\n2026-05-19 20:23:36,751 [INFO] Non-uniform MLP detected: intermediate_size range [3738, 8960]\\\\n2026-05-19 20:24:03,433 [INFO] Loading HumanEval dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\n2026-05-19 20:25:23,623 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-19 20:25:23,624 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\n2026-05-19 20:25:24,626 [WARNING] Using the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 12:28:27 2026).\\\\n2026-05-19 20:25:24,628 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 12:28:27 2026).\\\\n2026-05-19 20:25:24,689 [INFO] Loaded 164 problems\\\\n2026-05-19 20:25:24,689 [INFO] Evaluating on 164 problems\\\\n\\\\rHumanEval eval:   0%|          | 0/164 [00:00<?, ?it/s]\\\\rHumanEval eval:   1%|          | 1/164 [00:35<1:35:46, 35.25s/it]\\\\rHumanEval eval:   1%|          | 2/164 [01:10<1:34:24, 34.97s/it]\\\\rHumanEval eval:   2%|▏         | 3/164 [01:11<52:30, 19.\n…[truncated 6417 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:54:14.851334+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__update_registry",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:54:14.851481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:54:14.851609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_standard_20_1p5b_2048",
+              "field": "metrics",
+              "value": "{'pass_at_1': 0.0061, 'n_correct': 1, 'n_total': 164, 'stderr': 0.0061}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:54:14.851778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:53:56.667Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:50:34.259Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:50:39.347512+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0061, \\\"n_correct\\\": 1, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0061}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0223}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:54:14.851928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_standard_20_1p5b_2048",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:54:14.852058+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_standard_20_1p5b_2048",
+              "field": "log_path",
+              "value": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:54:14.852211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:53:58.145Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:50:34.259Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:50:39.347512+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0061, \\\"n_correct\\\": 1, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0061}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0908}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:54:14.852410+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:53:59.775Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:50:34.259Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:50:39.347512+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0061, \\\"n_correct\\\": 1, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0061}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6104}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:54:14.852553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_standard_20_1p5b_2048",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:54:14.852680+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_standard_20_1p5b_2048",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:54:14.852838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:54:05.390Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:50:34.259Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:50:39.347512+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0061, \\\"n_correct\\\": 1, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0061}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_s\n…[truncated 20 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:54:14.853046+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_1p5b_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T11:35:45.876Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:54:06.392Z\\\", \\\"hypothesis\\\": \\\"1.5B SFT Standard HumanEval pass@1 @2048 on westb. Cross-scale validation of capability breadth claim. Running on westb cuda:0 where checkpoints already exist (no scp needed).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_standard_20_1p5b_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"890564\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-19T12:23:31.889Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"HumanEval (164 problems, pass@1, max_new_tokens=2048)\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 5434.5, \\\"gpu_hours\\\": 1.51}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T13:50:34.259Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T13:50:39.347512+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.0061, \\\"n_correct\\\": 1, \\\"n_total\\\": 164, \\\"stderr\\\": 0.0061}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_1p5b_2048.log\\\", \\\"conclusion\\\": \\\"success\\\n…[truncated 167 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:54:14.853242+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## Metrics 摘要\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | 0.0061 (0.61%) |\n| **n_correct** | 1 |\n| **n_total** | 164 |\n| **stderr** | ±0.0061 |\n| **唯一通过** | HumanEval/30 |\n| **运行时间** | ~1h23m |\n| **退出码** | 0 (正常完成) |\n\nStandard SFT 1.5B 在 HumanEval 上 1/164，与 CKA-only SFT (也是 1/164) 持平。符合预期——1.5B 剪枝模型在 code generation 上本身能力极弱，两种 SFT 方法无显著差异。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-humaneval-sft-standard-20-1p5b-2048.md"
+}

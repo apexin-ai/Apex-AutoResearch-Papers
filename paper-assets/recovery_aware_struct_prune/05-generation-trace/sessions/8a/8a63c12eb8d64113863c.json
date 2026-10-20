@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a63c12eb8d64113863c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill cliff 30 eval westd1",
+  "task_key": "worker_ssh_kill_cliff_30_eval_westd1_20260523T115837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_cliff_30_eval_westd1_20260523T115837_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "de20fe4588b0b06261211e80dcde3795072838440750d0549f851d485f85baad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n- **进程 130690 已 kill**，tmux session `eval_gsm8k_postprune_cka_only_30_n1319` 已销毁\n- **Registry 已更新**：status=DONE, conclusion=killed, notes 已写入\n- **无关联 cron**\n- **GPU 1 当前状态**：19242 MiB 被 PID 108574 占用（`eval_math500_sft_standard_20_2048_v3`，另一个实验），CKA-only 30% eval 的显存已释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-cliff-30-eval-westd1.md"
+}

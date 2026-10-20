@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8604a4f1b2d9ccba7139",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify remaining checkpoints",
+  "task_key": "worker_ssh_verify_remaining_checkpoints_20260524T040804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_remaining_checkpoints_20260524T040804_result.json",
+    "occurrence": 1,
+    "bytes": 1586,
+    "sha256": "6408c6996138bfc9ba23e83cf4f028b56447cc4b312eaa31d06fa3ecd19bace0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 5 checkpoints found. Also checked running evals and script existence.\n\n| Checkpoint | 路径 | 存在? | 服务器 |\n|------------|------|-------|--------|\n| grpo_alpha0p5_20 | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20` | ✅ | westb-23072 |\n| sft_alpha3p0_20 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20` | ✅ | westb-23072 |\n| grpo_alpha4_20 | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20` | ✅ | westd-32935 |\n| grpo_alpha3p0_20 | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2` | ✅ | westd-32935 (注意 `_v2` 后缀) |\n| sft_cka_only_25 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25` | ✅ | westd-32935 |\n\n**eval script**: `/root/recovery_aware_struct_prune/src/eval_math500.py` 存在于 westd-32935 ✅\n\n**当前运行的 eval_math500 进程**:\n\n| 服务器 | 实验 | GPU | CPU 时间 |\n|--------|------|-----|----------|\n| westd-32935 | sft_rasp_alpha0p5_20_fixed | cuda:1 | 97min |\n| westd-32935 | sft_rasp_alpha4p0_20_fixed | cuda:2 | 66min |\n| westd-32935 | sft_standard_25_fixed_v2 | cuda:0 | (刚启动) |\n| westd-32935 | sft_rasp_alpha1p0_20_v2 | tmux session | (状态不明) |\n| westb-23072 | grpo_random_20_fixed | cuda:1 | 391min |\n| westb-23072 | sft_random_20_fixed_v3 | cuda:0 | 303min |\n\n注意：`grpo_alpha3p0_20` 在 westd 上的目录名是 `grpo_rasp_alpha3p0_20_v2`（带 `_v2`），启动 eval 时需要用这个路径。westb 上有 `pruned_rasp_alpha3p0_20` 但没有 GRPO 训练后的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-remaining-checkpoints.md"
+}

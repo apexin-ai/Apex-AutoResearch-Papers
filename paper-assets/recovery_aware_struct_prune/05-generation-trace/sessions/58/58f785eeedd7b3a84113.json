@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58f785eeedd7b3a84113",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval pass k8 rasp 20 grpo deepseek",
+  "task_key": "worker_diagnose_eval_pass_k8_rasp_20_grpo_deepseek_20260517T004128",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pass_k8_rasp_20_grpo_deepseek_20260517T004128_result.json",
+    "occurrence": 1,
+    "bytes": 652,
+    "sha256": "64b8560ef00e4cf5faf0bfa53dd4a6e9443cbd0b9c385792fd9915c6ec33e623"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，未失败。**\n\n进程 PID 61473 活跃中（114% CPU，已运行 44 分钟）。Cron 误判原因：eval 脚本不写 W&B 也不写 sentinel，进程检查逻辑无法识别正在运行的 eval job。\n\n当前状态：\n- 进度：63/200 (32%)，中间 pass@8 = 0.84（50 题时的 checkpoint）\n- 启动时间：08:03，log 最后更新：08:38\n- 速度：多数 14-25s/it，但 items 35-40 有异常减速（125-171s/it），之后恢复正常\n- 预计剩余：约 60-80 分钟完成\n\nJSON 尚未生成是正常的，脚本在全部 200 题评完后才写入。无需干预，等待自然完成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pass-k8-rasp-20-grpo-deepseek-copy-2.md"
+}

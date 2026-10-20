@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "639e4ea4ceb141bb7ee7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb models for math500",
+  "task_key": "worker_ssh_check_westb_models_for_math500_20260521T123943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb_models_for_math500_20260521T123943_result.json",
+    "occurrence": 1,
+    "bytes": 1688,
+    "sha256": "6e59bfdd8bc2e98835f1b749cf1dc1b9b80d92d16fbcf32e77d276e93925b5cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 上可用模型汇总（`/root/autodl-tmp/recovery_aware_struct_prune/` 下）：\n\n### Base 模型\n| 路径 | 大小 |\n|------|------|\n| `models/DeepSeek-R1-Distill-Qwen-1.5B/` | 3.4G |\n\n### 7B 剪枝模型（20% / 25%）\n| 路径 | 大小 |\n|------|------|\n| `pruned_standard_20/` | 12G |\n| `pruned_standard_25/` | 11G |\n| `pruned_cka_only_20/` | 12G |\n| `pruned_rasp_20/` | 12G |\n| `pruned_rasp_rlvr_20/` | 12G |\n| `pruned_cka_only_20_qwen_math/` | 12G |\n| `pruned_standard_20_qwen_math/` | 12G |\n\n### 7B SFT 恢复模型\n| 路径 | 大小 |\n|------|------|\n| `sft_cka_only_20/` (根目录) | 12G |\n| `sft_standard_25/checkpoint-1870/` | 12G |\n| `sft_rasp_rlvr_20/checkpoint-1870/` | 12G |\n| `sft_qwen_math_cka_only_20/checkpoint-935/` | 12G |\n| `sft_qwen_math_cka_only_20_final/` | 12G |\n| `sft_standard_20_qwen_math/checkpoint-935/` | 12G |\n| `sft_standard_20_qwen_math_final/` | 12G |\n\n### 7B GRPO 模型\n| 路径 | 大小 |\n|------|------|\n| `grpo_cka_only_20/checkpoint-100/` | 12G |\n| `grpo_cka_only_20_seed123/` (根目录) | 12G |\n| `grpo_standard_25_westb/checkpoint-100/` | 11G |\n| `grpo_random_20/` | （无 model.safetensors）|\n\n### 1.5B 系列\n| 路径 | 大小 |\n|------|------|\n| `pruned_standard_20_1p5b/` | — |\n| `pruned_cka_only_20_1p5b/` | — |\n| `pruned_rasp_20_1p5b/` | — |\n| `sft_cka_only_20_1p5b/` | — |\n| `sft_standard_20_1p5b/` | — |\n| `sft_rasp_20_1p5b/` | — |\n| `grpo_cka_only_20_1p5b/checkpoint-100/` | — |\n| `grpo_standard_20_1p5b/` | 2.8G |\n| `grpo_rasp_20_1p5b/checkpoint-100/` | — |\n\n共 **27 个含 model.safetensors 的模型路径**可用于 MATH-500 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-models-for-math500.md"
+}

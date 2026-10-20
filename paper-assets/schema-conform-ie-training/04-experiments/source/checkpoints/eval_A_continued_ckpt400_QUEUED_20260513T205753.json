@@ -1,0 +1,30 @@
+{
+  "exp_id": "eval_A_continued_ckpt400",
+  "project": "schema-conform-ie-training",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T20:57:41.659Z",
+    "updated_at": "2026-05-13T20:57:53.356Z",
+    "spec": {
+      "hypothesis": "A-continued ckpt400 eval (900 effective steps = A 500 + A-cont 400). Direct ablation comparison with D2 ckpt400 (900 effective = A 500 + D2 400). Same steps, different reward.",
+      "parent": "exp_007_a_continued",
+      "checkpoint_source": "/root/autodl-tmp/output/formal_A_continued/checkpoint-400-merged",
+      "eval_data": "scierc_test, crossner_politics, crossner_science",
+      "data_path": "/root/autodl-tmp/data",
+      "model_name": "Qwen/Qwen3.5-9B + LoRA (A-continued ckpt400, F1-only)",
+      "seed": 42,
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/logs/eval_A_continued_ckpt400.log",
+      "checkpoint_path": "/root/autodl-tmp/output/formal_A_continued/checkpoint-400-merged",
+      "output_dir": "/root/autodl-tmp/output/eval_A_continued_ckpt400"
+    }
+  },
+  "timestamp": "2026-05-13T20:57:53.408539+00:00",
+  "trigger": "update_registry"
+}

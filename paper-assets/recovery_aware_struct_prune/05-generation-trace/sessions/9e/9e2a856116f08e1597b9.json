@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e2a856116f08e1597b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code sft standard 25 westd",
+  "task_key": "worker_code_sft_standard_25_westd_20260516T055908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft_standard_25_westd_20260516T055908_result.json",
+    "occurrence": 1,
+    "bytes": 561,
+    "sha256": "fde6dc21b2fcc2ec214cdf57cd223e3fcb9b27a53e29030c0e052c48e61ece52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n1. **模型传输** — 通过将 westd 公钥加入 westb authorized_keys，成功从 westb (port 23072) scp 了 pruned_standard_25（10.8GB）到 westd\n2. **训练提交** — 使用 conda 环境激活（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）解决了 `python: command not found` 问题\n3. **状态** — sft_standard_25 在 westd-11672 cuda:1 上已正常运行，tmux session 存在，模型加载成功\n4. **Registry** — 已更新为 RUNNING，spec 包含完整 provenance"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-standard-25-westd.md"
+}

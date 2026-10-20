@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c016a6066a911499a59",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd gpu1 gpu3 status",
+  "task_key": "worker_diagnose_westd_gpu1_gpu3_status_20260522T113444",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_gpu1_gpu3_status_20260522T113444_result.json",
+    "occurrence": 1,
+    "bytes": 987,
+    "sha256": "d2587371d65c083325a903957e371acc1adb2c44c2ddc8cde59fa4fdf3b77761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== westd:1 MATH-500 SFT Random ===\nPID 5241: alive (运行 7h29m, CPU 101%)\n结果文件: 不存在\n状态判断: 运行中, 373/500 (75%), 预计还需 ~2.5h\n\n=== westd:3 pipeline_depth_first_20 ===\nPID 40073: alive (运行中, eval_gsm8k_grpo_depth_first_20)\nPID 36161: alive (父进程)\nGRPO eval 结果: 不存在\nSFT eval 结果: 不存在\n状态判断: Phase 4 (Eval GRPO) 运行中, Phase 5 (Eval SFT) 待执行\n\n=== GPU 总览 ===\nGPU 0: 54341/97887 MiB, 89% — grpo_rasp_alpha3p0_20_v2 训练 (PID 42008)\nGPU 1: 17651/97887 MiB, 98% — eval_math500_sft_random_20_v3 (PID 5241, 75%)\nGPU 2: 16261/97887 MiB, 93% — (可能是 pipeline Phase 4 的实际 GPU 分配)\nGPU 3: 28832/97887 MiB, 95% — eval_gsm8k_grpo_random_20_seed123 (PID 41541, tmux) + pipeline eval 共占\n```\n\n注意: GPU 3 上同时跑了 pipeline 的 Phase 4 eval 和 tmux 里的 eval_gsm8k_grpo_random_20_seed123，两个 eval 共享 GPU 3 可能导致速度下降。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-gpu1-gpu3-status.md"
+}

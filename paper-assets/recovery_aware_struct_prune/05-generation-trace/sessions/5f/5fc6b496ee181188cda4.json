@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fc6b496ee181188cda4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd recovery checklist",
+  "task_key": "worker_code_westd_recovery_checklist_20260518T064046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd_recovery_checklist_20260518T064046_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "a86c8b1c7c4b8e3720cd390a7e5dcd1647af6f5f61ab7911601474230845d1b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已写入 `artifacts/westd_recovery_checklist.md` 并注册。\n\n文档包含 5 个步骤：\n1. **服务器状态检查** — SSH 连通性 + GPU 状态 + 残留进程\n2. **结果文件检查** — 5 个实验逐一 cat 结果 JSON + tail log，standard_20 和 rasp_20_v3 宕机前接近完成，有可能已写入结果\n3. **结果读取** — Python 脚本批量解析已完成实验的 accuracy\n4. **中断实验重提交** — 4 个 submit_training_job 命令，按优先级 standard > rasp > sft_cka_only > gsm8k 排序，标注预计耗时\n5. **GPU 分配** — 4 张卡各跑一个，cuda:1/3 可能很快释放\n\n关键提醒：gsm8k 的 log 在 /tmp，重启后可能丢失，重提交时需改路径到 ~/runs/。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-recovery-checklist.md"
+}

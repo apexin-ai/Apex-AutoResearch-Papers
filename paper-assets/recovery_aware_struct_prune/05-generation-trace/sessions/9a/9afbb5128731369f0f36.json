@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9afbb5128731369f0f36",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check qwen phase1 final",
+  "task_key": "worker_check_qwen_phase1_final_20260520T055649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen_phase1_final_20260520T055649_result.json",
+    "occurrence": 1,
+    "bytes": 108,
+    "sha256": "4e248860465849686e3e4e03dce63517034cb76318cb89652ef8b723dd28f1e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA-only eval 大约 10 分钟后完成，届时自动检查最终结果并更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-phase1-final.md"
+}

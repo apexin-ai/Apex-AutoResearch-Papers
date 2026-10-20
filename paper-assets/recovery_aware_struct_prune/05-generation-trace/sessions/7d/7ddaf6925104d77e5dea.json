@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ddaf6925104d77e5dea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest eval gsm8k grpo random 20",
+  "task_key": "worker_ssh_harvest_eval_gsm8k_grpo_random_20_20260521T044849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_eval_gsm8k_grpo_random_20_20260521T044849_result.json",
+    "occurrence": 1,
+    "bytes": 598,
+    "sha256": "b0e82949b281e395811c77dad8cc551aa5fc3ac8e3e42966e669ea84c4e30145"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_gsm8k_grpo_random_20 失败**，没有产出任何 eval 结果。\n\n- **原因**：`nohup: failed to run command 'python': No such file or directory` — 启动命令用了 `python` 而非 `python3`（或未激活 conda 环境），导致进程直接退出。\n- **输出**：无 eval 输出目录，无结果 JSON。\n- **GRPO 训练本身已完成**：`grpo_random_20/checkpoint-100/` 存在，模型文件齐全。\n\n需要修正 eval 启动脚本中的 python 路径（改用 `python3` 或先 `source conda activate`）后重新提交 eval 任务。是否现在重跑？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-eval-gsm8k-grpo-random-20.md"
+}

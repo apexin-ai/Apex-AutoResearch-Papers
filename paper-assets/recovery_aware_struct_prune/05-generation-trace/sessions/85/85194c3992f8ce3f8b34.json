@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85194c3992f8ce3f8b34",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cleanup westb duplicate evals",
+  "task_key": "worker_ops_cleanup_westb_duplicate_evals_20260517T124236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_westb_duplicate_evals_20260517T124236_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "c9504e06556bbf4ca6e8991b836ea2d61df5467ccf1852bd7df7dcd0c3538dc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "重复 eval 进程 (712124, 712819) 已不存在，无需手动 kill。\n\n当前 GPU 状态：\n- **cuda:0**: PID 710618, 12994MiB / 97887MiB, 73% util\n- **cuda:1**: PID 715803, 12994MiB / 97887MiB, 80% util\n\n两张卡各只有一个进程，显存占用正常（~13GB）。之前占 ~46GB 的重复 eval 进程已自行退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-westb-duplicate-evals.md"
+}

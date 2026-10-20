@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f3fbd105d16283ea411",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westb grpo v8 step progress",
+  "task_key": "worker_monitor_westb-grpo-v8-step-progress_20260515T172014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westb-grpo-v8-step-progress_20260515T172014_result.json",
+    "occurrence": 1,
+    "bytes": 2024,
+    "sha256": "9680d351985e02b8d489a97b275b19148bf052a25f3b8e571ac1971602484ca0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据到手。\n\n---\n\n## GRPO v8 实验状态报告\n\n### 进程状态\n\n| | RASP (cuda:0) | Standard (cuda:1) |\n|---|---|---|\n| PID | 532861 ✅ 运行中 | 534667 ✅ 运行中 |\n| 运行时长 | 2h 47m | 2h 38m |\n| **当前 step** | **23/100** | **22/100** |\n| 平均 step 耗时 | ~403s (6m43s) | ~415s (6m55s) |\n\n### Step 30 预估到达时间\n\n- **RASP**: step 23 → step 30 = 7 steps × ~410s ≈ 48 min → **~18:03 UTC (May 15)**\n- **Standard**: step 22 → step 30 = 8 steps × ~415s ≈ 55 min → **~18:14 UTC (May 15)**\n\n（当前 UTC 约 17:20，即 RASP ~43min 后、Standard ~54min 后到达 step 30）\n\n### 关键指标\n\n**RASP** (step 10 → step 20):\n\n| 指标 | step 10 | step 20 | 判断 |\n|------|---------|---------|------|\n| grad_norm | 0.0134 | 0.0109 | 极低，几乎无梯度 |\n| reward_mean | 0.009 | 0.026 | 微弱 |\n| frac_zero_std | **0.90** | **0.90** | 锁死在 0.9，无恢复迹象 |\n| entropy | 0.060 | 0.065 | 极低 |\n| loss | 0.009 | -0.005 | 趋零 |\n\n**结论：RASP 模型已严重坍塌。** 90% batch 无差异化 reward 信号，grad_norm 比 Standard 低 100x+，无任何恢复迹象。\n\n**Standard** (step 10 → step 20):\n\n| 指标 | step 10 | step 20 | 判断 |\n|------|---------|---------|------|\n| grad_norm | 2.906 | 1.586 | 正常范围，下降中 |\n| reward_mean | 0.058 | 0.061 | 稳定 |\n| frac_zero_std | **0.50** | **0.675** | ⚠️ 上升中，趋近 0.75 预警线 |\n| entropy | 0.148 | 0.145 | 稳定 |\n| loss | 0.060 | 0.056 | 缓降 |\n\n**结论：Standard 尚存活但 frac_zero_std 从 0.5→0.675 线性上升，按此趋势 step 30 附近将触及 0.75 预警线。** 需要在 step 30 checkpoint 时评估是否干预。\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 温度 |\n|-----|--------|------|------|\n| cuda:0 | 100% | 71.7 / 97.9 GB | 84°C |\n| cuda:1 | 100% | 71.7 / 97.9 GB | 84°C |\n\n### 磁盘\n\n`/root/autodl-tmp`: 88GB 可用 (65%)，checkpoint 写入无问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westb-grpo-v8-step-progress.md"
+}

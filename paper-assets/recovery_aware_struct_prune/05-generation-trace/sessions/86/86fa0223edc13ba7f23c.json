@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86fa0223edc13ba7f23c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit eval sft cka only n1319",
+  "task_key": "worker_ops_submit_eval_sft_cka_only_n1319_20260517T175956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_eval_sft_cka_only_n1319_20260517T175956_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "46d79ea3726650472f1e5dc5802ba28f5b5c1a0fa444a501c758bef53ee0c37e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **参数名**: `--max_samples`，确认正确\n- **cuda:0**: 空闲（0MiB, 0% util）\n- **模型不存在**: westd 上没有 `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/`\n\n`sft_cka_only_20` 是在 westb 上训练的，westd 上不存在该模型。**无法在 westd 上提交 eval job，需要先从 westb 拷贝模型到 westd。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-eval-sft-cka-only-n1319.md"
+}

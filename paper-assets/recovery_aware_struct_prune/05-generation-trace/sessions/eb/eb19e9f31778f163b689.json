@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb19e9f31778f163b689",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch seed123 eval move westd2",
+  "task_key": "worker_launch_seed123_eval_move_westd2_20260522T123552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_seed123_eval_move_westd2_20260522T123552_result.json",
+    "occurrence": 1,
+    "bytes": 681,
+    "sha256": "121b2c2521547d75aa39d1011b5bd47d11fa18fd0cd468d7e4470f0841fdc6da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移完成。\n\n### 结果\n\n| 项目 | 值 |\n|------|-----|\n| 旧 PID (GPU:3) | 41541 — 已 kill |\n| 新 PID (GPU:2) | 46229 (python 子进程，父 bash PID 46224) |\n| GPU:2 显存 | 9215MiB / 97887MiB，正在推理 |\n| GPU:3 | 只剩 depth-first (PID 40073, 16483MiB)，不再拥挤 |\n\n### nvidia-smi 摘要\n- GPU:0 — 29137MiB, 99% util (PID 43755)\n- GPU:1 — 17651MiB, 92% util (PID 5241)\n- **GPU:2 — 9215MiB, 11% util (PID 46229, seed123 eval)** ← 新\n- GPU:3 — 16483MiB, 91% util (PID 40073, depth-first only)\n\n### 日志\n模型已加载到 cuda:0 (映射为物理 GPU:2)，GSM8K 1319 samples 评估已开始，`Evaluating: 0%`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-seed123-eval-move-westd2.md"
+}

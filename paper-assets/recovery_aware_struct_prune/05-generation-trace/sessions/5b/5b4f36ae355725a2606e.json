@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b4f36ae355725a2606e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec copy and eval standard 20 westb",
+  "task_key": "worker_exec_copy_and_eval_standard_20_westb_20260521T233534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_copy_and_eval_standard_20_westb_20260521T233534_result.json",
+    "occurrence": 1,
+    "bytes": 422,
+    "sha256": "01eb6fe87097e62fc18ef5e2a29bf8bfb38c470b4080423f7c79abd0d408bd01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器之间无法直连（互相无法解析 hostname）。\n\n**跨服务器复制失败**——westb-23072 和 westd-29022 之间没有直连网络，rsync/scp 双向都不通。需要改用 westd 方案，或者通过本地中转（但 checkpoint ~12GB，中转耗时较长）。\n\n建议切换到 **westd:1 方案**——直接在 westd-29022 上用 cuda:1 跑 eval，避免大文件传输。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-copy-and-eval-standard-20-westb.md"
+}

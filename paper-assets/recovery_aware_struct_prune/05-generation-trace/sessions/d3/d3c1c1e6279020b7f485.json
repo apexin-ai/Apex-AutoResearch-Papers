@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3c1c1e6279020b7f485",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 sft rasp 20 2048",
+  "task_key": "worker_analysis_eval_math500_sft_rasp_20_2048_20260519T013720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_sft_rasp_20_2048_20260519T013720_result.json",
+    "occurrence": 1,
+    "bytes": 659,
+    "sha256": "64e48617b6cd33b80a74d473e38fc704cc2458b40580a46010e59041eab0e820"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 `eval_math500_sft_rasp_20_2048` 结果：\n\n| 指标 | 值 |\n|---|---|\n| **MATH-500 Accuracy** | **22.6%** |\n| Correct / Total | 113 / 500 |\n| Stderr | ±1.87% |\n| Avg response length | 930.58 tokens |\n| Median response length | 274.0 tokens |\n| Natural EOS | 314 (62.8%) |\n| Truncated (hit 2048) | 186 (37.2%) |\n\n模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd`\n\n日志文件不存在，数据全部来自 JSON。无 W&B run ID。\n\n注意：37.2% 的样本被截断到 2048 tokens，且截断样本的 pred 几乎全为 null（未能产出答案），这是拉低 accuracy 的重要因素。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-sft-rasp-20-2048.md"
+}

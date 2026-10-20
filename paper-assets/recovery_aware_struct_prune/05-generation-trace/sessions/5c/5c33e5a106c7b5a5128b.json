@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c33e5a106c7b5a5128b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit grpo standard 20 fair",
+  "task_key": "worker_submit_grpo_standard_20_fair_20260518T010553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_grpo_standard_20_fair_20260518T010553_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "098f2bafa0678810495e7f0d2f754fd69e65bbbb7e991d6f0ddd112f0c2f9811"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`grpo_standard_20_fair` 已在 westd-11672 cuda:0 上运行，状态已更新为 RUNNING。\n\n- **PID**: 74224（python 训练进程）\n- **SFT checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd`\n- **输出目录**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair`\n- **参数**: 与 grpo_rasp_20_fair 完全一致（v5 脚本，max_steps=100，lr=1e-6，dapo loss）\n- **磁盘**: 223G 可用，充足\n\n实验此前已通过 `submit_training_job` 提交并自动启动，hypothesis 和 parent 已补充设置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-grpo-standard-20-fair.md"
+}

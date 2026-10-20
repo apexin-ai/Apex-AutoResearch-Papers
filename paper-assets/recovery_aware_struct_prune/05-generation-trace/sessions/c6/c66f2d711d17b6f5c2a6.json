@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c66f2d711d17b6f5c2a6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval postprune cka only 30 failure",
+  "task_key": "worker_analysis_eval_postprune_cka_only_30_failure_20260517T231849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_postprune_cka_only_30_failure_20260517T231849_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "f1f307c15d5d8f0ba793bc5732f8ad3cd566b850b887ba7112b6aa76f3ed0e77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n### 1. eval_postprune_cka_only_30 — 未失败，仍在运行\n\n进程仍活跃 (PID 59408, 105% CPU, cuda:2)，当前进度 **56/200**。\n\n日志中 sample 35 处出现 `Terminated` 字样，但进程并未退出，eval 继续运行到了 56。可能是同 GPU 上之前的某个进程被 kill。\n\n关键指标（50/200 中间报告）：\n- **acc = 0.0000**（零准确率）\n- eos_rate = 4.00%\n- avg_len = 4024（几乎全部 max out）\n\nCKA-only 30% 剪枝后模型在 GSM8K 上完全丧失数学能力。\n\n### 2. eval_math500_grpo_unpruned — 运行中\n\n- 在 westd-11672 cuda:2 上运行（PID 64472, 07:09 启动）\n- 当前进度 **11/500**\n- 模型 `grpo_unpruned_v2/` 加载成功\n- 结果文件尚未生成\n\n### ⚠️ GPU 冲突\n\neval_postprune_cka_only_30 和 eval_math500_grpo_unpruned **都在 cuda:2 上**。这解释了 cka_only_30 在 sample 35 后速度从 ~95s/it 骤降到 ~48-90s/it。两个 eval 互相争抢显存和算力，都会变慢。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-postprune-cka-only-30-failure.md"
+}

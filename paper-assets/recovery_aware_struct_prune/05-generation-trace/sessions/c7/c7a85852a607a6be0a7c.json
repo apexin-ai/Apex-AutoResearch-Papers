@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7a85852a607a6be0a7c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk cleanup",
+  "task_key": "worker_ops_westd_disk_cleanup_20260520T092839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_20260520T092839_result.json",
+    "occurrence": 1,
+    "bytes": 801,
+    "sha256": "c61da9a87e34566c802663c6c2a2e1445722c0e49522d043252650041ae3fe83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n## 磁盘清理报告\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 数据盘已用 | 594G (96%) | 550G (89%) |\n| 数据盘可用 | 26G | **70G** |\n\n### 删除明细\n\n| 文件 | 大小 |\n|------|------|\n| `grpo_stage2_standard_20_fair/checkpoint-100/optimizer.pt` | 15G |\n| `grpo_standard_20_seed123/checkpoint-100/optimizer.pt` | 15G |\n| `grpo_standard_20_seed456/checkpoint-100/optimizer.pt` | 15G |\n| **总计释放** | **~44G** |\n\n### 备注\n- seed123/seed456 无中间 checkpoint 可删（只有 final checkpoint-100）\n- `grpo_stage2_rasp_20_fair` 的 optimizer.pt 不存在（已清理过）\n- 所有模型权重（model.safetensors）、配置、日志均保留完整\n- **70G 可用空间**，超额完成 ≥30GB 目标"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-copy-3.md"
+}

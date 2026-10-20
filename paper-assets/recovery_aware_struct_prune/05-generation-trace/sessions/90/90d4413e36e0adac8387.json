@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90d4413e36e0adac8387",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper method results draft",
+  "task_key": "worker_paper_method-results-draft_20260517T174402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-results-draft_20260517T174402_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "42ae6d3f698f430e163386b3a9e39a009aeb837512142efd11abf62029a0592a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件已写入：\n\n- `paper/method.md` — 包含 RASP scoring formula ($S(h) = I(h) \\times (1-F(h))^\\alpha$)、Taylor importance + intra-layer CKA 计算、pruning procedure、两阶段 recovery pipeline (SFT + GRPO 超参)、collapse diagnostic framework (frac\\_zero\\_std / grad\\_norm / mean\\_terminated\\_length)、实验设计 (DeepSeek-R1-Distill-Qwen-7B, 20% sparsity, N=1319 GSM8K)。\n\n- `paper/results.md` — 按 claim-evidence 结构组织：\n  - 4.1 C1: 三模型 reward-accuracy decoupling (Unpruned Δ=0.00pp, Standard -0.38pp, RASP -0.84pp) + Qwen Math 跨模型验证\n  - 4.2 C2: collapse severity gradient (RASP step 10 permanent, Standard step 60 transient, Unpruned never) + mechanism 解释 + 25% sparsity 确认\n  - 4.3 C3: SFT recovery 对比 (RASP +2.2pp, p=0.25) + Redundancy-Stability Tradeoff 总结\n  - 4.4: Alpha ablation (U-shape post-prune, SFT equalizing effect)\n\n所有数字均标注了 registry 来源实验 ID。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-results-draft.md"
+}

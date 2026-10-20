@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cacafa0d5f6c6799d122",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo rasp 25",
+  "task_key": "worker_diagnose_grpo_rasp_25_20260516T170358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_rasp_25_20260516T170358_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "b68381ea737e03d99d958658dda4a2ca2c3a3dcd5e22b162beab87fe178e83d2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。总结：\n\n**grpo_rasp_25 没有失败，是 Cron 误判。** 实验 100/100 步正常完成（57 分钟），模型和 checkpoint 均完整保存。Cron 在进程正常退出后 ~7 分钟轮询时发现无存活进程，错误标记为 failed。\n\n已完成的修复：\n- Registry `conclusion` 已从 `failed` 改为 `success`\n- `failure_reason` 已更新为 FALSE POSITIVE 说明\n- `wandb_run_id` 已补充 (`bc4ojqie`)\n- 诊断报告已注册为 artifact (`art_20260516_baffc3`)\n\n值得注意：step 100 的 `frac_reward_zero_std=0.875`、`reward=0.009` 表明虽然训练跑完了，但模型出现了严重的 reward collapse——这与 RASP 25% 的研究假设一致，后续需定量分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-rasp-25.md"
+}

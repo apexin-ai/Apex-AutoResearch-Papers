@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "788b55f4653e0d5effbd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd root partition cleanup",
+  "task_key": "worker_ssh_westd_root_partition_cleanup_20260520T224427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_root_partition_cleanup_20260520T224427_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "3d2139d54eca688c3a0497ffc477eeef99fb9bf8a4c2cd5124fb32bb0f3f1170"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**清理内容：**\n| 项目 | 释放空间 | 操作 |\n|------|---------|------|\n| `grpo_standard_15_seed123_v3` | ~13G | 移至数据盘 |\n| `grpo_standard_15_seed456_v3` | ~13G | 移至数据盘 |\n| `.cache/pip` | 94M | 删除 |\n| `.cache/huggingface` | 347M | 删除 |\n| 空 v2 目录 + `__pycache__` | 微量 | 删除 |\n\n**清理后状态：**\n- 根分区：5.0G used / **26G free** (17%) — 远超 5G 目标\n- 数据盘：557G used / 63G free (90%)\n- GPU 0/1 上的 eval 进程未受影响（它们加载的模型在数据盘）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-root-partition-cleanup.md"
+}

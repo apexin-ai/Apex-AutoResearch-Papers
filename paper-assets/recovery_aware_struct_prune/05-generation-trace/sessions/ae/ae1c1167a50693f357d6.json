@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae1c1167a50693f357d6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check all servers status",
+  "task_key": "worker_ssh_check_all_servers_status_20260523T173555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_servers_status_20260523T173555_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "24303fd80e5711a726bd256857f5bfb0752730629a99ac3ef8133c50ce6f993c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-32935\n**GPU 状态:**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 87% | 12,867 / 97,887 MiB |\n| 1 | 98% | 17,541 / 97,887 MiB |\n| 2 | 92% | 19,251 / 97,887 MiB |\n| 3 | 98% | 19,251 / 97,887 MiB |\n\n**进程存活:**\n| PID | 实验 | 状态 | 运行时间 | 进度 |\n|-----|------|------|----------|------|\n| 142477 | eval_math500_grpo_standard_20_fixed | RUNNING | 2h32m | 183/500 (37%) |\n| 142638 | eval_math500_sft_standard_20_fixed | RUNNING | 2h32m | 170/500 (34%) |\n| 145167 | eval_math500_grpo_rasp_alpha1p0_20_fixed | RUNNING | 1h51m | 177/500 (35%) |\n| 147914 | eval_math500_sft_rasp_alpha1p0_20_fixed | RUNNING | 1h06m | 223/500 (45%) |\n\n**已完成 eval 结果:** 无，全部仍在运行中\n\n**空闲 GPU:** 无\n\n---\n\n## westb-23072\n**GPU 状态:**\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 100% | 55,539 / 97,887 MiB |\n| 1 | 99% | 17,039 / 97,887 MiB |\n\n**进程存活:**\n| PID | 实验 | 状态 | 运行时间 | 进度 |\n|-----|------|------|----------|------|\n| 309964 | grpo_random_20_retrain_v2 | RUNNING | 1h19m | 39/100 steps (39%), ~114s/step |\n| 306963 | eval_math500_sft_cka_only_20_fixed_v2 | RUNNING | 1h51m | 232/500 (46%) |\n\n**已完成 eval 结果:** 无，仍在运行中\n\n**grpo_random_20_retrain_v2 进度:** 39/100 steps，预计还需约 ~2h\n\n**空闲 GPU:** 无\n\n---\n\n**预计完成时间估算：**\n- sft_rasp_alpha1p0_20_fixed (45%) 最快，约 1-1.5h 后完成\n- sft_cka_only_20_fixed_v2 (46%) 类似，约 1.5h\n- grpo 两个 eval (~35-37%) 约 3-4h（GRPO 模型生成更长，每题耗时更高）\n- grpo_random_20_retrain_v2 训练约 2h 后完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-servers-status.md"
+}

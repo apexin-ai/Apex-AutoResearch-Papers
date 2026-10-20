@@ -1,0 +1,70 @@
+{
+  "exp_id": "eval_A_v2",
+  "project": "schema-conform-ie-training",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T00:06:26.119Z",
+    "updated_at": "2026-05-13T03:08:40.825Z",
+    "spec": {
+      "command": "python -m src.evaluate --model_path formal_A/merged --max_new_tokens 1024",
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "58088",
+      "log_path": "/root/autodl-tmp/logs/eval_A_v2.log",
+      "submitted_at": "2026-05-13T00:06:26.113Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "hypothesis": "Re-eval group A (F1-only GRPO) with fixed thinking-mode disable",
+      "parent": "exp_001_grpo_baseline",
+      "checkpoint_source": "/root/autodl-tmp/output/formal_A/merged",
+      "eval_data": "scierc_test, crossner_politics, crossner_science",
+      "data_path": "/root/autodl-tmp/data",
+      "data_count": 0,
+      "model_name": "Qwen/Qwen3.5-9B + LoRA (F1-only)",
+      "seed": 42,
+      "checkpoint_path": "/root/autodl-tmp/output/formal_A/merged",
+      "metrics": {
+        "scierc_test": {
+          "f1_correctness": 0.2725,
+          "entity_f1": 0.4404,
+          "relation_f1": 0,
+          "structural_validity": 1,
+          "type_conformance": 0.9002,
+          "relational_constraint": 0.3371,
+          "structural_completeness": 0.9002,
+          "valid_json_rate": 1
+        },
+        "crossner_politics": {
+          "f1_correctness": 0.446,
+          "entity_f1": 0.446,
+          "structural_validity": 1,
+          "type_conformance": 1,
+          "relational_constraint": 0,
+          "structural_completeness": 1,
+          "valid_json_rate": 1
+        },
+        "crossner_science": {
+          "f1_correctness": 0.5697,
+          "entity_f1": 0.5697,
+          "structural_validity": 1,
+          "type_conformance": 0.9842,
+          "relational_constraint": 0,
+          "structural_completeness": 0.9945,
+          "valid_json_rate": 1
+        }
+      },
+      "wall_clock_seconds": 10934.7,
+      "gpu_hours": 3.04
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T03:08:40.825Z"
+  },
+  "timestamp": "2026-05-13T03:08:40.839521+00:00",
+  "trigger": "update_registry"
+}

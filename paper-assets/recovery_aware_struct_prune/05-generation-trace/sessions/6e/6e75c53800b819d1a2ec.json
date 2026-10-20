@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e75c53800b819d1a2ec",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec fix scoring ablation skip attention",
+  "task_key": "worker_exec_fix_scoring_ablation_skip_attention_20260517T053952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_fix_scoring_ablation_skip_attention_20260517T053952_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "b2b55dac78e2434ba8f5bbca5cab9f59f71e5e3c58bbc7a7c38c8fd4a48ad46c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`--skip_attention` 生效，所有层 Attn 保持 4/4 (100%)，只有 MLP groups 被剪枝。\n\n**完成：**\n\n1. **prune.py 修改**：\n   - 第 219 行：添加 `--skip_attention` argparse flag\n   - 第 332-334 行：排序后过滤掉所有 `stype == \"attn\"` 的条目\n\n2. **run_scoring_ablation.sh 修改**：PRUNE_ARGS 添加 `--skip_attention`\n\n3. **旧 pruned models 已删除**\n\n4. **tmux session `scoring_ablation_v2` 已启动**，使用 cuda:0，magnitude 方法正在运行（MLP-only 剪枝确认生效）\n\n5. `eval_unstructured_20` 仍在 cuda:1 正常运行，未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-fix-scoring-ablation-skip-attention.md"
+}

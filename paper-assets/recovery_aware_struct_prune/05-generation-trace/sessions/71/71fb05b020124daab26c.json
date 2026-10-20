@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71fb05b020124daab26c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval gsm8k sft standard 20 1p5b",
+  "task_key": "worker_analyze_eval_gsm8k_sft_standard_20_1p5b_20260519T032213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_gsm8k_sft_standard_20_1p5b_20260519T032213_result.json",
+    "occurrence": 1,
+    "bytes": 521,
+    "sha256": "e2f5e618f9a815fe6159f68006c0e96f28813d5bd515012212e54f2179d8318b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## SFT Standard 20% Pruned 1.5B — GSM8K 评估结果\n\n| 指标 | 数值 |\n|---|---|\n| **Accuracy** | **22.90%** (0.2290 ± 0.0116) |\n| Correct / Total | 302 / 1319 |\n| EOS Rate | 90.45% (1193 natural, 126 truncated) |\n| Avg Response Length | 516.7 tokens |\n| Generation Mode | Greedy (temperature=0) |\n| 运行时间 | ~4h15m |\n| Exit Code | 0，无报错 |\n\n**与 GRPO Standard 1.5B 对比**：SFT 的 22.90% 与 GRPO 的 22.29% 基本持平，略高 0.6pp，在预期的 20-25% 范围内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-gsm8k-sft-standard-20-1p5b.md"
+}

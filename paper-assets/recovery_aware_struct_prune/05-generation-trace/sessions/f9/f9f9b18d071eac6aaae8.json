@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9f9b18d071eac6aaae8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westb disk cleanup and eval rlvr",
+  "task_key": "worker_fix_westb_disk_cleanup_and_eval_rlvr_20260516T145016",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westb_disk_cleanup_and_eval_rlvr_20260516T145016_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "6d1a623aada15783f120ff6ffa3f1c348edba256526a2b897bfa848668667830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载（12GB safetensors → GPU），进程正常运行。\n\n**汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| 磁盘清理 | checkpoint-935 (35GB) + optimizer.pt (4.3GB) 已删除，释放 39GB → 数据盘 212G/250G (85%) |\n| checkpoint-1870 | 完整保留：config.json, model.safetensors, tokenizer 文件, chat_template |\n| eval 任务 | PID 625458, cuda:1, tmux session `eval_sft_rasp_rlvr_20` |\n| 日志 | `~/runs/recovery_aware_struct_prune/eval_sft_rasp_rlvr_20.log` |\n| 状态 | 模型加载中（Non-uniform MLP detected，正常），等待进入 GSM8K 评估 |\n\n注意：GPU 0 上还有一个先前的 `eval_sft_rasp_25` 任务在运行（PID 602990, 28.9GB VRAM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westb-disk-cleanup-and-eval-rlvr.md"
+}

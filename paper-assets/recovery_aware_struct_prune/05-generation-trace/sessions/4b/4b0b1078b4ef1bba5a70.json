@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0b1078b4ef1bba5a70",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval sft cka only 20 2048",
+  "task_key": "worker_analysis_eval_humaneval_sft_cka_only_20_2048_20260519T070102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_sft_cka_only_20_2048_20260519T070102_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "58fb010d38ecadc173848885ead1eb1a319a5d4e9b8cafbaaae4c8d7d95276e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**结果汇总：**\n\n| 项目 | 状态 |\n|---|---|\n| SFT CKA-only 20% HumanEval | pass@1 = **0.0%** (0/164)，registry → DONE(success) |\n| Cron | 无活跃 cron，无需删除 |\n| eval_humaneval_grpo_standard_20_fair_2048_v3 | 已在 westd-29022 cuda:2 启动 (PID 76392, 12488 MiB)，registry → RUNNING |\n\n备注：SFT CKA-only 所有 164 题的 error 均为 `No such file or directory: 'python'`（sandbox 环境缺 python 符号链接），0% 结果是环境问题导致而非纯模型质量。但如果其他 eval 用同一环境，结果间可比较。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-sft-cka-only-20-2048.md"
+}

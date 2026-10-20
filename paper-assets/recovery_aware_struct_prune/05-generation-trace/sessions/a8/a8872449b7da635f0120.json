@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a8872449b7da635f0120",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify standard25 tokenizer",
+  "task_key": "worker_ops_verify-standard25-tokenizer_20260516T051503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-standard25-tokenizer_20260516T051503_result.json",
+    "occurrence": 1,
+    "bytes": 314,
+    "sha256": "dffbf0eb570ed6cd1ca96875f91f59be4d0eeb90737e705cf4f94715461acb16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**tokenizer 状态：完整。**\n\n`pruned_standard_25` 目录含 `tokenizer.json` + `tokenizer_config.json` + `chat_template.jinja`，与原始模型一致（原始模型本身也没有 `special_tokens_map.json` 等额外文件）。AutoTokenizer 加载成功，vocab_size=151643，无需修复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-standard25-tokenizer.md"
+}

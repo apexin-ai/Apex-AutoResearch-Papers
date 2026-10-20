@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e3755dd0889ba800b92",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 seed456 v2",
+  "task_key": "worker_ssh_harvest_cka_only_15_seed456_v2_20260521T000515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_seed456_v2_20260521T000515_result.json",
+    "occurrence": 1,
+    "bytes": 409,
+    "sha256": "105107608e3e5e1aa76786e122cf6cb0cca7b06bc6c9e6bf489663e25f0deaa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。当前 session 无活跃 cron 需要删除。\n\n**结果汇总**：\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **72.10%** |\n| n_correct / n_total | 951 / 1319 |\n| stderr | ±1.23% |\n| EOS rate | 98.94% |\n| Avg response length | 201.9 tokens |\n\n实验 `eval_gsm8k_grpo_cka_only_15_seed456` 已标记 DONE/success，metrics 已写入 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-seed456-v2.md"
+}

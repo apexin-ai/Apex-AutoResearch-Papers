@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a956a311708cf4e549ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code cka stability script",
+  "task_key": "worker_code_cka_stability_script_20260519T212201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka_stability_script_20260519T212201_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "489d45250f9ae0bd9746df16fbd8a0cd7754b87d6fa11dcd09421a081d35184d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 3 有 97GB 可用，完全够用。以下是脚本和运行方案总结：\n\n---\n\n**脚本路径**: `src/cka_stability_analysis.py`\n\n**运行命令** (westd-29022, cuda:3):\n```bash\ncd /root/recovery_aware_struct_prune && python src/cka_stability_analysis.py \\\n  --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json \\\n  --device cuda:3\n```\n\n**脚本逻辑**:\n1. 加载 7B dense 模型到 cuda:3\n2. 加载 1024 个 GSM8K train 校准样本（seed=42，与 pruning 一致）\n3. 收集全部 1024 样本的 q_proj（attn heads）和 gate_proj（MLP groups）激活\n4. 释放模型，对 256/512/1024 三种 size 分别计算 F(h)（通过 subsample indices，256 ⊂ 512 ⊂ 1024）\n5. 计算 3 对 Spearman rank correlation（attn / mlp / combined）\n6. 输出 top-10 / bottom-10 结构 + 完整 JSON\n\n**复用函数**: `load_calibration_data`, `set_seed` from `cka_overlap.py`; `collect_qproj_activations`, `collect_mlp_activations`, `compute_fh_scores` from `run_cka_reliability.py`\n\n**预估运行时间**: ~25-35 分钟\n- 模型加载: ~1 min\n- 前向收集激活 (2×1024 samples): ~10 min\n- F(h) 计算 (3 sizes × 2 types × 28 layers × 378 pairs): ~15-20 min\n\n需要先把脚本 sync 到 westd-29022，是否批准运行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cka-stability-script.md"
+}

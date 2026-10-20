@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7c740d5294f0f946059",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis tost equivalence test",
+  "task_key": "worker_analysis_tost_equivalence_test_20260524T174218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_tost_equivalence_test_20260524T174218_result.json",
+    "occurrence": 1,
+    "bytes": 971,
+    "sha256": "44cebbc97287de54e110dc87071837ecffd05aa51c7af6366823614509b40a1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "TOST 分析完成。结果写入 `artifacts/tost_analysis_results.json`。\n\n**核心发现：**\n\n| 比较 | Δ (pp) | ε=2pp p值 | 等价? |\n|---|---|---|---|\n| **CKA-only** | | | |\n| SFT(63.91%) vs GRPO seed42(64.37%) | -0.45 | 0.008 | ✓ |\n| SFT vs GRPO seed123(64.22%) | -0.30 | 0.005 | ✓ |\n| SFT vs GRPO verify(64.06%) | -0.15 | 0.001 | ✓ |\n| SFT vs GRPO seed456(64.59%) | -0.68 | 0.023 | ✓ |\n| **Standard** | | | |\n| SFT(59.21%) vs GRPO seed123(59.89%) | -0.68 | 0.020 | ✓ |\n| SFT vs GRPO seed456(60.20%) | -0.99 | 0.069 | ✗ (borderline) |\n| SFT vs GRPO fair_v2(59.44%) | -0.23 | 0.010 | ✓ |\n| SFT vs GRPO ext300(59.29%) | -0.08 | 0.007 | ✓ |\n\n- **ε=1pp**：所有对都不显著（N=1319 power 不足以检测 1pp 等价带）\n- **ε=2pp**：7/8 对等价 (p<0.05)，仅 std_vs_seed456 borderline (p=0.069)\n- **ε=3pp**：8/8 全部等价 (all p<0.002)\n- 所有差异 <1pp，GRPO 一致略优但差异微不足道"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-tost-equivalence-test.md"
+}

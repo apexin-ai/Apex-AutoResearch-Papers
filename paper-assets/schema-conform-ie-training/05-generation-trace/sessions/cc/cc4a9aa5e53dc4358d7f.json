@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc4a9aa5e53dc4358d7f",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval d1v4 d2 launch",
+  "task_key": "worker_eval_d1v4_d2_launch_20260513T095132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d1v4_d2_launch_20260513T095132_result.json",
+    "occurrence": 1,
+    "bytes": 958,
+    "sha256": "c1f6f0da1ed35a29e22a951b4a4601e4f29da5a509005ba6f72149a26c061f27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "D2 在 471/500，还有 ~29 steps × ~24s ≈ 11 分钟。D1 在 364/500，还有 ~136 steps × ~26s ≈ 59 分钟。\n\n两个都还在跑，evaluate.py 已修复。我设一个定时回来检查。\n\n## 当前状态\n\n**D2 Phase 2** (PID 77141, cuda:0)\n- 进度：471/500，预计 ~11 分钟完成\n- GPU 0: 68% util, 40.8GB/97.9GB\n\n**D1 v4** (PID 77066, cuda:1)\n- 进度：364/500，预计 ~59 分钟完成\n- GPU 1: 63% util, 54.3GB/97.9GB\n\n**evaluate.py 修复**\n- 旧代码（行 204-207）：`.replace(\"{{- '<think>\\n' }}\", \"{{- '<think>\\n\\n</think>\\n\\n' }}\")`\n- 新代码：`\"{%- set enable_thinking = false -%}\" + tokenizer.chat_template`（前缀注入，直接在 Jinja2 模板级别禁用 thinking）\n- 验证通过\n\n**Merged 目录**：两个都还没生成（训练未完成）\n\n**下一步**：D2 预计 ~11 分钟完成，完成后自动 merge，然后启动 eval。建议 ~12 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d1v4-d2-launch.md"
+}

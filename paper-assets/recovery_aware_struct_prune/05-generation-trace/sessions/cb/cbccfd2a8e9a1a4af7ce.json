@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbccfd2a8e9a1a4af7ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prepare grpo stage2",
+  "task_key": "worker_code_prepare-grpo-stage2_20260515T000859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-grpo-stage2_20260515T000859_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "3147820279d3e1b4a2a2643c5123eede33ccbd39da909c90c2a4ac649ebea517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`run_grpo_stage2.sh` 已创建，语法验证通过。\n\n配置要点：\n- RASP (GPU0) / Standard (GPU1) 并行训练，输入为 SFT warmup checkpoint\n- `num_train_epochs=1`, `max_samples=2000`, `max_completion_length=4096`\n- `save_steps=100`, `save_total_limit=3`, `reward_desert_patience=50`\n- 输出到 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_{rasp,standard}_20_stage2/`\n- 日志 tee 到 `logs/grpo_stage2_{rasp,standard}.log`\n- wandb run_name: `grpo_stage2_rasp_20` / `grpo_stage2_standard_20`\n\nSFT eval 通过后执行 `bash src/run_grpo_stage2.sh` 即可启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-grpo-stage2.md"
+}

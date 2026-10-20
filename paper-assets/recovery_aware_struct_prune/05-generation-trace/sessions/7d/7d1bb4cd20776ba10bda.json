@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d1bb4cd20776ba10bda",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k grpo cka only 25 v2",
+  "task_key": "worker_diagnose_eval_gsm8k_grpo_cka_only_25_v2_20260521T044916",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_grpo_cka_only_25_v2_20260521T044916_result.json",
+    "occurrence": 1,
+    "bytes": 1518,
+    "sha256": "1ee51e21b68a941f297c3d7195821bdfe2a4e7e7a83df4a1609e9cff455445d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认了。诊断结果如下：\n\n---\n\n## 诊断报告\n\n### 失败根因\n\n**`checkpoint-100` 子目录不存在。** 模型文件（`config.json`, `model.safetensors`, `tokenizer.json` 等）直接在 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25/` 下，没有 `checkpoint-100` 子目录。\n\nTransformers 找不到本地路径后，尝试将其解释为 HuggingFace repo ID，触发 `HFValidationError`：\n```\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name':\n'/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25/checkpoint-100'\n```\n\n崩溃位置：`src/eval_gsm8k.py:464` — `AutoTokenizer.from_pretrained(args.model_path)`\n\n### checkpoint 路径\n\n- `grpo_cka_only_25/checkpoint-100` → **不存在**\n- `grpo_cka_only_25/` → **存在**，包含完整模型文件（`model.safetensors` 10.8GB, `config.json`, `tokenizer.json` 等）\n\nGRPO 训练似乎将最终 checkpoint 直接导出/合并到了父目录，而非保留 `checkpoint-*` 子目录结构。\n\n### 磁盘状态\n- 根分区：5.1G/30G (17%) — 正常\n- 数据盘：18G/879G (3%) — 正常\n\n### GPU 状态\n- 4× NVIDIA RTX PRO 6000 (96GB each)\n- GPU 0/1/3 空闲可用\n- GPU 2 被另一进程占用 (26.7GB, PID 320740)\n\n### 修复命令\n\n```bash\npython src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25 \\\n  --max_samples 1319 --seed 42\n```\n\n去掉路径末尾的 `/checkpoint-100` 即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-grpo-cka-only-25-v2.md"
+}

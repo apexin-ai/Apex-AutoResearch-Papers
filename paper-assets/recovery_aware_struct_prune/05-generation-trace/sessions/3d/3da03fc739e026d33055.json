@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da03fc739e026d33055",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops sft standard 25",
+  "task_key": "worker_ops_sft-standard-25_20260516T051939",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sft-standard-25_20260516T051939_result.json",
+    "occurrence": 1,
+    "bytes": 826,
+    "sha256": "7239b2dccbddc791b71f47207b927b5e311d0aed61c025f01689094f5220b18a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，GPU 已分配 13GB 显存。模型加载 + 数据集准备中，这对 7B 模型正常需要 1-2 分钟。\n\n**训练已成功启动：**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | sft_standard_25 |\n| PID | 587865 |\n| 服务器 | westb-23072, cuda:1 |\n| 模型 | pruned_standard_25 (Standard 25% sparsity) |\n| 输出 | /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 |\n| 日志 | ~/runs/recovery_aware_struct_prune/sft_standard_25.log |\n\n**训练参数**（与 20% SFT 完全一致）：\n- epochs: 2, lr: 2e-5, batch_size: 1, grad_accum: 8\n- max_seq_length: 2048, seed: 42\n- 数据：GSM8K train (7473 samples)\n- total_steps: 7473/8 × 2 = 1868 steps\n\n**预估时间**：参考 20% SFT (~33 min for 1870 steps)，25% 模型更小，预计 **25-30 分钟**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sft-standard-25.md"
+}

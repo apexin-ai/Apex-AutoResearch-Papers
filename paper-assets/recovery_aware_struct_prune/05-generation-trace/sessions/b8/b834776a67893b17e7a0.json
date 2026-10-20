@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b834776a67893b17e7a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp sft rasp 20",
+  "task_key": "worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304_result.json",
+    "occurrence": 1,
+    "bytes": 388,
+    "sha256": "a970de4c9194ec11a6f163405b8071e868c049bc9b762d2f82666891b3043adc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根因：模型路径错误。** `sft_rasp_20` 不存在，正确路径是 `sft_rasp_20_1p5b`。\n\nTransformers 找不到本地目录后尝试将绝对路径当 HF repo id 解析，触发 `HFValidationError` → `OSError` 退出。\n\n**修复**：重新提交，`--model_path` 改为 `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-sft-rasp-20.md"
+}

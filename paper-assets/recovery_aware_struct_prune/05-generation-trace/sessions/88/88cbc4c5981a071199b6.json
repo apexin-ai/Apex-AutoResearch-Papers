@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88cbc4c5981a071199b6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k grpo cka only 20 verify",
+  "task_key": "worker_analysis_eval_gsm8k_grpo_cka_only_20_verify_20260523T161315",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_grpo_cka_only_20_verify_20260523T161315_result.json",
+    "occurrence": 1,
+    "bytes": 417,
+    "sha256": "b2fa05469e99ffa8cf5ef8bd7434adb6a66a2ae491ced04270387d05be889d2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n| | 原始 (v2) | Verify | 差异 |\n|---|---|---|---|\n| accuracy | 64.37% | 64.06% | -0.31pp |\n| n_correct | 849 | 845 | -4 |\n| n_total | 1319 | 1319 | — |\n| stderr | — | ±1.32% | — |\n\n**Conclusion: success.** 差异 0.31pp 远小于 stderr 1.32%，跨服务器（westd → westb）可重复性确认。论文 Tab 1/Tab 2 中 64.37% 的数据点可靠。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-grpo-cka-only-20-verify.md"
+}

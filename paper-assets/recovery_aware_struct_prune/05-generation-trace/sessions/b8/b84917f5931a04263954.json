@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "b84917f5931a04263954",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh provenance fix westb",
+  "task_key": "worker_ssh_provenance_fix_westb_20260523T112649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_provenance_fix_westb_20260523T112649.log",
+    "occurrence": 1,
+    "bytes": 1180234,
+    "sha256": "c6aec74214933e7e74863c88de4187668e2253a86ba9d1728f8a72c57ba88338"
+  },
+  "statistics": {
+    "messages": 151,
+    "user_turns": 1,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 1,
+      "assistant": 28,
+      "tool_call": 54,
+      "tool_result": 54,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "b84917f5931a04263954-part-0001.json",
+          "message_count": 22
+        },
+        {
+          "path": "b84917f5931a04263954-part-0002.json",
+          "message_count": 2
+        },
+        {
+          "path": "b84917f5931a04263954-part-0003.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "b84917f5931a04263954-part-0003.json",
+          "message_count": 123
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-provenance-fix-westb.md"
+}

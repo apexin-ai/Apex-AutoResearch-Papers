@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b3e907b8a210d6b48e6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops d017 ghost cleanup",
+  "task_key": "worker_ops_d017-ghost-cleanup_20260515T035426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d017-ghost-cleanup_20260515T035426_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "8352743e739e755a004042fdace9b8c719c49f6ce368295c2872aa4addacc01e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### GPU 状态\n- GPU 0: PID 274156（rasp v2），GPU 1: PID 276978（standard v2）\n- 幽灵进程 PID 277310 **已不存在**\n\n### output_dir 检查\n`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v2/` **未被污染**——仅含空 `completions/` 目录（11:47 创建，与当前进程启动时间吻合），无文件。\n\n### wandb 残留（已清理）\n通过检查所有 wandb run 的 `wandb-metadata.json`，定位到幽灵进程的 wandb run：\n\n| 属性 | 值 |\n|---|---|\n| wandb run_id | `t1q2i5oe` |\n| 目录 | `wandb/run-20260515_114702-t1q2i5oe/` |\n| run_name | `grpo_stage2_standard_20_v2_debug` |\n| 启动时间 | 03:47:02 UTC |\n| 大小 | 36K |\n| 判定依据 | run_name 含 `_debug` 后缀，与幽灵进程 277310 的 run_name 完全匹配 |\n\n**已删除** `run-20260515_114702-t1q2i5oe/`。`latest-run` 仍正确指向 `iinlgfqk`。剩余 9 个 wandb run 均为合法 run。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d017-ghost-cleanup.md"
+}

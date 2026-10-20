@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e20ab0268ea2df404b8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest standard 15 seed456 v3",
+  "task_key": "worker_ssh_harvest_standard_15_seed456_v3_20260521T005019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_standard_15_seed456_v3_20260521T005019_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "7ea3fed3e2ca73c3a9036dc3ce24760a8ab5ff24273b7c03461f45c8e342fb92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**Standard 15% seed456 GSM8K 结果：**\n- **Accuracy: 65.43% (863/1319), stderr ±1.31%**\n- EOS rate: 99.39%, avg response length: 180.2 tokens\n\n**多种子汇总（Standard 15% GRPO）：**\n\n| Seed | Accuracy |\n|------|----------|\n| seed42 | 待确认 |\n| seed456 | 65.43% |\n| seed789 | 待确认 |\n\n对比 CKA-only 15% 三 seed 均值 72.76%，Standard 15% seed456 低了约 7.3pp。需要汇齐 seed42 和 seed789 结果后计算 Standard 15% 的三 seed 均值做正式对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-standard-15-seed456-v3.md"
+}

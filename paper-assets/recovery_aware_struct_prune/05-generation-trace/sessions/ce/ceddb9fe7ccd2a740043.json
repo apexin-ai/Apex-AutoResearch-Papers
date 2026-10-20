@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceddb9fe7ccd2a740043",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix qwen math eval westd",
+  "task_key": "worker_ops_fix_qwen_math_eval_westd_20260516T103248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_qwen_math_eval_westd_20260516T103248_result.json",
+    "occurrence": 1,
+    "bytes": 896,
+    "sha256": "b510fe60f47718d0edddb8e38f7029d2c6ceec88e0fda31bb45bf5c096a83caf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已经在正常运行，无需重启：\n\n| GPU | 任务 | PID | VRAM | 进度 | 速度 |\n|-----|------|-----|------|------|------|\n| cuda:0 | RASP Qwen Math | 102641 | 29617 MiB (30%) | 7/1319 (~0.5%) | ~328s/it |\n| cuda:1 | Standard Qwen Math | 102643 | 29589 MiB (30%) | 8/1319 (~0.6%) | ~298s/it |\n\n每个样本约 5 分钟，1319 个样本预计总耗时约 **4-5 天**。速度很慢是因为模型在逐条生成数学推理过程，且有 `max_length` 4096 的 warning 说明部分样本生成到了最大长度。\n\n注意：模型路径与你指定的略有不同：\n- 实际 RASP 路径: `sft_qwen_math_rasp_20`（不是 `sft_rasp_20_qwen_math`）\n- 实际 Standard 路径: `sft_qwen_math_standard_20`（不是 `sft_standard_20_qwen_math`）\n- 输出路径也做了调整，加了 `_n1319` 后缀\n\n进程已在运行中，不需要额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-qwen-math-eval-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bccebad9513d18de8828",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops d013 kill cleanup",
+  "task_key": "worker_ops_d013-kill-cleanup_20260514T233425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d013-kill-cleanup_20260514T233425_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "32d396e4be8cd1844e2631722abc5b02bcaad6834ee2187fcc167a67ad3df596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| GRPO (PID 244606 + 子进程 244611) | 已 kill |\n| Baseline eval (PID 239932) | 已 kill |\n| GPU0 | 空闲 (0 MiB) |\n| GPU1 | 空闲 (0 MiB) |\n| 磁盘清理 | recovered_* 已删，数据盘 61G/250G 使用 (25%) |\n| Baseline eval 结果 | **不存在**（eval 被 kill 时尚未完成写出） |\n\n数据盘剩余内容：\n- `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` — 原始模型\n- `pruned_rasp_20`, `pruned_rasp_25`, `pruned_standard_20`, `pruned_standard_25` — 剪枝 checkpoint\n\n两块 GPU 已就绪，可以启动 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d013-kill-cleanup.md"
+}

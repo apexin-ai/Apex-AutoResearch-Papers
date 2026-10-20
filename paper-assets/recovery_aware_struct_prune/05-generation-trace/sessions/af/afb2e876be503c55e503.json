@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afb2e876be503c55e503",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh find sft standard 25 and eval",
+  "task_key": "worker_ssh_find_sft_standard_25_and_eval_20260521T074644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_find_sft_standard_25_and_eval_20260521T074644_result.json",
+    "occurrence": 1,
+    "bytes": 742,
+    "sha256": "08c9255c57f6cb1eba25654762c02db7de040c465a8fa8dafe57e610b3b8d499"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**任务 1: SFT Standard 25% 模型**\n\n| 服务器 | 结果 |\n|--------|------|\n| westd-29022 | 未找到。只有 `sft_qwen_math_standard_25`、`pruned_standard_25`、`grpo_standard_25` |\n| westb-23072 | **找到**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870/` |\n\n模型仅在 westb 上，westd 没有。需要先把模型拷贝到 westd 才能在 cuda:3 启动 eval。是否要我执行 scp 拷贝？\n\n**任务 2: CKA-only 25% GRPO eval**\n\n- PID 322443: **仍在运行**\n- 进度: **1224/1319 (93%)**，已运行 2h48m\n- 最近 checkpoint (1200/1319): **acc=59.75%**, eos_rate=98.33%, avg_len=232\n- 预计剩余 ~95 samples × ~3s/it ≈ **~5 分钟完成**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-find-sft-standard-25-and-eval.md"
+}

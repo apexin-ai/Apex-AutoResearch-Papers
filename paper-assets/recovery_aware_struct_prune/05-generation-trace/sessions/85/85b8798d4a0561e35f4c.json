@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "85b8798d4a0561e35f4c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo standard 25 n1319 westd",
+  "task_key": "worker_eval_grpo_standard_25_n1319_westd_20260516T200033",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_standard_25_n1319_westd_20260516T200033_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "b8f070b4a3baa3e88443f1a092739fe3899dfb5560392e5df707fae7fd534ddc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。\n\n- 旧 N=200 进程已 kill\n- 新 tmux session: `eval_grpo_std25_full`\n- cuda:1 已加载模型（11789 MiB），正在运行\n- N=1319 全量评估进行中\n- 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json`\n- 日志：`/root/runs/recovery_aware_struct_prune/eval_grpo_standard_25.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-standard-25-n1319-westd.md"
+}

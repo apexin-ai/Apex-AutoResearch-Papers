@@ -1,0 +1,1602 @@
+{
+  "schema_version": "1.0",
+  "id": "f4903f5432bf0803b851",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis eval humaneval sft standard 20 2048 v2",
+  "task_key": "worker_analysis_eval_humaneval_sft_standard_20_2048_v2_20260517T174540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_sft_standard_20_2048_v2_20260517T174540.log",
+    "occurrence": 1,
+    "bytes": 122171,
+    "sha256": "528544294b9e1dae2b5c87af5033efa635d0de36495fcf53561b6cfe9a0678cc"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0a7dfe90-e294-4186-ad42-57a747b7f664",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779052800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "57241ff1-a399-453f-a12f-436b68d5499e",
+                "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll read the log and result files from westd-11672."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "0994dca3-7652-4a9c-830a-7d23b511b6eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KQPuZZ6WtA2kvkfX1NfZQL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13140,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13140
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GK6hWtpuEswsRGTf5vpg7B",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_project_file",
+                "max_results": 4
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "f8a78ed0-06c6-418d-ba41-9de0358ed0d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KQPuZZ6WtA2kvkfX1NfZQL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 13140,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13140
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T17:45:50.030Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01GK6hWtpuEswsRGTf5vpg7B",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "a8c498e1-6712-48e7-906f-ed1163b004c9",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__save_project_file",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_project_file",
+              "total_deferred_tools": 29
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read the log file and result JSON from westd-11672.",
+              "signature": "EvUBClkIDRgCKkDUyDI0SnNBhF8ec+DqwwjThESuGEnjq0mqixmsHCMNpSaGNxT9FsYu9MMkD1REq39OZJHW+pM08xUAQQdPgXfAMg9jbGF1ZGUtb3B1cy00LTY4ABIMKsceUY4cqRYnSpPkGgw9udyXg8hayKjXW/MiMABBoTrwQGbpBKjcJ8V8cOZvCeeP4WpOrPYqb1p6u8a/WJWE6ldEeyUwiHR7ISpjFSpKePk5BJ+GQNAURQfL+oXK7rpE6FoORrCHBB1WTj7TtvNawk8mMR3qBhtVO8WzXWB6xUfWy5fU4vQx0E7PFxNnP5IkVkj1s1Z6vaIYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "38efbbba-07c5-4e77-8aef-96342297446c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTwLF6Z1vvDxsP7TRZWaS1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1531,
+                "cache_read_input_tokens": 24981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1531
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01W19wYZJVj3Wc7VjSypomJx",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "tail -100 ~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "4920149b-526a-41e9-8120-9304c67b6096",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTwLF6Z1vvDxsP7TRZWaS1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1531,
+                "cache_read_input_tokens": 24981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1531
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011kGCCUhnrubCqfsPaMTJCu",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "5eaba955-db53-40de-be45-296ad2ba06dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GTwLF6Z1vvDxsP7TRZWaS1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1531,
+                "cache_read_input_tokens": 24981,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1531
+                },
+                "output_tokens": 40,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T17:45:56.057Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01W19wYZJVj3Wc7VjSypomJx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 00:26:18,235 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\n2026-05-18 00:26:18,848 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-18 00:27:41,806 [INFO] Loading HumanEval dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\n2026-05-18 00:29:02,032 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-18 00:29:02,033 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\n2026-05-18 00:29:03,035 [WARNING] Using the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-18 00:29:03,036 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-18 00:29:03,045 [INFO] Loaded 164 problems\\\\n\\\\rHumanEval:   0%|          | 0/164 [00:00<?, ?it/s]\\\\rHumanEval:   1%|          | 1/164 [00:25<1:08:19, 25.15s/it]\\\\rHumanEval:   1%|          | 2/164 [00:50<1:08:15, 25.28s/it]\\\\rHumanEval:   2%|▏         | 3/164 [01:15<1:07:54, 25.31s/it]\\\\rHumanEval:   2%|▏         | 4/164 [01:30<56:19, 21.12s/it]  \\\\rHumanEval:   3%|▎         | 5/164 [01:39<43:58, 16.59s/it]\\\\rHumanEval:   4%|▎         | 6/164 [02:04<51:30, 19.56s/it]\\\\rHumanEval:   4%|▍         | 7/164 [02:29<56:07, 21.45s/it]\\\\rHumanEval:   5%|▍         | 8/164 [02:40<47:03, 18.10s/it]\\\\rHumanEval:   5%|▌         | 9/164 [02:54<43:39, 16.90s/it]\\\\rHumanEval:   6%|▌         | 10/164 [03:20<50:02, 19.50s/it]\\\\rHumanEval:   7%|▋         | 11/164 [03:45<54:16, 21.28s/it]\\\\rHumanEval:   7%|▋         | 12/164 [04:10<57:01, 22.51s/it]\\\\rHumanEval:   8%|▊         | 13/164 [04:26<51:15, 20.37s/it]\\\\rHumanEval:   9%|▊         | 14/164 [04:48<52:30, 21.00s/it]\\\\rHumanEval:   9%|▉         | 15/164 [05:14<55:21, 22.30s/it]\\\\rHumanEval:  10%|▉         | 16/164 [05:39<57:14, 23.21s/it]\\\\rHumanEval:  10%|█         | 17/164 [05:53<50:10, 20.48s/it]\\\\rHumanEval:  11%|█         | 18/164 [06:18<53:22, 21.93s/it]\\\\rHumanEval:  12%|█▏        | 19/164 [06:44<55:28, 22.95s/it]2026-05-18 00:36:12,607 [INFO] Progress: 20/164, Pass@1: 0.1000\\\\n\\\\rHumanEval:  12%|█▏        | 20/164 [07:09<56:47, 23.66s/it]\\\\rHumanEval:  13%|█▎        | 21/164 [07:34<57:35, 24.17s/it]\\\\rHumanEval:  13%|█▎        | 22/164 [07:57<56:23, 23.83s/it]\\\\rHumanEval:  14%|█▍        | 23/164 [08:23<57:02, 24.27s/it]\\\\rHumanEval:  15%|█▍        | 24/164 [08:26<41:35, 17.83s/it]\\\\rHumanEval:  15%|█▌        | 25/164 [08:51<46:29, 20.07s/it]\\\\rHumanEval:  16%|█▌        | 26/164 [09:16<49:46, 21.64s/it]\\\\rHumanEval:  16%|█▋        | 27/164 [09:32<45:13, 19.81s/it]\\\\rHumanEval:  17%|█▋        | 28/164 [09:57<48:36, 21.45s/it]\\\\rHumanEval:  18%|█▊        | 29/164 [10:22<50:50, 22.59s/it]\\\\rHumanEval:  18%|█▊        | 30/164 [10:35<43:53, 19.65s/it]\\\\rHumanEval:  19%|█▉        | 31/164 [10:40<33:57, 15.32s/it]\\\\rHumanEval:  20%|█▉        | 32/164 [11:06<40:17, 18.31s/it]\\\\rHumanEval:  20%|██        | 33/164 [11:31<44:35, 20.42s/it]\\\\rHumanEval:  21%|██        | 34/164 [11:56<47:25, 21.89s/it]\\\\rHumanEval:  21%|██▏       | 35/164 [12:21<49:15, 22.91s/it]\\\\rHumanEval:  22%|██▏       | 36/164 [12:27<37:48, 17.72s/it]\\\\rHumanEval:  23%|██▎       | 37/164 [12:52<42:18, 19.99s/it]\\\\rHumanEval:  23%|██▎       | 38/164 [13:18<45:20, 21.59s/\\\\n\\\\n... [截断: 输出过长，省略 4391 字符] ...\\\\n\\\\n19<23:52, 25.14s/it]\\\\rHumanEval:  66%|██████▌   | 108/164 [39:42<23:04, 24.72s/it]\\\\rHumanEval:  66%|██████▋   | 109/164 [40:08<22:49, 24.90s/it]\\\\rHumanEval:  67%|██████▋   | 110/164 [40:33<22:31, 25.03s/it]\\\\rHumanEval:  68%|██████▊   | 111/164 [40:56<21:28, 24.31s/it]\\\\rHumanEval:  68%|██████▊   | 112/164 [41:16<20:08, 23.24s/it]\\\\rHumanEval:  69%|██████▉   | 113/164 [41:42<20:16, 23.85s/it]\\\\rHumanEval:  70%|██████▉   | 114/164 [42:07<20:13, 24.27s/it]\\\\rHumanEval:  70%|███████   | 115/164 [42:32<20:04, 24.58s/it]\\\\rHumanEval:  71%|███████   | 116/164 [42:57<19:41, 24.62s/it]\\\\rHumanEval:  71%|███████▏  | 117/164 [43:22<19:26, 24.83s/it]\\\\rHumanEval:  72%|███████▏  | 118/164 [43:48<19:09, 24.98s/it]\\\\rHumanEval:  73%|███████▎  | 119/164 [44:13<18:48, 25.07s/it]2026-05-18 01:13:41,792 [INFO] Progress: 120/164, Pass@1: 0.1083\\\\n\\\\rHumanEval:  73%|███████▎  | 120/164 [44:38<18:25, 25.13s/it]\\\\rHumanEval:  74%|███████▍  | 121/164 [45:04<18:02, 25.18s/it]\\\\rHumanEval:  74%|███████▍  | 122/164 [45:29<17:39, 25.21s/it]\\\\rHumanEval:  75%|███████▌  | 123/164 [45:54<17:14, 25.23s/it]\\\\rHumanEval:  76%|███████▌  | 124/164 [46:19<16:50, 25.25s/it]\\\\rHumanEval:  76%|███████▌  | 125/164 [46:45<16:25, 25.26s/it]\\\\rHumanEval:  77%|███████▋  | 126/164 [47:10<16:00, 25.26s/it]\\\\rHumanEval:  77%|███████▋  | 127/164 [47:35<15:35, 25.27s/it]\\\\rHumanEval:  78%|███████▊  | 128/164 [48:01<15:10, 25.28s/it]\\\\rHumanEval:  79%|███████▊  | 129/164 [48:26<14:44, 25.27s/it]\\\\rHumanEval:  79%|███████▉  | 130/164 [48:51<14:19, 25.29s/it]\\\\rHumanEval:  80%|███████▉  | 131/164 [49:16<13:54, 25.29s/it]\\\\rHumanEval:  80%|████████  | 132/164 [49:42<13:29, 25.29s/it]\\\\rHumanEval:  81%|████████  | 133/164 [50:07<13:03, 25.28s/it]\\\\rHumanEval:  82%|████████▏ | 134/164 [50:33<12:47, 25.58s/it]\\\\rHumanEval:  82%|████████▏ | 135/164 [50:59<12:24, 25.68s/it]\\\\rHumanEval:  83%|████████▎ | 136/164 [51:24<11:50, 25.38s/it]\\\\rHumanEval:  84%|████████▎ | 137/164 [51:49<11:24, 25.34s/it]\\\\rHumanEval:  84%|████████▍ | 138/164 [52:14<10:58, 25.32s/it]\\\\rHumanEval:  85%|████████▍ | 139/164 [52:27<08:54, 21.37s/it]2026-05-18 01:21:49,597 [INFO] Progress: 140/164, Pass@1: 0.1071\\\\n\\\\rHumanEval:  85%|████████▌ | 140/164 [52:46<08:19, 20.82s/it]\\\\rHumanEval:  86%|████████▌ | 141/164 [53:11<08:29, 22.15s/it]\\\\rHumanEval:  87%|████████▋ | 142/164 [53:37<08:27, 23.09s/it]\\\\rHumanEval:  87%|████████▋ | 143/164 [54:02<08:18, 23.74s/it]\\\\rHumanEval:  88%|████████▊ | 144/164 [54:27<08:04, 24.20s/it]\\\\rHumanEval:  88%|████████▊ | 145/164 [54:52<07:41, 24.31s/it]\\\\rHumanEval:  89%|████████▉ | 146/164 [55:17<07:22, 24.59s/it]\\\\rHumanEval:  90%|████████▉ | 147/164 [55:42<07:01, 24.80s/it]\\\\rHumanEval:  90%|█████████ | 148/164 [56:07<06:39, 24.94s/it]\\\\rHumanEval:  91%|█████████ | 149/164 [56:33<06:15, 25.03s/it]\\\\rHumanEval:  91%|█████████▏| 150/164 [56:58<05:51, 25.11s/it]\\\\rHumanEval:  92%|█████████▏| 151/164 [57:17<05:03, 23.35s/it]\\\\rHumanEval:  93%|█████████▎| 152/164 [57:43<04:47, 23.94s/it]\\\\rHumanEval:  93%|█████████▎| 153/164 [58:08<04:28, 24.37s/it]\\\\rHumanEval:  94%|█████████▍| 154/164 [58:33<04:06, 24.67s/it]\\\\rHumanEval:  95%|█████████▍| 155/164 [58:59<03:43, 24.88s/it]\\\\rHumanEval:  95%|█████████▌| 156/164 [59:24<03:20, 25.02s/it]\\\\rHumanEval:  96%|█████████▌| 157/164 [59:49<02:55, 25.11s/it]\\\\rHumanEval:  96%|█████████▋| 158/164 [1:00:10<02:22, 23.73s/it]\\\\rHumanEval:  97%|█████████▋| 159/164 [1:00:35<02:01, 24.22s/it]2026-05-18 01:29:55,034 [INFO] Progress: 160/164, Pass@1: 0.1187\\\\n\\\\rHumanEval:  98%|█████████▊| 160/164 [1:00:51<01:27, 21.83s/it]\\\\rHumanEval:  98%|█████████▊| 161/164 [1:01:17<01:08, 22.97s/it]\\\\rHumanEval:  99%|█████████▉| 162/164 [1:01:42<00:47, 23.65s/it]\\\\rHumanEval:  99%|█████████▉| 163/164 [1:02:08<00:24, 24.13s/it]\\\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 24.47s/it]\\\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 22.89s/it]\\\\n2026-05-18 01:31:36,441 [INFO] HumanEval pass@1: 0.1159 +/- 0.0250 (19/164)\\\\n2026-05-18 01:31:36,446 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "dbb283ac-d33d-4179-8ff8-6b444c5d1b51",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 00:26:18,235 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\n2026-05-18 00:26:18,848 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-18 00:27:41,806 [INFO] Loading HumanEval dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\n2026-05-18 00:29:02,032 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-18 00:29:02,033 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\n2026-05-18 00:29:03,035 [WARNING] Using the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-18 00:29:03,036 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-18 00:29:03,045 [INFO] Loaded 164 problems\\\\n\\\\rHumanEval:   0%|          | 0/164 [00:00<?, ?it/s]\\\\rHumanEval:   1%|          | 1/164 [00:25<1:08:19, 25.15s/it]\\\\rHumanEval:   1%|          | 2/164 [00:50<1:08:15, 25.28s/it]\\\\rHumanEval:   2%|▏         | 3/164 [01:15<1:07:54, 25.31s/it]\\\\rHumanEval:   2%|▏         | 4/164 [01:30<56:19, 21.12s/it]  \\\\rHumanEval:   3%|▎         | 5/164 [01:39<43:58, 16.59s/it]\\\\rHumanEval:   4%|▎         | 6/164 [02:04<51:30, 19.56s/it]\\\\rHumanEval:   4%|▍         | 7/164 [02:29<56:07, 21.45s/it]\\\\rHumanEval:   5%|▍         | 8/164 [02:40<47:03, 18.10s/it]\\\\rHumanEval:   5%|▌         | 9/164 [02:54<43:39, 16.90s/it]\\\\rHumanEval:   6%|▌         | 10/164 [03:20<50:02, 19.50s/it]\\\\rHumanEval:   7%|▋         | 11/164 [03:45<54:16, 21.28s/it]\\\\rHumanEval:   7%|▋         | 12/164 [04:10<57:01, 22.51s/it]\\\\rHumanEval:   8%|▊         | 13/164 [04:26<51:15, 20.37s/it]\\\\rHumanEval:   9%|▊         | 14/164 [04:48<52:30, 21.00s/it]\\\\rHumanEval:   9%|▉         | 15/164 [05:14<55:21, 22.30s/it]\\\\rHumanEval:  10%|▉         | 16/164 [05:39<57:14, 23.21s/it]\\\\rHumanEval:  10%|█         | 17/164 [05:53<50:10, 20.48s/it]\\\\rHumanEval:  11%|█         | 18/164 [06:18<53:22, 21.93s/it]\\\\rHumanEval:  12%|█▏        | 19/164 [06:44<55:28, 22.95s/it]2026-05-18 00:36:12,607 [INFO] Progress: 20/164, Pass@1: 0.1000\\\\n\\\\rHumanEval:  12%|█▏        | 20/164 [07:09<56:47, 23.66s/it]\\\\rHumanEval:  13%|█▎        | 21/164 [07:34<57:35, 24.17s/it]\\\\rHumanEval:  13%|█▎        | 22/164 [07:57<56:23, 23.83s/it]\\\\rHumanEval:  14%|█▍        | 23/164 [08:23<57:02, 24.27s/it]\\\\rHumanEval:  15%|█▍        | 24/164 [08:26<41:35, 17.83s/it]\\\\rHumanEval:  15%|█▌        | 25/164 [08:51<46:29, 20.07s/it]\\\\rHumanEval:  16%|█▌        | 26/164 [09:16<49:46, 21.64s/it]\\\\rHumanEval:  16%|█▋        | 27/164 [09:32<45:13, 19.81s/it]\\\\rHumanEval:  17%|█▋        | 28/164 [09:57<48:36, 21.45s/it]\\\\rHumanEval:  18%|█▊        | 29/164 [10:22<50:50, 22.59s/it]\\\\rHumanEval:  18%|█▊        | 30/164 [10:35<43:53, 19.65s/it]\\\\rHumanEval:  19%|█▉        | 31/164 [10:40<33:57, 15.32s/it]\\\\rHumanEval:  20%|█▉        | 32/164 [11:06<40:17, 18.31s/it]\\\\rHumanEval:  20%|██        | 33/164 [11:31<44:35, 20.42s/it]\\\\rHumanEval:  21%|██        | 34/164 [11:56<47:25, 21.89s/it]\\\\rHumanEval:  21%|██▏       | 35/164 [12:21<49:15, 22.91s/it]\\\\rHumanEval:  22%|██▏       | 36/164 [12:27<37:48, 17.72s/it]\\\\rHumanEval:  23%|██▎       | 37/164 [12:52<42:18, 19.99s/it]\\\\rHumanEval:  23%|██▎       | 38/164 [13:18<45:20, 21.59s/\\\\n\\\\n... [截断: 输出过长，省略 4391 字符] ...\\\\n\\\\n19<23:52, 25.14s/it]\\\\rHumanEval:  66%|██████▌   | 108/164 [39:42<23:04, 24.72s/it]\\\\rHumanEval:  66%|██████▋   | 109/164 [40:08<22:49, 24.90s/it]\\\\rHumanEval:  67%|██████▋   | 110/164 [40:33<22:31, 25.03s/it]\\\\rHumanEval:  68%|██████▊   | 111/164 [40:56<21:28, 24.31s/it]\\\\rHumanEval:  68%|██████▊   | 112/164 [41:16<20:08, 23.24s/it]\\\\rHumanEval:  69%|██████▉   | 113/164 [41:42<20:16, 23.85s/it]\\\\rHumanEval:  70%|██████▉   | 114/164 [42:07<20:13, 24.27s/it]\\\\rHumanEval:  70%|███████   | 115/164 [42:32<20:04, 24.58s/it]\\\\rHumanEval:  71%|███████   | 116/164 [42:57<19:41, 24.62s/it]\\\\rHumanEval:  71%|███████▏  | 117/164 [43:22<19:26, 24.83s/it]\\\\rHumanEval:  72%|███████▏  | 118/164 [43:48<19:09, 24.98s/it]\\\\rHumanEval:  73%|███████▎  | 119/164 [44:13<18:48, 25.07s/it]2026-05-18 01:13:41,792 [INFO] Progress: 120/164, Pass@1: 0.1083\\\\n\\\\rHumanEval:  73%|███████▎  | 120/164 [44:38<18:25, 25.13s/it]\\\\rHumanEval:  74%|███████▍  | 121/164 [45:04<18:02, 25.18s/it]\\\\rHumanEval:  74%|███████▍  | 122/164 [45:29<17:39, 25.21s/it]\\\\rHumanEval:  75%|███████▌  | 123/164 [45:54<17:14, 25.23s/it]\\\\rHumanEval:  76%|███████▌  | 124/164 [46:19<16:50, 25.25s/it]\\\\rHumanEval:  76%|███████▌  | 125/164 [46:45<16:25, 25.26s/it]\\\\rHumanEval:  77%|███████▋  | 126/164 [47:10<16:00, 25.26s/it]\\\\rHumanEval:  77%|███████▋  | 127/164 [47:35<15:35, 25.27s/it]\\\\rHumanEval:  78%|███████▊  | 128/164 [48:01<15:10, 25.28s/it]\\\\rHumanEval:  79%|███████▊  | 129/164 [48:26<14:44, 25.27s/it]\\\\rHumanEval:  79%|███████▉  | 130/164 [48:51<14:19, 25.29s/it]\\\\rHumanEval:  80%|███████▉  | 131/164 [49:16<13:54, 25.29s/it]\\\\rHumanEval:  80%|████████  | 132/164 [49:42<13:29, 25.29s/it]\\\\rHumanEval:  81%|████████  | 133/164 [50:07<13:03, 25.28s/it]\\\\rHumanEval:  82%|████████▏ | 134/164 [50:33<12:47, 25.58s/it]\\\\rHumanEval:  82%|████████▏ | 135/164 [50:59<12:24, 25.68s/it]\\\\rHumanEval:  83%|████████▎ | 136/164 [51:24<11:50, 25.38s/it]\\\\rHumanEval:  84%|████████▎ | 137/164 [51:49<11:24, 25.34s/it]\\\\rHumanEval:  84%|████████▍ | 138/164 [52:14<10:58, 25.32s/it]\\\\rHumanEval:  85%|████████▍ | 139/164 [52:27<08:54, 21.37s/it]2026-05-18 01:21:49,597 [INFO] Progress: 140/164, Pass@1: 0.1071\\\\n\\\\rHumanEval:  85%|████████▌ | 140/164 [52:46<08:19, 20.82s/it]\\\\rHumanEval:  86%|████████▌ | 141/164 [53:11<08:29, 22.15s/it]\\\\rHumanEval:  87%|████████▋ | 142/164 [53:37<08:27, 23.09s/it]\\\\rHumanEval:  87%|████████▋ | 143/164 [54:02<08:18, 23.74s/it]\\\\rHumanEval:  88%|████████▊ | 144/164 [54:27<08:04, 24.20s/it]\\\\rHumanEval:  88%|████████▊ | 145/164 [54:52<07:41, 24.31s/it]\\\\rHumanEval:  89%|████████▉ | 146/164 [55:17<07:22, 24.59s/it]\\\\rHumanEval:  90%|████████▉ | 147/164 [55:42<07:01, 24.80s/it]\\\\rHumanEval:  90%|█████████ | 148/164 [56:07<06:39, 24.94s/it]\\\\rHumanEval:  91%|█████████ | 149/164 [56:33<06:15, 25.03s/it]\\\\rHumanEval:  91%|█████████▏| 150/164 [56:58<05:51, 25.11s/it]\\\\rHumanEval:  92%|█████████▏| 151/164 [57:17<05:03, 23.35s/it]\\\\rHumanEval:  93%|█████████▎| 152/164 [57:43<04:47, 23.94s/it]\\\\rHumanEval:  93%|█████████▎| 153/164 [58:08<04:28, 24.37s/it]\\\\rHumanEval:  94%|█████████▍| 154/164 [58:33<04:06, 24.67s/it]\\\\rHumanEval:  95%|█████████▍| 155/164 [58:59<03:43, 24.88s/it]\\\\rHumanEval:  95%|█████████▌| 156/164 [59:24<03:20, 25.02s/it]\\\\rHumanEval:  96%|█████████▌| 157/164 [59:49<02:55, 25.11s/it]\\\\rHumanEval:  96%|█████████▋| 158/164 [1:00:10<02:22, 23.73s/it]\\\\rHumanEval:  97%|█████████▋| 159/164 [1:00:35<02:01, 24.22s/it]2026-05-18 01:29:55,034 [INFO] Progress: 160/164, Pass@1: 0.1187\\\\n\\\\rHumanEval:  98%|█████████▊| 160/164 [1:00:51<01:27, 21.83s/it]\\\\rHumanEval:  98%|█████████▊| 161/164 [1:01:17<01:08, 22.97s/it]\\\\rHumanEval:  99%|█████████▉| 162/164 [1:01:42<00:47, 23.65s/it]\\\\rHumanEval:  99%|█████████▉| 163/164 [1:02:08<00:24, 24.13s/it]\\\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 24.47s/it]\\\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 22.89s/it]\\\\n2026-05-18 01:31:36,441 [INFO] HumanEval pass@1: 0.1159 +/- 0.0250 (19/164)\\\\n2026-05-18 01:31:36,446 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\nEXIT_CODE=0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-18 00:26:18,235 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\n2026-05-18 00:26:18,848 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-18 00:27:41,806 [INFO] Loading HumanEval dataset...\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\n2026-05-18 00:29:02,032 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\nRetrying in 1s [Retry 1/5].\\n2026-05-18 00:29:02,033 [WARNING] Retrying in 1s [Retry 1/5].\\nUsing the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\n2026-05-18 00:29:03,035 [WARNING] Using the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\nFound the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\n2026-05-18 00:29:03,036 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\n2026-05-18 00:29:03,045 [INFO] Loaded 164 problems\\n\\rHumanEval:   0%|          | 0/164 [00:00<?, ?it/s]\\rHumanEval:   1%|          | 1/164 [00:25<1:08:19, 25.15s/it]\\rHumanEval:   1%|          | 2/164 [00:50<1:08:15, 25.28s/it]\\rHumanEval:   2%|▏         | 3/164 [01:15<1:07:54, 25.31s/it]\\rHumanEval:   2%|▏         | 4/164 [01:30<56:19, 21.12s/it]  \\rHumanEval:   3%|▎         | 5/164 [01:39<43:58, 16.59s/it]\\rHumanEval:   4%|▎         | 6/164 [02:04<51:30, 19.56s/it]\\rHumanEval:   4%|▍         | 7/164 [02:29<56:07, 21.45s/it]\\rHumanEval:   5%|▍         | 8/164 [02:40<47:03, 18.10s/it]\\rHumanEval:   5%|▌         | 9/164 [02:54<43:39, 16.90s/it]\\rHumanEval:   6%|▌         | 10/164 [03:20<50:02, 19.50s/it]\\rHumanEval:   7%|▋         | 11/164 [03:45<54:16, 21.28s/it]\\rHumanEval:   7%|▋         | 12/164 [04:10<57:01, 22.51s/it]\\rHumanEval:   8%|▊         | 13/164 [04:26<51:15, 20.37s/it]\\rHumanEval:   9%|▊         | 14/164 [04:48<52:30, 21.00s/it]\\rHumanEval:   9%|▉         | 15/164 [05:14<55:21, 22.30s/it]\\rHumanEval:  10%|▉         | 16/164 [05:39<57:14, 23.21s/it]\\rHumanEval:  10%|█         | 17/164 [05:53<50:10, 20.48s/it]\\rHumanEval:  11%|█         | 18/164 [06:18<53:22, 21.93s/it]\\rHumanEval:  12%|█▏        | 19/164 [06:44<55:28, 22.95s/it]2026-05-18 00:36:12,607 [INFO] Progress: 20/164, Pass@1: 0.1000\\n\\rHumanEval:  12%|█▏        | 20/164 [07:09<56:47, 23.66s/it]\\rHumanEval:  13%|█▎        | 21/164 [07:34<57:35, 24.17s/it]\\rHumanEval:  13%|█▎        | 22/164 [07:57<56:23, 23.83s/it]\\rHumanEval:  14%|█▍        | 23/164 [08:23<57:02, 24.27s/it]\\rHumanEval:  15%|█▍        | 24/164 [08:26<41:35, 17.83s/it]\\rHumanEval:  15%|█▌        | 25/164 [08:51<46:29, 20.07s/it]\\rHumanEval:  16%|█▌        | 26/164 [09:16<49:46, 21.64s/it]\\rHumanEval:  16%|█▋        | 27/164 [09:32<45:13, 19.81s/it]\\rHumanEval:  17%|█▋        | 28/164 [09:57<48:36, 21.45s/it]\\rHumanEval:  18%|█▊        | 29/164 [10:22<50:50, 22.59s/it]\\rHumanEval:  18%|█▊        | 30/164 [10:35<43:53, 19.65s/it]\\rHumanEval:  19%|█▉        | 31/164 [10:40<33:57, 15.32s/it]\\rHumanEval:  20%|█▉        | 32/164 [11:06<40:17, 18.31s/it]\\rHumanEval:  20%|██        | 33/164 [11:31<44:35, 20.42s/it]\\rHumanEval:  21%|██        | 34/164 [11:56<47:25, 21.89s/it]\\rHumanEval:  21%|██▏       | 35/164 [12:21<49:15, 22.91s/it]\\rHumanEval:  22%|██▏       | 36/164 [12:27<37:48, 17.72s/it]\\rHumanEval:  23%|██▎       | 37/164 [12:52<42:18, 19.99s/it]\\rHumanEval:  23%|██▎       | 38/164 [13:18<45:20, 21.59s/\\n\\n... [截断: 输出过长，省略 4391 字符] ...\\n\\n19<23:52, 25.14s/it]\\rHumanEval:  66%|██████▌   | 108/164 [39:42<23:04, 24.72s/it]\\rHumanEval:  66%|██████▋   | 109/164 [40:08<22:49, 24.90s/it]\\rHumanEval:  67%|██████▋   | 110/164 [40:33<22:31, 25.03s/it]\\rHumanEval:  68%|██████▊   | 111/164 [40:56<21:28, 24.31s/it]\\rHumanEval:  68%|██████▊   | 112/164 [41:16<20:08, 23.24s/it]\\rHumanEval:  69%|██████▉   | 113/164 [41:42<20:16, 23.85s/it]\\rHumanEval:  70%|██████▉   | 114/164 [42:07<20:13, 24.27s/it]\\rHumanEval:  70%|███████   | 115/164 [42:32<20:04, 24.58s/it]\\rHumanEval:  71%|███████   | 116/164 [42:57<19:41, 24.62s/it]\\rHumanEval:  71%|███████▏  | 117/164 [43:22<19:26, 24.83s/it]\\rHumanEval:  72%|███████▏  | 118/164 [43:48<19:09, 24.98s/it]\\rHumanEval:  73%|███████▎  | 119/164 [44:13<18:48, 25.07s/it]2026-05-18 01:13:41,792 [INFO] Progress: 120/164, Pass@1: 0.1083\\n\\rHumanEval:  73%|███████▎  | 120/164 [44:38<18:25, 25.13s/it]\\rHumanEval:  74%|███████▍  | 121/164 [45:04<18:02, 25.18s/it]\\rHumanEval:  74%|███████▍  | 122/164 [45:29<17:39, 25.21s/it]\\rHumanEval:  75%|███████▌  | 123/164 [45:54<17:14, 25.23s/it]\\rHumanEval:  76%|███████▌  | 124/164 [46:19<16:50, 25.25s/it]\\rHumanEval:  76%|███████▌  | 125/164 [46:45<16:25, 25.26s/it]\\rHumanEval:  77%|███████▋  | 126/164 [47:10<16:00, 25.26s/it]\\rHumanEval:  77%|███████▋  | 127/164 [47:35<15:35, 25.27s/it]\\rHumanEval:  78%|███████▊  | 128/164 [48:01<15:10, 25.28s/it]\\rHumanEval:  79%|███████▊  | 129/164 [48:26<14:44, 25.27s/it]\\rHumanEval:  79%|███████▉  | 130/164 [48:51<14:19, 25.29s/it]\\rHumanEval:  80%|███████▉  | 131/164 [49:16<13:54, 25.29s/it]\\rHumanEval:  80%|████████  | 132/164 [49:42<13:29, 25.29s/it]\\rHumanEval:  81%|████████  | 133/164 [50:07<13:03, 25.28s/it]\\rHumanEval:  82%|████████▏ | 134/164 [50:33<12:47, 25.58s/it]\\rHumanEval:  82%|████████▏ | 135/164 [50:59<12:24, 25.68s/it]\\rHumanEval:  83%|████████▎ | 136/164 [51:24<11:50, 25.38s/it]\\rHumanEval:  84%|████████▎ | 137/164 [51:49<11:24, 25.34s/it]\\rHumanEval:  84%|████████▍ | 138/164 [52:14<10:58, 25.32s/it]\\rHumanEval:  85%|████████▍ | 139/164 [52:27<08:54, 21.37s/it]2026-05-18 01:21:49,597 [INFO] Progress: 140/164, Pass@1: 0.1071\\n\\rHumanEval:  85%|████████▌ | 140/164 [52:46<08:19, 20.82s/it]\\rHumanEval:  86%|████████▌ | 141/164 [53:11<08:29, 22.15s/it]\\rHumanEval:  87%|████████▋ | 142/164 [53:37<08:27, 23.09s/it]\\rHumanEval:  87%|████████▋ | 143/164 [54:02<08:18, 23.74s/it]\\rHumanEval:  88%|████████▊ | 144/164 [54:27<08:04, 24.20s/it]\\rHumanEval:  88%|████████▊ | 145/164 [54:52<07:41, 24.31s/it]\\rHumanEval:  89%|████████▉ | 146/164 [55:17<07:22, 24.59s/it]\\rHumanEval:  90%|████████▉ | 147/164 [55:42<07:01, 24.80s/it]\\rHumanEval:  90%|█████████ | 148/164 [56:07<06:39, 24.94s/it]\\rHumanEval:  91%|█████████ | 149/164 [56:33<06:15, 25.03s/it]\\rHumanEval:  91%|█████████▏| 150/164 [56:58<05:51, 25.11s/it]\\rHumanEval:  92%|█████████▏| 151/164 [57:17<05:03, 23.35s/it]\\rHumanEval:  93%|█████████▎| 152/164 [57:43<04:47, 23.94s/it]\\rHumanEval:  93%|█████████▎| 153/164 [58:08<04:28, 24.37s/it]\\rHumanEval:  94%|█████████▍| 154/164 [58:33<04:06, 24.67s/it]\\rHumanEval:  95%|█████████▍| 155/164 [58:59<03:43, 24.88s/it]\\rHumanEval:  95%|█████████▌| 156/164 [59:24<03:20, 25.02s/it]\\rHumanEval:  96%|█████████▌| 157/164 [59:49<02:55, 25.11s/it]\\rHumanEval:  96%|█████████▋| 158/164 [1:00:10<02:22, 23.73s/it]\\rHumanEval:  97%|█████████▋| 159/164 [1:00:35<02:01, 24.22s/it]2026-05-18 01:29:55,034 [INFO] Progress: 160/164, Pass@1: 0.1187\\n\\rHumanEval:  98%|█████████▊| 160/164 [1:00:51<01:27, 21.83s/it]\\rHumanEval:  98%|█████████▊| 161/164 [1:01:17<01:08, 22.97s/it]\\rHumanEval:  99%|█████████▉| 162/164 [1:01:42<00:47, 23.65s/it]\\rHumanEval:  99%|█████████▉| 163/164 [1:02:08<00:24, 24.13s/it]\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 24.47s/it]\\rHumanEval: 100%|██████████| 164/164 [1:02:33<00:00, 22.89s/it]\\n2026-05-18 01:31:36,441 [INFO] HumanEval pass@1: 0.1159 +/- 0.0250 (19/164)\\n2026-05-18 01:31:36,446 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\nEXIT_CODE=0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.06}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T17:45:56.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011kGCCUhnrubCqfsPaMTJCu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.11585365853658537,\\\\n  \\\\\\\"stderr\\\\\\\": 0.024991655722128053,\\\\n  \\\\\\\"n_correct\\\\\\\": 19,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 1850.7134146341464,\\\\n    \\\\\\\"median_response_length\\\\\\\": 2048.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2t426odi.py\\\\\\\\\\\\\\\", line 8\\\\\\\\n    if abs(numbers[i] - numbers[j) < threshold:\\\\\\\\n                                 ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1967\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp0nfep19w.py\\\\\\\\\\\\\\\", line 11\\\\\\\\n    So, how to approach this? Let's think about the example: the input is '( ) (( )) (( ( ))'. So, the string is split into three groups: the first is ( ), the second is ( ( ) ), and the third is ( ( ) ). But the second and third are nested within each other, so they are not separate. So, the output is the first group, and the second and third groups are not separate because they are nested within each other. But the output shows that the second and third gr\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp7gkyrtd1.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called truncate_number that takes a float and returns the decimal part. The example given is that truncate_number(3.5) returns 0.5. So how do I get the decimal part from a number? I remember that the integer part is the largest integer smaller than the number, so for 3.5 it's 3. The decimal part is 3.5 - 3 = 0.5. That's the way to do it. So the function should subtract the integer part from the number and return tha\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/3\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp8yvztio7.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    def below_zero(operations: List[int) -> bool:\\\\\\\\n                                       ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1191\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/4\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpwb2haypp.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    def mean_absolute_deviation(numbers: List[float) -> float:\\\\\\\\n                                                   ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 693\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/5\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2izodwp0.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called intersperse that takes a list of integers and a delimeter integer. The function should insert the delimeter between every two consecutive elements of the input list. Let's look at the examples given to understand what it does.\\\\\\\\n                                                                                                                                                                                         \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/6\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpl6jca9rw.py\\\\\\\\\\\\\\\", line 12\\\\\\\\n    Okay, I need to write a Python function called parse nested parentheses that takes a string of nested parentheses separated by spaces and returns a list of integers representing the deepest level of nesting for each group. The example given is that '(()()) ((())) () ((())()())' returns [2,3,1,3]. So each group is processed separately, and the maximum nesting level for that group is added to the list.\\\\\\\\n            ^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/7\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 886\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/8\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 75716 字符] ...\\\\n\\\\n          ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/156\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpvqjccme3.py\\\\\\\\\\\\\\\", line 20\\\\\\\\n    400:400 is 400, which is 4*100, but in Roman it's CD? Wait, no, 400 is CD, 500 is D, 600 is DC, 700 is DCC, 800 is DCCC, 900 is DCCII? Wait, no, 900 is DCCCII? Or maybe DCCII is 900? Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followe\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/157\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1659\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/158\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpkgx5v8fp.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called find_max that takes a list of strings. The goal is to find the word with the maximum number of unique characters. If there's a tie, return the first one in lex order. Hmm, how to approach this.\\\\\\\\n                                                                                                                                                                             ^\\\\\\\\nSyntaxError: unterminated string literal (d\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/159\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1319\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/160\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpo9frclbw.py\\\\\\\\\\\\\\\", line 7\\\\\\\\n    Once the expression string is built, the next step is to evaluate it. Since the operators include floor division, which in Python is represented by //. I need to ensure that the expression string uses this operator correctly. Also, the order of operations matters because multiplication and exponentation have higher precedence than addition and subtraction. But since the expression is built from left to right, the order of operations will be determined by \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/161\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpc8o5il_f.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to solve this Python function problem. Let's see what the problem says. The function is called solve and it takes a string s as input. The task is to reverse the case of each letter in the string. If a character is a letter, we reverse its case: lower becomes upper and vice versa. If the string contains no letters, we reverse the entire string. And if the string has no letters, we return the reversed string. The examples given are helpful, so\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/162\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2hsdczsx.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called string_to_md5 that takes a string text and returns its md5 hash equivalent. If the text is empty, it should return None. The example given is that string_to_md5('Hello world') returns '3e25960a79dbc69b674cd4ec67a72c62'. Hmm, I remember that md5 is a form of hexadecimal encoding, often used in QR barcodes. So the process should be to take the string, convert it into bytes, then convert those bytes into a hex s\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/163\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp8baye6g2.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called generate_integers that takes two positive integers a and b and returns the even digits between them in ascending order. The function should handle cases where a is less than b or greater than b, and it should return an empty list if there are no even numbers in the range. \\\\\\\\n            ^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "5fda8ed1-16c7-40c8-a595-81243efd99a2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.11585365853658537,\\\\n  \\\\\\\"stderr\\\\\\\": 0.024991655722128053,\\\\n  \\\\\\\"n_correct\\\\\\\": 19,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 1850.7134146341464,\\\\n    \\\\\\\"median_response_length\\\\\\\": 2048.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2t426odi.py\\\\\\\\\\\\\\\", line 8\\\\\\\\n    if abs(numbers[i] - numbers[j) < threshold:\\\\\\\\n                                 ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1967\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp0nfep19w.py\\\\\\\\\\\\\\\", line 11\\\\\\\\n    So, how to approach this? Let's think about the example: the input is '( ) (( )) (( ( ))'. So, the string is split into three groups: the first is ( ), the second is ( ( ) ), and the third is ( ( ) ). But the second and third are nested within each other, so they are not separate. So, the output is the first group, and the second and third groups are not separate because they are nested within each other. But the output shows that the second and third gr\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp7gkyrtd1.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called truncate_number that takes a float and returns the decimal part. The example given is that truncate_number(3.5) returns 0.5. So how do I get the decimal part from a number? I remember that the integer part is the largest integer smaller than the number, so for 3.5 it's 3. The decimal part is 3.5 - 3 = 0.5. That's the way to do it. So the function should subtract the integer part from the number and return tha\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/3\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp8yvztio7.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    def below_zero(operations: List[int) -> bool:\\\\\\\\n                                       ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1191\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/4\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpwb2haypp.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    def mean_absolute_deviation(numbers: List[float) -> float:\\\\\\\\n                                                   ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 693\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/5\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2izodwp0.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called intersperse that takes a list of integers and a delimeter integer. The function should insert the delimeter between every two consecutive elements of the input list. Let's look at the examples given to understand what it does.\\\\\\\\n                                                                                                                                                                                         \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/6\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpl6jca9rw.py\\\\\\\\\\\\\\\", line 12\\\\\\\\n    Okay, I need to write a Python function called parse nested parentheses that takes a string of nested parentheses separated by spaces and returns a list of integers representing the deepest level of nesting for each group. The example given is that '(()()) ((())) () ((())()())' returns [2,3,1,3]. So each group is processed separately, and the maximum nesting level for that group is added to the list.\\\\\\\\n            ^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/7\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 886\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/8\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"\\\\n\\\\n... [截断: 输出过长，省略 75716 字符] ...\\\\n\\\\n          ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/156\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpvqjccme3.py\\\\\\\\\\\\\\\", line 20\\\\\\\\n    400:400 is 400, which is 4*100, but in Roman it's CD? Wait, no, 400 is CD, 500 is D, 600 is DC, 700 is DCC, 800 is DCCC, 900 is DCCII? Wait, no, 900 is DCCCII? Or maybe DCCII is 900? Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followe\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/157\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1659\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/158\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpkgx5v8fp.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called find_max that takes a list of strings. The goal is to find the word with the maximum number of unique characters. If there's a tie, return the first one in lex order. Hmm, how to approach this.\\\\\\\\n                                                                                                                                                                             ^\\\\\\\\nSyntaxError: unterminated string literal (d\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/159\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1319\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/160\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpo9frclbw.py\\\\\\\\\\\\\\\", line 7\\\\\\\\n    Once the expression string is built, the next step is to evaluate it. Since the operators include floor division, which in Python is represented by //. I need to ensure that the expression string uses this operator correctly. Also, the order of operations matters because multiplication and exponentation have higher precedence than addition and subtraction. But since the expression is built from left to right, the order of operations will be determined by \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/161\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpc8o5il_f.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to solve this Python function problem. Let's see what the problem says. The function is called solve and it takes a string s as input. The task is to reverse the case of each letter in the string. If a character is a letter, we reverse its case: lower becomes upper and vice versa. If the string contains no letters, we reverse the entire string. And if the string has no letters, we return the reversed string. The examples given are helpful, so\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/162\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp2hsdczsx.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called string_to_md5 that takes a string text and returns its md5 hash equivalent. If the text is empty, it should return None. The example given is that string_to_md5('Hello world') returns '3e25960a79dbc69b674cd4ec67a72c62'. Hmm, I remember that md5 is a form of hexadecimal encoding, often used in QR barcodes. So the process should be to take the string, convert it into bytes, then convert those bytes into a hex s\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/163\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp8baye6g2.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called generate_integers that takes two positive integers a and b and returns the even digits between them in ascending order. The function should handle cases where a is less than b or greater than b, and it should return an empty list if there are no even numbers in the range. \\\\\\\\n            ^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\",\\n  \\\"benchmark\\\": \\\"HumanEval\\\",\\n  \\\"pass_at_1\\\": 0.11585365853658537,\\n  \\\"stderr\\\": 0.024991655722128053,\\n  \\\"n_correct\\\": 19,\\n  \\\"n_total\\\": 164,\\n  \\\"eos_stats\\\": {\\n    \\\"avg_response_length\\\": 1850.7134146341464,\\n    \\\"median_response_length\\\": 2048.0\\n  },\\n  \\\"examples\\\": [\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/0\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp2t426odi.py\\\\\\\", line 8\\\\n    if abs(numbers[i] - numbers[j) < threshold:\\\\n                                 ^\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\n\\\",\\n      \\\"response_length\\\": 1967\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/1\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp0nfep19w.py\\\\\\\", line 11\\\\n    So, how to approach this? Let's think about the example: the input is '( ) (( )) (( ( ))'. So, the string is split into three groups: the first is ( ), the second is ( ( ) ), and the third is ( ( ) ). But the second and third are nested within each other, so they are not separate. So, the output is the first group, and the second and third groups are not separate because they are nested within each other. But the output shows that the second and third gr\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/2\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp7gkyrtd1.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called truncate_number that takes a float and returns the decimal part. The example given is that truncate_number(3.5) returns 0.5. So how do I get the decimal part from a number? I remember that the integer part is the largest integer smaller than the number, so for 3.5 it's 3. The decimal part is 3.5 - 3 = 0.5. That's the way to do it. So the function should subtract the integer part from the number and return tha\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/3\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp8yvztio7.py\\\\\\\", line 1\\\\n    def below_zero(operations: List[int) -> bool:\\\\n                                       ^\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\n\\\",\\n      \\\"response_length\\\": 1191\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/4\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpwb2haypp.py\\\\\\\", line 3\\\\n    def mean_absolute_deviation(numbers: List[float) -> float:\\\\n                                                   ^\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\n\\\",\\n      \\\"response_length\\\": 693\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/5\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp2izodwp0.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called intersperse that takes a list of integers and a delimeter integer. The function should insert the delimeter between every two consecutive elements of the input list. Let's look at the examples given to understand what it does.\\\\n                                                                                                                                                                                         \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/6\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpl6jca9rw.py\\\\\\\", line 12\\\\n    Okay, I need to write a Python function called parse nested parentheses that takes a string of nested parentheses separated by spaces and returns a list of integers representing the deepest level of nesting for each group. The example given is that '(()()) ((())) () ((())()())' returns [2,3,1,3]. So each group is processed separately, and the maximum nesting level for that group is added to the list.\\\\n            ^^^^\\\\nSyntaxError: invalid syntax\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/7\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 886\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/8\\\",\\n      \\\"passed\\\": false,\\n      \\\"\\n\\n... [截断: 输出过长，省略 75716 字符] ...\\n\\n          ^\\\\nSyntaxError: unterminated string literal (detected at line 1)\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/156\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpvqjccme3.py\\\\\\\", line 20\\\\n    400:400 is 400, which is 4*100, but in Roman it's CD? Wait, no, 400 is CD, 500 is D, 600 is DC, 700 is DCC, 800 is DCCC, 900 is DCCII? Wait, no, 900 is DCCCII? Or maybe DCCII is 900? Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followed by three C's and then II. Wait, no, 900 is DCCCII because 900 is 9*100, but in Roman it's D followe\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/157\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1659\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/158\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpkgx5v8fp.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called find_max that takes a list of strings. The goal is to find the word with the maximum number of unique characters. If there's a tie, return the first one in lex order. Hmm, how to approach this.\\\\n                                                                                                                                                                             ^\\\\nSyntaxError: unterminated string literal (d\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/159\\\",\\n      \\\"passed\\\": true,\\n      \\\"error\\\": \\\"\\\",\\n      \\\"response_length\\\": 1319\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/160\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpo9frclbw.py\\\\\\\", line 7\\\\n    Once the expression string is built, the next step is to evaluate it. Since the operators include floor division, which in Python is represented by //. I need to ensure that the expression string uses this operator correctly. Also, the order of operations matters because multiplication and exponentation have higher precedence than addition and subtraction. But since the expression is built from left to right, the order of operations will be determined by \\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/161\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmpc8o5il_f.py\\\\\\\", line 1\\\\n    Okay, I need to solve this Python function problem. Let's see what the problem says. The function is called solve and it takes a string s as input. The task is to reverse the case of each letter in the string. If a character is a letter, we reverse its case: lower becomes upper and vice versa. If the string contains no letters, we reverse the entire string. And if the string has no letters, we return the reversed string. The examples given are helpful, so\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/162\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp2hsdczsx.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called string_to_md5 that takes a string text and returns its md5 hash equivalent. If the text is empty, it should return None. The example given is that string_to_md5('Hello world') returns '3e25960a79dbc69b674cd4ec67a72c62'. Hmm, I remember that md5 is a form of hexadecimal encoding, often used in QR barcodes. So the process should be to take the string, convert it into bytes, then convert those bytes into a hex s\\\",\\n      \\\"response_length\\\": 2048\\n    },\\n    {\\n      \\\"task_id\\\": \\\"HumanEval/163\\\",\\n      \\\"passed\\\": false,\\n      \\\"error\\\": \\\"  File \\\\\\\"/tmp/tmp8baye6g2.py\\\\\\\", line 1\\\\n    Okay, I need to write a Python function called generate_integers that takes two positive integers a and b and returns the even digits between them in ascending order. The function should handle cases where a is less than b or greater than b, and it should return an empty list if there are no even numbers in the range. \\\\n            ^^^^\\\\nSyntaxError: invalid syntax\\\\n\\\",\\n      \\\"response_length\\\": 2048\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Key results:\n- pass@1: 0.1159 (11.59%)\n- stderr: 0.0250\n- correct: 19/164\n- avg_response_length: 1850.71\n- median_response_length: 2048.0\n- Experiment completed successfully (EXIT_CODE=0)\n\nNow I need to:\n1. Save analysis to artifacts\n2. Update registry\n\nThe result is 11.59% which is slightly better than SFT RASP 20% (10.37%) but still far below unpruned (45.12%). It's lower than GRPO RASP 20% (14.63%).\n\n\nI'm noticing a pattern in the failures—many responses are getting stuck generating explanatory text before the actual code, which creates syntax errors when executed. The fact that the median response length maxes out at 2048 tokens suggests the model is frequently hitting the token limit, likely because it's spending tokens on reasoning rather than just outputting the solution. Now I need to save this analysis and update the registry.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "05da886e-c4e5-413d-a5a8-9286b0b06d58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKHzhLTWsS6Bs1DZnbpCVA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8460,
+                "cache_read_input_tokens": 26512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正常完成。pass@1 = 11.59% (19/164), stderr = 0.0250。中位响应长度 2048（大量触达上限），模型倾向于生成 chain-of-thought 而非直接代码。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "4d116a71-a6ec-49b1-9a4c-bb285f97401b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKHzhLTWsS6Bs1DZnbpCVA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8460,
+                "cache_read_input_tokens": 26512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZMVBcjyXZ7CReKj8tCoY2",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "artifacts/eval_humaneval_sft_standard_20_2048_v2_analysis.md",
+                "content": "# HumanEval Evaluation: SFT Standard 20% (max_new_tokens=2048, v2)\n\n## Key Metrics\n\n| Metric | Value |\n|---|---|\n| pass@1 | 11.59% (0.1159) |\n| correct / total | 19 / 164 |\n| stderr | 0.0250 |\n| avg_response_length | 1850.7 tokens |\n| median_response_length | 2048 (max) |\n| max_new_tokens | 2048 |\n\n## HumanEval@2048 Comparison Table\n\n| Model | pass@1 | correct/total |\n|---|---|---|\n| Unpruned | 45.12% | 74/164 |\n| GRPO RASP 20% | 14.63% | 24/164 |\n| **SFT Standard 20%** | **11.59%** | **19/164** |\n| SFT RASP 20% | 10.37% | 17/164 |\n\n## Observations\n\n- SFT Standard 20% (11.59%) slightly outperforms SFT RASP 20% (10.37%), but the difference (1.22pp) is within 1 stderr and not statistically significant.\n- Both SFT variants are substantially below GRPO RASP 20% (14.63%) and far below Unpruned (45.12%).\n- Median response length = 2048 indicates most responses hit the token limit. Many failures are the model generating chain-of-thought reasoning text (\"Okay, I need to write...\") instead of directly outputting code, leading to SyntaxErrors when the output is executed.\n- All pruned models show severe code generation degradation (~70-77% relative drop from unpruned).\n\n## Impact on Claims\n\n- **C1 (RASP recovery advantage):** SFT Standard slightly trails SFT RASP on MMLU/GSM8K but slightly leads on HumanEval. The differences are small and not significant. On HumanEval specifically, SFT Standard (11.59%) vs SFT RASP (10.37%) provides no evidence that RASP-aware recovery is superior for code generation. The overall cross-benchmark picture remains mixed.\n- **C3 (GRPO superiority):** GRPO RASP 20% (14.63%) outperforms both SFT variants on HumanEval, consistent with C3. The GRPO advantage over SFT Standard (3.04pp) is larger than over SFT RASP (4.26pp vs 3.04pp calculation: 14.63 - 11.59 = 3.04pp). GRPO's code generation advantage is consistent across recovery methods.\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "9561950d-2f41-411a-8a8f-6bee9123a063",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKHzhLTWsS6Bs1DZnbpCVA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8460,
+                "cache_read_input_tokens": 26512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T17:46:20.385Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FZMVBcjyXZ7CReKj8tCoY2",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/eval_humaneval_sft_standard_20_2048_v2_analysis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "9851bafb-4f15-413f-a8be-e7337f8d4181",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/eval_humaneval_sft_standard_20_2048_v2_analysis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/eval_humaneval_sft_standard_20_2048_v2_analysis.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BW5v8ki2oeXTpREiL9okWZ",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "hypothesis",
+                "value": "HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "34b42d5e-79bb-4b8a-bbdd-098979bff9bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GKHzhLTWsS6Bs1DZnbpCVA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8460,
+                "cache_read_input_tokens": 26512,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8460
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T17:46:23.561Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BW5v8ki2oeXTpREiL9okWZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:23.116Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1848}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "626c661e-3b9f-4ccd-b24f-f5192036a246",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:23.116Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1848}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_humaneval_sft_standard_20_2048_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:26:15.836Z\", \"updated_at\": \"2026-05-17T17:46:23.116Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:15.449Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T17:43:47.471Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T17:43:52.491819+00:00\"}]}, \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1848}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The save_project_file doesn't support artifacts. I need to use register_artifact and write the file directly. Let me use ssh_execute or just write it locally, then register it. Actually, the artifacts directory is local. Let me write it locally and register it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "3e8fd0a2-f615-4023-b538-b0bd047467ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019trsMhTcCG5oUsMiQpVJmX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2033,
+                "cache_read_input_tokens": 34972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2033
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifacts 不可通过 save_project_file 写入，改用本地写入 + register_artifact。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "3798fbe8-e680-4cbf-8373-55e05e7fb254",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019trsMhTcCG5oUsMiQpVJmX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2033,
+                "cache_read_input_tokens": 34972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2033
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FGbfmLuaC3LscoTDiXqedC",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "631edd36-807c-4dc6-9c6b-ddb2f0ab93c0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019trsMhTcCG5oUsMiQpVJmX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2033,
+                "cache_read_input_tokens": 34972,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2033
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T17:46:28.843Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01FGbfmLuaC3LscoTDiXqedC",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "f9456cda-f521-416d-9929-99cad92c9110",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 29
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pn4P2G485mbZMVLaPcRsdy",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "eval_humaneval_sft_standard_20_2048_v2_analysis",
+                "type": "report",
+                "description": "HumanEval@2048 evaluation analysis for SFT Standard 20%. pass@1=11.59%, 19/164 correct. Includes 5-way comparison table and C1/C3 claim impact.",
+                "project": "recovery_aware_struct_prune",
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "content": "# HumanEval Evaluation: SFT Standard 20% (max_new_tokens=2048, v2)\n\n## Key Metrics\n\n| Metric | Value |\n|---|---|\n| pass@1 | 11.59% (0.1159) |\n| correct / total | 19 / 164 |\n| stderr | 0.0250 |\n| avg_response_length | 1850.7 tokens |\n| median_response_length | 2048 (max) |\n| max_new_tokens | 2048 |\n\n## HumanEval@2048 Comparison Table\n\n| Model | pass@1 | correct/total |\n|---|---|---|\n| Unpruned | 45.12% | 74/164 |\n| GRPO RASP 20% | 14.63% | 24/164 |\n| **SFT Standard 20%** | **11.59%** | **19/164** |\n| SFT RASP 20% | 10.37% | 17/164 |\n\n## Observations\n\n- SFT Standard 20% (11.59%) slightly outperforms SFT RASP 20% (10.37%), but the difference (1.22pp) is within 1 stderr and not statistically significant.\n- Both SFT variants are substantially below GRPO RASP 20% (14.63%) and far below Unpruned (45.12%).\n- Median response length = 2048 indicates most responses hit the token limit. Many failures are the model generating chain-of-thought reasoning text (\"Okay, I need to write...\") instead of directly outputting code, leading to SyntaxErrors when the output is executed.\n- All pruned models show severe code generation degradation (~70-77% relative drop from unpruned).\n\n## Impact on Claims\n\n- **C1 (RASP recovery advantage):** SFT Standard slightly trails SFT RASP on MMLU/GSM8K but slightly leads on HumanEval. The differences are small and not significant. On HumanEval specifically, SFT Standard (11.59%) vs SFT RASP (10.37%) provides no evidence that RASP-aware recovery is superior for code generation. The overall cross-benchmark picture remains mixed.\n- **C3 (GRPO superiority):** GRPO RASP 20% (14.63%) outperforms both SFT variants on HumanEval, consistent with C3. The GRPO advantage over SFT Standard is 3.04pp. GRPO's code generation advantage is consistent across recovery methods.",
+                "content_filename": "eval_humaneval_sft_standard_20_2048_v2_analysis.md",
+                "tags": [
+                  "humaneval",
+                  "sft-standard",
+                  "evaluation",
+                  "2048-tokens"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "327d1701-3dc9-4a85-bd40-bdfc422b3d58",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RY3auerQsqtDKKnpDW8yBg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 37005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 814
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T17:46:38.654Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pn4P2G485mbZMVLaPcRsdy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_f03b0d\\\", \\\"name\\\": \\\"eval_humaneval_sft_standard_20_2048_v2_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"HumanEval@2048 evaluation analysis for SFT Standard 20%. pass@1=11.59%, 19/164 correct. Includes 5-way comparison table and C1/C3 claim impact.\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/eval_humaneval_sft_standard_20_2048_v2/report/eval_humaneval_sft_standard_20_2048_v2_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T17:46:38.593153+00:00\\\", \\\"tags\\\": [\\\"humaneval\\\", \\\"sft-standard\\\", \\\"evaluation\\\", \\\"2048-tokens\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "4b78a02f-3016-4c3b-9393-0031ba412093",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260517_f03b0d\\\", \\\"name\\\": \\\"eval_humaneval_sft_standard_20_2048_v2_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"HumanEval@2048 evaluation analysis for SFT Standard 20%. pass@1=11.59%, 19/164 correct. Includes 5-way comparison table and C1/C3 claim impact.\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/eval_humaneval_sft_standard_20_2048_v2/report/eval_humaneval_sft_standard_20_2048_v2_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-17T17:46:38.593153+00:00\\\", \\\"tags\\\": [\\\"humaneval\\\", \\\"sft-standard\\\", \\\"evaluation\\\", \\\"2048-tokens\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260517_f03b0d\", \"name\": \"eval_humaneval_sft_standard_20_2048_v2_analysis\", \"type\": \"report\", \"description\": \"HumanEval@2048 evaluation analysis for SFT Standard 20%. pass@1=11.59%, 19/164 correct. Includes 5-way comparison table and C1/C3 claim impact.\", \"path\": \"projects/recovery_aware_struct_prune/artifacts/eval_humaneval_sft_standard_20_2048_v2/report/eval_humaneval_sft_standard_20_2048_v2_analysis.md\", \"url\": null, \"project\": \"recovery_aware_struct_prune\", \"exp_id\": \"eval_humaneval_sft_standard_20_2048_v2\", \"skill\": \"\", \"created_at\": \"2026-05-17T17:46:38.593153+00:00\", \"tags\": [\"humaneval\", \"sft-standard\", \"evaluation\", \"2048-tokens\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0114iM9RnBoTtbigDjbgptkY",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "metrics",
+                "value": {
+                  "pass_at_1": 0.1159,
+                  "correct": 19,
+                  "total": 164,
+                  "stderr": 0.025,
+                  "max_new_tokens": 2048,
+                  "avg_response_length": 1850.7,
+                  "median_response_length": 2048
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "16e2bb2a-4538-4c7f-bc1b-bc7e1b995c2a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RY3auerQsqtDKKnpDW8yBg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 814,
+                "cache_read_input_tokens": 37005,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 814
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T17:46:40.876Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0114iM9RnBoTtbigDjbgptkY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:40.582Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7148}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "17cc9f87-a745-48d4-83fc-d0bee45cafba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:40.582Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7148}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_humaneval_sft_standard_20_2048_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:26:15.836Z\", \"updated_at\": \"2026-05-17T17:46:40.582Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:15.449Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T17:43:47.471Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T17:43:52.491819+00:00\"}]}, \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"stderr\": 0.025, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7148}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PYGP2PExSkWhnMu3Qeo2vW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "conclusion",
+                "value": "SFT Standard 20% achieves 11.59% pass@1 (19/164) on HumanEval@2048, slightly above SFT RASP (10.37%) but difference is not significant (within 1 stderr). Both SFT variants far below unpruned (45.12%) and below GRPO RASP (14.63%). Median response=2048 tokens indicates truncation issues. Supports C3 (GRPO > SFT) but does not support C1 (RASP advantage) on code generation.",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "df7f9eb6-4212-40a8-affa-6b54ef358902",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8sbNM1bkU6T3hMugDeLKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2309,
+                "cache_read_input_tokens": 37819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2309
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T17:46:46.777Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PYGP2PExSkWhnMu3Qeo2vW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SFT Standard 20% achieves 11.59% pass@1 (19/164) on HumanEval@2048, slightly above SFT RASP (10.37%) but difference is not significant (within 1 stderr). Both SFT variants far below unpruned (45.12%) and below GRPO RASP (14.63%). Median response=2048 tokens indicates truncation issues. Supports C3 (GRPO > SFT) but does not support C1 (RASP advantage) on code generation.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.388}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "0077f47a-d4b2-4585-9b87-c74a83ff2df6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'SFT Standard 20% achieves 11.59% pass@1 (19/164) on HumanEval@2048, slightly above SFT RASP (10.37%) but difference is not significant (within 1 stderr). Both SFT variants far below unpruned (45.12%) and below GRPO RASP (14.63%). Median response=2048 tokens indicates truncation issues. Supports C3 (GRPO > SFT) but does not support C1 (RASP advantage) on code generation.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.388}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid conclusion 'SFT Standard 20% achieves 11.59% pass@1 (19/164) on HumanEval@2048, slightly above SFT RASP (10.37%) but difference is not significant (within 1 stderr). Both SFT variants far below unpruned (45.12%) and below GRPO RASP (14.63%). Median response=2048 tokens indicates truncation issues. Supports C3 (GRPO > SFT) but does not support C1 (RASP advantage) on code generation.'. Valid: ['failed', 'killed', 'negative', 'success']\", \"metadata\": {\"elapsed_seconds\": 0.388}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0167UXuxbFBEap6vqbpi8iVy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "status",
+                "value": "DONE(negative)",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "8ffb082a-8419-42bc-8bb9-040cb33f492f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8sbNM1bkU6T3hMugDeLKG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2309,
+                "cache_read_input_tokens": 37819,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2309
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T17:46:47.389Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0167UXuxbFBEap6vqbpi8iVy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'DONE(negative)'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3789}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "a93b0c1d-f1c5-4a60-a65a-68bd2def5cf5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid state 'DONE(negative)'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3789}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid state 'DONE(negative)'. Valid: ['ALLOCATED', 'ANALYZING', 'DEPLOYED', 'DEPLOYING', 'DONE', 'PENDING', 'PREPARING', 'QUEUED', 'RUNNING']\", \"metadata\": {\"elapsed_seconds\": 0.3789}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015LVpRAWfooXXoDG4j6vcEc",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "86898e39-ffe8-41a9-b6a5-4e3e751c9a51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNFJevuWNQx1mqMTDKiWiM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 762,
+                "cache_read_input_tokens": 40128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 762
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013DmaqhScACrpHyov2E7QF3",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "7b9a527a-6c24-4e3e-8281-10ff38681479",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UNFJevuWNQx1mqMTDKiWiM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 762,
+                "cache_read_input_tokens": 40128,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 762
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T17:46:51.207Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015LVpRAWfooXXoDG4j6vcEc",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:50.921Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6492}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "549c4d29-c37e-46e6-b676-6762a05b7f97",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:50.921Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6492}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_humaneval_sft_standard_20_2048_v2\", \"experiment\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:26:15.836Z\", \"updated_at\": \"2026-05-17T17:46:50.921Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:15.449Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"reproduce\": {\"finished_at\": \"2026-05-17T17:43:47.471Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T17:43:52.491819+00:00\"}]}, \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"stderr\": 0.025, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}, \"conclusion\": \"negative\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6492}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T17:46:51.615Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013DmaqhScACrpHyov2E7QF3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3968}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "10193846-19ad-4ff5-8305-2c67e95e981a",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3968}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.3968}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012rsufwvZVyXfvqSAJ1Vrk6",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_humaneval_sft_standard_20_2048_v2",
+                "field": "status",
+                "value": "DONE",
+                "project": "recovery_aware_struct_prune",
+                "spec": {
+                  "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json",
+                  "log_path": "~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log"
+                }
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "b71efbf9-7e8a-45a8-bee8-99cc34acfb09",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EHvkU5Z8C4VaeN1XLxRJ4G",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1054,
+                "cache_read_input_tokens": 40890,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1054
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T17:46:56.795Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012rsufwvZVyXfvqSAJ1Vrk6",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:56.057Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\", \\\"wall_clock_seconds\\\": 4840.6, \\\"gpu_hours\\\": 1.34}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-17T17:46:56.057Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0984}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "d317b846-b89c-469e-a6e9-0542c8695cb4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_standard_20_2048_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T16:26:15.836Z\\\", \\\"updated_at\\\": \\\"2026-05-17T17:46:56.057Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"36724\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T16:26:15.449Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\", \\\"wall_clock_seconds\\\": 4840.6, \\\"gpu_hours\\\": 1.34}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:43:47.471Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:43:52.491819+00:00\\\"}]}, \\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\\\", \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1159, \\\"correct\\\": 19, \\\"total\\\": 164, \\\"stderr\\\": 0.025, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1850.7, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-17T17:46:56.057Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0984}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_humaneval_sft_standard_20_2048_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T16:26:15.836Z\", \"updated_at\": \"2026-05-17T17:46:56.057Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"36724\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_standard_20_2048_v2.log\", \"submitted_at\": \"2026-05-17T16:26:15.449Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_sft_standard_20_2048.json\", \"wall_clock_seconds\": 4840.6, \"gpu_hours\": 1.34}, \"reproduce\": {\"finished_at\": \"2026-05-17T17:43:47.471Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T17:43:52.491819+00:00\"}]}, \"hypothesis\": \"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery.\", \"metrics\": {\"pass_at_1\": 0.1159, \"correct\": 19, \"total\": 164, \"stderr\": 0.025, \"max_new_tokens\": 2048, \"avg_response_length\": 1850.7, \"median_response_length\": 2048}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T17:46:56.057Z\"}, \"hint\": \"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0984}}"
+              }
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验已标记为 DONE(negative)，分析报告已注册。\n\n**结果摘要：**\n\n| Model | HumanEval pass@1 |\n|---|---|\n| Unpruned | 45.12% |\n| GRPO RASP 20% | 14.63% |\n| **SFT Standard 20%** | **11.59%** |\n| SFT RASP 20% | 10.37% |\n\nSFT Standard (11.59%) 略高于 SFT RASP (10.37%)，差异 1.22pp 在 stderr (2.5pp) 范围内，不显著。GRPO RASP 仍是所有剪枝模型中 HumanEval 最高的，支持 C3。C1（RASP 优势）在 HumanEval 上无支撑。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "uuid": "100e20c8-a195-411d-92f9-f376034382e7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013Jpm7Dsg8W4Lm7haw7e2q8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1020,
+                "cache_read_input_tokens": 41944,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1020
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。实验已标记为 DONE(negative)，分析报告已注册。\n\n**结果摘要：**\n\n| Model | HumanEval pass@1 |\n|---|---|\n| Unpruned | 45.12% |\n| GRPO RASP 20% | 14.63% |\n| **SFT Standard 20%** | **11.59%** |\n| SFT RASP 20% | 10.37% |\n\nSFT Standard (11.59%) 略高于 SFT RASP (10.37%)，差异 1.22pp 在 stderr (2.5pp) 范围内，不显著。GRPO RASP 仍是所有剪枝模型中 HumanEval 最高的，支持 C3。C1（RASP 优势）在 HumanEval 上无支撑。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 77832,
+            "duration_api_ms": 75040,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "99cfc71d-12bd-4d8c-ab97-de3ad88d2308",
+            "total_cost_usd": 0.44857475,
+            "usage": {
+              "input_tokens": 14,
+              "cache_creation_input_tokens": 31123,
+              "cache_read_input_tokens": 296092,
+              "output_tokens": 4168,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 31123,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 235,
+                  "cache_read_input_tokens": 41944,
+                  "cache_creation_input_tokens": 1020,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1020
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1635,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00174,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 14,
+                "outputTokens": 4168,
+                "cacheReadInputTokens": 296092,
+                "cacheCreationInputTokens": 31123,
+                "webSearchRequests": 0,
+                "costUSD": 0.44683475,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f151bf1d-2536-4bec-9a19-4cf84bbece30"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-eval-humaneval-sft-standard-20-2048-v2.md"
+}

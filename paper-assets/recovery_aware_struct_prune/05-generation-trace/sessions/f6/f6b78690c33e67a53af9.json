@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6b78690c33e67a53af9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research check grpo stage2 progress",
+  "task_key": "worker_research_check_grpo_stage2_progress_20260515T033013",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_grpo_stage2_progress_20260515T033013_result.json",
+    "occurrence": 1,
+    "bytes": 2047,
+    "sha256": "662690f763118723ae4514c55e74c130143a8d4fc9adff1be7b27c65552c8a58"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO Stage 2 训练进度报告\n\n### 进程状态\n\n| | RASP (cuda:0) | Standard (cuda:1) |\n|---|---|---|\n| **PID** | 263893 (子进程) | 263971 (子进程) |\n| **状态** | 运行中 | 运行中 |\n| **已运行** | 2h 19m | 2h 19m |\n\n### 训练进度\n\n| | RASP | Standard |\n|---|---|---|\n| **进度** | **1/500** (0.2%) | **1/500** (0.2%) |\n| **速度** | 6655 s/step (~111 min) | 6725 s/step (~112 min) |\n| **ETA** | **922 小时 (38.4 天)** | **932 小时 (38.8 天)** |\n| **训练指标** | 无（logging_steps=10） | 无 |\n| **Checkpoints** | 无（save_steps=100） | 无 |\n\n### GPU 状态\n\n| GPU | 利用率 | 显存 | 温度 |\n|---|---|---|---|\n| cuda:0 (RASP) | 100% | 52GB / 98GB | 82°C |\n| cuda:1 (Standard) | 100% | 52GB / 98GB | 81°C |\n\n### W&B\n\n| | Run Name | Run ID |\n|---|---|---|\n| RASP | `grpo_stage2_rasp_20` | `ve3er9un` |\n| Standard | `grpo_stage2_standard_20` | `mqu3sg7j` |\n\n两个 wandb run 最后写入时间均为 11:29，正在正常同步。\n\n### 关键问题\n\n**速度严重偏慢。** 每步 ~111 分钟，500 步需要 38 天。原因：\n- `max_completion_length=4096` × `num_generations=4` × `batch_size=2` = 每个 micro-batch 生成 8 条长序列\n- `gradient_accumulation_steps=8` → 每个 optimizer step 需要生成 64 条最长 4096 token 的 completion\n\n**无法判断学习信号。** `logging_steps=10`，第一批指标要到 step 10 才输出（约开始后 ~18.5 小时，即今晚 ~03:45 左右）。目前无法确认 grad_norm > 0、reward 趋势、或 completion_length 是否截断。\n\n**第一个 checkpoint 在 step 100**，约 19 天后才会保存。\n\n### 建议\n\n如果 38 天不可接受，可以考虑中断后调参重跑：\n- `max_completion_length` 从 4096 降到 2048（速度提升最显著）\n- `num_generations` 从 4 降到 2\n- `gradient_accumulation_steps` 从 8 降到 4\n\n但这些会影响 GRPO 训练质量。建议至少等到 step 10（今晚 ~03:45）看到第一批指标再决定是否调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-grpo-stage2-progress.md"
+}

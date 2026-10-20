@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab8b0f989e336db7cfdb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix and resubmit standard 15 eval",
+  "task_key": "worker_ssh_fix_and_resubmit_standard_15_eval_20260520T225530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_and_resubmit_standard_15_eval_20260520T225530_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "df53056b201828b1aedc9e63dcc7285749c5972ed65b57f2cccc66c438618268"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已成功启动，模型正在加载中：\n\n**修复内容：**\n1. **seed456 tokenizer.json**：0 bytes 空文件，已从 seed123 复制（11MB）\n2. **GSM8K 缓存**：设 `HF_HOME=/root/autodl-tmp/.hf_cache` 指向数据盘缓存（根分区缓存已删），去掉 `HF_DATASETS_OFFLINE=1`\n\n**提交状态（westd-29022）：**\n| Job | GPU | PID | 状态 |\n|-----|-----|-----|------|\n| eval_std15_seed123 | cuda:2 | 293079 | 模型加载中 |\n| eval_std15_seed456 | cuda:3 | 293153 | 模型加载中 |\n\n输出路径：\n- `results/eval_gsm8k_grpo_standard_15_seed123_n1319.json`\n- `results/eval_gsm8k_grpo_standard_15_seed456_n1319.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-and-resubmit-standard-15-eval.md"
+}

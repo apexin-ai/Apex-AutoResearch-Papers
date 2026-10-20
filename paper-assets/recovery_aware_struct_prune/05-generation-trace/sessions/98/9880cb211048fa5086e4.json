@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9880cb211048fa5086e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code unstructured pruning baseline",
+  "task_key": "worker_code_unstructured_pruning_baseline_20260519T030837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_unstructured_pruning_baseline_20260519T030837_result.json",
+    "occurrence": 1,
+    "bytes": 1099,
+    "sha256": "1c03a45f09a67b815645cbb10f8480fad72bd55c5bc0e0119a6eefe48f056bd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**已有**: `src/run_unstructured_baseline.py` — 手动 zeroing + 内存中 eval，不保存 pruned model\n\n**新建**: `src/prune_unstructured.py` — 使用 `torch.nn.utils.prune.global_unstructured` 做全局 L1 magnitude pruning，保存 pruned model 到磁盘。与已有脚本的区别：\n- 用 PyTorch 官方 prune API（有 mask 管理，prune.remove 永久化）\n- 输出完整 HF model 到 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured/s{pct}/`\n- 跳过 embed/lm_head/norm 层（与现有脚本一致）\n- `--gpu` 参数控制设备\n\n**Dry-run `--help` 通过**。\n\n运行命令：\n```bash\n# 剪枝 (20% sparsity, ~5min)\nCUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/prune_unstructured.py --sparsity 0.2 --gpu 0\n\n# 快速验证 (100 samples GSM8K)\n/root/miniconda3/bin/python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured/s20 --max_samples 100 --seed 42\n```\n\n注意：westd-29022 的 `python` 不在 PATH 里，需要用 `/root/miniconda3/bin/python`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-unstructured-pruning-baseline.md"
+}

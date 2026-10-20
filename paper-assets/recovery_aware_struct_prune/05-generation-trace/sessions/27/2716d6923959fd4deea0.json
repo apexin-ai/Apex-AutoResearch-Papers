@@ -1,0 +1,451 @@
+{
+  "schema_version": "1.0",
+  "id": "2716d6923959fd4deea0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval gsm8k seed123",
+  "task_key": "worker_eval_gsm8k_seed123_20260519T152714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_gsm8k_seed123_20260519T152714.jsonl",
+    "occurrence": 1,
+    "bytes": 13748,
+    "sha256": "357923f77e9b4370df3670d95f7333598feb303699702763464f16fbdbb34965"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T15:28:41.267779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T15:28:41.268148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T15:28:41.268391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T15:28:41.268563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/recovery_aware_struct_prune/src/eval_gsm8k*",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T15:28:41.268714+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12046292\\\\ndrwxr-xr-x  4 root root        4096 May 19 23:18 .\\\\ndrwxr-xr-x 33 root root        4096 May 19 18:53 ..\\\\n-rw-r--r--  1 root root        2108 May 19 23:17 README.md\\\\n-rw-r--r--  1 root root        2246 May 19 23:18 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 19 23:18 checkpoint-100\\\\ndrwxr-xr-x  2 root root        4096 May 19 23:17 completions\\\\n-rw-r--r--  1 root root        1732 May 19 23:18 config.json\\\\n-rw-r--r--  1 root root         241 May 19 23:18 generation_config.json\\\\n-rw-r--r--  1 root root 12323931248 May 19 23:18 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 19 23:18 tokenizer.json\\\\n-rw-r--r--  1 root root         420 May 19 23:18 tokenizer_config.json\\\\n-rw-r--r--  1 root root        7313 May 19 23:18 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T15:28:41.268849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T15:28:41.268995+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -80 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T15:28:41.269169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGSM8K Test Set Evaluation.\\\\n\\\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\\\nand comparing extracted numeric answers against gold answers.\\\\n\\\\nSupports greedy decoding and majority voting (self-consistency).\\\\n\\\\nInput:  model path\\\\nOutput: accuracy printed to stdout + saved to results JSON\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract content from \\\\\\\\\\\\\\\\boxed{...} with balanced brace matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef _clean_latex_number(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip LaTeX formatting to get a plain number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{[^}]*\\\\\\\\}\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \n…[truncated 820 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T15:28:41.269370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"add_argument\\|argparse\\|def main\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T15:28:41.269517+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T15:28:41.269643+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"add_argument\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T15:28:41.269877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"318:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to model\\\\\\\")\\\\n319:    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, default=None, help=\\\\\\\"Output JSON path for results\\\\\\\")\\\\n320:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n321:    parser.add_argument(\\\\\\\"--max_samples\\\\\\\", type=int, default=None, help=\\\\\\\"Limit test samples (None=all)\\\\\\\")\\\\n322:    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n323:    parser.add_argument(\\\\\\\"--dtype\\\\\\\", type=str, default=\\\\\\\"bfloat16\\\\\\\", choices=[\\\\\\\"float16\\\\\\\", \\\\\\\"bfloat16\\\\\\\", \\\\\\\"float32\\\\\\\"])\\\\n324:    parser.add_argument(\\\\\\\"--device_map\\\\\\\", type=str, default=\\\\\\\"auto\\\\\\\", help=\\\\\\\"Device map: auto, cpu, cuda:0, etc.\\\\\\\")\\\\n325:    parser.add_argument(\\\\\\\"--temperature\\\\\\\", type=float, default=0.0, help=\\\\\\\"Sampling temperature (0=greedy)\\\\\\\")\\\\n326:    parser.add_argument(\\\\\\\"--do_sample\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable sampling mode\\\\\\\")\\\\n327:    parser.add_argument(\\\\\\\"--voting\\\\\\\", action=\\\\\\\"store_true\\\\\\\", help=\\\\\\\"Enable majority voting (self-consistency)\\\\\\\")\\\\n328:    parser.add_argument(\\\\\\\"--num_samples_per_question\\\\\\\", type=int, default=8, help=\\\\\\\"K samples per question for voting\\\\\\\")\\\\n329:    parser.add_argument(\\\\\\\"--voting_temperature\\\\\\\", type=float, default=0.7, help=\\\\\\\"Temperature for voting samples\\\\\\\")\\\\n330:    parser.add_argument(\\\\\\\"--voting_top_p\\\\\\\", type=float, default=0.95, help=\\\\\\\"Top-p for voting samples\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T15:28:41.270041+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_training_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T15:28:41.270164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T15:28:41.270373+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && mkdir -p /root/autodl-tmp/recovery_aware_struct_prune/results && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json --device_map auto' > /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_seed123.log 2>&1 & echo \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T15:28:41.270605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && mkdir -p /root/autodl-tmp/recovery_aware_struct_prune/results && nohup bash -c \\\\\\\\'CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json --device_map auto\\\\\\\\' > /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_seed123.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=903935\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T15:28:41.270820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_seed123.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T15:28:41.271009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -l /proc/903935/status",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T15:28:41.271207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 23:28:00,681 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed123\\\\n2026-05-19 23:28:01,476 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.99}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T15:28:41.271433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-r--r--r-- 1 root root 0 May 19 23:28 /proc/903935/status\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T15:28:41.271656+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估任务已成功提交并运行中：\n\n- **实验 ID**: eval_gsm8k_grpo_cka_only_20_seed123\n- **服务器**: westb-23072, cuda:1\n- **PID**: 903935\n- **状态**: 模型加载中（已检测到 non-uniform MLP 结构）\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_seed123.log`\n- **结果输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json`\n- **对比目标**: seed=42 的 64.37% (849/1319)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_gsm8k_seed123_20260519T152714"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/eval-gsm8k-seed123.md"
+}

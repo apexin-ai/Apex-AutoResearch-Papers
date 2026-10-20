@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ae8ed02850999876fbb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd status",
+  "task_key": "worker_ops_check-westd-status_20260516T022051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd-status_20260516T022051_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "9e7424d3a89306ceab08807e046bdbfcaab6ebbe0ea3357442f0fc2636f10036"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 实验状态摘要\n\n### eval_sft_unpruned_full — RUNNING\n- **PID**: 74129 → 子进程 74134 占 GPU-0 (17654 MiB)\n- **进度**: 894/1319 (67.8%)，已跑 42 分钟\n- **当前 accuracy**: **81.76%** (截至 850 样本)，eos_rate=99.76%\n- **预计剩余**: ~18 分钟（约 2.5s/样本）\n\n### grpo_unpruned_v2 — RUNNING, 无冲突\n- **PID 75381**: 已死\n- **PID 77647**: 存活 → 子进程 77652 占 GPU-1 (91018 MiB)\n- **进度**: **31/100 steps** (31%)，从 checkpoint-20 恢复，~34s/step\n- **Checkpoints**: checkpoint-20, checkpoint-25, checkpoint-30\n- **预计剩余**: ~39 分钟\n\n### 磁盘\n- `/root/autodl-tmp/`: 205G / 250G used，**46G 可用** (82%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-status.md"
+}

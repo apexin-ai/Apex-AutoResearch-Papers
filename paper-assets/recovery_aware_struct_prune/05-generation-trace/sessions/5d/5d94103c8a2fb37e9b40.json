@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d94103c8a2fb37e9b40",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pass k and rlvr status",
+  "task_key": "worker_diagnose_pass_k_and_rlvr_status_20260516T182246",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pass_k_and_rlvr_status_20260516T182246_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "7ff2d9987ffecf1a843ce83679ea38ab9b4679662864f1dec2fc6296a0e7175a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果汇总\n\n### Part 1: pass@k 结果（全部完成，registry 已更新）\n\n| Experiment | pass@8 | stderr |\n|---|---|---|\n| Unpruned GRPO (baseline) | **0.965** | ±0.013 |\n| RASP-20 SFT | **0.935** | ±0.017 |\n| RASP-20 GRPO | **0.915** | ±0.020 |\n\n### Part 2: RLVR eval\n\n- `eval_sft_rasp_rlvr_20_qwen_math` — **完成**，greedy accuracy = **0.73** (146/200)\n- GRPO 已启动：PID **32087**，tmux session `grpo_rasp_rlvr_20_qwen_math`，cuda:0，正在加载模型\n\n### Part 3: GPU 空闲情况\n\n| GPU | 状态 |\n|---|---|\n| cuda:0 | GRPO 训练中（刚启动） |\n| cuda:1 | **空闲** |\n| cuda:2 | **空闲** |\n| cuda:3 | **空闲** |\n\n3 张 GPU 可用于下一步实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pass-k-and-rlvr-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8aa4639efe872549fa7c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1a download 1p5b",
+  "task_key": "worker_code_e1a_download_1p5b_20260518T100931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1a_download_1p5b_20260518T100931_result.json",
+    "occurrence": 1,
+    "bytes": 2412,
+    "sha256": "f3d351ecb93de5db03be5bc99763651c0097ce8c492b30bdd370fc743b7e9079"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报如下：\n\n---\n\n## 1. 1.5B 架构参数\n\n| 参数 | 1.5B |\n|---|---|\n| model_type | qwen2 |\n| num_hidden_layers | 28 |\n| hidden_size | 1536 |\n| intermediate_size | 8960 |\n| num_attention_heads | 12 |\n| num_key_value_heads | 2 |\n| vocab_size | 151936 |\n| 参数量 | **1.78B** |\n| 磁盘占用 | **3.4GB** (safetensors) |\n\n## 2. 7B vs 1.5B 架构对比\n\n| 参数 | 7B | 1.5B | 变化 |\n|---|---|---|---|\n| num_hidden_layers | 28 | **28** | 相同 |\n| hidden_size | 3584 | **1536** | 缩小 57% |\n| intermediate_size | 18944 | **8960** | 缩小 53% |\n| num_attention_heads | 28 | **12** | 缩小 57% |\n| num_key_value_heads | 4 | **2** | 缩小 50% |\n| vocab_size | 152064 | **151936** | 略小 (差128) |\n| GQA ratio (heads/kv) | 7:1 | **6:1** | 不同 |\n\n## 3. Forward pass\n\n**成功。** 输出正确回答 \"2+2=4\"，生成流畅。\n\n## 4. 代码兼容性问题\n\n核心 pruning 代码**大部分兼容**，关键参数从 `model.config` 动态读取。但存在以下需注意项：\n\n| 文件 | 行号 | 问题 |\n|---|---|---|\n| `src/prune.py` | L105 | `prune_mlp_channels` 默认参数 `n_mlp_groups=28`（仅默认值，实际调用时传入动态值 `n_heads`，**不影响运行**） |\n| `src/cka_overlap.py` | L120 | `collect_mlp_activations` 默认参数 `n_groups=28`（同上，CLI 调用时通过 `--mlp_groups` 传入） |\n| `src/cka_overlap.py` | L204 | `--mlp_groups` 默认值 `default=28`（**需改为动态获取或改为 12**） |\n| `src/extract_pruning_pattern.py` | L5-8 | 多个 hardcoded 常量：`ORIGINAL_INTERMEDIATE_SIZE=18944`, `GROUP_SIZE=676`, `NUM_LAYERS=28`, `GROUPS_PER_LAYER=28`（**全部需要适配**，此文件是分析脚本，非核心） |\n| `src/run_mvp.sh` 等 shell 脚本 | 多处 | `--n_mlp_groups 28` 和 7B 模型路径 hardcoded（**需要创建新的 1.5B 专用脚本**） |\n\n**关键发现**：`n_mlp_groups` 在 pruning 中等于 `num_attention_heads`。7B 为 28，1.5B 为 **12**。这意味着 1.5B 每层只有 12 个 MLP channel group 和 2 个 GQA group，pruning 粒度更粗。另外 GQA ratio 从 7:1 变为 6:1，attention group pruning 的最小单元也不同。\n\n核心代码（`prune.py` 的 pruning 逻辑、`model_utils.py` 的模型加载、`train_grpo_v5.py`/`sft_recovery.py` 的训练）均从 config 动态读取参数，**无需修改即可运行**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1a-download-1p5b.md"
+}

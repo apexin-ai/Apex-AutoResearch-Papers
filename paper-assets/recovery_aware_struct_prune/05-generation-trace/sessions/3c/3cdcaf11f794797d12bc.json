@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cdcaf11f794797d12bc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops rasp clipped ratio monitor",
+  "task_key": "worker_ops_rasp-clipped-ratio-monitor_20260514T231735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rasp-clipped-ratio-monitor_20260514T231735_result.json",
+    "occurrence": 1,
+    "bytes": 2577,
+    "sha256": "ba9b749aa88ee545a5c78570340b3747da3d299a440dc1dcab341918045956cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Step 10 metrics obtained.** Here's the complete report:\n\n---\n\n## grpo_rasp_20_4096 — 前 10 步指标报告\n\n### 判断：FAIL\n\n### Step 10 完整指标\n\n| 指标 | RASP 4096 (当前) | Standard 4096 (D011) |\n|------|:---:|:---:|\n| **completions/clipped_ratio** | **1.0** | 0.994 |\n| **grad_norm** | **0** | 0 |\n| loss | -3.725e-10 | — |\n| completions/mean_length | 4096 | 4096 |\n| completions/min_length | 4096 | 4096 |\n| completions/max_length | 4096 | 4096 |\n| mean_terminated_length | **0** | 0 |\n| reward | 0.03125 | — |\n| reward_std | 0.06972 | — |\n| frac_reward_zero_std | 0.925 | — |\n| entropy | 0.01547 | — |\n| clip_ratio (all) | 0 | — |\n| step_time | 170.5s | — |\n\n### 关键发现\n\n1. **clipped_ratio = 1.0**：所有 completion 都撞到 4096 上限，没有任何自然终止。比 Standard (0.994) 还差。\n\n2. **grad_norm = 0**：零梯度信号，GRPO 完全无法学习。\n\n3. **mean_terminated_length = 0**：零 completion 自然终止。\n\n4. **Completion 样本质量极差**：\n   - 样本 1：重复循环 \"But wait, so the number of chickens after two years is 32. So, 32 chickens. But wait...\" 无限重复直到撞 4096\n   - 样本 2：退化数字序列 \"2.222. 5 1 1 2 2 2 2 2 2 2 2...\" — reward=0.00\n\n5. **reward = 0.03125（3.1%）**：有微弱 reward 信号，但因为 clipped_ratio=1 导致 policy gradient 被完全截断，梯度为零。\n\n6. **entropy = 0.01547**：极低，模型 token 分布高度集中（退化生成）。\n\n### 与 RASP 1024 fast run 对比\n\n| 指标 | RASP 1024 | RASP 4096 |\n|------|:---:|:---:|\n| clipped_ratio | 1.0 | 1.0 |\n| grad_norm | 0 | 0 |\n| reward | 0.01875 | 0.03125 |\n| entropy | 0.03602 | 0.01547 |\n\n4096 没有解决问题。reward 略高（3.1% vs 1.9%），但 clipped_ratio 同样为 1.0，entropy 反而更低。\n\n### 根因分析\n\nRASP 模型虽然在 GSM8K eval 时有 29% accuracy（greedy decoding），但在 GRPO 训练的 sampling 模式下（temperature=0.7, num_generations=4），产出的是退化文本：要么陷入重复循环，要么输出随机数字序列。这些退化 completion 永远无法自然终止（hit EOS），导致 4096 tokens 仍然不够。\n\n核心矛盾：**模型能推理（29% eval），但不能正确终止**。模型在 greedy 模式下表现不同于 sampling 模式——sampling 暴露了剪枝后模型的退化生成问题。\n\n### 预估训练总时长（参考）\n\n500 steps × 173s/step = ~24 小时。但由于 grad_norm=0，跑完也没有意义。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rasp-clipped-ratio-monitor.md"
+}

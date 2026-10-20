@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "fac4f52986d4bef61b6b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval collect pending results",
+  "task_key": "worker_eval_collect_pending_results_20260517T015739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_pending_results_20260517T015739_result.json",
+    "occurrence": 1,
+    "bytes": 2343,
+    "sha256": "277b2354c9ce889b60d16d9da507370033a07d4091e72d8a2941c6d6e7cf1881"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n---\n\n### 任务 1: eval_pass_k8_rasp_20_grpo_deepseek (westd-11672)\n\n**状态: 已完成** (PID 61473 已退出)\n\n```json\n{\n  \"model\": \"grpo_stage2_rasp_20_v9\",\n  \"pass_at_k\": 0.89,\n  \"k\": 8,\n  \"temperature\": 0.7,\n  \"n_problems\": 200,\n  \"stderr\": 0.0221,\n  \"eos_rate\": 0.995,\n  \"avg_response_length\": 162.58,\n  \"truncated\": 8\n}\n```\n\n---\n\n### 任务 2: eval_grpo_standard_25 (westd-11672)\n\n**状态: 运行中** (PID 48540, GPU 1)\n\n进度: **1205/1319 (91.4%)**, 当前 acc=**0.5117**, eos_rate=96.50%, avg_len=285\n\n预计剩余 ~5-8 分钟。结果文件尚未生成。\n\n---\n\n### 任务 3: eval_grpo_rasp_25 (westb-23072)\n\n**状态: 运行中** (PID 639423, CPU 103%, 已运行 383 分钟)\n\n结果文件尚未生成。无独立 log 可查（进程在前台 pts/0 运行）。\n\n---\n\n### 任务 4: Alpha Sweep 结果 (westd-11672)\n\n模型路径: `outputs/alpha_ablation/sft_alpha_{α}`, greedy decoding, N=200\n\n| α | Accuracy | n_correct | stderr | eos_rate | avg_len |\n|---|----------|-----------|--------|----------|---------|\n| 0.0 | 0.700 | 140 | 0.0324 | 1.000 | 132.96 |\n| 0.3 | 0.730 | 146 | 0.0314 | 1.000 | 123.15 |\n| 0.5 | 0.740 | 148 | 0.0310 | 1.000 | 131.09 |\n| 0.7 | 0.735 | 147 | 0.0312 | 1.000 | 129.25 |\n| 1.0 | **0.755** | 151 | 0.0304 | 1.000 | 127.36 |\n| 2.0 | **0.755** | 151 | 0.0304 | 0.995 | 145.08 |\n\n模型路径中未标注 sparsity 比例（仅 `sft_alpha_{val}`），无法仅从 JSON 判断是 20% 还是 25%。\n\n---\n\n### 任务 5: westd-11672 GPU 使用情况\n\n| GPU | 型号 | Util | 显存 | PID | 用途 |\n|-----|------|------|------|-----|------|\n| 0 | RTX PRO 6000 | 0% | 0 / 97887 MiB | — | 空闲 |\n| 1 | RTX PRO 6000 | 99% | 28911 / 97887 MiB | 48541 | eval_grpo_standard_25 |\n| 2 | RTX PRO 6000 | 91% | 17623 / 97887 MiB | 67337 | 未知 python 进程 |\n| 3 | RTX PRO 6000 | 99% | 29595 / 97887 MiB | 64889 | 未知 python 进程 |\n\nGPU 2 和 GPU 3 上有未识别的 python 进程（PID 67337, 64889），不在本次检查的实验列表中。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "model": "grpo_stage2_rasp_20_v9",
+              "pass_at_k": 0.89,
+              "k": 8,
+              "temperature": 0.7,
+              "n_problems": 200,
+              "stderr": 0.0221,
+              "eos_rate": 0.995,
+              "avg_response_length": 162.58,
+              "truncated": 8
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-pending-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "530100984eb8224da233",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose grpo standard 1p5b",
+  "task_key": "worker_ops_diagnose_grpo_standard_1p5b_20260518T151011",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_grpo_standard_1p5b_20260518T151011_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "dad93cc7131165a0d20eb336d567e8b38ea652d04a90b9b8245931fb34ee024e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**grpo_standard_20_1p5b: SUCCESS**\n\n| 指标 | 值 |\n|---|---|\n| final_step / max_steps | 100 / 100 |\n| reward/mean | 0.0844 |\n| frac_reward_zero_std | 0.15 |\n| loss | 0.0151 |\n| grad_norm | 4.03 |\n| kl | 0.0044 |\n| entropy | 0.4617 |\n| 总用时 | ~53 min |\n| W&B | mm31apn0 |\n| EXIT_CODE | 0 |\n\nRegistry 已更新为 DONE/success，cron 已删除。checkpoint 在 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_1p5b/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-grpo-standard-1p5b.md"
+}

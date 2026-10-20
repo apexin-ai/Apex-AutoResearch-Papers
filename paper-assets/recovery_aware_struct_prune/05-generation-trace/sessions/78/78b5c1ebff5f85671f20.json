@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78b5c1ebff5f85671f20",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd sft progress check",
+  "task_key": "worker_monitor_westd-sft-progress-check_20260515T171256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-sft-progress-check_20260515T171256_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "5a0bd46eb34c420585f839086cae462354c4b510f0b3694569fd7e1890747bb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| | RASP SFT (cuda:0) | Standard SFT (cuda:1) |\n|---|---|---|\n| **PID** | 48946 | 49645 |\n| **tmux session** | `sft_rasp_westd` | `sft_std20_westd` |\n| **运行时间** | 12h49m | 9h21m |\n| **进度** | 658/1870 (35%) | 456/1870 (24%) |\n| **epoch** | 0.696 | 0.482 |\n| **当前 loss** | ~0.80-0.89 | ~0.84-0.87 |\n| **token accuracy** | ~0.78-0.79 | ~0.77-0.79 |\n| **速度** | 1.11 it/s | 1.05 it/s |\n| **GPU 利用率** | 86%, 51.5/97.9 GB | 81%, 51.5/97.9 GB |\n| **预估剩余** | ~18m14s (进度条显示) | ~22m27s (进度条显示) |\n| **Checkpoints** | output_dir 为空，尚未保存 | output_dir 为空，尚未保存 |\n\n**注意事项**:\n- 两个 output_dir 目前都是空的，还没有 checkpoint 写入。可能是设置了按 epoch 或训练结束才保存。\n- Loss 趋势平稳，RASP 略低于 Standard（0.80-0.89 vs 0.84-0.87），token accuracy 两者接近（~0.78）。\n- 按当前速度，RASP 约 18 分钟后完成，Standard 约 22 分钟后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-sft-progress-check.md"
+}

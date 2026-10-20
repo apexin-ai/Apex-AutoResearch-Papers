@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eea13ec204c25f3f56eb",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval d2 dual checkpoint",
+  "task_key": "worker_eval_d2_dual_checkpoint_20260513T095648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_d2_dual_checkpoint_20260513T095648_result.json",
+    "occurrence": 1,
+    "bytes": 1615,
+    "sha256": "5e1dd749bddcd0789a5d49eb52a1760f91285021761dcf45459a9223c8bf56ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All systems running:\n- **GPU 0**: D2 ckpt400 eval started, evaluating scierc_test (551 samples)\n- **GPU 1**: D1 v4 training at 395/500\n\nNow let me compile the full report.\n\n## D2 Phase 2\n- **训练**：完成 (500/500)，耗时 3h17m55s\n- **最终 metrics** (step 500): loss=-0.00318, reward=0.5025, reward_std=0.11\n- **Step 490 metrics**: reward=0.545\n- **checkpoint-400 merge**：成功 → `/root/autodl-tmp/output/formal_D2/checkpoint-400-merged`\n- **Eval checkpoint-400**：已启动 (tmux: eval_d2_dual, cuda:0)，正在跑 scierc_test\n- **Eval merged**：排在 ckpt400 后面串行（同一 tmux session）\n\n## D1 v4\n- **训练**：运行中 (395/500)，~30s/step，预计 ~54 min 后完成 (~18:58 UTC)\n- D1 eval 需等训练完成后启动\n\n## eval_C_v2 完整指标\n\n| Metric | scierc_test | crossner_politics | crossner_science |\n|--------|------------|-------------------|------------------|\n| f1_correctness | 0.2184 | 0.4116 | 0.5329 |\n| structural_validity | 0.9964 | 1.0000 | 0.9982 |\n| type_conformance | 0.9537 | 0.9997 | 0.9781 |\n| relational_constraint | 0.7191 | 0.0000 | 0.0000 |\n| structural_completeness | 0.9543 | 0.9932 | 0.9678 |\n| entity_f1 | 0.3949 | 0.4158 | 0.5514 |\n| relation_f1 | 0.0000 | 0.0000 | 0.0000 |\n| valid_json_rate | 0.9964 | 1.0000 | 0.9982 |\n\n注：eval_C_v2 日志标注为 base model eval（加载的是 `/root/autodl-tmp/models/Qwen/Qwen3.5-9B`），输出保存在 `base_zero_shot_v2/`。\n\n## GPU 状态\n```\nGPU 0: 59% util, 22083/97887 MiB (D2 ckpt400 eval)\nGPU 1: 75% util, 54311/97887 MiB (D1 v4 training)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-d2-dual-checkpoint.md"
+}

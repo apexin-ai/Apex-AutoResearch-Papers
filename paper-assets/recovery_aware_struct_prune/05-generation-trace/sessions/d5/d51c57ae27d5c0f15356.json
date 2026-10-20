@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d51c57ae27d5c0f15356",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval mbpp sft cka only cuda3",
+  "task_key": "worker_eval_mbpp_sft_cka_only_cuda3_20260519T171824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mbpp_sft_cka_only_cuda3_20260519T171824_result.json",
+    "occurrence": 1,
+    "bytes": 434,
+    "sha256": "6c7669f525ecca447084f2da3a70c9cf8788a212af52754cab748f458612981c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册。\n\n- **实验**: `eval_mbpp_sft_cka_only_20`\n- **服务器**: westd-29022, cuda:3\n- **PID**: 123029\n- **状态**: RUNNING\n- **日志**: `/tmp/eval_mbpp_sft_cka_only_20.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json`\n\n模型已开始加载（检测到 non-uniform MLP: intermediate_size range [8128, 18944]），进程正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mbpp-sft-cka-only-cuda3.md"
+}

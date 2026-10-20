@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5e88ac1b4360ff854c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code p0 param count and p1p2",
+  "task_key": "worker_code_p0-param-count-and-p1p2_20260515T054804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_p0-param-count-and-p1p2_20260515T054804_result.json",
+    "occurrence": 1,
+    "bytes": 2849,
+    "sha256": "c0e7e19c2fceda043921ab6cc7d506a89658ebc77225afe7225ac55bae021b74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有数据收集完毕。以下是三项任务的结果。\n\n---\n\n## Task 1 (P0): 总移除参数量验证\n\n**结论：论文 \"395,232 parameters are removed\" 是错误的。实际移除 ~1.454B 参数。**\n\n### 来源数据\n\n| 项目 | 值 |\n|------|-----|\n| hidden_size | 3,584 |\n| intermediate_size | 18,944 |\n| num_attention_heads | 28 |\n| num_key_value_heads | 4 |\n| num_hidden_layers | 28 |\n| head_dim | 128 |\n\n### 计算\n\n**MLP groups:**\n- n_mlp_groups = 28/layer, total = 28 × 28 = 784\n- group_size = 18944 // 28 = **676 channels**\n- params_per_mlp_group = 676 × 3584 × 3 (gate + up + down) = **7,268,352**\n- 200 groups pruned → 200 × 7,268,352 = **1,453,670,400**\n\n**Attention groups:**\n- 0 groups pruned → 0 params\n\n**总移除参数 = 1,453,670,400 ≈ 1.45B**\n\n### 与 pruning_metadata.pt 交叉验证\n- original_params = 7,615,616,512\n- pruned_params = 6,161,946,112\n- 差值 = **1,453,670,400** ✓\n\n### \"395,232\" 的真实含义\n这是**所有层保留的 MLP intermediate 维度之和**，不是参数量：\n- 原始总 intermediate = 28 layers × 18,944 = 530,432\n- 移除 channels = 200 groups × 676 = 135,200\n- 保留 intermediate = 530,432 − 135,200 = **395,232** ✓\n\nexperiments.tex L29 需修正为 ~1.45B (或精确值 1,453,670,400)。\n\n---\n\n## Task 2 (P1): run_full_eval.sh L35-36\n\n**已检查，路径已全部正确。** 当前文件内容：\n\n- L32: `GRPO_RASP_20=\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v2\"` ✓\n- L33: `GRPO_STANDARD_20=\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v2\"` ✓\n- L35-41: `ALL_MODELS` 数组引用 `$GRPO_RASP_20` / `$GRPO_STANDARD_20` 变量（间接引用，自动继承 `_v2`）✓\n\n无需修改。\n\n---\n\n## Task 3 (P2): 剪枝参数一致性\n\n| 参数 | 论文值 | 代码值 | 一致？ |\n|------|--------|--------|--------|\n| Sparsity | 20% (L27) | CLI default=**0.35** (L165)，但 metadata 显示实际运行用 **0.2** | ⚠️ 代码默认值不一致，实际运行正确 |\n| MLP groups/layer | 28 (L28) | `n_mlp_groups = n_heads = 28` (L222) | ✓ |\n| MLP group size | 676 (L28) | `18944 // 28 = 676` (L223) | ✓ |\n| Capacity floor | ≥40%, ≥12/28 groups (L44) | 初选: `max(4, int(28*0.4))=11` (L252)；后校正: `ceil(18944*0.4/676)=12` (L277) | ✓ 有效值=12 |\n| Calibration samples | 512 (L32, L36) | `default=512` (cka_overlap L202, importance_score L174) | ✓ |\n| α (alpha) | 1.0 (L40) | `default=1.0` (L166) | ✓ |\n| Attn groups pruned | 0/112 (L27) | metadata: `n_attn_groups_pruned=0` | ✓ |\n\n**唯一问题**: `prune.py` L165 默认 sparsity=0.35，但论文和实际实验均用 0.20。建议将代码默认值改为 0.2 以保持一致，或在论文中明确说明 CLI 参数 `--sparsity 0.2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-p0-param-count-and-p1p2.md"
+}

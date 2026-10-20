@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c43a2d2e3f989aac9130",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup pruned unstructured",
+  "task_key": "worker_ops_westb_disk_cleanup_pruned_unstructured_20260519T105308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_pruned_unstructured_20260519T105308_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "64122f09ab8ea91fba81a3493f15eea40e760dd86232770ebab734bef5ab9c2f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果：**\n- 已删除 `pruned_unstructured_20/`，释放 15GB\n- 当前可用：**38GB** / 250GB（85% 使用率），seed123 checkpoint (~12GB) 空间充足\n- 无 `.tmp` / `.bak` / `optimizer.pt` 临时文件\n\n**其他大型目录（均 ~12GB，未删除）：**\n\n| 目录 | 大小 |\n|---|---|\n| sft_rasp_rlvr_20/ | 12G |\n| sft_random_20/ | 12G |\n| sft_gradient_20/ | 12G |\n| sft_cka_only_20/ | 12G |\n| pruned_standard_20/ | 12G |\n| pruned_rasp_rlvr_20/ | 12G |\n| pruned_rasp_20/ | 12G |\n| pruned_random_20/ | 12G |\n| pruned_cka_only_20/ | 12G |\n| grpo_cka_only_20/ | 12G |\n\n这些目录每个 12GB，如后续需要更多空间可考虑清理已完成评估的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-pruned-unstructured.md"
+}

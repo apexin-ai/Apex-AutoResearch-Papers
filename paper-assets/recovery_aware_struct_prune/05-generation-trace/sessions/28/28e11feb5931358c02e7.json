@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28e11feb5931358c02e7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd reconnect v3 20260522",
+  "task_key": "worker_ops_westd_reconnect_v3_20260522_20260522T032833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_reconnect_v3_20260522_20260522T032833_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "856102fb91c2359d113d6315bebbc5054e1f8371a8025a5c4070cccb255995a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 连接 ==\nwestd-29022: FAILED\n  IP: 36.103.198.204\n  Port: 29022\n  错误: [Errno None] Unable to connect to port 29022 on 36.103.198.204\n\n连接被拒绝，服务器可能处于关机/休眠状态，或 AutoDL 实例重启后端口已变更。\n建议去 AutoDL 控制台确认实例状态和当前 SSH 端口。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-reconnect-v3-20260522.md"
+}

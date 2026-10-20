@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8f6ccbc187d03c1b168",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp 30pct sparsity probe",
+  "task_key": "worker_exp_30pct_sparsity_probe_20260520T040615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_30pct_sparsity_probe_20260520T040615_result.json",
+    "occurrence": 1,
+    "bytes": 617,
+    "sha256": "092b10d61080d665b50905d101a226e6595e2d59044d41304c08b29e1aab2330"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 进程都在正常运行，各占约 10-12GB 内存：\n- PID 191446: `eval_gsm8k.py` CKA-only 30% on cuda:0 (12.2GB RSS, CPU 147%)\n- PID 191519: `eval_gsm8k.py` Standard 30% on cuda:1 (10.1GB RSS, CPU 151%)\n\neval 阶段预计 1-2 小时完成（1319 题 × 4096 max_new_tokens）。日志缓冲导致 tail 看不到实时进度，这是正常的 — Python 的 stdout 到文件默认是 full-buffered。\n\n任务已全部提交并正常运行，接下来需等待完成后：\n1. 检查结果 JSON\n2. 更新 registry metrics 和 conclusion\n3. 汇报 accuracy 及与 20%/25% 的对比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-30pct-sparsity-probe.md"
+}

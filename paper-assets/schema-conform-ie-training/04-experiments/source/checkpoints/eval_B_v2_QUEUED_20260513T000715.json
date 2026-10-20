@@ -1,0 +1,27 @@
+{
+  "exp_id": "eval_B_v2",
+  "project": "schema-conform-ie-training",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T00:06:48.655Z",
+    "updated_at": "2026-05-13T00:07:15.258Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && echo 'aW1wb3J0IG9zCm9zLmNoZGlyKCcvcm9vdC9hdXRvZGwtdG1wL3NjaGVtYS1jb25mb3JtLWllLXRyYWluaW5nL2NvZGUnKQoKIyBGaXggMTogbWF4X25ld190b2tlbnMgNTEyIC0+IDEwMjQKZm9yIGYgaW4gWydzcmMvZXZhbHVhdGUucHknLCAnc3JjL2luZmVyZW5jZV9iYXNlLnB5J106CiAgICB0ID0gb3BlbihmKS5yZWFkKCkKICAgIHQgPSB0LnJlcGxhY2UoJ2RlZmF1bHQ9NTEyJywgJ2RlZmF1bHQ9MTAyNCcpCiAgICBvcGVuKGYsICd3Jykud3JpdGUodCkKCiMgRml4IDI6IGV2YWx1YXRlLnB5IC0gZW5hYmxlX3RoaW5raW5nPUZhbHNlICsgc2tpcF9zcGVjaWFsX3Rva2Vucz1GYWxzZQp0ID0gb3Blbignc3JjL2V2YWx1YXRlLnB5JykucmVhZCgpCnQgPSB0LnJlcGxhY2UoCiAgICAnYWRkX2dlbmVyYXRpb25fcHJvbXB0PVRydWVcbiAgICApJywKICAgICdhZGRfZ2VuZXJhdGlvbl9wcm9tcHQ9VHJ1ZSxcbiAgICAgICAgZW5hYmxlX3RoaW5raW5nPUZhbHNlLFxuICAgICknCikKdCA9IHQucmVwbGFjZSgnc2tpcF9zcGVjaWFsX3Rva2Vucz1UcnVlJywgJ3NraXBfc3BlY2lhbF90b2tlbnM9RmFsc2UnKQpvcGVuKCdzcmMvZXZhbHVhdGUucHknLCAndycpLndyaXRlKHQpCgojIEZpeCAzOiBDaGF0IHRlbXBsYXRlIHBhdGNoIChzYWZldHkgZmFsbGJhY2spIGluIGJvdGggbWFpbigpIGZ1bmN0aW9ucwpxID0gY2hyKDM5KQpiMiA9IGNocig5MikgKiAyCnNvbGQgPSAnInt7LSAnICsgcSArICc8dGhpbms+JyArIGIyICsgJ24nICsgcSArICcgfX0iJwpzbmV3ID0gJyJ7ey0gJyArIHEgKyAnPHRoaW5rPicgKyBiMiArICduJyArIGIyICsgJ248L3RoaW5rPicgKyBiMiArICduJyArIGIyICsgJ24nICsgcSArICcgfX0iJwpwYXRjaCA9ICdcbiAgICBpZiB0b2tlbml6ZXIuY2hhdF90ZW1wbGF0ZSBhbmQgImVuYWJsZV90aGlua2luZyIgaW4gdG9rZW5pemVyLmNoYXRfdGVtcGxhdGU6XG4gICAgICAgIHRva2VuaXplci5jaGF0X3RlbXBsYXRlID0gdG9rZW5pemVyLmNoYXRfdGVtcGxhdGUucmVwbGFjZShcbiAgICAgICAgICAgICcgKyBzb2xkICsgJywgJyArIHNuZXcgKyAnXG4gICAgICAgICknCmZvciBmIGluIFsnc3JjL2V2YWx1YXRlLnB5JywgJ3NyYy9pbmZlcmVuY2VfYmFzZS5weSddOgogICAgdCA9IG9wZW4oZikucmVhZCgpCiAgICBvbGQgPSAnICAgICAgICB0b2tlbml6ZXIucGFkX3Rva2VuID0gdG9rZW5pemVyLmVvc190b2tlblxuICAgIG1vZGVsLmV2YWwoKScKICAgIG5ldyA9ICcgICAgICAgIHRva2VuaXplci5wYWRfdG9rZW4gPSB0b2tlbml6ZXIuZW9zX3Rva2VuJyArIHBhdGNoICsgJ1xuICAgIG1vZGVsLmV2YWwoKScKICAgIHQgPSB0LnJlcGxhY2Uob2xkLCBuZXcpCiAgICBvcGVuKGYsICd3Jykud3JpdGUodCkKCiMgRml4IDQ6IHNjaGVtYV91dGlscy5weSByZWdleCAtIGhhbmRsZSBvcnBoYW5lZCA8L3RoaW5rPgp0ID0gb3Blbignc3JjL3NjaGVtYV91dGlscy5weScpLnJlYWQoKQp0ID0gdC5yZXBsYWNlKCdyIjx0aGluaz4uKj88L3RoaW5rPiInLCAnciIoPHRoaW5rPik/Lio/PC90aGluaz4iJykKb3Blbignc3JjL3NjaGVtYV91dGlscy5weScsICd3Jykud3JpdGUodCkKCnByaW50KCdBbGwgcGF0Y2hlcyBhcHBsaWVkIHN1Y2Nlc3NmdWxseScpCg==' | base64 -d | python3 && echo 'aW1wb3J0IG9zCm1lcmdlZCA9ICcvcm9vdC9hdXRvZGwtdG1wL291dHB1dC9mb3JtYWxfQi9tZXJnZWQnCmlmIG9zLnBhdGguZXhpc3RzKG9zLnBhdGguam9pbihtZXJnZWQsICdjb25maWcuanNvbicpKToKICAgIHByaW50KCdCIG1lcmdlZCBtb2RlbCBleGlzdHMsIHNraXBwaW5nIG1lcmdlJykKZWxzZToKICAgIHByaW50KCdNZXJnaW5nIExvUkEgZm9yIGdyb3VwIEIuLi4nKQogICAgaW1wb3J0IHRvcmNoCiAgICBmcm9tIHBlZnQgaW1wb3J0IEF1dG9QZWZ0TW9kZWxGb3JDYXVzYWxMTQogICAgZnJvbSB0cmFuc2Zvcm1lcnMgaW1wb3J0IEF1dG9Ub2tlbml6ZXIKICAgIG0gPSBBdXRvUGVmdE1vZGVsRm9yQ2F1c2FsTE0uZnJvbV9wcmV0cmFpbmVkKAogICAgICAgICcvcm9vdC9hdXRvZGwtdG1wL291dHB1dC9mb3JtYWxfQicsCiAgICAgICAgdG9yY2hfZHR5cGU9dG9yY2guYmZsb2F0MTYsIGRldmljZV9tYXA9J2NwdScKICAgICkKICAgIG0gPSBtLm1lcmdlX2FuZF91bmxvYWQoKQogICAgb3MubWFrZWRpcnMobWVyZ2VkLCBleGlzdF9vaz1UcnVlKQogICAgbS5zYXZlX3ByZXRyYWluZWQobWVyZ2VkKQogICAgdCA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKCcvcm9vdC9hdXRvZGwtdG1wL291dHB1dC9mb3JtYWxfQicpCiAgICB0LnNhdmVfcHJldHJhaW5lZChtZXJnZWQpCiAgICBwcmludCgnQiBtZXJnZSBkb25lOiAnICsgbWVyZ2VkKQo=' | base64 -d | python3 && cd /root/autodl-tmp/schema-conform-ie-training/code && python -m src.evaluate --model_path /root/autodl-tmp/output/formal_B/merged --model_label groupB --eval_datasets scierc_test crossner_politics crossner_science --data_dir /root/autodl-tmp/data --output_dir /root/autodl-tmp/output/eval_B --max_new_tokens 1024 2>&1 | tee /root/autodl-tmp/logs/eval_B_v2.log\"",
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "58301",
+      "log_path": "~/runs/schema-conform-ie-training/eval_B_v2.log",
+      "submitted_at": "2026-05-13T00:06:48.646Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T00:07:15.275601+00:00",
+  "trigger": "update_registry"
+}

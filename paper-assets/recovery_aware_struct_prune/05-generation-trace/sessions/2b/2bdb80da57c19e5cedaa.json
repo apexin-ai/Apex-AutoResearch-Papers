@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bdb80da57c19e5cedaa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check all 6gpu status v2",
+  "task_key": "worker_ssh_check_all_6gpu_status_v2_20260520T142054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_all_6gpu_status_v2_20260520T142054_result.json",
+    "occurrence": 1,
+    "bytes": 2664,
+    "sha256": "a1cdde2e51e0e99b386a04f35063a439933b957cca7cde186251b4dbfc969df9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022\n\n**nvidia-smi**: cuda:0/1 活跃（99%/92% util），cuda:2/3 空闲（0%）\n\n### cuda:0 - eval_gsm8k_grpo_cka_only_20_seed456_full\n- **进程状态**: ALIVE (PID 252604, 运行 49min)\n- **进度**: 346/1319 (26%)\n- **中间准确率**: **67.00%** @ 300 samples, eos_rate=99.00%, avg_len=198\n- **速度**: ~2.5-3s/it\n- **预计剩余**: ~50min\n\n### cuda:1 - eval_gsm8k_grpo_cka_only_15_v2\n- **进程状态**: ALIVE (PID 252919, 运行 48min)\n- **进度**: 476/1319 (36%)\n- **中间准确率**: **74.22%** @ 450 samples, eos_rate=99.11%, avg_len=192\n- **速度**: ~2-3s/it\n- **预计剩余**: ~45min\n\n### cuda:2 - grpo_standard_15_v2\n- **进程状态**: DEAD (已完成)\n- **训练**: 100/100 steps, 21min49s total (13.09s/it)\n- **最终指标 (step 100)**:\n  - loss=0.01142, grad_norm=3.547\n  - **reward=0.1375**, reward_std=0.2778\n  - kl=0.004099, entropy=0.1932\n- **reward 趋势**: 0.1875 → 0.1363 → 0.1069 → ... → 0.1375（基本没有明显提升）\n- **Checkpoint**: 已保存，model.safetensors 12.1GB\n\n### cuda:3\n- 空闲，无进程\n\n---\n\n## westb-23072\n\n**nvidia-smi**: cuda:0/1 都活跃（99% util, ~16.5GB VRAM）\n\n### cuda:0 - eval_gsm8k_sft_qwen_cka_only_20\n- **进程状态**: ALIVE (PID 18038, 运行 2h49min)\n- **进度**: 144/200 (72%)\n- **中间准确率**: **54.00%** @ 100 samples, eos_rate=32.00%, avg_len=1438\n- **速度**: 极慢，~60-95s/it（max_new_tokens=2048 导致）\n- **预计剩余**: ~1-1.5h\n\n### cuda:1 - eval_gsm8k_sft_qwen_standard_20\n- **进程状态**: ALIVE (PID 18114, 运行 2h49min)\n- **进度**: 129/200 (65%)\n- **中间准确率**: **18.00%** @ 100 samples, eos_rate=35.00%, avg_len=1664\n- **速度**: 极慢，~90-97s/it\n- **预计剩余**: ~1.5-2h\n\n---\n\n## 关键发现\n\n| 实验 | 状态 | 准确率 | 备注 |\n|------|------|--------|------|\n| grpo_cka_only_15_v2 | eval 36% done | **74.22%** @ 450 | 目前最高 |\n| grpo_cka_only_20_seed456 | eval 26% done | **67.00%** @ 300 | |\n| grpo_standard_15_v2 | 训练完成 | 待 eval | reward 始终低（~0.1），训练效果存疑 |\n| sft_qwen_cka_only_20 | eval 72% done | **54.00%** @ 100 | eos_rate 仅 32%，生成过长 |\n| sft_qwen_standard_20 | eval 65% done | **18.00%** @ 100 | 极差，eos_rate 35% |\n\n- **grpo_cka_only_15_v2 暂时领先**，74.22% 准确率\n- westb-23072 的 Qwen SFT eval 非常慢（max_new_tokens=2048 + eos_rate 低 → 几乎每个样本都生成到上限）\n- **sft_qwen_standard_20 仅 18% 准确率**，standard 剪枝在 SFT 恢复后效果很差\n- westd-29022 cuda:3 空闲，可启动 grpo_standard_15_v2 的 GSM8K eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-all-6gpu-status-v2.md"
+}

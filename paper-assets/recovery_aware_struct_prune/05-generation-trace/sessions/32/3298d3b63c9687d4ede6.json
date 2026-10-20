@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3298d3b63c9687d4ede6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix eval script",
+  "task_key": "worker_code_fix-eval-script_20260514T200504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-eval-script_20260514T200504_result.json",
+    "occurrence": 1,
+    "bytes": 529,
+    "sha256": "7e4653238afecb87cacda263679fd81947b9d5f2a3cc6341296bccb0b0da1494"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查：`/root/recovery_aware_struct_prune/src/run_full_eval_all.sh`\n\n改动点：\n- GPU0 队列开头新增 baseline eval（`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` → `results/eval_baseline_7b_full.json`）\n- 原有 4 个模型 eval 保持不变，全量 1319 samples，`--max_new_tokens 4096`\n- GPU0 跑 3 个（baseline + RASP prune + RASP recovery），GPU1 跑 2 个（Standard prune + Standard recovery）\n\n训练完成后执行：`bash src/run_full_eval_all.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-eval-script.md"
+}

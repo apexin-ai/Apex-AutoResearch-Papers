@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d0ed6b34911792e4f1e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e4 25pct grpo westd",
+  "task_key": "worker_code_e4_25pct_grpo_westd_20260518T133853",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e4_25pct_grpo_westd_20260518T133853_result.json",
+    "occurrence": 1,
+    "bytes": 534,
+    "sha256": "0e19cedbc7d5053f505baa300755bd78d43ad75914609f7949606326fe5d07df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据盘 100% 满（619G/619G），需要清理中间 checkpoints 才能继续。\n\nGRPO 训练目录中有冗余的中间 checkpoints：\n- `grpo_stage2_standard_20_fair/`: 91G（checkpoint-80/90/100 各27G）\n- `grpo_stage2_rasp_20_fair/`: 91G（同上）\n- `grpo_unpruned_v2/`: 46G\n\n删除 checkpoint-80 和 checkpoint-90（两个 fair 目录各两个），可释放约 **108G**。这些实验都已 DONE，只保留 checkpoint-100（最终模型）。\n\n是否可以执行清理？或者你有其他偏好？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e4-25pct-grpo-westd.md"
+}

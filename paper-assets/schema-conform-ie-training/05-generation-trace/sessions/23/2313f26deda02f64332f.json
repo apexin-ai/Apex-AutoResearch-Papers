@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2313f26deda02f64332f",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval collect a continued final",
+  "task_key": "worker_eval_collect_a_continued_final_20260513T231453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_a_continued_final_20260513T231453_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "aaf6d2ca95e07a027156c7048ad24e9253cf0f3f49f9eef9f9e83f38ba51c481"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估仍在运行中，未完成。\n\n- **PID 118930** 正在执行，CPU 100%\n- 当前进度：`scierc_test` 495/551 (90%)，后续还有 `crossner_politics` 和 `crossner_science` 两个数据集\n- 输出目录为空（尚未写出结果 JSON）\n\n进程未退出，cron 可能误判。不执行 registry 更新和 cron 删除，等待评估真正完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-a-continued-final.md"
+}

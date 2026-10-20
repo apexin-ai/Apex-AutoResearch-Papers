@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c69a2838350e00adcbad",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd status report",
+  "task_key": "worker_ops_westd-status-report_20260515T142321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-status-report_20260515T142321_result.json",
+    "occurrence": 1,
+    "bytes": 1856,
+    "sha256": "45058e86372358d2211fae0c8215338dbc9540dee45ea264d4e514fbcad6dca1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 全面状态报告\n\n### 1. GPU 状态（实时）\n\n| GPU | 利用率 | VRAM | 状态 |\n|-----|--------|------|------|\n| cuda:0 | **95%** | 65.6 / 97.9 GB | 2 个 Python 进程在跑 |\n| cuda:1 | **0%** | 0 / 97.9 GB | **空闲** — α=1.0 SFT 刚完成释放 |\n\ncuda:0 进程：\n- PID 38120 (13 GB): GraSP pruned model eval (n=100), 约 17% 进度\n- PID 38514 (52.5 GB): GraSP SFT 训练，50% 进度 (931/1870 steps)\n\n---\n\n### 2. GraSP Baseline\n\n| 阶段 | 状态 | 结果 |\n|------|------|------|\n| Prune | 完成 | post-prune GSM8K = **8%** (n=50 确认) |\n| 全量 Eval (n=1319) | 已结束 | 73 样本后退出 (EXIT_CODE=0)，acc=8% |\n| 100-sample Eval | **进行中** (17/100) | ~105s/sample，ETA ~2.5h |\n| SFT | **进行中** (50%, 931/1870) | loss=0.78, token_acc=0.80, ~1.87s/step, **ETA ~29min** |\n| Post-SFT Eval | 未开始 | 等 SFT 完成 |\n\n---\n\n### 3. α Ablation SFT Sweep 进度表\n\n| α | Post-prune acc | SFT 状态 | Post-SFT acc |\n|---|---------------|----------|-------------|\n| 0.0 | 30% | **完成** (模型已保存) | 未评测 |\n| 0.5 | 25% | **完成** (缺 tokenizer 文件，可能不完整) | 未评测 |\n| 1.0 | 27% | **刚完成** (22:24, 1870/1870) | 57% (已知) |\n| 2.0 | 29% | **未开始** (无 SFT 目录) | — |\n| 4.0 | 40% | **完成** | **62%** (n=100, greedy) |\n\nSFT 训练指标 (α=1.0 最终)：loss=0.64, token_acc=0.83, 2 epochs, 28min 总耗时\n\n---\n\n### 4. 空卡情况\n\n**cuda:1 完全空闲**，可立即启动下一个任务。\n\n可选的下一步（按优先级）：\n1. **α=2.0 SFT** — 唯一未开始 SFT 的 α 值，补全 sweep\n2. **α=0.0 / α=0.5 post-SFT eval** — 已有 SFT 模型但未评测（α=0.5 需确认模型完整性）\n3. **α=1.0 post-SFT eval** — 刚完成，可以在 westd 上重新验证"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-report.md"
+}

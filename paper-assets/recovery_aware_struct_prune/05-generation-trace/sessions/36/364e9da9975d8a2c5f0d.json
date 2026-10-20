@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "364e9da9975d8a2c5f0d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval 1p5b batch",
+  "task_key": "worker_analysis_eval_humaneval_1p5b_batch_20260519T135427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_1p5b_batch_20260519T135427_result.json",
+    "occurrence": 1,
+    "bytes": 1900,
+    "sha256": "d50d89c2009d57b8db1d84d192e7b308fa3fac4b742e3c9d2b2b5dfd0d260ec0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验结果已确认。\n\n---\n\n## 实验 1: eval_humaneval_grpo_cka_only_20_1p5b_2048\n\n| 字段 | 值 |\n|------|-----|\n| exp_id | eval_humaneval_grpo_cka_only_20_1p5b_2048 |\n| 正常完成 | 是 (EXIT_CODE=0, 164/164) |\n| pass@1 | **0.00%** |\n| n_correct / n_total | **0 / 164** |\n| stderr | 0.0000 |\n\n**异常发现**: 严重的 truncation 问题。median_response_length = 2048（即上限），avg = 1977.7。模型几乎在所有 task 上都生成了自然语言推理文本（\"Okay, I need to...\"、\"The function checks...\"）而非代码，然后被 2048 token 截断。错误全部是 SyntaxError——模型输出的是 CoT 思考过程而非 Python 代码。这与 GRPO 训练的 reasoning 模式一致：模型学会了\"先想再写\"，但 1.5B 容量不足以在 2048 token 内完成推理并输出有效代码。\n\n---\n\n## 实验 2: eval_humaneval_sft_standard_20_1p5b_2048\n\n| 字段 | 值 |\n|------|-----|\n| exp_id | eval_humaneval_sft_standard_20_1p5b_2048 |\n| 正常完成 | 是 (EXIT_CODE=0, 164/164) |\n| pass@1 | **0.61%** |\n| n_correct / n_total | **1 / 164** |\n| stderr | 0.0061 |\n\n**通过的 task**: HumanEval/30 (completion_length=133，短回答，未截断)\n\n**异常发现**: 大量 task 同样命中 2048 token 截断上限，但 SFT 模型比 GRPO 模型更倾向直接输出代码（有少数短回答如 90/42/124 token），所以勉强通过了 1 个简单 task。\n\n---\n\n## 汇总\n\n| 模型 | pass@1 | n_correct/164 |\n|------|--------|---------------|\n| GRPO CKA-only 20% 1.5B | 0.00% | 0/164 |\n| SFT Standard 20% 1.5B | 0.61% | 1/164 |\n| SFT CKA-only 20% 1.5B (已有) | 0.61% | 1/164 |\n\n两个结果均真实可信。1.5B 模型在 20% 剪枝后代码生成能力基本丧失，与 D077 判断一致。GRPO 模型的 0/164 源于其 reasoning-first 生成模式在受限 token budget 下更不利。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-1p5b-batch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8a2d71ddb6c69245805",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops v5 checkpoint verify",
+  "task_key": "worker_ops_v5_checkpoint_verify_20260520T063558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_v5_checkpoint_verify_20260520T063558_result.json",
+    "occurrence": 1,
+    "bytes": 834,
+    "sha256": "32f3a113beacd391d96dcbd5199a0753549095a7d0fc427f38956ebea428bfdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 checkpoint 都在 `/root/autodl-tmp/recovery_aware_struct_prune/` 下，确认 model.safetensors 均为 12GB。\n\n```\nCKA-only step-100:   /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/checkpoint-100/   model.safetensors 12G ✅\nRASP fair step-100:  /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair/checkpoint-100/   model.safetensors 12G ✅\nStandard fair step-100: /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/checkpoint-100/   model.safetensors 12G ✅\n磁盘（根分区）: 5.4G/30G (18%)\n```\n\n注意：RASP fair checkpoint 没有 optimizer.pt（total 12G），CKA-only 和 Standard fair 都保留了 optimizer.pt（total 27G）。三个 checkpoint 都位于数据盘 autodl-tmp，不在根分区的 outputs/ 或项目根目录下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-v5-checkpoint-verify.md"
+}

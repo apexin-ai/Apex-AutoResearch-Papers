@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "id": "5dc6ad651eaaca35dc2d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "check westb available models",
+  "task_key": "worker_check_westb_available_models_20260518T094750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_check_westb_available_models_20260518T094750.jsonl",
+    "occurrence": 1,
+    "bytes": 5636,
+    "sha256": "dc1d815fd090363beb720fa87def400a9fa5d622aca965f27c5111201f72de4b"
+  },
+  "statistics": {
+    "messages": 5,
+    "user_turns": 0,
+    "tool_calls": 2,
+    "roles": {
+      "tool_call": 2,
+      "tool_result": 2,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T09:48:30.558958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westb_available_models_20260518T094750",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T09:48:30.559287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westb_available_models_20260518T094750",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T09:48:30.559508+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westb_available_models_20260518T094750",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "echo \"=== /root/autodl-tmp/recovery_aware_struct_prune/ ===\"\nls -d /root/autodl-tmp/recovery_aware_struct_prune/*/ 2>/dev/null\n\necho \"=== checkpoints 目录 ===\"\nls -d /root/autodl-tmp/recovery_aware_struct_prune/checkpoints/*/ 2>/dev/null\n\necho \"=== 所有含 grpo 或 sft 的目录 ===\"\nfind /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 2 -type d \\( -name \"*grpo*\" -o -name \"*sft*\" -o -name \"*standard*\" -o -name \"*rasp*\" \\) 2>/dev/null\n\necho \"=== Dense model ===\"\nls -d /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B 2>/dev/null && echo \"EXISTS\" || echo \"NOT FOUND\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T09:48:30.559736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== /root/autodl-tmp/recovery_aware_struct_prune/ ===\\\\n/root/autodl-tmp/recovery_aware_struct_prune/artifacts/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/logs/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/models/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_gradient_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_random_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_gradient_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/\\\\n=== checkpoints 目录 ===\\\\n=== 所有含 grpo 或 sft 的目录 ===\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30\\\\n/root/auto\n…[truncated 676 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westb_available_models_20260518T094750",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T09:48:30.559960+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 上的模型清单：\n\n**Dense model**\n- `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` ✅\n\n**Pruned models (未训练)**\n| 路径 | 说明 |\n|------|------|\n| `pruned_cka_only_20/` | CKA-only 剪枝 20% |\n| `pruned_gradient_20/` | Gradient 剪枝 20% |\n| `pruned_magnitude_20/` | Magnitude 剪枝 20% |\n| `pruned_random_20/` | Random 剪枝 20% |\n| `pruned_rasp_25/` | RASP 剪枝 25% |\n| `pruned_rasp_30/` | RASP 剪枝 30% |\n| `pruned_rasp_rlvr_20/` | RASP-RLVR 剪枝 20% |\n| `pruned_standard_25/` | Standard 剪枝 25% |\n| `pruned_standard_30/` | Standard 剪枝 30% |\n\n**SFT checkpoints**\n| 路径 | 说明 |\n|------|------|\n| `sft_cka_only_20/` | CKA-only 20% SFT |\n| `sft_gradient_20/` | Gradient 20% SFT |\n| `sft_random_20/` | Random 20% SFT |\n| `sft_rasp_25/` | RASP 25% SFT |\n| `sft_rasp_rlvr_20/` | RASP-RLVR 20% SFT |\n| `sft_standard_25/` | Standard 25% SFT |\n\n**GRPO checkpoints**\n| 路径 | 说明 |\n|------|------|\n| `grpo_cka_only_20/` | CKA-only 20% GRPO |\n| `grpo_random_20/` | Random 20% GRPO |\n| `grpo_rasp_25/` | RASP 25% GRPO |\n\n所有路径前缀均为 `/root/autodl-tmp/recovery_aware_struct_prune/`。\n\n---\n\n**你要找的 5 个模型全部不在 westb 上：**\n\n| 需要的模型 | westb 状态 |\n|-----------|-----------|\n| `grpo_standard_20` / `grpo_standard_20_fair` | ❌ 没有（只有 25% 的 `grpo` 没有 standard 20%） |\n| `grpo_rasp_20` / `grpo_stage2_rasp_20_v9` | ❌ 没有（只有 `grpo_rasp_25`） |\n| `sft_standard_20` | ❌ 没有（只有 `sft_standard_25`） |\n| `sft_rasp_20` | ❌ 没有（只有 `sft_rasp_25`） |\n| `grpo_unpruned_v2` | ❌ 没有 |\n\nwestb 上有的是另一批实验（25%/30% sparsity 以及 cka_only/gradient/random/rasp_rlvr 等 ablation 变体），核心的 20% standard/rasp GRPO/SFT checkpoint 都只在 westd-11672 上。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_check_westb_available_models_20260518T094750"
+          },
+          "id": "event-000005"
+        }
+      ],
+      "message_count": 5
+    }
+  ],
+  "readable_path": "readable/conversations/check-westb-available-models.md"
+}

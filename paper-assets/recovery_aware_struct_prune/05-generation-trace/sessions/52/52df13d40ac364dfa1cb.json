@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52df13d40ac364dfa1cb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval math500 grpo alpha3p0 submit",
+  "task_key": "worker_eval_math500_grpo_alpha3p0_submit_20260524T095815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_math500_grpo_alpha3p0_submit_20260524T095815_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "46536fdf226628fdb1d598bef60f843de9ca72c2e1d6a4d7396835602a65b7c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：\n\n**GRPO α=3.0 20% 的 checkpoint 不存在。** 两台服务器上都找不到 model.safetensors：\n\n- `westd-32935:/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2/` — 只有 TRL 自动生成的 README.md，训练被 kill 前模型未保存。旧的 `checkpoint-100` 也已被清理。\n- `westb-23072` — 有 `pruned_rasp_alpha3p0_20` 和 `sft_rasp_alpha3p0_20`，但没有 GRPO stage 的产物。\n\n**grpo_standard_20 fixed eval 结果**（文件名为 `eval_math500_grpo_standard_20_fair_fixed.json`）：\n- accuracy = **27.0%** (135/500)\n\n**要获得 α=3.0 的 MATH-500 数据点，需要先重新跑 GRPO 训练**（从 westb-23072 上的 `sft_rasp_alpha3p0_20` checkpoint 开始），然后再 eval。是否需要我提交 GRPO 训练任务？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-math500-grpo-alpha3p0-submit.md"
+}

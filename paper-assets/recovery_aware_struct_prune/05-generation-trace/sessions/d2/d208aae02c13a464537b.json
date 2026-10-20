@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d208aae02c13a464537b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "train sft alpha 2p0 retry2",
+  "task_key": "worker_train_sft-alpha-2p0-retry2_20260515T143806",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-alpha-2p0-retry2_20260515T143806.log",
+    "occurrence": 1,
+    "bytes": 790558,
+    "sha256": "02c435a70db2d7e6ef90e3eaa1b2980841d5594056ec6fc7e9af011d374bdb77"
+  },
+  "statistics": {
+    "messages": 563,
+    "user_turns": 0,
+    "tool_calls": 231,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 97,
+      "tool_call": 231,
+      "tool_result": 231,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 563,
+      "chunks": [
+        {
+          "path": "d208aae02c13a464537b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d208aae02c13a464537b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d208aae02c13a464537b-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d208aae02c13a464537b-part-0004.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/train-sft-alpha-2p0-retry2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2bcc7bb703f1e2f33d2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb full status",
+  "task_key": "worker_check_westb_full_status_20260520T091017",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_full_status_20260520T091017_result.json",
+    "occurrence": 1,
+    "bytes": 1592,
+    "sha256": "2384113422fa042821ee9cfe863aa1ee90c85f0d61d539b75340dbc5e77c99b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 两个 SFT 都失败了 — 数据盘 100% 满\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **CKA-only SFT (cuda:0)** | **训练完成但保存失败** | 1870/1870 steps 跑完 (epoch 2.0)，final loss ~0.35，token_acc 0.905。但保存 checkpoint-1870 时磁盘满，`model.safetensors` 仅 40KB（损坏）。checkpoint-935（中间点）完好：model 12.3GB + optimizer 24.7GB |\n| **Standard SFT (cuda:1)** | **训练中途崩溃** | 仅跑到 935/1870 (50%, epoch ~1.0)，loss 0.53。保存 checkpoint-935 时 optimizer.pt 写入失败（iostream error）。model.safetensors 12.3GB 可能完好 |\n| **GSM8K eval** | **未跑** | 两个 SFT 都没成功保存最终模型 |\n| **空闲 GPU** | cuda:0, cuda:1 | 均 0% 利用率，0 MiB 显存 |\n| **数据盘** | **250G/250G = 100% 满** | 无剩余空间 |\n\n### 磁盘占用大户（数据盘）\n\n主要是历史实验 + 本次 checkpoint 中的 optimizer 状态文件：\n- `sft_qwen_math_cka_only_20/checkpoint-935/optimizer.pt` = **24.7GB**\n- `sft_standard_20_qwen_math/checkpoint-935/optimizer.pt` = **10.5GB**\n- 旧 7B 模型目录 (`pruned_*`, `sft_*`, `grpo_*`)：各 ~12GB，共十几个\n\n### 恢复方案建议\n\n需要先清磁盘才能重跑。最快路径：\n1. 删除两个 SFT 的 `checkpoint-935/optimizer.pt`（回收 ~35GB）——model weights 保留\n2. 如果还不够，清理不再需要的旧实验目录\n3. 训练时加 `save_only_model=True` 避免保存 optimizer（每个 checkpoint 省 10-25GB）\n\n需要我执行清理并重启 SFT 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-full-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ec960a71e8fbf5c354",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify eval after checkpoint move",
+  "task_key": "worker_ssh_verify_eval_after_checkpoint_move_20260520T224800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_eval_after_checkpoint_move_20260520T224800_result.json",
+    "occurrence": 1,
+    "bytes": 1773,
+    "sha256": "81677e2992f34ae8a8fb4710c72abbaa794456df4df56052e29cd9b151e1c92a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 旧路径：完全不存在\n两个旧路径已被移除，无文件无 symlink：\n- `/root/recovery_aware_struct_prune/grpo_standard_15_seed123_v3/` → **不存在**\n- `/root/recovery_aware_struct_prune/grpo_standard_15_seed456_v3/` → **不存在**\n\n### 2. Eval 状态：两个都已失败（EXIT_CODE=1）\n两个 standard_15 eval 都因路径不存在而崩溃，错误相同：\n```\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': \n'/root/recovery_aware_struct_prune/grpo_standard_15_seed123_v3/checkpoint-100'\n```\n因为设了 `HF_HUB_OFFLINE=1`，本地路径不存在后 transformers 把它当 HF repo id 解析，直接报错。\n\n### 3. 新路径（数据盘）：存在，但 seed456 有问题\n- **seed123** `/root/autodl-tmp/.../grpo_standard_15_seed123_v3/checkpoint-100/` — 完整（model.safetensors 13GB, tokenizer.json 11MB, optimizer.pt 318MB）\n- **seed456** `/root/autodl-tmp/.../grpo_standard_15_seed456_v3/checkpoint-100/` — **tokenizer.json 为 0 字节**，且缺少 optimizer.pt 和 training_args.bin（移动可能被中断）\n\n### 4. GPU 占用\n| GPU | 利用率 | 显存 | 任务 |\n|-----|--------|------|------|\n| 0 | 97% | 29.8/95.6 GB | `grpo_cka_only_15_seed123` eval（运行中） |\n| 1 | 99% | 30.3/95.6 GB | `grpo_cka_only_15_seed456` eval（运行中） |\n| 2 | 0% | 空闲 | — |\n| 3 | 0% | 空闲 | — |\n\n### 需要处理\n1. **seed456 checkpoint 数据损坏**：tokenizer.json 0字节，需要从备份恢复或重新复制\n2. **重新提交两个 eval**：路径改为 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_15_seed{123,456}_v3/checkpoint-100`，可用 GPU 2/3\n3. 当前 GPU 0/1 正在跑 cka_only eval，不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-eval-after-checkpoint-move.md"
+}

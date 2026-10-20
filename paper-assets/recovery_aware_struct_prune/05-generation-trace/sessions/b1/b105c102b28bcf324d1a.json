@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b105c102b28bcf324d1a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor check westd cuda0",
+  "task_key": "worker_monitor_check_westd_cuda0_20260516T191831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_check_westd_cuda0_20260516T191831_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "23a4d3cd53728495de7c92e1db48242bfc04b744fad723761eead3a602f2510c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-11672 cuda:0 完全空闲**（0MiB 显存 / 0% 利用率）。cuda:1 同样空闲。\n\n当前 GPU 活动全在 cuda:2 上（96% 利用率，54GB/98GB 显存），跑的是两个 eval 任务：\n- `eval_gsm8k.py` → `grpo_standard_qwen_math`（pass@8 评估）\n- `eval_gsm8k.py` → `grpo_rasp_25`（全量 1319 样本评估）\n\n`grpo_rasp_rlvr_20_qwen_math` 的 checkpoint 目录已存在于 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math/`（最后修改 May 17 03:13），但没有相关进程在运行。无 tmux session。\n\n**总结：westd cuda:0 空闲可用，无任何进程占用。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-check-westd-cuda0.md"
+}

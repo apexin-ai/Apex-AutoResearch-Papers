@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e993899293e4db38ee5d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pipeline alpha failures",
+  "task_key": "worker_diagnose_pipeline_alpha_failures_20260522T065330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pipeline_alpha_failures_20260522T065330_result.json",
+    "occurrence": 1,
+    "bytes": 3213,
+    "sha256": "17b7bd207e81bfa92b5675db3179f96fdd7c1eaa519137dcbc5efa4b30e86f1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是完整分析：\n\n**实际时间线（两个实验相同）：**\n1. 14:07 — Pruning 开始 → 14:08 完成 ✓\n2. 14:11 — SFT 开始（7473 samples, 2 epochs）\n3. 14:40 — SFT 完成，模型已保存 ✓（12.3GB model.safetensors）\n4. 14:40-14:45 — 中间 GSM8K eval 完成\n5. 14:45 — **GRPO v4 训练开始**（5604 steps）\n6. ~14:48 — **两个进程同时被 kill 于 step 15/5604**\n\n**关键修正：被 kill 的不是 SFT，是 GRPO 阶段。** SFT 已全部完成。\n\n**证据：**\n- alpha0p5 日志末尾：step 15 进度条后无任何输出（SIGHUP 断开）\n- alpha2p0 日志末尾：step 15 后紧跟 `Terminated`（SIGTERM）\n- 无 tmux session 存活（`tmux ls` 返回空）\n- dmesg/journalctl 无 OOM 记录\n- 磁盘充足（数据盘 200GB 空闲，根分区 25GB）\n- GPU 2/3 当前完全空闲（0 MiB）\n\n**已保存的产出：**\n- `pruned_rasp_alpha0p5_20/` ✓\n- `pruned_rasp_alpha2p0_20/` ✓\n- `sft_rasp_alpha0p5_20/` ✓（完整）\n- `sft_rasp_alpha2p0_20/` ✓（完整）\n- `grpo_rasp_alpha0p5_20/completions/completions_00010.parquet` — 仅 step 10 的 1 个 parquet\n\n```json\n{\"root_cause\":\"tmux session destroyed → SIGHUP(129)/SIGTERM sent to both GRPO processes at step 15/5604 (~14:48). SFT phase already completed at 14:40. Log evidence: alpha0p5 ends abruptly at step 15 progress bar; alpha2p0 shows explicit 'Terminated' after step 15. No OOM in dmesg, disk adequate (200GB free).\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"从已保存的 SFT 模型直接启动 GRPO（跳过 prune 和 SFT）: sft_rasp_alpha0p5_20 → grpo, sft_rasp_alpha2p0_20 → grpo\",\"用 nohup 或持久 tmux session 启动，防止再次被 session 断开 kill\",\"分别在 cuda:2 和 cuda:3 上启动（当前空闲）\",\"删除已有的不完整 grpo_rasp_alpha{0p5,2p0}_20/ 目录后重启\"],\"can_auto_fix\":true,\"affects_both\":true,\"shared_cause\":\"两个进程在同一时刻（~14:48）被外部 session 终止（tmux session 被销毁或 reconcile_crons 清理），导致 SIGHUP/SIGTERM。Prune 和 SFT 均已完成，仅 GRPO 需要重跑。\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "tmux session destroyed → SIGHUP(129)/SIGTERM sent to both GRPO processes at step 15/5604 (~14:48). SFT phase already completed at 14:40. Log evidence: alpha0p5 ends abruptly at step 15 progress bar; alpha2p0 shows explicit 'Terminated' after step 15. No OOM in dmesg, disk adequate (200GB free).",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "从已保存的 SFT 模型直接启动 GRPO（跳过 prune 和 SFT）: sft_rasp_alpha0p5_20 → grpo, sft_rasp_alpha2p0_20 → grpo",
+                "用 nohup 或持久 tmux session 启动，防止再次被 session 断开 kill",
+                "分别在 cuda:2 和 cuda:3 上启动（当前空闲）",
+                "删除已有的不完整 grpo_rasp_alpha{0p5,2p0}_20/ 目录后重启"
+              ],
+              "can_auto_fix": true,
+              "affects_both": true,
+              "shared_cause": "两个进程在同一时刻（~14:48）被外部 session 终止（tmux session 被销毁或 reconcile_crons 清理），导致 SIGHUP/SIGTERM。Prune 和 SFT 均已完成，仅 GRPO 需要重跑。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pipeline-alpha-failures.md"
+}

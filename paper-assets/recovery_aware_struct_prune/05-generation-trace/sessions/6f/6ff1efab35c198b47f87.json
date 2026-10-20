@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ff1efab35c198b47f87",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code rasp rlvr prune",
+  "task_key": "worker_code_rasp_rlvr_prune_20260516T095028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rasp_rlvr_prune_20260516T095028_result.json",
+    "occurrence": 1,
+    "bytes": 1236,
+    "sha256": "e1aa80e9bdf6371c125c61c9bf7d173c1be1cc0c2c766e681048f15300228e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n## 代码修改\n\n`src/prune.py` 新增 `rasp-rlvr` 模式：\n- `--mode` choices 添加 `\"rasp-rlvr\"`\n- Score 公式：`importance * cka_overlap^alpha`（与 RASP 的 `importance * (1 - cka_overlap)^alpha` 相反）\n- metadata 中 alpha 字段覆盖新模式\n\n## 剪枝结果\n\n| | RASP (α=1.0) | RASP-RLVR (α=1.0) |\n|---|---|---|\n| Actual sparsity | 19.09% | 19.09% |\n| Attn groups pruned | 0/112 | 0/112 |\n| MLP groups pruned | 200/784 | 200/784 |\n| Params | 7.62B → 6.16B | 7.62B → 6.16B |\n\n**输出路径**: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20/`（含 `model.safetensors`）\n\n## Group Selection 差异\n\n两种模式的剪枝分布明显不同：\n- **RASP** 重剪前 6 层 + 后几层（19, 23-25, 27），保留中间层（6-18 大部分全保留）\n- **RASP-RLVR** 同样重剪前 6 层，但中后段（16-26）也大量剪枝，而 Layer 6-7, 27 反而全保留\n\n关键差异层：Layer 6（RASP 保留 12 vs RLVR 保留 28）、Layer 27（RASP 保留 12 vs RLVR 保留 28）、Layer 16-18（RASP 全保留 vs RLVR 剪 20-30%）。这符合预期——RLVR 模式保留高 overlap（冗余）结构，剪掉功能独特的结构。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rasp-rlvr-prune.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87ee355dc439bc14bee7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb sft fix",
+  "task_key": "worker_ops_westb_sft_fix_20260520T094800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_sft_fix_20260520T094800_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "396f13ee520081523f1ac2e36098e2bbf4ccbf86ef7228eed2b2d398fb9b98d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n**诊断结果**：\n- `sft_recovery.py` 的 `--gpu 0` 参数在 import torch 前覆写 `CUDA_VISIBLE_DEVICES=0`，导致框架注入的 `CUDA_VISIBLE_DEVICES=1` 被覆盖，两个 SFT 都落到物理 GPU 0\n- 单卡 SFT 约 50GB，无需 gradient_checkpointing\n\n**当前状态**：\n- **CKA-only v2**: 已完成 (DONE)，train_loss=0.3481，模型已保存\n- **Standard v2**: 已重新提交，在 GPU 0 上正常训练中（CKA-only 已释放），step ~14/935，预计 ~18:08 UTC 完成\n\n**后续**: 未来使用 submit_training_job 时，命令中不要传 `--gpu` 参数，让框架的 CUDA_VISIBLE_DEVICES 生效；或修改 `sft_recovery.py` 第 22 行在环境变量已存在时跳过覆写。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-sft-fix.md"
+}

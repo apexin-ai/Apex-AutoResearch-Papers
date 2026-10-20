@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "56ab841f111a94b2ad57",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k grpo standard 20 step50",
+  "task_key": "worker_diagnose_eval_gsm8k_grpo_standard_20_step50_20260520T024845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_grpo_standard_20_step50_20260520T024845_result.json",
+    "occurrence": 1,
+    "bytes": 2662,
+    "sha256": "5abebcc0a4b202b73a30487923a8901cc0f5057bf854e21b864d44fe83a27420"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息汇总完毕。\n\n**诊断结论：**\n\n- `grpo_stage2_standard_20_fair/checkpoint-50` 被训练过程的 `save_total_limit=3` 自动清理（只保留了 80/90/100）\n- 旧版 `grpo_standard_v8_step50` checkpoint 也已删除\n- `grpo_standard_20_extended_300` 目录也已清理\n- 服务器上**不存在任何 step-50 checkpoint**\n- D080 已决定用 E2 300 步 GSM8K 59.29% (782/1319) 替代 step-50 重跑\n- 旧版 v8 run 的结果文件仍在：`/root/recovery_aware_struct_prune/results/eval_grpo_standard_step50_full.json`（58.91%, 777/1319）\n- 最早可用的同训练 run checkpoint 是 checkpoint-80\n\n```json\n{\"root_cause\":\"checkpoint-50 被 save_total_limit=3 自动清理，仅保留 80/90/100。旧版 v8 step-50 checkpoint 也已删除。服务器无任何 step-50 checkpoint。\",\"correct_path\":\"不存在\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"方案A：用已有 v8 结果文件 eval_grpo_standard_step50_full.json (58.91%, 777/1319) 作为 provenance\",\"方案B：用 D080 决定的 E2 300步结果 eval_gsm8k_grpo_standard_20_extended_300.json (59.29%, 782/1319) 替代\",\"方案C：用最早可用的 checkpoint-80 重跑 eval（同 training run，非 step-50）\"],\"can_auto_fix\":false,\"available_checkpoints\":[\"grpo_stage2_standard_20_fair/checkpoint-80\",\"grpo_stage2_standard_20_fair/checkpoint-90\",\"grpo_stage2_standard_20_fair/checkpoint-100\"],\"existing_results\":{\"v8_step50\":\"results/eval_grpo_standard_step50_full.json (58.91%)\",\"extended_300\":\"results/eval_gsm8k_grpo_standard_20_extended_300.json (59.29%)\"}}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "checkpoint-50 被 save_total_limit=3 自动清理，仅保留 80/90/100。旧版 v8 step-50 checkpoint 也已删除。服务器无任何 step-50 checkpoint。",
+              "correct_path": "不存在",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "方案A：用已有 v8 结果文件 eval_grpo_standard_step50_full.json (58.91%, 777/1319) 作为 provenance",
+                "方案B：用 D080 决定的 E2 300步结果 eval_gsm8k_grpo_standard_20_extended_300.json (59.29%, 782/1319) 替代",
+                "方案C：用最早可用的 checkpoint-80 重跑 eval（同 training run，非 step-50）"
+              ],
+              "can_auto_fix": false,
+              "available_checkpoints": [
+                "grpo_stage2_standard_20_fair/checkpoint-80",
+                "grpo_stage2_standard_20_fair/checkpoint-90",
+                "grpo_stage2_standard_20_fair/checkpoint-100"
+              ],
+              "existing_results": {
+                "v8_step50": "results/eval_grpo_standard_step50_full.json (58.91%)",
+                "extended_300": "results/eval_gsm8k_grpo_standard_20_extended_300.json (59.29%)"
+              }
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-grpo-standard-20-step50.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "55eea21dd4b12a4d6049",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft standard 20 eval",
+  "task_key": "worker_ssh_submit_sft_standard_20_eval_20260520T170515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_standard_20_eval_20260520T170515_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "0828d02149b89ff0c18ee4c2495ed93f4d30aa5e8433a0325686ed5ecae45926"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过。\n\n## eval_gsm8k_sft_standard_20 提交结果\n- 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n- PID: 266847（父 bash PID: 266842）\n- 验证：进程存活 ✓ | GPU memory 12620MiB/97887MiB, 91% util ✓ | 日志输出 \"Evaluating: 1/1319\" ✓\n- 预估速度：~2.43s/it → 约 53 分钟完成\n- 状态：**RUNNING**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-standard-20-eval.md"
+}

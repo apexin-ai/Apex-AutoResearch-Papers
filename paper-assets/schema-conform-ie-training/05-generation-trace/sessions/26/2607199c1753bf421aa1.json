@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2607199c1753bf421aa1",
+  "project": "schema-conform-ie-training",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4382,
+    "sha256": "b010e49328a9c8a15b464ffe8bec23761b7694b0088957d97c4fbe4d127cb674"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-12T19:43:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 服务器 `seetacloud-westb-2xpro6000` 有两张 RTX PRO 6000 Blackwell (98GB)。exp_001 绑 cuda:0，exp_002 绑 cuda:1，不可交叉\n- 模型路径是符号链接：`/root/autodl-tmp/models/Qwen/Qwen3.5-9B` → `Qwen3___5-9B`（ModelScope 编码）。不要删除或重建这个 symlink\n- 数据和模型必须放 `/root/autodl-tmp/`（数据盘 250GB），根分区只有 ~30GB\n- WANDB_MODE=offline（当前配置），wandb 数据在 `/root/autodl-tmp/schema-conform-ie-training/code/wandb/`\n- conda 环境在 `/root/miniconda3`，需用绝对路径 `/root/miniconda3/bin/python`，`python3` 不在 PATH 中\n\n### 2. 🖥️ 基础设施快照\n- 服务器：`seetacloud-westb-2xpro6000`（root），第二台 `westb-23072` 未使用\n- 工作目录：`/root/schema-conform-ie-training/code/`（远程），本地 workspace `projects/schema-conform-ie-training/`\n- Python：`/root/miniconda3/bin/python`（Python 3.12，TRL 1.1.0，Transformers 5.8.0，PyTorch 2.10.0+cu128）\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen3.5-9B`（19GB，4 shards safetensors）\n- 数据：`/root/autodl-tmp/data/scierc/`（train/dev/test.json），`/root/autodl-tmp/data/crossner/`（5 域：ai/literature/music/politics/science）\n- 输出：`/root/autodl-tmp/output/formal_A`（baseline），`formal_B`（conformance，已完成 + merged），`base_zero_shot/`，`eval_B/`\n- 日志：`/root/autodl-tmp/logs/train_A.log`，`train_B.log`\n- 活跃进程（截至 handoff 前）：exp_001 训练 A（PID 25842，cuda:0，~step 354/500），exp_003 base eval（PID 29235，cuda:0 共享），eval B（PID 44652，cuda:1）\n\n### 3. 📊 当前状态\n**我刚发现 base model zero-shot 输出完全无效（F1=0.0）**——Qwen3.5-9B 输出 thinking 推理链 + 复制 prompt 模板 placeholder（`<TYPE>`, `<exact span>`），未产出任何实际实体。已 CRITICAL 报告给 Director。\n\nRegistry 3 个实验：\n- `exp_001_grpo_baseline`：RUNNING，step ~354/500，预计 ~2.5h 后完成\n- `exp_002_grpo_conformance`：ANALYZING（训练 500/500 完成，eval B 正在跑）\n- `exp_003_base_zero_shot`：RUNNING（scierc_test 551 条 + crossner_politics 651 条已出，crossner_science 未出）\n\n等待：exp_001 训练完成 → eval A；exp_003 eval 完成 → 三组对比；Director 对 base model thinking mode 问题的决策\n\n### 4. 📋 待办\n- exp_001 训练完成 → 审查 formal_A checkpoint + merged 完整性 → eval A 启动后核查\n- exp_003 base eval 全部完成 → 核查 crossner_science 结果是否同样 F1=0.0（预期是）\n- eval_B 完成 → 独立核查 conformance 模型的 scierc_test F1 + crossner_politics/science F1 + conformance rate 指标\n- **三组结果全出** → 按 MVP pass 标准判断：B ≥ A + 2 F1 (CrossNER), B 降幅 ≤ 3 F1 (in-domain), A/B ≥ C (sanity)\n- Director 回复 thinking mode 问题 → 可能需重跑 base eval（加 `enable_thinking=False` 或修改 prompt）\n- 如果 eval_B 发现 conformance 模型也输出 thinking 文本 → 训练可能无效，需要审查 GRPO 训练时的 prompt 格式\n\n### 5. 🎯 战略上下文\n- **核心假设**：分解式 schema-conformance rewards（type/relational/completeness）使模型学会 schema 验证元技能，实现零样本 IE 迁移。区别于 KnowCoder（SFT 30K+ types）和 MR-UIE（composite process reward）\n- **决策链**：D001 MVP 方案 → D002 采纳 Reviewer 3 项修订（base model baseline + RE 指标 + 灰区规则）→ D003 SciERC 替代 ACE2005 → D004 LoRA 替代全参微调\n- **最容易判断错的事**：\n  1. base model F1=0.0 不代表 sanity check 无意义——**关键是检查训练脚本的 prompt 是否也有同样的 thinking mode 问题**。如果训练时 prompt 正确（模型确实学到了 IE 能力），而 inference_base.py 的 prompt 不同导致 F1=0，则问题只在 eval 脚本，修复后重跑即可\n  2. 空输出 reward hacking 已修复（schema_utils.py 三处 return 0.0），但 `structural_validity` 对空 JSON `{}` 仍返回 1.0——这是设计意图（valid JSON = structural validity pass），不是 bug\n  3. `max_steps=500` 的进度条显示的是 micro-batches 还是 optimizer steps 仍未确认——如果是 micro-batches 则实际只训了 ~0.54 epochs，结果可能不充分\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

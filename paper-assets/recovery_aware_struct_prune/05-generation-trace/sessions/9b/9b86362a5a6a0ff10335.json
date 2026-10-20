@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b86362a5a6a0ff10335",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research check sft progress",
+  "task_key": "worker_research_check_sft_progress_20260516T113812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_sft_progress_20260516T113812_result.json",
+    "occurrence": 1,
+    "bytes": 1086,
+    "sha256": "878b73552a2d78aadd52952987789f226503ef481452fd81b1c158b62e76f7d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### sft_rasp_25 (cuda:2) — ✅ 已完成\n\n- **状态**: 训练完成，模型已保存\n- **最终指标**: epoch=2.0, train_loss=0.8498, mean_token_accuracy=0.8073\n- **完成时间**: 2026-05-16 13:57:32 UTC\n- **train_runtime**: 1635 秒 (~27 分钟)\n- **EXIT_CODE=0**\n\n### sft_standard_25 (cuda:3) — ❌ 被终止\n\n- **状态**: 收到 SIGTERM 信号被杀 (EXIT_CODE=143)\n- **终止时进度**: step 724/1870 (39%), epoch ~0.46\n- **速度**: ~1.14 it/s\n- **最后 loss**: ~0.92, mean_token_accuracy ~0.77\n\n### GPU 使用率\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 0% | 0 / 97887 MiB |\n| 1 | 0% | 0 / 97887 MiB |\n| 2 | 92% | 48163 / 97887 MiB |\n| 3 | 79% | 48153 / 97887 MiB |\n\nGPU 2/3 仍有显存占用。RASP 进程 (PID 2530) 仍在运行 (CPU 125%, etime 17:13)，可能正在执行训练后的评估或其他后续步骤。\n\n### 异常\n\n**Standard 25% SFT 被异常终止**，需要重新启动。可能原因：OOM、手动 kill、或系统资源争抢。需确认是否要重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-sft-progress.md"
+}

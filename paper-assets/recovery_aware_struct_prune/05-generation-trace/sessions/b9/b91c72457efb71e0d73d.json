@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b91c72457efb71e0d73d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "eval pass k8 standard 20 grpo deepseek",
+  "task_key": "worker_eval_pass_k8_standard_20_grpo_deepseek_20260516T232453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pass_k8_standard_20_grpo_deepseek_20260516T232453.log",
+    "occurrence": 1,
+    "bytes": 496916,
+    "sha256": "03e7a4c2f71e99dd56f04f49ecc32b0fa9337704c85063427abafac7d1a9a8c9"
+  },
+  "statistics": {
+    "messages": 346,
+    "user_turns": 0,
+    "tool_calls": 125,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 125,
+      "tool_result": 125,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 346,
+      "chunks": [
+        {
+          "path": "b91c72457efb71e0d73d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b91c72457efb71e0d73d-part-0002.json",
+          "message_count": 166
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-pass-k8-standard-20-grpo-deepseek.md"
+}

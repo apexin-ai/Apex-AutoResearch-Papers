@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7645a08a3a74742bcf33",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval process health",
+  "task_key": "worker_check_eval-process-health_20260514T082552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval-process-health_20260514T082552_result.json",
+    "occurrence": 1,
+    "bytes": 888,
+    "sha256": "55e6da6fd8ede567afe135f7c3510c89c63e9471a116019d501b07fc3091c7f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n**三个进程全部存活**，运行时间约 13 分 45 秒：\n\n| PID | 状态 | 任务 |\n|-----|------|------|\n| 170770 | Ss+ (正常) | 主 bash wrapper |\n| 170786 | Rl (运行中) | eval_gsm8k — `pruned_standard_35` on cuda:0 |\n| 170787 | Rl (运行中) | eval_gsm8k — `pruned_rasp_35` on cuda:1 |\n\n**进度**：\n- `pruned_standard_35`（PID 170786）：~87/1319 样本（~6.6%），约 7.08s/it\n- `pruned_rasp_35`（PID 170787）：~84/1319 样本（~6.4%），约 6.70s/it\n\n**无错误**：日志中没有 OverflowError、Traceback 或其他异常。旧 bug 未触发。\n\n**结果文件**：尚未产出（`results/` 下无 `eval_*.json`，只有之前的 `cka_scores.pt` 和 `importance_scores.pt`）。\n\n**预计完成时间**：按当前速度，两个 eval 分别还需约 2.4 小时（standard）和 2.3 小时（rasp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-process-health.md"
+}

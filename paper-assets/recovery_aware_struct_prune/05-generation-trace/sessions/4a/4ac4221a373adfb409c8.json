@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac4221a373adfb409c8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose seed123 v2 grpo and launch eval",
+  "task_key": "worker_ssh_diagnose_seed123_v2_grpo_and_launch_eval_20260522T145733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_seed123_v2_grpo_and_launch_eval_20260522T145733_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "6ba1e445d05704f795fa6032f72a441b261907f5b23b48e4c4c2bf39f2cd39b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **GRPO 训练**：成功完成 100/100 steps（18:42），checkpoint-100 model.safetensors **12GB** ✓\n2. **W&B run**：`j1ut733l`（run name: grpo_sft_random_20）\n3. **Eval PID**：56283（bash wrapper 56278）\n4. **GPU:0 显存**：目前 0 MiB — 模型仍在 CPU 加载阶段（RSS ~13.5GB，CPU 500%），尚未迁移到 GPU。这个 12GB 非均匀结构模型的 CPU 加载预计还需 1-2 分钟\n\n其他 eval 同时在跑：GPU:2 = sft_depth_first_20 (PID 54882)，GPU:3 = grpo_depth_first_20 (PID 51986)，均 29GB 显存 / 99% 利用率。\n\nGPU:0 显存上涨后即进入推理阶段，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-seed123-v2-grpo-and-launch-eval.md"
+}

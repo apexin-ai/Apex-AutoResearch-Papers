@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87a2316574332fc35dab",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec eval math500 grpo standard 20 fair 2048",
+  "task_key": "worker_exec_eval_math500_grpo_standard_20_fair_2048_20260521T223237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_eval_math500_grpo_standard_20_fair_2048_20260521T223237_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "5d3ef480364ca88a62c5e425f7addf4532b3d226dd299df45f5213dc680bea36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交，汇总：\n\n| 项目 | 值 |\n|------|-----|\n| **服务器** | westd-29022:cuda:0（非 westb，因模型在 westd 且 westb 磁盘仅剩 14GB 不足以复制 12GB 模型） |\n| **PID** | 426645（子进程 426311） |\n| **模型路径** | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/` |\n| **GPU 占用** | 12620 MiB |\n| **日志** | `/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_20_fair_2048/eval.log` |\n| **Registry** | `eval_math500_grpo_standard_20_fair_2048` → RUNNING |\n\n注意：该目录下没有 `checkpoint-100` 子目录，模型文件直接在根目录——应为 GRPO 训练后的 merged 模型。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-eval-math500-grpo-standard-20-fair-2048.md"
+}

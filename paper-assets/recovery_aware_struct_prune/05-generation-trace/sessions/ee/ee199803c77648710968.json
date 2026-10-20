@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee199803c77648710968",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh emergency disk cleanup westd",
+  "task_key": "worker_ssh_emergency_disk_cleanup_westd_20260523T091741",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_emergency_disk_cleanup_westd_20260523T091741_result.json",
+    "occurrence": 1,
+    "bytes": 1012,
+    "sha256": "467c2f89d6654b2970af262d7c8ce39c89ad13cc3b3d22445bd59f6453030a7f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "wandb 很小，不需要清理。\n\n**清理完成。汇报：**\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 650G (100%) | 475G (73%) |\n| 可用 | 1.3M | **176G** |\n| 释放总量 | — | **~175G** |\n\n**删除内容：**\n1. **optimizer.pt** × 1（~14G，grpo_cka_only_20_floor_0.3）\n2. **scheduler.pt** × 7（grpo_alpha4_20, grpo_random_20, grpo_random_20_seed123_v2, grpo_cka_only_20_floor_0.3, grpo_rasp_alpha0p5_20, grpo_rasp_alpha2p0_20, grpo_depth_first_20）\n3. **training_args.bin** × 5\n4. **重复 checkpoint 目录** × 9（与顶层 model.safetensors 重复，~109G）：grpo_alpha4_20, grpo_cka_only_15_seed123, grpo_cka_only_20_floor_0.3, grpo_depth_first_20, grpo_random_20_seed123_v2, grpo_rasp_alpha0p5_20, grpo_rasp_alpha2p0_20, sft_alpha4_20, sft_cka_only_20_floor_0.3\n5. **跨服务器副本** × 5（westb-23072 上有原始，~60G）：grpo_cka_only_20, grpo_rasp_alpha0p5_20, sft_cka_only_20, sft_random_20, sft_rasp_alpha3p0_20"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-emergency-disk-cleanup-westd.md"
+}

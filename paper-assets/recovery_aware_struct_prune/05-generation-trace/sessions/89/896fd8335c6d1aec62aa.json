@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "896fd8335c6d1aec62aa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd analyzing and rasp",
+  "task_key": "worker_diagnose_westd_analyzing_and_rasp_20260519T130713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_analyzing_and_rasp_20260519T130713_result.json",
+    "occurrence": 1,
+    "bytes": 460,
+    "sha256": "eb35478bac9fb7b106643648b6759b4373a178d0cf2a905d1d2112dbe10ec78d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 实验 | 状态 | Accuracy | n_correct / n_total |\n|------|------|----------|---------------------|\n| eval_math500_sft_standard_20_2048_v2 | **DONE** ✓ | 25.8% | 129 / 500 |\n| eval_math500_grpo_cka_only_20_2048 | **DONE** ✓ | 29.2% | 146 / 500 |\n| eval_gsm8k_grpo_rasp_20_fair | **RUNNING** | ~66% (interim) | 249 / 1319 进行中 |\n\nGSM8K eval 在 cuda:0 上正常运行，约 2.2s/it，预计还需 ~40 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-analyzing-and-rasp.md"
+}

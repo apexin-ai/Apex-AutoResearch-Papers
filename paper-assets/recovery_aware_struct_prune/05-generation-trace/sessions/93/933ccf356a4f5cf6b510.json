@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "933ccf356a4f5cf6b510",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix kill old eval tmux",
+  "task_key": "worker_fix_kill-old-eval-tmux_20260517T101624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-old-eval-tmux_20260517T101624_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "d0ba25c93611bf5ab7d2ed22013087bd597e1adc89cb90daf906d0438d9999f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| 操作 | 状态 |\n|------|------|\n| `eval_gradient_postsft` | 已杀掉（之前就不存在了） |\n| `eval_gradient_postsft_v2` | 也不存在 |\n\n当前活跃 tmux sessions：\n- `scoring_ablation_v2` — cuda:1, 12880 MiB, 76% util\n- `scoring_ablation_random` — cuda:0, 27394 MiB, 100% util\n\nv2 的 eval_gradient 任务应该是已经跑完或被替换为 scoring_ablation 系列了。两张卡都在正常跑实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-old-eval-tmux.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e00105a417dec9c9b01",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis sft alpha4 20 v2",
+  "task_key": "worker_analysis_sft_alpha4_20_v2_20260521T185627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_alpha4_20_v2_20260521T185627_result.json",
+    "occurrence": 1,
+    "bytes": 1424,
+    "sha256": "ec68b6d0d31cc02d415bf6b9b0572671b5fe177b4301f20bfc2f48a9ecee3e72"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "日志中无 W&B 记录，网络不通导致未上传。已有足够信息汇总。\n\n---\n\n## sft_alpha4_20_v2 实验结果\n\n**Conclusion: SUCCESS**\n\n### 训练概况\n| 指标 | 值 |\n|------|-----|\n| 状态 | 正常完成 (EXIT_CODE=0) |\n| 总 steps | 936 (2 epochs × 468 steps) |\n| 训练样本 | 7,473 (GSM8K) |\n| 训练时长 | ~18 min 49 sec |\n| GPU | cuda:0 (CUDA_VISIBLE_DEVICES=2) |\n\n### Loss 趋势\n| 阶段 | Loss | Token Accuracy |\n|------|------|---------------|\n| 开始 (epoch 0.02) | 1.295 | 0.711 |\n| 中间 (epoch 1.0) | ~0.78 | ~0.80 |\n| 结束 (epoch 2.0) | ~0.70 | ~0.82 |\n| **平均 train_loss** | **0.8118** | **0.8165** |\n\nLoss 从 1.295 稳定下降至 ~0.70，收敛良好，无异常波动。\n\n### Checkpoint\n| 项目 | 值 |\n|------|-----|\n| checkpoint_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/` |\n| 模型文件 | `model.safetensors` (11.5 GB) |\n| 总大小 | 23 GB (含 checkpoint-936 子目录) |\n| 格式 | safetensors, 1 shard |\n| log_path | `/root/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log` |\n\n### 备注\n- `save_only_model=True` 修复了 parent 的磁盘溢出问题，checkpoint 成功保存到数据盘\n- 网络不可达，W&B 未记录，数据仅在本地日志中\n- 无 eval metrics（SFT 阶段不评估，等后续 GRPO→eval pipeline）\n- 模型已就绪，可进入下一步 GRPO 训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-alpha4-20-v2.md"
+}

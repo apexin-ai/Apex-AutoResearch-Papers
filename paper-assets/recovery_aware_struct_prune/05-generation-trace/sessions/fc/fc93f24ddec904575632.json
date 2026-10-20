@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc93f24ddec904575632",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh progress monitor westd all",
+  "task_key": "worker_ssh_progress_monitor_westd_all_20260523T135229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress_monitor_westd_all_20260523T135229_result.json",
+    "occurrence": 1,
+    "bytes": 308,
+    "sha256": "5ee8c03d3b725f0470ad7662583aee936fa665756aa846b9223022cc47eaefbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nFloor 0.6 v2:  运行中, 573/1319 (43%), acc=0.6309 @550  (PID 132510 已死但进程仍在跑，GPU:0 占用99%)\nSFT Standard v3: 完成, 500/500 (100%), acc=23.4% (117/500)\nGRPO Standard v3: 运行中, 49/500 (10%), 已跑36min  (PID 136598)\nGPU: [0: 99%, 1: 0%, 2: 98%, 3: 0%]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-monitor-westd-all.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4bdb6d6888e69008408",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb standard 25 grpo",
+  "task_key": "worker_ssh_westb_standard_25_grpo_20260521T025856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_standard_25_grpo_20260521T025856_result.json",
+    "occurrence": 1,
+    "bytes": 917,
+    "sha256": "f2841d353f2381d5a99787e9c34e888aebad78d1fdf9a37abcdce06ae77007fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 已在运行（29599 MiB, 98% util），第一个 step 的 generation 正在进行中。训练正常启动。\n\n**汇报**：\n\n- **SFT checkpoint**: 存在 `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870/`（model.safetensors 10.8GB，完整）\n- **GRPO**: 之前不存在，已提交训练\n- **修复**: tokenizer_config.json 的 `tokenizer_class` 从 `Qwen2Tokenizer`（慢）改为 `Qwen2TokenizerFast`，否则缺 `vocab.json` 无法加载\n- **训练状态**: 已在 GPU 1（cuda:1）上启动，100 steps，wandb run `7v9jorwy`\n  - PID: 64189 (bash) → 64194 (python)\n  - GPU 显存: 29.6GB / 96GB\n  - 日志: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb.log`\n  - 输出: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_westb/`\n- **磁盘**: `/root/autodl-tmp/` 24GB free，GRPO checkpoint ~15GB，刚好够用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-standard-25-grpo.md"
+}

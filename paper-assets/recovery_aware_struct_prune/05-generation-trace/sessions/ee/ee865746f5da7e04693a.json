@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee865746f5da7e04693a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval mbpp sft rasp 20",
+  "task_key": "worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650_result.json",
+    "occurrence": 1,
+    "bytes": 1445,
+    "sha256": "b6aa5480f8d8cc689fbaadb97e905e7a56a24cd694f7c289f46fa46c52d550f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。以下是分析总结：\n\n## eval_mbpp_sft_rasp_20 结果\n\n| 模型 | pass@1 | n_correct/n_total | 与 Dense 保留率 |\n|------|--------|-------------------|----------------|\n| **Dense baseline** | 53.48% | 200/374 | 100% |\n| **SFT CKA-only 20%** | 12.83% | 48/374 | 24.0% |\n| **SFT RASP 20%** | **11.76%** | **44/374** | **22.0%** |\n| GRPO CKA-only 20% | 14.17% | 53/374 | 26.5% |\n\n**关键发现：**\n\n1. **pass@1 = 11.76%** (44/374)，比 CKA-only SFT 的 12.83% 低 1.07pp，差 4 题。在 stderr 范围内（±1.7pp），差异不显著。\n\n2. **RASP 在 MBPP 上未能超越 CKA-only**，与 hypothesis 相反。两者都仅保留 dense 的 ~22-24% 能力，说明 80% 结构剪枝对代码生成造成了近乎毁灭性的损伤，SFT 恢复极其有限。\n\n3. **错误模式**：大量样本输出自然语言解释（\"To solve this problem...\"）而非代码，导致 SyntaxError。median_response_length 仅 247 tokens（CKA-only 为 363），说明 RASP 模型更倾向于短、非代码输出。\n\n4. **对 C2 capability breadth claim 的意义**：MBPP 维度上 RASP 和 CKA-only 表现几乎等价（均极差），不支持 \"RASP 在 code 维度优于 CKA-only\" 的论点。C2 的 breadth argument 需要依赖其他维度（如 GSM8K，RASP GRPO 60.88% vs CKA-only GRPO 64.22%）或 HumanEval（RASP SFT 10.37% vs CKA-only SFT 0.61%，这个差异显著）来支撑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-mbpp-sft-rasp-20.md"
+}

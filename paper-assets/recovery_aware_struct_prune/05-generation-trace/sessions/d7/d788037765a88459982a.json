@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0",
+  "id": "d788037765a88459982a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env-setup_20260514T021115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env-setup_20260514T021115.log",
+    "occurrence": 1,
+    "bytes": 3217731,
+    "sha256": "aa09002873515aa1f6d148b9ab02ff9a9b7654c04b2ff485bf8a8053fc59aa7f"
+  },
+  "statistics": {
+    "messages": 2516,
+    "user_turns": 2,
+    "tool_calls": 1012,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 480,
+      "tool_call": 1012,
+      "tool_result": 1012,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 880,
+      "chunks": [
+        {
+          "path": "d788037765a88459982a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0005.json",
+          "message_count": 160
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1033,
+      "chunks": [
+        {
+          "path": "d788037765a88459982a-part-0005.json",
+          "message_count": 20
+        },
+        {
+          "path": "d788037765a88459982a-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0011.json",
+          "message_count": 113
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 603,
+      "chunks": [
+        {
+          "path": "d788037765a88459982a-part-0011.json",
+          "message_count": 67
+        },
+        {
+          "path": "d788037765a88459982a-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "d788037765a88459982a-part-0014.json",
+          "message_count": 176
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

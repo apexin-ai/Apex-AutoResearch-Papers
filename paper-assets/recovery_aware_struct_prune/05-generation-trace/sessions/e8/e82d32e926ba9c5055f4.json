@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e82d32e926ba9c5055f4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo collapse step50 update",
+  "task_key": "worker_analysis_grpo_collapse_step50_update_20260517T182058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_collapse_step50_update_20260517T182058_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "e27bdbe6fdb6158f4f7f1e46b0fac95254b706b8262cba7772bb76ba9864571e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/collapse_dynamics_step50_update.md`。\n\n**核心结论：**\n\n两个 run 都还没到 step 50（random_20 @ 39, cka_only_20 @ 30），当前只有 step 10/20/30 的指标。\n\n**Step 30 快照排序：**\n\n| Run | Reward | Frac_zero_std | 状态 |\n|-----|--------|---------------|------|\n| cka_only_20 | 0.250 | 0.200 | 稳定 |\n| random_20 | 0.166 | 0.325 | 稳定 |\n| standard_v8 (stage2) | 0.065 | 0.525 | 边缘停滞 |\n| rasp_v9 (stage2) | 0.021 | 0.950 | 已 collapse |\n\n**重要发现：**\n- cka_only 显著优于 random（reward 高 50%，frac_zero_std 低 38%）\n- 两个新 run 均未 collapse，但 random_20 在 step 20 有 grad_norm spike (8.62)，值得关注\n- stage2 对照组不是直接 apples-to-apples 对比（它们在已 GRPO 过的模型上再训）\n- **Delayed collapse 尚无法判断**，需等 step 40+ 数据（约 1.5-2.5h 后可查）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-collapse-step50-update.md"
+}

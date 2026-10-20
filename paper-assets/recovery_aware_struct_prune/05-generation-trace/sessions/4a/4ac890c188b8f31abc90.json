@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ac890c188b8f31abc90",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify alpha1p0 max completion",
+  "task_key": "worker_ssh_verify_alpha1p0_max_completion_20260523T191307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_alpha1p0_max_completion_20260523T191307_result.json",
+    "occurrence": 1,
+    "bytes": 925,
+    "sha256": "fb2378197643f2b67a6214f6e792bbbb73d9e024a1c4d2c672d7e435e8e09b7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The launch command wasn't captured in the log. The evidence is already conclusive from the training metrics though.\n\n```\ngrpo_rasp_20_fair 实际 max_completion_length: 1024\n证据来源: 训练日志 completions/max_length 指标\n```\n\n**证据：**\n- 日志中每10步打印的 metrics 里 `completions/max_length` 始终为 **`1024`**（step 10 到 step 100 全部是 1024）\n- `completions/clipped_ratio` 在 91%~96% 之间，说明生成被截断在 1024 token\n- 脚本 `train_grpo_v5.py` 的 argparse 默认值是 512，但 `completions/max_length=1024` 说明启动时传入了 `--max_completion_length 1024`\n- 日志中没有直接打印 argparse 参数（grep \"max_completion\" 为空），但 TRL GRPOTrainer 的 `completions/max_length` 指标就是实际使用的 `max_completion_length`\n\n**结论：registry 记录的 max_completion_length=1024 是正确的，不是默认的 512。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-alpha1p0-max-completion.md"
+}

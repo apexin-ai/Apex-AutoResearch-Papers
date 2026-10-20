@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "53cc280f30b719d76785",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code scoring ablation random 20",
+  "task_key": "worker_code_scoring_ablation_random_20_20260517T110954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_random_20_20260517T110954.log",
+    "occurrence": 1,
+    "bytes": 1151426,
+    "sha256": "f16b0cc6e4aae0fd2adcb6c37d0411619358d9b1d65f049640a5c636a82ec69d"
+  },
+  "statistics": {
+    "messages": 758,
+    "user_turns": 1,
+    "tool_calls": 301,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 148,
+      "tool_call": 301,
+      "tool_result": 301,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 737,
+      "chunks": [
+        {
+          "path": "53cc280f30b719d76785-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "53cc280f30b719d76785-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "53cc280f30b719d76785-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "53cc280f30b719d76785-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "53cc280f30b719d76785-part-0005.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "53cc280f30b719d76785-part-0005.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-scoring-ablation-random-20.md"
+}

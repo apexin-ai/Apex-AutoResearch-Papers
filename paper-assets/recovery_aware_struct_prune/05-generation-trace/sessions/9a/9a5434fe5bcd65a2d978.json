@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a5434fe5bcd65a2d978",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig2 reward trajectories v2",
+  "task_key": "worker_paper_figure_fig2_reward_trajectories_v2_20260518T024234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_reward_trajectories_v2_20260518T024234_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "921e15619e112a0349411dfeba89ad312b629eb014b4b17b3281914f99be0e15"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. All three files written and artifact registered (`art_20260518_d77222`). The figure clearly shows CKA-only's dominance in reward (peak 0.342, 5.7x Standard) and best diversity (frac_zero_std 0.125), with RASP/Standard collapsed near zero."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-reward-trajectories-v2.md"
+}

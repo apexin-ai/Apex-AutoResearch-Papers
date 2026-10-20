@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "500917fbe41d8f76cb35",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k grpo standard 20 extended 300",
+  "task_key": "worker_analysis_eval_gsm8k_grpo_standard_20_extended_300_20260519T055703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_grpo_standard_20_extended_300_20260519T055703_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "ce4d709b40ba6a16671876c5e1a682bdc0a7e136979abae291a73d4278e85661"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE(negative)，cron 已删除。\n\n**结果汇总：**\n\n| 指标 | 值 |\n|---|---|\n| Accuracy | **59.29%** (782/1319) |\n| Stderr | ±1.35% |\n| EOS Rate | 97.95% |\n| Avg Response Length | 229.6 tokens |\n\n**Conclusion: negative** — Hypothesis 被证伪。Standard 20% extended 300步的 GSM8K accuracy 为 59.29%，显著高于 Standard 100步的 ~52-53%，说明额外训练步数确实带来了 downstream gain。这挑战了 E2 \"reward collapse = no downstream improvement\" 的叙事。\n\n59.29% 处于 55-60% 边界区间（±1.35% stderr），但方向性结论明确：extended training 对 Standard pruning 也有效，尽管存在 reward collapse。这意味着 reward collapse 并不完全阻止 downstream 能力恢复，E2 的 framing 需要调整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-grpo-standard-20-extended-300.md"
+}

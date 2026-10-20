@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8749dd44c5038e69c6d1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill orphan 322044",
+  "task_key": "worker_ssh_kill_orphan_322044_20260521T045823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_orphan_322044_20260521T045823_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "e875472aa53235eb877b80c838793585a6eb7d79875dfb556f0b1d1c8c286299"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 322044 已终止（KILLED）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-orphan-322044.md"
+}

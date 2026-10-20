@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5025d2270516f0136b77",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze grasp baseline westd final",
+  "task_key": "worker_analyze_grasp_baseline_westd_final_20260515T151132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grasp_baseline_westd_final_20260515T151132_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "97e4ff0eca03a9a7e32d6e1830891159ddd57ac68fd4add0a8424182baed8386"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，尚未完成。**\n\n| 项目 | 状态 |\n|------|------|\n| PID 38120 | **运行中** (Rl, elapsed 01:21:08) |\n| 进度 | **56/100** (~56%) |\n| 50-sample 中间 accuracy | **6.00%** (3/50) |\n| 50-sample eos_rate | 2.00% |\n| 50-sample avg_len | 4018 |\n| JSON 结果文件 | 尚未生成 |\n\n中间指标比之前看到的 8% (51 samples) 略降到 6% (50-sample checkpoint)。按当前速度 (~51s/it)，剩余 44 samples 预计还需 ~37 分钟完成。\n\nGraSP baseline 的 post-prune accuracy 预计会远低于 RASP (31%) 和 Standard (27%)，进一步验证了 recovery-aware 方法的优势。需要等完成后再读取最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grasp-baseline-westd-final.md"
+}

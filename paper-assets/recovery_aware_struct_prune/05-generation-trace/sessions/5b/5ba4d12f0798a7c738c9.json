@@ -1,0 +1,422 @@
+{
+  "schema_version": "1.0",
+  "id": "5ba4d12f0798a7c738c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval mbpp grpo standard 20",
+  "task_key": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_mbpp_grpo_standard_20_20260519T162003.jsonl",
+    "occurrence": 1,
+    "bytes": 12033,
+    "sha256": "841c4ec0ebf5457d48ed3bcadb3bba10aa88209eb8fd9c9aef3f886ba04f3b35"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T16:21:26.959387+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T16:21:26.959705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T16:21:26.959885+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -l /root/recovery_aware_struct_prune/src/eval_mbpp.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T16:21:26.960019+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -d /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T16:21:26.960153+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 7086 May 19 21:28 /root/recovery_aware_struct_prune/src/eval_mbpp.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T16:21:26.960298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T16:21:26.960451+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_standard_20",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\", 'server': 'westd-29022', 'data_path': 'MBPP', 'data_count': 374, 'model_name': 'grpo_stage2_standard_20_fair', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair', 'eval_data': 'MBPP sanitized test split (374 samples)'}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T16:21:26.960599+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5713}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T16:21:26.960726+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_standard_20",
+              "field": "hypothesis",
+              "value": "Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T16:21:26.960877+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:20:40.387Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:20:40.387Z\\\", \\\"hypothesis\\\": \\\"Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0005}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T16:21:26.961007+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_standard_20",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T16:21:26.961138+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:20:40.387Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:20:43.980Z\\\", \\\"hypothesis\\\": \\\"Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T16:21:26.961281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_standard_20",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': \"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\", 'server': 'westd-29022', 'data_path': 'MBPP', 'data_count': 374, 'model_name': 'grpo_stage2_standard_20_fair', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair', 'eval_data': 'MBPP sanitized test split (374 samples)'}"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T16:21:26.961450+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T16:20:40.387Z\\\", \\\"updated_at\\\": \\\"2026-05-19T16:20:52.345Z\\\", \\\"hypothesis\\\": \\\"Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Compare with CKA-only GRPO MBPP (running). Standard GRPO GSM8K=59.44% vs CKA-only 64.37% — if capability breadth claim holds, Standard should show larger degradation on code generation (MBPP) than math (GSM8K).\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"data_path\\\": \\\"MBPP\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\", \\\"eval_data\\\": \\\"MBPP sanitized test split (374 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T16:21:26.961614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-29022",
+              "gpu_ids": "['cuda:2']",
+              "command": "bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 /root/miniconda3/bin/python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json'",
+              "exp_id": "eval_mbpp_grpo_standard_20",
+              "account": "root",
+              "project": "recovery_aware_struct_prune",
+              "timeout_hours": "4"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T16:21:26.961786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"120183\\\", \\\"log_file\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log\\\", \\\"gpu_ids\\\": [\\\"cuda:2\\\"], \\\"server\\\": \\\"westd-29022\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"2\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval_mbpp_grpo_standard_20\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T16:21:26.962010+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T16:21:26.962235+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-20 00:21:11,815 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\\n2026-05-20 00:21:12,422 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T16:21:26.962443+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，模型正在加载中。\n\n**汇总**：`eval_mbpp_grpo_standard_20` 已在 westd-29022 cuda:2 上启动（tmux session: `eval_mbpp_grpo_standard_20`，PID: 120183）。模型加载中，检测到 non-uniform MLP（剪枝后的结构）。日志路径：`~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log`，结果输出到 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_standard_20.json`。预计约 2 小时完成。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_mbpp_grpo_standard_20_20260519T162003"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/eval-mbpp-grpo-standard-20.md"
+}

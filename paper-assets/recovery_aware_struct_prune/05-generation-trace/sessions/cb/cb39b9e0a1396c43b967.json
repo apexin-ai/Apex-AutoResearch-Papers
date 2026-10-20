@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb39b9e0a1396c43b967",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest cka only 25 math500 logs",
+  "task_key": "worker_harvest_cka_only_25_math500_logs_20260521T223435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_cka_only_25_math500_logs_20260521T223435_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "4cefe6a9458d1e33ae688d4abf64ebf69819d1218b7cccc59ea0f31936937434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验已经在 registry 中，且已是 DONE + success 状态，metrics 也已填入：\n\n| 实验 | 状态 | Accuracy | Correct/Total |\n|------|------|----------|---------------|\n| `eval_math500_grpo_cka_only_25_v2` | DONE/success | 18.4% (±0.0173) | 92/500 |\n| `eval_math500_sft_cka_only_25_v2` | DONE/success | 19.2% (±0.0176) | 96/500 |\n\n**Registry 已经是最新的，无需更新。** 两个实验的结果之前已被恢复并注册。\n\n确认关键发现：SFT (19.2%) > GRPO (18.4%)，CKA-only 25% 剪枝在 MATH-500 上 GRPO 未能提升甚至略低于 SFT baseline，与 GSM8K 上的趋势一致（SFT 60.12% vs GRPO 59.59%）。两个日志中均无 truncated 样本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-cka-only-25-math500-logs.md"
+}

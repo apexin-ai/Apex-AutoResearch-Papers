@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3051573eeed152e0af11",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix gpu1 eval 25 restart",
+  "task_key": "worker_fix_gpu1_eval_25_restart_20260514T171754",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu1_eval_25_restart_20260514T171754_result.json",
+    "occurrence": 1,
+    "bytes": 844,
+    "sha256": "72c0ea88a8b3c0dcd3891f9de89bc47f8e5c40368bafafa0fb18a4c7f2c088e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况与预期不同，两块 GPU 都在跑 GRPO 训练：**\n\n| GPU | PID | 运行时间 | 任务 |\n|-----|-----|---------|------|\n| 0 | 221271 | 10 min | `train_grpo.py` pruned_rasp_20 → recovered_rasp_20 |\n| 1 | 221911 | 7 min | `train_grpo.py` pruned_standard_20 → recovered_standard_20 |\n\n**其他发现：**\n- Qwen3.5-9B：未找到，可能已删除或不在 autodl-tmp 内\n- 25% eval 结果：无任何已有结果\n- pruned 模型目录：`pruned_standard_25` 和 `pruned_rasp_25` 都存在\n\n**GPU 1 正在跑 grpo_standard_20（刚启动 7 分钟），不是空转。** 25% eval 现在无法在 GPU 1 上运行。\n\n需要你决定：\n1. **等 grpo_standard_20 跑完**再启动 25% eval\n2. **杀掉 grpo_standard_20** 腾出 GPU 1 立即跑 eval（GRPO 才跑 7 分钟，杀了可以之后重启）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu1-eval-25-restart.md"
+}

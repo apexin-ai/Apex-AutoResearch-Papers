@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f73ed74b6e559e3354f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_4_1778816034.md",
+  "task_key": "loop_4_1778816034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_4_1778816034.md",
+    "occurrence": 1,
+    "bytes": 4792,
+    "sha256": "cd026531593590e4998f8f3a8eaeb00f63cde1aa0bc44d5a8bcab99c277c4c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 4\nreason: max_messages\nupdated: '2026-05-15T03:07:56+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 的 cuda:0 和 cuda:1，不能用其他设备\n- 模型/checkpoint 必须存 `/root/autodl-tmp/`（C002 磁盘约束），根分区只有 ~30GB\n- DeepSeek-R1-Distill-Qwen-7B 的 EOS token 是全角管道符 `<｜end▁of▁sentence｜>`（id=151643），不是普通 `<|end_of_sentence|>`\n- submit_training_job 的 command 必须用 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash，source/conda activate 裸写会 EXIT_CODE=127）\n- GRASPrune ≠ GraSP：`run_graspune.sh`（外部 baseline）vs `run_grasp_prune.sh`（项目自有 GraSP scoring），文件名差一个下划线，已踩坑一次\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072，2× RTX PRO 6000 Blackwell 98GB\n- 工作目录：`/root/recovery_aware_struct_prune/`（代码），`/root/autodl-tmp/`（模型/数据）\n- Python：`/root/miniconda3/bin/python`，激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型路径：\n  - 原始：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n  - RASP pruned：`/root/autodl-tmp/pruned_rasp_20`\n  - Standard pruned：`/root/autodl-tmp/pruned_standard_20`\n  - SFT RASP：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`\n  - SFT Standard：`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/`\n  - GRPO RASP（训练中）：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20/`\n  - GRPO Standard（训练中）：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20/`\n  - GRASPrune repo：`/root/GRASPrune/`（已 clone，依赖已装）\n- W&B：服务器网络不可达，SFT 用 report_to=none，GRPO 的 run_name 已设但可能也连不上\n- 活跃进程：\n  - grpo_stage2_rasp_20：PID 263888，tmux session `grpo_stage2_rasp_20`，cuda:0，cron 120s\n  - grpo_stage2_standard_20：PID 263966，tmux session `grpo_stage2_standard_20`，cuda:1，cron 120s\n\n### 3. 📊 当前状态\n**刚做完**：SFT warmup 双模型完成 → N=100 eval（RASP 57% / Standard 64% greedy, 99% EOS）→ GRPO Stage 2 双模型提交并 RUNNING。GRASPrune 环境准备完毕。\n\n**Registry RUNNING**：\n- `grpo_stage2_rasp_20`（cuda:0）— 核心实验，SFT-RASP → GRPO RLVR，plan_003\n- `grpo_stage2_standard_20`（cuda:1）— 负对照，SFT-Standard → GRPO RLVR，plan_003\n\n**等待中的 Worker 回调**（4 个）：\n1. `worker_ops_grpo-mechanistic-check` — 检查 GRPO 日志中 KL/reward/clipped_ratio\n2. `worker_code_full-eval-script` — 写 N=1319 full eval 脚本（覆盖 6 模型，per-sample output）\n3. `worker_code_fix-grasp-warnings` — 修 grasp_scoring.py temp 实现 + run_graspune.sh 参数化\n4. `worker_ops_registry-housekeeping` — plan_002/003 registry_id 补齐 + eval JSON metrics 同步\n5. `worker_code_cka-reliability` — plan_014 CKA reliability 分析脚本\n\n### 4. 📋 待办（条件触发式）\n- GRPO cron 回调（进程退出）→ spawn worker 读日志分析 conclusion → 这是整个项目的决定性结果\n- GRPO RASP reward > Standard reward 且 clipped_ratio < 0.9 → success，核心假设成立，立即跑 full eval (plan_004) + 汇报 Director\n- GRPO RASP ≤ Standard（或两者都零梯度）→ negative，按 red-section 产 Framing 调整提案，不默默跑下一个\n- GRPO 完成后 GPU 释放 → 立即启动：(1) full eval N=1319 全模型 (plan_004)，(2) GRASPrune 20% baseline (plan_005, `bash run_graspune.sh 0`)，(3) CKA reliability (plan_014)\n- Worker 回调到手 → 处理结果，更新 registry，汇报 Director\n- clipped_ratio 持续 > 0.9 → SFT warmup 未真正修复 sampling 问题，需要诊断（但 EOS 99% 应该没问题）\n\n### 5. 🎯 战略上下文\n**核心结论链**：D005（35% 太猛）→ D006（20% RASP 29% vs Standard 1%）→ D009-D013（GRPO 直接恢复失败，根因是 sampling 退化不产 EOS）→ D013（SFT warmup 修复 EOS）→ 现在 GRPO Stage 2 是 make-or-break。\n\n**最容易判断错的事**：\n1. SFT 后 Standard 64% > RASP 57% **不代表** Standard 更好。SFT 是 pattern matching，恢复的是格式不是推理。GRPO 才区分谁保留了更深层推理结构。不要因为 SFT 数字就动摇 story。\n2. Post-prune accuracy（RASP 29% >> Standard 1%）是在 **greedy** mode 下测的。Sampling mode 两者都崩溃（D013 教训）。不要混淆 greedy/sampling 结论。\n3. 两模型 MLP 总参数量完全相同（395,232），差异纯来自分布策略（Scenario B）。这排除了\"RASP 只是剪得少\"的替代解释。\n\n**EMNLP 2026 deadline**：ARR May 25（距今 10 天）。GRPO 是 P0 blocking 项，之后还需 full eval + GRASPrune baseline + multi-seed + 论文写作。时间极紧。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-4-1778816034.md"
+}

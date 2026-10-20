@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "433c3dbc4caac79da79e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k grpo unstructured 20",
+  "task_key": "worker_analysis_eval_gsm8k_grpo_unstructured_20_20260519T080416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_grpo_unstructured_20_20260519T080416_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "c89dfc91da51a2baade8327a97be5d8abe342756006179ce36dd1a63d8dcf81d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能已被清理），registry 已更新为 DONE。\n\n## 结果汇总\n\n**eval_gsm8k_grpo_unstructured_20** — DONE ✓\n\n| 指标 | 值 |\n|------|-----|\n| **GSM8K Accuracy** | **87.64% ± 0.91%** |\n| n_correct / n_total | 1156 / 1319 |\n| EOS rate | 98.18% (仅 24 条截断) |\n\n**对比（hypothesis 中的 baseline）：**\n- Pre-GRPO unstructured 20%: 87.87% → GRPO 后 87.64%（几乎持平，Δ = -0.23%，在 stderr 内）\n- Structured GRPO 对比：CKA-only 64.37%、Standard 58.91%、RASP 56.71%\n\nGRPO 对 unstructured pruning 没有带来 GSM8K 提升（训练 reward_mean=0.883 与 eval accuracy 87.64% 一致），但 unstructured 本身远优于所有 structured 方案。\n\n**磁盘清理**：`grpo_unstructured_20/` (~15GB) 的 eval 已完成，结果已保存。如果不再需要该 checkpoint 做进一步实验，可以安全删除以腾出空间给 seed123 训练的最终 checkpoint (~12GB)。建议确认后清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-grpo-unstructured-20.md"
+}

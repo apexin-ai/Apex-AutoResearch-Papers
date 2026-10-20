@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fafd4b93c658405033cd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_6_1778844513.md",
+  "task_key": "loop_6_1778844513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778844513.md",
+    "occurrence": 1,
+    "bytes": 4490,
+    "sha256": "557870651512403b98703187db8371cbfb5c52bec2eb88ade49d7d46e65371b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-15T03:33:55+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westb-23072 的 cuda:0 和 cuda:1（gpu_ids 白名单），其他卡号必须 push back Director\n- SFT checkpoint 路径：RASP → `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`，Standard → `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/`。不要搞混\n- 根分区只有 ~30GB，所有大文件（模型/checkpoint/数据）必须放 `/root/autodl-tmp/`\n- submit_training_job 的 command 必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python ...`\n- GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072，2× RTX PRO 6000 94GB\n- 工作目录：`/root/recovery_aware_struct_prune/`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 基础模型：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B`\n- Pruned 模型：`/root/autodl-tmp/pruned_rasp_20/`、`/root/autodl-tmp/pruned_standard_20/`\n- SFT checkpoints：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`、`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/`\n- 训练日志：`~/runs/recovery_aware_struct_prune/`\n- W&B 项目：recovery_aware_struct_prune（entity 从 project config 读取）\n- 活跃进程：无（SFT 训练已完成，GPU 空闲）\n- Cron：刚 reconcile 过，0 个活跃\n\n### 3. 📊 当前状态\n收到 sft_standard_20 完成 cron 回调。两个 SFT 实验（sft_rasp_20、sft_standard_20）都已转 ANALYZING。\n\n已派 2 个 Worker，**尚未收到回调**：\n1. `worker_analysis_sft_d013` — SSH 分析两个 SFT 实验的训练日志 + 跑 GSM8K N=100 eval + 验证 EOS 生成能力\n2. `worker_code_grpo_stage2_prep` — 准备 GRPO Stage 2 训练命令 + dry-run 验证 SFT checkpoint 能被 GRPO 加载\n\nRegistry 状态：\n- sft_rasp_20: ANALYZING（等 Worker 1 分析后推 DONE）\n- sft_standard_20: ANALYZING（同上）\n- mvp_rasp_pipeline_v4: PREPARING（伞实验，不需要单独操作）\n- 其他 9 个实验全部 DONE（3 failed, 2 killed, 4 negative）\n\n**尚未向 Director 汇报**——等 Worker 回调拿到 SFT 结果后汇报。\n\n### 4. 📋 待办（条件触发式）\n- Worker 1 (analysis) 回调 → 用结果更新 registry（conclusion/metrics/checkpoint_path/log_path）→ 刷新 report.md → 按 on-experiment-done skill 分叉处理\n- SFT EOS 修复成功 + Worker 2 dry-run 通过 → 立即提交 GRPO Stage 2 双实验（plan_003，submit_training_job，GPU0 RASP + GPU1 Standard）→ 向 Director 汇报 `[资源] GPU 分配 2 / 实际跑 2`\n- SFT EOS 仍然失败 → 按 red-section 产出 Framing 调整提案，向 Director 汇报，不自行跑下一个实验\n- GRPO Stage 2 提交后，GPU 占满期间 → 派 CPU Worker 并行推进：plan_005 GRASPrune 代码 clone + 安装（memory.md 有完整方案）、plan_006 multi-seed 代码准备、plan_001 full eval 脚本准备\n- plan_003 GRPO 完成回调 → 分析 recovery 结果，这是核心 MVP 验证：RASP recovery > Standard recovery 则 success claim\n\n### 5. 🎯 战略上下文\n- **目标会议**：EMNLP 2026 ARR May 25（距今 10 天）\n- **核心 narrative**：Redundancy Paradox — 传统冗余信号（CKA overlap）是 RLVR 可恢复性的正预测因子。RASP 利用 CKA 指导剪枝结构选择，matched sparsity 下保留更多推理能力\n- **MVP 已通过（D014）**：post-prune GSM8K RASP 29% vs Standard 1%（N=100, matched 20% sparsity）。这是充分证据但还需要 recovery 实验补完\n- **决策链关键节点**：D005（放弃 35% → 20%/25%）→ D008（MVP 标准改为 model-level 差异）→ D009/D013（GRPO 截断/无 EOS → SFT warmup 方案）→ D014（MVP PASS）\n- **最容易判断错的事**：\n  - 不要认为 SFT 之后可以跳过 GRPO 直接用 SFT 结果写 paper — 核心 claim 是 RLVR recovery，SFT 只是 warmup 手段\n  - 之前所有 GRPO 实验（4 个）全部失败/negative 的根因是 **sampling 模式无 EOS**，不是 GRPO 本身有问题。SFT 如果修好了 EOS，GRPO 应该能跑\n  - experiment_plan.yaml 的 plan_002 对应 SFT（当前实验），plan_003 对应 GRPO Stage 2。plan_002 没有 registry_id 绑定，需要手动关联\n  - GRASPrune baseline（plan_005）是独立 P0，memory.md 有详细方案，可以随时开搞，不依赖 SFT/GRPO 结果\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778844513.md"
+}

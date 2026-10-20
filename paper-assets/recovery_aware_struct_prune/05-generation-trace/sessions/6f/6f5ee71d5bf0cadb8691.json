@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f5ee71d5bf0cadb8691",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check qwen math evals",
+  "task_key": "worker_ssh_check_qwen_math_evals_20260516T162852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_qwen_math_evals_20260516T162852_result.json",
+    "occurrence": 1,
+    "bytes": 792,
+    "sha256": "be8a5ccae0e328416edd88de38f570b056fedef3274d76eec35ffd51bfe6a30f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n| 实验 | 状态 | Accuracy | 服务器 | 结果文件 |\n|------|------|----------|--------|----------|\n| eval_grpo_rasp_20_qwen_math | **completed** | **72.5%** (145/200) | westd-11672 | `results/eval_grpo_rasp_20_qwen_math.json` |\n| eval_grpo_standard_20_qwen_math | **completed** | **70.5%** (141/200) | westd-11672 | `results/eval_grpo_standard_20_qwen_math.json` |\n| eval_grpo_rasp_25_qwen_math | **completed** | **62.5%** (125/200) | westd-11672 | `results/eval_grpo_rasp_25_qwen_math.json` |\n| eval_grpo_standard_25_qwen_math | **still running** (173/200, ~86%) | 当前 ~64% (at 150) | westd-11672 cuda:1 | 仅 .log |\n\n第 4 个实验（standard_25）在 westd-11672 上仍在运行（PID 22459），预计几分钟内完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-qwen-math-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee12e26ce0d54d1e3706",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh seed456 result and cka math500 westb0",
+  "task_key": "worker_ssh_seed456_result_and_cka_math500_westb0_20260522T180452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed456_result_and_cka_math500_westb0_20260522T180452_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "55e638f27340a59b8348ad0705828b62231026816be8713efb9a191723a1624a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程正常，12G 模型正在从磁盘加载到 CPU 内存（CPU 99%），尚未 transfer 到 GPU。这是正常行为。\n\n## seed456 GSM8K eval 结果\n- 状态: **completed**\n- accuracy: **50.87%** (671/1319)\n- eos_rate: 99.55%\n- stderr: 0.01377\n\n## CKA-only MATH-500 启动\n- PID: **234500** (python 子进程，父进程 234495)\n- 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` (根目录，无 checkpoint 子目录)\n- GPU:0 显存: 3 MiB (模型仍在 CPU 加载中，12G safetensors 读盘需要几分钟)\n\n**注意**: GPU:1 上有另一个正在运行的 eval (PID 220343, `eval_gsm8k grpo_qwen_math_cka_only_20 n500_v2`)，已运行约 3 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed456-result-and-cka-math500-westb0.md"
+}

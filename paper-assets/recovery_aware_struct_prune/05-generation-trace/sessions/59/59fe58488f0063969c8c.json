@@ -1,0 +1,1242 @@
+{
+  "schema_version": "1.0",
+  "id": "59fe58488f0063969c8c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "cron hook eval mbpp sft rasp 20",
+  "task_key": "cron_hook_eval_mbpp_sft_rasp_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_eval_mbpp_sft_rasp_20.jsonl",
+    "occurrence": 1,
+    "bytes": 47664,
+    "sha256": "7d5b2ea169bcaf42bab7db21afacb88be1008fb77f266e0c536c11a13d97b1a7"
+  },
+  "statistics": {
+    "messages": 62,
+    "user_turns": 2,
+    "tool_calls": 30,
+    "roles": {
+      "user": 2,
+      "tool_call": 30,
+      "tool_result": 28,
+      "assistant": 2
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T18:21:35.823741+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval_mbpp_sft_rasp_20\n- project: recovery_aware_struct_prune\n- server: westb-23072\n- log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T18:21:48.031523+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "7"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T18:21:48.032031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T18:21:51.447419+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T18:21:51.898840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T18:21:52.820664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (415,564 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1373
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T18:21:52.821136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T18:21:52.821425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T18:22:02.566645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_humaneval_sft_rasp_20_1p5b_2048\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=909411)\\\"]}, {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=125507)\\\"]}, {\\\"exp_id\\\": \\\"eval_mbpp_grpo_rasp_20\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Skipped (created 24s ago < interval 120s)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 10667
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T18:22:02.617679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T18:21:35Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 258 个实验 — ALLOCATED 1, DONE 226, PREPARING 27, RUNNING 4\\\\n**DONE 分布**: failed 40, killed 17, negative 17, success 152\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-29022:cuda:0, westd-29022:cuda:1, westd-29022:cuda:2, westd-29022:cuda:3\\\\n- **实际运行**: 4 张 — westb-23072:cuda:0(eval_humaneval_sft_rasp_20_1p5b_2048), westd-29022:cuda:2(eval_mbpp_grpo_standard_20), westd-29022:cuda:3(eval_mbpp_sft_cka_only_20), westd-29022:cuda:1(eval_mbpp_sft_standard_20)\\\\n- **空闲（分配了没跑）**: westb-23072:cuda:1\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-23072**:\\\\n  - `/autodl-pub`: 6.5T/14T 可用（已用 54%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\\\n- **westd-29022**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_humaneval_sft_rasp_20_1p5b_2048` | westb-23072 | cuda:0 | 909411 | `—` |\\\\n| `eval_mbpp_grpo_standard_20` | westd-29022 | cuda:2 | 120183 | `…/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20.log` |\\\\n| `eval_mbpp_sft_cka_only_20` | westd-29022 | cuda:3 | 123029 | `/tmp/eval_mbpp_sft_cka_only_20.log` |\\\\n| `eval_mbpp_sft_standard_20` | westd-29022 | cuda:1 | 125507 | `…s/recovery_aware_struct_prune/eval_mbpp_sft_standard_20.log` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `eval_mbpp_sft_rasp_20` [failed] — 2026-05-19T18:21:31 — EXIT_CODE=1 (generic error — check log tail)\\\\n- `eval_mbpp_grpo_cka_only_20` [success] — 2026-05-19T18:17:54 — EXIT_CODE=2 (shell misuse / syntax)\\\\n- `eval_gsm8k_grpo_shortgpt_20` [s\n…[truncated 6745 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 9796
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T18:22:02.668593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:14 UTC | 更新原因: D078 gradient flow mechanism 升级 + 优先级重排 + 实验进展同步\\\\n\\\\n## 核心方向\\\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\\\n\\\\n### 已完成核心数据\\\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed (static evidence).\\\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\\\n- **GSM8K 7B GRPO 完整排名**: ✅ CKA-only 64.37% > RASP 60.88% > Standard 59.44%\\\\n- **HumanEval 7B @2048 完整矩阵**: ✅ CKA-only 20.12% >> Standard 13.41% > RASP 10.37%\\\\n- **Gradient Flow v3 三阶梯** (D078): ✅ CKA-only 2.89x > RASP 1.28x > Standard 1.0x (55-56/56 层显著, 200 samples, Wilcoxon). **Mechanism 从 supplementary 升到 main story**。\\\\n- **MBPP Dense baseline**: ✅ pass@1=53.48% (200/374)\\\\n\\\\n### 正在运行\\\\n| GPU | 实验 | 状态 | 意义 |\\\\n|-----|------|------|------|\\\\n| westb:0 | eval_humaneval_grpo_standard_20_1p5b_2048 | RUNNING | 1.5B cross-scale |\\\\n| westb:1 | eval_gsm8k_grpo_cka_only_20_seed123 | RUNNING | Multi-seed validation |\\\\n| westd:0 | grpo_shortgpt_20 | RUNNING | ShortGPT baseline (审稿人必问) |\\\\n| westd:1 | eval_humaneval_sft_rasp_20_1p5b_2048 | RUNNING | 1.5B HumanEval |\\\\n| westd:2 | eval_mbpp_grpo_standard_20 | RUNNING | MBPP matrix |\\\\n| westd:3 | eval_gsm8k_sft_shortgpt_20 | RUNNING | ShortGPT eval |\\\\n\\\\n### 近期任务（按优先级排序）\\\\n- [ ] P0: seed123 GSM8K 结果 → multi-seed C2 稳健性\\\\n- [ ] P0: Sho\n…[truncated 2960 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 9847
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T18:22:21.915447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nfor e in exps:\n    if e['exp_id'] == 'eval_mbpp_sft_rasp_20':\n        print(json.dumps(e, indent=2))\n        break\n\"",
+              "description": "Extract eval_mbpp_sft_rasp_20 details from registry"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T18:22:22.770249+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 7, in <module>\n    if e['exp_id'] == 'eval_mbpp_sft_rasp_20':\n       ~^^^^^^^^^^\nTypeError: string indices must be integers, not 'str'"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 854
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T18:22:22.770704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T18:22:22.771178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-1/proje…) errored</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T18:22:33.113317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\n# check structure\nif isinstance(result, dict) and 'data' in result:\n    d = result['data']\n    if isinstance(d, dict):\n        print('keys:', list(d.keys())[:5])\n        if 'experiments' in d:\n            exps = d['experiments']\n            print('type:', type(exps))\n            if isinstance(exps, list):\n                print('len:', len(exps))\n                print('first type:', type(exps[0]) if exps else 'empty')\n                print('first 100 chars:', str(exps[0])[:200])\n            elif isinstance(exps, str):\n                print('string, first 200:', exps[:200])\n    elif isinstance(d, str):\n        print('data is string, first 200:', d[:200])\nelse:\n    print('result type:', type(result))\n    print('first 200:', str(result)[:200])\n\" 2>&1 | head -20",
+              "description": "Probe registry JSON structure"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T18:22:33.214906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "keys: ['experiments', 'count', 'total', 'baseline']\ntype: <class 'dict'>"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T18:22:43.011490+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/f4569d34-7af4-4a92-9840-aa29e0fdc757/tool-results/mcp-agent-ml-research-read_registry-1779214912433.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n# it's a dict, keys are exp_ids\nif isinstance(exps, dict):\n    if 'eval_mbpp_sft_rasp_20' in exps:\n        print(json.dumps(exps['eval_mbpp_sft_rasp_20'], indent=2))\n    else:\n        print('not found, keys sample:', list(exps.keys())[:10])\n\"",
+              "description": "Extract eval_mbpp_sft_rasp_20 from registry dict"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T18:22:43.062196+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"status\": \"DONE\",\n  \"retry_count\": 0,\n  \"created_at\": \"2026-05-19T18:18:34.640Z\",\n  \"updated_at\": \"2026-05-19T18:21:31.440Z\",\n  \"hypothesis\": \"MBPP pass@1 eval on SFT RASP 20% model @2048. Dense baseline=53.48% (200/374). RASP SFT GSM8K=60.88% (post-GRPO), HumanEval SFT=10.37%. Tests whether RASP SFT preserves code capability on MBPP. Part of MBPP 3\\u00d72 matrix (3 methods \\u00d7 SFT/GRPO) for C2 capability breadth claim. Expected: between CKA-only SFT and Standard SFT.\",\n  \"server\": \"westb-23072\",\n  \"gpu\": \"cuda:1\",\n  \"account\": \"root\",\n  \"reproduce\": {\n    \"server\": \"westb-23072\",\n    \"gpu\": \"cuda:1\",\n    \"started_at\": \"2026-05-19T18:19:54.269Z\",\n    \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\\\"\",\n    \"code_commit\": \"e6ce5f70bb3b993ba8964f0ea62d2f6001155551\",\n    \"finished_at\": \"2026-05-19T18:21:25.966Z\",\n    \"training_hours\": 0.03\n  },\n  \"spec\": {\n    \"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\\\"\",\n    \"server\": \"westb-23072\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"914022\",\n    \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log\",\n    \"submitted_at\": \"2026-05-19T18:20:54.223Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"wall_clock_seconds\": 37.2,\n    \"gpu_hours\": 0.01\n  },\n  \"pid\": \"914022\",\n  \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log\",\n  \"failure_reason\": \"EXIT_CODE=1 (gener\n…[truncated 273 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T18:22:52.447468+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/on-experiment-failed.skill.md"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T18:22:52.851283+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_b1923931."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "elapsed_ms": 403
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T18:23:04.006776+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "diagnose:eval_mbpp_sft_rasp_20",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "## 任务：诊断实验 eval_mbpp_sft_rasp_20 失败原因\n\n实验在 westb-23072 上运行了仅 37 秒后以 EXIT_CODE=1 退出。\n\n### 你需要做的：\n\n1. **读取日志**：SSH 到 westb-23072，读取日志文件：\n   ```\n   cat ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log\n   ```\n   日志应该很短（37秒的运行），全部读取。\n\n2. **检查命令**：实验命令是：\n   ```\n   bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"\n   ```\n\n3. **检查相关文件**：\n   - 模型路径是否存在：`ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/`\n   - eval_mbpp.py 是否存在：`ls -la /root/recovery_aware_struct_prune/src/eval_mbpp.py`\n   - 输出目录是否存在：`ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/`\n\n4. **对比成功的同类实验**：eval_mbpp_grpo_cka_only_20 刚在 westd-29022 成功完成。如果需要，可以检查 westd-29022 上成功实验的命令和配置作为参考。\n\n5. **产出**：写一份简短诊断报告到 save_project_file，包括：\n   - 失败的具体错误信息（从日志提取）\n   - 根因分析\n   - 修复建议（具体的命令或代码修改）\n\n使用 ssh_read_only 读取所有信息，不要修改任何东西。",
+              "tool_groups": "['ssh', 'knowledge']"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T18:23:07.018968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304 started. Use get_worker_status('worker_diagnose_eval_mbpp_sft_rasp_20_20260519T182304') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3012
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T18:23:30.103805+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'ALLOCATED'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T18:41:37.388920+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出诊断失败原因。同时注意到 westb-23072:cuda:1 因实验失败而空闲，eval_mbpp_grpo_rasp_20 在 westd:0 已分配但待提交。\n\n检查 ALLOCATED 实验状态。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20"
+          },
+          "id": "event-000025"
+        }
+      ],
+      "message_count": 25
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T21:05:32.360325+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程已正常退出，状态已转为 ANALYZING，需要你分析结果并推进到 DONE。\n详情: Process exited cleanly, W&B data available\n\n- exp_id: eval_mbpp_sft_rasp_20\n- project: recovery_aware_struct_prune\n- server: westd-29022\n- log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "source": "cron:hook"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T21:05:42.468421+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T21:05:42.569069+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T21:05:45.631162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T21:05:45.984653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T21:05:46.388089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T21:05:46.388456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T21:05:46.591404+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (173,560 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/11d70637-51f4-46f0-8c70-af45869f822f/tool-results/mcp-agent-ml-research-read_registry-1779224746564.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/11d70637-51f4-46f0-8c70-af45869f822f/tool-results/mcp-agent-ml-research-read_registry-1779224746564.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 960
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T21:06:02.286385+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 3, \\\"results\\\": [{\\\"exp_id\\\": \\\"eval_mbpp_grpo_rasp_20\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=127964)\\\"]}, {\\\"exp_id\\\": \\\"eval_mbpp_sft_cka_only_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval_mbpp_sft_cka_only_20_1p5b)\\\"]}, {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_1p5b\\\", \\\"success\\\": true, \\\"actions\\\": [\\\"Job still running (pid=eval_mbpp_sft_standard_20_1p5b)\\\"]}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 16301
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T21:06:02.286986+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"<!-- AUTO-FACTS-BEGIN (generated 2026-05-19T21:05:31Z; do not edit — regenerated by auto_build_report_facts) -->\\\\n## 📊 当前状态（auto-derived from registry）\\\\n\\\\n**总计**: 264 个实验 — ANALYZING 1, DONE 231, PREPARING 27, RUNNING 5\\\\n**DONE 分布**: failed 42, killed 18, negative 17, success 154\\\\n\\\\n### GPU 占用\\\\n- **分配**: 6 张 — westb-23072:cuda:0, westb-23072:cuda:1, westd-29022:cuda:0, westd-29022:cuda:1, westd-29022:cuda:2, westd-29022:cuda:3\\\\n- **实际运行**: 5 张 — westd-29022:cuda:1(eval_mbpp_grpo_rasp_20), westb-23072:cuda:1(eval_mbpp_sft_cka_only_20_1p5b), westb-23072:0(eval_mbpp_sft_standard_20_1p5b), westd-29022:cuda:0(eval_mbpp_sft_standard_20_v3), westd-29022:cuda:2(eval_mbpp_grpo_standard_20_v4)\\\\n- **空闲（分配了没跑）**: westd-29022:cuda:3\\\\n\\\\n### 💾 磁盘余量\\\\n- **westb-23072**:\\\\n  - `/autodl-pub`: 6.6T/14T 可用（已用 54%）\\\\n  - `/autodl-pub/data`: 18T/20T 可用（已用 9%）\\\\n  - `/usr/bin/nvidia-smi`: 396G/439G 可用（已用 5%）\\\\n- **westd-29022**:\\\\n  - `/init`: 150M/150M 可用（已用 1%）\\\\n  - `/autodl-pub`: 5.3T/7.3T 可用（已用 24%）\\\\n  - `/usr/bin/nvidia-smi`: 817G/879G 可用（已用 3%）\\\\n\\\\n### 🏃 RUNNING\\\\n| exp_id | server | gpu | pid | log |\\\\n|--------|--------|-----|-----|-----|\\\\n| `eval_mbpp_grpo_rasp_20` | westd-29022 | cuda:1 | 127964 | `—` |\\\\n| `eval_mbpp_sft_cka_only_20_1p5b` | westb-23072 | cuda:1 | ? | `—` |\\\\n| `eval_mbpp_sft_standard_20_1p5b` | westb-23072 | 0 | ? | `—` |\\\\n| `eval_mbpp_sft_standard_20_v3` | westd-29022 | cuda:0 | 138870 | `—` |\\\\n| `eval_mbpp_grpo_standard_20_v4` | westd-29022 | cuda:2 | ? | `—` |\\\\n\\\\n### 📌 最近完成 (top 5)\\\\n- `eval_mbpp_grpo_standard_20_v3` [failed] — 2026-05-19T21:01:12 — RuntimeError: Cannot send a request, as the client has been closed. datasets.loa\\\\n- `eval_mbpp_sft_standard_20` [failed] — 2026-05-19T20:28:39 — EXIT_CODE=143 (SIGTERM — graceful kill)\\\\n- `eval_mbpp_grpo_standard_20` [failed] —\n…[truncated 6415 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 15898
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T21:06:02.287399+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-19 17:14 UTC | 更新原因: D078 gradient flow mechanism 升级 + 优先级重排 + 实验进展同步\\\\n\\\\n## 核心方向\\\\nPruning criterion determines post-RLVR recovery capacity AND capability breadth. CKA-only >> importance-based. 详见 paper_framing.md.\\\\n\\\\n## 当前阶段: D075 Full Expansion Push (EMNLP Main ≥ 4.0)\\\\n\\\\n### 已完成核心数据\\\\n- **C2 Recovery Gradient (7B)**: ✅ 4-method fair v5. CKA-only 0.354 >> Random 0.19 >> Standard 0.081 > RASP 0.061\\\\n- **E2 Extended 300步**: ✅ CKA-only 5.5x Standard. Collapse permanent.\\\\n- **E3 CKA Heatmap**: ✅ Mechanism confirmed (static evidence).\\\\n- **1.5B Cross-Scale GSM8K**: ✅ CKA-only 35.48% >> RASP 26.16% > Standard 22.29%\\\\n- **MATH-500 @2048**: ✅ Full 3×2 table. All |GRPO-SFT| < 2pp.\\\\n- **Unstructured GRPO**: ✅ 87.64%. Collapse = structural damage.\\\\n- **GSM8K 7B GRPO 完整排名**: ✅ CKA-only 64.37% > RASP 60.88% > Standard 59.44%\\\\n- **HumanEval 7B @2048 完整矩阵**: ✅ CKA-only 20.12% >> Standard 13.41% > RASP 10.37%\\\\n- **Gradient Flow v3 三阶梯** (D078): ✅ CKA-only 2.89x > RASP 1.28x > Standard 1.0x (55-56/56 层显著, 200 samples, Wilcoxon). **Mechanism 从 supplementary 升到 main story**。\\\\n- **MBPP Dense baseline**: ✅ pass@1=53.48% (200/374)\\\\n\\\\n### 正在运行\\\\n| GPU | 实验 | 状态 | 意义 |\\\\n|-----|------|------|------|\\\\n| westb:0 | eval_humaneval_grpo_standard_20_1p5b_2048 | RUNNING | 1.5B cross-scale |\\\\n| westb:1 | eval_gsm8k_grpo_cka_only_20_seed123 | RUNNING | Multi-seed validation |\\\\n| westd:0 | grpo_shortgpt_20 | RUNNING | ShortGPT baseline (审稿人必问) |\\\\n| westd:1 | eval_humaneval_sft_rasp_20_1p5b_2048 | RUNNING | 1.5B HumanEval |\\\\n| westd:2 | eval_mbpp_grpo_standard_20 | RUNNING | MBPP matrix |\\\\n| westd:3 | eval_gsm8k_sft_shortgpt_20 | RUNNING | ShortGPT eval |\\\\n\\\\n### 近期任务（按优先级排序）\\\\n- [ ] P0: seed123 GSM8K 结果 → multi-seed C2 稳健性\\\\n- [ ] P0: Sho\n…[truncated 2960 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 15898
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T21:06:07.813439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_mbpp_sft_rasp_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T21:06:08.467646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6389}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 654
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T21:06:17.552061+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"eval_mbpp_sft_rasp_20\" /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/11d70637-51f4-46f0-8c70-af45869f822f/tool-results/mcp-agent-ml-research-read_registry-1779224746564.txt | head -20",
+              "description": "Search for eval_mbpp_sft_rasp_20 in registry dump"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T21:06:18.466718+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (175KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-b1923931/11d70637-51f4-46f0-8c70-af45869f822f/tool-results/bb3510g5n.txt\n\nPreview (first 2KB):\n1:{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_sft_rasp_20\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"created_at\\\": \\\"2026-05-19T18:18:34.640Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:05:27.078Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT RASP 20% model @2048. Dense baseline=53.48% (200/374). RASP SFT GSM8K=60.88% (post-GRPO), HumanEval SFT=10.37%. Tests whether RASP SFT preserves code capability on MBPP. Part of MBPP 3×2 matrix (3 methods × SFT/GRPO) for C2 capability breadth claim. Expected: between CKA-only SFT and Standard SFT.\\\", \\\"notes\\\": \\\"Model not found on westb. 7B SFT RASP checkpoint is on westd (sft_rasp_20_westd), not westb. Need to rerun on westd when GPU available.\\\"}, \\\"eval_mbpp_grpo_standard_20_v4\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T21:01:23.058Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:01:44.985Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO Standard 20% model @2048. Dense baseline=53.48% (200/374). 手动 tmux 无 timeout 重跑，加 HF_DATASETS_OFFLINE=1 绕过网络问题。前次 v1 被 timeout 杀 (335/374, ~13.1%), v2 被 SIGHUP 杀 (7/374), v3 因 HF HTTP client closed 立即崩溃。预期 pass@1 ~13.1%。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_grpo_standard_20_v3\\\"}, \\\"eval_mbpp_grpo_standard_20_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"created_at\\\": \\\"2026-05-19T21:00:40.293Z\\\", \\\"updated_at\\\": \\\"2026-05-19T21:01:12.805Z\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_mbpp_sft_standard_20_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T20:56:27.627Z\\\", \\\"updated_at\\\": \\\"2026-05-19T20:57:18.479Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% model @2048. Dense baseline=53.48% (200/374). 前两次被外部 SIGTERM 杀死 (189/374)。手动 tmux 无 timeout wrapper 重跑。预期 pass@1 ~1\n…[truncated 343 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 914
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T21:06:18.672448+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"eval_mbpp_sft_rasp_20\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | head -10",
+              "description": "Search registry.yaml directly for the experiment"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T21:06:18.877709+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9503:  eval_mbpp_sft_rasp_20:\n9522:        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"\n9545:        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"\n9550:      log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log\n9556:    log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 205
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T21:06:22.052758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9503",
+              "limit": "70"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T21:06:22.103529+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9503\t  eval_mbpp_sft_rasp_20:\n9504\t    status: ANALYZING\n9505\t    retry_count: 1\n9506\t    created_at: '2026-05-19T18:18:34.640Z'\n9507\t    updated_at: '2026-05-19T21:05:27.078Z'\n9508\t    hypothesis: 'MBPP pass@1 eval on SFT RASP 20% model @2048. Dense baseline=53.48%\n9509\t      (200/374). RASP SFT GSM8K=60.88% (post-GRPO), HumanEval SFT=10.37%. Tests whether\n9510\t      RASP SFT preserves code capability on MBPP. Part of MBPP 3×2 matrix (3 methods\n9511\t      × SFT/GRPO) for C2 capability breadth claim. Expected: between CKA-only SFT\n9512\t      and Standard SFT.'\n9513\t    server: westd-29022\n9514\t    gpu: cuda:3\n9515\t    account: root\n9516\t    reproduce:\n9517\t      server: westb-23072\n9518\t      gpu: cuda:1\n9519\t      started_at: '2026-05-19T18:19:54.269Z'\n9520\t      command: bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune\n9521\t        && python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd\n9522\t        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\"\n9523\t      code_commit: 39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\n9524\t      finished_at: '2026-05-19T21:05:26.016Z'\n9525\t      training_hours: 2.76\n9526\t    failure_reason: EXIT_CODE=1 (generic error — check log tail)\n9527\t    completed_at: '2026-05-19T18:21:31.440Z'\n9528\t    extra:\n9529\t      hook_events:\n9530\t      - event: on_failed\n9531\t        action: agent\n9532\t        ts: '2026-05-19T18:21:37.020361+00:00'\n9533\t      - event: on_complete\n9534\t        action: agent\n9535\t        ts: '2026-05-19T21:05:32.937237+00:00'\n9536\t      previous_failure:\n9537\t        conclusion: failed\n9538\t        notes: Model not found on westb. 7B SFT RASP checkpoint is on westd (sft_rasp_20_westd),\n9539\t          not westb. Need to rerun on westd when GPU available.\n9540\t    notes: Model not found on westb. 7B SFT RASP checkpoint is on westd (sft_rasp_20_westd),\n9541\t      not westb. Need\n…[truncated 1620 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T21:06:32.597563+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__list_workers",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T21:06:32.648481+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T21:06:50.381740+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "analyze:eval_mbpp_sft_rasp_20",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "## 任务\n分析 eval_mbpp_sft_rasp_20 实验结果（MBPP pass@1 评估，SFT RASP 20% 模型）。\n\n## 服务器信息\n- 服务器: westd-29022\n- 账号: root\n- 环境: conda base (`source /root/miniconda3/bin/activate`)\n\n## 需要读取的文件\n1. **日志文件**: `~/runs/recovery_aware_struct_prune/eval_mbpp_sft_rasp_20.log` — 读取最后 100 行，确认实验是否成功完成\n2. **结果文件**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json` — 读取完整内容，提取 pass@1 指标\n\n## 关键指标\n- pass@1 (正确数 / 总数)\n- n_correct 和 n_total\n- 如果有错误信息，完整摘录\n\n## 对比参考\n- Dense baseline MBPP pass@1 = 53.48% (200/374)\n- CKA-only SFT MBPP pass@1 = 已有结果（需要和它对比）\n- Standard SFT MBPP 正在跑\n\n## 产出\n用 save_project_file 将分析结果追加到 memory.md（如果有非 metrics 性质的发现）。\n用 update_registry 更新实验状态：\n- 如果成功：status=DONE, conclusion=success, metrics（pass@1, n_correct, n_total）\n- 如果失败：status=DONE, conclusion=failed, 记录失败原因\n\n同时读取 eval_mbpp_sft_cka_only_20 的 registry 条目（用 read_registry filters={\"exp_id\": \"eval_mbpp_sft_cka_only_20\"}），获取 CKA-only SFT MBPP 的结果以便对比。\n\n**最终输出**：一段简洁的分析总结，包含：\n1. pass@1 数值\n2. 与 Dense baseline 的对比（保留率）\n3. 与 CKA-only SFT 的对比\n4. 对 C2 capability breadth claim 的意义",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T21:06:50.532655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "status": "running",
+              "limit": "10"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T21:06:53.444244+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650 started. Use get_worker_status('worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 3062
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-19T21:06:53.495002+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_analyze_eval_mbpp_sft_rasp_20_20260519T210650\\\", \\\"task_type\\\": \\\"analyze:eval_mbpp_sft_rasp_20\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-19T21:06:51.119108+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 1}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 2962
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-19T21:07:17.946432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'PREPARING'}",
+              "fields": "['status', 'hypothesis', 'server', 'gpu']"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-19T21:07:18.599175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_mbpp_grpo_standard_20_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"Retry of eval_mbpp_grpo_standard_20 which timed out at 335/374 (89.6%). Same setup: Standard GRPO 20% MBPP pass@1 @2048. Dense baseline=53.48%. Partial result: pass@1≈0.1313 at 320 samples. Increased timeout_hours=6 to ensure completion.\\\"}, \\\"grpo_unstructured_20\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"grpo_standard_1p5b_100steps\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"e2_extended_grpo_resume\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"prune_cka_only_25\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"math500_dense_unpruned\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"E2_grpo_standard_7b_extended_300\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"math500_sft_cka_only_20\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"math500_standard_grpo_fair\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_math500_sft_rasp_25\\\": {\\\"hypothesis\\\": \\\"MATH-500 accuracy for RASP 25% post-SFT. Extends MATH-500 cross-benchmark data to 25% sparsity. If MATH-500 recovery rate at 25% &lt; 20% (RASP 20% SFT = 24.2%), confirms sparsity gradient on harder benchmark. Parent: sft_rasp_25.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_humaneval_sft_standard_20_2048\\\": {\\\"hypothesis\\\": \\\"HumanEval pass@1 for SFT Standard 20% with max_new_tokens=2048. Completes 5-way HumanEval@2048 matrix. Compares SFT Standard vs SFT RASP (10.37%) code generation after recovery. Queued for westd cuda:2 after GRPO Standard 2048 completes.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"eval_gradient_postsft_v2\\\": {\\\"status\\\": \\\"PREPARING\\\"}, \\\"scoring_ablation_batch\\\": {\\\"hypothesis\\\": \\\"Scoring ablation: CKA-aware scoring (RASP) preserves more post-prune accuracy than magnitude-only, gradient-only, random, or CKA-only scoring at 20% sparsity. Isolates CKA's contribution to the composite RASP score S(h)=I(h)×(1-F(h))^α.\\\", \\\"status\\\": \\\"PREPARING\\\"}, \\\"prune_unstructured_20\\\": {\\\"hypothesis\\\": \\\"Global magnitude unstructured pruning at 20% sparsity. Structured pruning (RASP/Standar\n…[truncated 3842 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 652
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-19T21:07:25.275594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A5 \"eval_mbpp_grpo_cka_only\\|eval_mbpp_sft_cka_only_20:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | head -30",
+              "description": "Search for MBPP CKA-only experiments in registry"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-19T21:07:25.376764+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "  eval_mbpp_grpo_cka_only_20:\n    status: DONE\n    retry_count: 1\n    created_at: '2026-05-19T14:41:07.213Z'\n    updated_at: '2026-05-19T18:17:54.178Z'\n    hypothesis: MBPP pass@1 eval on GRPO CKA-only 20% model @2048. Dense baseline=53.48%\n--\n        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_cka_only_20.json\"\n      code_commit: e6ce5f70bb3b993ba8964f0ea62d2f6001155551\n      finished_at: '2026-05-19T18:08:15.493Z'\n      training_hours: 0.03\n    spec:\n      command: bash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune\n--\n        --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_cka_only_20.json\"\n      server: westb-23072\n      gpu:\n      - cuda:1\n      pid: unknown\n      log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log\n      submitted_at: '2026-05-19T18:08:02.259Z'\n      submitted_via: submit_training_job\n      backend: tmux\n      account: root\n      wall_clock_seconds: 17.3\n--\n    log_path: ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log\n    failure_reason: EXIT_CODE=2 (shell misuse / syntax)\n    conclusion: success\n    metrics:"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 101
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-19T21:07:29.263496+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A30 \"eval_mbpp_grpo_cka_only_20:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | grep -A5 \"metrics:\"",
+              "description": "Get MBPP GRPO CKA-only metrics"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-19T21:07:29.715423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "        metrics:\n          pass_at_1: 0.1417\n          n_correct: 53\n          n_total: 374\n          stderr: 0.018\n          note: Result extracted from log; JSON save failed due to disk full"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 451
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-19T21:07:29.765958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A30 \"eval_mbpp_sft_cka_only_20:\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | grep -A5 \"metrics:\"",
+              "description": "Get MBPP SFT CKA-only metrics"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-19T21:07:29.816743+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    metrics:\n      pass_at_1: 0.1283\n      stderr: 0.0173\n      n_correct: 48\n      n_total: 374\n      dense_baseline_pass_at_1: 0.5348"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "Bash",
+            "elapsed_ms": 50
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-19T21:08:03.757449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_experiment_plan_with_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-19T21:08:03.808131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-19T21:08:06.637207+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_experiment_plan_with_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20",
+            "tool": "mcp__agent-ml-research__read_experiment_plan_with_status",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-19T21:25:33.715799+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派发。westd:cuda:3 空闲，需要确定下一个实验。读 experiment_plan 确认优先级。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_mbpp_sft_rasp_20"
+          },
+          "id": "event-000062"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-mbpp-sft-rasp-20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "310101229379e6398f0f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check alpha ablation status",
+  "task_key": "worker_check_alpha_ablation_status_20260516T205940",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_alpha_ablation_status_20260516T205940_result.json",
+    "occurrence": 1,
+    "bytes": 1565,
+    "sha256": "a566859bf006782f18c42e422659f57632afaeea05e24245edd804ba6be763f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Alpha Ablation Phase B Status\n\n### 1. SFT Checkpoint Status\n\n| α | SFT | Eval | Accuracy |\n|---|-----|------|----------|\n| 0.0 | ✅ done (03:56) | ✅ done (04:07) | **70.0%** |\n| 0.3 | ✅ done (04:39) | ✅ done (04:49) | **73.0%** |\n| 0.5 | 🔄 training on cuda:3 | pending | — |\n| 0.7 | pending | pending | — |\n| 1.0 | pending | pending | — |\n| 2.0 | ✅ done (05:00) | 🔄 running on cuda:0 | — |\n\n### 2. Currently Running\n\n- **cuda:0**: Evaluating α=2.0 (pid 46908, started 05:00). After this → SFT α=1.0 → eval α=1.0\n- **cuda:3**: Training α=0.5 SFT — **step 624/1870 (33%)**, ~1.05 it/s, ~20 min remaining. After this → eval 0.5 → SFT 0.7 → eval 0.7 (then redundantly redoes 1.0, 2.0)\n\n### 3. Eval Results So Far\n\n- **α=0.0**: 70.0% (140/200), stderr=0.032\n- **α=0.3**: 73.0% (146/200), stderr=0.031\n\nα=0.3 recovers **3 percentage points** more than standard pruning (α=0.0). Good early signal.\n\n### 4. cuda:2 Status\n\n**Not idle** — 2 processes running (pids 33921, 34032) using ~34 GB total.\n\n### 5. Estimated Completion\n\n- **cuda:0 finishes all its work** (eval 2.0 + SFT/eval 1.0): ~05:50 UTC\n- **cuda:3 finishes unique work** (SFT/eval 0.5 + SFT/eval 0.7): ~06:10 UTC\n- **All 6 alphas with eval results**: ~**06:10 UTC** (~1 hour from now)\n\nNote: cuda:3's loop will redundantly redo α=1.0 and α=2.0 after finishing α=0.7, running until ~07:30. Those are wasted cycles since cuda:0 will have already completed them. Could kill the loop after α=0.7 to free cuda:3."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-alpha-ablation-status.md"
+}

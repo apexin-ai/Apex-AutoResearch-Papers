@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afc555bf95283634dd23",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check unstructured checkpoint",
+  "task_key": "worker_ssh_check_unstructured_checkpoint_20260520T183210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_unstructured_checkpoint_20260520T183210_result.json",
+    "occurrence": 1,
+    "bytes": 900,
+    "sha256": "3ff748674a5ad4fbfc5c4a2fe949ff52aa9200d00724802bd618a51d446f2c45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**不存在 Unstructured 20% SFT checkpoint。**\n\nwestb-23072 上 `/root/autodl-tmp/recovery_aware_struct_prune/` 下没有任何包含 `unstruct` 的目录。`random` 相关只有一个 `grpo_random_20`（GRPO，非 SFT）。\n\n所有 `sft_*` 目录：\n\n| 目录 | 说明 |\n|------|------|\n| `sft_standard_25` | Standard 25% |\n| `sft_rasp_rlvr_20` | RASP+RLVR 20% |\n| `sft_cka_only_20` | CKA-only 20% |\n| `sft_standard_20_1p5b` | Standard 20% (1.5B) |\n| `sft_cka_only_20_1p5b` | CKA-only 20% (1.5B) |\n| `sft_rasp_20_1p5b` | RASP 20% (1.5B) |\n| `sft_qwen_math_cka_only_20` | Qwen-Math CKA-only 20% |\n| `sft_standard_20_qwen_math` | Qwen-Math Standard 20% |\n| `sft_qwen_math_cka_only_20_final` | Qwen-Math CKA-only 20% (final) |\n| `sft_standard_20_qwen_math_final` | Qwen-Math Standard 20% (final) |\n\n如需 Unstructured 20% baseline，需要新建剪枝+SFT 流程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-unstructured-checkpoint.md"
+}

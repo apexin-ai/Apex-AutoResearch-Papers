@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65953534175859744416",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval post grpo qwen math batch",
+  "task_key": "worker_eval_post_grpo_qwen_math_batch_20260516T155847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_post_grpo_qwen_math_batch_20260516T155847_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "02c37a98139858d2e0fb91855910795d30e8460ea28a4edec4ce9fcfc5873537"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部正常。GPU 2/3 正在加载模型（IO 被前两个占满，稍后就会上显存）。\n\n**汇总**：\n\n| exp_id | GPU | 状态 | tmux session |\n|--------|-----|------|-------------|\n| eval_grpo_rasp_25_qwen_math | cuda:0 | RUNNING, 54.7GB VRAM | ✓ |\n| eval_grpo_standard_25_qwen_math | cuda:1 | RUNNING, 48.7GB VRAM | ✓ |\n| eval_grpo_rasp_20_qwen_math | cuda:2 | RUNNING, 加载中 | ✓ |\n| eval_grpo_standard_20_qwen_math | cuda:3 | RUNNING, 加载中 | ✓ |\n\n- 旧进程 21403/21483 已 kill\n- 4 个模型路径均使用根目录（有 `model.safetensors`）\n- Registry 已全部推进到 RUNNING\n- 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_*.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-post-grpo-qwen-math-batch.md"
+}

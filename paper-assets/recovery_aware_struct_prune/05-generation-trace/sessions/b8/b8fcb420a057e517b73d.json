@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8fcb420a057e517b73d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops final recompile and push",
+  "task_key": "worker_ops_final_recompile_and_push_20260524T152606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_recompile_and_push_20260524T152606_result.json",
+    "occurrence": 1,
+    "bytes": 40,
+    "sha256": "8a6d118c0e1f8b88423f08ca9f533273ff88a38bc8aab2e9e92adea523f2be81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "临时 clone 已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-recompile-and-push.md"
+}

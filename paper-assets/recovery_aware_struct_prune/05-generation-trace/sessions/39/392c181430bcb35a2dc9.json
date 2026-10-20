@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "392c181430bcb35a2dc9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh gpu status check all",
+  "task_key": "worker_ssh_gpu_status_check_all_20260521T023951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_status_check_all_20260521T023951_result.json",
+    "occurrence": 1,
+    "bytes": 969,
+    "sha256": "3730a03a3d5213a9a4922ebcdf435170b4bbc7da08ab5fed7b6847db61021400"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### westd-29022（4× RTX PRO 6000, 96GB each）\n- **GPU**: 全部空闲，0% 利用率，0MB 显存占用\n- **SFT CKA-only 25%**: **已完成** ✓\n  - 训练 2 epoch，总用时 1644s（~27min）\n  - 最终 loss=0.6508，mean_token_accuracy=0.8285\n  - 模型已保存，日志最后一行：`SFT recovery complete.`\n  - 进程 307651 已退出\n\n### westb-23072（2× RTX PRO 6000, 96GB each）\n- **GPU 0**: 100% 利用率，30853MiB 占用（PID 59509）\n- **GPU 1**: 90% 利用率，12315MiB 占用（PID 59668）\n- **MATH-500 eval**（PID 59502）: **运行中**，已跑 34min，进度 7/500（1.4%）。每题 ~227s，极慢，预计还需 ~31h\n- **HumanEval eval**（PID 59663）: **运行中**，已跑 33min，进度 158/164（96%）。每题 ~11.5s，预计 ~1min 内完成\n\n### 关注点\nMATH-500 速度异常慢（227s/题 vs HumanEval 11s/题），可能是生成长度没设上限或 batch_size=1 问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-status-check-all.md"
+}

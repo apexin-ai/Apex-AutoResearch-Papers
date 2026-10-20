@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b319b3120ad427c323ef",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch unpruned grpo when ready",
+  "task_key": "worker_ops_launch-unpruned-grpo-when-ready_20260515T182952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-unpruned-grpo-when-ready_20260515T182952_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "5b8dc16ff0f3f9f32142f228263d435209bbab37f0807756b3b7b9b9b0486821"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **下载**：1.4G/8.0G (18%)，~10MB/s，ETA 约 11 分钟\n- **cuda:0**：空闲，等下载完启动 unpruned baseline\n- **cuda:1**：grpo_stage2_standard_20_v8 运行中\n\n3 分钟后自动检查下一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-unpruned-grpo-when-ready.md"
+}

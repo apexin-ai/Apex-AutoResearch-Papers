@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e22eea007e20124c3f3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research literature map init",
+  "task_key": "worker_research_literature-map-init_20260514T061028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature-map-init_20260514T061028_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "357e4a29a2a262c3dde5b1ca1454da005d84d284e492078a27acfe66ebf9f5a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`literature_map.yaml` 已创建，共 19 篇论文，格式验证通过。\n\n分布：\n- **direct-competitor**: 6 篇（Self-Healing, RESP, GRASPrune, OPSD, Doing More With Less, GPrune-LLM）\n- **method-component**: 6 篇（MPruner, Lachance thesis, Bonsai, PAT, RAC, PASER）\n- **background**: 7 篇（RL Squeezes, From LLMs to LRMs, P² Law, MIPP, Redundancy-Aware CNN, Self-Distilled RLVR, DieT）\n\n搜索补充了 3 篇 2026 新论文：GPrune-LLM (2603.13418)、Self-Distilled RLVR (2604.03128)、DieT (2603.23985)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-map-init.md"
+}

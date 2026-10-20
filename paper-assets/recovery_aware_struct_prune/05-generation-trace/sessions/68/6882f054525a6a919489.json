@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6882f054525a6a919489",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh prepare next eval batch",
+  "task_key": "worker_ssh_prepare_next_eval_batch_20260523T205105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_prepare_next_eval_batch_20260523T205105_result.json",
+    "occurrence": 1,
+    "bytes": 4633,
+    "sha256": "b691ffe760e088a6e152d53f41c98a43e509202233781330d02cafb97682affc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息齐备。汇总如下：\n\n---\n\n## Checkpoint 状态表\n\n| # | Checkpoint | 服务器 | 状态 | 有 model.safetensors |\n|---|-----------|--------|------|---------------------|\n| 1 | `sft_rasp_alpha0p5_20` | westd | ✅ Found | ✅ |\n| 2 | `sft_rasp_alpha2p0_20` | westd | ✅ Found | ✅ |\n| 3 | `sft_alpha4_20` | westd | ✅ Found | ✅ |\n| 4 | `grpo_cka_only_25` | westd | ✅ Found | ✅ |\n| 5 | `sft_cka_only_25` | westd | ✅ Found | ✅ |\n| 6 | `grpo_rasp_alpha3p0_20_v2` | westd | ⚠️ 无模型文件 | ❌ 只有 README+completions |\n| 7 | `grpo_random_20` | westd | ⚠️ 无模型文件 | ❌ 只有 README+completions+config |\n| 7' | `grpo_random_20_seed123_v2` | westd | ✅ Found | ✅ |\n| 7'' | `grpo_random_20_retrain` | westb | ✅ Found | ✅ |\n\n---\n\n## 可立即启动的 Eval 命令（westd-32935）\n\n**P0 — dose-response SFT：**\n\n```bash\n# 1. sft_rasp_alpha0p5_20\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha0p5_20_fixed.json --seed 42 --dtype bfloat16\"\n\n# 2. sft_rasp_alpha2p0_20\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20_fixed.json --seed 42 --dtype bfloat16\"\n\n# 3. sft_alpha4_20\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_alpha4_20_fixed.json --seed 42 --dtype bfloat16\"\n```\n\n**P1 — 25% sparsity：**\n\n```bash\n# 4. grpo_cka_only_25\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_cka_only_25_fixed.json --seed 42 --dtype bfloat16\"\n\n# 5. sft_cka_only_25\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_25_fixed.json --seed 42 --dtype bfloat16\"\n```\n\n**P1 — grpo_random 替代：**\n\n```bash\n# 7'. grpo_random_20_seed123_v2 (westd)\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123_v2 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_seed123_v2_fixed.json --seed 42 --dtype bfloat16\"\n```\n\n**westb-23072 单独跑：**\n\n```bash\n# 7''. grpo_random_20_retrain (westb)\nbash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_retrain --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_retrain_fixed.json --seed 42 --dtype bfloat16\"\n```\n\n---\n\n## 缺失/需重训\n\n| Checkpoint | 问题 |\n|-----------|------|\n| `grpo_rasp_alpha3p0_20` | v2 目录存在但无模型权重（只有 README+completions），**需重训** |\n| `grpo_random_20` | 原始目录无模型权重。可用替代：`grpo_random_20_seed123_v2`（westd）或 `grpo_random_20_retrain`（westb），二选一即可 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-prepare-next-eval-batch.md"
+}

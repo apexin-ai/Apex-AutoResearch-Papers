@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9add78cf8223680f6157",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5.md",
+    "occurrence": 1,
+    "bytes": 5003,
+    "sha256": "939d70b6cf25b47c1b3d5c462b37ec67e1effe85d0d350e8cf10d3272ab4b582"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: idle_timeout\nupdated: '2026-05-14T23:22:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 cuda:0 和 cuda:1（westb-23072），禁止使用其他 GPU\n- grpo_rasp_20_4096 是 **核心 MVP 实验**（PID 244606, cuda:1）——不得 kill，必须等自然完成\n- submit_training_job 命令必须自带 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（服务器用 conda 环境，无 .venv）\n- DeepSeek-R1-Distill-Qwen-7B 推理链需 max_completion_length≥4096（1024 截断是 D009 教训，产出伪阴性）\n- 模型/数据/checkpoint 必须放 /root/autodl-tmp/（根分区空间有限）\n- GQA group 粒度硬约束：attention pruning 必须按 KV group（1 KV head + 7 Q heads）为单位，不能按单个 Q head\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072，2× RTX PRO 6000 Blackwell 94GB\n- 工作目录：/root/recovery_aware_struct_prune\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 基础模型：/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\n- RASP 剪枝模型：/root/autodl-tmp/pruned_rasp_20（29% GSM8K, 20% sparsity）\n- Standard 剪枝模型：/root/autodl-tmp/pruned_standard_20（1% GSM8K, 20% sparsity）\n- 活跃进程：grpo_rasp_20_4096（PID 244606, tmux session, cuda:1）\n- 活跃 Worker：worker_ops_rasp-clipped-ratio-monitor（running，监控 clipped_ratio）\n- GPU0：空闲（baseline full eval 已完成/取消）\n- wandb 已配置（之前 runs: ou02s4k4, sz9264sx）\n\n### 3. 📊 当前状态\ngrpo_rasp_20_4096 正在 cuda:1 上跑 GRPO recovery（500 步，约 7h 预估）。这是 MVP 的决定性实验——RASP 剪枝后（29% GSM8K）能否通过 RLVR 恢复推理能力。负对照 grpo_standard_20_4096 已在 10 步时 kill（D011：零梯度/零 reward，1% accuracy 的模型完全不可恢复）。\n\nRegistry 摘要：\n- **grpo_rasp_20_4096** — RUNNING，core MVP，等待完成\n- **grpo_standard_20_4096** — DONE(negative)，10 步 killed，负对照证据已确认\n- **grpo_*_20_fast** — DONE(negative)，D009 截断伪阴性，已被 D010 supersede\n- **mvp_rasp_pipeline_v4** — PREPARING（umbrella 实验）\n- 更早的 v1/v2/v3 — DONE(failed/negative)，迭代修 bug 历史\n\n等待中：\n- worker_ops_rasp-clipped-ratio-monitor 在监控 RASP GRPO 的 clipped_ratio（关键指标：如果 <0.9 说明模型开始生成 EOS，有学习信号）\n- grpo_rasp_20_4096 完成后 cron 会自动回调 → 触发 on-experiment-done 流程\n- GPU0 空闲，可以并行铺任务（Phase 2 代码准备、GRASPrune baseline 等）\n\n### 4. 📋 待办（条件触发式）\n- grpo_rasp_20_4096 完成 + conclusion=success（reward 明显上升）→ 场景 A/B：full GSM8K 1319 eval（所有模型：baseline/rasp_20/standard_20/recovered_rasp_20_4096），然后宣布 MVP PASS → 进 Phase 2\n- grpo_rasp_20_4096 完成 + conclusion=negative（reward 无提升）→ 场景 C：追加 3 epochs + lr=5e-6，或 SFT warmup → GRPO；同时产出 Framing 调整提案\n- GPU0 当前空闲 → 立即可铺：GRASPrune clone+环境搭建（Phase 2 P2 准备）、或 multi-seed 重复实验代码准备\n- clipped_ratio monitor 报 <0.5 → 学习信号强，可预判 success，提前准备 eval pipeline\n- EMNLP ARR May 25 还剩 11 天 → MVP 必须 2 天内出结论，Phase 2 核心实验 5 天内完成\n\n### 5. 🎯 战略上下文\n- **核心发现**：20% sparsity 下 RASP 29% vs Standard 1%（matched params=395,232，p<0.0001）。差异纯粹来自分布策略（Scenario B），不是\"RASP 剪得少\"\n- **MVP claim（D008）**：RASP pruning preserves reasoning ability better than standard pruning at matched sparsity（model-level significance）。Post-prune 已验证，post-recovery 等 grpo_rasp_20_4096\n- **决策链**：D003(审计剪枝)→D004(fix min_keep_mlp)→D005(降至20%)→D006(Scenario B确认)→D007(kill 270h runs)→D008(MVP claim scope)→D009(截断诊断)→D010(4096重跑)→D011(kill standard early)→D012(start rasp on GPU1)\n- **易踩的坑**：\n  - 不要把 D009 的 negative 当真——那是截断伪阴性，hypothesis 未被测试\n  - Standard GRPO negative 不需要 Framing 提案——它是预期的负对照，不是 RASP 失败\n  - GRASPrune（ACL 2026）和 GraSP（ICLR 2020）是完全不同的工作，不要混淆\n  - 35% sparsity 在 distilled 模型上不可行（0-1%），20% 是操作点\n  - Distilled 模型冗余少，对剪枝更敏感——这本身可以作为 paper 的一个 discussion point\n- **无直接竞品**：没有论文同时组合 CKA + structured pruning + RLVR recovery。最近相关：FANG（function-aware grouping, 无 recovery）、FuncNet（ICA 分解, 无 RLVR）、RestoreLCC（activation compensation, 无 CKA selection）\n- **Phase 2 骨架已就绪**：P1 multi-seed → P2 GRASPrune baseline → P3 RLVR vs SFT → P4 scoring ablation → P5 多剪枝率 → P6 Bonsai → P7 扩展 eval。GRASPrune 调研报告在 memory.md，集成方案已明确\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-2.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "409f6c77e4e45a85ecdc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix 30pct gpu eval",
+  "task_key": "worker_fix_30pct_gpu_eval_20260520T044416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_30pct_gpu_eval_20260520T044416.log",
+    "occurrence": 1,
+    "bytes": 563632,
+    "sha256": "c5589312d10ee427bb15dbce48f332206bbd022d5d5f2c358476a5f46e022d52"
+  },
+  "statistics": {
+    "messages": 227,
+    "user_turns": 0,
+    "tool_calls": 80,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 63,
+      "tool_call": 80,
+      "tool_result": 80,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 227,
+      "chunks": [
+        {
+          "path": "409f6c77e4e45a85ecdc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "409f6c77e4e45a85ecdc-part-0002.json",
+          "message_count": 47
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-30pct-gpu-eval.md"
+}

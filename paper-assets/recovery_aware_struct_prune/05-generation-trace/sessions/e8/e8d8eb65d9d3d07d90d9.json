@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8d8eb65d9d3d07d90d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest standard 1p5b and launch seed123",
+  "task_key": "worker_ops_harvest_standard_1p5b_and_launch_seed123_20260519T033333",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_standard_1p5b_and_launch_seed123_20260519T033333_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "ad4f08658d0cb465c9aafe98632df5a7c0ad07422565d0cb87b8b4b15fd52147"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据集准备中，进程活跃（CPU 731%），GPU 已占用 12.5 GB。这对 7B 模型的 GRPO 初始化是正常的。\n\n## 汇总\n\n**任务 A — eval_gsm8k_sft_standard_20_1p5b（已完成）:**\n| 指标 | 值 |\n|---|---|\n| Accuracy | **22.90%** |\n| n_correct / n_total | 302 / 1319 |\n| EOS rate | 90.4% |\n| Avg response length | 516.7 tokens |\n\n**任务 B — grpo_cka_only_20_seed123（已启动）:**\n- tmux session: `grpo_cka_only_20_seed123`\n- GPU: cuda:1, 已占 12,497 MiB\n- 状态: 模型加载完成，正在准备 GSM8K 训练数据集\n- 日志: `/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_cka_only_20_seed123.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-standard-1p5b-and-launch-seed123.md"
+}

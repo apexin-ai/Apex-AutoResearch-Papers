@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d9fdea104fc64570465",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh cka only 25 pruning and sft",
+  "task_key": "worker_ssh_cka_only_25_pruning_and_sft_20260521T014335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cka_only_25_pruning_and_sft_20260521T014335_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "8cf92c6ae9a61085615dc428219538dd9f1314e8589435534eb9ee43c1541922"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pruning 结果：**\n- Mode: cka_only, sparsity 25%（actual 23.67%）\n- MLP groups pruned: 248/784, Attn groups pruned: 0/112\n- 参数量: 5.81B（原 7.62B）\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_25/`\n- 文件: config.json, generation_config.json, model.safetensors (11.63GB), tokenizer.json, tokenizer_config.json\n\n**SFT 训练状态：**\n- PID: 307651, GPU: cuda:1 (25.9 GB VRAM)\n- 1870 steps (7473 samples × 2 epochs / effective_batch 8), ~1.1 it/s\n- 预计耗时 ~28 分钟\n- lr=2e-5, batch_size=1, grad_accum=8, max_seq_length=2048\n- Registry: `sft_cka_only_25` → RUNNING\n- 日志: `~/runs/recovery_aware_struct_prune/sft_cka_only_25.log`\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_25/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cka-only-25-pruning-and-sft.md"
+}

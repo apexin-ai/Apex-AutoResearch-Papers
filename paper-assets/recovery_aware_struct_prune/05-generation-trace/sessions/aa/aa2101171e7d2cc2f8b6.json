@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aa2101171e7d2cc2f8b6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops kill stale downloads",
+  "task_key": "worker_ops_kill_stale_downloads_20260518T220525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_stale_downloads_20260518T220525_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "897e5012e932fbecbb27f88fa0ac582440446e0e6b54f005f2001ca512d65d85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n- **下载进程：无。** westd-29022 上没有任何模型下载进程（deepseek/huggingface/snapshot 等）。可能已经自行结束或被之前 kill 过了。\n- **当前运行的进程**都是本项目的 `eval_math500.py` 评估任务（3 个，分别在 cuda:1/2/3 上），属正常工作负载。\n- **HuggingFace 缓存：308MB**，内容仅为评估数据集（MATH-500、gsm8k、humaneval），没有未完成的模型下载文件，无需清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-stale-downloads.md"
+}

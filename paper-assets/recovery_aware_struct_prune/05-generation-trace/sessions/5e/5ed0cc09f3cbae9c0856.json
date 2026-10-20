@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5ed0cc09f3cbae9c0856",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check grpo seed456 exit",
+  "task_key": "worker_check_grpo_seed456_exit_20260520T132832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grpo_seed456_exit_20260520T132832_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "376ee7032b76abcb5664e2c98e3e8cd8b0b632031ca6faf279320c63da89a053"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`grpo_cka_only_20_seed456` registry 已更新为 DONE/success，无活跃 cron。\n\n**结果摘要：**\n- 100/100 steps，21.8min，无错误\n- final loss: 0.0999, avg train loss: 0.0881\n- final reward: 0.2925, kl: 0.0017\n- checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_seed456/model.safetensors` (12.3GB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grpo-seed456-exit.md"
+}

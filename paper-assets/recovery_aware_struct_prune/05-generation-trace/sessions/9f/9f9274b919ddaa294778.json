@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f9274b919ddaa294778",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval mbpp grpo cka only 7b",
+  "task_key": "worker_eval_mbpp_grpo_cka_only_7b_20260519T143914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mbpp_grpo_cka_only_7b_20260519T143914_result.json",
+    "occurrence": 1,
+    "bytes": 491,
+    "sha256": "b683964553bda1709a6a0e258e05df4a3d218ba90699e9fb9f2fda5b2d788923"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册完成。\n\n**汇总：**\n- **exp_id**: `eval_mbpp_grpo_cka_only_20`\n- **服务器**: westd-29022, cuda:1\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20`\n- **PID**: 113408, tmux session: `eval_mbpp_grpo_cka_only_20`\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_cka_only_20.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_grpo_cka_only_20.json`\n- **状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mbpp-grpo-cka-only-7b.md"
+}

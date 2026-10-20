@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5af90e51e0904bc29e77",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval math500 sft cka only 20",
+  "task_key": "worker_eval_math500_sft_cka_only_20_20260517T231846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_math500_sft_cka_only_20_20260517T231846_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "55fd5927fb91c171431b083b213849f2cf2b727d1abec6b6754ba00ecf67d66b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n## 总结\n\n| 项目 | 状态 |\n|------|------|\n| eval_math500_sft_cka_only_20 | 已提交，PID 65395，tmux session `eval_math500_sft_cka_only_20` |\n| Registry | RUNNING |\n| grpo_unpruned_v2 | **已在 westd-11672** `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/` (~15GB) |\n\n**⚠️ GPU 冲突警告**：cuda:2 上已有 `eval_math500_grpo_unpruned` (PID 64472, 07:09启动) 在运行。新任务与其共享 cuda:2，高概率 OOM。建议 kill 其中一个，或将新任务迁移到其他 GPU（但当前 4 张 GPU 全满）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-math500-sft-cka-only-20.md"
+}

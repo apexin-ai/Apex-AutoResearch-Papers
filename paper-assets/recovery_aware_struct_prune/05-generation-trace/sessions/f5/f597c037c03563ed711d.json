@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f597c037c03563ed711d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "pipeline alpha ablation phaseB parallel",
+  "task_key": "worker_pipeline_alpha_ablation_phaseB_parallel_20260516T200148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_alpha_ablation_phaseB_parallel_20260516T200148_result.json",
+    "occurrence": 1,
+    "bytes": 145,
+    "sha256": "f590352387de39cf3706f5e930079f2c80125f4ef982281b25925e3be565efcb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待中。cuda:0 上的 eval 大约还需 2-3 分钟完成，之后我会立即开始在 cuda:0 上跑 alpha=2.0 的 SFT+eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-alpha-ablation-phaseb-parallel.md"
+}

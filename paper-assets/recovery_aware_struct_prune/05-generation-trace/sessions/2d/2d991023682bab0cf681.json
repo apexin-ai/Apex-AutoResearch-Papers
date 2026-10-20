@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d991023682bab0cf681",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval sft standard 20 1p5b 2048",
+  "task_key": "worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_sft_standard_20_1p5b_2048_20260519T135322_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "276e632400be0ea51eda6eff99d714e61bb39c240b0f54a98520f2a13570a5be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## Metrics 摘要\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | 0.0061 (0.61%) |\n| **n_correct** | 1 |\n| **n_total** | 164 |\n| **stderr** | ±0.0061 |\n| **唯一通过** | HumanEval/30 |\n| **运行时间** | ~1h23m |\n| **退出码** | 0 (正常完成) |\n\nStandard SFT 1.5B 在 HumanEval 上 1/164，与 CKA-only SFT (也是 1/164) 持平。符合预期——1.5B 剪枝模型在 code generation 上本身能力极弱，两种 SFT 方法无显著差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-sft-standard-20-1p5b-2048.md"
+}

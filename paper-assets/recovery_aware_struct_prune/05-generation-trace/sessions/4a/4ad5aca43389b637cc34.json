@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ad5aca43389b637cc34",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fill cuda2 math500 eval",
+  "task_key": "worker_ops_fill_cuda2_math500_eval_20260517T230830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fill_cuda2_math500_eval_20260517T230830_result.json",
+    "occurrence": 1,
+    "bytes": 246,
+    "sha256": "42a12038260a64ad499966a49396d78356cb4aa1d24a5e6de5a84c28ae773651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **exp_id**: `eval_math500_grpo_unpruned`\n- **模型**: `grpo_unpruned_v2` (unpruned GRPO step-100)\n- **GPU**: westd-11672 cuda:2\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_math500_grpo_unpruned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fill-cuda2-math500-eval.md"
+}

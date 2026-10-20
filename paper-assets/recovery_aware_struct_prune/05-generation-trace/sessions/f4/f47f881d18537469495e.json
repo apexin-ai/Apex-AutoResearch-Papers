@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f47f881d18537469495e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo standard 20",
+  "task_key": "worker_diagnose_eval_math500_grpo_standard_20_20260518T031704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_standard_20_20260518T031704_result.json",
+    "occurrence": 1,
+    "bytes": 860,
+    "sha256": "c58dc557e7cb0294e39d8a34101bbce00fe20aa58e8dd870c8276a4a7cbb0520"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断结果：\n\n**进程正常运行，无需 kill。**\n\n- **状态**：PID 14556 在 cuda:1 上活跃（GPU 98%, 34.5GB 显存, 1081min CPU 时间）\n- **当前进度**：**409/500**（81.8%），最新日志时间约 17h47m（进程运行时间内）\n- **中间准确率**：400 题时 Acc = **0.2525**（25.25%）\n- **平均速度**：约 2.6 min/sample（波动范围 ~1-5 min/sample）\n- **预估剩余**：91 题 × ~2.6 min ≈ **4 小时**左右完成\n- **日志位置**：`/root/autodl-tmp/recovery_aware_struct_prune/eval_math500_grpo_standard_20.log`（非标准位置，不在 `/root/runs/` 下）\n- **tmux session**：进程不在以 `eval_math500_grpo_standard_20` 命名的 tmux session 中（可能直接在后台启动或 session 名不同）\n\n结论：让它继续跑，预计再约 4 小时完成全部 500 题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-standard-20.md"
+}

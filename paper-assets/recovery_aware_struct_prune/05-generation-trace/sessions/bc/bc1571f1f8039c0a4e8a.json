@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc1571f1f8039c0a4e8a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3 pipeline westb1",
+  "task_key": "worker_launch_alpha3_pipeline_westb1_20260522T071018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3_pipeline_westb1_20260522T071018_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "ca1d7efeb87b64ef25a0c1bd1bead68b72cffd165a4e69cb49174b96e6de5a42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 1.5B RASP MATH-500 ==\nStatus: DONE\nAccuracy: 6.2% (31/500) — registry updated (eval_math500_sft_rasp_20_1p5b, conclusion=negative)\n\n== Scores 传输 ==\nimportance_scores.pt: 已存在 (17KB)\ncka_scores.pt: 已存在 (122KB)\n\n== DeepSeek 基础模型 ==\nPath: /root/autodl-tmp/recovery_aware_struct_prune/models/DeepSeek-R1-Distill-Qwen-7B\n(已下载 via ModelScope, 14.3GB, 已删除释放空间给 pipeline)\n\n== α=3.0 Pipeline ==\nPID: 162174 on GPU 1\nStage: SFT (prune完成, 19.09% actual sparsity, 0 attn + 200 MLP groups pruned, 6.16B params)\n30s check: GPU 1 加载中 (SFT loading pruned model), 22GB disk free\nLog: /tmp/alpha3p0_pipeline.log\n```\n\nPipeline stages: prune ✓ → SFT (running) → GRPO (100 steps) → GSM8K eval (GRPO) → GSM8K eval (SFT)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3-pipeline-westb1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "508dbf9220c499fbe691",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd all gpus and e2 status",
+  "task_key": "worker_ops_check_westd_all_gpus_and_e2_status_20260519T014846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd_all_gpus_and_e2_status_20260519T014846_result.json",
+    "occurrence": 1,
+    "bytes": 1589,
+    "sha256": "be6e53db0545f3382ab5aab9d22e163afac892688d929fffff9b6156c8d6cd0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 状态汇总\n\n### GPU 总览（4 卡全部活跃）\n\n| GPU | 利用率 | 显存 | 任务 | PID | 状态 |\n|-----|--------|------|------|-----|------|\n| cuda:0 | 97% | 16.5/97.9 GB | eval_math500_sft_standard_20_2048_v2 | 56146 | 运行中 (14/500, ~3%) |\n| cuda:1 | 94% | 12.8/97.9 GB | eval_gsm8k_grpo_cka_only_20_extended_300 | 56977 | 运行中 (~12min CPU time) |\n| cuda:2 | 91% | 17.0/97.9 GB | math500_grpo_cka_only_20_2048 | 36703 | 运行中 (已跑 150min) |\n| cuda:3 | 92% | 12.7/97.9 GB | inference_bench_clean_v2 | 56892 | 运行中 (第2/3个模型) |\n\n### 任务 1: cuda:1 E2 extended eval (PID 56977)\n- **仍在运行**，09:42 UTC 启动，无结果文件\n- 正在跑 GSM8K 1319 samples，预计还需较长时间\n\n### 任务 3: Inference bench (PID 56892)\n- 已完成第 1 个模型 (original)：**72.0 tok/s, TTFT 20.1ms**\n- 正在 benchmark 第 2 个模型 (pruned_cka_only_20)\n- 还剩第 3 个模型 (pruned_standard_20)，无 JSON 结果文件\n\n### 任务 4: 已完成的 MATH-500 结果\n\n| 模型 | Accuracy |\n|------|----------|\n| Dense unpruned (default tokens) | **73.6%** |\n| Dense (2048 tokens) | **53.0%** |\n| SFT CKA-only 20% (v4) | **29.0%** |\n| GRPO standard 20% (fair v2) | **26.4%** |\n| GRPO RASP 20% (fair) | **24.0%** |\n| SFT RASP 20% (2048) | **22.6%** |\n\n### 备注\n- cuda:0 的 sft_standard_20_2048_v2 刚开始（14/500），按当前速度预计 ~8-10h\n- cuda:2 的 grpo_cka_only_20_2048 已跑 2.5h，进度未知（log 被重定向）\n- 4 张卡全部满负荷运行，无空闲 GPU"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-all-gpus-and-e2-status.md"
+}

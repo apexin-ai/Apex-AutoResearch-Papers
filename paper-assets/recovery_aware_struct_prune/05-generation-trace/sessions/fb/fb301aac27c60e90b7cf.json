@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb301aac27c60e90b7cf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent compile push 8page",
+  "task_key": "worker_ops_urgent_compile_push_8page_20260524T155950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_compile_push_8page_20260524T155950_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "c778be198f9dd2d9aef7b169fee1ae7bd11a3ac57fd0daa4b200f44d13292104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **主文本 ≤ 8 页**：Discussion and Conclusion 在第 8 页结束，Limitations 从第 9 页开始。符合要求。\n- **总 PDF 页数**：15 页\n- **Push 成功**：`d2d7621..4517c06 main -> main`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-compile-push-8page.md"
+}

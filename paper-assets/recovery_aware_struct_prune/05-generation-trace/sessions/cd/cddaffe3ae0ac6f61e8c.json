@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cddaffe3ae0ac6f61e8c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft standard 25 retrain",
+  "task_key": "worker_ssh_submit_sft_standard_25_retrain_20260523T163018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_standard_25_retrain_20260523T163018_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "20fdffd2f5c763c9c1dd2fdbf59da8af50427793de24d477780608cda8b8cf53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已确认启动成功。\n\n**汇总：**\n\n| 项目 | 值 |\n|------|-----|\n| 完整命令 | `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/train_sft_warmup.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu_id 0 --num_epochs 2 --lr 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --logging_steps 10` |\n| PID | 148228 |\n| tmux session | `sft_standard_25_retrain` |\n| GPU 0 占用 | 86% util, 12769 MiB |\n| 日志 | `~/runs/recovery_aware_struct_prune/sft_standard_25_retrain.log`（tee 缓冲延迟，内容会逐步刷出） |\n| 输出目录 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25` |\n| 服务器 | westd-32935 cuda:0 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-standard-25-retrain.md"
+}

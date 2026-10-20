@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab8314c52e9bdbc2142b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb registry consistency check",
+  "task_key": "worker_ops_westb_registry_consistency_check_20260519T020802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_registry_consistency_check_20260519T020802_result.json",
+    "occurrence": 1,
+    "bytes": 1301,
+    "sha256": "88397145f0d70922531a38bc130808f51d34b207c2ab5d8a0fed653b34d102fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### eval_gsm8k_sft_rasp_20_1p5b (cuda:0, PID 845212)\n| 项目 | 值 |\n|------|------|\n| PID 状态 | **存活** |\n| 进度 | **1102/1319** (83.5%) |\n| 当前 accuracy | 0.2764 (27.64%) @ 1100 samples |\n| EOS rate | 94.27%, avg_len=374 |\n| 已运行 | ~2h24m (07:44 启动) |\n| 预估剩余 | ~20-30 min (217 samples remaining, ~2-3s/it + 偶发长生成 spike) |\n\n### eval_gsm8k_sft_standard_20_1p5b (cuda:1, PID 842784)\n| 项目 | 值 |\n|------|------|\n| PID 状态 | **存活** |\n| 进度 | **972/1319** (73.7%) |\n| 当前 accuracy | 0.2295 (22.95%) @ 950 samples |\n| EOS rate | 90.63%, avg_len=509 |\n| 已运行 | ~3h04m (07:02 启动) |\n| 预估剩余 | ~40-60 min (347 samples remaining, 频繁出现 30-47s spike) |\n\n### GPU 状态\n| GPU | 利用率 | 显存使用 |\n|-----|--------|----------|\n| cuda:0 | 45% | 6,579 / 97,887 MiB |\n| cuda:1 | 99% | 6,537 / 97,887 MiB |\n\n### 要点\n- 两个实验均正常运行，结果文件尚未生成\n- RASP 模型 (27.64%) 领先 Standard 模型 (22.95%) 约 4.7 个百分点\n- Standard 实验速度明显慢于 RASP（avg_len 更长 509 vs 374，且 spike 更频繁），虽然先启动 42 分钟但进度反而落后\n- cuda:1 利用率 99% 符合 Standard 实验正在密集生成的状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-registry-consistency-check.md"
+}

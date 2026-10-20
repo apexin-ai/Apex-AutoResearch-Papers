@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42845783d7164805b135",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check humaneval sandbox path",
+  "task_key": "worker_ops_check_humaneval_sandbox_path_20260519T073410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_humaneval_sandbox_path_20260519T073410_result.json",
+    "occurrence": 1,
+    "bytes": 1391,
+    "sha256": "1c86b1c6bfffcd64b5ef8ef101e93e1ed6819a7b8376287e317a4ba203c31e3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，结论如下：\n\n## 结果\n\n| Eval | 状态 | PATH 问题 | pass@1 |\n|------|------|-----------|--------|\n| **SFT CKA-only** (已完成) | 164/164 `No such file or directory: 'python'` | **是** | 0.0% (假的) |\n| **GRPO CKA-only** (已完成) | 正常 | 否 | 20.12% (33/164) |\n| **RASP fair** (cuda:3, 运行中) | ~53/164, 正常执行中 | 否 | ~15.0% |\n| **Standard fair v3** (cuda:2, 运行中) | ~20/164, 正常执行中 | 否 | ~5.0% |\n\n## 根因分析\n\n- `eval_humaneval.py` 第 51 行用 `subprocess.run([\"python\", tmp_path])` 调用裸 `python`\n- westd-29022 系统 PATH 没有 `/root/miniconda3/bin`，`python` 和 `python3` 都不在默认 PATH 中\n- **GRPO CKA-only、RASP fair、Standard fair v3** 都从 conda 激活的 shell 启动，进程环境继承了 `/root/miniconda3/bin` 在 PATH 中（已通过 `/proc/74303/environ` 确认），所以 `python` 能正常找到\n- **SFT CKA-only** 很可能从未激活 conda 的 shell 启动，导致 `python` 不在 PATH 中，164 题全报 `No such file or directory: 'python'`\n\n## 结论\n\n- **RASP fair 和 Standard fair v3 没有 PATH 问题**，正在正常运行\n- **SFT CKA-only 的 0% 是 PATH 问题导致的假结果，需要重跑**\n- 建议修复 `eval_humaneval.py` 第 51 行：`[\"python\", tmp_path]` → `[sys.executable, tmp_path]`，彻底避免 PATH 依赖"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-humaneval-sandbox-path.md"
+}

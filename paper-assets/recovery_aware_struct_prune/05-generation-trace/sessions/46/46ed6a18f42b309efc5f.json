@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46ed6a18f42b309efc5f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb progress check",
+  "task_key": "worker_ops_westb_progress_check_20260518T211035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_progress_check_20260518T211035_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "b2c020977f924b66caaf9b46887bd8b324f4938bf3d518847c79ad83d45b262a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| 卡 | 任务 | GPU 利用率 | 显存 | 进度 | 当前 acc |\n|---|---|---|---|---|---|\n| cuda:0 | eval_gsm8k_sft_cka_only_20_1p5b | **99%** | 6.5G/98G | **58/1319 (4%)** | 0.4200 |\n| cuda:1 | eval_gsm8k_grpo_rasp_20_1p5b | **96%** | 6.6G/98G | **642/1319 (49%)** | 0.2883 (@ 600) |\n\n- cuda:0 刚启动约 6 分钟，速度 ~3s/it，预计还需 **~63 min**\n- cuda:1 已跑 1h20m，速度波动大（长 prompt 偶发慢批次），预计还需 **~70 min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-progress-check.md"
+}

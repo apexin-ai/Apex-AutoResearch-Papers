@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fdbff29597e7006bc17b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cleanup qwen and start rasp eval",
+  "task_key": "worker_ops_cleanup_qwen_and_start_rasp_eval_20260518T165953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cleanup_qwen_and_start_rasp_eval_20260518T165953_result.json",
+    "occurrence": 1,
+    "bytes": 632,
+    "sha256": "578ffb4057fdf6bc0c257d436d0e8ae83c4eb8717dc92bdcbd02f7c5077d6ccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**删除完成**: Qwen2.5-Math-7B 15GB 已释放，数据盘 85% (38G 可用)。\n\n**当前 eval 进度**:\n\n| Eval | GPU | 进度 | Acc | 预估剩余时间 |\n|------|------|------|-----|-------------|\n| Standard (PID 823050) | cuda:0 | 155/1319 (12%) | 25.3% | ~2.5h |\n| CKA-only (PID 822503) | cuda:1 | 241/1319 (18%) | 40.5% | ~1.7h |\n\n`eval_unstructured_20` 已完成（5/17），但其 tmux session 仍占着 cuda:1 的位置，CKA-only 正在使用 cuda:1。\n\n两张卡都在跑，无空闲 GPU。CKA-only 预计先完成（约 1.7h 后，~02:40 UTC）。RASP eval 需等其中一个结束后启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cleanup-qwen-and-start-rasp-eval.md"
+}

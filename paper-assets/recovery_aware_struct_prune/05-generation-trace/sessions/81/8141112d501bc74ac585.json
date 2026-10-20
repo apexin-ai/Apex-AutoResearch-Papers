@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8141112d501bc74ac585",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose sft standard 25 westd",
+  "task_key": "worker_diagnose_sft_standard_25_westd_20260516T164827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_standard_25_westd_20260516T164827_result.json",
+    "occurrence": 1,
+    "bytes": 1605,
+    "sha256": "91ae7c44e8f6b04726994ed12d1c584cb884cfa19e387ba03476a4a9df6087f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练实际上成功完成了，不是真正的失败。**\n\n## 诊断结果\n\n**根因**：训练正常完成后进程退出，cron 监控将正常退出误判为进程崩溃（process dead），反复尝试重启并最终标记为 failed。\n\n**关键日志行**：\n```\n{'train_runtime': '2492', 'train_samples_per_second': '5.998', 'train_steps_per_second': '0.751', 'train_loss': '0.8381', 'epoch': '2'}\nWriting model shards: 100%|██████████| 1/1 [00:14<00:00, 14.13s/it]\n2026-05-17 00:37:23,150 [INFO] SFT recovery complete.\n```\n\n训练跑完了 1870 steps / 2 epochs，最终 train_loss=0.8381，mean_token_accuracy≈0.81，模型已保存。无 OOM、无 CUDA 错误、无磁盘错误。\n\n**修复建议**：\n- 训练本身无需重跑，模型已保存到 `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25`\n- cron 监控逻辑需要区分正常退出（exit code 0 + 日志含 \"SFT recovery complete\"）和异常崩溃\n- 如果 cron 重启导致了额外的训练运行，检查输出目录是否被覆盖\n\n**磁盘/GPU 当前状态**：\n| 资源 | 状态 |\n|------|------|\n| 根分区 `/` | 5.1G/30G (17%) ✓ |\n| 数据盘 `/root/autodl-tmp/` | 425G/750G (57%) ✓ |\n| GPU 0 | 54740MiB 占用, 89% util (其他实验) |\n| GPU 1 | 17652MiB 占用, 90% util (当前有进程 PID 25341) |\n| GPU 2 | 12994MiB 占用, 94% util |\n| GPU 3 | 12896MiB 占用, 89% util |\n\nGPU 1 上当前有 python 进程（PID 25341），可能是 cron 重启的实例——建议确认该进程是什么，避免重复训练浪费资源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-standard-25-westd.md"
+}

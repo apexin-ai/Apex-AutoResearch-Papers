@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be7e3de0ecd9a2def33f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd grpo progress",
+  "task_key": "worker_monitor_westd_grpo_progress_20260516T133855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd_grpo_progress_20260516T133855_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "070ca0c79a12db1f02164af2b9513630fc3870c76e3d0a3824875c86ed9c16d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**全部 4 个 GRPO 已崩溃退出（EXIT_CODE=1），GPU 全部空闲（0% 利用率）。**\n\n崩溃原因：3 个为 `No space left on device`（checkpoint 写磁盘满），1 个为 `RuntimeError: unexpected pos`（同属磁盘写入损坏）。\n\n日志每 10 step 打印一次，以下为各实验崩溃前最后记录的状态：\n\n| exp_id | step | reward | grad_norm | frac_zero_std | 状态 |\n|--------|------|--------|-----------|---------------|------|\n| grpo_rasp_qwen_math | 40/100 | 0.083 | 5.59 | 0.65 | ❌ 磁盘满崩溃 |\n| grpo_standard_qwen_math | 30/100 | 0.063 | 2.28 | 0.775 | ❌ 磁盘满崩溃 |\n| grpo_rasp_25_qwen_math | 20/100 | 0.169 | 1.94 | 0.55 | ❌ 磁盘满崩溃 |\n| grpo_standard_25_qwen_math | 20/100 | 0.163 | 3.33 | 0.40 | ❌ 磁盘满崩溃 + KL 爆炸(56.08) |\n\n**Collapse 分析：**\n- `grpo_standard_qwen_math`：frac_zero_std=0.975（step 20）→ 严重 collapse，reward 降到 0.007\n- `grpo_standard_25_qwen_math`：KL=56.08（step 20），策略严重偏移\n- 两个 RASP 组相对正常，但 reward 偏低\n\n**根因：** checkpoint 写入路径可能在根分区而非 `/root/autodl-tmp/`，导致磁盘满。当前根分区 df 显示 5.1G/30G（17%），说明崩溃后文件可能已被清理或 wandb finish 释放了部分空间。需要检查训练脚本的 `output_dir` 配置是否指向数据盘。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-grpo-progress.md"
+}

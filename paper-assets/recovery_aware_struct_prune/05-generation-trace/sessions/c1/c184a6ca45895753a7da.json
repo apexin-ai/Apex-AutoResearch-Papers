@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "c184a6ca45895753a7da",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analysis eval gsm8k sft standard 20 1p5b",
+  "task_key": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959.jsonl",
+    "occurrence": 1,
+    "bytes": 7343,
+    "sha256": "23c0569a66bd1340a17fa2871e14813feccb153dfe13c53bedadb31d2cbe4e49"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T03:20:29.243306+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T03:20:29.243650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T03:20:29.243822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T03:20:29.243963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -50 /root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T03:20:29.244304+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.22896133434420016,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01156902486841511,\\\\n  \\\\\\\"n_correct\\\\\\\": 302,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 1193,\\\\n    \\\\\\\"truncated\\\\\\\": 126,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.9044730856709629,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 516.6914329037149,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 32\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"13\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, divide the total age by the sum of the ratio to find the value of the ratio's denominator.\\\\\\\\n162 / 12 = <<162/12=13.5>>13.5\\\\\\\\nThen, multiply the value of the denominator by the value of the ratio to find the age of Allen.\\\\\\\\n13.5 * 11 = <<13.5*11=159>>159\\\\\\\\nThen, subtract the age of Allen from the total age to find the age of Darrell.\\\\\\\\n162 - 159 = <<162-159=3>>3\\\\\\\\nFinally, add 10 to the age of Darrell to find the age of Allen 10 years from now.\\\\\\\\n3 + 10 = <<3+10=13>>13\\\\\\\\n#### 13\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 184,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons \n…[truncated 7347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T03:20:29.244607+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 07:02:23,172 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\\n2026-05-19 07:02:23,880 [INFO] Non-uniform MLP detected: intermediate_size range [3738, 8960]\\\\n2026-05-19 07:02:50,935 [INFO] Loading GSM8K test set...\\\\n2026-05-19 07:02:51,949 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 07:02:52,021 [INFO] Evaluating on 1319 test samples\\\\n2026-05-19 07:02:52,024 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<59:26,  2.71s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:08<1:35:08,  4.33s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:09<1:02:02,  2.83s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:10<52:16,  2.39s/it]  \\\\rEvaluating:   0%|          | 5/1319 [00:12<43:36,  1.99s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:14<42:31,  1.94s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:15<39:04,  1.79s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:17<38:18,  1.75s/it]\\\\rEvaluating:   1%|          | 9/1319 [00:18<32:28,  1.49s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:19<30:22,  1.39s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:21<37:36,  1.72s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:22<32:46,  1.50s/it]\\\\rEvaluating:   1%|          | 13/1319 [00:24<35:39,  1.64s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:25<31:40,  1.46s/it]\\\\rEvaluating:   1%|          | 15/1319 [00:28<43:09,  1.99s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:29<36:07,  1.66s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [00:31<33:35,  1.55s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:32<30:43,  1.42s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:33<29:09,  1.35s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:34<29:29,  1.36s/it]\\\\rEvaluating:   2%|\n…[truncated 6495 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T03:20:29.244840+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果 JSON（核心字段）\n\n```json\n{\n  \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\",\n  \"mode\": \"greedy\",\n  \"accuracy\": 0.22896133434420016,\n  \"stderr\": 0.01156902486841511,\n  \"n_correct\": 302,\n  \"n_total\": 1319,\n  \"eos_stats\": {\n    \"natural_eos\": 1193,\n    \"truncated\": 126,\n    \"eos_rate\": 0.9044730856709629,\n    \"avg_response_length\": 516.69,\n    \"max_response_length\": 4096,\n    \"min_response_length\": 32\n  },\n  \"temperature\": 0.0,\n  \"do_sample\": false,\n  \"examples\": [ ... 20 examples ... ]\n}\n```\n\n## 关键指标\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **22.90%** (302/1319) |\n| Stderr | ±1.16% |\n| EOS rate | 90.45% (126 truncated) |\n| Avg response length | 516.7 tokens |\n\n## Log 尾部\n\n- 模型加载时检测到 Non-uniform MLP：`intermediate_size range [3738, 8960]`\n- 评估耗时约 4h15m（1319 samples，greedy decoding）\n- 最终输出：`GSM8K Accuracy: 0.2290 ± 0.0116 (302/1319)`\n- 退出码 0，正常完成"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_gsm8k_sft_standard_20_1p5b_20260519T031959"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-gsm8k-sft-standard-20-1p5b.md"
+}

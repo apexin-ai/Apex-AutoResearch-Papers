@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65d969c752d3b717b9fd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest alpha pipelines westd",
+  "task_key": "worker_harvest_alpha_pipelines_westd_20260522T084914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_alpha_pipelines_westd_20260522T084914_result.json",
+    "occurrence": 1,
+    "bytes": 1795,
+    "sha256": "0c08fec1550ae3c84fc65d77a86c169c6a18e67df35cff9a6b569abf78d35dc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据收集完毕。\n\n```\n== GPU 状态 ==\nGPU 0: 19251 MiB, 98% util (非 α 管线任务)\nGPU 1: 17651 MiB, 95% util (非 α 管线任务)\nGPU 2: 7257 MiB,  5% util  ← α=2.0 SFT eval 刚启动\nGPU 3: 12765 MiB, 93% util ← α=0.5 SFT eval 进行中\n\n== α=0.5 (GPU 3, CUDA_VISIBLE_DEVICES=3) ==\nGRPO训练: ✅ 完成 (100/100 steps, 15:22:57)\nGRPO eval: ✅ 完成 accuracy=61.18% (807/1319), 16:32:50完成\nSFT eval:  🔄 进行中 ~350/1319 (~27%), running acc=62.57%, 预计~17:30完成\n  └─ SFT模型加载自 sft_rasp_alpha0p5_20, 16:32:57启动\nC1 Δ = GRPO - SFT = 待SFT eval完成\n\n== α=2.0 (GPU 2, CUDA_VISIBLE_DEVICES=2) ==\nGRPO训练: ✅ 完成 (100/100 steps, 15:22:34)\nGRPO eval: ✅ 完成 accuracy=66.11% (872/1319), 16:47:47完成\nSFT eval:  🔄 进行中 ~7/1319 (<1%), 刚启动 16:49:32, 预计~18:10完成\n  └─ SFT模型加载自 sft_rasp_alpha2p0_20\n\n== Checkpoint 存在性 ==\ngrpo_rasp_alpha0p5_20: ✅ 存在 (model.safetensors 12.3GB + checkpoint-100/)\ngrpo_rasp_alpha2p0_20: ✅ 存在 (model.safetensors 12.3GB + checkpoint-100/)\nsft_rasp_alpha0p5_20:  ✅ 存在\nsft_rasp_alpha2p0_20:  ✅ 存在\n\n== 已落盘结果文件 ==\neval_gsm8k_grpo_alpha0p5_20.json ✅ (.done sentinel存在)\neval_gsm8k_grpo_alpha2p0_20.json ✅ (.done sentinel存在)\neval_gsm8k_sft_alpha0p5_20.json  ❌ 未生成（eval进行中）\neval_gsm8k_sft_alpha2p0_20.json  ❌ 未生成（eval进行中）\n\n== wandb ==\nα=0.5 GRPO: grpo_sft_rasp_alpha0p5_20 (run 0fh1firj)\nα=2.0 GRPO: grpo_sft_rasp_alpha2p0_20 (run 2b2x9kmb)\n```\n\n两个 α 管线的 GRPO 阶段全部完成，SFT eval 正在自动跑。α=0.5 SFT eval 约 30 分钟后完成，α=2.0 约 80 分钟后完成。GPU 0/1 在跑非 α 管线任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-alpha-pipelines-westd.md"
+}

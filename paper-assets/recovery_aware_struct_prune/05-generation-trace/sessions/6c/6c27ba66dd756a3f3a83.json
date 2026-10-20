@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c27ba66dd756a3f3a83",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "emergency disk cleanup westb v2",
+  "task_key": "worker_emergency_disk_cleanup_westb_v2_20260516T064006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_disk_cleanup_westb_v2_20260516T064006_result.json",
+    "occurrence": 1,
+    "bytes": 301,
+    "sha256": "2ee334e1e3023a12b2ba914206ab0b3899f00731f5ce1f5e79516ea2bb49e18d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 磁盘释放 | 89% (30GB 可用)，从 100% 恢复 |\n| eval_grpo_rasp_v9_step10 进程 | **存活**，PID 585623，CPU 110%，正常运行中 |\n| sft_standard_25/checkpoint-1870 模型 | **完整**，339 keys，可标记 DONE |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-disk-cleanup-westb-v2.md"
+}

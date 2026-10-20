@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "615ef0364f678362a429",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd disk and pending",
+  "task_key": "worker_check_westd_disk_and_pending_20260520T113007",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_disk_and_pending_20260520T113007_result.json",
+    "occurrence": 1,
+    "bytes": 1487,
+    "sha256": "e2b9b256f0b8e5a39f8bcbcd316ece63b518444833da762bad899cefcfe2bd29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 磁盘状态 — P0 blocker 已解除\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 数据盘 `/root/autodl-tmp/` | 619G | 435G | **185G** | 71% |\n| 根分区 `/root/` | 30G | 5.4G | 25G | 18% |\n\n项目占 421G。磁盘不再是 blocker，ROADMAP 中 \"westd 磁盘清理 ≥100GB\" 可标记完成。\n\n### GPU 状态 — 4 卡全占，cuda:0/1 并非空闲\n\n| GPU | 任务 | 已运行 | 显存 | 利用率 |\n|-----|------|--------|------|--------|\n| cuda:0 | `eval_gsm8k` **pruned_cka_only_30** | 6h37m | 11.5G/98G | 85% |\n| cuda:1 | `eval_gsm8k` **pruned_standard_30** | 6h37m | 11.5G/98G | 85% |\n| cuda:2 | `eval_gsm8k` **grpo_standard_20_seed123** (n=1319) | 1h04m | 29.1G/98G | 91% |\n| cuda:3 | `eval_gsm8k` **grpo_standard_20_seed456** (n=1319) | 1h04m | 29.1G/98G | 99% |\n\n- cuda:0/1 跑的是 ROADMAP 中的 **\"30% eval\"**，已跑 6.5h，应该接近完成\n- cuda:2/3 跑的是 **多种子 GRPO Standard×2 seed eval**（W-C4），1h in\n\n### 释放后优先提交建议\n\ncuda:0/1 完成后（预计很快），按优先级：\n\n1. **CKA-only 多种子 GRPO seed eval**（W-C4 剩余 1 run）— 补齐 3-seed 实验，审稿硬需求\n2. **15% GRPO 重启**（W-C6）— 之前被磁盘满阻塞，现在可以跑了\n3. **v5 step-100 eval**（W-C2）— Table 2 修复\n\n另外 **Bootstrap CI + McNemar's test**（W-S4）是纯 CPU 任务，可以立即提交不占 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-disk-and-pending.md"
+}

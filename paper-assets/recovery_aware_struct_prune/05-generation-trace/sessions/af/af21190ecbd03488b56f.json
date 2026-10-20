@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af21190ecbd03488b56f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check math500 sft rasp",
+  "task_key": "worker_code_check_math500_sft_rasp_20260517T092234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_math500_sft_rasp_20260517T092234_result.json",
+    "occurrence": 1,
+    "bytes": 314,
+    "sha256": "13efd2c1ce4f9b6e738f8298023d3d320cb6d11ddaf719be9bbec85480384b3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果：SUCCESS**\n\n| 指标 | 值 |\n|---|---|\n| accuracy | **0.2420** (24.20%) |\n| stderr | 0.0192 |\n| correct / total | 121 / 500 |\n| 耗时 | 2h56m29s |\n| 退出码 | 0 |\n\n结果文件已保存至 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-math500-sft-rasp.md"
+}

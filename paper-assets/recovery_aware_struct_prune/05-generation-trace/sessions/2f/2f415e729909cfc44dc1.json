@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f415e729909cfc44dc1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research grpo literature prep",
+  "task_key": "worker_research_grpo-literature-prep_20260515T135644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_grpo-literature-prep_20260515T135644_result.json",
+    "occurrence": 1,
+    "bytes": 2127,
+    "sha256": "e994bb1ca07c34b55fd36aa27ad4dc9b9a10e9cc12fb619be6c37471fde41d76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "literature_map.yaml 已更新。以下是本次调研总结：\n\n## 新增论文 (7 篇)\n\n### Direction 1: Structured Pruning + RLVR Recovery\n| 论文 | 年份/Venue | 关系 | 优先级 |\n|------|-----------|------|--------|\n| **RLRC** (Chen & Li) | 2025, arXiv | RL recovery 扩展到 VLA 机器人领域，验证 RL recovery 的跨模态泛化性 | should-cite |\n| **NIRVANA** (Ai et al.) | 2025, arXiv | NTK-based saliency + adaptive sparsity，强 pruning baseline | should-cite |\n| **A Free Lunch in LLM Compression** (Wagner et al.) | 2025, arXiv | 局部重建匹配 PEFT，但 SFT 有天花板——我们的 RLVR 突破该天花板 | should-cite |\n\n### Direction 2: CKA Justification\n| 论文 | 年份/Venue | 关系 | 优先级 |\n|------|-----------|------|--------|\n| **Reliability of CKA** (Davari et al.) | 2023, ICLR | CKA 对 outlier/变换敏感，**必须引用并在 paper 中回应**（我们是 intra-model 比较，受影响较小） | **must-cite** |\n| **Debiasing CKA** (Murphy et al.) | 2024, ICLR Workshop | feature-sample ratio 偏差，我们的设置影响较小 | nice-to-have |\n| **TraceNAS** (Malettira et al.) | 2026, arXiv | 梯度 trace 做 NAS-style 剪枝，CKA 的替代信号 | should-cite |\n\n### Direction 3: FANG / FuncNet (已确认)\n- **FANG** — Yu et al., arXiv Dec 2025 (2512.23014)，activation-based FFN neuron分组，**must-cite**\n- **FuncNet** — Liu et al., arXiv Aug 2025 (2508.05239)，ICA-based functional network，**must-cite**\n- **FNF** — arXiv Jan 2026 (2601.22692)，functional network fingerprint，nice-to-have\n\n### Direction 4: GraSP Baselines\n- **GraSP 原始** (Wang et al., ICLR 2020, 2002.07376) — 已补充，should-cite\n- **GRASPrune** (ACL 2026) — 已有，must-cite\n- **TraceNAS** — 梯度 trace correlation 扩展了 GraSP 思路\n\n## 关键更新\n- Self-Healing 完整作者：**Ji et al.**, ICLR 2026 submission\n- From LLMs to LRMs: **Ding et al.**, arxiv_id=2601.18091\n- 所有 entry 新增 `citation_priority` 字段\n- 全文件共 **must-cite: 12 篇**, should-cite: 15 篇, nice-to-have: 14 篇"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-grpo-literature-prep.md"
+}

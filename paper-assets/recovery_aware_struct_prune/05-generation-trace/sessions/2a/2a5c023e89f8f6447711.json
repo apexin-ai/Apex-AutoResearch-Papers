@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5c023e89f8f6447711",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf3 westb0 v2",
+  "task_key": "worker_launch_mf3_westb0_v2_20260522T080559",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf3_westb0_v2_20260522T080559_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "e964228123e007c77f07799b24b5029c62bac44d0f069398e5d68ed019a01cba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 0 当前被 SFT recovery 占用**（PID 162850，`sft_recovery.py`，模型 `pruned_rasp_alpha3p0_20`，输出 `sft_rasp_alpha3p0_20`），显存 51.5 GiB。\n\nGPU 0 不空闲，无法立即启动 MF3 GRPO。选项：\n\n1. **等 SFT 跑完后启动** — 我可以监控日志看进度\n2. **杀掉 SFT 进程腾出 GPU 0** — 需要你确认\n3. **用其他服务器的空闲 GPU** — 如 westd-29022\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf3-westb0-v2.md"
+}

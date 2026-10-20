@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c43afa2575ef6dc380",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb grpo verify conflict cka sft",
+  "task_key": "worker_ops_westb_grpo_verify_conflict_cka_sft_20260517T134405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_grpo_verify_conflict_cka_sft_20260517T134405_result.json",
+    "occurrence": 1,
+    "bytes": 1497,
+    "sha256": "2b168633bcaf75a6911a3fe7c6856d8987b3fbfc344c86d027d674d10e518fa4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n---\n\n### 1. GPU 状态 + 冲突解决 ✓\n\n- **PID 715803**（旧 CKA eval）在 **cuda:1** 上占 12994MiB，已 kill\n- **PID 719684**（grpo_random_20）在 **cuda:1** 上，kill 后显存从 25582MiB 扩展到 43834MiB，GPU-Util 100%，运行正常\n- **cuda:0**：完全空闲，0MiB，可用\n\n### 2. cka_only eval + SFT 参数确认\n\n- **PID 710618**（cka_only eval）已结束（/proc/710618 不存在）\n- **结果文件已生成**：`eval_cka_only_20_n200.json`\n  - accuracy = **38.5%** (77/200)\n  - eos_rate = 56%，avg_response_length = 2490\n  - 44% 的 response 被截断到 4096 tokens\n- **cuda:0 空闲**，可用于 SFT\n- **`--save_strategy no` 已支持**：`sft_recovery.py` 接受 `{no, epoch, steps}` 三种选项\n\n### 3. frac_zero_std 检查\n\n- `frac_zero_std`、`zero_std`、`collapse` 在 `train_grpo_v5.py` 和整个 `src/` 目录中**均不存在**\n- **未内置**。当前只有一个 `RewardDesertCallback`（监测连续 zero reward 并 early stop，patience=50 log events）\n- per-step logging 通过 `logging_steps=10` 控制，但只记录 TRL 默认 metrics，没有自定义的 std 监控\n\n### 4. grpo_random_20 初始 metrics\n\n- 刚启动（21:44:24），log 显示 **0/100 steps，0%**，尚无训练 metrics 输出\n- 配置确认：beta=0.01, loss_type=dapo, format_reward=0.1, temperature=0.4, repetition_penalty=1.15, optimizer=adamw_bnb_8bit\n- 基于 `sft_random_20` 模型，wandb run: `z9nqlucg`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-grpo-verify-conflict-cka-sft.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea47f20c3312385f9762",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify pid57202 cmdline",
+  "task_key": "worker_ssh_verify_pid57202_cmdline_20260522T184209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_pid57202_cmdline_20260522T184209_result.json",
+    "occurrence": 1,
+    "bytes": 437,
+    "sha256": "33eb580e68091f7beeed96dff3dff0c3e0d69e89673f388d66cbc25ba6681716"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nPID 57202 实际模型: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\n判断: ALPHA_2P0_CONFIRMED\n完整 cmdline: python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20 --output_path results/eval_math500_sft_rasp_alpha2p0_20.json --seed 42 --dtype bfloat16 --max_new_tokens 2048\n```\n\n这是 α=2.0 的 MATH500 评估任务，不是 α=1.0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-pid57202-cmdline.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c2a5bf4c2be0293d40ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "maintenance hypothesis backfill",
+  "task_key": "worker_maintenance_hypothesis_backfill_20260517T032254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_hypothesis_backfill_20260517T032254.log",
+    "occurrence": 1,
+    "bytes": 651077,
+    "sha256": "252edd1da659810e0dc774644a70cfe00ba29285131c8ec358b76abadcc059b9"
+  },
+  "statistics": {
+    "messages": 125,
+    "user_turns": 1,
+    "tool_calls": 50,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 15,
+      "tool_call": 50,
+      "tool_result": 50,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "c2a5bf4c2be0293d40ce-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 112,
+      "chunks": [
+        {
+          "path": "c2a5bf4c2be0293d40ce-part-0001.json",
+          "message_count": 99
+        },
+        {
+          "path": "c2a5bf4c2be0293d40ce-part-0002.json",
+          "message_count": 13
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/maintenance-hypothesis-backfill.md"
+}

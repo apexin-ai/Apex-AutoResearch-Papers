@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c9d4f0f4b6b5a7f541e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose e2 exit",
+  "task_key": "worker_ops_diagnose_e2_exit_20260518T134308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_e2_exit_20260518T134308_result.json",
+    "occurrence": 1,
+    "bytes": 1231,
+    "sha256": "ca08835b19416e2827e5dcf5ec0a8cbb61d04e004f425dcaeb75cd716807a997"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**退出原因**: 磁盘空间耗尽（`No space left on device`）。/root/autodl-tmp 619G 100% 满，在 step 120 保存 checkpoint 时崩溃。\n\n**进度**: 仅从 step 100 跑到 step 120（目标 300），完成 20/200 步。\n\n**最终 metrics（step 110）**:\n- loss: 0.027（比原始 100 步的 0.06-0.12 显著降低）\n- LR: 6.37e-7（linear scheduler 重置正常，LR 衰减问题已解决）\n- reward/mean: 未记录\n\n**LR 问题**: 已解决。扩展 run 使用了 linear scheduler 重新初始化，step 110 时 LR 为 6.37e-7，不再是接近 0。\n\n**已处理**:\n- Registry: conclusion=failed, status=DONE\n- Cron: 已删除\n- checkpoint-120（不完整，4.9G）: 已清理\n- checkpoint-110（完整，27G）: 保留可用于 resume\n\n**磁盘空间消耗 top**:\n- grpo_stage2_standard_20_fair: 91G\n- grpo_stage2_rasp_20_fair: 91G\n- grpo_unpruned_v2: 46G\n- grpo_cka_only_20: 38G\n\n**重启建议**: 需要先在 westd-29022 上释放磁盘空间（清理不再需要的旧 checkpoint），然后可以从 checkpoint-110 resume 继续跑到 300 步。每个完整 checkpoint 约 27G，训练到 300 步（save_total_limit=3）需要至少 ~80G 空闲空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-e2-exit.md"
+}

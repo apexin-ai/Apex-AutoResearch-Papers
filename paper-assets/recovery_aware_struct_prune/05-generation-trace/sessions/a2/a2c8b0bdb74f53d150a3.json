@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2c8b0bdb74f53d150a3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "audit abstract intro conclusion",
+  "task_key": "worker_audit_abstract_intro_conclusion_20260524T043209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_abstract_intro_conclusion_20260524T043209_result.json",
+    "occurrence": 1,
+    "bytes": 5023,
+    "sha256": "ad9a7607002ed6a5a240f29c9212e448357d7e570622191701b8ac9ffa4ad443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I now have all the data to compile the complete audit. Here's the full report:\n\n---\n\n## abstract.tex\n\n| Line | Claim | Registry Source | Registry Value | Status |\n|------|-------|----------------|----------------|--------|\n| 5 | 20% sparsity | config parameter | — | ✅ |\n| 5 | α=2.0 | config parameter | — | ✅ |\n| 5 | 66.11% on GSM8K | eval_gsm8k_grpo_alpha2p0_20 | 872/1319 = 0.6611 | ✅ |\n| 6 | 4.4× vs importance-only | grpo_cka_only_20 (0.354) / grpo_standard_20_fair (0.081) | 4.37× → rounds to 4.4× | ✅ |\n| 7 | 1.5B scale | grpo_{cka_only,standard,rasp}_20_1p5b | experiments exist | ✅ |\n\n---\n\n## introduction.tex\n\n| Line | Claim | Registry Source | Registry Value | Status |\n|------|-------|----------------|----------------|--------|\n| 7 | mean \\|Δ\\|=0.54 pp (4 criteria, 20%) | Table 2 values: \\|0.48\\|+\\|0.55\\|+\\|0.61\\|+\\|0.53\\| / 4 = 0.5425 | 0.54 pp | ⚠️ (see note 1) |\n| 7 | max 0.61 pp | RASP α=1.0: \\|803-811\\|/1319 | 0.607 pp → 0.61 | ✅ |\n| 7 | 1.34 pp (incl. MBPP) | MBPP CKA-only: \\|0.1417-0.1283\\| | 1.34 pp | ✅ |\n| 17 | 66.11% at α=2.0 | eval_gsm8k_grpo_alpha2p0_20 | 872/1319 = 66.11% | ✅ |\n| 17 | \\|Δ\\| ≤ 1.14 pp at every dose-response point | α=0.5: 0.45pp, α=2.0: 1.14pp, α=3.0: 0.68pp, α=4.0: 0.83pp | max 1.14 pp | ✅ |\n| 22 | 66.11% GRPO on GSM8K | same as above | | ✅ |\n| 23 | 4.4× Standard | same as abstract | 4.37× → 4.4× | ✅ |\n| 24 | −1.36 pp (ShortGPT) | eval_gsm8k_{sft,grpo}_shortgpt_20: \\|590-572\\|/1319 | 1.365 pp → 1.36 | ✅ |\n| 28 | 0.54 pp, 0.61 pp, 1.34 pp | repeated from line 7 | | ⚠️/✅/✅ |\n| 28 | +1.51 pp at 15% | CKA-only 15% mean(GRPO−SFT) − Standard 15% mean(GRPO−SFT) = 0.58−(−0.93) | +1.51 pp | ✅ |\n| 29 | α=2.0, 66.11% | repeated | | ✅ |\n\n---\n\n## conclusion.tex\n\n| Line | Claim | Registry Source | Registry Value | Status |\n|------|-------|----------------|----------------|--------|\n| 5 | 0.54 pp, 1.34 pp | repeated from intro | | ⚠️/✅ |\n| 5 | 4.4× gap | repeated | | ✅ |\n| 6 | α=2.0, 66.11% | repeated | | ✅ |\n| 6 | μ=0.62 (CKA-only) | — | not in registry | ❓ (note 2) |\n| 6 | μ≥0.88 (collapsing methods) | — | not in registry | ❓ (note 2) |\n| 10 | 2.89× gradient magnitude | gradient_flow_v3: cka_vs_standard_ratio | 2.89 | ✅ |\n| 10 | f₀ > 0.5 | grpo_standard_20_fair: frac_zero_std trajectory | min=0.5, all steps ≥ 0.5 | ✅ |\n| 15 | 4.62 pp SFT gap | Table 2: 63.91 − 59.29 | 4.62 pp | ⚠️ (see note 1) |\n| 19 | \\|Δ\\| ≤ 1 pp at 15–25% | max across all = Standard 25%: 0.99 pp | ≤ 1 pp (marginal) | ✅ |\n\n---\n\n## limitations.tex\n\n| Line | Claim | Registry Source | Registry Value | Status |\n|------|-------|----------------|----------------|--------|\n| 5 | N=200 (Qwen2.5-Math-7B) | eval_{grpo,sft}_{rasp,standard}_qwen_math | n_total=200 | ✅ |\n| 11 | τ ∈ {0.3, 0.4, 0.5, 0.6} | floor_ablation experiments | config parameters | ✅ |\n| 14 | 3 GRPO seeds | Table 2 shows ±std for CKA-only, Standard, Random | ✅ |\n| 14 | N=1 (RASP) | Table 2: RASP has no ±std | ✅ |\n| 15 | 3 benchmarks (GSM8K, MATH-500, MBPP) | eval experiments exist for all 3 | ✅ |\n\n---\n\n## 需关注的问题\n\n### Note 1: Standard SFT 准确率差异（影响两个 claim）\n\nTable 2 使用 Standard SFT = **59.29%**（隐含 782/1319），但 registry 中 `eval_gsm8k_sft_standard_20` = **781/1319 = 59.21%**。差 1 个样本。\n\n这个差异影响两个数字：\n- **mean \\|Δ\\| = 0.54 pp**：若用 registry 值 59.21%，Standard Δ 变为 0.63 pp，mean 变为 (0.48+0.63+0.61+0.53)/4 = **0.56 pp**\n- **SFT gap = 4.62 pp**：若用 registry 值，gap 变为 63.91−59.21 = **4.70 pp**\n\n建议：确认是否存在另一次 Standard SFT eval（得到 782/1319）未登记到 registry，或 Table 2 需要修正为 59.21%。若修正，需同步更新正文中所有 \"0.54 pp\" → \"0.56 pp\"，\"4.62 pp\" → \"4.70 pp\"。\n\n### Note 2: CKA 相似度 μ 值无 registry 来源\n\n`μ=0.62`（CKA-only）和 `μ≥0.88`（collapsing methods）来自离线 CKA 分析，未作为实验指标记录到 registry。建议在 artifacts 或 registry 中补录计算来源。\n\n### Note 3: MATH-500 Fixed Eval 覆盖\n\nFixed eval 已完成大部分方法，但 **Standard SFT 20% 缺少 fixed eval 版本**。现有 Standard SFT MATH-500 evals 使用旧脚本（eval_math500_sft_standard_20: 130/500=26.0%）。如果论文表格中使用了 Standard SFT 的 MATH-500 数字，需要补跑 fixed eval。\n\n---\n\n## 总结\n\n| 类别 | 数量 |\n|------|------|\n| ✅ 已核对一致 | 27 |\n| ⚠️ 有差异（Standard SFT 59.29% vs 59.21%，影响 0.54pp 和 4.62pp） | 3 (实为 1 个根因) |\n| ❓ 无 registry 来源（CKA μ 值，来自离线分析） | 2 |\n| ❌ 无法追溯 | 0 |\n\n**最关键 action item**：确认 Standard SFT 20% GSM8K 的真实值是 781 还是 782 correct（直接决定 0.54/0.56 pp 和 4.62/4.70 pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-abstract-intro-conclusion.md"
+}

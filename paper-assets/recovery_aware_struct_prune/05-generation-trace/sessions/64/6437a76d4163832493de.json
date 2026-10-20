@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6437a76d4163832493de",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code urgent sft standard eval",
+  "task_key": "worker_code_urgent-sft-standard-eval_20260515T095816",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_urgent-sft-standard-eval_20260515T095816_result.json",
+    "occurrence": 1,
+    "bytes": 607,
+    "sha256": "46d4bdfe2b6d4bb5555e9e6a67defc05526b2b0a2850bb3808db3596ab9b61f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动（PID 507411），cuda:1 上运行 `eval_gsm8k.py`，参数：\n- model: `sft_standard_20`\n- N=100, max_new_tokens=4096, greedy decoding\n- 结果将写入 `/root/autodl-tmp/recovery_aware_struct_prune/eval_sft_standard_20_n100.json`\n\n进程状态汇总：\n- **PID 239076**（SFT retrain）：已结束，sft_standard_20 模型完整（12.3GB model.safetensors + config + tokenizer）\n- **PID 505715**（之前的 eval）：已结束\n- **GPU 0**：100% 占用（65GB），有其他任务在跑\n- **GPU 1**：空闲 → 现在被 eval 占用\n\n2 分钟后检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-urgent-sft-standard-eval.md"
+}

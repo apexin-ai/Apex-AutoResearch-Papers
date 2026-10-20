@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "badf544fe61217ed01a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check 15pct checkpoints",
+  "task_key": "worker_ssh_check_15pct_checkpoints_20260521T192427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_15pct_checkpoints_20260521T192427_result.json",
+    "occurrence": 1,
+    "bytes": 3491,
+    "sha256": "351e1cf80023faa119a5bbd9bec0c49f1bc3a76fae1c836a4a8e26bbdb3edea5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部在 **westd-29022** 上。汇总如下：\n\n## 15% Checkpoint 可用性报告\n\n所有 15% checkpoint 均在 **westd-29022** 的 `/root/autodl-tmp/recovery_aware_struct_prune/` 下，**westb-23072 上无 15% checkpoint**。\n\n### Pruned models（剪枝后、未恢复训练）\n\n| 目录 | model.safetensors 大小 | 状态 |\n|------|----------------------|------|\n| `pruned_cka_only_15/` | 13.07 GB | 完整 |\n| `pruned_standard_15/` | 13.04 GB | 完整 |\n\n### SFT 恢复模型\n\n| 目录 | model.safetensors 大小 | 状态 |\n|------|----------------------|------|\n| `sft_cka_only_15/` | 13.07 GB | 完整 |\n| `sft_standard_15/` | 13.04 GB | 完整 |\n\n### GRPO 恢复模型\n\n| 目录 | model.safetensors 大小 | 状态 |\n|------|----------------------|------|\n| `grpo_cka_only_15_seed123/` | 1.62 GB (LoRA adapter) + `checkpoint-100/` 13.07 GB (full) | 完整 |\n| `grpo_cka_only_15_seed456/` | 仅 `checkpoint-100/` 13.07 GB (full)，**根目录无合并模型** | 部分完整 |\n\n**注意**: `grpo_cka_only_15_seed456` 根目录缺少合并的 model.safetensors，只有 checkpoint-100 子目录有完整权重。`grpo_cka_only_15_seed123` 根目录有 1.62 GB 的文件（可能是 LoRA adapter 而非完整模型），checkpoint-100 里有完整的 13.07 GB 权重。没有 `grpo_standard_15` 目录。\n\n### eval_math500.py\n\n位于 `/root/recovery_aware_struct_prune/src/eval_math500.py`（westd-29022），7983 bytes。\n\n### Eval 命令模板\n\n```bash\n# === westd-29022, GPU 白名单: cuda:0/1/2/3 ===\n\n# SFT CKA-only 15%\nCUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_15 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_15/results.json --max_new_tokens 2048 --seed 42\n\n# SFT Standard 15%\nCUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_15 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_15/results.json --max_new_tokens 2048 --seed 42\n\n# GRPO CKA-only 15% seed123 (用 checkpoint-100 完整权重)\nCUDA_VISIBLE_DEVICES=2 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15_seed123/checkpoint-100 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_15_seed123/results.json --max_new_tokens 2048 --seed 42\n\n# GRPO CKA-only 15% seed456 (用 checkpoint-100 完整权重)\nCUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15_seed456/checkpoint-100 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_grpo_cka_only_15_seed456/results.json --max_new_tokens 2048 --seed 42\n\n# Pruned baselines (无恢复训练)\nCUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_15 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_pruned_cka_only_15/results.json --max_new_tokens 2048 --seed 42\n\nCUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_15 --output_path /root/runs/recovery_aware_struct_prune/eval_math500_pruned_standard_15/results.json --max_new_tokens 2048 --seed 42\n```\n\n**缺失项**: 无 `grpo_standard_15` 系列 checkpoint（两个 seed 都没有）。如需此条件需先训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-15pct-checkpoints.md"
+}

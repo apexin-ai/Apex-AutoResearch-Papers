@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "4e513c683612cac81911",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "audit collect data sources 20260525T194454 retry1",
+  "task_key": "worker_audit_collect-data-sources_20260525T194454_retry1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_collect-data-sources_20260525T194454_retry1.log",
+    "occurrence": 1,
+    "bytes": 1065037,
+    "sha256": "928d5bd61b4932c883432600ba1716621bdccfda7eea9834c05a3facca485190"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "system": 3,
+      "record": 2,
+      "assistant": 13,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "4e513c683612cac81911-part-0001.json",
+          "message_count": 64
+        },
+        {
+          "path": "4e513c683612cac81911-part-0002.json",
+          "message_count": 107
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-collect-data-sources-20260525t194454-retry1.md"
+}

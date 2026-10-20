@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "471d869f4b9b0cece7a8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb status check",
+  "task_key": "worker_ssh_westb_status_check_20260520T215155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_status_check_20260520T215155_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "77f29b6a89f44518e72da22697f0f2b450eea3798721130da92a8058690e46dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westb-23072 状态报告：**\n\n| 项目 | 状态 |\n|------|------|\n| **数据盘** | 227G/250G (91%)，剩余 24G — 与预期一致 |\n| **GPU 0** | 空闲，0% 利用率，0/95.6GB 显存 |\n| **GPU 1** | 空闲，0% 利用率，0/95.6GB 显存 |\n\n**残留进程：**\n- `tmux eval_unstructured_20` (PID 680597, May17 启动) — 看起来是之前的 GSM8K 评估 session，bash 已退出但 tmux session 还在\n- `http.server 8765` (PID 985445, May15 启动) — 数据盘上的文件服务\n\n无活跃的 Python 训练/推理进程在跑，两张 GPU 完全空闲可用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-status-check.md"
+}

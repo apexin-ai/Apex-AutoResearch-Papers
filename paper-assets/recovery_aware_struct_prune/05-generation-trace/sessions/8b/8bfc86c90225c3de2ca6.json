@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8bfc86c90225c3de2ca6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval humaneval sft cka only 20 1p5b 2048",
+  "task_key": "worker_analyze_eval_humaneval_sft_cka_only_20_1p5b_2048_20260519T132820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_humaneval_sft_cka_only_20_1p5b_2048_20260519T132820_result.json",
+    "occurrence": 1,
+    "bytes": 1353,
+    "sha256": "9ebee72595712a46e746f67a5eda99de87171d0a8abb4a0e87ab55c4324a8221"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n## 结果\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | **0.61% (1/164)** |\n| median_response_length | 2048 (打满上限) |\n| avg_response_length | 1968.76 |\n\n## 根因分析\n\n1.5B SFT CKA-only 模型在 HumanEval 上**生成自然语言推理文本而非代码**。几乎所有 163 个失败样本都是 SyntaxError——输出内容是 \"Okay, I need to write a Python function...\" 或 \"The function checks if...\" 这类解释性文字，而非可执行的 Python 代码。\n\n模型在 2048 token 内耗尽全部预算在推理文本上，无法生成有效代码补全。\n\n## 跨尺度对比\n\n| 模型 | pass@1 | 通过数 |\n|------|--------|--------|\n| 7B SFT CKA-only | 20.12% | 33/164 |\n| 7B GRPO CKA-only | 20.12% | 33/164 |\n| **1.5B SFT CKA-only** | **0.61%** | **1/164** |\n| 7B GRPO Standard | 10.98% | 18/164 |\n| 7B GRPO RASP | 10.98% | 18/164 |\n\n## 结论\n\n1.5B SFT CKA-only 模型无法支撑跨尺度 capability breadth claim。失败原因并非剪枝导致的能力退化，而是 **1.5B 模型容量不足以在 SFT 后维持代码生成格式**——模型退化为生成自然语言解释而非代码。这表明跨尺度对比需要考虑基座模型的 code generation baseline，1.5B 尺度下 SFT 可能根本无法激活结构化代码输出能力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-humaneval-sft-cka-only-20-1p5b-2048.md"
+}

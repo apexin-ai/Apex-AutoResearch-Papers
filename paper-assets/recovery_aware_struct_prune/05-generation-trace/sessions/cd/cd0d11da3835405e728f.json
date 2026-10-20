@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd0d11da3835405e728f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk emergency and e2 resume",
+  "task_key": "worker_ops_westd_disk_emergency_and_e2_resume_20260518T134440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_emergency_and_e2_resume_20260518T134440_result.json",
+    "occurrence": 1,
+    "bytes": 509,
+    "sha256": "635666a8466bcfe275d89ad06f5de075f6afccc140db61edf3c2f20a1f762c89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n```\n磁盘: 清理前 100% (619G/619G) → 清理后 68% (418G/619G), 释放 201GB\nMATH-500 evals: 正常运行，未受磁盘满影响\n  - math500_standard_grpo_fair (GPU1): 21/500 进行中\n  - math500_sft_cka_only_20 (GPU2): 18/500 进行中\n  - math500_dense_unpruned (GPU3): 45/500 进行中\nE2 resume: 已启动 PID=6346, step=111→300, GPU0 39.9GB\n  save_steps=50, save_total_limit=3\n  wandb: https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/44cjdoiy\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-emergency-and-e2-resume.md"
+}

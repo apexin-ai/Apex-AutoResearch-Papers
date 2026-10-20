@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "4fdbe7cb39b746813202",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d023 reeval westd gpu",
+  "task_key": "worker_code_d023-reeval-westd-gpu_20260515T091952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-reeval-westd-gpu_20260515T091952.log",
+    "occurrence": 1,
+    "bytes": 889390,
+    "sha256": "a8c9e25643e16ebebcb7b3fd69e1a39e893b7e6d9ecf96f81c389d53cc21f9bd"
+  },
+  "statistics": {
+    "messages": 617,
+    "user_turns": 0,
+    "tool_calls": 244,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 125,
+      "tool_call": 244,
+      "tool_result": 244,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 617,
+      "chunks": [
+        {
+          "path": "4fdbe7cb39b746813202-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fdbe7cb39b746813202-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fdbe7cb39b746813202-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fdbe7cb39b746813202-part-0004.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d023-reeval-westd-gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "720eedeb4bbf24da1e11",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_9_1778881300.md",
+  "task_key": "loop_9_1778881300",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_9_1778881300.md",
+    "occurrence": 1,
+    "bytes": 5280,
+    "sha256": "09ec6e96329d75a078d01f5f08697c2fb229bc86b86b8c5a0209bd70b811028f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 9\nreason: idle_timeout\nupdated: '2026-05-15T20:09:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb cuda:0/1, westd cuda:0/1——项目配置 `execution.gpu_ids` 只有这 4 张卡\n- **westb 磁盘 250G/250G 已满**——Standard GRPO v8 的 checkpoint 可能无法保存。下一个 session 第一件事检查磁盘+清理旧 checkpoint\n- RASP GRPO 同参数已连续 3 次 collapse（v2/v5/v8），**禁止再用 v8 参数重跑 RASP GRPO**\n- `grpo_stage2_rasp_20_v8` 已判定 COLLAPSED (D035/D036)，registry 状态 DONE/negative——不要试图恢复它\n- Unpruned baseline GRPO (D041) 实验设计无效（缺 SFT 步骤），不能作为公平对照引用\n- eval 脚本必须含 `apply_chat_template`——westd 旧版不含，必须从 westb 同步正确版本\n- westd calibration=256 vs westb calibration=512，导致 ~5% group 选择差异 (D022)——跨服务器比较需标注此差异\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`, conda base 环境。2x ~98GB GPU。**磁盘 100% 满**。\n- **westd-11672**: root@westd-11672, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`, conda base 环境。2x ~95GB GPU。\n- HF cache 两台都在 `/root/autodl-tmp/.hf_cache`\n- 活跃进程：`grpo_stage2_standard_20_v8` PID=534667 on westb，tmux session 应存在，cron 活跃（reconcile 确认 still running）\n- westd 上 `eval_sft_standard_20_westd_n100_v2` + `eval_sft_rasp_20_westd_n100_v2` 状态 RUNNING 但无 metrics——可能已完成但未回调，需 SSH 检查\n\n### 3. 📊 当前状态\n**刚做完：** 本 session 刚启动即收到 WRITE HANDOFF，未执行实质操作。以下是上一 session 遗留状态。\n\n**RUNNING (3):**\n| exp_id | 服务器 | 关键指标 |\n|--------|--------|---------|\n| grpo_stage2_standard_20_v8 | westb | step 30, reward=0.061, HEALTHY, frac_zero_std 从 0.675 回落到 0.525（recovering）。Director 决定跑到 step 100 不设 kill 阈值 |\n| eval_sft_standard_20_westd_n100_v2 | westd | metrics 空，可能卡住或已完成未回调 |\n| eval_sft_rasp_20_westd_n100_v2 | westd | 同上 |\n\n**PREPARING (10):** eval_sft_grasp_20, eval_sft_alpha_0p5, eval_sft_standard_20_full, eval_sft_rasp_20_full, eval_sft_grasp_20_westd, grpo_standard_20_v8, grpo_rasp_20_v8, alpha_ablation_westd_cal256, grpo_stage2_standard_20_v5, mvp_rasp_pipeline_v4\n\n**Worker 池：** 0 个运行中——需要立即补充\n\n**等待中：** Standard GRPO v8 cron 回调（ETA ~2026-05-16 11:30 UTC，约 ~16h 后）\n\n### 4. 📋 待办（条件触发式）\n- **立即** → SSH 检查 westd 两个 v2 eval 是否已完成（metrics 空可能是回调丢失）；如已完成则收集结果更新 registry\n- **立即** → SSH 检查 westb 磁盘，清理旧 GRPO checkpoint（v1-v7 残留），确保 Standard v8 能保存 checkpoint\n- **Standard GRPO v8 cron 回调到达** → 按 on-experiment-done 流程：收集 metrics → 判定 RASP vs Standard 差距 → contingency 表决定行动路线（见 ROADMAP contingency 表）\n- **Standard GRPO v8 reward 持续 >0.05 到 step 100** → success，RASP collapsed + Standard survived = \"Standard > RASP under GRPO\"，需 Framing 调整提案（原假设 RASP > Standard 完全反转）\n- **westd eval 完成确认后** → westd GPU 空闲，立即铺 GraSP SFT eval (eval_sft_grasp_20_westd) + α=2.0 SFT (alpha_ablation 最后一格)\n- **所有 α ablation SFT + eval 完成** → 生成 α vs recovery 曲线图，补全 Claim 2 证据\n- **GRPO 结果明确后** → 通知 Director 选择 narrative（A: Pruning for Plasticity / B: Recovery-Method Conditional / C: pivot），然后全力写论文（剩 ~9 天）\n\n### 5. 🎯 战略上下文\n**项目核心状态：原假设已反转。** RASP 设计初衷是 GRPO recovery 优于 Standard，但实际结果：\n- Post-prune: RASP 31% ≈ Standard 27%（不显著）\n- Post-SFT: Standard 64% > RASP 57%（Standard 反超）\n- Post-GRPO: **RASP 全面 collapse，Standard 是唯一还在学习的模型**\n- Unpruned 也 collapse → collapse 不完全是剪枝问题\n\n**最容易判断错的事：**\n1. **不要认为项目失败了**——Standard GRPO v8 如果 success，这本身是一个重要发现（\"importance-only pruning 意外保留了 GRPO 所需结构\"），可以 reframe 为正面贡献\n2. **不要急着改 paper_framing.md**——D042 决定等 Standard v8 完成后三者（RASP/Standard/Unpruned）对比确定再改。现在改是浪费\n3. **不要 fallback 到次级会议**——这是 Director 决策空间，Agent 全力推进\n4. **westb 磁盘满是定时炸弹**——Standard v8 跑完如果存不了 checkpoint 就白跑了\n\n**决策链关键节点：** D027（post-prune 差异不显著）→ D029（SFT Standard > RASP）→ D033（α ablation 不显著）→ D035-D036（RASP GRPO collapse）→ D037-D038（tentative Narrative A \"Pruning for Plasticity\"）→ D039-D041（Unpruned baseline invalidated）→ D042（等 Standard v8 结果再定论）\n\n**DDL：EMNLP ARR May 25 = 10 天。Standard v8 ETA ~5/16，留 ~9 天写作+补实验。时间极紧但可行——前提是 Standard v8 checkpoint 能保存。**\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-9-1778881300.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d89d4440115794e60538",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval humaneval sft rasp 2048",
+  "task_key": "worker_eval_humaneval_sft_rasp_2048_20260519T154552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_humaneval_sft_rasp_2048_20260519T154552_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "21521ca30af60b814906fe17d314652b6d10e7556805d4af4f1b6112769cdc2d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这个实验 **已经有结果了**。Registry 显示 `eval_humaneval_sft_rasp_20_2048_v2` 之前已完成：\n\n| 指标 | 值 |\n|------|-----|\n| pass@1 | **10.37%** (17/164) |\n| stderr | 0.0238 |\n| avg_response_length | 1253.7 |\n| median_response_length | 2048 (命中上限) |\n\n之前在 cuda:1 上跑完的。我刚又在 cuda:0 上启动了一个重复进程（PID 117053），需要杀掉吗？\n\n结果汇总对比：\n\n| 方法 | HumanEval @2048 |\n|------|----------------|\n| CKA-only SFT | 20.12% (33/164) |\n| CKA-only GRPO | 20.12% (33/164) |\n| Standard SFT | ~16.25% (interim) |\n| **RASP SFT** | **10.37% (17/164)** |\n| Standard GRPO | 10.98% (18/164) |\n| RASP GRPO | 10.98% (18/164) |\n\nRASP SFT (10.37%) ≈ RASP GRPO (10.98%)，支持 redistribution-not-expansion 假设在 RASP 上也成立。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-humaneval-sft-rasp-2048.md"
+}

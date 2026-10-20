@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e64cecdc38c03dd582bf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix full eval paths",
+  "task_key": "worker_code_fix-full-eval-paths_20260515T051010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-full-eval-paths_20260515T051010_result.json",
+    "occurrence": 1,
+    "bytes": 762,
+    "sha256": "2f54e5ae21195624a61c01e74e9f59721e5284c0a70b33821f1916fac15e2d44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修改汇总：**\n\n| 行号 | 修改前 | 修改后 |\n|------|--------|--------|\n| 33 | `grpo_stage2_rasp_20` | `grpo_stage2_rasp_20_v2` |\n| 34 | `grpo_stage2_standard_20` | `grpo_stage2_standard_20_v2` |\n| 42 | `grpo_stage2_rasp_20` | `grpo_stage2_rasp_20_v2` |\n| 43 | `grpo_stage2_standard_20` | `grpo_stage2_standard_20_v2` |\n| 161 | `grpo_stage2_rasp_20` | `grpo_stage2_rasp_20_v2` |\n| 163 | `grpo_stage2_standard_20` | `grpo_stage2_standard_20_v2` |\n\n**验证结果：**\n- `bash -n` 语法检查：SYNTAX_OK\n- SFT 路径（`sft_rasp_20`, `sft_standard_20`）：未被修改\n- 空目录 `grpo_stage2_rasp_20/` 和 `grpo_stage2_standard_20/`：已删除\n- v2 目录存在确认：两个 `_v2` 目录均存在"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-full-eval-paths.md"
+}

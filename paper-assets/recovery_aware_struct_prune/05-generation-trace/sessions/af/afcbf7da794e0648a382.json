@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "afcbf7da794e0648a382",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp sft cka only 20 1p5b retry",
+  "task_key": "worker_fix_eval_mbpp_sft_cka_only_20_1p5b_retry_20260519T184326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_sft_cka_only_20_1p5b_retry_20260519T184326_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "b6155e87ea4e36fb0927fced6ae22e18ebed0501376625c6774553b38d300919"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动：\n\n- **tmux session**: `eval_mbpp_sft_cka_only_20_1p5b` 存活\n- **GPU**: cuda:1 (westb-23072)\n- **模型加载正常**: 检测到 non-uniform MLP（intermediate_size range [3738, 8960]），无网络错误\n- **日志路径**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-sft-cka-only-20-1p5b-retry.md"
+}

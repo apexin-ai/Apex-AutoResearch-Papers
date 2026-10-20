@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c40fc301ff2cc6cfe8c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "investigate humaneval sft cka only zero pass",
+  "task_key": "worker_investigate_humaneval_sft_cka_only_zero_pass_20260519T043957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_humaneval_sft_cka_only_zero_pass_20260519T043957_result.json",
+    "occurrence": 1,
+    "bytes": 1658,
+    "sha256": "eff3e13ca43cd1b2c6f7944a876459656a7e038c547441d58dd96ab7401b9c53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n**Pass@1 = 0% 是真实结果，不是 bug。**\n\n### 根因\n\nSFT CKA-only 20% 模型在收到代码题时，完全进入数学推理模式，生成冗长的自然语言解释而非 Python 代码。3 个诊断样本的表现：\n\n| 题目 | 输出内容 | 是否有代码 |\n|------|---------|-----------|\n| HumanEval/0 | 纯自然语言分析\"how do I generate all possible pairs\" | 无，512 tokens 全是推理 |\n| HumanEval/2 | 先推理，后输出 broken code（字符串拼接垃圾） | 有但完全错误 |\n| HumanEval/4 | 纯自然语言描述 MAD 计算步骤 | 无，512 tokens 全是推理 |\n\n模型行为：GSM8K SFT 将生成分布重度偏移到数学推理风格，面对代码 prompt 时仍在 `<think>` 中做 step-by-step 分析，要么从不输出代码（撞 max_new_tokens），要么输出 broken code。\n\n### 对比数据\n\n| 模型 | HumanEval Pass@1 | 备注 |\n|------|-----------------|------|\n| Unpruned | 45.12% | baseline |\n| **GRPO CKA-only 20%** | **35.00%** (前20题) | GRPO 保留了代码能力 |\n| SFT Standard 20% | 11.59% | 至少能生成代码 |\n| SFT RASP 20% | 10.37% | 类似 |\n| **SFT CKA-only 20%** | **0.00%** (前69题) | 完全丧失代码能力 |\n\n### 解读\n\nCKA-only 剪枝 + GSM8K SFT 的组合导致代码能力彻底坍塌。CKA-only 在 GSM8K 上是最好的方法（64.37%），但代价是完全牺牲了 cross-task generalization。GRPO CKA-only 没有这个问题（前 20 题 35%），说明 GRPO 的 RL 训练方式比 SFT 更好地保持了通用能力。\n\n评测可以等其跑完，最终结果大概率仍是 0% 或极接近 0%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-humaneval-sft-cka-only-zero-pass.md"
+}

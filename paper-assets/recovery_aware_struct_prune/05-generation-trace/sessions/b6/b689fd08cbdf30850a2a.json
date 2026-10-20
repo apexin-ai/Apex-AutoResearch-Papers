@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b689fd08cbdf30850a2a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prune qwen math 25",
+  "task_key": "worker_ops_prune_qwen_math_25_20260516T093018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prune_qwen_math_25_20260516T093018_result.json",
+    "occurrence": 1,
+    "bytes": 1180,
+    "sha256": "65fea45ff2eba08cba9b7f534d460278d890aa61d42732f6b5baed221ed8413a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**三个阻塞问题**：\n\n### 1. 模型路径不对\n- 指定: `/root/autodl-tmp/Qwen2.5-Math-7B` ❌\n- 实际: `/root/autodl-tmp/models/Qwen2.5-Math-7B` ✅ (15GB)\n\n### 2. Scores 文件名不匹配\n- `results/importance_scores_qwen_math.pt` ❌ 不存在\n- `results/cka_scores_qwen_math.pt` ❌ 不存在\n- 现有: `results/importance_scores.pt` (18K, May 15) 和 `results/cka_scores.pt` (120K, May 15)\n- 这些 scores 很可能就是 Qwen Math 的（已有 `pruned_qwen_math_rasp_20` 和 `pruned_qwen_math_standard_20` 就是用它们生成的）\n\n### 3. 磁盘空间不足\n- 可用: **2.3GB**，需要 ~22GB\n- `/root/autodl-tmp` 已用 248G/250G\n- 现有产出占 ~220GB（17 个 pruned/sft 目录 + 2 个原始模型）\n\n**需要你决定**：\n1. Scores 文件是否直接用 `importance_scores.pt` / `cka_scores.pt`？\n2. 需要删除哪些旧产出来腾出 ~22GB 空间？候选：\n   - `sft_standard_25` (0 bytes，空目录)\n   - `pruned_graspune_20` + `sft_graspune_20` (24GB，GrASP baseline)\n   - `pruned_rasp_20` / `pruned_standard_20` / `sft_rasp_20_westd` / `sft_standard_20_westd` (DeepSeek 20% 相关，若 westb 上有备份)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prune-qwen-math-25.md"
+}

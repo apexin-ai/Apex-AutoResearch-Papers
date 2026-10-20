@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8217d7a17e0cdf207082",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "transfer sft random 20 to westb",
+  "task_key": "worker_transfer_sft_random_20_to_westb_20260522T120410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_transfer_sft_random_20_to_westb_20260522T120410_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "cccf6cce198975cbd56dce4a88e0066ea11feb818fa45dfb10b7d36c1757c15a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "传输完成，验证通过。\n\n**westb-23072 上 sft_random_20 目录内容：**\n| 文件 | 大小 |\n|------|------|\n| model.safetensors | 12,174,631,264 bytes (11.3GB) |\n| tokenizer.json | 11,421,907 bytes |\n| tokenizer_config.json | 419 bytes |\n| config.json | 2,244 bytes |\n| chat_template.jinja | 2,246 bytes |\n| generation_config.json | 240 bytes |\n| training_args.bin | 5,777 bytes |\n\n- model.safetensors 大小与 westd 源完全一致（12174631264 bytes）\n- 目录总大小 12GB\n- 数据盘剩余 14GB（95% 使用）\n- 已清理 SCP 产生的嵌套副本\n\n传输方式：通过 westb 的 SSH 密钥直接 SCP 到 westd 的 AutoDL 代理地址 `connect.westd.seetacloud.com:32935`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/transfer-sft-random-20-to-westb.md"
+}

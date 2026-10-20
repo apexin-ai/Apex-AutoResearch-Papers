@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84ad294c94cfdf588c28",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo unpruned v2 diagnose",
+  "task_key": "worker_ops_grpo-unpruned-v2-diagnose_20260516T014929",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo-unpruned-v2-diagnose_20260516T014929_result.json",
+    "occurrence": 1,
+    "bytes": 1198,
+    "sha256": "ab89489ba4b6b567a83689f57e718935283977d38b8fff9897e06395d1b3a93e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果：训练仍在运行\n\nPID 74579（启动器/父进程）已退出，但实际训练子进程 **PID 75381 仍然存活**，正在 cuda:1 上正常运行。\n\n### 详细状态\n\n| 项目 | 状态 |\n|------|------|\n| PID 74579 | DEAD（父/wrapper 进程） |\n| PID 75381 | **ALIVE**，Rl 状态，已运行 1m49s |\n| 命令 | `train_grpo_v5.py --gpu 0 ...` |\n| 当前进度 | **Step 2/100**，~31s/step，预计总耗时 ~50min |\n| Checkpoints | 暂无（save_steps=5，step 5 时出首个） |\n| WandB run | `nhsx0bt2` — https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/nhsx0bt2 |\n| 日志 | 36 行，最后记录到 step 2/100 |\n\n### GPU 状态\n\n| GPU | PID | 任务 | 显存占用 | 利用率 |\n|-----|-----|------|---------|--------|\n| cuda:0 | 74134 | eval_gsm8k.py（SFT baseline 评估） | 17,654 MiB | 90% |\n| cuda:1 | 75381 | grpo_unpruned_v2 训练 | 83,192 MiB | 93% |\n\n### 磁盘\n`/root/autodl-tmp`: 110G/250G（44%），充足。\n\n### 结论\n**训练未退出，正在正常运行。** PID 74579 可能是 nohup/bash wrapper，退出不影响子进程。实际训练进程 75381 健康运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-unpruned-v2-diagnose.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c2912a85a9f208d20e7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo collapse dynamics step29",
+  "task_key": "worker_analysis_grpo_collapse_dynamics_step29_20260517T171432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_collapse_dynamics_step29_20260517T171432_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "b20a5df7d318ff13dc3c52a771cebcf02668177cbd1ac53635c7ab73f566bb50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/collapse_dynamics_comparison.md`。\n\n**核心结论：**\n\n| Run | Collapse? | Evidence |\n|-----|-----------|----------|\n| **grpo_random_20** (step 30) | **未 collapse** | frac_zero_std=0.325, reward=0.1663, grad_norm=3.67, 高 entropy (0.23) |\n| **grpo_cka_only_20** (step 21) | **未 collapse** | frac_zero_std=0.200 (最低), reward=0.218 (最高), 但 entropy 偏低 (0.08) 需监控 |\n| RASP v9 | **从 step 0 就已 collapse** | frac_zero_std=0.875@step10, completion 全部 maxlen, SFT checkpoint 本身已退化 |\n| Standard v8 | **卡住但未全 collapse** | frac_zero_std 0.45-0.675, reward 停在 0.04-0.10, step 60 有 grad 瞬间归零 |\n\n**C2 collapse gradient 排序：** RASP v9 (即时) >> Standard v8 (卡住/step60 grad 信号) >> Random (step 30 无迹象) ≈ CKA-only (step 21 无迹象)\n\n两个新 run 的 reward (0.16-0.25) 已大幅超过 Standard v8 峰值 (0.096)。CKA-only 的低 entropy 是唯一风险信号，值得在 step 30-40 时复查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-collapse-dynamics-step29.md"
+}

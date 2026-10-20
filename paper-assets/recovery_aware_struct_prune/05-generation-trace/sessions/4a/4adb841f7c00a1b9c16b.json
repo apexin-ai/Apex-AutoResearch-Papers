@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4adb841f7c00a1b9c16b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest all final evals",
+  "task_key": "worker_ssh_harvest_all_final_evals_20260521T074920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_all_final_evals_20260521T074920_result.json",
+    "occurrence": 1,
+    "bytes": 2227,
+    "sha256": "41dea132dcbcf39641fd4bd8981aea82d67e1ae3399c20d54100fdba05c0ae31"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 收割结果汇总\n\n**这些 eval 并非 16+ 小时前启动。** 最早的在今天 10:00 启动，大部分在 12:53-14:47 之间启动。目前没有任何目标 eval 完成。\n\n### 目标 eval 进度\n\n| eval_id | 状态 | 进度 | 当前 interim acc | ETA | 服务器 |\n|---------|------|------|-----------------|-----|--------|\n| GSM8K GRPO CKA-only 25% (v3) | 运行中 | 1225/1319 (93%) | 59.75% @1200 | ~15-20min | westd-29022 GPU0 |\n| GSM8K SFT CKA-only 25% | 运行中 | 314/1319 (24%) | 59.33% @300 | 数小时 | westd-29022 GPU1 |\n| GSM8K SFT Random 20% | 运行中 | 667/1319 (51%) | 51.85% @650 | ~1h | westd-29022 GPU2 |\n| GSM8K GRPO Standard 25% | 运行中 | 304/1319 (23%) | 53.00% @300 | 数小时 | westb-23072 GPU1 |\n| MATH-500 SFT Standard 25% | 运行中 | 301/500 (60%) | — | 数小时(~1min/sample) | westb-23072 GPU0 |\n\n### 已完成的 eval（额外发现）\n\n| eval_id | 状态 | accuracy | correct/total | stderr | 服务器 |\n|---------|------|----------|---------------|--------|--------|\n| GSM8K GRPO Random 20% (v2) | ✅ 完成 | 50.57% | 667/1319 | ±1.38% | westd-29022 |\n| GSM8K Dense Unpruned | ✅ 完成 | 90.83% | 1198/1319 | ±0.79% | westb-23072 |\n| HumanEval SFT Standard 25% | ✅ 完成 | 1.83% (pass@1) | 3/164 | ±1.05% | westb-23072 |\n\n### GPU 占用\n\n**westd-29022:**\n- GPU 0: 28933/97887 MiB — GRPO CKA-only 25% v3 (快完成)\n- GPU 1: 28933/97887 MiB — SFT CKA-only 25%\n- GPU 2: 26219/97887 MiB — SFT Random 20%\n- GPU 3: 空闲\n\n**westb-23072:**\n- GPU 0: 18577/97887 MiB — MATH-500 SFT Standard 25%\n- GPU 1: 28945/97887 MiB — GRPO Standard 25%\n\n### SFT Standard 25% 模型\n\n- westd-29022: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25` ✅ 存在\n- westb-23072: 11G checkpoint at `checkpoint-1870/model.safetensors` ✅ 存在\n\n### 注意事项\n\n1. westd-29022 上有两个\"僵尸\"日志（v4/v3 副本），分别只有 14/15 行，2-5/1319 进度，几乎没有推进。实际工作进程是 v3（CKA-only）和 v2（Random，已完成）。\n2. GRPO CKA-only 25% v3 最接近完成（93%），预计 15-20 分钟内出结果。\n3. 其他 4 个 eval 还需要数小时才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-all-final-evals.md"
+}

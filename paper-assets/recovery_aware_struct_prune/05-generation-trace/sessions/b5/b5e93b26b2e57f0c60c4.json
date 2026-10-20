@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5e93b26b2e57f0c60c4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code submit math500 fixed batch",
+  "task_key": "worker_code_submit_math500_fixed_batch_20260523T221716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_submit_math500_fixed_batch_20260523T221716_result.json",
+    "occurrence": 1,
+    "bytes": 1361,
+    "sha256": "6fc5bf745d13bf0fbc3e22b2de94d64289a958479a31c87cc440d840f5abfd07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**所有 6 张 GPU 已满载，无空闲 GPU 可提交新实验。**\n\n### 当前运行中的 MATH-500 fixed eval (7 个进程 / 6 GPU)\n\n| 实验 | 服务器:GPU | PID | 已运行 |\n|------|-----------|------|--------|\n| sft_standard_25_fixed_v2 | westd:0 | 166245 | 1h08m |\n| grpo_rasp_alpha2p0_20_fixed | westd:1 | 168524 | 49m |\n| sft_rasp_alpha2p0_20_fixed | westd:2 | 171964 | 7m |\n| **grpo_cka_only_25_fixed** | westd:3 | 168451 | 49m |\n| **sft_rasp_alpha0p5_20_fixed** | westd:3 | 170326 | 30m |\n| grpo_cka_only_20_fixed | westb:0 | 321428 | 2h44m |\n| **grpo_random_20_fixed** | westb:1 | 330254 | 32m |\n\n**粗体** = 原以为\"未启动\"的 3 个 cron 实验中的 2 个 + 1 个新提交的。实际上全部已在运行。\n\n### 问题\n- westd:3 有 2 个 eval 争抢同一 GPU（~33.5GB VRAM），会互相拖慢。\n\n### 仍待提交（等 GPU 空出）\n1. **eval_math500_sft_rasp_alpha4p0_20_fixed** — checkpoint 在 westd\n2. **eval_math500_sft_standard_20_fixed** — checkpoint 在 westd（v3 之前 SIGHUP 失败）\n3. **eval_math500_sft_random_20_fixed** — checkpoint 在 westb（v2 之前 SIGTERM 失败）\n\n### Registry 已更新\n5 个正在运行的实验的 spec（server/gpu/pid/checkpoint_source）已更新到 registry，包括新建的 `eval_math500_grpo_rasp_alpha2p0_20_fixed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-submit-math500-fixed-batch.md"
+}

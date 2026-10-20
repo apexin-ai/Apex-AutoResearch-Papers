@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9ea43b8b4f0d33b5b03",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh m023 verify standard 15 eval v2",
+  "task_key": "worker_ssh_m023_verify_standard_15_eval_v2_20260520T225244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m023_verify_standard_15_eval_v2_20260520T225244_result.json",
+    "occurrence": 1,
+    "bytes": 1247,
+    "sha256": "b466feab9c186c9eb9c05d418225e894e1393848f37d144cec54a5686c1ceb06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Standard 15% eval v2 — 两个都失败了\n\n| Job | 状态 | 错误 |\n|-----|------|------|\n| seed123 (PID 292346) | **EXIT_CODE=1** | 模型加载成功，但 `HF_DATASETS_OFFLINE=1` 导致无法加载 GSM8K 数据集：`ConnectionError: Couldn't reach 'openai/gsm8k' on the Hub (OfflineModeIsEnabled)` |\n| seed456 (PID 292428) | **EXIT_CODE=1** | tokenizer 加载失败：`JSONDecodeError: Expecting value: line 1 column 1 (char 0)` — `grpo_standard_15_seed456_v3/checkpoint-100` 的 tokenizer.json 文件为空或损坏 |\n\n**根因分析**：\n- **seed123**: 之前的 CKA-only eval 能跑是因为 GSM8K 数据集已缓存，但 v2 job 的环境可能用了不同的 cache 目录，或缓存被清理了。需要去掉 `HF_DATASETS_OFFLINE=1` 或确保数据集已缓存。\n- **seed456**: checkpoint 的 tokenizer.json 损坏（空文件），需要检查并修复（从基础模型或 seed123 的 checkpoint 复制 tokenizer 文件）。\n\n### CKA-only eval（GPU 0/1）— 正常运行中\n\n| Job | 进度 | 当前 Accuracy | ETA |\n|-----|------|--------------|-----|\n| seed123 (GPU 0) | 761/1319 (58%) | 73.2% @ 750 | ~50min |\n| seed456 (GPU 1) | 738/1319 (56%) | 72.7% @ 700 | ~55min |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m023-verify-standard-15-eval-v2.md"
+}

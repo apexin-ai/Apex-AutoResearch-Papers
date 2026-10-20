@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92c7ab22cce4f9664a3c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "reviewer / loop_5.md",
+  "task_key": "loop_5",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_5.md",
+    "occurrence": 1,
+    "bytes": 3696,
+    "sha256": "f7cc529ddd2de29ff878009d29d8bd0a6f7d5936c0d469bfbf126579aaa54bef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-15T01:48:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 cuda:0 和 cuda:1（C001），越界立即 critical\n- 所有模型/checkpoint/大文件只写 `/root/autodl-tmp/`（C002），根分区 30GB 禁止写大文件\n- 服务器 westb-23072 用 conda base 环境（不是 venv）：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 存在两个易混淆脚本：`src/run_graspune.sh`（旧版，GRASPrune 工具）vs `src/run_grasp_prune.sh`（新版，GraSP baseline）——我曾因文件名混淆误报，注意区分\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072 (root)，代码根 `/root/recovery_aware_struct_prune`\n- Python：`/root/miniconda3/bin/python`，conda base\n- 模型路径：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`（原始），剪枝/SFT/GRPO 产出均在 `/root/autodl-tmp/recovery_aware_struct_prune/` 或 `/root/autodl-tmp/pruned_*`\n- HF cache：`/root/.cache/huggingface/`（GSM8K 已缓存，网络不通但有 local cache）\n- W&B：project `recovery_aware_struct_prune`，用户 `xiaoyucorynne`\n- 活跃进程：GRPO Stage 2 双卡并行\n  - `grpo_stage2_rasp_20`：PID 263888, cuda:0, wandb run `ve3er9un`\n  - `grpo_stage2_standard_20`：PID 263966, cuda:1, wandb run `mqu3sg7j`\n\n### 3. 📊 当前状态\n**GRPO Stage 2 是当前核心实验**，刚启动（09:14 UTC），500 steps，预计 7-10h。\n\nRegistry RUNNING：\n- `grpo_stage2_rasp_20`：SFT-warmed RASP → GRPO RLVR recovery（cuda:0）\n- `grpo_stage2_standard_20`：SFT-warmed Standard → GRPO RLVR recovery（cuda:1）\n\n我最后提交了 Claim 3 叙事逻辑审查报告（severity: warning），等 Director 回复。\n\n已完成的关键审查：\n- 三个 worker 脚本产出（run_graspune.sh 修复、run_grpo_stage2.sh、run_sft_eval.sh）— 全部 PASS\n- SFT 100 样本 eval 结果：**Standard 64% > RASP 57%**（critical 已报告，Director 判定不构成假设否定，GRPO Stage 2 是决定性实验）\n- 自纠：之前误把 `run_graspune.sh` 的问题归到 `run_grasp_prune.sh`，已纠正\n\n### 4. 📋 待办\n- GRPO Stage 2 前 10-20 步出 log → 立即检查 reward/grad_norm/clipped_ratio，确认不是零梯度重演（之前 D009/D010/D013 反复出现此问题）\n- GRPO 早期 reward 出现分化（RASP vs Standard）→ 报 Director，附 W&B run ID + 具体数据\n- GRPO 出现 RASP ≈ Standard 或 Standard > RASP → **立即 critical**，触发 pivot 讨论\n- GRPO 任一实验 reward_desert_patience 触发早停 → 报告并建议是否需要调参重跑\n- Director 可能要求 full GSM8K (1319 samples) eval → 需等 GRPO 结束释放 GPU\n\n### 5. 🎯 战略上下文\n**决策链**：D005(降 sparsity 到 20%)→D006(RASP 29% vs Standard 1%)→D009/D010/D013(GRPO 反复失败，根因是 sampling 无 EOS)→D013(SFT warmup 修复 EOS)→D015(SFT Standard>RASP 不改方向，GRPO Stage 2 是决定性实验)\n\n**最易判断错的事**：\n1. SFT 结果 Standard 64% > RASP 57% **不等于假设被否定**。核心 claim 是关于 RLVR (GRPO) 恢复，不是 SFT。Director 已明确判定（D015）\n2. Registry 中 sft_rasp_20 和 sft_standard_20 的 metrics **未更新为 100 样本结果**（仍是 3-5 样本旧数据）。真实数据在 `results/eval_sft_*_combined.json`\n3. 之前所有 GRPO 尝试（grpo_*_fast, grpo_*_4096）都因零梯度失败。Stage 2 是 SFT-warmed 模型首次 GRPO——如果前 10 步仍然零梯度，问题可能更深层（train_grpo.py 本身？）\n4. Claim 3 \"排序反转\"叙事在 SFT 那一行（57% vs 64%）p≈0.32 不显著。即使 GRPO 出正面结果，仍需 full eval + 多 seed 加固\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-copy-3.md"
+}

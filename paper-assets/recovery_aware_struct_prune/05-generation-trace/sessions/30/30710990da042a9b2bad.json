@@ -1,0 +1,2108 @@
+{
+  "schema_version": "1.0",
+  "id": "30710990da042a9b2bad",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analysis grpo qwen math 25",
+  "task_key": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_grpo_qwen_math_25_20260516T154652.jsonl",
+    "occurrence": 1,
+    "bytes": 118154,
+    "sha256": "295ac8b9a6d14e9802161118d13567930dc8e531e2af8ec784b91fbdbc0cdea1"
+  },
+  "statistics": {
+    "messages": 103,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "tool_call": 51,
+      "tool_result": 51,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T15:55:31.517178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__fetch_wandb_metrics,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T15:55:31.517571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T15:55:31.517774+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -200 ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T15:55:31.517923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -200 ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T15:55:31.518052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'ANALYZING'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T15:55:31.518316+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"│ │ it did on his first     │ hole: 90 - 20 =        │           │           │ │\\\\n│ │ turn, but the ball      │ <<90-20=70>>70 yards.  │           │           │ │\\\\n│ │ landed 20 yards beyond  │ Then add the distance  │           │           │ │\\\\n│ │ the hole.  On his third │ covered during each    │           │           │ │\\\\n│ │ swing, he hit the ball  │ turn to determine the  │           │           │ │\\\\n│ │ onto the green and it   │ total distance between │           │           │ │\\\\n│ │ rolled into the hole.   │ the starting tee and   │           │           │ │\\\\n│ │ What is the distance,   │ the hole: 70 + 180 +   │           │           │ │\\\\n│ │ in yards, from the      │ 180 =                  │           │           │ │\\\\n│ │ starting tee to the     │ <<70+180+180=530>>530  │           │           │ │\\\\n│ │ hole?                   │ yards.                 │           │           │ │\\\\n│ │                         │ Allyn's distance to    │           │           │ │\\\\n│ │ Answer:                 │ the hole is therefore  │           │           │ │\\\\n│ │                         │ 530 yards away from    │           │           │ │\\\\n│ │                         │ the starting tee.      │           │           │ │\\\\n│ │                         │ Allyn’s distance to    │           │           │ │\\\\n│ │                         │ the hole is therefore  │           │           │ │\\\\n│ │                         │ 530 yards away from    │           │           │ │\\\\n│ │                         │ the starting tee.      │           │           │ │\\\\n│ │                         │ This means there are   │           │           │ │\\\\n│ │                         │ 530 – 20 =             │           │           │ │\\\\n��� │                         │ <<530-20=510>>510      │           │           │ │\\\\n│ │                         │ yards between the      │           │           │ │\\\\n│ │                         │ sta\n…[truncated 6483 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T15:55:31.518681+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"│ │                         │ fell short the hole.   │           │           │ │\\\\n│ │ Answer:                 │ Thus so that means the │           │           │ │\\\\n│ │                         │ golf ball has been hit │           │           │ │\\\\n│ │                         │ off 360 - 20           │           │           │ │\\\\n│ │                         │ =<<360-20=340>>340     │           │           │ │\\\\n│ │                         │ yards                  │           │           │ │\\\\n│ │                         │ Finally when it was    │           │           │ │\\\\n│ │                         │ hit off the third      │           │           │ │\\\\n│ │                         │ turn, it was put onto  │           │           │ │\\\\n│ │                         │ the green, which means │           │           │ │\\\\n│ │                         │ it was hit off the     │           │           │ │\\\\n│ │                         │ hole itself.           │           │           │ │\\\\n│ │                         │ Thus the total         │           │           │ │\\\\n│ │                         │ distance from the      │           │           │ │\\\\n│ │                         │ starting tee to the    │           │           │ │\\\\n│ │                         │ hole is 340 yards      │           │           │ │\\\\n│ ├─────────────────────────┼────────────────────────┼───────────┼───────────┤ │\\\\n│ │ Solve the following     │  The total distance of │      0.00 │     -0.50 │ │\\\\n│ │ math problem step by    │ the three swings is    │           │           │ │\\\\n│ │ step. Put your final    │ 360 yards because 180  │           │           │ │\\\\n│ │ answer in \\\\\\\\boxed{}.     │ + (1/2)*180 = 450      │           │           │ │\\\\n│ │                         │ The distance that the  │           │           │ │\\\\n│ │ Question: Allyn is a    │ ball was off the hole  │           │           │ │\\\\n│ │ golfer. At the starting │ af\n…[truncated 6486 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T15:55:31.518923+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_standard_qwen_math_v3\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:42.896Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:43:44.592Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_standard_qwen_math_v3 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"16892\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:42.407Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B (Standard 20% SFT recovered)\\\", \\\"seed\\\": 42}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:42.910Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:46.610010+00:00\\\"}]}}, \\\"grpo_rasp_qwen_math_v3\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:39.708Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:43:34.623Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda act\n…[truncated 1465 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T15:55:31.519126+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -E \"reward|frac_zero_std|completion_length|loss|step\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T15:55:31.519290+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T15:55:31.519465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -E \"reward|frac_zero_std|completion_length|loss|step\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log | head -80",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T15:55:31.519613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T15:55:31.519741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "3vjjzi13",
+              "metric_names": "['reward/mean', 'reward/std', 'frac_zero_std', 'completion_length/mean', 'loss', 'kl', 'reward/format_reward_mean', 'reward/accuracy_reward_mean', '_step']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T15:55:31.519869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T15:55:31.519996+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "16vqw4e6",
+              "metric_names": "['reward/mean', 'reward/std', 'frac_zero_std', 'completion_length/mean', 'loss', 'kl', 'reward/format_reward_mean', 'reward/accuracy_reward_mean', '_step']"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T15:55:31.520123+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"W&B entity/project not configured. Set in config/projects/*.yaml\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T15:55:31.520298+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 80 \"reward\\|frac_zero_std\\|completion_length\\|STEP\\|step_metrics\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T15:55:31.520448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T15:55:31.520572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 80 \"reward\\|frac_zero_std\\|completion_length\\|STEP\\|step_metrics\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T15:55:31.520690+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T15:55:31.520806+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "3vjjzi13",
+              "metric_names": "['reward/mean', 'reward/std', 'frac_zero_std', 'completion_length/mean', 'loss', 'kl', 'reward/format_reward_mean', 'reward/accuracy_reward_mean', '_step']",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T15:55:31.520930+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_metrics"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "tool_args": {
+              "run_id": "16vqw4e6",
+              "metric_names": "['reward/mean', 'reward/std', 'frac_zero_std', 'completion_length/mean', 'loss', 'kl', 'reward/format_reward_mean', 'reward/accuracy_reward_mean', '_step']",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T15:55:31.521142+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"3vjjzi13\\\", \\\"run_name\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"metrics\\\": {\\\"_step\\\": 2821}, \\\"missing_metrics\\\": [\\\"reward/mean\\\", \\\"reward/std\\\", \\\"frac_zero_std\\\", \\\"completion_length/mean\\\", \\\"loss\\\", \\\"kl\\\", \\\"reward/format_reward_mean\\\", \\\"reward/accuracy_reward_mean\\\"], \\\"state\\\": \\\"finished\\\", \\\"config\\\": {\\\"beta\\\": 0.04, \\\"bf16\\\": true, \\\"fp16\\\": false, \\\"fsdp\\\": [], \\\"seed\\\": 42, \\\"debug\\\": [], \\\"dtype\\\": \\\"bfloat16\\\", \\\"optim\\\": \\\"adamw_bnb_8bit\\\", \\\"top_k\\\": 0, \\\"top_p\\\": 1, \\\"do_eval\\\": false, \\\"epsilon\\\": 0.2, \\\"project\\\": \\\"huggingface\\\", \\\"use_cpu\\\": false, \\\"do_train\\\": false, \\\"id2label\\\": {\\\"0\\\": \\\"LABEL_0\\\", \\\"1\\\": \\\"LABEL_1\\\"}, \\\"label2id\\\": {\\\"LABEL_0\\\": 0, \\\"LABEL_1\\\": 1}, \\\"run_name\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"use_vllm\\\": false, \\\"hub_token\\\": \\\"<HUB_TOKEN>\\\", \\\"log_level\\\": \\\"passive\\\", \\\"loss_type\\\": \\\"dapo\\\", \\\"max_steps\\\": 100, \\\"report_to\\\": [\\\"wandb\\\"], \\\"use_cache\\\": false, \\\"use_mrope\\\": false, \\\"vllm_mode\\\": \\\"colocate\\\", \\\"adam_beta1\\\": 0.9, \\\"adam_beta2\\\": 0.999, \\\"do_predict\\\": false, \\\"eval_delay\\\": 0, \\\"hidden_act\\\": \\\"silu\\\", \\\"local_rank\\\": -1, \\\"model_type\\\": \\\"qwen2\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"save_steps\\\": 100, \\\"vocab_size\\\": 152064, \\\"ddp_timeout\\\": 1800, \\\"fsdp_config\\\": {\\\"xla\\\": false, \\\"xla_fsdp_v2\\\": false, \\\"min_num_params\\\": 0, \\\"xla_fsdp_grad_ckpt\\\": false}, \\\"hidden_size\\\": 3584, \\\"layer_types\\\": [\\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_\n…[truncated 4286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T15:55:31.521427+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"16vqw4e6\\\", \\\"run_name\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"metrics\\\": {\\\"_step\\\": 2821}, \\\"missing_metrics\\\": [\\\"reward/mean\\\", \\\"reward/std\\\", \\\"frac_zero_std\\\", \\\"completion_length/mean\\\", \\\"loss\\\", \\\"kl\\\", \\\"reward/format_reward_mean\\\", \\\"reward/accuracy_reward_mean\\\"], \\\"state\\\": \\\"finished\\\", \\\"config\\\": {\\\"beta\\\": 0.04, \\\"bf16\\\": true, \\\"fp16\\\": false, \\\"fsdp\\\": [], \\\"seed\\\": 42, \\\"debug\\\": [], \\\"dtype\\\": \\\"bfloat16\\\", \\\"optim\\\": \\\"adamw_bnb_8bit\\\", \\\"top_k\\\": 0, \\\"top_p\\\": 1, \\\"do_eval\\\": false, \\\"epsilon\\\": 0.2, \\\"project\\\": \\\"huggingface\\\", \\\"use_cpu\\\": false, \\\"do_train\\\": false, \\\"id2label\\\": {\\\"0\\\": \\\"LABEL_0\\\", \\\"1\\\": \\\"LABEL_1\\\"}, \\\"label2id\\\": {\\\"LABEL_0\\\": 0, \\\"LABEL_1\\\": 1}, \\\"run_name\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"use_vllm\\\": false, \\\"hub_token\\\": \\\"<HUB_TOKEN>\\\", \\\"log_level\\\": \\\"passive\\\", \\\"loss_type\\\": \\\"dapo\\\", \\\"max_steps\\\": 100, \\\"report_to\\\": [\\\"wandb\\\"], \\\"use_cache\\\": false, \\\"use_mrope\\\": false, \\\"vllm_mode\\\": \\\"colocate\\\", \\\"adam_beta1\\\": 0.9, \\\"adam_beta2\\\": 0.999, \\\"do_predict\\\": false, \\\"eval_delay\\\": 0, \\\"hidden_act\\\": \\\"silu\\\", \\\"local_rank\\\": -1, \\\"model_type\\\": \\\"qwen2\\\", \\\"output_dir\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"save_steps\\\": 100, \\\"vocab_size\\\": 152064, \\\"ddp_timeout\\\": 1800, \\\"fsdp_config\\\": {\\\"xla\\\": false, \\\"xla_fsdp_v2\\\": false, \\\"min_num_params\\\": 0, \\\"xla_fsdp_grad_ckpt\\\": false}, \\\"hidden_size\\\": 3584, \\\"layer_types\\\": [\\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attention\\\", \\\"full_attentio\n…[truncated 4298 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_metrics",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T15:55:31.521800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__fetch_wandb_run_history,mcp__agent-ml-research__list_wandb_runs",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T15:55:31.521967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T15:55:31.522096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -E \"(step_metrics|COLLAPSE|frac_zero|reward_mean|avg_reward|desert)\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T15:55:31.522224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T15:55:31.522390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -E \"(step_metrics|COLLAPSE|frac_zero|reward_mean|avg_reward|desert)\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T15:55:31.522522+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T15:55:31.522689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 50 -e \"step_metrics\" -e \"COLLAPSE\" -e \"frac_zero\" -e \"avg_reward\" -e \"desert\" -e \"STEP\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T15:55:31.522893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 22:54:21,342 [INFO] Reward desert patience: 50 log events\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T15:55:31.523071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 50 -e \"step_metrics\" -e \"COLLAPSE\" -e \"frac_zero\" -e \"avg_reward\" -e \"desert\" -e \"STEP\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T15:55:31.523209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 22:54:17,383 [INFO] Reward desert patience: 50 log events\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T15:55:31.523377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_run_history"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "tool_args": {
+              "run_id": "3vjjzi13",
+              "metrics": "['grpo/reward_mean', 'grpo/frac_zero_std', 'grpo/completion_length_mean', 'grpo/kl_mean', 'grpo/loss', 'train/loss', 'reward', 'rewards/mean', 'completion_length', 'objective/kl']",
+              "samples": "20",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T15:55:31.523516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_run_history"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "tool_args": {
+              "run_id": "16vqw4e6",
+              "metrics": "['grpo/reward_mean', 'grpo/frac_zero_std', 'grpo/completion_length_mean', 'grpo/kl_mean', 'grpo/loss', 'train/loss', 'reward', 'rewards/mean', 'completion_length', 'objective/kl']",
+              "samples": "20",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T15:55:31.523650+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"3vjjzi13\\\", \\\"run_name\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"steps\\\": [], \\\"history\\\": {\\\"grpo/reward_mean\\\": [], \\\"grpo/frac_zero_std\\\": [], \\\"grpo/completion_length_mean\\\": [], \\\"grpo/kl_mean\\\": [], \\\"grpo/loss\\\": [], \\\"train/loss\\\": [], \\\"reward\\\": [], \\\"rewards/mean\\\": [], \\\"completion_length\\\": [], \\\"objective/kl\\\": []}, \\\"num_points\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T15:55:31.523778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"16vqw4e6\\\", \\\"run_name\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"steps\\\": [], \\\"history\\\": {\\\"grpo/reward_mean\\\": [], \\\"grpo/frac_zero_std\\\": [], \\\"grpo/completion_length_mean\\\": [], \\\"grpo/kl_mean\\\": [], \\\"grpo/loss\\\": [], \\\"train/loss\\\": [], \\\"reward\\\": [], \\\"rewards/mean\\\": [], \\\"completion_length\\\": [], \\\"objective/kl\\\": []}, \\\"num_points\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T15:55:31.523931+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "head -100 ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T15:55:31.524159+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 22:49:50,862 [INFO] Loading pruned model from /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25\\\\n2026-05-16 22:49:51,574 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-16 22:51:25,947 [INFO] generation_config.eos_token_id: [151643, 151645]\\\\n2026-05-16 22:51:25,948 [INFO] Preparing GSM8K training dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-16 22:52:46,150 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-16 22:52:46,152 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-16 22:52:47,154 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sat May 16 20:02:06 2026).\\\\n2026-05-16 22:52:47,155 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sat May 16 20:02:06 2026).\\\\n2026-05-16 22:52:47,174 [INFO] Training on 7473 samples\\\\n[transformers] `logging_dir` is deprecated and will be removed in v5.2. Please set `TENSORBOARD_LOGGING_DIR` instead.\\\\n2026-05-16 22:52:47,255 [INFO] Loading pruned ref_model from /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25\\\\n2026-05-16 22:52:47,256 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\\n…[truncated 6393 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T15:55:31.524356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -c \"\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T15:55:31.524501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"24681\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T15:55:31.524625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_run_history"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "tool_args": {
+              "run_id": "3vjjzi13",
+              "metrics": "['loss', 'reward_mean', 'reward_std', 'kl', 'frac_zero_std', 'completion_length_mean', 'lr', 'epoch']",
+              "samples": "10",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T15:55:31.524762+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"3vjjzi13\\\", \\\"run_name\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"steps\\\": [], \\\"history\\\": {\\\"loss\\\": [], \\\"reward_mean\\\": [], \\\"reward_std\\\": [], \\\"kl\\\": [], \\\"frac_zero_std\\\": [], \\\"completion_length_mean\\\": [], \\\"lr\\\": [], \\\"epoch\\\": []}, \\\"num_points\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T15:55:31.524924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 20 \"'loss':\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T15:55:31.525114+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:47, 26.54s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:55, 26.20s/it]\\\\r  5%|▌         | 5/100 [02:10<41:20, 26.11s/it]\\\\r  6%|▌         | 6/100 [02:37<41:01, 26.19s/it]\\\\r  7%|▋         | 7/100 [03:03<40:31, 26.14s/it]\\\\r  8%|▊         | 8/100 [03:29<39:59, 26.09s/it]\\\\r  9%|▉         | 9/100 [03:55<39:28, 26.02s/it]\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]{'loss': '0.006333', 'grad_norm': '0.2871', 'learning_rate': '4.55e-07', 'num_tokens': '1.365e+05', 'completions/mean_length': '772.7', 'completions/min_length': '153.2', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.6813', 'completions/mean_terminated_length': '240.4', 'completions/min_terminated_length': '153.2', 'completions/max_terminated_length': '423.2', 'rewards/reward_fn/mean': '0.1119', 'rewards/reward_fn/std': '0.2746', 'reward': '0.1119', 'reward_std': '0.2746', 'frac_reward_zero_std': '0.575', 'kl': '0.00217', 'entropy': '0.117', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.42', 'epoch': '0.005353'}\\\\n\\\\r 11%|█         | 11/100 [04:51<40:35, 27.37s/it]\\\\r 12%|█▏        | 12/100 [05:17<39:34, 26.98s/it]\\\\r 13%|█▎        | 13/100 [05:43<38:43, 26.71s/it]\\\\r 14%|█▍        | 14/100 [06:09<37:54, 26.45s/it]\\\\r 15%|█▌        | 15/100 [06:35<37:13, 26.27s/it]\\\\r 16%|█▌        | 16/100 [07:02<37:02, 26.46s/it]\\\\r 17%|█▋        | 17/100 [07:28<36:33, 26.42s/it]\\\\r 18%|█▊        | 18/100 [07:54<36:06, 26.43s/it]\\\\r 19%|█▉        | 19/100 [08:21<35:57, 26.63s/it]\\\\r 20%|██        | 20/100 [08:47<35:14, 26.43s/it]\\\\r                           \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T15:55:31.525299+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 20 \"'loss':\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T15:55:31.525509+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:51, 26.58s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:05, 26.03s/it]\\\\r  4%|▍         | 4/100 [01:44<41:51, 26.16s/it]\\\\r  5%|▌         | 5/100 [02:10<41:14, 26.05s/it]\\\\r  6%|▌         | 6/100 [02:36<40:54, 26.11s/it]\\\\r  7%|▋         | 7/100 [03:02<40:24, 26.07s/it]\\\\r  8%|▊         | 8/100 [03:28<39:52, 26.00s/it]\\\\r  9%|▉         | 9/100 [03:54<39:23, 25.97s/it]\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]{'loss': '0.08969', 'grad_norm': '3.219', 'learning_rate': '4.55e-07', 'num_tokens': '9.452e+04', 'completions/mean_length': '510.5', 'completions/min_length': '115.6', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.3187', 'completions/mean_terminated_length': '270.9', 'completions/min_terminated_length': '115.6', 'completions/max_terminated_length': '540.2', 'rewards/reward_fn/mean': '0.2006', 'rewards/reward_fn/std': '0.3629', 'reward': '0.2006', 'reward_std': '0.3629', 'frac_reward_zero_std': '0.375', 'kl': '0.005179', 'entropy': '0.2403', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.33', 'epoch': '0.005353'}\\\\n\\\\r 11%|█         | 11/100 [04:50<40:19, 27.18s/it]\\\\r 12%|█▏        | 12/100 [05:16<39:21, 26.83s/it]\\\\r 13%|█▎        | 13/100 [05:42<38:32, 26.58s/it]\\\\r 14%|█▍        | 14/100 [06:08<37:46, 26.36s/it]\\\\r 15%|█▌        | 15/100 [06:33<37:06, 26.19s/it]\\\\r 16%|█▌        | 16/100 [07:00<36:57, 26.40s/it]\\\\r 17%|█▋        | 17/100 [07:27<36:27, 26.36s/it]\\\\r 18%|█▊        | 18/100 [07:53<36:00, 26.35s/it]\\\\r 19%|█▉        | 19/100 [08:20<35:50, 26.55s/it]\\\\r 20%|██        | 20/100 [08:46<35:07, 26.34s/it]\\\\r                           \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T15:55:31.525669+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__fetch_wandb_run_history"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "tool_args": {
+              "run_id": "3vjjzi13",
+              "metrics": "['completions/mean_length', 'reward/accuracy_mean', 'reward/format_mean', 'reward/total_mean', 'reward/accuracy_std', 'completions/clipped_ratio']",
+              "samples": "20",
+              "entity": "xiaoyucorynne-",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T15:55:31.525839+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"run_id\\\": \\\"3vjjzi13\\\", \\\"run_name\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"steps\\\": [], \\\"history\\\": {\\\"completions/mean_length\\\": [], \\\"reward/accuracy_mean\\\": [], \\\"reward/format_mean\\\": [], \\\"reward/total_mean\\\": [], \\\"reward/accuracy_std\\\": [], \\\"completions/clipped_ratio\\\": []}, \\\"num_points\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__fetch_wandb_run_history",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T15:55:31.526012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 20 -e \"frac_reward_zero\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T15:55:31.526201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:47, 26.54s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:55, 26.20s/it]\\\\r  5%|▌         | 5/100 [02:10<41:20, 26.11s/it]\\\\r  6%|▌         | 6/100 [02:37<41:01, 26.19s/it]\\\\r  7%|▋         | 7/100 [03:03<40:31, 26.14s/it]\\\\r  8%|▊         | 8/100 [03:29<39:59, 26.09s/it]\\\\r  9%|▉         | 9/100 [03:55<39:28, 26.02s/it]\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]{'loss': '0.006333', 'grad_norm': '0.2871', 'learning_rate': '4.55e-07', 'num_tokens': '1.365e+05', 'completions/mean_length': '772.7', 'completions/min_length': '153.2', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.6813', 'completions/mean_terminated_length': '240.4', 'completions/min_terminated_length': '153.2', 'completions/max_terminated_length': '423.2', 'rewards/reward_fn/mean': '0.1119', 'rewards/reward_fn/std': '0.2746', 'reward': '0.1119', 'reward_std': '0.2746', 'frac_reward_zero_std': '0.575', 'kl': '0.00217', 'entropy': '0.117', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.42', 'epoch': '0.005353'}\\\\n\\\\r 11%|█         | 11/100 [04:51<40:35, 27.37s/it]\\\\r 12%|█▏        | 12/100 [05:17<39:34, 26.98s/it]\\\\r 13%|█▎        | 13/100 [05:43<38:43, 26.71s/it]\\\\r 14%|█▍        | 14/100 [06:09<37:54, 26.45s/it]\\\\r 15%|█▌        | 15/100 [06:35<37:13, 26.27s/it]\\\\r 16%|█▌        | 16/100 [07:02<37:02, 26.46s/it]\\\\r 17%|█▋        | 17/100 [07:28<36:33, 26.42s/it]\\\\r 18%|█▊        | 18/100 [07:54<36:06, 26.43s/it]\\\\r 19%|█▉        | 19/100 [08:21<35:57, 26.63s/it]\\\\r 20%|██        | 20/100 [08:47<35:14, 26.43s/it]\\\\r                           \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T15:55:31.526409+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -m 20 -e \"frac_reward_zero\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T15:55:31.526606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:51, 26.58s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:05, 26.03s/it]\\\\r  4%|▍         | 4/100 [01:44<41:51, 26.16s/it]\\\\r  5%|▌         | 5/100 [02:10<41:14, 26.05s/it]\\\\r  6%|▌         | 6/100 [02:36<40:54, 26.11s/it]\\\\r  7%|▋         | 7/100 [03:02<40:24, 26.07s/it]\\\\r  8%|▊         | 8/100 [03:28<39:52, 26.00s/it]\\\\r  9%|▉         | 9/100 [03:54<39:23, 25.97s/it]\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]{'loss': '0.08969', 'grad_norm': '3.219', 'learning_rate': '4.55e-07', 'num_tokens': '9.452e+04', 'completions/mean_length': '510.5', 'completions/min_length': '115.6', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.3187', 'completions/mean_terminated_length': '270.9', 'completions/min_terminated_length': '115.6', 'completions/max_terminated_length': '540.2', 'rewards/reward_fn/mean': '0.2006', 'rewards/reward_fn/std': '0.3629', 'reward': '0.2006', 'reward_std': '0.3629', 'frac_reward_zero_std': '0.375', 'kl': '0.005179', 'entropy': '0.2403', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.33', 'epoch': '0.005353'}\\\\n\\\\r 11%|█         | 11/100 [04:50<40:19, 27.18s/it]\\\\r 12%|█▏        | 12/100 [05:16<39:21, 26.83s/it]\\\\r 13%|█▎        | 13/100 [05:42<38:32, 26.58s/it]\\\\r 14%|█▍        | 14/100 [06:08<37:46, 26.36s/it]\\\\r 15%|█▌        | 15/100 [06:33<37:06, 26.19s/it]\\\\r 16%|█▌        | 16/100 [07:00<36:57, 26.40s/it]\\\\r 17%|█▋        | 17/100 [07:27<36:27, 26.36s/it]\\\\r 18%|█▊        | 18/100 [07:53<36:00, 26.35s/it]\\\\r 19%|█▉        | 19/100 [08:20<35:50, 26.55s/it]\\\\r 20%|██        | 20/100 [08:46<35:07, 26.34s/it]\\\\r                           \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T15:55:31.526792+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"'reward':\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T15:55:31.526921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"'reward':\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T15:55:31.527103+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:47, 26.54s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:55, 26.20s/it]\\\\r  5%|▌         | 5/100 [02:10<41:20, 26.11s/it]\\\\r  6%|▌         | 6/100 [02:37<41:01, 26.19s/it]\\\\r  7%|▋         | 7/100 [03:03<40:31, 26.14s/it]\\\\r  8%|▊         | 8/100 [03:29<39:59, 26.09s/it]\\\\r  9%|▉         | 9/100 [03:55<39:28, 26.02s/it]\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]{'loss': '0.006333', 'grad_norm': '0.2871', 'learning_rate': '4.55e-07', 'num_tokens': '1.365e+05', 'completions/mean_length': '772.7', 'completions/min_length': '153.2', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.6813', 'completions/mean_terminated_length': '240.4', 'completions/min_terminated_length': '153.2', 'completions/max_terminated_length': '423.2', 'rewards/reward_fn/mean': '0.1119', 'rewards/reward_fn/std': '0.2746', 'reward': '0.1119', 'reward_std': '0.2746', 'frac_reward_zero_std': '0.575', 'kl': '0.00217', 'entropy': '0.117', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.42', 'epoch': '0.005353'}\\\\n2099:\\\\r 11%|█         | 11/100 [04:51<40:35, 27.37s/it]\\\\r 12%|█▏        | 12/100 [05:17<39:34, 26.98s/it]\\\\r 13%|█▎        | 13/100 [05:43<38:43, 26.71s/it]\\\\r 14%|█▍        | 14/100 [06:09<37:54, 26.45s/it]\\\\r 15%|█▌        | 15/100 [06:35<37:13, 26.27s/it]\\\\r 16%|█▌        | 16/100 [07:02<37:02, 26.46s/it]\\\\r 17%|█▋        | 17/100 [07:28<36:33, 26.42s/it]\\\\r 18%|█▊        | 18/100 [07:54<36:06, 26.43s/it]\\\\r 19%|█▉        | 19/100 [08:21<35:57, 26.63s/it]\\\\r 20%|██        | 20/100 [08:47<35:14, 26.43s/it]\\\\r                   \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T15:55:31.527347+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:51, 26.58s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:05, 26.03s/it]\\\\r  4%|▍         | 4/100 [01:44<41:51, 26.16s/it]\\\\r  5%|▌         | 5/100 [02:10<41:14, 26.05s/it]\\\\r  6%|▌         | 6/100 [02:36<40:54, 26.11s/it]\\\\r  7%|▋         | 7/100 [03:02<40:24, 26.07s/it]\\\\r  8%|▊         | 8/100 [03:28<39:52, 26.00s/it]\\\\r  9%|▉         | 9/100 [03:54<39:23, 25.97s/it]\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]{'loss': '0.08969', 'grad_norm': '3.219', 'learning_rate': '4.55e-07', 'num_tokens': '9.452e+04', 'completions/mean_length': '510.5', 'completions/min_length': '115.6', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.3187', 'completions/mean_terminated_length': '270.9', 'completions/min_terminated_length': '115.6', 'completions/max_terminated_length': '540.2', 'rewards/reward_fn/mean': '0.2006', 'rewards/reward_fn/std': '0.3629', 'reward': '0.2006', 'reward_std': '0.3629', 'frac_reward_zero_std': '0.375', 'kl': '0.005179', 'entropy': '0.2403', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.33', 'epoch': '0.005353'}\\\\n1325:\\\\r 11%|█         | 11/100 [04:50<40:19, 27.18s/it]\\\\r 12%|█▏        | 12/100 [05:16<39:21, 26.83s/it]\\\\r 13%|█▎        | 13/100 [05:42<38:32, 26.58s/it]\\\\r 14%|█▍        | 14/100 [06:08<37:46, 26.36s/it]\\\\r 15%|█▌        | 15/100 [06:33<37:06, 26.19s/it]\\\\r 16%|█▌        | 16/100 [07:00<36:57, 26.40s/it]\\\\r 17%|█▋        | 17/100 [07:27<36:27, 26.36s/it]\\\\r 18%|█▊        | 18/100 [07:53<36:00, 26.35s/it]\\\\r 19%|█▉        | 19/100 [08:20<35:50, 26.55s/it]\\\\r 20%|██        | 20/100 [08:46<35:07, 26.34s/it]\\\\r                   \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T15:55:31.527570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"frac_reward_zero_std\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T15:55:31.527765+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:47, 26.54s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:55, 26.20s/it]\\\\r  5%|▌         | 5/100 [02:10<41:20, 26.11s/it]\\\\r  6%|▌         | 6/100 [02:37<41:01, 26.19s/it]\\\\r  7%|▋         | 7/100 [03:03<40:31, 26.14s/it]\\\\r  8%|▊         | 8/100 [03:29<39:59, 26.09s/it]\\\\r  9%|▉         | 9/100 [03:55<39:28, 26.02s/it]\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:20<38:43, 25.82s/it]{'loss': '0.006333', 'grad_norm': '0.2871', 'learning_rate': '4.55e-07', 'num_tokens': '1.365e+05', 'completions/mean_length': '772.7', 'completions/min_length': '153.2', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.6813', 'completions/mean_terminated_length': '240.4', 'completions/min_terminated_length': '153.2', 'completions/max_terminated_length': '423.2', 'rewards/reward_fn/mean': '0.1119', 'rewards/reward_fn/std': '0.2746', 'reward': '0.1119', 'reward_std': '0.2746', 'frac_reward_zero_std': '0.575', 'kl': '0.00217', 'entropy': '0.117', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.42', 'epoch': '0.005353'}\\\\n2099:\\\\r 11%|█         | 11/100 [04:51<40:35, 27.37s/it]\\\\r 12%|█▏        | 12/100 [05:17<39:34, 26.98s/it]\\\\r 13%|█▎        | 13/100 [05:43<38:43, 26.71s/it]\\\\r 14%|█▍        | 14/100 [06:09<37:54, 26.45s/it]\\\\r 15%|█▌        | 15/100 [06:35<37:13, 26.27s/it]\\\\r 16%|█▌        | 16/100 [07:02<37:02, 26.46s/it]\\\\r 17%|█▋        | 17/100 [07:28<36:33, 26.42s/it]\\\\r 18%|█▊        | 18/100 [07:54<36:06, 26.43s/it]\\\\r 19%|█▉        | 19/100 [08:21<35:57, 26.63s/it]\\\\r 20%|██        | 20/100 [08:47<35:14, 26.43s/it]\\\\r                   \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T15:55:31.527921+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"frac_reward_zero_std\" ~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T15:55:31.528109+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"33:\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<43:51, 26.58s/it]\\\\r  2%|▏         | 2/100 [00:52<42:52, 26.25s/it]\\\\r  3%|▎         | 3/100 [01:18<42:05, 26.03s/it]\\\\r  4%|▍         | 4/100 [01:44<41:51, 26.16s/it]\\\\r  5%|▌         | 5/100 [02:10<41:14, 26.05s/it]\\\\r  6%|▌         | 6/100 [02:36<40:54, 26.11s/it]\\\\r  7%|▋         | 7/100 [03:02<40:24, 26.07s/it]\\\\r  8%|▊         | 8/100 [03:28<39:52, 26.00s/it]\\\\r  9%|▉         | 9/100 [03:54<39:23, 25.97s/it]\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:19<38:39, 25.77s/it]{'loss': '0.08969', 'grad_norm': '3.219', 'learning_rate': '4.55e-07', 'num_tokens': '9.452e+04', 'completions/mean_length': '510.5', 'completions/min_length': '115.6', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.3187', 'completions/mean_terminated_length': '270.9', 'completions/min_terminated_length': '115.6', 'completions/max_terminated_length': '540.2', 'rewards/reward_fn/mean': '0.2006', 'rewards/reward_fn/std': '0.3629', 'reward': '0.2006', 'reward_std': '0.3629', 'frac_reward_zero_std': '0.375', 'kl': '0.005179', 'entropy': '0.2403', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.33', 'epoch': '0.005353'}\\\\n1325:\\\\r 11%|█         | 11/100 [04:50<40:19, 27.18s/it]\\\\r 12%|█▏        | 12/100 [05:16<39:21, 26.83s/it]\\\\r 13%|█▎        | 13/100 [05:42<38:32, 26.58s/it]\\\\r 14%|█▍        | 14/100 [06:08<37:46, 26.36s/it]\\\\r 15%|█▌        | 15/100 [06:33<37:06, 26.19s/it]\\\\r 16%|█▌        | 16/100 [07:00<36:57, 26.40s/it]\\\\r 17%|█▋        | 17/100 [07:27<36:27, 26.36s/it]\\\\r 18%|█▊        | 18/100 [07:53<36:00, 26.35s/it]\\\\r 19%|█▉        | 19/100 [08:20<35:50, 26.55s/it]\\\\r 20%|██        | 20/100 [08:46<35:07, 26.34s/it]\\\\r                   \n…[truncated 6367 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T15:55:31.528309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T15:55:31.528447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T15:55:31.528573+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "python3 -c \"\nimport re, json\n\nfor name in ['grpo_rasp_25_qwen_math', 'grpo_standard_25_qwen_math']:\n    path = f'/root/runs/recovery_aware_struct_prune/{name}.log'\n    with open(path) as f:\n        text = f.read()\n    # Find all metric dicts\n    matches = re.findall(r\\\"\\{\\'loss\\'.*?\\'epoch\\':\\s*\\'[^']+\\'\\}\\\", text)\n    print(f'=== {name} ({len(matches)} log points) ===')\n    print(f'{\\\"step\\\":>5} {\\\"reward\\\":>8} {\\\"frac_0std\\\":>10} {\\\"comp_len\\\":>10} {\\\"kl\\\":>12} {\\\"loss\\\":>12} {\\\"entropy\\\":>8}')\n    for i, m in enumerate(matches):\n        d = eval(m)\n        step = (i+1)*10\n        print(f'{step:>5} {d[\\\"reward\\\"]:>8} {d[\\\"frac_reward_zero_std\\\"]:>10} {d[\\\"completions/mean_length\\\"]:>10} {d[\\\"kl\\\"]:>12} {d[\\\"loss\\\"]:>12} {d[\\\"entropy\\\"]:>8}')\n    print()\n\"\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T15:55:31.528739+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport re, json\\\\\\\\n\\\\\\\\nfor name in [\\\\\\\\'grpo_rasp_25_qwen_math\\\\\\\\', \\\\\\\\'grpo_standard_25_qwen_math\\\\\\\\']:\\\\\\\\n    path = f\\\\\\\\'/root/runs/recovery_aware_struct_prune/{name}.log\\\\\\\\'\\\\\\\\n    with open(path) as f:\\\\\\\\n        text = f.read()\\\\\\\\n    # Find all metric dicts\\\\\\\\n    matches = re.findall(r\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\{\\\\\\\\\\\\\\\\\\\\\\\\'loss\\\\\\\\\\\\\\\\\\\\\\\\'.*?\\\\\\\\\\\\\\\\\\\\\\\\'epoch\\\\\\\\\\\\\\\\\\\\\\\\':\\\\\\\\\\\\\\\\s*\\\\\\\\\\\\\\\\\\\\\\\\'[^\\\\\\\\']+\\\\\\\\\\\\\\\\\\\\\\\\'\\\\\\\\\\\\\\\\}\\\\\\\\\\\\\\\\\\\\\\\", text)\\\\\\\\n    print(f\\\\\\\\'=== {name} ({len(matches)} log points) ===\\\\\\\\')\\\\\\\\n    print(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"step\\\\\\\\\\\\\\\\\\\\\\\":>5} {\\\\\\\\\\\\\\\\\\\\\\\"reward\\\\\\\\\\\\\\\\\\\\\\\":>8} {\\\\\\\\\\\\\\\\\\\\\\\"frac_0std\\\\\\\\\\\\\\\\\\\\\\\":>10} {\\\\\\\\\\\\\\\\\\\\\\\"comp_len\\\\\\\\\\\\\\\\\\\\\\\":>10} {\\\\\\\\\\\\\\\\\\\\\\\"kl\\\\\\\\\\\\\\\\\\\\\\\":>12} {\\\\\\\\\\\\\\\\\\\\\\\"loss\\\\\\\\\\\\\\\\\\\\\\\":>12} {\\\\\\\\\\\\\\\\\\\\\\\"entropy\\\\\\\\\\\\\\\\\\\\\\\":>8}\\\\\\\\')\\\\\\\\n    for i, m in enumerate(matches):\\\\\\\\n        d = eval(m)\\\\\\\\n        step = (i+1)*10\\\\\\\\n        print(f\\\\\\\\'{step:>5} {d[\\\\\\\\\\\\\\\\\\\\\\\"reward\\\\\\\\\\\\\\\\\\\\\\\"]:>8} {d[\\\\\\\\\\\\\\\\\\\\\\\"frac_reward_zero_std\\\\\\\\\\\\\\\\\\\\\\\"]:>10} {d[\\\\\\\\\\\\\\\\\\\\\\\"completions/mean_length\\\\\\\\\\\\\\\\\\\\\\\"]:>10} {d[\\\\\\\\\\\\\\\\\\\\\\\"kl\\\\\\\\\\\\\\\\\\\\\\\"]:>12} {d[\\\\\\\\\\\\\\\\\\\\\\\"loss\\\\\\\\\\\\\\\\\\\\\\\"]:>12} {d[\\\\\\\\\\\\\\\\\\\\\\\"entropy\\\\\\\\\\\\\\\\\\\\\\\"]:>8}\\\\\\\\')\\\\\\\\n    print()\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T15:55:31.528892+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport re\n\nfor name in ['grpo_rasp_25_qwen_math', 'grpo_standard_25_qwen_math']:\n    path = f'/root/runs/recovery_aware_struct_prune/{name}.log'\n    with open(path) as f:\n        text = f.read()\n    matches = re.findall(r\"\\{'loss'.*?'epoch':\\s*'[^']+'\\}\", text)\n    print(f'=== {name} ({len(matches)} log points) ===')\n    print(f'{\"step\":>5} {\"reward\":>8} {\"frac_0std\":>10} {\"comp_len\":>10} {\"kl\":>12} {\"loss\":>12} {\"entropy\":>8}')\n    for i, m in enumerate(matches):\n        d = eval(m)\n        step = (i+1)*10\n        print(f'{step:>5} {d[\"reward\"]:>8} {d[\"frac_reward_zero_std\"]:>10} {d[\"completions/mean_length\"]:>10} {d[\"kl\"]:>12} {d[\"loss\"]:>12} {d[\"entropy\"]:>8}')\n    print()\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T15:55:31.529038+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== grpo_rasp_25_qwen_math (10 log points) ===\\\\n step   reward  frac_0std   comp_len           kl         loss  entropy\\\\n   10   0.1119      0.575      772.7      0.00217     0.006333    0.117\\\\n   20   0.2031       0.25      811.9     0.001994      0.04474   0.1091\\\\n   30    0.125       0.55        801      0.02627      0.00419   0.1065\\\\n   40   0.1837      0.375      784.4     0.001941      0.07633  0.09828\\\\n   50   0.1769        0.3      763.3      0.04484      0.03496  0.09872\\\\n   60   0.1825       0.35      743.1        725.1        49.66   0.1067\\\\n   70   0.1994      0.375      750.7     0.002253      0.02726   0.1123\\\\n   80    0.225        0.4      758.3     0.002389      0.07875   0.1036\\\\n   90   0.1112      0.375      753.2     0.002282       0.0546   0.1147\\\\n  100   0.2056       0.35      811.9     0.003789      0.06824  0.09037\\\\n\\\\n=== grpo_standard_25_qwen_math (10 log points) ===\\\\n step   reward  frac_0std   comp_len           kl         loss  entropy\\\\n   10   0.2006      0.375      510.5     0.005179      0.08969   0.2403\\\\n   20   0.1625        0.4      531.6        56.08        2.636     0.23\\\\n   30   0.1062      0.425      594.6     0.004832      0.06055   0.2426\\\\n   40   0.2106        0.3      515.7    7.913e+15    3.695e+14   0.2479\\\\n   50   0.1594      0.325      515.1     0.005579      0.06926   0.2442\\\\n   60   0.2081       0.35        460      0.00529       0.1013   0.2553\\\\n   70     0.19      0.375      544.4      0.00471       0.0735   0.2364\\\\n   80   0.2088      0.275      533.8    4.096e+06    2.203e+05   0.2624\\\\n   90   0.1744      0.225      576.7       0.0259       0.1206   0.2453\\\\n  100   0.1819      0.325        527       0.2983       0.1651   0.2377\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.33}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T15:55:31.529240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 << 'PYEOF'\nimport re\n\nfor name in ['grpo_rasp_qwen_math_v3', 'grpo_standard_qwen_math_v3']:\n    path = f'/root/runs/recovery_aware_struct_prune/{name}.log'\n    try:\n        with open(path) as f:\n            text = f.read()\n    except FileNotFoundError:\n        print(f'=== {name}: FILE NOT FOUND ===')\n        continue\n    matches = re.findall(r\"\\{'loss'.*?'epoch':\\s*'[^']+'\\}\", text)\n    print(f'=== {name} ({len(matches)} log points) ===')\n    print(f'{\"step\":>5} {\"reward\":>8} {\"frac_0std\":>10} {\"comp_len\":>10} {\"kl\":>12} {\"loss\":>12} {\"entropy\":>8}')\n    for i, m in enumerate(matches):\n        d = eval(m)\n        step = (i+1)*10\n        print(f'{step:>5} {d[\"reward\"]:>8} {d[\"frac_reward_zero_std\"]:>10} {d[\"completions/mean_length\"]:>10} {d[\"kl\"]:>12} {d[\"loss\"]:>12} {d[\"entropy\"]:>8}')\n    print()\nPYEOF\n",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T15:55:31.529423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== grpo_rasp_qwen_math_v3 (10 log points) ===\\\\n step   reward  frac_0std   comp_len           kl         loss  entropy\\\\n   10  0.04938       0.65       1015      0.06405    0.0003667  0.07704\\\\n   20   0.0825      0.625       1020       0.2208      0.00883  0.06583\\\\n   30  0.05937       0.55       1019     0.008002    0.0003202  0.07748\\\\n   40   0.1019      0.575       1003     0.007012     0.009373  0.07279\\\\n   50  0.06875      0.675       1013      0.01048     0.008906  0.07088\\\\n   60  0.07062      0.575       1003     0.005178    -0.002141  0.07226\\\\n   70  0.09062      0.575       1003      0.01358      0.01819  0.07342\\\\n   80  0.05563        0.7       1024      0.01553     0.000621  0.07949\\\\n   90   0.0475      0.575       1003     0.007011      0.01484  0.06938\\\\n  100  0.06125      0.675       1006     0.009132    -0.002364  0.07768\\\\n\\\\n=== grpo_standard_qwen_math_v3 (10 log points) ===\\\\n step   reward  frac_0std   comp_len           kl         loss  entropy\\\\n   10  0.06313       0.75      943.1      0.05102      0.01531   0.2002\\\\n   20  0.04438       0.85      952.2     0.005231     0.000705   0.1929\\\\n   30  0.03125        0.9      930.6     0.005726    -0.005274   0.1979\\\\n   40  0.03875      0.875      937.2     0.009722    -0.005059   0.1783\\\\n   50   0.0325      0.825      940.9     0.005894      0.01439   0.1925\\\\n   60   0.0325      0.825      939.5      0.02932    -0.007389   0.1907\\\\n   70    0.045      0.825      966.4     0.005507    -0.002583   0.1904\\\\n   80  0.06938       0.75      903.1      0.01065      0.02252    0.171\\\\n   90  0.03813      0.825      922.3      0.00588     0.002445   0.1891\\\\n  100  0.04438       0.85      920.6     0.005193     -0.01208   0.1751\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T15:55:31.529570+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math/",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T15:55:31.529694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math/",
+              "account": "root"
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T15:55:31.529858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11308100\\\\ndrwxr-xr-x  4 root root        4096 May 16 23:39 .\\\\ndrwxr-xr-x 30 root root        4096 May 16 22:49 ..\\\\n-rw-r--r--  1 root root        2104 May 16 23:38 README.md\\\\n-rw-r--r--  1 root root        2513 May 16 23:39 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 16 23:39 checkpoint-100\\\\ndrwxr-xr-x  2 root root        4096 May 16 23:38 completions\\\\n-rw-r--r--  1 root root        1727 May 16 23:39 config.json\\\\n-rw-r--r--  1 root root         226 May 16 23:39 generation_config.json\\\\n-rw-r--r--  1 root root 11568022544 May 16 23:39 model.safetensors\\\\n-rw-r--r--  1 root root    11421892 May 16 23:39 tokenizer.json\\\\n-rw-r--r--  1 root root         696 May 16 23:39 tokenizer_config.json\\\\n-rw-r--r--  1 root root        7313 May 16 23:39 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T15:55:31.529994+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11322296\\\\ndrwxr-xr-x  4 root root        4096 May 16 23:38 .\\\\ndrwxr-xr-x 30 root root        4096 May 16 22:49 ..\\\\n-rw-r--r--  1 root root        2112 May 16 23:38 README.md\\\\n-rw-r--r--  1 root root        2513 May 16 23:38 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 16 23:38 checkpoint-100\\\\ndrwxr-xr-x  2 root root        4096 May 16 23:38 completions\\\\n-rw-r--r--  1 root root        1727 May 16 23:38 config.json\\\\n-rw-r--r--  1 root root         226 May 16 23:38 generation_config.json\\\\n-rw-r--r--  1 root root 11582559224 May 16 23:38 model.safetensors\\\\n-rw-r--r--  1 root root    11421892 May 16 23:38 tokenizer.json\\\\n-rw-r--r--  1 root root         696 May 16 23:38 tokenizer_config.json\\\\n-rw-r--r--  1 root root        7313 May 16 23:38 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T15:55:31.530192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'ANALYZING'}",
+              "fields": "['status', 'hypothesis', 'spec']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T15:55:31.530359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2465}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T15:55:31.530501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "20",
+              "fields": "['status', 'hypothesis']"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T15:55:31.530686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_standard_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\\\"}, \\\"grpo_rasp_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C1/C2. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_rasp_20.\\\"}, \\\"grpo_standard_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\"}, \\\"grpo_rasp_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\"}, \\\"grpo_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\"}, \\\"eval_sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). 验证反向 CKA scoring 的 RLVR 恢复效果。对比 RASP SFT (61.49%) 和 Standard SFT (59.29%)。Parent: sft_rasp_rlvr_20.\\\"}, \\\"sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.\\\"}, \\\"grpo_standard_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO (100 steps, save_steps=5). 跨模型验证 C2: Standard collapse gradient (transient dip+recovery). DeepSeek Standard: transient dip step ~60, recovery step ~90. 参数同 gr\n…[truncated 2712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T15:55:31.530855+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "filters": "{'status': 'DONE'}",
+              "limit": "2"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T15:55:31.531065+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_standard_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:42.896Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:50:15.072Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 20% sparsity v3 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"16892\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:42.407Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\\\", \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"wall_clock_seconds\\\": 3632.7, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:42.910Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:46.610010+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.044, \\\"reward_std_final\\\": 0.1458, \\\"frac_zero_std_final\\\": 0.85, \\\"completion_length_final\\\": 921, \\\"kl_final\\\": 0.005193, \\\"loss_final\\\": -0.01208, \\\"reward_peak\\\": 0.069, \\\"frac_zero_std_min\\\": 0.75, \\\"frac_zero_std_max\\\": 0.9, \\\"clipped_ratio_final\\\": 0.856, \\\"collapse_pattern\\\": \\\"permanent_collapse\\\", \\\"collapse_onset\\\": \\\"step1\\\", \\\"recovery\\\": false, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true}, \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math/\\\", \\\"completed_at\\\": \\\"2026-05-16T15:50:15.072Z\\\"}, \\\"grpo_rasp_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\n…[truncated 2347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T15:55:31.531230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['status', 'conclusion', 'metrics', 'wandb_run_id', 'checkpoint_path', 'spec']",
+              "filters": "{'exp_id': 'grpo_rasp_25_qwen_math'}"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T15:55:31.531389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2451}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T15:55:31.531527+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T15:55:31.531784+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_standard_25_westd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"21483\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:30.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:28.541Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"g\n…[truncated 6722 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T15:55:31.531957+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "limit": "10"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T15:55:31.532336+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_standard_25_westd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"21483\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:30.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:28.541Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"g\n…[truncated 15543 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T15:55:31.532583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "artifacts/analysis_grpo_qwen_math_25.md",
+              "content": "# GRPO Qwen2.5-Math-7B 25% Sparsity Analysis\n\n**Date**: 2026-05-16\n**Experiments**: grpo_rasp_25_qwen_math, grpo_standard_25_qwen_math\n**Server**: westd-11672 (cuda:2, cuda:3)\n**W&B**: 3vjjzi13 (RASP), 16vqw4e6 (Standard)\n\n## 1. Training Metrics (10-step resolution)\n\n### RASP 25% (grpo_rasp_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.112 | 0.575 | 772.7 | 0.002 | 0.006 | 0.117 |\n| 20 | 0.203 | 0.250 | 811.9 | 0.002 | 0.045 | 0.109 |\n| 30 | 0.125 | 0.550 | 801.0 | 0.026 | 0.004 | 0.107 |\n| 40 | 0.184 | 0.375 | 784.4 | 0.002 | 0.076 | 0.098 |\n| 50 | 0.177 | 0.300 | 763.3 | 0.045 | 0.035 | 0.099 |\n| 60 | 0.183 | 0.350 | 743.1 | **725** | **49.7** | 0.107 |\n| 70 | 0.199 | 0.375 | 750.7 | 0.002 | 0.027 | 0.112 |\n| 80 | 0.225 | 0.400 | 758.3 | 0.002 | 0.079 | 0.104 |\n| 90 | 0.111 | 0.375 | 753.2 | 0.002 | 0.055 | 0.115 |\n| 100 | 0.206 | 0.350 | 811.9 | 0.004 | 0.068 | 0.090 |\n\n**Pattern**: Stable training. Reward flat ~0.11-0.23. One transient KL spike at step 60 (725), immediately recovers. frac_zero_std 0.575→0.35 (improving). No collapse.\n\n### Standard 25% (grpo_standard_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.201 | 0.375 | 510.5 | 0.005 | 0.090 | 0.240 |\n| 20 | 0.163 | 0.400 | 531.6 | **56** | **2.6** | 0.230 |\n| 30 | 0.106 | 0.425 | 594.6 | 0.005 | 0.061 | 0.243 |\n| 40 | 0.211 | 0.300 | 515.7 | **7.9e15** | **3.7e14** | 0.248 |\n| 50 | 0.159 | 0.325 | 515.1 | 0.006 | 0.069 | 0.244 |\n| 60 | 0.208 | 0.350 | 460.0 | 0.005 | 0.101 | 0.255 |\n| 70 | 0.190 | 0.375 | 544.4 | 0.005 | 0.074 | 0.236 |\n| 80 | 0.209 | 0.275 | 533.8 | **4.1e6** | **2.2e5** | 0.262 |\n| 90 | 0.174 | 0.225 | 576.7 | 0.026 | 0.121 | 0.245 |\n| 100 | 0.182 | 0.325 | 527.0 | 0.298 | 0.165 | 0.238 |\n\n**Pattern**: Recurrent catastrophic KL explosions (steps 20, 40, 80). Each time self-recovers within 10 steps. Despite KL reaching 7.9e15, reward stays stable ~0.11-0.21 and frac_zero_std actually improves (0.375→0.225→0.325). No reward collapse.\n\n## 2. Comparison with 20% Qwen Math GRPO (v3 runs)\n\n### RASP 20% (grpo_rasp_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.049 | 0.650 | 1015 | 0.064 | 0.000 | 0.077 |\n| 50 | 0.069 | 0.675 | 1013 | 0.010 | 0.009 | 0.071 |\n| 100 | 0.061 | 0.675 | 1006 | 0.009 | -0.002 | 0.078 |\n\n**20% RASP pattern**: Permanent collapse. reward 0.05-0.10, frac_zero_std 0.55-0.70, comp_len maxed ~1003-1024, entropy very low 0.07.\n\n### Standard 20% (grpo_standard_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.063 | 0.750 | 943 | 0.051 | 0.015 | 0.200 |\n| 30 | 0.031 | 0.900 | 931 | 0.006 | -0.005 | 0.198 |\n| 100 | 0.044 | 0.850 | 921 | 0.005 | -0.012 | 0.175 |\n\n**20% Standard pattern**: Severe permanent collapse. reward 0.03-0.07, frac_zero_std 0.75-0.90, comp_len ~921-952.\n\n## 3. Cross-Sparsity Comparison (Same Model)\n\n| Metric | RASP 20% | RASP 25% | Std 20% | Std 25% |\n|--------|----------|----------|---------|---------|\n| reward (final) | 0.061 | **0.206** | 0.044 | **0.182** |\n| reward (peak) | 0.083 | **0.225** | 0.069 | **0.211** |\n| frac_0std (final) | 0.675 | **0.350** | 0.850 | **0.325** |\n| frac_0std (range) | 0.55-0.70 | **0.25-0.575** | 0.75-0.90 | **0.225-0.425** |\n| comp_len (final) | 1006 | 812 | 921 | 527 |\n| entropy (final) | 0.078 | **0.090** | 0.175 | **0.238** |\n| KL spikes | none | 1 (step 60) | none | **3** (steps 20,40,80) |\n| collapse_pattern | permanent | **none** | permanent | **KL explosions** |\n\n**Key finding: 25% is BETTER than 20% across all collapse metrics.** This is the opposite of the expected sparsity gradient.\n\n## 4. Cross-Model Comparison (DeepSeek vs Qwen Math)\n\n| Pattern | DeepSeek 20% | Qwen Math 20% | Qwen Math 25% |\n|---------|-------------|---------------|---------------|\n| RASP collapse | permanent (frac→0.95) | permanent (frac 0.55-0.70) | **no collapse** (frac 0.25-0.575) |\n| Standard collapse | transient dip + recovery | **permanent** (frac 0.75-0.90) | KL explosions, no reward collapse |\n| RASP vs Standard | RASP worse | **Standard worse** | Standard more unstable |\n\n**RASP vs Standard direction reverses between models**: On DeepSeek RASP collapses worse; on Qwen Math Standard collapses worse. This is inconsistent.\n\n## 5. Conclusion\n\n### Verdict: **NEGATIVE** (both experiments)\n\nThe sparsity gradient hypothesis (C3: more sparsity → worse collapse) is **contradicted**:\n\n1. **25% < 20% in collapse severity** — reward is 3-4x higher, frac_zero_std is substantially lower at 25% than 20%. Higher sparsity paradoxically produces better GRPO outcomes.\n\n2. **RASP vs Standard direction inconsistent** — On DeepSeek, RASP collapses worse. On Qwen Math at 20%, Standard collapses worse. At 25%, neither shows classic collapse (Standard shows KL instability instead).\n\n3. **New failure mode**: Standard 25% introduces catastrophic KL explosions (up to 7.9e15) that are qualitatively different from reward collapse. The model survives these through DAPO's clipping, but the optimization trajectory is severely disrupted.\n\n### Why 25% might be better than 20%\n\nPossible explanations (require further investigation):\n- **SFT recovery quality**: The 25% SFT models may have converged to a better point in parameter space for GRPO\n- **Model capacity**: More aggressive pruning may force the model into a more constrained but more stable optimization landscape\n- **Completion length**: 20% models generate maxed-out completions (~1024 tokens) suggesting degenerate repetitive behavior; 25% models generate shorter, more diverse completions\n\n### Impact on Paper Claims\n\n| Claim | Status after this experiment |\n|-------|------------------------------|\n| C1: RASP causes permanent GRPO collapse | **Model-dependent** — holds for DeepSeek & Qwen 20%, NOT for Qwen 25% |\n| C2: Standard causes transient collapse | **Model-dependent** — on Qwen Math, Standard shows WORSE collapse at 20%, KL explosions at 25% |\n| C3: Higher sparsity → worse collapse | **CONTRADICTED** — 25% Qwen Math is better than 20% |\n| New: Collapse is model-specific | **Supported** — DeepSeek and Qwen show qualitatively different patterns |\n| New: KL explosion as alternative failure mode | **Observed** — Standard 25% shows recurrent KL blowups not seen in other experiments |\n\n### Recommended Next Steps\n\n1. Run 25% GRPO on DeepSeek (grpo_rasp_25, already PREPARING) to test if sparsity gradient holds within-model\n2. Investigate SFT checkpoint quality differences between 20% and 25% (eval scores, perplexity)\n3. Consider whether 100 steps is sufficient — 25% models may simply be slower to manifest collapse\n\n## 6. Checkpoints\n\n- RASP 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math/` (checkpoint-100)\n- Standard 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math/` (checkpoint-100)\n"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T15:55:31.532801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/analysis_grpo_qwen_math_25.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T15:55:31.532948+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-16T15:55:31.533072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-16T15:55:31.533217+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "analysis_grpo_qwen_math_25",
+              "type": "report",
+              "description": "GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).",
+              "project": "recovery_aware_struct_prune",
+              "content_filename": "analysis_grpo_qwen_math_25.md",
+              "tags": "['grpo', 'qwen-math', '25pct', 'cross-sparsity', 'analysis']",
+              "content": "# GRPO Qwen2.5-Math-7B 25% Sparsity Analysis\n\n**Date**: 2026-05-16\n**Experiments**: grpo_rasp_25_qwen_math, grpo_standard_25_qwen_math\n**Server**: westd-11672 (cuda:2, cuda:3)\n**W&B**: 3vjjzi13 (RASP), 16vqw4e6 (Standard)\n\n## 1. Training Metrics (10-step resolution)\n\n### RASP 25% (grpo_rasp_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.112 | 0.575 | 772.7 | 0.002 | 0.006 | 0.117 |\n| 20 | 0.203 | 0.250 | 811.9 | 0.002 | 0.045 | 0.109 |\n| 30 | 0.125 | 0.550 | 801.0 | 0.026 | 0.004 | 0.107 |\n| 40 | 0.184 | 0.375 | 784.4 | 0.002 | 0.076 | 0.098 |\n| 50 | 0.177 | 0.300 | 763.3 | 0.045 | 0.035 | 0.099 |\n| 60 | 0.183 | 0.350 | 743.1 | **725** | **49.7** | 0.107 |\n| 70 | 0.199 | 0.375 | 750.7 | 0.002 | 0.027 | 0.112 |\n| 80 | 0.225 | 0.400 | 758.3 | 0.002 | 0.079 | 0.104 |\n| 90 | 0.111 | 0.375 | 753.2 | 0.002 | 0.055 | 0.115 |\n| 100 | 0.206 | 0.350 | 811.9 | 0.004 | 0.068 | 0.090 |\n\n**Pattern**: Stable training. Reward flat ~0.11-0.23. One transient KL spike at step 60 (725), immediately recovers. frac_zero_std 0.575→0.35 (improving). No collapse.\n\n### Standard 25% (grpo_standard_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.201 | 0.375 | 510.5 | 0.005 | 0.090 | 0.240 |\n| 20 | 0.163 | 0.400 | 531.6 | **56** | **2.6** | 0.230 |\n| 30 | 0.106 | 0.425 | 594.6 | 0.005 | 0.061 | 0.243 |\n| 40 | 0.211 | 0.300 | 515.7 | **7.9e15** | **3.7e14** | 0.248 |\n| 50 | 0.159 | 0.325 | 515.1 | 0.006 | 0.069 | 0.244 |\n| 60 | 0.208 | 0.350 | 460.0 | 0.005 | 0.101 | 0.255 |\n| 70 | 0.190 | 0.375 | 544.4 | 0.005 | 0.074 | 0.236 |\n| 80 | 0.209 | 0.275 | 533.8 | **4.1e6** | **2.2e5** | 0.262 |\n| 90 | 0.174 | 0.225 | 576.7 | 0.026 | 0.121 | 0.245 |\n| 100 | 0.182 | 0.325 | 527.0 | 0.298 | 0.165 | 0.238 |\n\n**Pattern**: Recurrent catastrophic KL explosions (steps 20, 40, 80). Each time self-recovers within 10 steps. Despite KL reaching 7.9e15, reward stays stable ~0.11-0.21 and frac_zero_std actually improves (0.375→0.225→0.325). No reward collapse.\n\n## 2. Comparison with 20% Qwen Math GRPO (v3 runs)\n\n### RASP 20% (grpo_rasp_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.049 | 0.650 | 1015 | 0.064 | 0.000 | 0.077 |\n| 50 | 0.069 | 0.675 | 1013 | 0.010 | 0.009 | 0.071 |\n| 100 | 0.061 | 0.675 | 1006 | 0.009 | -0.002 | 0.078 |\n\n**20% RASP**: Permanent collapse. reward 0.05-0.10, frac_zero_std 0.55-0.70, comp_len maxed ~1003-1024, entropy very low 0.07.\n\n### Standard 20% (grpo_standard_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.063 | 0.750 | 943 | 0.051 | 0.015 | 0.200 |\n| 30 | 0.031 | 0.900 | 931 | 0.006 | -0.005 | 0.198 |\n| 100 | 0.044 | 0.850 | 921 | 0.005 | -0.012 | 0.175 |\n\n**20% Standard**: Severe permanent collapse. reward 0.03-0.07, frac_zero_std 0.75-0.90.\n\n## 3. Cross-Sparsity Comparison (Same Model)\n\n| Metric | RASP 20% | RASP 25% | Std 20% | Std 25% |\n|--------|----------|----------|---------|---------|\n| reward (final) | 0.061 | **0.206** | 0.044 | **0.182** |\n| reward (peak) | 0.083 | **0.225** | 0.069 | **0.211** |\n| frac_0std (final) | 0.675 | **0.350** | 0.850 | **0.325** |\n| frac_0std (range) | 0.55-0.70 | **0.25-0.575** | 0.75-0.90 | **0.225-0.425** |\n| comp_len (final) | 1006 | 812 | 921 | 527 |\n| entropy (final) | 0.078 | **0.090** | 0.175 | **0.238** |\n| KL spikes | none | 1 (step 60) | none | **3** (steps 20,40,80) |\n| collapse_pattern | permanent | **none** | permanent | **KL explosions** |\n\n**Key finding: 25% is BETTER than 20% across all collapse metrics.** This is the opposite of the expected sparsity gradient.\n\n## 4. Cross-Model Comparison (DeepSeek vs Qwen Math)\n\n| Pattern | DeepSeek 20% | Qwen Math 20% | Qwen Math 25% |\n|---------|-------------|---------------|---------------|\n| RASP collapse | permanent (frac→0.95) | permanent (frac 0.55-0.70) | **no collapse** (frac 0.25-0.575) |\n| Standard collapse | transient dip + recovery | **permanent** (frac 0.75-0.90) | KL explosions, no reward collapse |\n| RASP vs Standard | RASP worse | **Standard worse** | Standard more unstable |\n\n**RASP vs Standard direction reverses between models**: On DeepSeek RASP collapses worse; on Qwen Math Standard collapses worse.\n\n## 5. Conclusion\n\n### Verdict: NEGATIVE (both experiments)\n\nThe sparsity gradient hypothesis (C3: more sparsity → worse collapse) is **contradicted**:\n\n1. **25% < 20% in collapse severity** — reward is 3-4x higher, frac_zero_std is substantially lower at 25% than 20%. Higher sparsity paradoxically produces better GRPO outcomes on Qwen Math.\n\n2. **RASP vs Standard direction inconsistent** — On DeepSeek, RASP collapses worse. On Qwen Math at 20%, Standard collapses worse. At 25%, neither shows classic collapse (Standard shows KL instability instead).\n\n3. **New failure mode**: Standard 25% introduces catastrophic KL explosions (up to 7.9e15) that are qualitatively different from reward collapse. The model survives these through DAPO's clipping, but the optimization trajectory is severely disrupted.\n\n### Why 25% might be better than 20%\n\nPossible explanations (require further investigation):\n- **SFT recovery quality**: The 25% SFT models may have converged to a better point for GRPO\n- **Model capacity**: More aggressive pruning may force the model into a more constrained but more stable optimization landscape\n- **Completion length**: 20% models generate maxed-out completions (~1024 tokens) suggesting degenerate repetitive behavior; 25% models generate shorter, more diverse completions\n\n### Impact on Paper Claims\n\n| Claim | Status after this experiment |\n|-------|------------------------------|\n| C1: RASP causes permanent GRPO collapse | **Model-dependent** — holds for DeepSeek and Qwen 20%, NOT for Qwen 25% |\n| C2: Standard causes transient collapse | **Model-dependent** — on Qwen Math, Standard shows WORSE collapse at 20%, KL explosions at 25% |\n| C3: Higher sparsity → worse collapse | **CONTRADICTED** — 25% Qwen Math is better than 20% |\n| New: Collapse is model-specific | **Supported** — DeepSeek and Qwen show qualitatively different patterns |\n| New: KL explosion as alternative failure mode | **Observed** — Standard 25% shows recurrent KL blowups not seen in other experiments |\n\n### Recommended Next Steps\n\n1. Run 25% GRPO on DeepSeek (grpo_rasp_25, already PREPARING) to test if sparsity gradient holds within-model\n2. Investigate SFT checkpoint quality differences between 20% and 25% (eval scores, perplexity)\n3. Consider whether 100 steps is sufficient — 25% models may simply be slower to manifest collapse\n\n## 6. Checkpoints\n\n- RASP 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math/` (checkpoint-100)\n- Standard 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math/` (checkpoint-100)\n"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-16T15:55:31.533469+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_b0a4c6\\\", \\\"name\\\": \\\"analysis_grpo_qwen_math_25\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_25.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T15:54:55.751824+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"qwen-math\\\", \\\"25pct\\\", \\\"cross-sparsity\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-16T15:55:31.533625+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grpo_rasp_25_qwen_math",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-16T15:55:31.533809+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:01.639Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_step10\\\": 0.1119, \\\"frac_zero_std_step10\\\": 0.575, \\\"frac_zero_std_step30\\\": 0.55, \\\"collapse_pattern\\\": \\\"mild_partial\\\", \\\"collapse_onset\\\": \\\"step10_borderline\\\", \\\"collapse_permanence\\\": \\\"not_permanent\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"\n…[truncated 257 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-16T15:55:31.533978+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grpo_rasp_25_qwen_math",
+              "field": "metrics",
+              "value": "{'reward_final': 0.2056, 'reward_std_final': 0.4003, 'frac_zero_std_final': 0.35, 'completion_length_final': 811.9, 'kl_final': 0.003789, 'loss_final': 0.06824, 'reward_peak': 0.225, 'reward_min': 0.111, 'frac_zero_std_min': 0.25, 'frac_zero_std_max': 0.575, 'frac_zero_std_trend': 'improving', 'kl_spike_step60': 725.1, 'kl_spike_recovery': 'immediate_step70', 'entropy_final': 0.09, 'clipped_ratio_final': 0.719, 'collapse_pattern': 'no_collapse', 'collapse_onset': 'none', 'recovery': 'n/a', 'total_steps': 100, 'max_steps_reached': True, 'comparison_vs_20pct': '25pct_better_than_20pct', 'reward_ratio_vs_20pct': 3.4, 'frac_0std_improvement_vs_20pct': '0.675->0.350'}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-16T15:55:31.534182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:07.291Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs\n…[truncated 553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-16T15:55:31.534368+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grpo_rasp_25_qwen_math",
+              "field": "notes",
+              "value": "NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-16T15:55:31.534559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:10.257Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs\n…[truncated 821 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-16T15:55:31.534725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grpo_standard_25_qwen_math",
+              "field": "metrics",
+              "value": "{'reward_final': 0.1819, 'reward_std_final': 0.3673, 'frac_zero_std_final': 0.325, 'completion_length_final': 527, 'kl_final': 0.2983, 'loss_final': 0.1651, 'reward_peak': 0.211, 'reward_min': 0.106, 'frac_zero_std_min': 0.225, 'frac_zero_std_max': 0.425, 'frac_zero_std_trend': 'improving', 'kl_spike_step20': 56.08, 'kl_spike_step40': 7913000000000000, 'kl_spike_step80': 4096000, 'loss_spike_step40': 369500000000000, 'loss_spike_step80': 220300, 'kl_spike_count': 3, 'kl_spike_recovery': 'always_within_10_steps', 'entropy_final': 0.238, 'clipped_ratio_final': 0.338, 'collapse_pattern': 'kl_explosion_transient_no_reward_collapse', 'collapse_onset': 'step20_first_kl_spike', 'recovery': True, 'total_steps': 100, 'max_steps_reached': True, 'comparison_vs_20pct': '25pct_better_than_20pct', 'reward_ratio_vs_20pct': 4.1, 'frac_0std_improvement_vs_20pct': '0.850->0.325'}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-16T15:55:31.534931+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:15.311Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\"\n…[truncated 769 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-16T15:55:31.535091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "grpo_standard_25_qwen_math",
+              "field": "notes",
+              "value": "NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-16T15:55:31.535310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:18.380Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\"\n…[truncated 1090 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-16T15:55:31.535522+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 分析结论：两个实验均为 NEGATIVE\n\n### 核心发现：25% 反而比 20% 好（反直觉）\n\n| 指标 | RASP 20% → 25% | Standard 20% → 25% |\n|------|----------------|---------------------|\n| reward | 0.061 → **0.206** (3.4x) | 0.044 → **0.182** (4.1x) |\n| frac_zero_std | 0.675 → **0.350** | 0.850 → **0.325** |\n| collapse | permanent → **no collapse** | permanent → **KL explosions but no reward collapse** |\n\n### 为什么判 NEGATIVE\n\n1. **C3 被推翻**：25% sparsity 的 collapse 比 20% 更轻而非更重\n2. **RASP vs Standard 方向跨模型不一致**：DeepSeek 上 RASP 更差，Qwen Math 上 Standard 更差\n3. **Standard 25% 出现新失败模式**：3 次灾难性 KL 爆炸（peak 7.9e15），但 DAPO clipping 保护了 reward 不崩溃\n\n### Registry 更新\n\n- `grpo_rasp_25_qwen_math`: conclusion 从 success → **negative**，补充完整 10 步 metrics 和跨稀疏度对比\n- `grpo_standard_25_qwen_math`: conclusion 保持 **negative**，更新完整 metrics 和 notes\n\n分析报告已注册为 artifact: `analysis_grpo_qwen_math_25.md`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_grpo_qwen_math_25_20260516T154652"
+          },
+          "id": "event-000103"
+        }
+      ],
+      "message_count": 103
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-grpo-qwen-math-25.md"
+}

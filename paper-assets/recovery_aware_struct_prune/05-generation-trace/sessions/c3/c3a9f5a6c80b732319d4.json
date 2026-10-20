@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "c3a9f5a6c80b732319d4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops westb cleanup and qwen phase1",
+  "task_key": "worker_ops_westb_cleanup_and_qwen_phase1_20260520T050703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cleanup_and_qwen_phase1_20260520T050703.log",
+    "occurrence": 1,
+    "bytes": 867705,
+    "sha256": "dfffe03f3d8634f3163f50024210191e818cba3dfb2c9b8a80b211d52b54f4f4"
+  },
+  "statistics": {
+    "messages": 583,
+    "user_turns": 0,
+    "tool_calls": 215,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 149,
+      "tool_call": 215,
+      "tool_result": 215,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 583,
+      "chunks": [
+        {
+          "path": "c3a9f5a6c80b732319d4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3a9f5a6c80b732319d4-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3a9f5a6c80b732319d4-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "c3a9f5a6c80b732319d4-part-0004.json",
+          "message_count": 43
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westb-cleanup-and-qwen-phase1.md"
+}

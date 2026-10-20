@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "8d699b907b6913378c93",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis grpo qwen math 25",
+  "task_key": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_qwen_math_25_20260516T154652.log",
+    "occurrence": 1,
+    "bytes": 715331,
+    "sha256": "ab6fdf08b9b0d146b1b86f5a8cf297339e2fe6334ac764e389e5cc2a171c1d5a"
+  },
+  "statistics": {
+    "messages": 144,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 38,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 144,
+      "chunks": [
+        {
+          "path": "8d699b907b6913378c93-part-0001.json",
+          "message_count": 121
+        },
+        {
+          "path": "8d699b907b6913378c93-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-grpo-qwen-math-25.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "468dd56e0d3a9c515df8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh launch seed123 v2 grpo westd1 retry",
+  "task_key": "worker_ssh_launch_seed123_v2_grpo_westd1_retry_20260522T142605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_seed123_v2_grpo_westd1_retry_20260522T142605_result.json",
+    "occurrence": 1,
+    "bytes": 603,
+    "sha256": "0ffacb5a70115364c56db370636b58879cbf7e4e18b5930defb478d37bc1d6f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "C005 约束明确规定 GPU 白名单为 westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3，**westd-32935 不在其中**，且标注\"严禁在白名单外的 GPU 上启动实验\"。\n\nagent_context 中 westd-32935 在 server 白名单（可 SSH 连接），但这与 C005 的 GPU 实验白名单是两回事。\n\n在 westd-32935 上启动训练违反 C005。如需在该服务器跑实验，请先让 Manager 更新 C005 白名单，或确认 westd-32935 已正式替代某台服务器。\n\n如果你确认 C005 已过时、westd-32935 确实被批准用于实验，我立即执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-seed123-v2-grpo-westd1-retry.md"
+}

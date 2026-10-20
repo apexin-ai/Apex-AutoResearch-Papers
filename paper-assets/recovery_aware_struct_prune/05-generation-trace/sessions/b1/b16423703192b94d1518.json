@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b16423703192b94d1518",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix eval humaneval sentinel",
+  "task_key": "worker_ops_fix_eval_humaneval_sentinel_20260519T112953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_eval_humaneval_sentinel_20260519T112953_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "0fe83a94f673bec29fa521f2812aca0438fbdd42c6f412d30d9d8fb6d6121ead"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。两个文件均已修改：\n\n- **`eval_humaneval.py`** — JSON 结果写入后追加 `{output_path}.done` sentinel，内容含 `completed_at`、`pass_at_1`、`n_correct`、`n_total`\n- **`eval_gsm8k.py`** — 同样追加 `.done` sentinel，内容含 `completed_at`、`mode`、`accuracy`、`n_total`（兼容 greedy/voting/pass_at_k 三种模式）\n\n两个文件语法验证通过。cron 检测到进程退出后检查 `.done` 文件是否存在即可区分正常完成和异常退出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-eval-humaneval-sentinel.md"
+}

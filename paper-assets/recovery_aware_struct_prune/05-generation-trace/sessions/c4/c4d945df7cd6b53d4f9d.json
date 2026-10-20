@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4d945df7cd6b53d4f9d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb standard v8 fix",
+  "task_key": "worker_ops_westb-standard-v8-fix_20260515T144217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-standard-v8-fix_20260515T144217_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "06d2a17318a812a386e5fe1440e9f0fd092695af10c85891d17322dd50da1f5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，双卡训练正常运行。\n\n### 最终状态\n\n| GPU | 进程 | PID | 显存 | 状态 |\n|-----|------|-----|------|------|\n| cuda:0 | RASP v8 | 532861 | 71.7GB | 训练中 (1/100) |\n| cuda:1 | **Standard v8** | **534667** | 33.5GB | 训练中 (0/100，刚启动) |\n\n- **Standard v8 新 PID**: 534662 (bash wrapper) / 534667 (python)\n- **wandb run**: `grpo_stage2_standard_20_v8` → `runs/q34vz8j2`\n- **RASP v8 wandb**: `grpo_stage2_rasp_20_v8` → `runs/0wz7xpd5`（已跑到 1/100）\n- **异常**: 网络不通（HuggingFace HEAD 请求失败），但已 fallback 到本地缓存的 GSM8K 数据集，不影响训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-standard-v8-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "534cd04ae4b34e1e7837",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research check 25pct beta params",
+  "task_key": "worker_research_check_25pct_beta_params_20260523T192728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_25pct_beta_params_20260523T192728_result.json",
+    "occurrence": 1,
+    "bytes": 1993,
+    "sha256": "8cdfd33df166301f82783129d3fdc00c9d7fb40be5342849eae258dd8e264980"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息已收集。\n\n## 25% GRPO Beta 审计\n\n| 实验 | 训练脚本 | beta 参数 | 来源 |\n|------|---------|----------|------|\n| `grpo_cka_only_25` | train_grpo_v5.py | **0.01** | 脚本默认值（command 无 --beta） |\n| `grpo_standard_25` (westd) | train_grpo_v5.py | **0.04** | command 显式指定 --beta 0.04 |\n| `grpo_standard_25_westb` | train_grpo_v5.py | **0.01** | 脚本默认值（command 无 --beta） |\n| `grpo_rasp_25` | train_grpo_v5.py | **0.01** | 脚本默认值（command 无 --beta，spec 被覆盖为恢复信息） |\n\n### 关键发现\n\n**用户之前的认知有误**：grpo_standard_25 不是\"旧版 train_grpo.py, beta=0.0\"，而是 `train_grpo_v5.py`，且显式设置了 `--beta 0.04`。\n\n**25% 内部一致性：有问题。** 存在两个 grpo_standard_25 变体，beta 不同：\n- `grpo_standard_25` (westd): beta=0.04\n- `grpo_standard_25_westb`: beta=0.01（默认值）\n- `grpo_cka_only_25`: beta=0.01（默认值）\n\n### tab_cross_sparsity 25% GRPO GSM8K 数据来源\n\n| 条件 | exp_id | 模型路径 | accuracy |\n|------|--------|---------|----------|\n| Standard 25% GRPO | `eval_gsm8k_grpo_standard_25` | grpo_standard_25_**westb**/checkpoint-100 | **51.86%** |\n| Standard 25% GRPO (alt) | `eval_grpo_standard_25` | grpo_standard_25 (westd) | **51.1%** |\n| CKA-only 25% GRPO | `eval_gsm8k_grpo_cka_only_25_v3` | grpo_cka_only_25 | **59.59%** |\n| RASP 25% GRPO | `eval_grpo_rasp_25` | grpo_rasp_25 | **53.15%** |\n\n### 一致性判定\n\n**论文中 25% Standard vs CKA-only 比较取决于用哪个 Standard 结果：**\n\n- 如果用 `eval_gsm8k_grpo_standard_25`（51.86%）→ 模型来自 westb，beta=0.01，与 CKA-only（beta=0.01）一致 ✅\n- 如果用 `eval_grpo_standard_25`（51.1%）→ 模型来自 westd，beta=0.04，与 CKA-only（beta=0.01）**不一致** ❌\n\n需要确认论文 tab_cross_sparsity 用的是哪个数字（51.86% 还是 51.1%），以判断比较是否公平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-25pct-beta-params.md"
+}

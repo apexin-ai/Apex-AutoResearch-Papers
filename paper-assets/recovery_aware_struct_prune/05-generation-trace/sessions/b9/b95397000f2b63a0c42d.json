@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b95397000f2b63a0c42d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval mbpp 1p5b westb1",
+  "task_key": "worker_eval_mbpp_1p5b_westb1_20260519T183627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_mbpp_1p5b_westb1_20260519T183627_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "010f6e0365d3b75f22411488abae6062e68cfee62503e909859e3baf4fd7b06d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成，全部验证通过：\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | `eval_mbpp_sft_cka_only_20_1p5b` 存活 |\n| 物理 GPU | cuda:1 (PID 915367, 3442MiB, python) |\n| cuda:0 | 未受影响 (PID 909411 正常运行) |\n| Registry | `eval_mbpp_sft_cka_only_20_1p5b` → RUNNING |\n| 输出路径 | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-mbpp-1p5b-westb1.md"
+}

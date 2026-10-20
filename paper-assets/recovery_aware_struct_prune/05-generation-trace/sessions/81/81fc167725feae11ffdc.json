@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "81fc167725feae11ffdc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops download base model westb",
+  "task_key": "worker_ops_download-base-model-westb_20260515T172848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-base-model-westb_20260515T172848.log",
+    "occurrence": 1,
+    "bytes": 2657733,
+    "sha256": "9ac9692ff96dbfbdda1386d0138e61bde06e0e11a69f32f9c440e37ab936df14"
+  },
+  "statistics": {
+    "messages": 1179,
+    "user_turns": 2,
+    "tool_calls": 468,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 4,
+      "assistant": 228,
+      "tool_call": 468,
+      "tool_result": 468,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 317,
+      "chunks": [
+        {
+          "path": "81fc167725feae11ffdc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "81fc167725feae11ffdc-part-0002.json",
+          "message_count": 7
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0003.json",
+          "message_count": 123
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0004.json",
+          "message_count": 59
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 673,
+      "chunks": [
+        {
+          "path": "81fc167725feae11ffdc-part-0004.json",
+          "message_count": 121
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "81fc167725feae11ffdc-part-0008.json",
+          "message_count": 12
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-base-model-westb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2b15ecadb8b38307b348",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest dense eval",
+  "task_key": "worker_ssh_harvest_dense_eval_20260520T193551",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_dense_eval_20260520T193551_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "3be5618539a9fe84daab5b8d342a265105380f4deace4112b059a5dbb2672f87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已结束。Dense unpruned baseline 结果：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **90.83%** (1198/1319) |\n| **95% CI** | ±0.79% |\n| **EOS rate** | 98.71% (1302 natural / 17 truncated) |\n| **Avg response length** | 594.0 tokens |\n| **Min / Max length** | 183 / 4096 |\n| **Decoding** | greedy (T=0, no sampling) |\n\n模型：`DeepSeek-R1-Distill-Qwen-7B`，GSM8K 全集 1319 题，耗时 3h7m。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-dense-eval.md"
+}

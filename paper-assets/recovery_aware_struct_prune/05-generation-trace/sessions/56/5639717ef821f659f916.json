@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5639717ef821f659f916",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix mf3 v2 westb1",
+  "task_key": "worker_ssh_fix_mf3_v2_westb1_20260522T150659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_mf3_v2_westb1_20260522T150659_result.json",
+    "occurrence": 1,
+    "bytes": 967,
+    "sha256": "05f58db38f107a2138e0fdd6ff6203d60fb40560bcc8aaaf2ef9431e3efbcb27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU:1 98% utilization，13015 MiB 占用，正在生成第一个 sample。进度条用 `\\r` 覆写所以 tail 看不到更新。进程健康运行中。\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| 旧进程 kill | PID 217798 已 kill（SIGTERM 成功） |\n| 正确 model_path | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20`（config.json + model.safetensors 12G 均存在） |\n| 新 PID | bash wrapper: 220338, python 实际进程: **220343** |\n| GPU:1 显存 | **13015 MiB**，utilization 98% |\n| 推理状态 | 模型已加载，500 samples 推理进行中。第一个 sample 正在生成（max_new_tokens=2048，tqdm 用 `\\r` 刷新所以日志文件看不到中间进度） |\n\n**修复点**：原崩溃因 `python` 命令在非 conda 环境下不存在 + 相对路径。本次用 `source conda.sh && conda activate base` + 绝对路径解决。预估 ~61s/sample，500 samples 约 8.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-mf3-v2-westb1.md"
+}

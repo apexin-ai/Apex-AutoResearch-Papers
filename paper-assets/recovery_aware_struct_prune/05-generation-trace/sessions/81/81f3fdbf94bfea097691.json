@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81f3fdbf94bfea097691",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cleanup and sft restart",
+  "task_key": "worker_ops_westb_cleanup_and_sft_restart_20260520T091521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cleanup_and_sft_restart_20260520T091521_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "55b2d042256bc26c3411312c7bb768fe048265e0b0eca2a2f821d5d912ca41aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 都已成功启动，模型正在加载（检测到非均匀 MLP 结构，说明 pruned model config 正确读取）。\n\n**执行摘要：**\n\n| 步骤 | 结果 |\n|------|------|\n| 磁盘清理 | 删除 2× optimizer.pt + 损坏 checkpoint-1870，释放 ~32GB → 33GB 可用 (87%) |\n| checkpoint-935 验证 | CKA-only ✓ (339 tensors), Standard ✓ (339 tensors) |\n| SFT 提交 | `sft_qwen_math_cka_only_20_v2` on cuda:0 (PID 9952), `sft_qwen_math_standard_20_v2` on cuda:1 (PID 10030) |\n| Registry | 两个 v2 条目已创建，parent 指向原始失败实验 |\n\n两个任务从 checkpoint-935（epoch 1 权重）续跑 1 epoch，`--save_strategy no` 防止中间 checkpoint 写满磁盘。预计 ~30 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cleanup-and-sft-restart.md"
+}

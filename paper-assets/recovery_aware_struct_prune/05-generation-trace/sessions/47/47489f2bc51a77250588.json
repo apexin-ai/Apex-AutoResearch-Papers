@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47489f2bc51a77250588",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh cleanup westb disk",
+  "task_key": "worker_ssh_cleanup_westb_disk_20260520T205901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cleanup_westb_disk_20260520T205901_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "29bf07515151ecfc45e300b43f307641f1feacfc3075c45a61d39a356bc03c41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "目标达成。\n\n## 清理结果\n\n| 操作 | 释放空间 |\n|------|---------|\n| pip cache purge | ~2 files |\n| conda clean --all | ~107 MB |\n| __pycache__ 清理 | 小量 |\n| **删除 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`** | **~15G** |\n\n**清理前**: 241G / 250G（97%，9.8G 可用）\n**清理后**: 227G / 250G（91%，24G 可用）\n\n`Qwen2.5-Math-7B`（15G）也是可删除的候选（同样是已完成实验的基础模型，可重新下载），如果后续需要更多空间可以继续清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cleanup-westb-disk.md"
+}

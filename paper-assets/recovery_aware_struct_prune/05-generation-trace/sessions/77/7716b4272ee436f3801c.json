@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7716b4272ee436f3801c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft random 20 fixed v3",
+  "task_key": "worker_diagnose_eval_math500_sft_random_20_fixed_v3_20260524T085711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_random_20_fixed_v3_20260524T085711_result.json",
+    "occurrence": 1,
+    "bytes": 554,
+    "sha256": "1f921f9b164810372f1a57bf089a871eccbe01e81b1becdc15e905aed06d2f2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **eval_math500_sft_random_20_fixed_v3** 完成，状态：**成功**。\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 16.6% (83/500) |\n| Stderr | ±0.0166 |\n| Truncation rate | 65.8% (329/500 被截断) |\n| Avg response length | 1470.44 tokens |\n| Natural EOS | 171/500 |\n\nRegistry 已更新为 DONE/success。Cron 监控不存在（可能已被清除）。\n\n值得注意：65.8% 的 truncation rate 很高，说明 sft_random_20 模型在 2048 max_new_tokens 下仍频繁触达长度限制，模型生成效率较差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-random-20-fixed-v3.md"
+}

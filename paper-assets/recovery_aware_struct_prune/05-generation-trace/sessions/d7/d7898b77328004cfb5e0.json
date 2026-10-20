@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d7898b77328004cfb5e0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag grpo unpruned exit check",
+  "task_key": "worker_diag_grpo-unpruned-exit-check_20260515T192800",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_grpo-unpruned-exit-check_20260515T192800_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "a5f94c16d81416524dac2c1620e6e701f3fe24752852a6d5e7fd4bec815589ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。没有活跃的 cron 需要清除。\n\n## 诊断结论：**negative（collapse）**\n\n| 指标 | 值 |\n|------|-----|\n| 完成步数 | 100/100 |\n| 运行时间 | ~49 分钟 |\n| 峰值 reward | 0.04375 (step 20) |\n| collapse 起始 | step 80 |\n| 最终 reward | 0.0 |\n| 最终 frac_reward_zero_std | 1.0 |\n| 最终 clipped_ratio | 1.0 |\n| 最终 mean_terminated_length | 0.0 |\n| 模型保存 | 失败（磁盘满 250G/250G） |\n\n**论文影响**：unpruned 模型同样 collapse，说明 collapse 不是剪枝导致的副作用，而是当前 GRPO 超参配置（lr, num_generations, max_completion_length 等）本身的问题。需要调整 GRPO 训练策略才能在任何模型上得到有效的 RL fine-tuning。\n\n**附带问题**：westb-23072 数据盘 `/root/autodl-tmp/` 已 100% 满，需要清理空间。cuda:1 仍有进程占用 71.7GB 显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-grpo-unpruned-exit-check.md"
+}

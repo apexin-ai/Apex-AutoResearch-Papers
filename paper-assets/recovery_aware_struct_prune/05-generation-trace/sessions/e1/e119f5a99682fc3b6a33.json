@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e119f5a99682fc3b6a33",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "emergency disk cleanup westb",
+  "task_key": "worker_emergency_disk_cleanup_westb_20260516T063925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_emergency_disk_cleanup_westb_20260516T063925_result.json",
+    "occurrence": 1,
+    "bytes": 154,
+    "sha256": "33c67fd0a4f9fa487ad541c2a0a9db79a9b5e1c25ecc467d6c3ab061cf64b97f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。`/root/autodl-tmp/` 当前可用 **30GB**，使用率从满降到 89%。eval_grpo_rasp_v9_step10 有足够空间写入结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/emergency-disk-cleanup-westb.md"
+}

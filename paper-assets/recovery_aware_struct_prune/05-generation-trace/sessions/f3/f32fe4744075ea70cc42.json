@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f32fe4744075ea70cc42",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code revert alpha scripts remote",
+  "task_key": "worker_code_revert-alpha-scripts-remote_20260515T061709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_revert-alpha-scripts-remote_20260515T061709_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "b35ae41138934a5ec0c3b0a892fb9f63e441098f0b5594825c9e0348444b0eb3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 文件 | 修改前 | 修改后 | 语法 | md5sum |\n|------|--------|--------|------|--------|\n| `scripts/run_alpha_ablation.sh` | `(0.0 0.25 0.5 1.0 2.0)` + tags `alpha025` | `(0.0 0.5 1.0 2.0 4.0)` + tags `alpha40` | OK | `c1761ca3` |\n| `scripts/run_alpha_ablation_v2.sh` | `(0.0 0.25 0.5 1.0 2.0)` + Python `[0.0, 0.25, ...]` | `(0.0 0.5 1.0 2.0 4.0)` + Python `[0.0, 0.5, ...]` | OK | `cb3a6f80` |\n| `scripts/run_alpha_ablation_v3.sh` | `(0.0 0.25 0.5 1.0 2.0)` + Python `[0.0, 0.25, ...]` | `(0.0 0.5 1.0 2.0 4.0)` + Python `[0.0, 0.5, ...]` | OK | `4d9efaca` |\n| `src/run_alpha_ablation.sh` | 已经是 `(0.0 0.5 1.0 2.0 4.0)` | 无需修改 | — | `a40a4669` |\n\n修改内容：注释头、bash `ALPHAS` 数组、`ALPHA_TAGS` 数组（v1）、内嵌 Python `alphas` 列表（v2/v3）均已统一为 `{0.0, 0.5, 1.0, 2.0, 4.0}`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-revert-alpha-scripts-remote.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75479aff9f296d6a7dfc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 20 sft",
+  "task_key": "worker_ssh_harvest_cka_only_20_sft_20260520T184805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_20_sft_20260520T184805_result.json",
+    "occurrence": 1,
+    "bytes": 709,
+    "sha256": "299c17cabd24392456fb94442ea9eef31c05512e7f212536fe3b7d693b7b7627"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### CKA-only 20% SFT (PID 264522) — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **GSM8K Accuracy** | **63.91% ± 1.32%** |\n| Correct / Total | 843 / 1319 |\n| EOS Rate | 99.01% |\n| Avg Response Length | 198.1 tokens |\n| Truncated | 13 / 1319 |\n\n结果文件：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json`\n\n### Standard 20% SFT (PID 266847) — 运行中\n\n- 进程存活，已运行 1h42m\n- 进度：793/1319 (60.1%)\n- 当前滚动 acc ≈ 60.5%（@750 样本时）\n- 预计还需 ~1h 完成\n\nPaper Agent 可先用 CKA-only 20% SFT 的 **63.91%** 更新 Table 2，Standard 20% SFT 结果预计 ~1h 后出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-20-sft.md"
+}

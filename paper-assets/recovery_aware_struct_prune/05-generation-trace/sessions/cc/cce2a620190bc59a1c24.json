@@ -1,0 +1,2052 @@
+{
+  "schema_version": "1.0",
+  "id": "cce2a620190bc59a1c24",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ssh provenance fix westd",
+  "task_key": "worker_ssh_provenance_fix_westd_20260523T110636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_provenance_fix_westd_20260523T110636.jsonl",
+    "occurrence": 1,
+    "bytes": 74434,
+    "sha256": "5b8f4d569faa5601668bf0c99bb8a48400fe52f649ffdea7551e4118b3d29a4d"
+  },
+  "statistics": {
+    "messages": 101,
+    "user_turns": 0,
+    "tool_calls": 50,
+    "roles": {
+      "tool_call": 50,
+      "tool_result": 50,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T11:11:41.045098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T11:11:41.045461+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T11:11:41.045662+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*math500*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T11:11:41.045821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T11:11:41.046000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*gsm8k*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T11:11:41.046137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T11:11:41.046283+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*cka*\" -o -name \"*cliff*\" -o -name \"*sparsity*30*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T11:11:41.046453+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T11:11:41.046581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*300*\" -o -name \"*extended*\" 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T11:11:41.046705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T11:11:41.046823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/ 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T11:11:41.046958+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T11:11:41.047105+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*math500*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T11:11:41.047225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*gsm8k*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T11:11:41.047398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/artifacts/eval_math500_grpo_cka_only_20_2048_analysis.md\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_v4.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_2048.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_unpruned.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_cka_only_20_2048.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_rasp_20_2048.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unpruned.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_standard_20_2048.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_standard_20_2048_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha4p0_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha3p0_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha0p5_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha1p0_20_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha2p0_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_ra\n…[truncated 505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T11:11:41.047588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_15_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed123_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_15_seed123_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed123_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_15_seed123_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_n1319.json.done\\\\n/roo\n…[truncated 2553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T11:11:41.047830+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*cka*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T11:11:41.047977+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*300*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T11:11:41.048136+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/artifacts/eval_math500_grpo_cka_only_20_2048_analysis.md\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_15pct.png\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_cka_only_15.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_standard_15.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_20_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/cka_scores_qwen_math.pt\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed123_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed123_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_partial.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_v2_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_v2_n1319.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_seed456_n1319.json.done\\\\n\n…[truncated 1674 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T11:11:41.048308+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T11:11:41.048443+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T11:11:41.048691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 38184\\\\ndrwxr-xr-x  4 root root   12288 May 23 18:58 .\\\\ndrwxr-xr-x 54 root root    4096 May 23 19:06 ..\\\\ndrwxr-xr-x  2 root root      60 May 19 11:10 artifacts\\\\n-rw-r--r--  1 root root   24388 May 19 12:00 bootstrap_ci_accuracy_v2.json\\\\n-rw-r--r--  1 root root   10015 May 20 14:04 bootstrap_ci_analysis_combined.json\\\\n-rw-r--r--  1 root root    5661 May 20 14:03 bootstrap_ci_analysis_v3.json\\\\n-rw-r--r--  1 root root  147700 May 19 11:11 bootstrap_ci_plot.png\\\\n-rw-r--r--  1 root root    1435 May 19 11:11 bootstrap_ci_results.json\\\\n-rw-r--r--  1 root root    7276 May 20 14:02 bootstrap_mcnemar_analysis.py\\\\ndrwxr-xr-x  2 root root     144 May 21 09:53 cka_15pct\\\\n-rw-r--r--  1 root root  123229 May 16 13:31 cka_scores_qwen_math.pt\\\\n-rw-r--r--  1 root root  139567 May 17 00:10 eval_grpo_rasp_20_qwen_math.json\\\\n-rw-r--r--  1 root root   16920 May 17 00:10 eval_grpo_rasp_20_qwen_math.log\\\\n-rw-r--r--  1 root root    5791 May 17 04:23 eval_grpo_rasp_25.log\\\\n-rw-r--r--  1 root root  139116 May 17 00:29 eval_grpo_rasp_25_qwen_math.json\\\\n-rw-r--r--  1 root root   17175 May 17 00:29 eval_grpo_rasp_25_qwen_math.log\\\\n-rw-r--r--  1 root root  142114 May 17 04:17 eval_grpo_rasp_rlvr_20_qwen_math.json\\\\n-rw-r--r--  1 root root  141915 May 17 00:11 eval_grpo_standard_20_qwen_math.json\\\\n-rw-r--r--  1 root root   16928 May 17 00:11 eval_grpo_standard_20_qwen_math.log\\\\n-rw-r--r--  1 root root  140695 May 17 03:56 eval_grpo_standard_25.json\\\\n-rw-r--r--  1 root root 1001709 May 17 10:38 eval_grpo_standard_25_n1319.json\\\\n-rw-r--r--  1 root root  140695 May 17 00:31 eval_grpo_standard_25_qwen_math.json\\\\n-rw-r--r--  1 root root   17195 May 17 00:31 eval_grpo_standard_25_qwen_math.log\\\\n-rw-r--r--  1 root root 1070195 May 16 12:44 eval_grpo_unpruned_v2_step100.json\\\\n-rw-r--r--  1 root root 1070744 May 16 12:45 eval_grpo_unpruned_v2_step90.json\\\\n-rw-r--r--  1 root root 1064680 May 21 08:14 eval_gsm8k_grpo_cka_on\n…[truncated 6401 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T11:11:41.048906+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T11:11:41.049044+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T11:11:41.049210+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T11:11:41.049359+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T11:11:41.049483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T11:11:41.049603+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T11:11:41.049719+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T11:11:41.049837+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T11:11:41.049958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T11:11:41.050078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T11:11:41.050192+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*random*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T11:11:41.050330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T11:11:41.050449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*depth*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T11:11:41.050565+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*30*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T11:11:41.050680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T11:11:41.050802+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-23T11:11:41.050961+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-23T11:11:41.051100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-23T11:11:41.051224+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-23T11:11:41.051380+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-23T11:11:41.051504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-23T11:11:41.051644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-23T11:11:41.051769+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-23T11:11:41.051902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-23T11:11:41.052023+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-23T11:11:41.052154+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-23T11:11:41.052304+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}, keys={list(d.keys())[:10]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-23T11:11:41.052451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, keys={list(d.keys())[:10]}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-23T11:11:41.052575+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, correct={d.get(\\\"correct\\\",\\\"N/A\\\")}, total={d.get(\\\"total\\\",\\\"N/A\\\")}, keys={list(d.keys())[:10]}')\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-23T11:11:41.052707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, total={d.get(\\\\\\\\\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, keys={list(d.keys())[:10]}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-23T11:11:41.052860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-23T11:11:41.052997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.635,\\\\n  \\\\\\\"stderr\\\\\\\": 0.0340422531569225,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-23T11:11:41.053158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-23T11:11:41.053310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5109931766489765,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013763934976608492,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-23T11:11:41.053435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-23T11:11:41.053560+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.5928733889310084,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013527680145543942,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-23T11:11:41.053678+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-23T11:11:41.053801+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.643669446550417,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013186683444435831,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-23T11:11:41.053924+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-23T11:11:41.054051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.0,\\\\n  \\\\\\\"stderr\\\\\\\": 0.0,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-23T11:11:41.054168+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-23T11:11:41.054307+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.04,\\\\n  \\\\\\\"stderr\\\\\\\": 0.013856406460551017,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-23T11:11:41.054429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && which python",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-23T11:11:41.054547+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-23T11:11:41.054708+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nfiles = {\n    'eval_grpo_standard_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json',\n    'eval_grpo_standard_25_n1319': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json',\n    'eval_grpo_standard_25_qwen_math': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json',\n    'gsm8k_grpo_standard_20_ext300': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json',\n    'gsm8k_grpo_cka_only_20_ext300': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json',\n    'postprune_rasp_30': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json',\n    'postprune_standard_30': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json',\n}\nfor name, path in files.items():\n    try:\n        d = json.load(open(path))\n        print(f'{name}: accuracy={d.get(\\\"accuracy\\\")}, correct={d.get(\\\"correct\\\")}, total={d.get(\\\"total\\\")}, model={d.get(\\\"model_path\\\",\\\"?\\\")[:60]}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-23T11:11:41.054858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_grpo_standard_25: accuracy=0.635, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_2\\\\neval_grpo_standard_25_n1319: accuracy=0.5109931766489765, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_2\\\\neval_grpo_standard_25_qwen_math: accuracy=0.635, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_2\\\\ngsm8k_grpo_standard_20_ext300: accuracy=0.5928733889310084, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_2\\\\ngsm8k_grpo_cka_only_20_ext300: accuracy=0.643669446550417, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_2\\\\npostprune_rasp_30: accuracy=0.0, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\\\\npostprune_standard_30: accuracy=0.04, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-23T11:11:41.054985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*math500*25*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-23T11:11:41.055102+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-23T11:11:41.055214+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/results -name \"*25*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-23T11:11:41.055367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_rasp_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_standard_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_25.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_25_retry.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-23T11:11:41.055498+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "grep -rl \"0.128\" /root/autodl-tmp/recovery_aware_struct_prune/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-23T11:11:41.055632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed456_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_seed123_n1319.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_standard_20_seed123_n200.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_standard_20_seed456_n200.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_standard_25.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_shortgpt_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-23T11:11:41.055802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nfiles = {\n    'postprune_standard_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json',\n    'postprune_rasp_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json',\n    'sft_qwen_math_standard_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_standard_25.json',\n    'sft_qwen_math_rasp_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_qwen_math_rasp_25.json',\n    'grpo_rasp_25_qwen_math': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_25_qwen_math.json',\n}\nfor name, path in files.items():\n    try:\n        d = json.load(open(path))\n        acc = d.get('accuracy')\n        tot = d.get('total')\n        cor = d.get('correct')\n        mp = str(d.get('model_path','?'))[:60]\n        print(f'{name}: accuracy={acc}, correct={cor}, total={tot}, model={mp}')\n    except Exception as e:\n        print(f'{name}: ERROR {e}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-23T11:11:41.055950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"postprune_standard_25: accuracy=0.16, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard\\\\npostprune_rasp_25: accuracy=0.21, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25\\\\nsft_qwen_math_standard_25: accuracy=0.63, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_s\\\\nsft_qwen_math_rasp_25: accuracy=0.64, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_r\\\\ngrpo_rasp_25_qwen_math: accuracy=0.625, correct=None, total=None, model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qw\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-23T11:11:41.056078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\n# Check 300-step eval details\nfor name, path in [\n    ('gsm8k_grpo_standard_20_ext300', '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json'),\n    ('gsm8k_grpo_cka_only_20_ext300', '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json'),\n]:\n    d = json.load(open(path))\n    # count results entries\n    results = d.get('results', [])\n    n_results = len(results) if isinstance(results, list) else 'not_list'\n    keys = list(d.keys())\n    print(f'{name}: accuracy={d.get(\\\"accuracy\\\")}, total={d.get(\\\"total\\\")}, n_results={n_results}, keys={keys[:8]}, model={str(d.get(\\\"model_path\\\",\\\"?\\\"))[:80]}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-23T11:11:41.056208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gsm8k_grpo_standard_20_ext300: accuracy=0.5928733889310084, total=None, n_results=0, keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature'], model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/\\\\ngsm8k_grpo_cka_only_20_ext300: accuracy=0.643669446550417, total=None, n_results=0, keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature'], model=/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-23T11:11:41.056350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "head -3 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-23T11:11:41.056476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 10:18:47,799 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/\\\\n2026-05-19 10:18:48,483 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-19 10:20:10,003 [INFO] Loading GSM8K test set...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-23T11:11:41.056600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "tail -10 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-23T11:11:41.056733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 13:54:42,525 [INFO] GSM8K Accuracy: 0.5929 ± 0.0135 (782/1319)\\\\n2026-05-19 13:54:42,525 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 1292,\\\\n  \\\\\\\"truncated\\\\\\\": 27,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.979529946929492,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 229.5724033358605,\\\\n  \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n  \\\\\\\"min_response_length\\\\\\\": 32\\\\n}\\\\n2026-05-19 13:54:42,538 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-23T11:11:41.056909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\nfiles = {\n    'gsm8k_grpo_standard_20_ext300': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json',\n    'gsm8k_grpo_cka_only_20_ext300': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_extended_300.json',\n    'postprune_rasp_30': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_30.json',\n    'postprune_standard_30': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json',\n    'grpo_standard_25': '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json',\n}\nfor name, path in files.items():\n    d = json.load(open(path))\n    print(f'{name}: accuracy={d.get(\\\"accuracy\\\")}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}, model_path={str(d.get(\\\"model_path\\\",\\\"?\\\"))[:80]}')\n    # check all top-level keys\n    print(f'  keys={list(d.keys())}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-23T11:11:41.057073+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"gsm8k_grpo_standard_20_ext300: accuracy=0.5928733889310084, n_correct=782, n_total=1319, model_path=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/\\\\n  keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\ngsm8k_grpo_cka_only_20_ext300: accuracy=0.643669446550417, n_correct=849, n_total=1319, model_path=/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300\\\\n  keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\npostprune_rasp_30: accuracy=0.0, n_correct=0, n_total=200, model_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30\\\\n  keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\npostprune_standard_30: accuracy=0.04, n_correct=8, n_total=200, model_path=/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_30\\\\n  keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\ngrpo_standard_25: accuracy=0.635, n_correct=127, n_total=200, model_path=/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\\n  keys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-23T11:11:41.057240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json\n# Check the eval_grpo_standard_25.json to find what dataset/benchmark\nd = json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json'))\n# Check total number of results\nresults = d.get('results', [])\nn = len(results) if isinstance(results, list) else 'N/A'\nprint(f'n_results={n}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}')\nprint(f'Full model_path: {d.get(\\\"model_path\\\")}')\nprint(f'All top keys: {list(d.keys())}')\n# Also check eval_grpo_standard_25_qwen_math for differences\nd2 = json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_qwen_math.json'))\nprint(f'qwen_math variant: accuracy={d2.get(\\\"accuracy\\\")}, n_correct={d2.get(\\\"n_correct\\\")}, n_total={d2.get(\\\"n_total\\\")}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-23T11:11:41.057402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"n_results=0, n_correct=127, n_total=200\\\\nFull model_path: /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\\nAll top keys: ['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\nqwen_math variant: accuracy=0.635, n_correct=127, n_total=200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-23T11:11:41.057571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_gsm8k_grpo_random_20_seed123_v2'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-23T11:11:41.057836+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_gsm8k_sft_depth_first_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-23T11:11:41.057983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_gsm8k_grpo_depth_first_20'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-23T11:11:41.058107+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'exp_id': 'eval_math500_grpo_standard_25'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-23T11:11:41.058573+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0057}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-23T11:11:41.058744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9283}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-23T11:11:41.058868+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.931}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-23T11:11:41.058984+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9505}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-23T11:11:41.059130+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "100",
+              "fields": "['exp_id', 'status', 'conclusion', 'metrics']"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-23T11:11:41.059662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"floor_ablation_0p6_cka_only_20\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_math500_grpo_random_20_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.134, \\\"correct\\\": 67, \\\"total\\\": 500, \\\"stderr\\\": 0.0152, \\\"natural_eos\\\": 167, \\\"truncated\\\": 333, \\\"avg_response_length\\\": 1479.2}}, \\\"eval_math500_sft_qwen_math_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.216, \\\"stderr\\\": 0.0184, \\\"correct\\\": 108, \\\"total\\\": 500, \\\"natural_eos\\\": 90, \\\"truncated\\\": 410, \\\"avg_response_length\\\": 1745.338}}, \\\"floor_ablation_0p5_cka_only_20_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_math500_grpo_rasp_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.248, \\\"stderr\\\": 0.0193, \\\"correct\\\": 124, \\\"total\\\": 500, \\\"natural_eos\\\": 274, \\\"truncated\\\": 226, \\\"avg_response_length\\\": 1110.462}}, \\\"floor_ablation_0p3_cka_only_20_v2\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"floor_ablation_0p3_cka_only_20\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"floor_ablation_0p5_cka_only_20\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"conclusion\\\": \\\"failed\\\"}, \\\"eval_math500_grpo_cka_only_20_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.274, \\\"correct\\\": 137, \\\"total\\\": 500, \\\"stderr\\\": 0.01995, \\\"natural_eos\\\": 390, \\\"truncated\\\": 110, \\\"avg_response_length\\\": 654.746}}, \\\"eval_math500_grpo_rasp_alpha3p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.228, \\\"correct\\\": 114, \\\"total\\\": 500, \\\"stderr\\\": 0.0188, \\\"truncated_ratio\\\": 0.28, \\\"avg_response_length\\\": 745.038}}, \\\"eval_math500_sft_standard_20_2048_v3\\\": {\\\"status\\\": \\\"RUNNING\\\"}, \\\"eval_math500_grpo_rasp_alpha4p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.262, \\\"stderr\\\": 0.01966, \\\"correct\\\": 131, \\\"total\\\": 500, \\\"truncated\\\": 180, \\\"natural_eos\\\": 320, \\\"avg_respon\n…[truncated 14354 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-23T11:11:41.059917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport json, glob\n# Search all JSON files for n_total=100 or total=100\nfor f in glob.glob('/root/autodl-tmp/recovery_aware_struct_prune/results/*.json'):\n    try:\n        d = json.load(open(f))\n        nt = d.get('n_total') or d.get('total')\n        if nt == 100:\n            print(f'N=100: {f} accuracy={d.get(\\\"accuracy\\\")}')\n    except:\n        pass\n# Also check for math500 grpo standard 25 files with accuracy ~0.128\nfor f in glob.glob('/root/autodl-tmp/recovery_aware_struct_prune/results/*standard*25*.json'):\n    try:\n        d = json.load(open(f))\n        acc = d.get('accuracy')\n        nt = d.get('n_total') or d.get('total')\n        print(f'standard_25: {f.split(\\\"/\\\")[-1]} accuracy={acc}, n_total={nt}')\n    except:\n        pass\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-23T11:11:41.060067+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune -name \"*math500*grpo*standard*25*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-23T11:11:41.060207+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"N=100: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_rasp_25.json accuracy=0.21\\\\nN=100: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_25.json accuracy=0.16\\\\nN=100: /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_grasp_20_greedy.json accuracy=0.41\\\\nstandard_25: eval_grpo_standard_25.json accuracy=0.635, n_total=200\\\\nstandard_25: eval_grpo_standard_25_n1319.json accuracy=0.5109931766489765, n_total=1319\\\\nstandard_25: eval_grpo_standard_25_qwen_math.json accuracy=0.635, n_total=200\\\\nstandard_25: eval_postprune_standard_25.json accuracy=0.16, n_total=100\\\\nstandard_25: eval_sft_qwen_math_standard_25.json accuracy=0.63, n_total=200\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-23T11:11:41.060362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-23T11:11:41.060559+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1: MATH-500 Standard 25% GRPO = 12.8%\n**westd-32935 上未找到结果文件。** 没有 `math500*grpo*standard*25*` 文件。\n\n现有 25% standard 文件：\n| 文件 | accuracy | n_total | 实际是什么 |\n|------|----------|---------|-----------|\n| `eval_grpo_standard_25.json` | 63.5% | 200 | qwen_math eval |\n| `eval_grpo_standard_25_n1319.json` | 51.1% | 1319 | GSM8K eval |\n| `eval_postprune_standard_25.json` | 16.0% | 100 | post-prune (无recovery) |\n\nRegistry 中 `eval_math500_grpo_standard_25_v2` **已有** accuracy=0.128, n_correct=64, n_total=500。原始 `eval_math500_grpo_standard_25` 状态为 killed。该结果文件可能在 westb-23072。\n\n---\n\n### 任务 2: 补填 3 个空 metrics\n**三个结果文件均未在 westd-32935 上找到：**\n- `eval_gsm8k_grpo_random_20_seed123_v2` — 无 GSM8K random 文件（只有 `eval_math500_grpo_random_20_v2.json`）\n- `eval_gsm8k_sft_depth_first_20` — 无任何 depth_first 文件\n- `eval_gsm8k_grpo_depth_first_20` — 同上\n\nRegistry 确认这三个条目 status=DONE, conclusion=success，但 metrics 为空。结果文件可能在 westb-23072。\n\n---\n\n### 任务 3: 30% cliff CKA-only 核实\n**无 CKA-only 30% recovery 结果文件。** 找到的 30% 文件均为 post-prune（recovery 前）：\n\n| 文件 | accuracy | n_total |\n|------|----------|---------|\n| `eval_postprune_rasp_30.json` | 0.0% | 200 |\n| `eval_postprune_standard_30.json` | 4.0% | 200 |\n\n- 这些都是 N=200，不是 N=100\n- 整个服务器上 N=100 的文件只有 3 个（`eval_postprune_rasp_25`、`eval_postprune_standard_25`、`eval_sft_grasp_20_greedy`），均与 30% CKA-only 无关\n\n---\n\n### 任务 4: Extended training 300 步 GSM8K eval\n**是真实的 300 步 GSM8K eval，不是复用 100 步的值。**\n\n| 文件 | accuracy | n_correct | n_total | model_path |\n|------|----------|-----------|---------|------------|\n| `eval_gsm8k_grpo_standard_20_extended_300.json` | 59.29% | 782 | 1319 | `grpo_standard_20_extended_300/` |\n| `eval_gsm8k_grpo_cka_only_20_extended_300.json` | 64.37% | 849 | 1319 | `grpo_cka_only_20_extended_300` |\n\n日志确认 2026-05-19 从 `grpo_standard_20_extended_300/` 加载模型、实际运行 GSM8K 1319 道题。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_provenance_fix_westd_20260523T110636"
+          },
+          "id": "event-000101"
+        }
+      ],
+      "message_count": 101
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-provenance-fix-westd.md"
+}

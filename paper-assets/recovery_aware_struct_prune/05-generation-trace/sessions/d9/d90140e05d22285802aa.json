@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d90140e05d22285802aa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code graspune adapt",
+  "task_key": "worker_code_graspune_adapt_20260515T035058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_graspune_adapt_20260515T035058_result.json",
+    "occurrence": 1,
+    "bytes": 1647,
+    "sha256": "9db5501083652c406867468616851ddf00b16f843392bf6c2f25d35b57aff702"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。GPU 约束检查正常拦截非法 GPU ID。\n\n---\n\n## 报告\n\n### Pipeline 状态：就绪\n\n完整链路：\n```\nrun_graspune.sh\n  Phase 1: GRASPrune train.py (gate pruning, GSM8K calibration, 80% keep) \n           → pruned_state_dict.safetensors + meta.json\n  Phase 2: convert_graspune_to_hf.py (rebuild → HF格式，含per-layer config)\n           → model.safetensors + config.json + tokenizer\n  Phase 3: eval_gsm8k.py (通过model_utils.load_pruned_model加载非均匀剪枝模型)\n           → results/eval_pruned_graspune_20_greedy.json\n```\n\n### 修复内容\n\n| 文件 | 修改 |\n|------|------|\n| `src/run_graspune.sh` | 添加 C001 GPU 约束验证；Phase 1/2 增加跳过逻辑（输出已存在时）；添加 Phase 3 eval 步骤；输出路径改到数据盘（C002）|\n| `src/convert_graspune_to_hf.py` | 修复 `json.dump` 文件句柄泄漏 |\n| `src/model_utils.py` | 新增（本地缺失），处理非均匀 per-layer 维度的模型加载 |\n\n### 无 blocker\n\n- GRASPrune 支持 `--model-family qwen` + DeepSeek-R1-Distill-Qwen-7B ✓\n- 20% sparsity: `--keep-ratio 0.80` ✓\n- GSM8K 校准: `--train-dataset gsm8k` ✓\n- GQA 兼容: GRASPrune 在 KV group 粒度剪枝，`model_utils` 正确处理 per-layer num_heads/num_kv_heads ✓\n- 所有 import 和语法验证通过 ✓\n\n### 预估运行时间\n\n- Phase 1 (GRASPrune pruning): ~30-45 min（4 epochs × 512 samples，7B 模型单卡）\n- Phase 2 (Convert): ~3-5 min（CPU 上加载+保存）\n- Phase 3 (GSM8K eval): ~2-3 hrs（1319 题，greedy，max 4096 tokens）\n- **总计: ~3-4 小时**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-graspune-adapt.md"
+}

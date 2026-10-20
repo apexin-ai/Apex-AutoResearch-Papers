@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31b35e141ec64ecfaa52",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval math500 grpo random20 v2 westd",
+  "task_key": "worker_ssh_eval_math500_grpo_random20_v2_westd_20260521T135707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_math500_grpo_random20_v2_westd_20260521T135707_result.json",
+    "occurrence": 1,
+    "bytes": 348,
+    "sha256": "751a28f3f22410883e4f433a22a1b31e9d9b836167df93b09de4ebf437ed309d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已确认正常运行。\n\n**汇报：**\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100/model.safetensors` (12G) ✓\n- **PID**: 382470 (bash) → 382472 (python)\n- **进程状态**: ALIVE，模型已加载到 GPU，正在加载 MATH 数据集\n- **GPU 占用**: cuda:1 = 12335 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-math500-grpo-random20-v2-westd.md"
+}

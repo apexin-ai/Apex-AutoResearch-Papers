@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fe1328578c25264d1971",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "audit dose response narrative",
+  "task_key": "worker_audit_dose_response_narrative_20260524T071531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_dose_response_narrative_20260524T071531_result.json",
+    "occurrence": 1,
+    "bytes": 2848,
+    "sha256": "c56b8d03406a2814f39a5c591192f9e0c137f3ec0f6c397e316eadfd76cda95f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dose-Response Narrative 完整性检查报告\n\n### 1. α=2.0 GRPO 追平 CKA-only 的结论\n**✅ 已有**\n\n- `experiments.tex:62` — \"increasing $\\alpha$ from 1.0 to 2.0 shifts RASP from collapse to peak recovery (66.11% vs. 64.39% for CKA-only on GSM8K)\"\n- `appendix.tex:93` — \"inverted-U pattern peaking at α=2.0 (SFT 64.97%, GRPO 66.11%)\"\n- `conclusion.tex:6` — \"recovery peaks at α=2.0 (66.11%)\"\n- `tables/table3_alpha.tex:12` — 表格中 α=2.0 行加粗，GRPO 66.11%\n\n数值完整，\"追平/超过\"语义通过 66.11% vs 64.39% 的对比明确传达。\n\n### 2. 倒 U 型 dose-response 曲线描述\n**✅ 已有**\n\n- `experiments.tex:101-102` — \"recovery follows an inverted-U across α ∈ {0.5, 1.0, 2.0, 3.0, 4.0}, peaking at α=2.0\"，并给出 α=1.0 collapse 和 α=4.0 恢复到 62.77% 的完整两侧描述\n- `introduction.tex:17,22` — Figure 1 caption 和正文均描述 \"inverted-U\"\n- `abstract.tex:5` — \"a dose-response analysis reveals an inverted-U in recovery accuracy, peaking at α=2.0\"\n- `appendix.tex:93-97` — 完整五点 α 值的逐点描述，包括 α=3.0 排除 plateau 假说\n\n### 3. §4.4 dose-response 段引用\n**⚠️ 部分缺失**\n\n`experiments.tex:99-104`（§4.4 Dose-response and sparsity limits）当前引用：\n- ✅ `Appendix~\\ref{sec:appendix_alpha}` (line 102)\n- ✅ `Table~\\ref{tab:math500}` (line 103)\n- ❌ **未引用 Figure~\\ref{fig:dose_response}**（Figure 1，dose-response 曲线图）\n- ❌ **未直接引用 Table~\\ref{tab:alpha}**（仅通过 Appendix 间接关联）\n\n`Table~\\ref{tab:alpha}` 在 §4.3 (line 82) 被引用过，但 §4.4 本身——作为 dose-response 的核心段落——应该直接引用 Figure 1 和 Table 5。\n\n**建议**：在 `experiments.tex:102` 中添加 `(Figure~\\ref{fig:dose_response}; Table~\\ref{tab:alpha})`，例如改为：\n> \"...peaking at α=2.0 (SFT 64.97%, GRPO 66.11%; Figure~\\ref{fig:dose_response}, Table~\\ref{tab:alpha})\"\n\n### 4. Appendix D（α ablation）被正文引用\n**✅ 已有**\n\n- `experiments.tex:102` — `Appendix~\\ref{sec:appendix_alpha}` 直接引用\n- `appendix.tex:89` — `\\label{sec:appendix_alpha}` 定义（编译后为 Appendix D）\n\n### 5. α=2.0 作为 practitioner guideline\n**✅ 已有**\n\n- `conclusion.tex:13-14` — `\\paragraph{Practitioner guidelines.} Use RASP at α ≈ 2.0, which outperforms both pure importance (Standard) and pure diversity (CKA-only) on the dose-response curve (Figure~\\ref{fig:dose_response}).`\n- 同段 line 16 还给出配套建议：per-layer floors ≥40%、sparsity <25%、monitor early f₀\n\n---\n\n**总结**：5 项中 4 项完整，1 项部分缺失。§4.4 dose-response 段应直接引用 Figure 1 和 Table 5（tab_alpha），当前仅间接通过 Appendix 关联。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-dose-response-narrative.md"
+}

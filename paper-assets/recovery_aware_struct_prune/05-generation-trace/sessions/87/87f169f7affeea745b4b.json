@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87f169f7affeea745b4b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb gpu1 and westd progress",
+  "task_key": "worker_check_westb_gpu1_and_westd_progress_20260521T225945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_gpu1_and_westd_progress_20260521T225945_result.json",
+    "occurrence": 1,
+    "bytes": 1150,
+    "sha256": "e6b60378fa1d8165751268ad0aebc653965d0ba786d52b18cc6270cc0043bdaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. westb-23072 GPU 1\n\n两个 eval 进程共享 GPU 1：\n\n| PID | 模型 | VRAM | 运行时间 |\n|-----|------|------|---------|\n| 104592 | `sft_standard_25/checkpoint-1870` | 19186 MiB | 7h40m |\n| 118095 | `sft_cka_only_20` | 17044 MiB | 3h27m |\n\n两个都是 `eval_math500.py`。sft_cka_only_20 的日志显示进度 **206/500**，elapsed 3h25m。sft_standard_25 的日志路径 `eval_math500_sft_standard_25/eval.log` 不存在（可能用了其他日志文件名）。\n\n## 2. westd-29022 MATH-500 eval 进度\n\n| GPU | 任务 | 进度 | Accuracy | 平均速度 | 预计剩余 |\n|-----|------|------|----------|---------|---------|\n| GPU 1 | eval_math500_grpo_random_20_v2 | **452/500** | 0.1244 (at 450) | ~72s/it | **~60 min** |\n| GPU 3 | eval_math500_sft_random_20 | **206/500** | 未报告 | ~60s/it（高度波动） | **~5h** |\n\n**grpo_random_20_v2 先完成**，大约还需 1 小时。sft_random_20 还差约 5 小时。\n\n注意：sft_random_20 的进度条显示 elapsed 仅 3h25m，但进程从 22:48 启动至今已 ~8h，存在不一致——可能中途有重启或脚本内部计时逻辑不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-gpu1-and-westd-progress.md"
+}

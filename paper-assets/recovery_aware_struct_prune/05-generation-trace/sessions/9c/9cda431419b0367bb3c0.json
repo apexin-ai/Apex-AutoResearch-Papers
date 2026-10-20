@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cda431419b0367bb3c0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "audit figures compile compliance",
+  "task_key": "worker_audit_figures_compile_compliance_20260524T045159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_figures_compile_compliance_20260524T045159_result.json",
+    "occurrence": 1,
+    "bytes": 3782,
+    "sha256": "8c649e90360f52e68e1b14598e4158e2455e961c40c2e4394fb4b6c71892b0ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here is the full audit report:\n\n---\n\n## Part 1: Figures\n\n| Figure | 脚本 | 数据源 | 状态 |\n|--------|------|--------|------|\n| fig1_method_framework.pdf | `figures/paper/gen_fig1_framework.py` | 纯示意图，无实验数据 | ✅ |\n| fig1_dose_response.pdf | **无脚本** | 未找到生成脚本 | ⚠️ 可能由 PaperBanana 或交互式生成 |\n| fig2_reward_trajectories.pdf | `artifacts/figures/gen_fig2_reward_trajectories.py` | Hardcoded，来源注释 W&B runs (li451oi4, tyv20u2k, hwucjf2n) + server logs | ✅ 与 table 一致 |\n| fig3_collapse_dynamics.pdf | `artifacts/figures/gen_fig3_collapse_dynamics.py` | Hardcoded，与 fig2 共享 reward/frac_zero 数据，加 grad_norm/kl | ✅ 与 fig2 一致 |\n| fig_sft_grpo_scatter.pdf | `figures/paper/gen_fig_sft_grpo_scatter.py` | Hardcoded accuracy（CKA 63.91/64.39, Std 59.29/59.84 等） | ✅ 与 tab2/tab3/tab4 一致 |\n| fig4_cka_heatmap.pdf | `figures/paper/gen_fig4_cka_heatmap.py` | **⚠️ 合成数据**：`np.random.seed(42)` + `gen_layers()` 从 summary stats (mean/min/max) 近似生成 per-layer 值。脚本注释: \"true per-layer data is on remote server; this approximates the pattern\" | ⚠️ 非真实逐层数据 |\n| fig5_extended_training.pdf | `figures/paper/gen_fig5_extended_training.py` | Steps 10-100 来自 W&B (tyv20u2k, li451oi4)；110-300 来自 extended registry experiments | ✅ |\n| fig_appendix_kl.pdf | `figures/paper/gen_fig_appendix_kl.py` | KL 数据与 fig3 脚本一致 | ✅ |\n\n**关键问题**:\n- **fig4_cka_heatmap**: per-layer CKA 柱状图使用的是从 summary statistics 合成的近似数据（`gen_layers(mean, lo, hi)`），不是真实实验值。Summary stats 本身 (μ=0.62/0.90/0.92/0.88) 来自实验，但逐层分布是人工生成的。论文 caption 和正文引用了这些 μ 值（正确），但柱状图的逐层形状是近似的。\n- **fig1_dose_response**: 无生成脚本，数据源不可追溯。\n\n## Part 2: LaTeX 编译\n\n✅ 编译成功，0 errors, 0 undefined references, 0 multiply-defined labels\n\n| 类型 | 数量 | 严重性 |\n|------|------|--------|\n| Overfull hbox | 3 (max 3.07pt) | 可忽略 |\n| Underfull hbox | 28 | 正常 |\n| Float specifier `h`→`ht` | 5 | 良性 |\n| Hyperref token warnings | 3 | 良性 |\n\n**页数**: 15 页总计\n- 正文 (§1-§5 + Conclusion): **8 页** ✅ (EMNLP 2026 限制 = 8 页)\n- Limitations + Ethics: 第 9 页开始（不计入页数限制）\n- References: 第 9 页起\n- Appendix: 第 10-15 页\n\n## Part 3: 匿名仓库\n\n⚠️ **本地未找到匿名仓库 git 目录**。ROADMAP 记录状态: \"匿名仓库 ✅（65 files, c9a2a2b）\"——仓库可能托管在外部匿名服务（如 Anonymous GitHub），本地无法验证当前 commit 状态和未提交更改。\n\n## Part 4: 跨位置一致性\n\n✅ **引用完整性通过**\n- 65 个 labels 定义，44 个显式引用\n- 0 undefined references\n- 0 duplicate labels\n- 所有 Figure/Table/Equation 引用均正确解析\n- 147 个数值在 figure 脚本和 table tex 文件间验证一致\n\n**次要问题**:\n- `eq:cka` (HSIC/CKA 定义) 已定义但未被 `\\ref{}` 引用（minor）\n- `introduction.tex` 使用 `../figures/paper/` 路径，其余文件用 `figures/paper/`（编译正常但风格不一致）\n\n---\n\n**需关注**:\n1. **fig4 合成数据** 是最值得关注的问题——如果 reviewer 要求 raw data，当前脚本无法复现真实逐层分布。建议在提交前从服务器拉取真实 per-layer CKA 数据替换合成值。\n2. **fig1_dose_response** 缺少生成脚本，可复现性不明。\n3. **匿名仓库** 无法本地验证——建议在提交前确认外部仓库 URL 可访问且代码最新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-figures-compile-compliance.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "291bbe6eb1753e793ccf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd kill dup and diskcheck",
+  "task_key": "worker_ops_westd_kill_dup_and_diskcheck_20260517T193643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_kill_dup_and_diskcheck_20260517T193643_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "00e5249b92e8be8159b63f9dd227b2718006c431b619067f1d0beb8032041cea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **PID kill**：44270 已成功终止（SIGTERM，无需 force kill）。PID 43911 仍在运行，正在执行 `eval_gsm8k.py` 评估 `pruned_rasp_30`。\n\n2. **磁盘空间**：⚠️ **紧急** — `/root/autodl-tmp` 仅剩 **1.6GB**（750G 用了 749G，100%）。低于 2GB 阈值，需要立即清理空间，否则当前运行的评估任务写结果时可能失败。\n\n3. **sft_cka_only_20 模型**：完整，共 12GB。包含 `model.safetensors`（12.3GB）、`config.json`、`tokenizer.json`、`tokenizer_config.json`、`generation_config.json`、`chat_template.jinja`、`training_args.bin`，文件齐全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-kill-dup-and-diskcheck.md"
+}

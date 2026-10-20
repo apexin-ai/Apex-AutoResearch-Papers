@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2de582e78fade8062975",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh paper banana connectivity test",
+  "task_key": "worker_ssh_paper_banana_connectivity_test_20260523T124402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_paper_banana_connectivity_test_20260523T124402_result.json",
+    "occurrence": 1,
+    "bytes": 837,
+    "sha256": "c1e6ca2fe3ce7f07cdb4e9a6c35afa6c2cca9bb97a6484b6679d5bfe26a2179b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果报告\n\n| 项目 | 结果 |\n|------|------|\n| **API 连通性 — westd-32935** | **失败** — 连接超时 (HTTP 000, curl exit 28) |\n| **API 连通性 — westb-23072** | **失败** — 连接超时 (HTTP 000, curl exit 28) |\n| **PaperBanana 安装** | 未执行（API 不可达） |\n| **图生成** | 未执行（API 不可达） |\n\n**原因**：Gemini API (`generativelanguage.googleapis.com`) 在两台 AutoDL 服务器上均不可达，开启 `network_turbo` 代理后仍然超时。Google API 整体被墙，AutoDL 的代理仅加速 GitHub/HuggingFace，不覆盖 Google 服务。\n\n**替代方案**（如需要）：\n1. 在本地有梯子的机器上运行 PaperBanana\n2. 用 matplotlib 手写概念图代码（不依赖外部 API），通过 `draw-paper-figure` skill 在服务器上执行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-paper-banana-connectivity-test.md"
+}

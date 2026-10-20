@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92f266beca9094e15b61",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose inference speedup v2",
+  "task_key": "worker_diagnose_inference_speedup_v2_20260516T221321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_inference_speedup_v2_20260516T221321_result.json",
+    "occurrence": 1,
+    "bytes": 1023,
+    "sha256": "eb182dacd4252441cae7c3cb89cb4172871833ccf80e2d3466f371d3be59ea62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新（cron 不存在，跳过删除）。\n\n## 实验结果：inference_speedup_plan016_v2 ✓ 成功\n\n| 指标 | Dense (7B) | RASP 20% | Standard 20% |\n|------|-----------|----------|--------------|\n| Tokens/s | 76.25 | 52.07 | 49.78 |\n| Avg Latency/prompt | 6.682s | 4.156s | 6.167s |\n| Peak Memory | 16.22 GB | 11.60 GB | 11.61 GB |\n| Latency speedup vs Dense | — | **37.8%** | 7.7% |\n| Memory reduction vs Dense | — | **28.5%** | 28.4% |\n\n**关键发现：**\n- RASP 20% 的 per-prompt latency 比 dense 快 37.8%（4.16s vs 6.68s），比 standard pruning 快 32.6%\n- 两种剪枝方案内存节省几乎相同（~28.5%），但 RASP 生成更短更精准的回答（总 token 10820 vs 15348），导致实际 latency 大幅领先\n- Tokens/s 方面 RASP 略高于 standard（52.07 vs 49.78），说明模型结构效率也有微弱优势\n- RASP 的 latency 优势主要来自生成更简洁的推理链（token 数少 29.5%），这与其更好的 reasoning 质量一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-inference-speedup-v2.md"
+}

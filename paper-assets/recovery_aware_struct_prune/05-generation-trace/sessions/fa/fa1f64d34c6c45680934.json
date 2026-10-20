@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa1f64d34c6c45680934",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research paper compile check",
+  "task_key": "worker_research_paper_compile_check_20260521T153325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper_compile_check_20260521T153325_result.json",
+    "occurrence": 1,
+    "bytes": 1820,
+    "sha256": "b965f4c37c9628603cb9cb67d6431e9c8cc7af96cc5a31d9d6a897cd5d17a77d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the complete picture.\n\n---\n\n## 编译状态：PASS\n\n- 0 errors, 0 undefined references（full bibtex cycle 后全部 resolve）\n- BibTeX warnings: 2 个空 journal 字段（`davari2023cka`, `selfhealing2025`）—— 可能是 arXiv 预印本，不影响编译\n- 若干 overfull/underfull hbox 警告（排版微调，非阻塞）\n\n## 页数：14 页总计，主文本 = 8 页（刚好踩线）\n\n| 区域 | 页码 |\n|---|---|\n| 主文本（Abstract → Conclusion） | 1–8 |\n| Limitations + Ethics | 8（尾部）–9 开头 |\n| References | 9–10 |\n| Appendix | 10–14 |\n\n主文本恰好 8 页，**符合 EMNLP 2026 限制**，但没有余量。任何新增内容都会超页。\n\n## TODO/FIXME/TBD 标记\n\n**活跃源文件中：无。** 所有 TBD/TODO 标记仅存在于不参与编译的文件中：\n\n| 文件 | 标记 | 状态 |\n|---|---|---|\n| `tables/table2_recovery.tex:11` | \"TBD\" | 旧表，未被任何 `\\input` 引用 |\n| `backup/experiments.tex:38,46` | `[TBD]` | backup 目录，不编译 |\n| `backup/introduction.tex:35` | `% TODO` | backup 目录，不编译 |\n\n## MATH-500 表格结构\n\n文件：`tables/tab_math500.tex`，通过 `appendix.tex:103` 的 `\\input{tables/tab_math500}` 引入（Appendix §MATH-500 Out-of-Distribution Evaluation, label `sec:appendix_math500`）。\n\n结构：3 列表格 `{Method, Recovery, MATH-500 (%)}` ，**数据已完整填入**：\n\n| Method | Recovery | MATH-500 (%) |\n|---|---|---|\n| Dense | -- | 53.0 |\n| CKA-only | SFT | 29.0 |\n| CKA-only | GRPO | 29.2 |\n| Standard | SFT | 25.8 |\n| Standard | GRPO | 26.4 |\n| RASP | SFT | 22.6 |\n| RASP | GRPO | 24.0 |\n\n表格下方有脚注说明 Dense 模型在 2048 tokens 下的截断效应。**无需 Paper Agent patch——数据已齐全。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-compile-check.md"
+}

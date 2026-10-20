@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9951d6884d5fe03a78d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code full eval fix",
+  "task_key": "worker_code_full_eval_fix_20260515T031946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full_eval_fix_20260515T031946_result.json",
+    "occurrence": 1,
+    "bytes": 264,
+    "sha256": "a10ef4bc08e7823bb23a99ee371c9073da8634eb00b977424c23980d5bc52e6c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **修复 1**：`pruned_standard_20` 已在 Phase 1 的 GPU1 队列中（第 77 行），无需修改。\n- **修复 2**：已在 Phase 3 的两个 GRPO eval 行（第 114、118 行）前添加路径确认注释。语法检查通过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-eval-fix.md"
+}

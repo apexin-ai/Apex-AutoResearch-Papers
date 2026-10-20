@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "50b59e85d48ba4addada",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code disk cleanup and monitor",
+  "task_key": "worker_code_disk-cleanup-and-monitor_20260515T051200",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_disk-cleanup-and-monitor_20260515T051200_result.json",
+    "occurrence": 1,
+    "bytes": 949,
+    "sha256": "eeeebf267ddb1f9062d67dbd29083ddceb0c9435f71c4c53c862c4d7420a7fd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总如下：\n\n## 磁盘清理前后对比\n\n| | 已用 | 可用 | 使用率 |\n|--|------|------|--------|\n| 清理前 | 222G | 29G | 89% |\n| **清理后** | **141G** | **110G** | **57%** |\n\n释放 **81G**（sft_standard_20）。\n\n## 当前目录占用\n\n| 目录 | 大小 |\n|------|------|\n| sft_rasp_20 | 81G |\n| logs | 17M |\n| grpo_stage2_rasp_20_v2 | 20K |\n| grpo_stage2_standard_20_v2 | 16K |\n| eval_results | 8K |\n| models, results | 0 |\n\n## GRPO checkpoint 状态\n\n两个 GRPO 目录都只有 `completions/` 子目录，无多余 checkpoint 需要清理。\n\n## eval 脚本修改\n\n- 移除了 `SFT_STANDARD_20` 变量定义和 `ALL_MODELS` 中的条目\n- Phase 2 从双 GPU 并行改为单任务执行（只跑 sft_rasp_20）\n- 脚本现在评估 **6 个模型**：baseline_unpruned, pruned_rasp_20, pruned_standard_20, sft_rasp_20, grpo_stage2_rasp_20_v2, grpo_stage2_standard_20_v2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-disk-cleanup-and-monitor.md"
+}

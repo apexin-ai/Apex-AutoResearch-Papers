@@ -1,0 +1,33 @@
+{
+  "exp_id": "eval_D2_ckpt400_v2",
+  "project": "schema-conform-ie-training",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T15:47:23.688Z",
+    "updated_at": "2026-05-13T17:42:25.591Z",
+    "spec": {
+      "hypothesis": "D2 ckpt400 eval retry (v2): pre-mode-collapse checkpoint. Full re-run after server restart.",
+      "parent": "exp_006_d2_phase2",
+      "checkpoint_source": "/root/autodl-tmp/output/formal_D2/checkpoint-400-merged",
+      "eval_data": "scierc_test, crossner_politics, crossner_science",
+      "data_path": "/root/autodl-tmp/data",
+      "model_name": "Qwen/Qwen3.5-9B + LoRA (D2 ckpt400)",
+      "seed": 42,
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/logs/eval_D2_ckpt400_v2.log",
+      "checkpoint_path": "/root/autodl-tmp/output/formal_D2/checkpoint-400-merged",
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m src.evaluate --model_path /root/autodl-tmp/output/formal_D2/checkpoint-400-merged --data_dir /root/autodl-tmp/data --datasets scierc_test crossner_politics crossner_science --output_dir /root/autodl-tmp/output/eval_D2_ckpt400_v2 --max_new_tokens 1024",
+      "data_count": 0,
+      "pid": 98615
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-13T17:42:25.658174+00:00",
+  "trigger": "update_registry"
+}

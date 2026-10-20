@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab3a654f84cb4db0c8f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd eval progress check",
+  "task_key": "worker_ops_westd_eval_progress_check_20260519T071445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_eval_progress_check_20260519T071445_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "82fd0d10e53d8e2957df083f33983b6456fef8f5d101948be3c14cc73dcefc0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前时间 UTC 15:15（服务器本地约 15:15）。\n\n## 汇总\n\n| GPU | 任务 | PID | 状态 | 进度 | 中间 Acc | 显存占用 | 预估完成 |\n|-----|------|-----|------|------|----------|----------|----------|\n| cuda:0 | MATH-500 SFT Standard | 56146 | **运行中** | **390/500 (78%)** | 0.2543@350 | 19.3G/97.9G | ~2-3h |\n| cuda:1 | HumanEval GRPO CKA-only | 66521 | **运行中** | **150/164 (91%)** | 0.2214@140 | 17.8G/97.9G | ~20-30min |\n| cuda:2 | HumanEval GRPO Standard fair v3 | 76392 | **运行中** | **6/164 (4%)** | — | 16.5G/97.9G | ~4-5h |\n| cuda:3 | HumanEval GRPO RASP fair | 74303 | **运行中** | **36/164 (22%)** | 0.1500@20 | 17.3G/97.9G | ~2-3h |\n\n**结果文件**：4 个目标 JSON 均未生成。\n\n**已完成参考**：`humaneval_sft_cka_only_20_2048.json` — pass@1 = 0.0（全挂）。\n\n**GPU 利用率**：4 块均 97-98%，满负荷。\n\n**cuda:1 最快完成**（~30min 内），其次 cuda:0（~2-3h），cuda:3（~2-3h），cuda:2 刚启动 12 分钟（~4-5h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-eval-progress-check.md"
+}

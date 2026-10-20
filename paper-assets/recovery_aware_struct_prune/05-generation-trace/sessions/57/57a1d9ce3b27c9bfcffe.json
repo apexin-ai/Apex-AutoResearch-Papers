@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57a1d9ce3b27c9bfcffe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops collect cka heatmap results",
+  "task_key": "worker_ops_collect_cka_heatmap_results_20260518T163015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect_cka_heatmap_results_20260518T163015_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "e0ba3d2ec3fa67468c50d42c89ac8adc0ad33e33493870c5665418539d1ab457"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 CKA heatmap 计算已完成。汇总如下：\n\n## E3 CKA Heatmap 结果\n\n| Method | Diagonal CKA Mean | Min | Max |\n|--------|-------------------|------|------|\n| **CKA-only** (Dense vs CKA-only pruned) | **0.6202** | 0.3794 | 0.9921 |\n| **Standard** (Dense vs Standard pruned) | **0.9039** | 0.8412 | 0.9926 |\n| **Random** (Dense vs Random pruned) | **0.9233** | 0.7668 | 0.9960 |\n| **RASP** (Dense vs RASP pruned) | **0.8822** | 0.7574 | 0.9934 |\n\n产出文件：\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_heatmap_cka_only.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_heatmap_standard.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_heatmap_random.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_heatmap_rasp.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/e3_cka_heatmap.pdf` (39KB, 4-method 合并 heatmap)\n\n关键发现：CKA-only 的 diagonal CKA 极低（mean=0.62），说明纯 CKA 剪枝后模型内部表征与 Dense 偏离严重。Standard 和 Random 保留表征最好（0.90, 0.92），RASP 居中（0.88）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-cka-heatmap-results.md"
+}

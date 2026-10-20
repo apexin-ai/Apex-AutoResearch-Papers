@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7ced479bd8abfdff529b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval humaneval sft rasp 20 2048 v3",
+  "task_key": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "110448033cdbb8983816bd9ddf5fde25bb1d270d983c17ac0f61415ed8f36832"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务启动成功，模型正在加载。\n\n总结：\n- **exp_id**: `eval_humaneval_sft_rasp_20_2048_v3`\n- **服务器**: westd-29022, **cuda:3**（cuda:1 被 v2 占用，改用 cuda:3）\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048_v3.log`\n- **发现**: v2 eval (PID 107932) 仍在 cuda:1 上运行，并非真正 orphaned——可能还会出结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-humaneval-sft-rasp-20-2048-v3.md"
+}

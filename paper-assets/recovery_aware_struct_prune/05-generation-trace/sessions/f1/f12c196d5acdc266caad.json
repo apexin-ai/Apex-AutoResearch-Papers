@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f12c196d5acdc266caad",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft standard math500 rerun westd1",
+  "task_key": "worker_ssh_submit_sft_standard_math500_rerun_westd1_20260523T055956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_standard_math500_rerun_westd1_20260523T055956_result.json",
+    "occurrence": 1,
+    "bytes": 566,
+    "sha256": "0623e2c58152710215077223ac00d5ce36c06c0ad1f8ece8e5680eae7e00387d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并运行：\n\n- **Exp**: `eval_math500_sft_standard_20_2048_v3`\n- **Server**: westd-32935 cuda:1\n- **PID**: 108569 (bash) → 108574 (python)\n- **Status**: RUNNING\n- **Log**: `/tmp/eval_math500_sft_standard_20_2048_v3.log`\n- **Output**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_2048_v3.json`\n\n模型正在从磁盘加载中（11.5GB），同服务器有 3 个其他 eval 并行运行，IO 竞争可能导致加载较慢。进程存活，CPU 99%，等加载完成后会上 GPU 开始推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-standard-math500-rerun-westd1.md"
+}

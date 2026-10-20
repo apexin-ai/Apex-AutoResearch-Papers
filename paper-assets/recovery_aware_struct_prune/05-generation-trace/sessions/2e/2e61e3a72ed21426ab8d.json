@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e61e3a72ed21426ab8d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research qwen math feasibility",
+  "task_key": "worker_research_qwen_math_feasibility_20260520T042433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_qwen_math_feasibility_20260520T042433_result.json",
+    "occurrence": 1,
+    "bytes": 1720,
+    "sha256": "4810fd533af88e074ab6c9a92df086fde6c72a5ec6317552fa936790964faca7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 中期评估报告\n\n### 适配复杂度：**简单（零代码修改）**\n\n| 检查项 | 结果 |\n|--------|------|\n| 架构兼容性 | 完全一致：Qwen2ForCausalLM, 28层, 28头, 4 KV头, hidden=3584, intermediate=18944 |\n| prune.py | 通用 AutoModel + `model.model.layers[i]` 命名，兼容 |\n| cka_overlap.py | 通用 hook 机制，兼容 |\n| importance_score.py | 通用 gradient-based scoring，兼容 |\n| rasp_scoring.py | 纯 tensor 数学，模型无关 |\n| sft_recovery.py | 通用 SFTTrainer + chat_template，兼容 |\n| train_grpo_v5.py | 通用 GRPOTrainer + monkey-patch，兼容 |\n| eval_gsm8k.py | 多级 answer extraction (boxed/####/数字)，兼容 |\n| 硬编码路径 | 核心 pipeline 无硬编码，全部通过 `--model_path` 传入 |\n\n### 阻塞项：磁盘空间不足\n\n| 项目 | 大小 |\n|------|------|\n| 数据盘总量 | 250 GB |\n| 当前已用 | 230 GB (含正在下载的 6 GB) |\n| 下载完成后剩余 | **~6 GB** |\n| 完整 pipeline 需要 | **~60 GB** (2 pruned + 2 SFT + 2 GRPO @ ~12 GB each) |\n| **缺口** | **~54 GB** |\n\n### 可清理候选项（按 D005 决策，25% sparsity 已被放弃）\n\n| 目录 | 大小 | 理由 |\n|------|------|------|\n| `pruned_rasp_25` | 11 GB | D005 放弃 25% sparsity |\n| `sft_rasp_25` | 11 GB | 同上 |\n| `grpo_rasp_25` | 11 GB | 同上 |\n| `pruned_standard_25` | 11 GB | 同上 |\n| `sft_standard_25` | 11 GB | 同上 |\n| `pruned_random_20` | 12 GB | Random baseline，结果已记录 |\n| `sft_random_20` | 12 GB | 同上 |\n| `sft_gradient_20` | 12 GB | Gradient baseline SFT |\n| **合计** | **~91 GB** | |\n\n清理上述即可腾出足够空间。需要你确认哪些可以删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-qwen-math-feasibility.md"
+}

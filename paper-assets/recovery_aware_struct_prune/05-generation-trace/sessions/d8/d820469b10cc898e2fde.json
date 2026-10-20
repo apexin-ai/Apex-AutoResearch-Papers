@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d820469b10cc898e2fde",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval grpo 25 results",
+  "task_key": "worker_harvest_eval_grpo_25_results_20260517T025859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_grpo_25_results_20260517T025859_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "42c4cf75ea618e55442db1cef63220f1f7525979ddb6c26785794c7336b42330"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验的状态汇总：\n\n---\n\n### 1. eval_grpo_standard_25 (westd-11672) — **已完成**\n\n| 指标 | 值 |\n|------|------|\n| **Accuracy** | **51.10% ± 1.38%** |\n| n_correct / n_total | 674 / 1319 |\n| EOS rate | 96.29% |\n| Avg response length | 292.9 |\n| Truncated | 49 / 1319 (3.7%) |\n| 结果文件 | `eval_grpo_standard_25_n1319.json` |\n\n---\n\n### 2. eval_grpo_rasp_25 (westb-23072) — **仍在运行**\n\n| 指标 | 值 |\n|------|------|\n| 进程 PID | 639423 (CPU 占用 102%, 运行 7h25m) |\n| 当前进度 | ~967/1319 (**73.3%**) |\n| 最近 checkpoint (950/1319) | acc=**52.74%**, eos_rate=92.53%, avg_len=440 |\n| 输出文件 | `eval_grpo_rasp_25_n1319.json` (尚未生成) |\n| 预计剩余 | ~2-3 小时 |\n\n---\n\n### 初步对比（25% sparsity, GSM8K greedy）\n\n| 模型 | Accuracy | EOS rate | Avg len |\n|------|----------|----------|---------|\n| GRPO-Standard-25 | 51.10% | 96.29% | 293 |\n| GRPO-RASP-25 (interim) | 52.74% | 92.53% | 440 |\n\nRASP 在 accuracy 上暂时领先 ~1.6pp，但 EOS rate 更低 (92.5% vs 96.3%)，平均生成长度更长 (440 vs 293)，说明 RASP 模型生成更冗长、更多 truncation。这和 C1 (reward-accuracy decoupling) 的叙事一致：RASP 恢复的结构在 accuracy 上有效，但生成行为有差异。\n\nRASP eval 预计再跑 2-3 小时完成，届时需要再来收割最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-grpo-25-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88ee67f4b6a678dbb40f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp alpha ablation sweep westb",
+  "task_key": "worker_exp_alpha-ablation-sweep-westb_20260515T201611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_alpha-ablation-sweep-westb_20260515T201611_result.json",
+    "occurrence": 1,
+    "bytes": 209,
+    "sha256": "a986f3f3969976789281f498cac209109d91a0bdea8767837315cafa4715dba2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Sweep 已在 westb cuda:0 后台启动（PID 552732）。α=0.0 pruning 已完成（actual sparsity 19.09%），正在保存模型后将开始 GSM8K eval。2 分钟后回来检查 eval 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-alpha-ablation-sweep-westb.md"
+}

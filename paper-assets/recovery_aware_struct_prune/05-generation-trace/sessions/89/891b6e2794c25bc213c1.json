@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "891b6e2794c25bc213c1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_11_1778908586.md",
+  "task_key": "loop_11_1778908586",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778908586.md",
+    "occurrence": 1,
+    "bytes": 4144,
+    "sha256": "13de24cf79285fe19243c7464ac5693496a38d4dba9d489a3c2a15b8b8b6e4ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T05:16:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 的 cuda:0/1（98GB×2），westd-11672 的 cuda:0/1（95GB×2）。其他设备号禁用\n- sft_recovery.py `--gpu` 参数会覆盖 CUDA_VISIBLE_DEVICES（lines 19-22），submit 时 gpu 编号始终从 0 开始\n- westd 上跑 eval 必须先从 westb 同步脚本（westb 版本含 apply_chat_template 修正）\n- 叙事已 pivot 到 Redundancy-Stability Tradeoff，**禁止**回退到旧 framing（\"RASP enables better RL\"）——D044 决策已锁定\n- RASP SFT +2.2pp 差异 p=0.248 **不显著**，禁止在任何汇报/论文中声称 SFT 下 RASP 优于 Standard\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**：工作目录 /root/autodl-tmp/recovery_aware_struct_prune\n  - Python: /root/miniconda3/bin/python（conda base）\n  - 模型：/root/autodl-tmp/.hf_cache/ 下 DeepSeek-R1-Distill-Qwen-7B\n  - Pruned checkpoints: /root/autodl-tmp/recovery_aware_struct_prune/outputs/ 下各实验目录\n  - wandb project: recovery_aware_struct_prune\n- **westd-11672**：工作目录 /root/autodl-tmp/recovery_aware_struct_prune\n  - Python: /root/miniconda3/bin/python（conda base）\n  - 用于 GraSP 和 α ablation 实验\n- HF_HOME=/root/autodl-tmp/.hf_cache（两台都是）\n- 活跃进程：prune_standard_25、prune_rasp_25 可能仍在跑（需 SSH 确认）；eval_grpo_rasp_v9_step10 待重试\n\n### 3. 📊 当前状态\n**核心数据已全部收集完成（D045）**。52 个实验，成功 26 / 负向 9 / 失败 11。\n\n关键结论链：\n- Unpruned SFT→GRPO: 81.27%→81.27%（Δ=0.00pp，reward 涨但 accuracy 不变 = decoupling）\n- Standard SFT→GRPO: 59.29%→58.91%（collapse ~step 60）\n- RASP SFT→GRPO: 61.49%→60.65%（collapse ~step 10，6× faster）\n- Unpruned GRPO 也最终 collapse（~step 80），但程度轻得多\n\n**正在进行 / 待处理**：\n- eval_grpo_rasp_v9_step10：网络错误，需重试（最后一个核心数据点）\n- prune_standard_25、prune_rasp_25：25% sparsity probe（P1 优先级）\n- 多个 eval 在 PREPARING 状态待提交（α ablation full eval、N=1319 significance test、GraSP 对比）\n\n### 4. 📋 待办（条件触发式）\n- eval_grpo_rasp_v9_step10 重试成功 → 更新 registry，确认 step-10 vs step-5 accuracy 差异，完善 collapse timeline 数据\n- prune_25 完成 → 派 Worker 跑 SFT recovery + eval，填 plan_010（25% sparsity 行为）\n- Director 批准写论文 → 读 paper-plan skill，按 writing_plan.yaml 并行派 Worker 写各章节\n- α ablation full eval 完成 → 确认 U-shape 在 N=1319 下是否稳健，决定是否入 paper\n- multi-seed 实验（plan_006）获 GPU → 5 seed × 2 method，解决 reviewer concern 关于统计功效\n- 任何 negative 结果 → 不跑下一个，先出 Framing 提案（但当前 framing 已经以 negative 为 story，新 negative 大概率是加强证据）\n\n### 5. 🎯 战略上下文\n**目标**：EMNLP 2026 Main（ARR May 25 deadline）\n\n**核心叙事（D044 pivot 后）**：不是\"RASP pruning 更好\"，而是\"pruning 策略与恢复方法的交互效应\"——SFT 下冗余结构可安全移除，RLVR 下冗余结构提供探索稳定性，移除加速 collapse。GRPO 的 reward-accuracy decoupling 是 universal 现象，pruning 在此基础上叠加 training collapse。\n\n**最易判断错的事**：\n1. **不要试图证明 RASP 在 SFT 下显著优于 Standard**——p=0.248，CI 跨零，这个 claim 站不住。Story 核心是 SFT vs RLVR 的交互效应，不是 RASP 绝对优势\n2. **Standard pruning 在 GRPO 下 collapse 比 RASP 晚（60 vs 10 步）**——这意味着 Standard（保留非冗余结构）反而对 RLVR 更稳定，这是 counterintuitive 但确认过的\n3. **Unpruned baseline 也 collapse**——所以 collapse 不是 pruning 专属现象，pruning 只是加速/加剧了它\n4. **磁盘空间**：westb 之前因 GRPO checkpoint 磁盘满过，已清理 v2-v8 旧目录，但新实验要注意 checkpoint 大小\n5. **eval_gsm8k.py 默认 seed=42 + greedy**——保持一致性，不要改 eval 参数\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778908586.md"
+}

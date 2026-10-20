@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82334a15ed25e2743a2f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e3 cka heatmap prep",
+  "task_key": "worker_code_e3_cka_heatmap_prep_20260518T120325",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e3_cka_heatmap_prep_20260518T120325_result.json",
+    "occurrence": 1,
+    "bytes": 2386,
+    "sha256": "a311c67792364f44c87843c68a0f1950012762e15051df3fb3635691c25fb8f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个脚本已创建并通过语法检查。\n\n## 汇报\n\n### 已创建的脚本\n\n1. **`/root/recovery_aware_struct_prune/src/compute_layer_cka.py`** — 跨模型 layer-wise CKA 计算\n   - 逐个加载模型提取 28 层 hidden states（mean-pooled over seq），然后释放显存\n   - 支持 `--save_reprs_a` / `--load_reprs_a`，Dense 表征只需提取一次\n\n2. **`/root/recovery_aware_struct_prune/src/plot_cka_heatmap.py`** — 多面板 CKA heatmap 可视化\n   - 输入多个 JSON，自动排列 2×2 布局，magma colormap，标注 diagonal mean\n\n### westb 可用 7B pruned 模型（5 个）\n\n| 模型 | 路径 | intermediate_size |\n|------|------|-------------------|\n| CKA-Only 20% | `pruned_cka_only_20` | 8128 |\n| Random 20% | `pruned_random_20` | 10832 |\n| RASP-RLVR 20% | `pruned_rasp_rlvr_20` | 8128 |\n| Gradient 20% | `pruned_gradient_20` | 8128 |\n| Magnitude 20% | `pruned_magnitude_20` | 8128 |\n\n所有模型 hidden_size=3584, 28 layers，可直接做 CKA 无需投影。**无 `pruned_standard_20` 7B 版本。**\n\n### GPU 运行时间估计\n\n- 每个模型加载 + 50 samples forward pass: ~3-4 min\n- CKA matrix 计算 (28×28 = 784 pairs): ~10 sec\n- **首次运行**（Dense + 1 pruned）: ~7-8 min\n- **后续运行**（cached Dense + 1 pruned）: ~3-4 min\n- **5 个 pruned 模型全跑**: ~25 min 总计\n\n### 运行命令参考\n\n```bash\nPYTHON=/root/miniconda3/bin/python\nOUT=/root/autodl-tmp/recovery_aware_struct_prune/cka_results\nDENSE=/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\nPRUNED=/root/autodl-tmp/recovery_aware_struct_prune\n\n# Run 1: dense + cka_only (save dense reprs)\n$PYTHON src/compute_layer_cka.py --model_a $DENSE --model_b $PRUNED/pruned_cka_only_20 \\\n    --output $OUT/cka_cka_only_20.json --save_reprs_a $OUT/dense_reprs.pt --device cuda:0\n\n# Run 2-5: reuse cached dense reprs\nfor m in random_20 rasp_rlvr_20 gradient_20 magnitude_20; do\n    $PYTHON src/compute_layer_cka.py --load_reprs_a $OUT/dense_reprs.pt \\\n        --model_b $PRUNED/pruned_${m} --output $OUT/cka_${m}.json --device cuda:0\ndone\n\n# Plot\n$PYTHON src/plot_cka_heatmap.py \\\n    --inputs $OUT/cka_cka_only_20.json $OUT/cka_random_20.json $OUT/cka_rasp_rlvr_20.json $OUT/cka_magnitude_20.json \\\n    --labels \"CKA-Only\" \"Random\" \"RASP-RLVR\" \"Magnitude\" \\\n    --output $OUT/cka_heatmap.pdf\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e3-cka-heatmap-prep.md"
+}

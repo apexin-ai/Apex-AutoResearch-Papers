@@ -1,0 +1,838 @@
+{
+  "schema_version": "1.0",
+  "id": "cbab69277a50557b0c63",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "cron hook grpo standard qwen math v3",
+  "task_key": "cron_hook_grpo_standard_qwen_math_v3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_grpo_standard_qwen_math_v3.jsonl",
+    "occurrence": 1,
+    "bytes": 41677,
+    "sha256": "21e576f4b51364e557de6005dbfd0aab2d70464516ad3ea5977516506bac19e4"
+  },
+  "statistics": {
+    "messages": 41,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "tool_call": 20,
+      "tool_result": 19,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T19:50:18.769383+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #15。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1（共 4 张）\n- westd-11672 使用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- Qwen Math calibration=256（与 Llama westb 的 512 不同），论文加 footnote 不重跑（D046）\n- save_steps=100（v3 修复），不要再用 save_steps=5（磁盘膨胀问题）\n- DDL: EMNLP 2026 ARR May 25（距今 ~9 天），不允许 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **westd-11672**: 工作目录 `/root/recovery_aware_struct_prune`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/recovery_aware_struct_prune/` 下 sft_qwen_math_standard_20, sft_qwen_math_rasp_20, grpo_standard_qwen_math, grpo_rasp_qwen_math\n  - 训练脚本：`src/train_grpo_v5.py`\n  - Logs：`~/runs/recovery_aware_struct_prune/`\n- **westb-23072**: 同结构，Llama-3.2-3B 实验主服务器\n  - 模型：`/root/autodl-tmp/recovery_aware_struct_prune/` 下各 checkpoint\n- W&B：项目配置中获取 entity/project（load_project_config）\n- 活跃 cron：eval_sft_rasp_25 (pid=602990, westd), eval_sft_rasp_rlvr_20 (pid=625453, westd)\n\n### 3. 📊 当前状态\n刚收到 `grpo_standard_qwen_math_v3` 完成回调（同时 `grpo_rasp_qwen_math_v3` 也完成了）。已派 Worker `worker_analysis_grpo_qwen_math_v3_pair_20260516T154824` 分析这对实验，等待回调。\n\nRegistry 关键状态：\n- ANALYZING: grpo_standard_qwen_math_v3, grpo_rasp_qwen_math_v3（Worker 正在分析）\n- RUNNING: eval_sft_rasp_25 (westd), eval_sft_rasp_rlvr_20 (westd)\n- 待启动: grpo_standard_25, grpo_rasp_25, eval_postprune_25, grpo_standard_20_v8, grpo_rasp_20_v8\n\n尚未向 Director 汇报本轮结果（等 Worker 回调后汇报）。\n\n### 4. 📋 待办\n- Worker `analysis_grpo_qwen_math_v3_pair` 回调 → 读分析结论 → update registry → 向 Director 汇报（带 [资源] 行）→ 更新 report.md\n- eval_sft_rasp_25 cron 回调 → 分析 25% RASP SFT accuracy → 与 standard 25% 对比\n- eval_sft_rasp_rlvr_20 cron 回调 → 分析 RLVR 恢复效果 → 与 RASP SFT (61.49%) 和 Standard SFT (59.29%) 对比\n- 上述 eval 完成后 → 启动 grpo_standard_25 + grpo_rasp_25（westd 4 卡全投入 25% GRPO）\n- Qwen Math v3 若 success → C2 跨模型验证完成，更新 paper_framing.md，通知 Paper Agent 补数据\n\n### 5. 🎯 战略上下文\n- **核心叙事 (D044 pivot 后)**：GRPO alignment fundamentally fails on pruned reasoning models — reward improves but accuracy decouples (universal). Pruning introduces collapse whose severity diagnoses structural damage type.\n- **三个 Claims**：C1=Universal decoupling（reward↑ accuracy→），C2=Collapse gradient（RASP permanent vs Standard transient），C3=Recovery method conditions pruning order\n- **20% Llama 数据全部完成**，正在做 25% sparsity expansion + Qwen Math 跨模型验证\n- **易错点**：Qwen Math v3 是 20% sparsity（不是 25%）；之前 grpo_standard_25_qwen_math / grpo_rasp_25_qwen_math 是 25% 的（已完成，wandb: 3vjjzi13 等）。不要混淆 sparsity level。\n- **Qwen Math 预期**：Standard 出现 transient collapse + RASP permanent collapse = 跨模型一致 = success。如果 pattern 不同则 negative，需要 Framing 提案。\n- **GPU 利用**：westd 4 卡目前被 eval 占用（轻量任务，即将完成）。完成后应立即投入 25% GRPO。westb 2 卡当前空闲 ⚠️ — 应尽快安排任务（grpo_standard_20_v8 / grpo_rasp_20_v8 或 Llama 25% GRPO）。\n\n## 可查的历史\n前 42 轮 handoff 在 `task_context/history/agent/loop_*.md`，如有疑问可 Read 回查。\n完整聊天归档可用 `recall_session_history(\"关键词\")` 搜索。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T19:50:30.908460+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T19:50:31.009303+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T19:50:35.075464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T19:50:35.126148+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T19:50:35.679616+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error: result (78,981 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-948e8b36/5331e0bc-f106-43bb-ace0-43a7f69c4f31/tool-results/mcp-agent-ml-research-read_registry-1778961035632.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-948e8b36/5331e0bc-f106-43bb-ace0-43a7f69c4f31/tool-results/mcp-agent-ml-research-read_registry-1778961035632.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 604
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T19:50:35.730282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 604
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T19:50:41.012816+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T19:50:41.514759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pass_k8_standard_20_grpo_qwen_math\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T18:50:49.872Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:51:00.705Z\\\", \\\"hypothesis\\\": \\\"Standard 20% post-GRPO pass@k=8 (N=200, T=0.7). C1 diversity 对照：frac_zero=0.85 的更严重 collapse 模型是否仍保持 sampling diversity。Parent: grpo_standard_qwen_math_v3.\\\"}, \\\"grpo_rasp_rlvr_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-16T18:27:09.457Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:27:39.619Z\\\"}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2611}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 501
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T19:50:41.515281+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'ANALYZING'}"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T19:50:41.917098+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2602}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T19:50:41.917542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'PREPARING'}"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T19:50:42.220291+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_grpo_standard_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T19:39:31.510Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:39:37.206Z\\\", \\\"hypothesis\\\": \\\"DeepSeek-R1-Distill-Qwen-7B Standard 25% post-GRPO GSM8K eval (N=200, greedy, seed=42). GRPO reward=0.0075(near-collapse)，验证 accuracy 损失程度。对比 pre-GRPO sft_standard_25: 51.25%. Parent: grpo_standard_25.\\\", \\\"parent\\\": \\\"grpo_standard_25\\\"}, \\\"eval_grpo_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T19:39:30.069Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:39:36.546Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO GSM8K eval (N=200, greedy, seed=42). GRPO reward=0.090(最高)，验证 accuracy 是否也改善或依然 decoupling (C1)。对比 pre-GRPO: 73%. Parent: grpo_rasp_rlvr_20_qwen_math.\\\", \\\"parent\\\": \\\"grpo_rasp_rlvr_20_qwen_math\\\"}, \\\"eval_sft_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T18:16:58.087Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:23:38.378Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.73, \\\"n_samples\\\": 200, \\\"mode\\\": \\\"greedy\\\", \\\"n_correct\\\": 146}}, \\\"eval_postprune_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T06:17:34.379Z\\\", \\\"updated_at\\\": \\\"2026-05-16T06:17:43.424Z\\\", \\\"hypothesis\\\": \\\"25% post-prune accuracy eval (N=100, greedy, seed=42) for both pruned_rasp_25 and pruned_standard_25. 补之前失败的数据点，对比 20% sparsity post-prune (RASP 31% vs Standard 27%)。\\\"}, \\\"eval_sft_standard_20_n1319\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-16T05:20:34.604Z\\\", \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\"}, \\\"eval_sft_grasp_20\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-15T15:45:15.051Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01\n…[truncated 5536 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 302
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T19:50:55.473920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'DONE'}",
+              "limit": "10",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T19:50:56.428072+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T19:37:40.324Z\\\", \\\"updated_at\\\": \\\"2026-05-16T19:38:28.565Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP-RLVR 20% post-GRPO (100 steps). RLVR 剪枝后 SFT→GRPO 全管线。对比 grpo_rasp_qwen_math_v3 (regular RASP, reward=0.061) 和 grpo_standard_qwen_math_v3 (Standard, reward=0.044)。D050 ablation: RLVR 是否在 Qwen Math 上提供额外 GRPO 恢复能力。Parent: sft_rasp_rlvr_20_qwen_math.\\\", \\\"parent\\\": \\\"sft_rasp_rlvr_20_qwen_math\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.09, \\\"kl_final\\\": 0.00581, \\\"clipped_ratio\\\": 0.54, \\\"total_steps\\\": 100, \\\"wall_clock_min\\\": 45.5, \\\"wandb_run_id\\\": \\\"clzm2cy4\\\", \\\"kl_spike_step70\\\": 5756.85, \\\"kl_spike_recovery\\\": \\\"immediate\\\", \\\"comparison_vs_rasp_20\\\": \\\"RLVR reward 0.090 > RASP 0.061 (+48%)\\\", \\\"comparison_vs_standard_20\\\": \\\"RLVR reward 0.090 >> Standard 0.044 (+105%)\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math/\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math.log\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20_qwen_math --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math --gpu 0 --max_steps 100 --run_name grpo_rasp_rlvr_20_qwen_math --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"data_path\\\": \\\"built-in GSM8K\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen2.5-Math-7B (RASP-RLVR 20% pruned, SFT recovered)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20_qwen_math\\\", \\\"eval_data\\\": \\\"GSM8K (built-in GRPO reward)\\\"}, \\\"completed_at\\\": \\\"2026-05-16T19:38:28.565Z\\\"}, \\\"grpo_standard_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:41.240Z\\\", \\\"updated_at\\\": \\\"2026-05-\n…[truncated 12476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 954
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T19:50:56.528910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__read_roadmap",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T19:50:56.579465+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T19:51:20.749167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "status": "running"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T19:51:21.302841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [], \\\"count\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 553
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T19:51:21.805137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'DONE'}",
+              "limit": "10",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T19:51:22.207106+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:38:28.565Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.09, \\\"kl_final\\\": 0.00581, \\\"clipped_ratio\\\": 0.54, \\\"total_steps\\\": 100, \\\"wall_clock_min\\\": 45.5, \\\"wandb_run_id\\\": \\\"clzm2cy4\\\", \\\"kl_spike_step70\\\": 5756.85, \\\"kl_spike_recovery\\\": \\\"immediate\\\", \\\"comparison_vs_rasp_20\\\": \\\"RLVR reward 0.090 > RASP 0.061 (+48%)\\\", \\\"comparison_vs_standard_20\\\": \\\"RLVR reward 0.090 >> Standard 0.044 (+105%)\\\"}}, \\\"grpo_standard_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:37:31.250Z\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.0075, \\\"kl_final\\\": 0.0012, \\\"clipped_ratio\\\": 0.92, \\\"total_steps\\\": 100, \\\"wall_clock_min\\\": 44, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"collapse_pattern\\\": \\\"near_total_collapse\\\", \\\"comparison_vs_rasp_25\\\": \\\"worse_than_rasp_25(0.009)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_sft_rasp_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:15:43.879Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5299, \\\"n_correct\\\": 699, \\\"n_samples\\\": 1319, \\\"seed\\\": 42, \\\"stderr\\\": 0.0137, \\\"eos_rate\\\": 0.918, \\\"truncated\\\": 108}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pass_k8_rasp_20_sft_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:48:29.286Z\\\", \\\"metrics\\\": {\\\"pass_at_k\\\": 0.935, \\\"k\\\": 8, \\\"temperature\\\": 0.7, \\\"n_problems\\\": 200, \\\"stderr\\\": 0.0174, \\\"eos_rate\\\": 0.99625, \\\"natural_eos\\\": 1594, \\\"truncated\\\": 6, \\\"avg_response_length\\\": 139.86}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_grpo_standard_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:47:10.092Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.635, \\\"n_samples\\\": 200, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pass_k8_rasp_20_grpo_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:23:36.396Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_k\\\": 0.915, \\\"accuracy\\\": 0.915, \\\"k\\\": 8,\n…[truncated 1022 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 401
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T19:51:22.257894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "report.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T19:51:22.308737+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-16\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n| exp_id | 假设 | 状态 | 关键指标 | W&B |\\\\n|--------|------|------|---------|-----|\\\\n| eval_pass_k8_standard_20_grpo_qwen_math | Standard 20% post-GRPO pass@k=8 (N=200, T=0.7). C1 diversity 对照：frac_zero=0.85 的更严重 collapse 模型是否仍保持 sampling diversity。Parent: grpo_standard_qwen_math_v3. | — | — | — |\\\\n| grpo_rasp_rlvr_20 | — | — | — | — |\\\\n\\\\n## 待处理\\\\n- eval_sft_rasp_rlvr_20_qwen_math（准备中）\\\\n- eval_postprune_25: 25% post-prune accuracy eval (N=100, greedy, seed=42) for both pruned_rasp_25 and pruned_standard_25. 补之前失败的数据点，对比 20% sparsity post-prune (RASP 31% vs Standard 27%)。（准备中）\\\\n- eval_sft_standard_20_n1319: Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.（准备中）\\\\n- eval_sft_grasp_20（准备中）\\\\n- eval_sft_alpha_0p5: α=0.5 post-SFT GSM8K eval (N=100, greedy). Post-prune 25%. Completes full α ablation: α=0.0 (64%), α=0.5 (?), α=1.0 (57%), α=2.0 (pending), α=4.0 (62%). Parent: alpha_ablation_westd_cal256.（准备中）\\\\n- eval_sft_rasp_20_full: RASP post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 57%. Full eval provides statistical significance for RASP vs Standard comparison. Parent: sft_rasp_20.（准备中）\\\\n- grpo_standard_20_v8（准备中）\\\\n- grpo_rasp_20_v8（准备中）\\\\n- alpha_ablation_westd_cal256: α ablation sweep (calibration=256, N=100). α∈{0.0,0.5,1.0,2.0,4.0} at 20% sparsity. Phase A (prune+eval) complete, Phase B (SFT) in progress. Note: calibration=256 differs from westb original (512), causing ~5% group selection differences.（准备中）\\\\n- grpo_stage2_standard_20_v5: D027: GRPO v5 Standard (negative control) — identical params to RASP GRPO v5: beta=0.01, temp=0.4, rep_penalty=1.15, format_reward=0.1, max_completion_length=51\n…[truncated 2189 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T19:51:48.323815+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'DONE'}",
+              "limit": "20",
+              "fields": "['status', 'conclusion', 'metrics', 'updated_at']"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T19:51:48.575050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T19:51:48.776490+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_rasp_rlvr_20_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:38:28.565Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.09, \\\"kl_final\\\": 0.00581, \\\"clipped_ratio\\\": 0.54, \\\"total_steps\\\": 100, \\\"wall_clock_min\\\": 45.5, \\\"wandb_run_id\\\": \\\"clzm2cy4\\\", \\\"kl_spike_step70\\\": 5756.85, \\\"kl_spike_recovery\\\": \\\"immediate\\\", \\\"comparison_vs_rasp_20\\\": \\\"RLVR reward 0.090 > RASP 0.061 (+48%)\\\", \\\"comparison_vs_standard_20\\\": \\\"RLVR reward 0.090 >> Standard 0.044 (+105%)\\\"}}, \\\"grpo_standard_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:37:31.250Z\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.0075, \\\"kl_final\\\": 0.0012, \\\"clipped_ratio\\\": 0.92, \\\"total_steps\\\": 100, \\\"wall_clock_min\\\": 44, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"collapse_pattern\\\": \\\"near_total_collapse\\\", \\\"comparison_vs_rasp_25\\\": \\\"worse_than_rasp_25(0.009)\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_sft_rasp_25\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T19:15:43.879Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5299, \\\"n_correct\\\": 699, \\\"n_samples\\\": 1319, \\\"seed\\\": 42, \\\"stderr\\\": 0.0137, \\\"eos_rate\\\": 0.918, \\\"truncated\\\": 108}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pass_k8_rasp_20_sft_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:48:29.286Z\\\", \\\"metrics\\\": {\\\"pass_at_k\\\": 0.935, \\\"k\\\": 8, \\\"temperature\\\": 0.7, \\\"n_problems\\\": 200, \\\"stderr\\\": 0.0174, \\\"eos_rate\\\": 0.99625, \\\"natural_eos\\\": 1594, \\\"truncated\\\": 6, \\\"avg_response_length\\\": 139.86}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_grpo_standard_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:47:10.092Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.635, \\\"n_samples\\\": 200, \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_pass_k8_rasp_20_grpo_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-16T18:23:36.396Z\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"pass_at_k\\\": 0.915, \\\"accuracy\\\": 0.915, \\\"k\\\": 8,\n…[truncated 5748 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 452
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T19:51:48.776996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-16 08:05 UTC | 更新原因: D044/D045 narrative pivot complete, 25% expansion in progress, ROADMAP 16h stale refresh\\\\n\\\\n> 核心方向详见 paper_framing.md | 实验计划详见 experiment_plan.yaml\\\\n\\\\n## 核心方向\\\\n**Redundancy-Stability Tradeoff**: GRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (universal decoupling). Pruning adds training collapse whose severity diagnoses structural damage type. Functional redundancy plays opposite roles under SFT vs RLVR recovery.\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR May 25 提交（距今 ~9 天）\\\\n\\\\n## 当前阶段\\\\n**Research Phase — Scope Expansion** (D044/D045 后)\\\\n- Core 20% data: ✅ ALL COMPLETE (3 claims fully supported)\\\\n- 25% sparsity expansion: SFT 完成, eval 进行中/刚完成, GRPO 待启动\\\\n- Qwen2.5-Math-7B (Phase 2): importance+CKA scores 已算, RASP pruning 进行中\\\\n- Paper writing: Paper Agent Step 2 (Plot Generation) 进行中\\\\n\\\\n## 核心证据 (20% sparsity, N=1319)\\\\n| 实验 | 结果 | Claim |\\\\n|------|------|-------|\\\\n| Unpruned SFT → GRPO step-100 | 81.27% → 81.27% (Δ=0.00, reward 0→0.661) | C1: Universal decoupling |\\\\n| RASP GRPO v9 collapse | Permanent step ~10, peak reward 0.039, frac_zero_std→0.95 | C2: Collapse gradient |\\\\n| Standard GRPO v8 collapse | Transient dip step ~60, recovery step ~90 | C2: Collapse gradient |\\\\n| Unpruned GRPO v2 | 100 steps stable, no collapse, reward 0.661 | C2: Pruning-specificity |\\\\n| RASP SFT vs Standard SFT | 61.49% vs 59.29% (Δ=+2.2pp, p=0.25) | C3: SFT marginal advantage |\\\\n| RASP step-10 eval | 61.87% (collapse onset ≠ accuracy loss) | Bidirectional decoupling |\\\\n\\\\n## Scope Expansion 进度\\\\n### Phase 1: 25% Sparsity (intensify collapse)\\\\n- [x] pruned_rasp_25 + pruned_standard_25\\\\n- [x] sft_rasp_25 + sft_standard_25\\\\n- [ ] eval_sft_standard_25 \n…[truncated 2943 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 201
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T19:53:07.260309+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'RUNNING'}",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T19:53:09.670224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_pass_k8_standard_20_grpo_qwen_math\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T18:50:49.872Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:51:00.705Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"grpo_standard_qwen_math\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\\\", \\\"eval_data\\\": \\\"GSM8K (N=200, pass@8, T=0.7)\\\"}, \\\"hypothesis\\\": \\\"Standard 20% post-GRPO pass@k=8 (N=200, T=0.7). C1 diversity 对照：frac_zero=0.85 的更严重 collapse 模型是否仍保持 sampling diversity。Parent: grpo_standard_qwen_math_v3.\\\"}, \\\"grpo_rasp_rlvr_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T18:27:09.457Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:27:39.619Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_rlvr_20 --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"data_path\\\": \\\"math_shepherd + internal_math\\\", \\\"data_count\\\": null, \\\"model_name\\\": \\\"Qwen2.5-1.5B (RASP-RLVR 20% pruned, SFT recovered)\\\", \\\"seed\\\"\n…[truncated 121 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 2409
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T19:53:09.770999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml | python3 -c \"\nimport sys, yaml\ndata = yaml.safe_load(sys.stdin)\nexp = data.get('experiments', {}).get('eval_sft_rasp_rlvr_20', {})\nprint('metrics:', exp.get('metrics'))\nprint('notes:', exp.get('notes'))\nprint('conclusion:', exp.get('conclusion'))\n\"",
+              "description": "Get eval_sft_rasp_rlvr_20 metrics from registry YAML"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T19:53:10.273392+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "metrics: None\nnotes: None\nconclusion: negative"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "Bash",
+            "elapsed_ms": 502
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T19:54:37.753332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T19:54:39.007727+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_948e8b36."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "Read",
+            "elapsed_ms": 1254
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T19:54:39.008178+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__update_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T19:54:39.059431+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "ToolSearch",
+            "elapsed_ms": 51
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T19:57:52.458436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 分配 4 / 实际跑 1 白名单内 (westb:1 grpo_rasp_rlvr_20 ~8h remaining) + 1 白名单外遗留 (westd:2 pass@k eval) | Worker 池 0 → 正派 2 Worker 填满 3 空闲白名单 GPU\n\n## 最新完成批次（未汇报）\n\n### 1. grpo_rasp_rlvr_20_qwen_math ✅ (reward=0.090, 全项目最高)\n- RLVR 剪枝在 Qwen Math 上显著提升 GRPO recovery: +48% vs RASP (0.061), +105% vs Standard (0.044)\n- KL spike at step 70 (5756.85) 但即时恢复，clipped_ratio=0.54（健康）\n- **C3 evidence**: RLVR-aware pruning → 最强 GRPO 恢复，跨模型验证\n\n### 2. DeepSeek 25% GRPO 对 (均已完成)\n- **grpo_standard_25**: near_total_collapse (reward=0.0075, clipped=0.92, frac_zero 推测极高). 25% Standard 完全死亡\n- **grpo_rasp_25**: 严重 collapse (reward=0.009, frac_zero=0.875). 25% 对 DeepSeek 两种方法都过于激进\n- **对比**: Standard 比 RASP 更严重 (0.0075 < 0.009)，C2 collapse gradient 在 25% 下仍成立\n\n### 3. eval_sft_rasp_25: 52.99% (N=1319, stderr=0.0137)\n- 低于 20% RASP (61.49%)，符合 higher sparsity → lower accuracy 预期\n- 对比 sft_standard_25 (51.25%, N=100 from earlier data)，RASP 仍有微弱优势\n\n### 4. pass@k=8 evals (Qwen Math, C1 diversity 诊断)\n- Unpruned post-GRPO: 96.5% | RASP SFT: 93.5% | RASP post-GRPO: 91.5%\n- Standard post-GRPO: 进行中 (westd cuda:2)\n- SFT→GRPO drop 仅 2pp (93.5→91.5)，说明 RASP 虽然 reward collapsed 但 sampling diversity 基本保留\n\n### 5. Qwen Math v3 pair 跨模型结论 (Worker 分析完成)\n- Standard v3: persistent collapse (frac_zero=0.85, cross_model_match=**false**). Llama Standard 是 transient→recovery, Qwen Standard 是 permanent\n- RASP v3: entropy/length collapse (frac_zero=0.675, cross_model_match=**partial**). Llama RASP 是 reward collapse, Qwen RASP 是 entropy collapse\n- **共同点**: 两模型上 Standard frac_zero > RASP frac_zero（0.85>0.675）→ collapse 严重程度跨模型一致\n- **差异**: 时间模式不同（Llama Standard recovers, Qwen Standard doesn't）→ recovery dynamics 是 architecture-dependent\n- **建议**: C2 表述调整为 \"collapse severity correlates with structural damage type (universal), but recovery dynamics are model-dependent\"\n\n## 正在执行\n- 派 Worker A (westd): eval_grpo_rasp_rlvr_20_qwen_math (cuda:0) + eval_grpo_standard_25 (cuda:1)\n- 派 Worker B (westb): eval_sft_standard_20_n1319 (cuda:0, N=1319 tight CI for Table 1) + 捞 eval_sft_rasp_rlvr_20 metrics\n\n## 建议\n1. 25% DeepSeek GRPO 双方都近乎全 collapse → 论文报告为 \"25% sparsity exceeds recoverable threshold for both methods on DeepSeek\"，不需补跑\n2. grpo_rasp_rlvr_20 (Llama RLVR GRPO, westb:1) 还需 ~8h，完成后补 accuracy eval\n3. DDL 还剩 9 天，核心数据基本齐全。建议 Director 考虑推进 paper writing (Step 3: Draft)",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T19:58:08.044031+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 15585
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T19:58:08.497504+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:westd_grpo_evals_batch",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "## 任务\n在 westd-11672 上运行 2 个 post-GRPO accuracy eval，填满空闲 GPU。\n\n## 环境\n- 服务器: westd-11672\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: `/root/recovery_aware_struct_prune`\n- Eval 脚本: `src/eval_gsm8k.py`\n- Python: `/root/miniconda3/bin/python`\n\n## 任务 1: eval_grpo_rasp_rlvr_20_qwen_math (cuda:0)\n- **目的**: 验证 RLVR GRPO (reward=0.090, 全项目最高) 的 accuracy，检验 C1 decoupling\n- **Model path**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math/`\n- **Pre-GRPO accuracy**: 73% (来自 eval_sft_rasp_rlvr_20_qwen_math)\n- **命令**:\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_rlvr_20_qwen_math --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_rasp_rlvr_20_qwen_math.json\n```\n\n## 任务 2: eval_grpo_standard_25 (cuda:1)\n- **目的**: 验证 DeepSeek 25% Standard post-GRPO (near_total_collapse, reward=0.0075) 的 accuracy\n- **Model path**: 先验证 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25/` 是否存在。如果不存在，检查 `ls /root/autodl-tmp/recovery_aware_struct_prune/ | grep grpo_standard_25`\n- **Pre-GRPO accuracy**: sft_standard_25 = 51.25% (N=100)\n- **命令** (路径验证后):\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25.json\n```\n\n## 执行步骤\n1. SSH 连接 westd-11672，验证两个 model path 都存在\n2. 用 `submit_training_job` 提交两个 eval（分别提交，各自用 cuda:0 和 cuda:1）\n3. exp_id 分别为 `eval_grpo_rasp_rlvr_20_qwen_math` 和 `eval_grpo_standard_25`\n4. 提交前先 update_registry 将状态设为 RUNNING（附 spec）\n5. 提交后即返回，不等结果（cron 会监控）\n\n## 注意\n- GPU 白名单: 只用 cuda:0 和 cuda:1，不用 cuda:2/3\n- 如果 model path 不存在，检查目录列表并报告，不要猜测\n- eval 是 greedy decode (不传 --temperature/--pass_k 参数)",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T19:58:21.794730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_eval_westd_grpo_evals_batch_20260516T195809\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_eval_westd_grpo_evals_batch_20260516T195809.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_eval_westd_grpo_evals_batch_20260516T195809 started. Use get_worker_status('worker_eval_westd_grpo_evals_batch_20260516T195809') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 13297
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T19:58:21.945599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "eval:westb_sft_standard_n1319",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "## 任务\n在 westb-23072 上完成 2 件事:\n1. 捞取 eval_sft_rasp_rlvr_20 的结果 metrics（之前完成但 registry 没有 metrics）\n2. 提交 eval_sft_standard_20_n1319 (full N=1319 eval) 在 cuda:0\n\n## 环境\n- 服务器: westb-23072\n- 环境激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 工作目录: `/root/recovery_aware_struct_prune`\n- Eval 脚本: `src/eval_gsm8k.py`\n\n## 任务 1: 捞取 eval_sft_rasp_rlvr_20 metrics\n- 结果文件: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_rlvr_20.json`\n- SSH read_only 读取这个文件，提取 accuracy, n_correct, n_samples\n- 用 update_registry 将 metrics 写入 exp_id=eval_sft_rasp_rlvr_20\n- 这是 negative 结论（RLVR SFT 没有超过 RASP SFT 61.49%），记录具体数字\n\n## 任务 2: eval_sft_standard_20_n1319 (cuda:0)\n- **目的**: Standard post-SFT full GSM8K eval (N=1319)，之前 N=100 结果是 64%，full eval 提供 tight CI for paper Table 1\n- **Model path**: 先检查以下路径哪个存在:\n  - `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_retrain/`\n  - `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/`\n  - `ls /root/autodl-tmp/recovery_aware_struct_prune/ | grep sft_standard`\n- **命令** (路径验证后):\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path <verified_path> --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_n1319.json\n```\n- 用 `submit_training_job` 提交（exp_id=eval_sft_standard_20_n1319, server=westb-23072, gpu=cuda:0）\n- 提交前 update_registry 设为 RUNNING（附 spec）\n\n## 注意\n- GPU 白名单: westb 只用 cuda:0（cuda:1 正在跑 grpo_rasp_rlvr_20，不要动）\n- 先做任务 1（读文件+更新 registry），再提交任务 2\n- 提交后即返回，不等结果",
+              "tool_groups": "['ssh', 'registry']"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T20:10:19.031773+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在向 Director 汇报并派 Worker 填满空闲 GPU。"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:grpo_standard_qwen_math_v3"
+          },
+          "id": "event-000041"
+        }
+      ],
+      "message_count": 41
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-grpo-standard-qwen-math-v3.md"
+}

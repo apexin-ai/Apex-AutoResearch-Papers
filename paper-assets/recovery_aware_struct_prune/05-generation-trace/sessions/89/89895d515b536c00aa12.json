@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "89895d515b536c00aa12",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd cleanup and retry",
+  "task_key": "worker_code_westd-cleanup-and-retry_20260515T124515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-cleanup-and-retry_20260515T124515_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "8e64a0c8869fe6ff8cf714f7669ebc114f5584dadc10374826bb3417fb42d79a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项操作完成：\n\n**操作 1 — PID 32700 身份：** 不是 GraSP，是 GraSP 剪枝模型的 GSM8K 评估：\n```\npython3 src/eval_gsm8k.py --model_path .../pruned_graspune_20 --output_path results/eval_pruned_graspune_20_greedy.json\n```\n运行在 GPU 0（13079 MiB）。\n\n**操作 2 — α=4.0 SFT 重试：** 已提交 `sft_alpha4_0_westd_retry`，运行在 westd GPU 1。\n- 修改了 `sft_recovery.py` 第115行：`save_strategy=\"epoch\"` → `\"no\"`，跳过中间 checkpoint 序列化\n- `--save_steps` 不是脚本参数，问题根源是 SFTConfig 硬编码的 epoch checkpoint\n- 最终模型仍会通过 `trainer.save_model()` 保存\n- 日志：`~/runs/recovery_aware_struct_prune/sft_alpha4_0_westd_retry.log`，模型加载中"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-cleanup-and-retry.md"
+}

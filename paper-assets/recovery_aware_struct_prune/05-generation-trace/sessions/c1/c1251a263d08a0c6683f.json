@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1251a263d08a0c6683f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval pass k8 rasp 20 grpo deepseek",
+  "task_key": "worker_eval_pass_k8_rasp_20_grpo_deepseek_20260516T230148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pass_k8_rasp_20_grpo_deepseek_20260516T230148_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "9aa003560729e5e60982dbab962598c1d85aa6ddadd6c97ffdfd4b1eda38fe2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Checkpoint 在 westb-23072 上（`grpo_stage2_rasp_20_v9`），不在 westd-11672。\n\n**Checkpoint 不存在于 westd-11672。**\n\nDeepSeek RASP 20% post-GRPO checkpoint 位于 **westb-23072**：\n- `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/`（~12GB, model.safetensors）\n\nwestd-11672 上可用的 GRPO checkpoint：\n| 路径 | 说明 |\n|------|------|\n| `grpo_rasp_qwen_math` | RASP Qwen Math |\n| `grpo_rasp_25_qwen_math` | RASP 25% Qwen Math |\n| `grpo_rasp_25` | RASP 25% |\n| `grpo_rasp_rlvr_20_qwen_math` | RASP RLVR 20% Qwen Math |\n| `grpo_standard_v8_step50` | Standard v8 step50 |\n| `grpo_standard_qwen_math` | Standard Qwen Math |\n| `grpo_standard_25_qwen_math` | Standard 25% Qwen Math |\n| `grpo_standard_25` | Standard 25% |\n| `grpo_unpruned_v2` | Unpruned v2 |\n\n**选项：**\n1. 从 westb 传输 `grpo_stage2_rasp_20_v9` 到 westd（~12GB，需要时间）\n2. 直接在 westb-23072 cuda:0 上跑评估（checkpoint 已在本地）\n\n如何处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pass-k8-rasp-20-grpo-deepseek.md"
+}

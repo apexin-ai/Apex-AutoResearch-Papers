@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f295a9e52fe94d27fee",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo standard 20 fair",
+  "task_key": "worker_analysis_grpo_standard_20_fair_20260518T020305",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_standard_20_fair_20260518T020305_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "602912da2e586874ce017c6cae31959af50a6ea838f04216cd6a78eb3b7e428f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。\n\n## grpo_standard_20_fair 结果\n\n**Pattern: dip_then_partial_recovery** (success)\n\n| 指标 | 值 |\n|------|-----|\n| Peak reward | 0.081 @ step 40 |\n| Dip | 0.019 @ step 50 |\n| Final reward | 0.054 @ step 100 |\n| frac_zero_std | 0.50-0.625 (稳定，未 collapse) |\n| 训练时间 | 50min, 100 steps |\n\n**与 RASP fair 对比：** Standard 明显更好。RASP peak 仅 0.061，最终 collapse 到 0.01，frac_zero_std 飙升至 0.85。Standard peak 更高 (0.081)，dip 后恢复到 0.054，frac_zero_std 从未超过 0.625。\n\n**与旧 Standard (v8) 对比：** 同样的 dip-recovery 模式。旧版 peak 0.096@40, dip@60, recovery 0.065@90。Fair v5 config 略微压低幅度但保留了相同的动力学形态。\n\n**D058 fair 4-way comparison 完成，recovery capacity gradient 确认：**\n- CKA-only: active learning (reward 持续上升, frac_zero_std ~0.125)\n- Random: plateau (缓慢上升, frac_zero_std ~0.30-0.35)\n- Standard: dip then partial recovery (peak 0.081, dip 0.019, recovery ~0.05)\n- RASP: permanent collapse (peak 0.061, final 0.01, frac_zero_std 0.85)\n\nRegistry 已更新为 DONE(success)，memory.md 已追加分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-standard-20-fair.md"
+}

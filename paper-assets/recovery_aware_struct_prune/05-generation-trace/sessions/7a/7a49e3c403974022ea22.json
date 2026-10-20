@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a49e3c403974022ea22",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check grpo alpha4 math500 result",
+  "task_key": "worker_ssh_check_grpo_alpha4_math500_result_20260523T055756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_grpo_alpha4_math500_result_20260523T055756_result.json",
+    "occurrence": 1,
+    "bytes": 387,
+    "sha256": "11d48348689f53ef3f12eceee86575100c2521fc28b7327588aa55a024b8476c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**汇总**：\n\n- **GRPO α=4.0 MATH-500**: 26.2% ± 1.97% (131/500)\n- **SFT α=4.0 MATH-500** (hypothesis 中): 26.6%\n- **|GRPO − SFT| = 0.4pp < 2pp** → C1 decoupling 在 MATH-500 上对 α=4.0 成立\n- 脚本版本：NEW\n- 截断率 36% (180/500)，avg response 925 tokens（max 2048）\n- westd:1 GPU 已释放，空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-grpo-alpha4-math500-result.md"
+}

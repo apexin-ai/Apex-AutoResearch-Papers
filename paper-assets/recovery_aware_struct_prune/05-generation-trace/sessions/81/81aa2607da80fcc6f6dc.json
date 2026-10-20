@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81aa2607da80fcc6f6dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code oom verify urgent",
+  "task_key": "worker_code_oom-verify-urgent_20260515T124708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_oom-verify-urgent_20260515T124708_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "e4d33aa53d9f80a4802014b33cebeeb6fa69c79890f13de45e28b0e8f09f95c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态\n\nPID 518416 已不存在（之前 kill 操作已清理或自行退出）。\n\n**当前 GPU 进程（全部为 v6，状态正常）：**\n\n| GPU | PID | 进程 | VRAM |\n|-----|-----|------|------|\n| 0 | 519843 | RASP v6 (`grpo_stage2_rasp_20_v6`) 主进程 | 12,488 MiB |\n| 0 | 520997 | RASP v6 (`grpo_stage2_rasp_20_v6`) worker (`--seed 42`) | 12,488 MiB |\n| 1 | 519929 | Standard v6 (`grpo_stage2_standard_20_v6`) 主进程 | 12,488 MiB |\n| 1 | 521089 | Standard v6 (`grpo_stage2_standard_20_v6`) worker (`--seed 42`) | 12,488 MiB |\n\n**VRAM：** GPU 0 = 25GB/98GB, GPU 1 = 25GB/98GB — 从之前的 94GB OOM 边缘恢复正常。\n\n注意：实际 PID 与预期略有偏差（预期 520992/521084，实际 519843+520997 / 519929+521089），但每个实验都是主进程+worker 两个 python 进程的正常模式。无异常进程，无需额外清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-oom-verify-urgent.md"
+}

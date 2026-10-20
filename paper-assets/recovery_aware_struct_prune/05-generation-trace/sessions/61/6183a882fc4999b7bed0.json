@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6183a882fc4999b7bed0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest and fill mbpp cka and cuda1",
+  "task_key": "worker_harvest_and_fill_mbpp_cka_and_cuda1_20260519T172022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_and_fill_mbpp_cka_and_cuda1_20260519T172022_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "bc74aef3a496bcebf14c5df04f1c010d879b1d00bd940c5e75d5e194570c3786"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个问题：\n\n1. **`sft_rasp_20` 不存在**。只有 `sft_rasp_20_westd` (12G) 和 `sft_rasp_20_1p5b` (2.8G)。\n2. **数据盘 100% 满**，无法写入任何结果文件。\n\n清理候选（中间 checkpoints）：\n\n| 目录 | 大小 | 可清理的中间 checkpoints |\n|------|------|------------------------|\n| `grpo_standard_20_extended_300` | 91G | checkpoint-280, checkpoint-290 (~28G) |\n| `grpo_stage2_standard_20_fair` | 61G | checkpoint-80, checkpoint-90 (~28G) |\n\n需要你确认：\n1. **SFT RASP 模型路径**：用 `sft_rasp_20_westd` 还是其他路径？\n2. **磁盘清理**：是否可以删除上述目录中的中间 checkpoints（保留最终 checkpoint 和 model.safetensors）？只需清理几个就能腾出足够空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-and-fill-mbpp-cka-and-cuda1.md"
+}

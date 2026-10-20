@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a014f85db7bfacb06f2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix humaneval and rerun sft cka only",
+  "task_key": "worker_ops_fix_humaneval_and_rerun_sft_cka_only_20260519T073718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_humaneval_and_rerun_sft_cka_only_20260519T073718_result.json",
+    "occurrence": 1,
+    "bytes": 510,
+    "sha256": "16a705d1a4288c8378c4bbb1a66237607cda7d33ddb59cb141854ae11406c685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常：\n\n- **修复完成**：`import sys` 已添加（第 10 行），`subprocess.run([sys.executable, tmp_path], ...)` 替换了裸 `python`（第 52 行）\n- **tmux session** `eval_humaneval_sft_cka_only_20_2048_v2` 已启动\n- **模型正在加载**：log 显示正在从 `sft_cka_only_20` 加载，检测到 Non-uniform MLP 结构\n- **Registry** 状态：RUNNING，hypothesis/parent 已设置\n\n模型加载完成后会占用 cuda:1 并开始推理 164 道 HumanEval 题目。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-humaneval-and-rerun-sft-cka-only.md"
+}

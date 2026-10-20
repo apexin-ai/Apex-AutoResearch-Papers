@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "503e657abd9fcc00c22b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix sft standard offline resubmit",
+  "task_key": "worker_fix_sft_standard_offline_resubmit_20260519T212343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sft_standard_offline_resubmit_20260519T212343_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "88fef568c9dd6e42dc3a140bb5d6f4744f190879fcdb0bd0814c4294e6f23524"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**已完成：**\n- PID 141113 已 kill，tmux session `mbpp_sft_std_clean` 已清理\n- `eval_mbpp_sft_standard_20_clean` → DONE(failed), failure_reason: westd network unreachable\n- `eval_mbpp_sft_standard_20_v4` 已在 tmux `eval_mbpp_sft_standard_20_v4` 中启动（HF_DATASETS_OFFLINE=1 + HF_HUB_OFFLINE=1）\n  - 模型已加载到 GPU 0（12903 MiB）\n  - MBPP 数据集从离线缓存成功加载 374 题\n  - 评估进行中，~10s/题，预计约 1 小时完成\n  - Registry 状态: RUNNING\n\n**其他实验健康状态：**\n- `eval_mbpp_grpo_standard_20_v4`: ALIVE（GPU 1, 17277 MiB）\n- `eval_mbpp_grpo_rasp_20`: ALIVE（GPU 2, 16767 MiB）\n- GPU 3: 空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sft-standard-offline-resubmit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25bc54045d3b67521d4a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag westd eval status check",
+  "task_key": "worker_diag_westd-eval-status-check_20260515T183120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westd-eval-status-check_20260515T183120_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "a018b5b310b44b699b2f0ffe929328f708e709140b54ee0ecf3fb8896333a863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 Eval 状态\n\n| Eval | GPU | 进度 | 运行时间 | 预计剩余 | 20样本精度 |\n|------|-----|------|---------|---------|-----------|\n| sft_rasp_20_westd_n100 | cuda:0 | **32/100** (32%) | ~29 min | ~58 min | 0.0500 (1/20) |\n| sft_standard_20_westd_n100 | cuda:1 | **33/100** (33%) | ~29 min | ~57 min | 0.0000 (0/20) |\n\n**GPU 占用**: 两卡均 88% utilization, ~13GB memory\n\n**tmux sessions**: 无（进程通过 nohup 启动，不在 tmux 内）\n\n**结果文件**: 尚未生成\n\n**预计完成时间**: ~02:59 UTC (服务器时间约 03:00)，即从现在起约 57 分钟。\n\n**注意**: standard 模型在前 20 个样本上准确率为 0，rasp 也仅 5%。这些是 N=100 eval 的中间结果，最终结果需等全部完成后查看。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westd-eval-status-check.md"
+}

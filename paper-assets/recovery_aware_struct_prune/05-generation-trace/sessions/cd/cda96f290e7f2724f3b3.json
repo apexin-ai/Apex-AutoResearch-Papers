@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cda96f290e7f2724f3b3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check cka only math500 result",
+  "task_key": "worker_ssh_check_cka_only_math500_result_20260522T235757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_cka_only_math500_result_20260522T235757_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "5329f25db1ed9373884ff780f7338a286f9e06cd3fcd9dd293f9cd6d96ae49e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果找到了，文件在 autodl-tmp 下，名为 `math500_sft_cka_only_20_v4.json`（May 19 完成）。\n\n**CKA-only SFT MATH-500 评估结果：**\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **29.0%** (145/500) |\n| Stderr | ±2.03% |\n| Natural EOS | 76.8% (384/500) |\n| Truncated | 23.2% (116/500) |\n| Avg response length | 673.3 tokens |\n| Median response length | 242.5 tokens |\n\n**状态：**\n- 评估已完成（500/500），进程 75284 已退出\n- 旧日志（`eval_math500_sft_cka_only_20.log`）只跑到 43/500 是 May 18 的早期失败尝试，`v4` 是后来成功跑完的版本\n- **westd:1 GPU 空闲**：0 MiB 显存，0% 利用率"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cka-only-math500-result.md"
+}

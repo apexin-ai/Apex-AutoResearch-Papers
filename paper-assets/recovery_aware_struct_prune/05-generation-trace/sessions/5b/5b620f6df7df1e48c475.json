@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "5b620f6df7df1e48c475",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "cron hook eval pass k8 rasp 20 grpo qwen math",
+  "task_key": "cron_hook_eval_pass_k8_rasp_20_grpo_qwen_math",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_eval_pass_k8_rasp_20_grpo_qwen_math.jsonl",
+    "occurrence": 1,
+    "bytes": 658,
+    "sha256": "95e5ed9603161d5a88397a0f1bcbacf6d790cfec814ad6a0bd058fd19e02063d"
+  },
+  "statistics": {
+    "messages": 2,
+    "user_turns": 1,
+    "tool_calls": 0,
+    "roles": {
+      "user": 1,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:13:51.938387+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: eval_pass_k8_rasp_20_grpo_qwen_math\n- project: recovery_aware_struct_prune\n- server: westd-11672"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_pass_k8_rasp_20_grpo_qwen_math",
+            "source": "cron:hook"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:14:03.746382+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "API Error: 500 Internal server error. This is a server-side issue, usually temporary — try again in a moment. If it persists, check status.claude.com."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:eval_pass_k8_rasp_20_grpo_qwen_math"
+          },
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-eval-pass-k8-rasp-20-grpo-qwen-math.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bf3c561a2b733b7ec2d0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit next westb eval",
+  "task_key": "worker_ops_submit_next_westb_eval_20260524T074238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_next_westb_eval_20260524T074238_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "2f9cc02f7d71ec6dc3e2cc8f65d4f5c759abc8d2bb9fb38aa8f2a417f281c826"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **实验**: `eval_math500_grpo_rasp_alpha0p5_20_fixed`\n- **服务器**: westb-23072, cuda:1\n- **PID**: 364213\n- **Checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20`（westb 本地存在）\n- **状态**: RUNNING\n\n注：cuda:0 上正在跑 `eval_math500_sft_random_20_fixed_v3`（PID 335348），两个 GPU 互不干扰。`sft_rasp_alpha3p0_20` 也在 westb 上，但优先级排第二所以未提交。`grpo_rasp_alpha4p0_20` 和 `grpo_alpha4_20` 不在 westb。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-next-westb-eval.md"
+}

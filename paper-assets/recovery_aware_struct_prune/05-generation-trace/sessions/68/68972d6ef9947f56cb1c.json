@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68972d6ef9947f56cb1c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix eval math500 and kill v3b",
+  "task_key": "worker_ssh_fix_eval_math500_and_kill_v3b_20260523T142237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_eval_math500_and_kill_v3b_20260523T142237_result.json",
+    "occurrence": 1,
+    "bytes": 2205,
+    "sha256": "53582bd80cd5ec6a3862588ec25513cc01e198b35bf8a1e70734f4c0140cf03b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Westb-23072 file verified:\n- Line 67: trig function normalization (`\\sin`, `\\cos`, etc.)\n- Lines 99-101: full-text fallback (`boxed_full` extraction)\n- File size: 8568 bytes (matches westd-32935)\n\n---\n\n## 最终报告\n\n### 1. Kill 结果\n- PID 139697 (tmux `eval_math500_grpo_standard_20_fair_2048_v3b`) + 子进程 PID 139706 已在 westd-32935 上终止\n- GPU 2 已释放\n\n### 2. Bug 修复详情\n\n**Bug A — 答案提取失败 (11 samples)**\n- 根因：`<think>` 标签被移除后，`\\boxed{}` 答案也被丢弃；模式匹配不够灵活\n- 修复：`extract_model_answer()` 添加全文回退逻辑（lines 97-104），在 clean text 提取失败时搜索完整文本中的 `\\boxed{}` 和 pattern matches\n- 模式调整：`(?:final )?` → `(?:\\w+ )?`（更灵活）；`[Aa]nswer[:\\s]*` → `\\b[Aa]nswer\\s*(?:is|:)\\s*`（更精确）\n\n**Bug B — 答案匹配失败 (5 samples)**\n- 根因：`normalize_answer()` 未处理空格差异（逗号后空格、括号内空格、运算符周围空格）和 LaTeX 函数反斜杠（`\\cot` vs `cot`）\n- 修复：添加 6 条归一化规则（lines 67-72）:\n  - LaTeX 函数名反斜杠剥离 (`\\sin` → `sin`)\n  - 逗号后空格压缩 (`1, 2` → `1,2`)\n  - 括号内空格压缩 (`( x )` → `(x)`)\n  - 运算符周围空格压缩 (`x + y` → `x+y`)\n  - 单字符括号剥离 (`(a)` → `a`)\n\n### 3. 验证结果\n| 类别 | 结果 |\n|------|------|\n| Bug B (normalization) | **5/5 fixed** |\n| Bug A (extraction + normalization) | **11/11 fixed** |\n| v3+ regressions | **0/4** |\n| **Projected accuracy** | **(117 + 16) / 500 = 26.60%** (vs v3 buggy 23.40%) |\n\n### 4. 同步结果\n- westd-32935: `eval_math500.py` 已修复 + `eval_math500_buggy.py` 已备份\n- westb-23072: `eval_math500.py` 已通过 base64 同步写入，8568 bytes，内容已验证\n\n### 5. 文件清单\n| 服务器 | 文件 | 说明 |\n|--------|------|------|\n| westd-32935 | `src/eval_math500.py` | Fixed version |\n| westd-32935 | `src/eval_math500_buggy.py` | Backup of buggy version |\n| westd-32935 | `validate_fix.py` | Validation script |\n| westb-23072 | `src/eval_math500.py` | Fixed version (synced) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-eval-math500-and-kill-v3b.md"
+}

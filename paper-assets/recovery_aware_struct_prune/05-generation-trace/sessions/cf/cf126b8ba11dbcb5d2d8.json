@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf126b8ba11dbcb5d2d8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp sft standard 20",
+  "task_key": "worker_diagnose_eval_mbpp_sft_standard_20_20260519T203136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_sft_standard_20_20260519T203136_result.json",
+    "occurrence": 1,
+    "bytes": 732,
+    "sha256": "647b0f18a127ade751b21469c732527a3f9e380607fcbbaef7b5b838173ac177"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n- **进度**：完成 189/374（50.5%），最后 checkpoint 180/374 时 Pass@1=0.1278\n- **SIGTERM 来源**：外部 kill（直接 `kill <pid>`）。排除 OOM（OOM 发 SIGKILL=137）和 timeout wrapper（timeout 返回 124）。最可能是其他 Worker 在 ~04:00 启动新 MBPP eval 时杀掉了此进程以释放 GPU\n- **Partial results**：无。结果文件不存在，脚本只在全部完成后才写文件\n- **速度问题**：~40s/it，比同服务器的 sft_rasp_20（~10s/it）慢 4 倍，完成全部 374 题预计需 ~4.5h\n- **建议**：需要重提交。可考虑降低 `--max_new_tokens`（如 1024）或加 per-task timeout 来加速，防止个别长生成拖慢整体进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-sft-standard-20.md"
+}

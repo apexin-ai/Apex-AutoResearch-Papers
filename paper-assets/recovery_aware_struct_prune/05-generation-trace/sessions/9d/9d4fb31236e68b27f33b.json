@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d4fb31236e68b27f33b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train sft qwen math westd",
+  "task_key": "worker_train_sft_qwen_math_westd_20260516T080740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft_qwen_math_westd_20260516T080740_result.json",
+    "occurrence": 1,
+    "bytes": 708,
+    "sha256": "2f9a71ddcf95657fa3ad7a93c73da0775ca1e7963f5dc442b9b570686e4e0e16"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 实验均已成功启动训练：\n\n| 实验 | GPU | 显存 | 速度 | 总步数 | 预计时间 |\n|------|-----|------|------|--------|----------|\n| sft_rasp_20_qwen_math | cuda:0 | 51GB (85%) | ~1.07 it/s | 2805 | ~44 min |\n| sft_standard_20_qwen_math | cuda:1 | 51GB (81%) | ~1.04 it/s | 2805 | ~45 min |\n\n完成事项：\n- 修复了 `sft_recovery.py` 中 EOS token 断言（Qwen2.5 chat template 使用 `<|im_end|>` 而非 `<|endoftext|>`）\n- Registry 两条实验已更新为 RUNNING\n- 预计 ~45 分钟后训练完成\n\n注意：之前 kill 了 cuda:0 上残留的 `eval_gsm8k.py --model_path sft_rasp_25` 进程（已跑近 2 小时），如需要可后续重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-qwen-math-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0c69006ab33f85aa882",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit qwen math sft math500 westb0",
+  "task_key": "worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_qwen_math_sft_math500_westb0_20260522T230846_result.json",
+    "occurrence": 1,
+    "bytes": 621,
+    "sha256": "9c440a8b487f1f5862ae2b739316158ebd8ef17648556ba287e0862bf207c5ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **任务已提交**: westb-23072 GPU:0, PID=250766\n- **模型路径修正**: 实际路径为 `sft_qwen_math_cka_only_20_final/`（合并后的最终模型，非 checkpoint-935 子目录）\n- **eval 脚本路径**: `/root/recovery_aware_struct_prune/src/eval_math500.py`\n- **Registry**: `eval_math500_sft_qwen_math_cka_only_20` → RUNNING\n- **Cron 监控**: 每 8 分钟检查进程状态和输出文件（job b4d98c3d）\n- **westb:1 未触碰**: GRPO GSM8K eval (PID 220343) 继续运行\n\n日志显示模型已开始加载，检测到 non-uniform MLP（符合剪枝后结构）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-qwen-math-sft-math500-westb0.md"
+}

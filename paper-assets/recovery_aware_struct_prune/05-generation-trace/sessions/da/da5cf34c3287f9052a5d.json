@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da5cf34c3287f9052a5d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d023 reeval westd gpu",
+  "task_key": "worker_code_d023-reeval-westd-gpu_20260515T091952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-reeval-westd-gpu_20260515T091952_result.json",
+    "occurrence": 1,
+    "bytes": 1435,
+    "sha256": "3cd6d7c702f25acf2fe2116f0d45bce35094d5ddd10831916032e49a49d149cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 当前状态报告\n\n### Standard re-eval (pruned_standard_20)\n- **PID**: 18580（Python 子进程），18573（bash wrapper）\n- **服务器**: westd-11672, cuda:1\n- **进度**: 8/100 at 3:31 elapsed\n- **GPU**: 12958 MiB on GPU 1 (与 SFT 训练共享，总占用 ~64GB/98GB)\n- **进程状态**: Running, 234% CPU, GPU 1 utilization 95%\n\n### 速度问题\n退化模型（1% accuracy）每个样本生成最多 4096 token 的垃圾（重复 \"10 years\" 或 \"000...\"），导致推理速度非常不均匀：\n- 快样本: ~10s（模型碰巧早 EOS）\n- 慢样本: ~60-90s（生成满 4096 token）\n- 平均: ~26s/sample\n- **预计总时间**: ~40-60 min，完成约 **18:10-18:30 UTC**\n\n### RASP eval 尚未启动\n等 Standard 完成后再启动 RASP eval。\n\n### 模型加载方式\n`load_pruned_model` → `AutoConfig.from_pretrained` 检测 `per_layer_intermediate_size`，创建最大维度模型 shell，然后逐层截断权重。\n\n### 已确认的原始结果\n\n| 模型 | 原始 accuracy | 样本数 |\n|------|-------------|--------|\n| pruned_standard_20 | **1%** (1/100) | 100 |\n| pruned_rasp_20 | **29%** (29/100) | 100 |\n\n原始 eval 输出显示 standard 模型完全退化（输出 \"10 years\" 重复或无穷 \"0\"）。1% 大概率不是 artifact，但 re-eval 会确认。\n\n进程在后台运行中，等 Standard 完成后我会启动 RASP eval 并报告最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d023-reeval-westd-gpu.md"
+}

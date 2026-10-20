@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfb6d62950db2be5c728",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh rasp grpo seed456",
+  "task_key": "worker_ssh_rasp_grpo_seed456_20260521T025851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rasp_grpo_seed456_20260521T025851_result.json",
+    "occurrence": 1,
+    "bytes": 544,
+    "sha256": "a9acffbba59b445bb1e0c6094f89e9b6ccf4a825eaca1c311a4c9ead69f9372e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| SFT checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd/model.safetensors` (12.3GB, May 16) |\n| 已有 GRPO (seed42) | `grpo_stage2_rasp_20_fair/` |\n| seed456 GRPO | **已提交** — PID 311990, westd-29022 cuda:3 |\n| 模型加载 | 正常，检测到 non-uniform MLP (intermediate_size range [8128, 18944]) |\n| 日志 | `/tmp/grpo_rasp_20_seed456.log` |\n| 输出目录 | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_seed456` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rasp-grpo-seed456.md"
+}

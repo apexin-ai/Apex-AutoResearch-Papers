@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80e013f4fcd0b6185534",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd status check latest",
+  "task_key": "worker_code_westd-status-check-latest_20260515T110021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-status-check-latest_20260515T110021_result.json",
+    "occurrence": 1,
+    "bytes": 1766,
+    "sha256": "525671f9b6fa0c7dc5f880970cd8c87e27e7fe1212fe30542ea79d9dec0bfd89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 状态汇总\n\n### 1. GPU 状态\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| cuda:0 | 0% | 0 / 97887 MiB |\n| cuda:1 | 0% | 0 / 97887 MiB |\n\n**两块 GPU 完全空闲，无任何进程在运行。**\n\n---\n\n### 2. PID 7186 (α ablation Phase B SFT pipeline)\n**已死。** 服务器上无任何 python/训练进程。\n\n**SFT 完成情况：**\n| α 值 | 状态 | 说明 |\n|-------|------|------|\n| α=0.0 | ✅ 完成 | checkpoint-1870 + 最终 model.safetensors (12.3GB) |\n| α=0.5 | ✅ 完成 | checkpoint-1870 + 最终 model.safetensors (6.6GB) |\n| α=1.0 | ❌ 未完成 | 仅有 checkpoint-935（中间点），无最终模型 |\n| α=2.0 | ❌ 未开始 | 目录不存在 |\n| α=4.0 | ❌ 未开始 | 目录不存在 |\n\nPipeline 在 α=1.0 训练期间崩溃/被中断，只保存了 half-way checkpoint。\n\n---\n\n### 3. D023 re-eval (pruned_standard_20)\n**✅ 已完成。** 结果：\n\n- **GSM8K Accuracy: 25.0% ± 4.33%** (25/100)\n- EOS rate: 77%, avg response length: 1259 tokens\n- 耗时约 40 分钟，于 18:16:19 完成\n- 结果保存在 `/tmp/reeval_standard_20_results.json`\n\n---\n\n### 4. α ablation Phase A 结果（prune-only eval，未经 SFT）\n\n| α 值 | GSM8K Accuracy |\n|-------|---------------|\n| 0.0 (纯 magnitude) | 30% |\n| 0.5 | 25% |\n| 1.0 | 27% |\n| 2.0 | 29% |\n| 4.0 | **40%** |\n\nα=4.0 (重 CKA 权重) 在 prune-only 阶段表现最好，比 α=0.0 高 10 个百分点。\n\n---\n\n### 总结\n- **GPU 空闲**，所有任务已停止\n- Phase B SFT 完成了 2/5（α=0.0, α=0.5），α=1.0 中途中断，α=2.0 和 4.0 未启动\n- D023 re-eval 已完成，pruned_standard_20 = 25% accuracy\n- Phase A prune-only 评估全部完成，α=4.0 最优"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-status-check-latest.md"
+}

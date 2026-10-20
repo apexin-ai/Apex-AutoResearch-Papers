@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6c9bf87ce44c1f7eed",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval collect a continued final v3",
+  "task_key": "worker_eval_collect_a_continued_final_v3_20260513T232131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_collect_a_continued_final_v3_20260513T232131_result.json",
+    "occurrence": 1,
+    "bytes": 1520,
+    "sha256": "1ca46207071318c7260babfe84ee22f97092783d3247d33346a46bc59bfa9dd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### eval_A_continued_final 状态：**部分完成（killed）**\n\n进程在 crossner_politics 评估到 ~9%（61/651）时被静默终止，日志中无 error/traceback/killed 信息，疑似 OOM。输出目录为空，未生成 eval_results.json。\n\n### 已完成的 metrics（仅 scierc_test）\n\n| Metric | scierc_test | crossner_politics | crossner_science |\n|---|---|---|---|\n| entity_f1 | 0.5172 | - | - |\n| relation_f1 | 0.3004 | - | - |\n| f1_correctness | 0.4185 | - | - |\n| structural_validity | 1.0000 | - | - |\n| type_conformance | 0.9814 | - | - |\n| relational_constraint | 0.7102 | - | - |\n| structural_completeness | 0.9819 | - | - |\n| valid_json_rate | 1.0000 | - | - |\n\n### 对比：eval_A_continued_ckpt400（完整完成）\n\n| Metric | scierc_test | crossner_politics | crossner_science |\n|---|---|---|---|\n| entity_f1 | 0.5158 | 0.4816 | 0.6017 |\n| relation_f1 | 0.2951 | 0.0000 | 0.0000 |\n| f1_correctness | 0.4175 | 0.4816 | 0.5956 |\n| structural_validity | 1.0000 | 1.0000 | 1.0000 |\n| type_conformance | 0.9710 | 0.9998 | 0.9914 |\n| relational_constraint | 0.7108 | 0.0000 | 0.0000 |\n| structural_completeness | 0.9710 | 0.9995 | 0.9892 |\n| valid_json_rate | 1.0000 | 1.0000 | 1.0000 |\n\n### Registry 更新\n\n- `eval_A_continued_final`: status=DONE, conclusion=killed, metrics 包含 scierc_test 完整指标 + failure_note\n\n需要重跑 eval_A_continued_final 的 crossner_politics 和 crossner_science 才能获得完整结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-collect-a-continued-final-v3.md"
+}

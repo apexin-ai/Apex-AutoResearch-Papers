@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31567a5ef7feafffec59",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft cka only 20 eval",
+  "task_key": "worker_ssh_submit_sft_cka_only_20_eval_20260520T162951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_cka_only_20_eval_20260520T162951_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "222ceb0576b17881b5fd4e60230abd3fc4dc0254630f8f70b66252510eb11a4c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_gsm8k_sft_cka_only_20 提交结果\n- 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20`\n- PID: 264517（bash）/ 264522（python）\n- 验证：进程存活 ✓ | GPU memory — 模型仍在 CPU→GPU 传输中（RSS 14.7GB 且增长中） | 日志输出 ✓（model loaded, non-uniform MLP detected）\n- 状态：**RUNNING**\n\nGPU 显存尚未分配是正常的——12GB safetensors 从 CPU 迁移到 GPU 需要 1-2 分钟。日志和 RSS 增长确认进程健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-cka-only-20-eval.md"
+}

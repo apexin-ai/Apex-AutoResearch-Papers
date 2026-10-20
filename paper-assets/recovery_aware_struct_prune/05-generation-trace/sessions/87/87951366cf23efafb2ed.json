@@ -1,0 +1,2231 @@
+{
+  "schema_version": "1.0",
+  "id": "87951366cf23efafb2ed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "code cka reliability",
+  "task_key": "worker_code_cka-reliability_20260515T024807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_cka-reliability_20260515T024807.jsonl",
+    "occurrence": 1,
+    "bytes": 156381,
+    "sha256": "f441c81a570730b41fa788a1b5385329d0cd6645fbde868df42bbe04579540a8"
+  },
+  "statistics": {
+    "messages": 113,
+    "user_turns": 0,
+    "tool_calls": 56,
+    "roles": {
+      "tool_call": 56,
+      "tool_result": 56,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T03:05:03.431205+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Agent"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Agent",
+            "tool_args": {
+              "subagent_type": "Explore",
+              "description": "Explore CKA code and model structure",
+              "prompt": "I need to find:\n\n1. All CKA-related code in /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ — search for files containing \"cka\", \"CKA\", \"centered_kernel_alignment\", \"linear_cka\", \"kernel_alignment\" in Python files.\n\n2. The model architecture details — look for any config files or code that references DeepSeek-R1-Distill-Qwen model structure (num_layers, num_heads, num_kv_heads, hidden_size, head_dim).\n\n3. Any existing hook-based feature extraction code — search for \"register_forward_hook\", \"hook\", \"extract_features\", \"get_activations\" in Python files.\n\n4. The pruning code to understand how heads are pruned and what the pruned model structure looks like — search for \"prune\", \"head_mask\", \"pruned\" in src/ directory.\n\n5. Any existing calibration data loading code — search for \"GSM8K\", \"calibration\", \"calib\" in Python files.\n\n6. Check the project structure: list files in src/ directory and any config files.\n\nSearch breadth: very thorough. Report all file paths and relevant code snippets found."
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T03:05:03.431989+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T03:05:03.432188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/importance_score.py\nsrc/rasp_scoring.py\nsrc/prune.py\nsrc/train_grpo.py\nsrc/eval_gsm8k.py\nsrc/correlation_analysis.py\nsrc/cka_overlap.py\nartifacts/correlation_analysis.py\nsrc/grasp_scoring.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T03:05:03.432545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune -type f -name \"*.json\" -o -name \"*.yaml\" -o -name \"*.yml\" -o -name \"*.md\" | head -30"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T03:05:03.432733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/dream_registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_revert-wandb_20260514T032059_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_baseline_eval_progress_20260514T151307_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_probe_sparsity_25pct_20260514T151513_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_infra_env-setup_20260514T021115_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_mvp-script-patches_20260514T062934_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_eval-overflow_20260514T081131_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_diagnose_grpo_standard_20_crash_20260514T173056_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_launch_grpo_dual_gpu_20260514T171025_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_paper_bib-and-intro-fix_20260514T064743_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_gpu1_eval_25_restart_20260514T171754_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_autodl_tmp_dirs_20260514T165950_result.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_\n…[truncated 2619 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:05:03.432913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "(?i)cka|centered_kernel_alignment|linear_cka|kernel_alignment",
+              "type": "py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T03:05:03.433045+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 5 files\nartifacts/correlation_analysis.py\nsrc/cka_overlap.py\nsrc/correlation_analysis.py\nsrc/prune.py\nsrc/rasp_scoring.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:05:03.433203+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "register_forward_hook|hook|extract_features|get_activations",
+              "type": "py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T03:05:03.433360+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 3 files\nartifacts/correlation_analysis.py\nsrc/cka_overlap.py\nsrc/correlation_analysis.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T03:05:03.433875+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "prune|head_mask|pruned",
+              "type": "py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T03:05:03.434163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 5 files\nsrc/grasp_scoring.py\nsrc/correlation_analysis.py\nsrc/train_grpo.py\nsrc/prune.py\nsrc/rasp_scoring.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:05:03.434782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "GSM8K|calibration|calib",
+              "type": "py",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T03:05:03.434981+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 7 files\nsrc/grasp_scoring.py\nartifacts/correlation_analysis.py\nsrc/cka_overlap.py\nsrc/correlation_analysis.py\nsrc/eval_gsm8k.py\nsrc/train_grpo.py\nsrc/importance_score.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T03:05:03.435823+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T03:05:03.436367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCKA Overlap Computation for RASP.\n3\t\n4\tComputes intra-layer functional overlap F(h) for each attention head and MLP channel group\n5\tusing linear CKA (Centered Kernel Alignment via HSIC).\n6\t\n7\tInput:  model + calibration data (GSM8K train subset)\n8\tOutput: per-structure F(h) scores saved as dict in .pt file\n9\t        Keys: 'attn_overlap' (dict[layer_idx -> tensor[n_heads]]),\n10\t              'mlp_overlap'  (dict[layer_idx -> tensor[n_groups]])\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport logging\n15\timport math\n16\timport os\n17\timport random\n18\t\n19\timport numpy as np\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:\n39\t    \"\"\"Linear CKA between two activation matrices.\n40\t    X: [n, p], Y: [n, q]. Returns scalar similarity in [0, 1].\n41\t    \"\"\"\n42\t    X = X - X.mean(0)\n43\t    Y = Y - Y.mean(0)\n44\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n45\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n46\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n47\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n48\t\n49\t\n50\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n51\t    \"\"\"Load GSM8K train questions as calibration prompts.\"\"\"\n52\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n53\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n54\t\n55\t    encodings = []\n56\t    for example in ds:\n57\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n58\t        ids = tokenizer(prompt, return_tensors=\"pt\", trun\n…[truncated 9232 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:05:03.436577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/prune.py"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T03:05:03.436908+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tStructured Pruning for Qwen2.5 architecture.\n3\t\n4\tRemoves attention heads and MLP channel groups based on RASP or standard importance scores.\n5\tHandles GQA (grouped query attention) correctly: when all query heads sharing a KV head\n6\tare pruned, the corresponding KV head is also removed.\n7\t\n8\tInput:  pretrained model + pruning scores\n9\tOutput: pruned model saved to disk\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport copy\n14\timport logging\n15\timport os\n16\timport random\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\t\n22\tlogging.basicConfig(\n23\t    level=logging.INFO,\n24\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n25\t)\n26\tlogger = logging.getLogger(__name__)\n27\t\n28\t\n29\tdef set_seed(seed: int):\n30\t    random.seed(seed)\n31\t    np.random.seed(seed)\n32\t    torch.manual_seed(seed)\n33\t    torch.cuda.manual_seed_all(seed)\n34\t\n35\t\n36\tdef compute_pruning_masks(scores: dict, n_to_prune: int) -> dict:\n37\t    \"\"\"Determine which structures to prune globally.\n38\t\n39\t    Returns dict[layer_idx -> list of struct indices to KEEP].\n40\t    \"\"\"\n41\t    ranking = []\n42\t    for layer_idx, layer_scores in scores.items():\n43\t        for struct_idx in range(layer_scores.shape[0]):\n44\t            ranking.append((layer_scores[struct_idx].item(), layer_idx, struct_idx))\n45\t    ranking.sort(key=lambda x: x[0])\n46\t\n47\t    prune_set = set()\n48\t    for i in range(min(n_to_prune, len(ranking))):\n49\t        _, layer_idx, struct_idx = ranking[i]\n50\t        prune_set.add((layer_idx, struct_idx))\n51\t\n52\t    keep_masks = {}\n53\t    for layer_idx, layer_scores in scores.items():\n54\t        n_structs = layer_scores.shape[0]\n55\t        keep = [i for i in range(n_structs) if (layer_idx, i) not in prune_set]\n56\t        keep_masks[layer_idx] = keep\n57\t    return keep_masks\n58\t\n59\t\n60\tdef prune_attention_heads(model, attn_keep_masks: dict):\n61\t    \"\"\"Prune attention heads from the model by slicing weight matrices in-place.\n62\t\n63\t    For GQA: \n…[truncated 13158 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:05:03.437106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/rasp_scoring.py"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T03:05:03.437279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tRASP Scoring: combine importance I(h) and functional overlap F(h).\n3\t\n4\tS(h) = I(h) * (1 - F(h))^alpha\n5\t\n6\tStructures with lower S(h) are pruned first.\n7\tStandard baseline uses only I(h) for ranking.\n8\t\"\"\"\n9\t\n10\timport argparse\n11\timport logging\n12\timport os\n13\t\n14\timport torch\n15\t\n16\tlogging.basicConfig(\n17\t    level=logging.INFO,\n18\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n19\t)\n20\tlogger = logging.getLogger(__name__)\n21\t\n22\t\n23\tdef compute_rasp_scores(importance: dict, overlap: dict, alpha: float = 1.0) -> dict:\n24\t    \"\"\"Compute S(h) = I(h) * (1 - F(h))^alpha for each structure.\n25\t\n26\t    Args:\n27\t        importance: dict[layer_idx -> tensor of I(h)]\n28\t        overlap: dict[layer_idx -> tensor of F(h)]\n29\t        alpha: recoverability penalty exponent\n30\t\n31\t    Returns:\n32\t        dict[layer_idx -> tensor of S(h)]\n33\t    \"\"\"\n34\t    scores = {}\n35\t    for layer_idx in importance:\n36\t        ih = importance[layer_idx].float()\n37\t        fh = overlap[layer_idx].float()\n38\t        sh = ih * (1.0 - fh).pow(alpha)\n39\t        scores[layer_idx] = sh\n40\t    return scores\n41\t\n42\t\n43\tdef rank_structures(scores: dict) -> list:\n44\t    \"\"\"Flatten and rank all structures globally by score (ascending = prune first).\n45\t\n46\t    Returns list of (score, layer_idx, struct_idx) sorted ascending.\n47\t    \"\"\"\n48\t    entries = []\n49\t    for layer_idx, layer_scores in scores.items():\n50\t        for struct_idx in range(layer_scores.shape[0]):\n51\t            entries.append((layer_scores[struct_idx].item(), layer_idx, struct_idx))\n52\t    entries.sort(key=lambda x: x[0])\n53\t    return entries\n54\t\n55\t\n56\tdef main():\n57\t    parser = argparse.ArgumentParser(description=\"Compute RASP pruning scores\")\n58\t    parser.add_argument(\"--importance_path\", type=str, required=True, help=\"Path to importance scores .pt\")\n59\t    parser.add_argument(\"--cka_path\", type=str, default=None, help=\"Path to CKA overlap scores .pt (None for standard mode)\")\n60\t    parser.add_argument(\"--mode\",\n…[truncated 2311 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:05:03.437447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T03:05:03.437862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tGradient-based Importance Scoring for structured pruning.\n3\t\n4\tComputes Taylor-expansion importance I(h) = ||w_h * grad_h||_2 for each\n5\tattention head and MLP channel group on calibration data.\n6\t\n7\tInput:  model + calibration data (GSM8K train subset)\n8\tOutput: per-structure I(h) scores saved as dict in .pt file\n9\t        Keys: 'attn_importance' (dict[layer_idx -> tensor[n_heads]]),\n10\t              'mlp_importance'  (dict[layer_idx -> tensor[n_groups]])\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport logging\n15\timport os\n16\timport random\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom datasets import load_dataset\n21\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n22\t\n23\tlogging.basicConfig(\n24\t    level=logging.INFO,\n25\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n26\t)\n27\tlogger = logging.getLogger(__name__)\n28\t\n29\t\n30\tdef set_seed(seed: int):\n31\t    random.seed(seed)\n32\t    np.random.seed(seed)\n33\t    torch.manual_seed(seed)\n34\t    torch.cuda.manual_seed_all(seed)\n35\t\n36\t\n37\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n38\t    \"\"\"Load GSM8K train questions as calibration prompts with labels for loss computation.\"\"\"\n39\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n40\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n41\t\n42\t    encodings = []\n43\t    for example in ds:\n44\t        text = f\"Question: {example['question']}\\nAnswer: {example['answer']}\"\n45\t        ids = tokenizer(text, return_tensors=\"pt\", truncation=True, max_length=max_length)\n46\t        encodings.append(ids)\n47\t    return encodings\n48\t\n49\t\n50\tdef compute_importance(model, calibration_data, device):\n51\t    \"\"\"Compute gradient-based importance for attention heads and MLP groups.\n52\t\n53\t    Uses Taylor expansion: I(h) = ||w_h * grad_h||_2\n54\t    Accumulates over calibration batches.\n55\t    \"\"\"\n56\t    config = model.config\n57\t    n_layers = config.num_hidden_layers\n58\t    n_heads = config.num_attent\n…[truncated 8006 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T03:05:03.438068+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/eval_gsm8k.py"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T03:05:03.438362+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tGSM8K Test Set Evaluation.\n3\t\n4\tEvaluates model accuracy on GSM8K test split by generating reasoning traces\n5\tand comparing extracted numeric answers against gold answers.\n6\t\n7\tInput:  model path\n8\tOutput: accuracy printed to stdout + saved to results JSON\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\timport re\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom datasets import load_dataset\n21\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n22\tfrom tqdm import tqdm\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef extract_answer(text: str) -> str | None:\n39\t    \"\"\"Extract numeric answer from model output.\"\"\"\n40\t    boxed = re.findall(r\"\\\\boxed\\{([^}]+)\\}\", text)\n41\t    if boxed:\n42\t        return boxed[-1].strip().replace(\",\", \"\")\n43\t\n44\t    hash_match = re.findall(r\"####\\s*(.+)\", text)\n45\t    if hash_match:\n46\t        return hash_match[-1].strip().replace(\",\", \"\")\n47\t\n48\t    numbers = re.findall(r\"-?\\d+(?:,\\d{3})*(?:\\.\\d+)?\", text)\n49\t    if numbers:\n50\t        return numbers[-1].replace(\",\", \"\")\n51\t    return None\n52\t\n53\t\n54\tdef normalize_answer(ans: str) -> str:\n55\t    ans = ans.strip().replace(\",\", \"\").replace(\" \", \"\")\n56\t    try:\n57\t        val = float(ans)\n58\t        if val == int(val):\n59\t            return str(int(val))\n60\t        return str(val)\n61\t    except ValueError:\n62\t        return ans\n63\t\n64\t\n65\tdef extract_gold_answer(answer_text: str) -> str:\n66\t    match = re.search(r\"####\\s*(.+)\", answer_text)\n67\t    if match:\n68\t        return normalize_answer(match.group(1))\n69\t    return answer_text.strip()\n70\t\n71\t\n72\tdef evaluate(model, tokenizer, dataset, max_new_tokens: int = 512, batch_size: int = 1):\n73\t    \"\"\"\n…[truncated 4930 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T03:05:03.438536+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/train_grpo.py",
+              "limit": "100"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T03:05:03.438734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tGRPO RLVR Recovery Training for pruned models.\n3\t\n4\tUses trl.GRPOTrainer with GSM8K answer-matching reward to recover\n5\treasoning ability of structurally pruned models.\n6\t\n7\tInput:  pruned model path\n8\tOutput: recovered model checkpoint + training logs\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport logging\n13\timport os\n14\timport random\n15\timport re\n16\t\n17\timport numpy as np\n18\timport torch\n19\tfrom datasets import load_dataset\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\tfrom trl import GRPOConfig, GRPOTrainer\n22\t\n23\tlogging.basicConfig(\n24\t    level=logging.INFO,\n25\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n26\t)\n27\tlogger = logging.getLogger(__name__)\n28\t\n29\t\n30\tdef set_seed(seed: int):\n31\t    random.seed(seed)\n32\t    np.random.seed(seed)\n33\t    torch.manual_seed(seed)\n34\t    torch.cuda.manual_seed_all(seed)\n35\t\n36\t\n37\tdef extract_answer(text: str) -> str | None:\n38\t    \"\"\"Extract numeric answer from model output.\n39\t    Tries \\\\boxed{} first, then last number in text.\n40\t    \"\"\"\n41\t    # Try \\boxed{...}\n42\t    boxed = re.findall(r\"\\\\boxed\\{([^}]+)\\}\", text)\n43\t    if boxed:\n44\t        return boxed[-1].strip().replace(\",\", \"\")\n45\t\n46\t    # Try #### format (GSM8K style)\n47\t    hash_match = re.findall(r\"####\\s*(.+)\", text)\n48\t    if hash_match:\n49\t        return hash_match[-1].strip().replace(\",\", \"\")\n50\t\n51\t    # Fall back to last number\n52\t    numbers = re.findall(r\"-?\\d+(?:,\\d{3})*(?:\\.\\d+)?\", text)\n53\t    if numbers:\n54\t        return numbers[-1].replace(\",\", \"\")\n55\t    return None\n56\t\n57\t\n58\tdef normalize_answer(ans: str) -> str:\n59\t    \"\"\"Normalize a numeric answer string for comparison.\"\"\"\n60\t    ans = ans.strip().replace(\",\", \"\").replace(\" \", \"\")\n61\t    try:\n62\t        val = float(ans)\n63\t        if val == int(val):\n64\t            return str(int(val))\n65\t        return str(val)\n66\t    except ValueError:\n67\t        return ans\n68\t\n69\t\n70\tdef extract_gold_answer(answer_text: str) -> str:\n71\t    \"\"\"Extract gold answer from GSM8K a\n…[truncated 1097 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T03:05:03.438963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T03:05:03.439155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCorrelation Analysis: rho(CKA overlap, RLVR recoverability).\n3\t\n4\tTests the MVP hypothesis: pruned heads with higher CKA overlap F(h) are more\n5\teffectively compensated by RLVR through their most similar retained head.\n6\t\n7\tMetric: for each pruned head h_p, find the most CKA-similar retained head h_r,\n8\tthen measure h_r's activation shift between pruned model and RLVR-recovered model.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\t\n17\timport numpy as np\n18\timport scipy.stats as stats\n19\timport torch\n20\timport torch.nn.functional as F\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n39\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n40\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n41\t    encodings = []\n42\t    for example in ds:\n43\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n44\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n45\t        encodings.append(ids)\n46\t    return encodings\n47\t\n48\t\n49\tdef load_pruned_model(base_model_path, saved_model_path, pruning_meta, torch_dtype, device):\n50\t    \"\"\"Load a structurally pruned model by reconstructing from base model + saved weights.\"\"\"\n51\t    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n52\t    from prune import prune_attention_heads, prune_mlp_channels\n53\t\n54\t    model = AutoModelForCausalLM.from_pretrained(\n55\t        base_model_path, torch_dtype=torch_dtype, device_map=\"c\n…[truncated 965 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T03:05:03.439391+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/grasp_scoring.py",
+              "limit": "80"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T03:05:03.439552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tGraSP (Gradient Signal Preservation) scoring for structured pruning.\n3\t\n4\tComputes GraSP importance at GQA-group and MLP-group granularity:\n5\t  Score(θ) = -θ ⊙ Hg\n6\twhere Hg is the Hessian-gradient product computed via the R-op trick:\n7\t  g = ∂L/∂θ  (with retained graph)\n8\t  Hg = ∂/∂θ [g^T · stop_grad(g)]\n9\t\n10\tStructures with lower aggregate score hinder gradient flow more and\n11\tare pruned first — compatible with prune.py's ascending-sort convention.\n12\t\n13\tOutput format matches importance_score.py:\n14\t  {'attn_importance': dict[layer_idx -> tensor], 'mlp_importance': dict[...]}\n15\tSo the output can be fed directly to prune.py --mode standard --importance_path.\n16\t\n17\tReference: Wang et al., \"Picking Winning Tickets Before Training by Preserving\n18\tGradient Flow\" (ICLR 2020).\n19\t\"\"\"\n20\t\n21\timport argparse\n22\timport logging\n23\timport os\n24\timport random\n25\t\n26\timport numpy as np\n27\timport torch\n28\tfrom datasets import load_dataset\n29\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n30\t\n31\tlogging.basicConfig(\n32\t    level=logging.INFO,\n33\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n34\t)\n35\tlogger = logging.getLogger(__name__)\n36\t\n37\t\n38\tdef set_seed(seed: int):\n39\t    random.seed(seed)\n40\t    np.random.seed(seed)\n41\t    torch.manual_seed(seed)\n42\t    torch.cuda.manual_seed_all(seed)\n43\t\n44\t\n45\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n46\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n47\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n48\t    encodings = []\n49\t    for example in ds:\n50\t        text = f\"Question: {example['question']}\\nAnswer: {example['answer']}\"\n51\t        ids = tokenizer(text, return_tensors=\"pt\", truncation=True, max_length=max_length)\n52\t        encodings.append(ids)\n53\t    return encodings\n54\t\n55\t\n56\tdef _aggregate_attn_score(score_tensor, name, n_heads, n_kv_heads, head_dim, heads_per_kv):\n57\t    \"\"\"Aggregate per-element GraSP sc\n…[truncated 1348 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T03:05:03.439709+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune -maxdepth 2 -type f \\( -name \"*.json\" -o -name \"*.yaml\" -o -name \"config*\" \\) 2>/dev/null"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T03:05:03.439862+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/dream_registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_provenance.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/constraints.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/grpo_rasp_20_4096_QUEUED_20260514T224312.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/mvp_rasp_pipeline_v3_RUNNING_20260514T143959.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/mvp_rasp_pipeline_v3_RUNNING_20260514T144028.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/mvp_rasp_pipeline_RUNNING_20260514T041114.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/sft_standard_20_RUNNING_20260514T235451.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/grpo_rasp_20_fast_ANALYZING_20260514T213533.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/sft_rasp_20_ANALYZING_20260515T002820.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/grpo_rasp_20_ALLOCATED_20260514T171533.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/grpo_standard_20_fast_PREPARING_20260514T173855.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/sft_standard_20_ANALYZING_20260515T003714.json\n/home/ubuntu/.agent-ml-\n…[truncated 8708 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T03:05:03.440009+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T03:05:03.440301+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 116\ndrwxr-xr-x  2 ubuntu ubuntu  4096 May 14 19:53 .\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 15 02:01 ..\n-rw-r--r--  1 ubuntu ubuntu 10296 May 14 03:56 cka_overlap.py\n-rw-r--r--  1 ubuntu ubuntu 12624 May 14 03:56 correlation_analysis.py\n-rw-r--r--  1 ubuntu ubuntu  6278 May 14 02:52 eval_gsm8k.py\n-rw-r--r--  1 ubuntu ubuntu  9190 May 14 19:52 grasp_scoring.py\n-rw-r--r--  1 ubuntu ubuntu  9276 May 14 02:50 importance_score.py\n-rw-r--r--  1 ubuntu ubuntu 13838 May 14 02:52 prune.py\n-rw-r--r--  1 ubuntu ubuntu  3987 May 14 02:51 rasp_scoring.py\n-rw-r--r--  1 ubuntu ubuntu  1763 May 14 18:43 run_full_eval_d008.sh\n-rw-r--r--  1 ubuntu ubuntu  2464 May 14 18:43 run_full_eval_d008_parallel.sh\n-rw-r--r--  1 ubuntu ubuntu  2034 May 14 19:53 run_grasp_prune.sh\n-rw-r--r--  1 ubuntu ubuntu  1811 May 14 19:52 run_grpo_multiseed.sh\n-rwxr-xr-x  1 ubuntu ubuntu  3789 May 14 03:56 run_mvp.sh\n-rw-r--r--  1 ubuntu ubuntu  7204 May 14 02:52 train_grpo.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T03:05:03.440553+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md",
+              "limit": "100"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T03:05:03.440846+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t# Idea Brief: RASP: Recovery-Aware Structured Pruning for Reasoning Models — How What You Prune Affects How RLVR Recovers\n2\t\n3\t\n4\t- **Idea ID**: `idea_012`\n5\t- **Created**: 2026-05-14\n6\t- **Approved**: 2026-05-14\n7\t- **Source**: foreign:be-idea-gen-0509-8\n8\t- **Level**: top-tier\n9\t- **Target Venues**: EMNLP 2026 (ARR May 25 submission deadline, commitment deadline Aug 2)\n10\t\n11\t## Seed Topic\n12\t\n13\tTarget: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Efficient Methods for NLP.\n14\t\n15\tDirection: Efficiency methods for NLP — NOT limited to LLM inference optimization. In-scope: speculative decoding, KV-cache compression/eviction, quantization-aware distillation, parameter-efficient fine-tuning, efficient long-context serving, MoE routing, attention approximations, efficient smaller models for specific NLP tasks, pruning for task-specific deployment.\n16\t\n17\tContribution type: METHOD ONLY. Propose new algorithms — not profiling studies.\n18\t\n19\tHARD CONSTRAINTS:\n20\t1. Compute: ≤200 H100-hours total. Generous for efficiency work.\n21\t2. Time: ≤16 days. Build on vLLM, SGLang, llama.cpp, TensorRT-LLM, HF Transformers, FlashAttention, bitsandbytes.\n22\t3. Eval: perplexity (Wiki/C4), MMLU, HumanEval, LongBench, RULER, MT-Bench. Report wall-clock and throughput on H100.\n23\t\n24\tLook for: cache-aware methods for new workloads (long thinking traces, agent loops, RAG), quantization-aware distillation, structured sparsity during inference, efficient serving of reasoning models with variable-length thinking. Avoid: vanilla 4-bit quantization, generic LoRA, plain speculative decoding.\n25\t\n26\tTag: direction=efficiency, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].\n27\t\n28\t## Core Problem\n29\t\n30\tCurrent structured pruning methods for reasoning models optimize importance scores for immediate post-pruning accuracy, treating the subsequent recovery step as independent. Self-Healing (2025) shows RLVR recovery rea\n…[truncated 18451 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T03:05:03.441143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"num_hidden_layers\\|num_attention_heads\\|num_key_value_heads\\|hidden_size\\|head_dim\\|intermediate_size\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src --include=\"*.py\" | head -30"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T03:05:03.441319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:    Returns dict[layer_idx] -> tensor[n_samples, n_retained_heads, head_dim]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:    n_layers = model.config.num_hidden_layers\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:    head_dim = model.config.hidden_size // model.config.num_attention_heads\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:            t = t.squeeze(0)  # [seq, n_retained * head_dim]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:            t = t.view(t.shape[0], n_retained, head_dim)  # [seq, n_retained, head_dim]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py:            t = t.mean(dim=0)  # [n_retained, head_dim]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:    n_layers = config.num_hidden_layers\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:    n_heads = config.num_attention_heads\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:    head_dim = config.hidden_size // n_heads\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:    intermediate_size = config.intermediate_size\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:    group_size = intermediate_size // n_groups\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/importance_score.py:                q_weight = lay\n…[truncated 3152 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T03:05:03.441488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"DeepSeek\\|deepseek\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune --include=\"*.py\" --include=\"*.md\" | head -20"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T03:05:03.441629+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:**Comprehensive evaluation beyond math**: Evaluation covers not only mathematical reasoning (GSM8K, MATH-500) but also long-context capability (LongBench, RULER), instruction following (MT-Bench), knowledge retention (MMLU), code generation (HumanEval), and general language modeling (WikiText-2 perplexity, C4 perplexity). LongBench and RULER are especially important for reasoning models that generate long chain-of-thought traces — pruning may disproportionately degrade long-context performance even when short-context math accuracy recovers. MT-Bench tests whether the pruned+recovered model retains general instruction-following capability beyond math, differentiating from Self-Healing which only evaluates math benchmarks. DeepSeek-R1-Distill-Qwen-7B's 131K context window enables meaningful long-context evaluation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:Experiments target DeepSeek-R1-Distill-Qwen-7B as the primary model at 25%, 35%, and 45% structured sparsity. Baselines: LLM-Pruner+RLVR, Bonsai+RLVR, GRASPrune+RLVR (all with public code), plus LLM-Pruner+SFT and GRASPrune+SFT at 35% sparsity for recovery-method comparison (Bonsai+SFT dropped to meet compute budget). RASP+RLVR evaluated at 25% and 40% sparsity. RESP results cited from paper (no public code). Evaluation covers perplexity (WikiText-2, C4), knowledge (MMLU), code (HumanEval), reasoning (GSM8K, MATH-500), long-context (LongBench, RULER), and instruction following (MT-Bench). Hardware latency measured on A100/H100 GPUs.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:  - feasibility: **{'rationale': 'All three baseline pruning methods (LLM-Pruner, Bonsai, GRASPrune) have public code. DeepSeek-R1-Distill-Qwen-7B is publicly available. The verl framework for GRPO-based RLVR is mature \n…[truncated 5008 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T03:05:03.441811+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/train_grpo.py | head -200"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T03:05:03.441967+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "\"\"\"\nGRPO RLVR Recovery Training for pruned models.\n\nUses trl.GRPOTrainer with GSM8K answer-matching reward to recover\nreasoning ability of structurally pruned models.\n\nInput:  pruned model path\nOutput: recovered model checkpoint + training logs\n\"\"\"\n\nimport argparse\nimport logging\nimport os\nimport random\nimport re\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\nfrom trl import GRPOConfig, GRPOTrainer\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n)\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed: int):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef extract_answer(text: str) -> str | None:\n    \"\"\"Extract numeric answer from model output.\n    Tries \\\\boxed{} first, then last number in text.\n    \"\"\"\n    # Try \\boxed{...}\n    boxed = re.findall(r\"\\\\boxed\\{([^}]+)\\}\", text)\n    if boxed:\n        return boxed[-1].strip().replace(\",\", \"\")\n\n    # Try #### format (GSM8K style)\n    hash_match = re.findall(r\"####\\s*(.+)\", text)\n    if hash_match:\n        return hash_match[-1].strip().replace(\",\", \"\")\n\n    # Fall back to last number\n    numbers = re.findall(r\"-?\\d+(?:,\\d{3})*(?:\\.\\d+)?\", text)\n    if numbers:\n        return numbers[-1].replace(\",\", \"\")\n    return None\n\n\ndef normalize_answer(ans: str) -> str:\n    \"\"\"Normalize a numeric answer string for comparison.\"\"\"\n    ans = ans.strip().replace(\",\", \"\").replace(\" \", \"\")\n    try:\n        val = float(ans)\n        if val == int(val):\n            return str(int(val))\n        return str(val)\n    except ValueError:\n        return ans\n\n\ndef extract_gold_answer(answer_text: str) -> str:\n    \"\"\"Extract gold answer from GSM8K answer field (after ####).\"\"\"\n    match = re.search(r\"####\\s*(.+)\", answer_text)\n    if match:\n        return normalize_answer(match.group(1))\n    return answer_text.strip()\n\n\ndef build_reward_fn(tokenizer\n…[truncated 4872 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T03:05:03.442137+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune -name \"*.md\" | xargs grep -l \"architecture\\|config\\|model\\|num_layers\" 2>/dev/null | head -5"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T03:05:03.442555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/agent.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/director.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/history/director/loop_4.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/history/director/loop_1.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T03:05:03.442783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"\nfrom transformers import AutoConfig\ntry:\n    config = AutoConfig.from_pretrained('deepseek-ai/deepseek-r1-distill-qwen-7b', trust_remote_code=True)\n    print('num_hidden_layers:', config.num_hidden_layers)\n    print('num_attention_heads:', config.num_attention_heads)\n    print('num_key_value_heads:', config.num_key_value_heads)\n    print('hidden_size:', config.hidden_size)\n    print('intermediate_size:', config.intermediate_size)\n    print('head_dim:', config.hidden_size // config.num_attention_heads)\nexcept Exception as e:\n    print('Error:', e)\n\" 2>&1 || echo \"Could not fetch from HuggingFace\""
+            }
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T03:05:03.442915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Traceback (most recent call last):\n  File \"<string>\", line 2, in <module>\n    from transformers import AutoConfig\nModuleNotFoundError: No module named 'transformers'\nCould not fetch from HuggingFace"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T03:05:03.443154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -r \"4096\\|5120\\|2048\\|14336\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune --include=\"*.py\" --include=\"*.md\" | head -20"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T03:05:03.443330+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:5. [方法描述 / Method 段] — 修正技术表述错误：\"approximating mutual information\" → \"measuring functional similarity via linear CKA (a kernel-based statistical dependence measure)\"。新增 CKA Reliability 段落：split-half analysis（Spearman ρ > 0.9）+ calibration size sensitivity（512/1024/2048 样本）+ bootstrap CI per head。 — 命中 **Technical Soundness**（消除 reviewer 对核心方法理解准确性和 head-level CKA 可靠性的质疑）\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:Post-prune GSM8K (N=100): RASP 29% vs Standard 1% (Δ=28pp, p<0.0001) | Matched: 20% sparsity, same parameter count | GRPO recovery: both models 100% truncated at 4096 tokens (technical limitation, not hypothesis failure) | RASP reward 5x higher than Standard in truncated GRPO (3.125% vs 0.625%)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/IDEA_BRIEF.md:RASP pruning (CKA-aware structure selection) preserves reasoning ability significantly better than standard importance-only pruning at matched 20% sparsity. Post-prune GSM8K accuracy: RASP 29% vs Standard 1% (p<0.0001, N=100, matched parameters). GRPO recovery experiments failed for both models due to technical limitation (DeepSeek-R1 sampling generates ultra-long chains without EOS, causing 100% truncation at 4096 tokens), but this is orthogonal to the core hypothesis. The post-prune gap alone definitively supports the MVP claim.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/agent.md:- **W&B**: 项目内，历史 run IDs: ou02s4k4 (standard), sz9264sx (rasp), ccx0jr0z (rasp 4096)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/task_context/agent.md:2. D009 (1024 truncation) → D010 (4096 确认 sampling 退化) → D013 (SFT warmup) → D015 (GRPO Stage 2)\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct\n…[truncated 3428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T03:05:03.443486+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T03:05:03.443680+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "EISDIR: illegal operation on a directory, read '/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts'"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T03:05:03.443919+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T03:05:03.444088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 68\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 14 23:39 .\ndrwxr-xr-x 10 ubuntu ubuntu  4096 May 15 02:01 ..\ndrwxr-xr-x  4 ubuntu ubuntu  4096 May 14 13:55 _project\n-rw-r--r--  1 ubuntu ubuntu 19149 May 14 05:36 correlation_analysis.py\ndrwxr-xr-x  3 ubuntu ubuntu  4096 May 15 00:30 dream_reports\n-rw-r--r--  1 ubuntu ubuntu  1728 May 14 23:26 grpo_rasp_20_4096_status.md\n-rw-r--r--  1 ubuntu ubuntu  1368 May 14 13:55 manifest.yaml\n-rw-r--r--  1 ubuntu ubuntu  1421 May 14 13:26 mvp_progress_20260514.md\n-rw-r--r--  1 ubuntu ubuntu  6341 May 14 13:54 mvp_v2_analysis.md\n-rw-r--r--  1 ubuntu ubuntu  8499 May 14 13:30 related_work_notes.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T03:05:03.444242+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -A 5 \"num_heads = config\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/*.py | head -20"
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T03:05:03.444429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T03:05:03.444737+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep \"config\\.\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py | head -15"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T03:05:03.445049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "    n_layers = config.num_hidden_layers\n    n_heads = config.num_attention_heads\n    head_dim = config.hidden_size // n_heads\n    n_layers = config.num_hidden_layers\n    intermediate_size = config.intermediate_size"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T03:05:03.445457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect. Now I have comprehensive information. Let me compile the final report:\n\n## Search Results Summary\n\n### 1. CKA-Related Code (Centered Kernel Alignment)\n\n**Files Found:**\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py` - Core CKA implementation\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py` - CKA-based correlation analysis\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/rasp_scoring.py` - RASP scoring combining importance and CKA overlap\n- `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/correlation_analysis.py` - Artifact copy\n\n**Key CKA Implementation (from cka_overlap.py):**\n\nLinear CKA function (lines 38-47):\n```python\ndef linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:\n    \"\"\"Linear CKA between two activation matrices.\n    X: [n, p], Y: [n, q]. Returns scalar similarity in [0, 1].\n    \"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n```\n\nOverlap computation (lines 176-202):\n- Computes pairwise CKA matrices per layer\n- Averages similarity across structures to get F(h) overlap scores (functional redundancy)\n\n### 2. Model Architecture (DeepSeek-R1-Distill-Qwen-7B)\n\nThe codebase uses configuration from model.config dynamically:\n- `config.num_hidden_layers` - number of transformer layers\n- `config.num_attention_heads` - total query heads\n- `config.num_key_value_heads` - GQA key/value heads (grouped query attention)\n- `config.hidden_size` - embedding dimension\n- `config.intermediate_size` - FFN intermediate dimension\n- `head_dim = config.hidden_size // config.num_attention_heads` - per-head dimension\n\n**Model-specific \n…[truncated 5784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Agent",
+            "elapsed_ms": 14
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T03:05:03.445656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T03:05:03.446156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCKA Overlap Computation for RASP.\n3\t\n4\tComputes intra-layer functional overlap F(h) for each attention head and MLP channel group\n5\tusing linear CKA (Centered Kernel Alignment via HSIC).\n6\t\n7\tInput:  model + calibration data (GSM8K train subset)\n8\tOutput: per-structure F(h) scores saved as dict in .pt file\n9\t        Keys: 'attn_overlap' (dict[layer_idx -> tensor[n_heads]]),\n10\t              'mlp_overlap'  (dict[layer_idx -> tensor[n_groups]])\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport logging\n15\timport math\n16\timport os\n17\timport random\n18\t\n19\timport numpy as np\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:\n39\t    \"\"\"Linear CKA between two activation matrices.\n40\t    X: [n, p], Y: [n, q]. Returns scalar similarity in [0, 1].\n41\t    \"\"\"\n42\t    X = X - X.mean(0)\n43\t    Y = Y - Y.mean(0)\n44\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n45\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n46\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n47\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n48\t\n49\t\n50\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n51\t    \"\"\"Load GSM8K train questions as calibration prompts.\"\"\"\n52\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n53\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n54\t\n55\t    encodings = []\n56\t    for example in ds:\n57\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n58\t        ids = tokenizer(prompt, return_tensors=\"pt\", trun\n…[truncated 9232 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T03:05:03.446359+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/correlation_analysis.py"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T03:05:03.446622+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCorrelation Analysis: rho(CKA overlap, RLVR recoverability).\n3\t\n4\tTests the MVP hypothesis: pruned heads with higher CKA overlap F(h) are more\n5\teffectively compensated by RLVR through their most similar retained head.\n6\t\n7\tMetric: for each pruned head h_p, find the most CKA-similar retained head h_r,\n8\tthen measure h_r's activation shift between pruned model and RLVR-recovered model.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\t\n17\timport numpy as np\n18\timport scipy.stats as stats\n19\timport torch\n20\timport torch.nn.functional as F\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n39\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n40\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n41\t    encodings = []\n42\t    for example in ds:\n43\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n44\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n45\t        encodings.append(ids)\n46\t    return encodings\n47\t\n48\t\n49\tdef load_pruned_model(base_model_path, saved_model_path, pruning_meta, torch_dtype, device):\n50\t    \"\"\"Load a structurally pruned model by reconstructing from base model + saved weights.\"\"\"\n51\t    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n52\t    from prune import prune_attention_heads, prune_mlp_channels\n53\t\n54\t    model = AutoModelForCausalLM.from_pretrained(\n55\t        base_model_path, torch_dtype=torch_dtype, device_map=\"c\n…[truncated 11853 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T03:05:03.446796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/prune.py"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T03:05:03.447077+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tStructured Pruning for Qwen2.5 architecture.\n3\t\n4\tRemoves attention heads and MLP channel groups based on RASP or standard importance scores.\n5\tHandles GQA (grouped query attention) correctly: when all query heads sharing a KV head\n6\tare pruned, the corresponding KV head is also removed.\n7\t\n8\tInput:  pretrained model + pruning scores\n9\tOutput: pruned model saved to disk\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport copy\n14\timport logging\n15\timport os\n16\timport random\n17\t\n18\timport numpy as np\n19\timport torch\n20\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n21\t\n22\tlogging.basicConfig(\n23\t    level=logging.INFO,\n24\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n25\t)\n26\tlogger = logging.getLogger(__name__)\n27\t\n28\t\n29\tdef set_seed(seed: int):\n30\t    random.seed(seed)\n31\t    np.random.seed(seed)\n32\t    torch.manual_seed(seed)\n33\t    torch.cuda.manual_seed_all(seed)\n34\t\n35\t\n36\tdef compute_pruning_masks(scores: dict, n_to_prune: int) -> dict:\n37\t    \"\"\"Determine which structures to prune globally.\n38\t\n39\t    Returns dict[layer_idx -> list of struct indices to KEEP].\n40\t    \"\"\"\n41\t    ranking = []\n42\t    for layer_idx, layer_scores in scores.items():\n43\t        for struct_idx in range(layer_scores.shape[0]):\n44\t            ranking.append((layer_scores[struct_idx].item(), layer_idx, struct_idx))\n45\t    ranking.sort(key=lambda x: x[0])\n46\t\n47\t    prune_set = set()\n48\t    for i in range(min(n_to_prune, len(ranking))):\n49\t        _, layer_idx, struct_idx = ranking[i]\n50\t        prune_set.add((layer_idx, struct_idx))\n51\t\n52\t    keep_masks = {}\n53\t    for layer_idx, layer_scores in scores.items():\n54\t        n_structs = layer_scores.shape[0]\n55\t        keep = [i for i in range(n_structs) if (layer_idx, i) not in prune_set]\n56\t        keep_masks[layer_idx] = keep\n57\t    return keep_masks\n58\t\n59\t\n60\tdef prune_attention_heads(model, attn_keep_masks: dict):\n61\t    \"\"\"Prune attention heads from the model by slicing weight matrices in-place.\n62\t\n63\t    For GQA: \n…[truncated 13158 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T03:05:03.447534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py",
+              "content": "\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of cross-model CKA scores (original vs pruned) by:\n1. Split-half reliability: Spearman rho between CKA scores on two data halves\n2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n\nAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, required=True)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Collect activations (load models one at a time to save GPU memory) ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed.\")\n\n    logger.info(\"Loading pruned model...\")\n    pruned_model, pruning_meta = load_pruned_model_with_meta(\n        args.original_model, args.pruned_model, torch_dtype, device\n    )\n    keep_masks = pruning_meta[\"attn_keep_masks\"]\n    logger.info(\"Collecting pruned model activations...\")\n    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n    del pruned_model\n    torch.cuda.empty_cache()\n    logger.info(\"Pruned model freed. All activations cached on CPU.\")\n\n    # --- Phase 1: Full CKA scores ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                    n_heads_orig, n_kv_heads)\n    valid_scores = {k: v for k, v in full_scores.items()\n                    if not (isinstance(v, float) and v != v)}\n    vals = np.array(list(valid_scores.values()))\n    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n    # --- Phase 2: Split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n    split_results = []\n    for i in range(args.n_splits):\n        rng = np.random.RandomState(args.seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_a)\n        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_b)\n        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n        rho, p = stats.spearmanr(arr_a, arr_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_groups\": len(arr_a)})\n        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))\n    std_rho = float(np.std([r[\"rho\"] for r in split_results]))\n\n    # --- Phase 3: Calibration size sensitivity ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 3: Calibration size sensitivity...\")\n    size_results = []\n    for n_sub in [128, 256, 512]:\n        if n_sub >= n_total:\n            continue\n        rng = np.random.RandomState(args.seed)\n        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                       n_heads_orig, n_kv_heads, sub_idx)\n        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n        rho, p = stats.spearmanr(ref_vals, sub_vals)\n        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                             \"p_value\": float(p)})\n        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n    # --- Compile and save results ---\n    per_group = {}\n    for (l, g), v in full_scores.items():\n        key = f\"layer{l}_group{g}\"\n        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"pruned_model\": args.pruned_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"valid_gqa_groups\": len(valid_scores),\n            \"seed\": args.seed,\n        },\n        \"per_group_cka_scores\": per_group,\n        \"cka_summary\": {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        },\n        \"split_half_reliability\": {\n            \"per_split\": split_results,\n            \"mean_rho\": mean_rho,\n            \"std_rho\": std_rho,\n            \"pass\": mean_rho > 0.9,\n        },\n        \"size_sensitivity\": {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        },\n    }\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n          f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"\n    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")\n    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")\n    for r in split_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n    print(f\"\\nSize sensitivity (vs N={n_total}):\")\n    for s in size_results:\n        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T03:05:03.447882+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T03:05:03.448035+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T03:05:03.448163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T03:05:03.448453+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | ssh connect.westb.seetacloud.com \"cat > /root/recovery_aware_struct_prune/src/run_cka_reliability.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T03:05:03.448776+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cat /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | ssh connect.westb.seetacloud.com \\\\\\\"cat > /root/recovery_aware_struct_prune/src/run_cka_reliability.py\\\\\\\"'\\\\n\\\\nExit code: 255\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\ncat: /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py: No such file or directory\\\\nWarning: Permanently added 'connect.westb.seetacloud.com' (ED25519) to the list of known hosts.\\\\nPermission denied, please try again.\\\\nPermission denied, please try again.\\\\nroot@connect.westb.seetacloud.com: Permission denied ().\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.6}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T03:05:03.448945+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T03:05:03.449179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCKA Reliability Analysis for RASP.\n3\t\n4\tValidates the stability of cross-model CKA scores (original vs pruned) by:\n5\t1. Split-half reliability: Spearman rho between CKA scores on two data halves\n6\t2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n7\t\n8\tAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\timport sys\n17\t\n18\timport numpy as np\n19\timport scipy.stats as stats\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\n25\tlogger = logging.getLogger(__name__)\n26\t\n27\t\n28\tdef set_seed(seed):\n29\t    random.seed(seed)\n30\t    np.random.seed(seed)\n31\t    torch.manual_seed(seed)\n32\t    torch.cuda.manual_seed_all(seed)\n33\t\n34\t\n35\tdef linear_cka(X, Y):\n36\t    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n37\t    X = X - X.mean(0)\n38\t    Y = Y - Y.mean(0)\n39\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n40\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n41\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n42\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n43\t\n44\t\n45\tdef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n46\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n47\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n48\t    encodings = []\n49\t    for example in ds:\n50\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n51\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n52\t        encodings.append(ids)\n53\t    return encodings\n54\t\n55\t\n56\tdef collect_qproj_activations(model, calibration_data, device):\n57\t    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n58\t   \n…[truncated 14147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T03:05:03.449372+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | wc -c",
+              "description": "Get base64 size of file"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T03:05:03.449506+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19988"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T03:05:03.449626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py",
+              "description": "Base64 encode the script for transfer"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T03:05:03.449853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3Rh\nYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6\nCjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29y\nZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNw\nZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBD\nbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFi\nbGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9y\ndCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQg\nc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxv\nYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0s\nIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBm\nb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9\nIGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJh\nbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFs\nX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxp\nbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24g\nbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkK\nICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAi\nZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIK\nICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4g\nKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAx\nZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2Ft\ncGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9w\nZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShz\nZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNv\nZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWV\n…[truncated 17987 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T03:05:03.450029+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "echo 'IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNvZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWVzdGlvbjoge2V4YW1wbGVbJ3F1ZXN0aW9uJ119XG5BbnN3ZXI6IExldCBtZSB0aGluayBzdGVwIGJ5IHN0ZXAuXG4iCiAgICAgICAgaWRzID0gdG9rZW5pemVyKHByb21wdCwgcmV0dXJuX3RlbnNvcnM9InB0IiwgdHJ1bmNhdGlvbj1UcnVlLCBtYXhfbGVuZ3RoPW1heF9sZW5ndGgpCiAgICAgICAgZW5jb2RpbmdzLmFwcGVuZChpZHMpCiAgICByZXR1cm4gZW5jb2RpbmdzCgoKZGVmIGNvbGxlY3RfcXByb2pfYWN0aXZhdGlvbnMobW9kZWwsIGNhbGlicmF0aW9uX2RhdGEsIGRldmljZSk6CiAgICAiIiJDb2xsZWN0IHBlci1oZWFkIHFfcHJvaiBhY3RpdmF0aW9ucywgbWVhbi1wb29sZWQgb3ZlciBzZXEgbGVuZ3RoLgogICAgUmV0dXJucyBkaWN0W2xheWVyX2lkeF0gLT4gdGVuc29yW25fc2FtcGxlcywgbl9oZWFkc19pbl9sYXllciwgaGVhZF9kaW1dIG9uIENQVSBmbG9hdDMyLgogICAgIiIiCiAgICBuX2xheWVycyA9IG1vZGVsLmNvbmZpZy5udW1faGlkZGVuX2xheWVycwogICAgaGVhZF9kaW0gPSBtb2RlbC5jb25maWcuaGlkZGVuX3NpemUgLy8gbW9kZWwuY29uZmlnLm51bV9hdHRlbnRpb25faGVhZHMKCiAgICBxX291dHB1dHMgPSB7aTogW10gZm9yIGkgaW4gcmFuZ2Uobl9sYXllcnMpfQogICAgaG9va3MgPSBbXQoKICAgIGRlZiBtYWtlX2hvb2sobGF5ZXJfaWR4KToKICAgICAgICBkZWYgZm4obW9kdWxlLCBpbnAsIG91dCk6CiAgICAgICAgICAgIHFfb3V0cHV0c1tsYXllcl9pZHhdLmFwcGVuZChvdXQuZGV0YWNoKCkuY3B1KCkpCiAgICAgICAgcmV0dXJuIGZuCgogICAgZm9yIGkgaW4gcmFuZ2Uobl9sYXllcnMpOgogICAgICAgIGggPSBtb2RlbC5tb2RlbC5sYXllcnNbaV0uc2VsZl9hdHRuLnFfcHJvai5yZWdpc3Rlcl9mb3J3YXJkX2hvb2sobWFrZV9ob29rKGkpKQogICAgICAgIGhvb2tzLmFwcGVuZChoKQoKICAgIG1vZGVsLmV2YWwoKQogICAgd2l0aCB0b3JjaC5ub19ncmFkKCk6CiAgICAgICAgZm9yIGlkeCwgZW5jIGluIGVudW1lcmF0ZShjYWxpYnJhdGlvbl9kYXRhKToKICAgICAgICAgICAgaW5wdXRfaWRzID0gZW5jWyJpbnB1dF9pZHMiXS50byhkZXZpY2UpCiAgICAgICAgICAgIGF0dGVudGlvbl9tYXNrID0gZW5jWyJhdHRlbnRpb25fbWFzayJdLnRvKGRldmljZSkKICAgICAgICAgICAgbW9kZWwoaW5wdXRfaWRzPWlucHV0X2lkcywgYXR0ZW50aW9uX21hc2s9YXR0ZW50aW9uX21hc2ssIHVzZV9jYWNoZT1GYWxzZSkKICAgICAgICAgICAgaWYgKGlkeCArIDEpICUgMjAwID09IDA6CiAgICAgICAgICAgICAgICBsb2dnZXIuaW5mbyhmIiAgRm9yd2FyZCBwYXNzIHtpZHggKyAxfS97bGVuKGNhbGlicmF0aW9uX2RhdGEpfSIpCgogICAgZm9yIGggaW4gaG9va3M6CiAgICAgICAgaC5yZW1vdmUoKQoKICAgIGFjdGl2YXRpb25zID0ge30KICAgIGZvciBsYXllcl9pZHggaW4gcmFuZ2Uobl9sYXllcnMpOgogICAgICAgIG91dF9kaW0gPSBxX291dHB1dHNbbGF5ZXJfaWR4XVswXS5zcXVlZXplKDApLnNoYXBlWy0xXQogICAgICAgIG5faGVhZHMgPSBvdXRfZGltIC8vIGhlYWRfZGltCiAgICAgICAgcGVyX2hlYWQgPSBbXQogICAgICAgIGZvciB0IGluIHFfb3V0cHV0c1tsYXllcl9pZHhdOgogICAgICAgICAgICB0ID0gdC5zcXVlZXplKDApICAjIFtzZXEsIG5faGVhZHMgKiBoZWFkX2RpbV0KICAgICAgICAgICAgdCA9IHQudmlldyh0LnNoYXBlWzBdLCBuX2hlYWRzLCBoZWFkX2RpbSkgICMgW3NlcSwgbl9oZWFkcywgaGVhZF9kaW1dCiAgICAgICAgICAgIHQgPSB0Lm1lYW4oZGltPTApICAjIFtuX2hlYWRzLCBoZWFkX2RpbV0KICAgICAgICAgICAgcGVyX2hlYWQuYXBwZW5kKHQpCiAgICAgICAgYWN0aXZhdGlvbnNbbGF5ZXJfaWR4XSA9IHRvcmNoLnN0YWNrKHBlcl9oZWFkLCBkaW09MCkuZmxvYXQoKQogICAgICAgIHFfb3V0cHV0c1tsYXllcl9pZHhdID0gTm9uZQoKICAgIHJldHVybiBhY3RpdmF0aW9ucwoKCmRlZiBsb2FkX3BydW5lZF9tb2RlbF93aXRoX21ldGEoYmFzZV9tb2RlbF9wYXRoLCBwcnVuZWRfbW9kZWxfcGF0aCwgdG9yY2hfZHR5cGUsIGRldmljZSk6CiAgICAiIiJMb2FkIHN0cnVjdHVyYWxseSBwcnVuZWQgbW9kZWwgdmlhIGJhc2UgbW9kZWwgcmVjb25zdHJ1Y3Rpb24gKyBzYXZlZCB3ZWlnaHRzLiIiIgogICAgbWV0YV9wYXRoID0gb3MucGF0aC5qb2luKHBydW5lZF9tb2RlbF9wYXRoLCAicHJ1bmluZ19tZXRhZGF0YS5wdCIpCiAgICBwcnVuaW5nX21ldGEgPSB0b3JjaC5sb2FkKG1ldGFfcGF0aCwgbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9VHJ1ZSkKCiAgICBzcmNfZGlyID0gb3MucGF0aC5kaXJuYW1lKG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiAgICBpZiBzcmNfZGlyIG5vdCBpbiBzeXMucGF0aDoKICAgICAgICBzeXMucGF0aC5pbnNlcnQoMCwgc3JjX2RpcikKICAgIGZyb20gcHJ1bmUgaW1wb3J0IHBydW5lX2F0dGVudGlvbl9oZWFkcywgcHJ1bmVfbWxwX2NoYW5uZWxzCgogICAgbG9nZ2luZy5nZXRMb2dnZXIoInBydW5lIikuc2V0TGV2ZWwobG9nZ2luZy5XQVJOSU5HKQogICAgbW9kZWwgPSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgYmFzZV9tb2RlbF9wYXRoLCB0b3JjaF9kdHlwZT10b3JjaF9kdHlwZSwgZGV2aWNlX21hcD0iY3B1IiwgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZQogICAgKQogICAgcHJ1bmVfYXR0ZW50aW9uX2hlYWRzKG1vZGVsLCBwcnVuaW5nX21ldGFbImF0dG5fa2VlcF9tYXNrcyJdKQogICAgcHJ1bmVfbWxwX2NoYW5uZWxzKG1vZGVsLCBwcnVuaW5nX21ldGFbIm1scF9rZWVwX21hc2tzIl0pCgogICAgc2FmZXRlbnNvcl9maWxlcyA9IHNvcnRlZCgKICAgICAgICBbZiBmb3IgZiBpbiBvcy5saXN0ZGlyKHBydW5lZF9tb2RlbF9wYXRoKSBpZiBmLmVuZHN3aXRoKCIuc2FmZXRlbnNvcnMiKV0KICAgICkKICAgIGlmIHNhZmV0ZW5zb3JfZmlsZXM6CiAgICAgICAgZnJvbSBzYWZldGVuc29ycy50b3JjaCBpbXBvcnQgbG9hZF9maWxlCiAgICAgICAgc3RhdGVfZGljdCA9IHt9CiAgICAgICAgZm9yIGYgaW4gc2FmZXRlbnNvcl9maWxlczoKICAgICAgICAgICAgc3RhdGVfZGljdC51cGRhdGUobG9hZF9maWxlKG9zLnBhdGguam9pbihwcnVuZWRfbW9kZWxfcGF0aCwgZikpKQogICAgZWxzZToKICAgICAgICBzdGF0ZV9kaWN0ID0gdG9yY2gubG9hZCgKICAgICAgICAgICAgb3MucGF0aC5qb2luKHBydW5lZF9tb2RlbF9wYXRoLCAicHl0b3JjaF9tb2RlbC5iaW4iKSwKICAgICAgICAgICAgbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9VHJ1ZSwKICAgICAgICApCiAgICBtb2RlbC5sb2FkX3N0YXRlX2RpY3Qoc3RhdGVfZGljdCkKICAgIG1vZGVsLnRvKGRldmljZSkKICAgIHJldHVybiBtb2RlbCwgcHJ1bmluZ19tZXRhCgoKZGVmIGNvbXB1dGVfZ3JvdXBfY2thKG9yaWdfYWN0cywgcHJ1bmVkX2FjdHMsIGtlZXBfbWFza3MsIG5faGVhZHNfb3JpZywgbl9rdl9oZWFkcywKICAgICAgICAgICAgICAgICAgICAgIHNhbXBsZV9pbmRpY2VzPU5vbmUpOgogICAgIiIiQ29tcHV0ZSBwZXItR1FBLWdyb3VwIENLQSBiZXR3ZWVuIG9yaWdpbmFsIGFuZCBwcnVuZWQgcmVwcmVzZW50YXRpb25zLgoKICAgIEZvciBlYWNoIEtWIGdyb3VwLCBjb25jYXRlbmF0ZXMgcmV0YWluZWQgUSBoZWFkIGFjdGl2YXRpb25zIGZyb20gYm90aCBtb2RlbHMKICAgIGFuZCBjb21wdXRlcyBsaW5lYXIgQ0tBLiBPcmlnaW5hbCB1c2VzIGFsbCBRIGhlYWRzIGluIHRoZSBncm91cCwgcHJ1bmVkIHVzZXMKICAgIG9ubHkgcmV0YWluZWQgUSBoZWFkcyAoQ0tBIGhhbmRsZXMgZGlmZmVyZW50IGZlYXR1cmUgZGltZW5zaW9ucykuCgogICAgUmV0dXJucyBkaWN0WyhsYXllciwgZ3JvdXApXSAtPiBmbG9hdCAob3IgTmFOIGlmIGdyb3VwIGZ1bGx5IHBydW5lZCkuCiAgICAiIiIKICAgIGhlYWRzX3Blcl9rdiA9IG5faGVhZHNfb3JpZyAvLyBuX2t2X2hlYWRzCiAgICBuX2xheWVycyA9IGxlbihvcmlnX2FjdHMpCiAgICBzY29yZXMgPSB7fQoKICAgIGZvciBsYXllcl9pZHggaW4gcmFuZ2Uobl9sYXllcnMpOgogICAgICAgIG9yaWdfbGF5ZXIgPSBvcmlnX2FjdHNbbGF5ZXJfaWR4XSAgICMgW04sIG5faGVhZHNfb3JpZywgaGVhZF9kaW1dCiAgICAgICAgcHJ1bmVkX2xheWVyID0gcHJ1bmVkX2FjdHNbbGF5ZXJfaWR4XSAgIyBbTiwgbl9yZXRhaW5lZCwgaGVhZF9kaW1dCiAgICAgICAgcmV0YWluZWQgPSBrZWVwX21hc2tzW2xheWVyX2lkeF0KCiAgICAgICAgaWYgc2FtcGxlX2luZGljZXMgaXMgbm90IE5vbmU6CiAgICAgICAgICAgIG9yaWdfbGF5ZXIgPSBvcmlnX2xheWVyW3NhbXBsZV9pbmRpY2VzXQogICAgICAgICAgICBwcnVuZWRfbGF5ZXIgPSBwcnVuZWRfbGF5ZXJbc2FtcGxlX2luZGljZXNdCgogICAgICAgIGZvciBnIGluIHJhbmdlKG5fa3ZfaGVhZHMpOgogICAgICAgICAgICBvcmlnX2hlYWRfcmFuZ2UgPSBsaXN0KHJhbmdlKGcgKiBoZWFkc19wZXJfa3YsIChnICsgMSkgKiBoZWFkc19wZXJfa3YpKQogICAgICAgICAgICBwcnVuZWRfcG9zaXRpb25zID0gW2kgZm9yIGksIGggaW4gZW51bWVyYXRlKHJldGFpbmVkKSBpZiBoIGluIG9yaWdfaGVhZF9yYW5nZV0KCiAgICAgICAgICAgIGlmIG5vdCBwcnVuZWRfcG9zaXRpb25zOgogICAgICAgICAgICAgICAgc2NvcmVzWyhsYXllcl9pZHgsIGcpXSA9IGZsb2F0KCJuYW4iKQogICAgICAgICAgICAgICAgY29udGludWUKCiAgICAgICAgICAgIG4gPSBvcmlnX2xheWVyLnNoYXBlWzBdCiAgICAgICAgICAgIG9yaWdfZmxhdCA9IG9yaWdfbGF5ZXJbOiwgb3JpZ19oZWFkX3JhbmdlLCA6XS5yZXNoYXBlKG4sIC0xKQogICAgICAgICAgICBwcnVuZWRfZmxhdCA9IHBydW5lZF9sYXllcls6LCBwcnVuZWRfcG9zaXRpb25zLCA6XS5yZXNoYXBlKG4sIC0xKQogICAgICAgICAgICBzY29yZXNbKGxheWVyX2lkeCwgZyldID0gbGluZWFyX2NrYShvcmlnX2ZsYXQsIHBydW5lZF9mbGF0KQoKICAgIHJldHVybiBzY29yZXMKCgpkZWYgc2NvcmVzX3RvX2FsaWduZWRfYXJyYXlzKHNjb3Jlc19hLCBzY29yZXNfYik6CiAgICAiIiJFeHRyYWN0IGFsaWduZWQgbm9uLU5hTiB2YWx1ZSBhcnJheXMgZnJvbSB0d28gc2NvcmUgZGljdHMuIiIiCiAgICBjb21tb24gPSBzb3J0ZWQoc2V0KHNjb3Jlc19hLmtleXMoKSkgJiBzZXQoc2NvcmVzX2Iua2V5cygpKSkKICAgIGFfdmFscywgYl92YWxzID0gW10sIFtdCiAgICBmb3IgayBpbiBjb21tb246CiAgICAgICAgdmEsIHZiID0gc2NvcmVzX2Fba10sIHNjb3Jlc19iW2tdCiAgICAgICAgaWYgKGlzaW5zdGFuY2UodmEsIGZsb2F0KSBhbmQgdmEgIT0gdmEpIG9yIChpc2luc3RhbmNlKHZiLCBmbG9hdCkgYW5kIHZiICE9IHZiKToKICAgICAgICAgICAgY29udGludWUKICAgICAgICBhX3ZhbHMuYXBwZW5kKHZhKQogICAgICAgIGJfdmFscy5hcHBlbmQodmIpCiAgICByZXR1cm4gbnAuYXJyYXkoYV92YWxzKSwgbnAuYXJyYXkoYl92YWxzKQoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcihkZXNjcmlwdGlvbj0iQ0tBIFJlbGlhYmlsaXR5IEFuYWx5c2lzIGZvciBSQVNQIHNjb3JpbmciKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1vcmlnaW5hbF9tb2RlbCIsIHR5cGU9c3RyLCByZXF1aXJlZD1UcnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1wcnVuZWRfbW9kZWwiLCB0eXBlPXN0ciwgcmVxdWlyZWQ9VHJ1ZSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZ3B1X2lkIiwgdHlwZT1pbnQsIGRlZmF1bHQ9MCkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbnVtX3NhbXBsZXMiLCB0eXBlPWludCwgZGVmYXVsdD0xMDI0KQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1tYXhfbGVuZ3RoIiwgdHlwZT1pbnQsIGRlZmF1bHQ9NTEyKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1uX3NwbGl0cyIsIHR5cGU9aW50LCBkZWZhdWx0PTUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIHR5cGU9c3RyLCByZXF1aXJlZD1UcnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1zZWVkIiwgdHlwZT1pbnQsIGRlZmF1bHQ9NDIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWR0eXBlIiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImJmbG9hdDE2IiwKICAgICAgICAgICAgICAgICAgICAgICAgY2hvaWNlcz1bImZsb2F0MTYiLCAiYmZsb2F0MTYiLCAiZmxvYXQzMiJdKQogICAgYXJncyA9IHBhcnNlci5wYXJzZV9hcmdzKCkKCiAgICBzZXRfc2VlZChhcmdzLnNlZWQpCiAgICBkZXZpY2UgPSB0b3JjaC5kZXZpY2UoZiJjdWRhOnthcmdzLmdwdV9pZH0iIGlmIHRvcmNoLmN1ZGEuaXNfYXZhaWxhYmxlKCkgZWxzZSAiY3B1IikKICAgIHRvcmNoX2R0eXBlID0geyJmbG9hdDE2IjogdG9yY2guZmxvYXQxNiwgImJmbG9hdDE2IjogdG9yY2guYmZsb2F0MTYsCiAgICAgICAgICAgICAgICAgICAiZmxvYXQzMiI6IHRvcmNoLmZsb2F0MzJ9W2FyZ3MuZHR5cGVdCgogICAgbG9nZ2VyLmluZm8oIkxvYWRpbmcgdG9rZW5pemVyIGFuZCBjYWxpYnJhdGlvbiBkYXRhLi4uIikKICAgIHRva2VuaXplciA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKGFyZ3Mub3JpZ2luYWxfbW9kZWwsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUpCiAgICBjYWxpYnJhdGlvbl9kYXRhID0gbG9hZF9jYWxpYnJhdGlvbl9kYXRhKHRva2VuaXplciwgYXJncy5udW1fc2FtcGxlcywgYXJncy5tYXhfbGVuZ3RoLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhcmdzLnNlZWQpCiAgICBuX3RvdGFsID0gbGVuKGNhbGlicmF0aW9uX2RhdGEpCiAgICBsb2dnZXIuaW5mbyhmIkxvYWRlZCB7bl90b3RhbH0gY2FsaWJyYXRpb24gc2FtcGxlcyIpCgogICAgIyAtLS0gQ29sbGVjdCBhY3RpdmF0aW9ucyAobG9hZCBtb2RlbHMgb25lIGF0IGEgdGltZSB0byBzYXZlIEdQVSBtZW1vcnkpIC0tLQogICAgbG9nZ2VyLmluZm8oIkxvYWRpbmcgb3JpZ2luYWwgbW9kZWwuLi4iKQogICAgb3JpZ19tb2RlbCA9IEF1dG9Nb2RlbEZvckNhdXNhbExNLmZyb21fcHJldHJhaW5lZCgKICAgICAgICBhcmdzLm9yaWdpbmFsX21vZGVsLCB0b3JjaF9kdHlwZT10b3JjaF9kdHlwZSwgZGV2aWNlX21hcD1kZXZpY2UsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUKICAgICkKICAgIGNvbmZpZyA9IG9yaWdfbW9kZWwuY29uZmlnCiAgICBuX2hlYWRzX29yaWcgPSBjb25maWcubnVtX2F0dGVudGlvbl9oZWFkcwogICAgbl9rdl9oZWFkcyA9IGNvbmZpZy5udW1fa2V5X3ZhbHVlX2hlYWRzCiAgICBuX2xheWVycyA9IGNvbmZpZy5udW1faGlkZGVuX2xheWVycwogICAgaGVhZHNfcGVyX2t2ID0gbl9oZWFkc19vcmlnIC8vIG5fa3ZfaGVhZHMKICAgIGxvZ2dlci5pbmZvKGYiQXJjaGl0ZWN0dXJlOiB7bl9sYXllcnN9TCB4IHtuX2hlYWRzX29yaWd9USB4IHtuX2t2X2hlYWRzfUtWICIKICAgICAgICAgICAgICAgIGYiKHtoZWFkc19wZXJfa3Z9IFEvS1YgZ3JvdXAsIHtuX2xheWVycyAqIG5fa3ZfaGVhZHN9IHRvdGFsIGdyb3VwcykiKQoKICAgIGxvZ2dlci5pbmZvKCJDb2xsZWN0aW5nIG9yaWdpbmFsIG1vZGVsIGFjdGl2YXRpb25zLi4uIikKICAgIG9yaWdfYWN0cyA9IGNvbGxlY3RfcXByb2pfYWN0aXZhdGlvbnMob3JpZ19tb2RlbCwgY2FsaWJyYXRpb25fZGF0YSwgZGV2aWNlKQogICAgZGVsIG9yaWdfbW9kZWwKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgbG9nZ2VyLmluZm8oIk9yaWdpbmFsIG1vZGVsIGZyZWVkLiIpCgogICAgbG9nZ2VyLmluZm8oIkxvYWRpbmcgcHJ1bmVkIG1vZGVsLi4uIikKICAgIHBydW5lZF9tb2RlbCwgcHJ1bmluZ19tZXRhID0gbG9hZF9wcnVuZWRfbW9kZWxfd2l0aF9tZXRhKAogICAgICAgIGFyZ3Mub3JpZ2luYWxfbW9kZWwsIGFyZ3MucHJ1bmVkX21vZGVsLCB0b3JjaF9kdHlwZSwgZGV2aWNlCiAgICApCiAgICBrZWVwX21hc2tzID0gcHJ1bmluZ19tZXRhWyJhdHRuX2tlZXBfbWFza3MiXQogICAgbG9nZ2VyLmluZm8oIkNvbGxlY3RpbmcgcHJ1bmVkIG1vZGVsIGFjdGl2YXRpb25zLi4uIikKICAgIHBydW5lZF9hY3RzID0gY29sbGVjdF9xcHJval9hY3RpdmF0aW9ucyhwcnVuZWRfbW9kZWwsIGNhbGlicmF0aW9uX2RhdGEsIGRldmljZSkKICAgIGRlbCBwcnVuZWRfbW9kZWwKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgbG9nZ2VyLmluZm8oIlBydW5lZCBtb2RlbCBmcmVlZC4gQWxsIGFjdGl2YXRpb25zIGNhY2hlZCBvbiBDUFUuIikKCiAgICAjIC0tLSBQaGFzZSAxOiBGdWxsIENLQSBzY29yZXMgLS0tCiAgICBsb2dnZXIuaW5mbygiPSIgKiA1MCkKICAgIGxvZ2dlci5pbmZvKCJQaGFzZSAxOiBGdWxsIENLQSBzY29yZXMgKE49JWQpLi4uIiwgbl90b3RhbCkKICAgIGZ1bGxfc2NvcmVzID0gY29tcHV0ZV9ncm91cF9ja2Eob3JpZ19hY3RzLCBwcnVuZWRfYWN0cywga2VlcF9tYXNrcywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbl9oZWFkc19vcmlnLCBuX2t2X2hlYWRzKQogICAgdmFsaWRfc2NvcmVzID0ge2s6IHYgZm9yIGssIHYgaW4gZnVsbF9zY29yZXMuaXRlbXMoKQogICAgICAgICAgICAgICAgICAgIGlmIG5vdCAoaXNpbnN0YW5jZSh2LCBmbG9hdCkgYW5kIHYgIT0gdil9CiAgICB2YWxzID0gbnAuYXJyYXkobGlzdCh2YWxpZF9zY29yZXMudmFsdWVzKCkpKQogICAgbG9nZ2VyLmluZm8oZiJWYWxpZCBncm91cHM6IHtsZW4odmFsaWRfc2NvcmVzKX0ve25fbGF5ZXJzICogbl9rdl9oZWFkc30iKQogICAgbG9nZ2VyLmluZm8oZiJDS0E6IG1lYW49e3ZhbHMubWVhbigpOi40Zn0sIHN0ZD17dmFscy5zdGQoKTouNGZ9LCAiCiAgICAgICAgICAgICAgICBmInJhbmdlPVt7dmFscy5taW4oKTouNGZ9LCB7dmFscy5tYXgoKTouNGZ9XSIpCgogICAgIyAtLS0gUGhhc2UgMjogU3BsaXQtaGFsZiByZWxpYWJpbGl0eSAtLS0KICAgIGxvZ2dlci5pbmZvKCI9IiAqIDUwKQogICAgbG9nZ2VyLmluZm8oIlBoYXNlIDI6IFNwbGl0LWhhbGYgcmVsaWFiaWxpdHkgKCVkIHNwbGl0cykuLi4iLCBhcmdzLm5fc3BsaXRzKQogICAgc3BsaXRfcmVzdWx0cyA9IFtdCiAgICBmb3IgaSBpbiByYW5nZShhcmdzLm5fc3BsaXRzKToKICAgICAgICBybmcgPSBucC5yYW5kb20uUmFuZG9tU3RhdGUoYXJncy5zZWVkICsgaSkKICAgICAgICBwZXJtID0gcm5nLnBlcm11dGF0aW9uKG5fdG90YWwpCiAgICAgICAgaGFsZiA9IG5fdG90YWwgLy8gMgogICAgICAgIGlkeF9hID0gc29ydGVkKHBlcm1bOmhhbGZdLnRvbGlzdCgpKQogICAgICAgIGlkeF9iID0gc29ydGVkKHBlcm1baGFsZjoyICogaGFsZl0udG9saXN0KCkpCgogICAgICAgIHNjb3Jlc19hID0gY29tcHV0ZV9ncm91cF9ja2Eob3JpZ19hY3RzLCBwcnVuZWRfYWN0cywga2VlcF9tYXNrcywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIG5faGVhZHNfb3JpZywgbl9rdl9oZWFkcywgaWR4X2EpCiAgICAgICAgc2NvcmVzX2IgPSBjb21wdXRlX2dyb3VwX2NrYShvcmlnX2FjdHMsIHBydW5lZF9hY3RzLCBrZWVwX21hc2tzLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbl9oZWFkc19vcmlnLCBuX2t2X2hlYWRzLCBpZHhfYikKICAgICAgICBhcnJfYSwgYXJyX2IgPSBzY29yZXNfdG9fYWxpZ25lZF9hcnJheXMoc2NvcmVzX2EsIHNjb3Jlc19iKQogICAgICAgIHJobywgcCA9IHN0YXRzLnNwZWFybWFucihhcnJfYSwgYXJyX2IpCiAgICAgICAgc3BsaXRfcmVzdWx0cy5hcHBlbmQoeyJzcGxpdCI6IGksICJyaG8iOiBmbG9hdChyaG8pLCAicF92YWx1ZSI6IGZsb2F0KHApLAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAibl9ncm91cHMiOiBsZW4oYXJyX2EpfSkKICAgICAgICBsb2dnZXIuaW5mbyhmIiAgU3BsaXQge2l9OiByaG89e3JobzouNGZ9LCBwPXtwOi4yZX0iKQoKICAgIG1lYW5fcmhvID0gZmxvYXQobnAubWVhbihbclsicmhvIl0gZm9yIHIgaW4gc3BsaXRfcmVzdWx0c10pKQogICAgc3RkX3JobyA9IGZsb2F0KG5wLnN0ZChbclsicmhvIl0gZm9yIHIgaW4gc3BsaXRfcmVzdWx0c10pKQoKICAgICMgLS0tIFBoYXNlIDM6IENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHkgLS0tCiAgICBsb2dnZXIuaW5mbygiPSIgKiA1MCkKICAgIGxvZ2dlci5pbmZvKCJQaGFzZSAzOiBDYWxpYnJhdGlvbiBzaXplIHNlbnNpdGl2aXR5Li4uIikKICAgIHNpemVfcmVzdWx0cyA9IFtdCiAgICBmb3Igbl9zdWIgaW4gWzEyOCwgMjU2LCA1MTJdOgogICAgICAgIGlmIG5fc3ViID49IG5fdG90YWw6CiAgICAgICAgICAgIGNvbnRpbnVlCiAgICAgICAgcm5nID0gbnAucmFuZG9tLlJhbmRvbVN0YXRlKGFyZ3Muc2VlZCkKICAgICAgICBzdWJfaWR4ID0gc29ydGVkKHJuZy5wZXJtdXRhdGlvbihuX3RvdGFsKVs6bl9zdWJdLnRvbGlzdCgpKQoKICAgICAgICBzdWJfc2NvcmVzID0gY29tcHV0ZV9ncm91cF9ja2Eob3JpZ19hY3RzLCBwcnVuZWRfYWN0cywga2VlcF9tYXNrcywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbl9oZWFkc19vcmlnLCBuX2t2X2hlYWRzLCBzdWJfaWR4KQogICAgICAgIHJlZl92YWxzLCBzdWJfdmFscyA9IHNjb3Jlc190b19hbGlnbmVkX2FycmF5cyhmdWxsX3Njb3Jlcywgc3ViX3Njb3JlcykKICAgICAgICByaG8sIHAgPSBzdGF0cy5zcGVhcm1hbnIocmVmX3ZhbHMsIHN1Yl92YWxzKQogICAgICAgIHNpemVfcmVzdWx0cy5hcHBlbmQoeyJuX3NhbXBsZXMiOiBuX3N1YiwgInJob192c19mdWxsIjogZmxvYXQocmhvKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAicF92YWx1ZSI6IGZsb2F0KHApfSkKICAgICAgICBsb2dnZXIuaW5mbyhmIiAgTj17bl9zdWJ9OiByaG89e3JobzouNGZ9IHZzIE49e25fdG90YWx9IikKCiAgICAjIC0tLSBDb21waWxlIGFuZCBzYXZlIHJlc3VsdHMgLS0tCiAgICBwZXJfZ3JvdXAgPSB7fQogICAgZm9yIChsLCBnKSwgdiBpbiBmdWxsX3Njb3Jlcy5pdGVtcygpOgogICAgICAgIGtleSA9IGYibGF5ZXJ7bH1fZ3JvdXB7Z30iCiAgICAgICAgcGVyX2dyb3VwW2tleV0gPSBOb25lIGlmIChpc2luc3RhbmNlKHYsIGZsb2F0KSBhbmQgdiAhPSB2KSBlbHNlIGZsb2F0KHYpCgogICAgb3V0cHV0ID0gewogICAgICAgICJjb25maWciOiB7CiAgICAgICAgICAgICJvcmlnaW5hbF9tb2RlbCI6IGFyZ3Mub3JpZ2luYWxfbW9kZWwsCiAgICAgICAgICAgICJwcnVuZWRfbW9kZWwiOiBhcmdzLnBydW5lZF9tb2RlbCwKICAgICAgICAgICAgIm51bV9zYW1wbGVzIjogbl90b3RhbCwKICAgICAgICAgICAgIm5fbGF5ZXJzIjogbl9sYXllcnMsCiAgICAgICAgICAgICJuX2hlYWRzX29yaWdpbmFsIjogbl9oZWFkc19vcmlnLAogICAgICAgICAgICAibl9rdl9oZWFkcyI6IG5fa3ZfaGVhZHMsCiAgICAgICAgICAgICJoZWFkc19wZXJfa3YiOiBoZWFkc19wZXJfa3YsCiAgICAgICAgICAgICJ0b3RhbF9ncWFfZ3JvdXBzIjogbl9sYXllcnMgKiBuX2t2X2hlYWRzLAogICAgICAgICAgICAidmFsaWRfZ3FhX2dyb3VwcyI6IGxlbih2YWxpZF9zY29yZXMpLAogICAgICAgICAgICAic2VlZCI6IGFyZ3Muc2VlZCwKICAgICAgICB"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T03:05:03.450388+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: \\\\\\\"echo 'IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4o\n…[truncated 15792 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T03:05:03.450581+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | fold -w 4000 | head -1",
+              "description": "Get first chunk of base64"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T03:05:03.450724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNvZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWVzdGlvbjoge2V4YW1wbGVbJ3F1\n…[truncated 2000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T03:05:03.450869+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | fold -w 4000 | sed -n '2p'",
+              "description": "Get second chunk of base64"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T03:05:03.451006+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PSBvdXRfZGltIC8vIGhlYWRfZGltCiAgICAgICAgcGVyX2hlYWQgPSBbXQogICAgICAgIGZvciB0IGluIHFfb3V0cHV0c1tsYXllcl9pZHhdOgogICAgICAgICAgICB0ID0gdC5zcXVlZXplKDApICAjIFtzZXEsIG5faGVhZHMgKiBoZWFkX2RpbV0KICAgICAgICAgICAgdCA9IHQudmlldyh0LnNoYXBlWzBdLCBuX2hlYWRzLCBoZWFkX2RpbSkgICMgW3NlcSwgbl9oZWFkcywgaGVhZF9kaW1dCiAgICAgICAgICAgIHQgPSB0Lm1lYW4oZGltPTApICAjIFtuX2hlYWRzLCBoZWFkX2RpbV0KICAgICAgICAgICAgcGVyX2hlYWQuYXBwZW5kKHQpCiAgICAgICAgYWN0aXZhdGlvbnNbbGF5ZXJfaWR4XSA9IHRvcmNoLnN0YWNrKHBlcl9oZWFkLCBkaW09MCkuZmxvYXQoKQogICAgICAgIHFfb3V0cHV0c1tsYXllcl9pZHhdID0gTm9uZQoKICAgIHJldHVybiBhY3RpdmF0aW9ucwoKCmRlZiBsb2FkX3BydW5lZF9tb2RlbF93aXRoX21ldGEoYmFzZV9tb2RlbF9wYXRoLCBwcnVuZWRfbW9kZWxfcGF0aCwgdG9yY2hfZHR5cGUsIGRldmljZSk6CiAgICAiIiJMb2FkIHN0cnVjdHVyYWxseSBwcnVuZWQgbW9kZWwgdmlhIGJhc2UgbW9kZWwgcmVjb25zdHJ1Y3Rpb24gKyBzYXZlZCB3ZWlnaHRzLiIiIgogICAgbWV0YV9wYXRoID0gb3MucGF0aC5qb2luKHBydW5lZF9tb2RlbF9wYXRoLCAicHJ1bmluZ19tZXRhZGF0YS5wdCIpCiAgICBwcnVuaW5nX21ldGEgPSB0b3JjaC5sb2FkKG1ldGFfcGF0aCwgbWFwX2xvY2F0aW9uPSJjcHUiLCB3ZWlnaHRzX29ubHk9VHJ1ZSkKCiAgICBzcmNfZGlyID0gb3MucGF0aC5kaXJuYW1lKG9zLnBhdGguYWJzcGF0aChfX2ZpbGVfXykpCiAgICBpZiBzcmNfZGlyIG5vdCBpbiBzeXMucGF0aDoKICAgICAgICBzeXMucGF0aC5pbnNlcnQoMCwgc3JjX2RpcikKICAgIGZyb20gcHJ1bmUgaW1wb3J0IHBydW5lX2F0dGVudGlvbl9oZWFkcywgcHJ1bmVfbWxwX2NoYW5uZWxzCgogICAgbG9nZ2luZy5nZXRMb2dnZXIoInBydW5lIikuc2V0TGV2ZWwobG9nZ2luZy5XQVJOSU5HKQogICAgbW9kZWwgPSBBdXRvTW9kZWxGb3JDYXVzYWxMTS5mcm9tX3ByZXRyYWluZWQoCiAgICAgICAgYmFzZV9tb2RlbF9wYXRoLCB0b3JjaF9kdHlwZT10b3JjaF9kdHlwZSwgZGV2aWNlX21hcD0iY3B1IiwgdHJ1c3RfcmVtb3RlX2NvZGU9VHJ1ZQogICAgKQogICAgcHJ1bmVfYXR0ZW50aW9uX2hlYWRzKG1vZGVsLCBwcnVuaW5nX21ldGFbImF0dG5fa2VlcF9tYXNrcyJdKQogICAgcHJ1bmVfbWxwX2NoYW5uZWxzKG1vZGVsLCBwcnVuaW5nX21ldGFbIm1scF9rZWVwX21hc2tzIl0pCgogICAgc2FmZXRlbnNvcl9maWxlcyA9IHNvcnRlZCgKICAgICAgICBbZiBmb3IgZiBpbiBvcy5saXN0ZGlyKHBydW5lZF9tb2RlbF9wYXRoKSBpZiBmLmVuZHN3aXRoKCIuc2FmZXRlbnNvcnMiKV0KICAgICkKICAgIGlmIHNhZmV0ZW5zb3JfZmlsZXM6CiAgICAgICAgZnJvbSBzYWZldGVuc29ycy50b3JjaCBpbXBvcnQgbG9hZF9maWxlCiAgICAgICAgc3RhdGVfZGlj\n…[truncated 2000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T03:05:03.451143+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | fold -w 4000 | sed -n '3p'",
+              "description": "Get third chunk of base64"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T03:05:03.451306+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ICAgICBwcnVuZWRfcG9zaXRpb25zID0gW2kgZm9yIGksIGggaW4gZW51bWVyYXRlKHJldGFpbmVkKSBpZiBoIGluIG9yaWdfaGVhZF9yYW5nZV0KCiAgICAgICAgICAgIGlmIG5vdCBwcnVuZWRfcG9zaXRpb25zOgogICAgICAgICAgICAgICAgc2NvcmVzWyhsYXllcl9pZHgsIGcpXSA9IGZsb2F0KCJuYW4iKQogICAgICAgICAgICAgICAgY29udGludWUKCiAgICAgICAgICAgIG4gPSBvcmlnX2xheWVyLnNoYXBlWzBdCiAgICAgICAgICAgIG9yaWdfZmxhdCA9IG9yaWdfbGF5ZXJbOiwgb3JpZ19oZWFkX3JhbmdlLCA6XS5yZXNoYXBlKG4sIC0xKQogICAgICAgICAgICBwcnVuZWRfZmxhdCA9IHBydW5lZF9sYXllcls6LCBwcnVuZWRfcG9zaXRpb25zLCA6XS5yZXNoYXBlKG4sIC0xKQogICAgICAgICAgICBzY29yZXNbKGxheWVyX2lkeCwgZyldID0gbGluZWFyX2NrYShvcmlnX2ZsYXQsIHBydW5lZF9mbGF0KQoKICAgIHJldHVybiBzY29yZXMKCgpkZWYgc2NvcmVzX3RvX2FsaWduZWRfYXJyYXlzKHNjb3Jlc19hLCBzY29yZXNfYik6CiAgICAiIiJFeHRyYWN0IGFsaWduZWQgbm9uLU5hTiB2YWx1ZSBhcnJheXMgZnJvbSB0d28gc2NvcmUgZGljdHMuIiIiCiAgICBjb21tb24gPSBzb3J0ZWQoc2V0KHNjb3Jlc19hLmtleXMoKSkgJiBzZXQoc2NvcmVzX2Iua2V5cygpKSkKICAgIGFfdmFscywgYl92YWxzID0gW10sIFtdCiAgICBmb3IgayBpbiBjb21tb246CiAgICAgICAgdmEsIHZiID0gc2NvcmVzX2Fba10sIHNjb3Jlc19iW2tdCiAgICAgICAgaWYgKGlzaW5zdGFuY2UodmEsIGZsb2F0KSBhbmQgdmEgIT0gdmEpIG9yIChpc2luc3RhbmNlKHZiLCBmbG9hdCkgYW5kIHZiICE9IHZiKToKICAgICAgICAgICAgY29udGludWUKICAgICAgICBhX3ZhbHMuYXBwZW5kKHZhKQogICAgICAgIGJfdmFscy5hcHBlbmQodmIpCiAgICByZXR1cm4gbnAuYXJyYXkoYV92YWxzKSwgbnAuYXJyYXkoYl92YWxzKQoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcihkZXNjcmlwdGlvbj0iQ0tBIFJlbGlhYmlsaXR5IEFuYWx5c2lzIGZvciBSQVNQIHNjb3JpbmciKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1vcmlnaW5hbF9tb2RlbCIsIHR5cGU9c3RyLCByZXF1aXJlZD1UcnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1wcnVuZWRfbW9kZWwiLCB0eXBlPXN0ciwgcmVxdWlyZWQ9VHJ1ZSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZ3B1X2lkIiwgdHlwZT1pbnQsIGRlZmF1bHQ9MCkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbnVtX3NhbXBsZXMiLCB0eXBlPWludCwgZGVmYXVsdD0xMDI0KQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1tYXhfbGVuZ3RoIiwgdHlwZT1pbnQsIGRlZmF1bHQ9NTEyKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1uX3NwbGl0cyIsIHR5cGU9aW50LCBkZWZhdWx0PTUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIHR5cGU9c3RyLCBy\n…[truncated 2000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T03:05:03.451454+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | fold -w 4000 | sed -n '4p'",
+              "description": "Get fourth chunk of base64"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T03:05:03.451588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IG5fa3ZfaGVhZHN9IHRvdGFsIGdyb3VwcykiKQoKICAgIGxvZ2dlci5pbmZvKCJDb2xsZWN0aW5nIG9yaWdpbmFsIG1vZGVsIGFjdGl2YXRpb25zLi4uIikKICAgIG9yaWdfYWN0cyA9IGNvbGxlY3RfcXByb2pfYWN0aXZhdGlvbnMob3JpZ19tb2RlbCwgY2FsaWJyYXRpb25fZGF0YSwgZGV2aWNlKQogICAgZGVsIG9yaWdfbW9kZWwKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgbG9nZ2VyLmluZm8oIk9yaWdpbmFsIG1vZGVsIGZyZWVkLiIpCgogICAgbG9nZ2VyLmluZm8oIkxvYWRpbmcgcHJ1bmVkIG1vZGVsLi4uIikKICAgIHBydW5lZF9tb2RlbCwgcHJ1bmluZ19tZXRhID0gbG9hZF9wcnVuZWRfbW9kZWxfd2l0aF9tZXRhKAogICAgICAgIGFyZ3Mub3JpZ2luYWxfbW9kZWwsIGFyZ3MucHJ1bmVkX21vZGVsLCB0b3JjaF9kdHlwZSwgZGV2aWNlCiAgICApCiAgICBrZWVwX21hc2tzID0gcHJ1bmluZ19tZXRhWyJhdHRuX2tlZXBfbWFza3MiXQogICAgbG9nZ2VyLmluZm8oIkNvbGxlY3RpbmcgcHJ1bmVkIG1vZGVsIGFjdGl2YXRpb25zLi4uIikKICAgIHBydW5lZF9hY3RzID0gY29sbGVjdF9xcHJval9hY3RpdmF0aW9ucyhwcnVuZWRfbW9kZWwsIGNhbGlicmF0aW9uX2RhdGEsIGRldmljZSkKICAgIGRlbCBwcnVuZWRfbW9kZWwKICAgIHRvcmNoLmN1ZGEuZW1wdHlfY2FjaGUoKQogICAgbG9nZ2VyLmluZm8oIlBydW5lZCBtb2RlbCBmcmVlZC4gQWxsIGFjdGl2YXRpb25zIGNhY2hlZCBvbiBDUFUuIikKCiAgICAjIC0tLSBQaGFzZSAxOiBGdWxsIENLQSBzY29yZXMgLS0tCiAgICBsb2dnZXIuaW5mbygiPSIgKiA1MCkKICAgIGxvZ2dlci5pbmZvKCJQaGFzZSAxOiBGdWxsIENLQSBzY29yZXMgKE49JWQpLi4uIiwgbl90b3RhbCkKICAgIGZ1bGxfc2NvcmVzID0gY29tcHV0ZV9ncm91cF9ja2Eob3JpZ19hY3RzLCBwcnVuZWRfYWN0cywga2VlcF9tYXNrcywKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbl9oZWFkc19vcmlnLCBuX2t2X2hlYWRzKQogICAgdmFsaWRfc2NvcmVzID0ge2s6IHYgZm9yIGssIHYgaW4gZnVsbF9zY29yZXMuaXRlbXMoKQogICAgICAgICAgICAgICAgICAgIGlmIG5vdCAoaXNpbnN0YW5jZSh2LCBmbG9hdCkgYW5kIHYgIT0gdil9CiAgICB2YWxzID0gbnAuYXJyYXkobGlzdCh2YWxpZF9zY29yZXMudmFsdWVzKCkpKQogICAgbG9nZ2VyLmluZm8oZiJWYWxpZCBncm91cHM6IHtsZW4odmFsaWRfc2NvcmVzKX0ve25fbGF5ZXJzICogbl9rdl9oZWFkc30iKQogICAgbG9nZ2VyLmluZm8oZiJDS0E6IG1lYW49e3ZhbHMubWVhbigpOi40Zn0sIHN0ZD17dmFscy5zdGQoKTouNGZ9LCAiCiAgICAgICAgICAgICAgICBmInJhbmdlPVt7dmFscy5taW4oKTouNGZ9LCB7dmFscy5tYXgoKTouNGZ9XSIpCgogICAgIyAtLS0gUGhhc2UgMjogU3BsaXQtaGFsZiByZWxpYWJpbGl0eSAtLS0KICAgIGxvZ2dlci5pbmZvKCI9IiAqIDUwKQogICAgbG9nZ2VyLmluZm8oIlBoYXNlIDI6IFNwbGl0LWhh\n…[truncated 2000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T03:05:03.451727+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | fold -w 4000 | sed -n '5p'",
+              "description": "Get fifth chunk of base64"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T03:05:03.451858+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ICAgICAgICAgICAgICAgICAgICAgICAgICAgbl9oZWFkc19vcmlnLCBuX2t2X2hlYWRzLCBzdWJfaWR4KQogICAgICAgIHJlZl92YWxzLCBzdWJfdmFscyA9IHNjb3Jlc190b19hbGlnbmVkX2FycmF5cyhmdWxsX3Njb3Jlcywgc3ViX3Njb3JlcykKICAgICAgICByaG8sIHAgPSBzdGF0cy5zcGVhcm1hbnIocmVmX3ZhbHMsIHN1Yl92YWxzKQogICAgICAgIHNpemVfcmVzdWx0cy5hcHBlbmQoeyJuX3NhbXBsZXMiOiBuX3N1YiwgInJob192c19mdWxsIjogZmxvYXQocmhvKSwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAicF92YWx1ZSI6IGZsb2F0KHApfSkKICAgICAgICBsb2dnZXIuaW5mbyhmIiAgTj17bl9zdWJ9OiByaG89e3JobzouNGZ9IHZzIE49e25fdG90YWx9IikKCiAgICAjIC0tLSBDb21waWxlIGFuZCBzYXZlIHJlc3VsdHMgLS0tCiAgICBwZXJfZ3JvdXAgPSB7fQogICAgZm9yIChsLCBnKSwgdiBpbiBmdWxsX3Njb3Jlcy5pdGVtcygpOgogICAgICAgIGtleSA9IGYibGF5ZXJ7bH1fZ3JvdXB7Z30iCiAgICAgICAgcGVyX2dyb3VwW2tleV0gPSBOb25lIGlmIChpc2luc3RhbmNlKHYsIGZsb2F0KSBhbmQgdiAhPSB2KSBlbHNlIGZsb2F0KHYpCgogICAgb3V0cHV0ID0gewogICAgICAgICJjb25maWciOiB7CiAgICAgICAgICAgICJvcmlnaW5hbF9tb2RlbCI6IGFyZ3Mub3JpZ2luYWxfbW9kZWwsCiAgICAgICAgICAgICJwcnVuZWRfbW9kZWwiOiBhcmdzLnBydW5lZF9tb2RlbCwKICAgICAgICAgICAgIm51bV9zYW1wbGVzIjogbl90b3RhbCwKICAgICAgICAgICAgIm5fbGF5ZXJzIjogbl9sYXllcnMsCiAgICAgICAgICAgICJuX2hlYWRzX29yaWdpbmFsIjogbl9oZWFkc19vcmlnLAogICAgICAgICAgICAibl9rdl9oZWFkcyI6IG5fa3ZfaGVhZHMsCiAgICAgICAgICAgICJoZWFkc19wZXJfa3YiOiBoZWFkc19wZXJfa3YsCiAgICAgICAgICAgICJ0b3RhbF9ncWFfZ3JvdXBzIjogbl9sYXllcnMgKiBuX2t2X2hlYWRzLAogICAgICAgICAgICAidmFsaWRfZ3FhX2dyb3VwcyI6IGxlbih2YWxpZF9zY29yZXMpLAogICAgICAgICAgICAic2VlZCI6IGFyZ3Muc2VlZCwKICAgICAgICB9LAogICAgICAgICJwZXJfZ3JvdXBfY2thX3Njb3JlcyI6IHBlcl9ncm91cCwKICAgICAgICAiY2thX3N1bW1hcnkiOiB7CiAgICAgICAgICAgICJtZWFuIjogZmxvYXQodmFscy5tZWFuKCkpLAogICAgICAgICAgICAic3RkIjogZmxvYXQodmFscy5zdGQoKSksCiAgICAgICAgICAgICJtaW4iOiBmbG9hdCh2YWxzLm1pbigpKSwKICAgICAgICAgICAgIm1heCI6IGZsb2F0KHZhbHMubWF4KCkpLAogICAgICAgICAgICAibWVkaWFuIjogZmxvYXQobnAubWVkaWFuKHZhbHMpKSwKICAgICAgICB9LAogICAgICAgICJzcGxpdF9oYWxmX3JlbGlhYmlsaXR5IjogewogICAgICAgICAgICAicGVyX3NwbGl0Ijogc3BsaXRfcmVzdWx0cywKICAgICAgICAgICAgIm1lYW5fcmhvIjogbWVhbl9yaG8sCiAgICAgICAgICAgICJzdGRfcmhvIjogc3RkX3Jo\n…[truncated 1728 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T03:05:03.452016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "scp /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py connect.westb.seetacloud.com:/root/recovery_aware_struct_prune/src/run_cka_reliability.py 2>&1",
+              "description": "SCP file to remote server",
+              "timeout": "30000"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T03:05:03.452137+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Exit code 255\nssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory\r\nHost key verification failed.\r\nscp: Connection closed"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T03:05:03.452275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "python3 -c \"\nimport base64, sys\nb64 = 'IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNvZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWVzdGlvbjoge2V4YW1wbGVbJ3F1ZXN0aW9uJ119XG5BbnN3ZXI6IExldCBtZSB0aGluayBzdGVwIGJ5IHN0ZXAuXG4iCiAgICAgICAgaWRzID0gdG9rZW5pemVyKHByb21wdCwgcmV0dXJuX3RlbnNvcnM9InB0IiwgdHJ1bmNhdGlvbj1UcnVlLCBtYXhfbGVuZ3RoPW1heF9sZW5ndGgpCiAgICAgICAgZW5jb2RpbmdzLmFwcGVuZChpZHMpCiAgICByZXR1cm4gZW5jb2RpbmdzCg=='\nwith open('/tmp/_cka_part1.b64', 'w') as f:\n    f.write(b64)\nprint('part1 written')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-15T03:05:03.452445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'python3 -c \\\\\\\"\\\\\\\\nimport base64, sys\\\\\\\\nb64 = \\\\\\\\'IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQ\n…[truncated 712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-15T03:05:03.452609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n'",
+              "description": "Get full base64 as single line"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-15T03:05:03.452789+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNvZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWVzdGlvbjoge2V4YW1wbGVbJ3F1\n…[truncated 17728 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-15T03:05:03.452928+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "echo IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCg== > /tmp/_cka.b64",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-15T03:05:03.453075+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-15T03:05:03.453225+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | wc -c",
+              "description": "Count exact base64 length"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-15T03:05:03.453368+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "19728"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-15T03:05:03.453485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | cut -c1-9000",
+              "description": "First 9000 chars of base64"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-15T03:05:03.453625+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "IiIiCkNLQSBSZWxpYWJpbGl0eSBBbmFseXNpcyBmb3IgUkFTUC4KClZhbGlkYXRlcyB0aGUgc3RhYmlsaXR5IG9mIGNyb3NzLW1vZGVsIENLQSBzY29yZXMgKG9yaWdpbmFsIHZzIHBydW5lZCkgYnk6CjEuIFNwbGl0LWhhbGYgcmVsaWFiaWxpdHk6IFNwZWFybWFuIHJobyBiZXR3ZWVuIENLQSBzY29yZXMgb24gdHdvIGRhdGEgaGFsdmVzCjIuIENhbGlicmF0aW9uIHNpemUgc2Vuc2l0aXZpdHk6IFNwZWFybWFuIHJobyBhdCBkaWZmZXJlbnQgc2FtcGxlIHNpemVzIHZzIGZ1bGwKCkFkZHJlc3NlcyBDbGFpbSAyOiBDS0EtYmFzZWQgc3RydWN0dXJhbCBzY29yaW5nIGlzIHJlbGlhYmxlIGFuZCBzdGFibGUuCiIiIgoKaW1wb3J0IGFyZ3BhcnNlCmltcG9ydCBqc29uCmltcG9ydCBsb2dnaW5nCmltcG9ydCBvcwppbXBvcnQgcmFuZG9tCmltcG9ydCBzeXMKCmltcG9ydCBudW1weSBhcyBucAppbXBvcnQgc2NpcHkuc3RhdHMgYXMgc3RhdHMKaW1wb3J0IHRvcmNoCmZyb20gZGF0YXNldHMgaW1wb3J0IGxvYWRfZGF0YXNldApmcm9tIHRyYW5zZm9ybWVycyBpbXBvcnQgQXV0b01vZGVsRm9yQ2F1c2FsTE0sIEF1dG9Ub2tlbml6ZXIKCmxvZ2dpbmcuYmFzaWNDb25maWcobGV2ZWw9bG9nZ2luZy5JTkZPLCBmb3JtYXQ9IiUoYXNjdGltZSlzIFslKGxldmVsbmFtZSlzXSAlKG1lc3NhZ2UpcyIpCmxvZ2dlciA9IGxvZ2dpbmcuZ2V0TG9nZ2VyKF9fbmFtZV9fKQoKCmRlZiBzZXRfc2VlZChzZWVkKToKICAgIHJhbmRvbS5zZWVkKHNlZWQpCiAgICBucC5yYW5kb20uc2VlZChzZWVkKQogICAgdG9yY2gubWFudWFsX3NlZWQoc2VlZCkKICAgIHRvcmNoLmN1ZGEubWFudWFsX3NlZWRfYWxsKHNlZWQpCgoKZGVmIGxpbmVhcl9ja2EoWCwgWSk6CiAgICAiIiJMaW5lYXIgQ0tBIGJldHdlZW4gdHdvIGFjdGl2YXRpb24gbWF0cmljZXMuIFg6IFtuLCBwXSwgWTogW24sIHFdLiIiIgogICAgWCA9IFggLSBYLm1lYW4oMCkKICAgIFkgPSBZIC0gWS5tZWFuKDApCiAgICBoc2ljX3h5ID0gdG9yY2gubm9ybShYLlQgQCBZLCAiZnJvIikgKiogMgogICAgaHNpY194eCA9IHRvcmNoLm5vcm0oWC5UIEAgWCwgImZybyIpICoqIDIKICAgIGhzaWNfeXkgPSB0b3JjaC5ub3JtKFkuVCBAIFksICJmcm8iKSAqKiAyCiAgICByZXR1cm4gKGhzaWNfeHkgLyAodG9yY2guc3FydChoc2ljX3h4KSAqIHRvcmNoLnNxcnQoaHNpY195eSkgKyAxZS04KSkuaXRlbSgpCgoKZGVmIGxvYWRfY2FsaWJyYXRpb25fZGF0YSh0b2tlbml6ZXIsIG5fc2FtcGxlcywgbWF4X2xlbmd0aD01MTIsIHNlZWQ9NDIpOgogICAgZHMgPSBsb2FkX2RhdGFzZXQoIm9wZW5haS9nc204ayIsICJtYWluIiwgc3BsaXQ9InRyYWluIikKICAgIGRzID0gZHMuc2h1ZmZsZShzZWVkPXNlZWQpLnNlbGVjdChyYW5nZShtaW4obl9zYW1wbGVzLCBsZW4oZHMpKSkpCiAgICBlbmNvZGluZ3MgPSBbXQogICAgZm9yIGV4YW1wbGUgaW4gZHM6CiAgICAgICAgcHJvbXB0ID0gZiJRdWVzdGlvbjoge2V4YW1wbGVbJ3F1\n…[truncated 7000 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-15T03:05:03.453808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "base64 /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py | tr -d '\\n' | cut -c9001-",
+              "description": "Remaining base64 chars"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-15T03:05:03.453970+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "c19iW2tdCiAgICAgICAgaWYgKGlzaW5zdGFuY2UodmEsIGZsb2F0KSBhbmQgdmEgIT0gdmEpIG9yIChpc2luc3RhbmNlKHZiLCBmbG9hdCkgYW5kIHZiICE9IHZiKToKICAgICAgICAgICAgY29udGludWUKICAgICAgICBhX3ZhbHMuYXBwZW5kKHZhKQogICAgICAgIGJfdmFscy5hcHBlbmQodmIpCiAgICByZXR1cm4gbnAuYXJyYXkoYV92YWxzKSwgbnAuYXJyYXkoYl92YWxzKQoKCmRlZiBtYWluKCk6CiAgICBwYXJzZXIgPSBhcmdwYXJzZS5Bcmd1bWVudFBhcnNlcihkZXNjcmlwdGlvbj0iQ0tBIFJlbGlhYmlsaXR5IEFuYWx5c2lzIGZvciBSQVNQIHNjb3JpbmciKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1vcmlnaW5hbF9tb2RlbCIsIHR5cGU9c3RyLCByZXF1aXJlZD1UcnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1wcnVuZWRfbW9kZWwiLCB0eXBlPXN0ciwgcmVxdWlyZWQ9VHJ1ZSkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tZ3B1X2lkIiwgdHlwZT1pbnQsIGRlZmF1bHQ9MCkKICAgIHBhcnNlci5hZGRfYXJndW1lbnQoIi0tbnVtX3NhbXBsZXMiLCB0eXBlPWludCwgZGVmYXVsdD0xMDI0KQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1tYXhfbGVuZ3RoIiwgdHlwZT1pbnQsIGRlZmF1bHQ9NTEyKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1uX3NwbGl0cyIsIHR5cGU9aW50LCBkZWZhdWx0PTUpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLW91dHB1dCIsIHR5cGU9c3RyLCByZXF1aXJlZD1UcnVlKQogICAgcGFyc2VyLmFkZF9hcmd1bWVudCgiLS1zZWVkIiwgdHlwZT1pbnQsIGRlZmF1bHQ9NDIpCiAgICBwYXJzZXIuYWRkX2FyZ3VtZW50KCItLWR0eXBlIiwgdHlwZT1zdHIsIGRlZmF1bHQ9ImJmbG9hdDE2IiwKICAgICAgICAgICAgICAgICAgICAgICAgY2hvaWNlcz1bImZsb2F0MTYiLCAiYmZsb2F0MTYiLCAiZmxvYXQzMiJdKQogICAgYXJncyA9IHBhcnNlci5wYXJzZV9hcmdzKCkKCiAgICBzZXRfc2VlZChhcmdzLnNlZWQpCiAgICBkZXZpY2UgPSB0b3JjaC5kZXZpY2UoZiJjdWRhOnthcmdzLmdwdV9pZH0iIGlmIHRvcmNoLmN1ZGEuaXNfYXZhaWxhYmxlKCkgZWxzZSAiY3B1IikKICAgIHRvcmNoX2R0eXBlID0geyJmbG9hdDE2IjogdG9yY2guZmxvYXQxNiwgImJmbG9hdDE2IjogdG9yY2guYmZsb2F0MTYsCiAgICAgICAgICAgICAgICAgICAiZmxvYXQzMiI6IHRvcmNoLmZsb2F0MzJ9W2FyZ3MuZHR5cGVdCgogICAgbG9nZ2VyLmluZm8oIkxvYWRpbmcgdG9rZW5pemVyIGFuZCBjYWxpYnJhdGlvbiBkYXRhLi4uIikKICAgIHRva2VuaXplciA9IEF1dG9Ub2tlbml6ZXIuZnJvbV9wcmV0cmFpbmVkKGFyZ3Mub3JpZ2luYWxfbW9kZWwsIHRydXN0X3JlbW90ZV9jb2RlPVRydWUpCiAgICBjYWxpYnJhdGlvbl9kYXRhID0gbG9hZF9jYWxpYnJhdGlvbl9kYXRhKHRva2VuaXplciwgYXJncy5udW1fc2FtcGxlcywgYXJncy5tYXhfbGVuZ3RoLAogICAgICAgICAgICAgICAgICAgICAgICAgICAg\n…[truncated 8728 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-15T03:05:03.454169+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-15T03:05:03.454428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"\n2\tCKA Reliability Analysis for RASP.\n3\t\n4\tValidates the stability of cross-model CKA scores (original vs pruned) by:\n5\t1. Split-half reliability: Spearman rho between CKA scores on two data halves\n6\t2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n7\t\n8\tAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\timport sys\n17\t\n18\timport numpy as np\n19\timport scipy.stats as stats\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\n25\tlogger = logging.getLogger(__name__)\n26\t\n27\t\n28\tdef set_seed(seed):\n29\t    random.seed(seed)\n30\t    np.random.seed(seed)\n31\t    torch.manual_seed(seed)\n32\t    torch.cuda.manual_seed_all(seed)\n33\t\n34\t\n35\tdef linear_cka(X, Y):\n36\t    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n37\t    X = X - X.mean(0)\n38\t    Y = Y - Y.mean(0)\n39\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n40\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n41\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n42\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n43\t\n44\t\n45\tdef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n46\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n47\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n48\t    encodings = []\n49\t    for example in ds:\n50\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n51\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n52\t        encodings.append(ids)\n53\t    return encodings\n54\t\n55\t\n56\tdef collect_qproj_activations(model, calibration_data, device):\n57\t    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n58\t   \n…[truncated 14147 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-15T03:05:03.454592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-15T03:05:03.454914+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-15T03:05:03.455211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "account": "root",
+              "command": "cat << 'SCRIPT_EOF' > /root/recovery_aware_struct_prune/src/run_cka_reliability.py\n\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of cross-model CKA scores (original vs pruned) by:\n1. Split-half reliability: Spearman rho between CKA scores on two data halves\n2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n\nAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, required=True)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Collect activations (load models one at a time to save GPU memory) ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed.\")\n\n    logger.info(\"Loading pruned model...\")\n    pruned_model, pruning_meta = load_pruned_model_with_meta(\n        args.original_model, args.pruned_model, torch_dtype, device\n    )\n    keep_masks = pruning_meta[\"attn_keep_masks\"]\n    logger.info(\"Collecting pruned model activations...\")\n    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n    del pruned_model\n    torch.cuda.empty_cache()\n    logger.info(\"Pruned model freed. All activations cached on CPU.\")\n\n    # --- Phase 1: Full CKA scores ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                    n_heads_orig, n_kv_heads)\n    valid_scores = {k: v for k, v in full_scores.items()\n                    if not (isinstance(v, float) and v != v)}\n    vals = np.array(list(valid_scores.values()))\n    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n    # --- Phase 2: Split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n    split_results = []\n    for i in range(args.n_splits):\n        rng = np.random.RandomState(args.seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_a)\n        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_b)\n        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n        rho, p = stats.spearmanr(arr_a, arr_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_groups\": len(arr_a)})\n        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))\n    std_rho = float(np.std([r[\"rho\"] for r in split_results]))\n\n    # --- Phase 3: Calibration size sensitivity ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 3: Calibration size sensitivity...\")\n    size_results = []\n    for n_sub in [128, 256, 512]:\n        if n_sub >= n_total:\n            continue\n        rng = np.random.RandomState(args.seed)\n        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                       n_heads_orig, n_kv_heads, sub_idx)\n        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n        rho, p = stats.spearmanr(ref_vals, sub_vals)\n        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                             \"p_value\": float(p)})\n        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n    # --- Compile and save results ---\n    per_group = {}\n    for (l, g), v in full_scores.items():\n        key = f\"layer{l}_group{g}\"\n        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"pruned_model\": args.pruned_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"valid_gqa_groups\": len(valid_scores),\n            \"seed\": args.seed,\n        },\n        \"per_group_cka_scores\": per_group,\n        \"cka_summary\": {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        },\n        \"split_half_reliability\": {\n            \"per_split\": split_results,\n            \"mean_rho\": mean_rho,\n            \"std_rho\": std_rho,\n            \"pass\": mean_rho > 0.9,\n        },\n        \"size_sensitivity\": {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        },\n    }\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n          f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"\n    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")\n    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")\n    for r in split_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n    print(f\"\\nSize sensitivity (vs N={n_total}):\")\n    for s in size_results:\n        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT_EOF"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-15T03:05:03.455561+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-15T03:05:03.455738+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "account": "root",
+              "command": "wc -l /root/recovery_aware_struct_prune/src/run_cka_reliability.py"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-15T03:05:03.455902+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"364 /root/recovery_aware_struct_prune/src/run_cka_reliability.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-15T03:05:03.456064+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"import ast; ast.parse(open('/root/recovery_aware_struct_prune/src/run_cka_reliability.py').read()); print('SYNTAX OK')\""
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-15T03:05:03.456211+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"SYNTAX OK\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.34}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-15T03:05:03.456392+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "account": "root",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune/src && python run_cka_reliability.py --help"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-15T03:05:03.456559+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: run_cka_reliability.py [-h] --original_model ORIGINAL_MODEL\\\\n                              --pruned_model PRUNED_MODEL [--gpu_id GPU_ID]\\\\n                              [--num_samples NUM_SAMPLES]\\\\n                              [--max_length MAX_LENGTH] [--n_splits N_SPLITS]\\\\n                              --output OUTPUT [--seed SEED]\\\\n                              [--dtype {float16,bfloat16,float32}]\\\\n\\\\nCKA Reliability Analysis for RASP scoring\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --original_model ORIGINAL_MODEL\\\\n  --pruned_model PRUNED_MODEL\\\\n  --gpu_id GPU_ID\\\\n  --num_samples NUM_SAMPLES\\\\n  --max_length MAX_LENGTH\\\\n  --n_splits N_SPLITS\\\\n  --output OUTPUT\\\\n  --seed SEED\\\\n  --dtype {float16,bfloat16,float32}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.78}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-15T03:05:03.456862+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax check 和 dry-run 均通过。\n\n**运行命令**（需要 GPU 时执行）：\n```bash\ncd /root/recovery_aware_struct_prune/src && python run_cka_reliability.py \\\n  --original_model /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --pruned_model /root/autodl-tmp/pruned_rasp_20 \\\n  --num_samples 1024 \\\n  --output /root/recovery_aware_struct_prune/artifacts/cka_reliability.json\n```\n\n**预估 GPU 运行时间：~4-5 分钟**\n- 模型加载+1024 样本前向传播（原始模型）：~1.5 min\n- 模型加载+1024 样本前向传播（剪枝模型）：~1.5 min\n- CPU 上计算 CKA（112 groups × 8 子集 = ~900 次 CKA 调用）：~1 min"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_cka-reliability_20260515T024807"
+          },
+          "id": "event-000113"
+        }
+      ],
+      "message_count": 113
+    }
+  ],
+  "readable_path": "readable/conversations/code-cka-reliability.md"
+}

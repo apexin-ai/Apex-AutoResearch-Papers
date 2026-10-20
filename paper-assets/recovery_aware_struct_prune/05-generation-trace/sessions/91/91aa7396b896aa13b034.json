@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91aa7396b896aa13b034",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check 15pct grpo verify",
+  "task_key": "worker_check_15pct_grpo_verify_20260520T050807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_15pct_grpo_verify_20260520T050807_result.json",
+    "occurrence": 1,
+    "bytes": 1467,
+    "sha256": "82b46cae4edd5febeddf2ee0d8f699b10255f1d2f187ec0e06ce3893821516bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## 状态确认\n\n### 1. GRPO CKA-only 15%\n- **状态**: 正在运行，正加载 ref_model（模型已上 GPU，cuda:2 占用 13193 MiB）\n- **PID**: 204464，tmux session: `grpo_cka15`\n- **当前阶段**: 数据集加载完成（7473 samples），正在加载 ref_model，尚未开始训练 step\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_cka_only_15.log`\n\n### 2. GRPO Standard 15%\n- **状态**: 正在运行，同样在加载 ref_model（cuda:3 占用 13169 MiB）\n- **PID**: 204542，tmux session: `grpo_std15`\n- **当前阶段**: 同上，数据集加载完成，ref_model 加载中\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_standard_15.log`\n\n### 3. Pruning/SFT 阶段确认\n| 产出 | 状态 | 大小 |\n|------|------|------|\n| `pruned_cka_only_15/` | 完整（含 model.safetensors + pruning_metadata.pt） | ~12.2GB |\n| `pruned_standard_15/` | 完整（含 model.safetensors + pruning_metadata.pt） | ~12.1GB |\n| `sft_cka_only_15/` | 完整（含 training_args.bin） | ~12.2GB |\n| `sft_standard_15/` | 完整（含 training_args.bin） | ~12.1GB |\n\n### 4. Registry 更新\n- `pipeline_cka_only_15`: PREPARING → RUNNING（含完整 spec）\n- `pipeline_standard_15`: PREPARING → RUNNING（含完整 spec）\n\n两个 GRPO 训练刚启动约 2 分钟，正在加载 ref_model，预计很快开始第一个 step。100 steps 预计 8-12h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-15pct-grpo-verify.md"
+}

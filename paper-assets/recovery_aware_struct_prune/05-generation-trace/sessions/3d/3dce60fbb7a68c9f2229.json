@@ -1,0 +1,154 @@
+{
+  "schema_version": "1.0",
+  "id": "3dce60fbb7a68c9f2229",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code alpha ablation pipeline westd",
+  "task_key": "worker_code_alpha-ablation-pipeline-westd_20260515T063114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-ablation-pipeline-westd_20260515T063114.log",
+    "occurrence": 1,
+    "bytes": 4012701,
+    "sha256": "b88d333deea43f3220843ce3b316b36352c2edcb3f1283afdcdbd0f6c415982c"
+  },
+  "statistics": {
+    "messages": 3031,
+    "user_turns": 4,
+    "tool_calls": 1300,
+    "roles": {
+      "log": 1,
+      "system": 13,
+      "record": 1,
+      "assistant": 411,
+      "tool_call": 1300,
+      "tool_result": 1300,
+      "user": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 312,
+      "chunks": [
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0002.json",
+          "message_count": 132
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 816,
+      "chunks": [
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0002.json",
+          "message_count": 48
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0007.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 914,
+      "chunks": [
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0007.json",
+          "message_count": 132
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0009.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0011.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0012.json",
+          "message_count": 62
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 958,
+      "chunks": [
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0012.json",
+          "message_count": 118
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0014.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0017.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "3dce60fbb7a68c9f2229-part-0017.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-alpha-ablation-pipeline-westd.md"
+}

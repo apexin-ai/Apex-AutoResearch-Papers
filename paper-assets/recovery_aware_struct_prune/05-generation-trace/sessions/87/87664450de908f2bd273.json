@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87664450de908f2bd273",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo rlvr and standard 25",
+  "task_key": "worker_eval_grpo_rlvr_and_standard_25_20260516T193903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_rlvr_and_standard_25_20260516T193903_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "1f50b31fafde627df22f5b2703de933af1ffd0adf7e6b281d299697838bcc041"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 进程已启动并在运行：\n\n| 实验 | tmux session | PID | GPU |\n|------|-------------|-----|-----|\n| eval_grpo_rasp_rlvr_20_qwen_math | `eval_grpo_rlvr` | **40541** | cuda:0 |\n| eval_grpo_standard_25 | `eval_grpo_std25` | **40615** | cuda:1 |\n\n日志分别在 `/tmp/eval_grpo_rlvr.log` 和 `/tmp/eval_grpo_std25.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-rlvr-and-standard-25.md"
+}

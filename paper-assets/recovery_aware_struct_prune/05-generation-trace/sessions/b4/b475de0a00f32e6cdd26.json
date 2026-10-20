@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b475de0a00f32e6cdd26",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag sft standard 20 model integrity",
+  "task_key": "worker_diag_sft_standard_20_model_integrity_20260519T212031",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft_standard_20_model_integrity_20260519T212031_result.json",
+    "occurrence": 1,
+    "bytes": 2019,
+    "sha256": "da47ddcbe8031f2447d14cf41ceb464c01e2d0d58a9f7ae89edef68da5a8b47a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 模型完整性：**模型完好，非损坏**\n\n| 检查项 | 结果 |\n|--------|------|\n| 文件大小 | model.safetensors 11753.0MB, tokenizer 10.9MB — 正常 |\n| Tokenizer | OK, vocab_size=151643 (Qwen2) |\n| 模型加载 | v3 日志确认加载成功: \"Non-uniform MLP detected: intermediate_size range [8128, 18944]\" |\n\n（注：裸 `AutoModelForCausalLM.from_pretrained` 因 pruned MLP 尺寸不匹配会报错，但 eval_mbpp.py 的自定义加载逻辑正确处理了非均匀结构。）\n\n### 根因：**网络不可达，非模型问题**\n\nv3 日志完整链条：\n1. 模型加载成功\n2. `load_dataset(\"mbpp\", split=\"train\")` → 尝试 HEAD `https://huggingface.co/datasets/mbpp/resolve/main/README.md`\n3. `[Errno 101] Network is unreachable` → 重试后 `RuntimeError: Cannot send a request, as the client has been closed`\n\n**westd-29022 当前网络已断**（curl HuggingFace 返回 HTTP:000）。\n\n### PID 141113 状态\n\n- 在 cuda:0 上运行，但状态 `Sleeping`，217 线程，~1GB RSS\n- **未分配 GPU 显存**（nvidia-smi 无此 PID）→ 卡在同一个 HF 数据集下载重试中，模型尚未加载到 GPU\n- 建议 kill 掉，浪费资源\n\n### 为什么 grpo_standard 能跑通\n\nMBPP 缓存存在于 `/root/.cache/huggingface/datasets/mbpp/full/`。grpo_standard 大概在网络可用时运行并缓存了数据集，但 datasets 库默认仍会发 HEAD 请求检查更新 — 网络断后即使有缓存也会失败。\n\n### 建议修复\n\n重启 eval 时加 `HF_DATASETS_OFFLINE=1`：\n```bash\nHF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048\n```\n\n或在 eval_mbpp.py 第 108 行改为 `load_dataset(\"mbpp\", split=\"train\", cache_dir=\"/root/.cache/huggingface/datasets\")` 并设置离线模式。\n\n需要我现在 kill PID 141113 并用离线模式重启 eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-standard-20-model-integrity.md"
+}

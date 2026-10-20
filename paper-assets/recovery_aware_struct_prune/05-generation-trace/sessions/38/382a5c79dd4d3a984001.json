@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "382a5c79dd4d3a984001",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag sft standard westd completion and eval",
+  "task_key": "worker_diag_sft-standard-westd-completion-and-eval_20260515T173550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft-standard-westd-completion-and-eval_20260515T173550_result.json",
+    "occurrence": 1,
+    "bytes": 673,
+    "sha256": "21c0576f8cc358527cb9d5678189d6eb0a35988a73f1b1b86de60517822bb1d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**SFT Standard 20% retrain — 成功**\n\n| 指标 | 值 |\n|------|-----|\n| final_loss | 0.6403 |\n| avg_train_loss | 0.7577 |\n| mean_token_accuracy | 0.8258 |\n| train_runtime | 1679s (~28 min) |\n| epochs / steps | 2 / 1870 |\n| 模型路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd/` (12GB) |\n\n与 westb 上的 RASP SFT 对比：loss 0.64 vs 0.66，token_acc 0.83 vs 0.83，基本一致，符合预期。\n\n**cuda:1 状态**: 空闲（0MiB / 0% 利用率）。cuda:0 同样空闲。两张 RTX PRO 6000 均可用于 N=100 eval。\n\n**已完成**: registry 已更新为 success + metrics，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-standard-westd-completion-and-eval.md"
+}

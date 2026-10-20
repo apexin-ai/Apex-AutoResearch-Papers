@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b0881a22fa956a67812",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cleanup and qwen phase1",
+  "task_key": "worker_ops_westb_cleanup_and_qwen_phase1_20260520T050703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cleanup_and_qwen_phase1_20260520T050703_result.json",
+    "occurrence": 1,
+    "bytes": 485,
+    "sha256": "1cca2b722e35cf29b2a3999b506a08f739b195bc501a0fcbad0bcff886d2e3bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n**Part 1 完成** — 释放 66 GB（13G → 79G 可用）\n\n**Part 2 进行中** — Qwen2.5-Math-7B Phase 1：\n- CKA scores + importance scores: 已完成\n- CKA-only pruning @20%: 已完成 (actual 18.99%)\n- Standard pruning @20%: 已完成 (actual 19.18%)\n- GSM8K eval (N=200): 两个 eval 在 westb-23072 并行运行中\n  - Standard: ~44/200, ETA ~17 min\n  - CKA-only: ~25/200, ETA ~38 min\n\n等待中，4.5 分钟后自动检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cleanup-and-qwen-phase1.md"
+}

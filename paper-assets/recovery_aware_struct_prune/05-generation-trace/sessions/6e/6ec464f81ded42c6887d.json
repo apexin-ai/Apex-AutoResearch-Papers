@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ec464f81ded42c6887d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix fig2 framework",
+  "task_key": "worker_code_fix_fig2_framework_20260523T235649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_fig2_framework_20260523T235649_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "2dfbfdc1a5c8bdaf5a88e262501384c886851eae0b3ccc7b1c8125f4cfd82761"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX 编译成功（16 pages），无 overfull 错误。\n\n修改总结：\n- **P0**: `scripts/gen_fig1_framework.py` 第 199 行 `0.081` → `0.061`，第 205 行标签 `Importance-only:\\nCollapse` → `Composite:\\nCollapse`\n- **P2**: 第 167 行 `|Δ| ≤ 0.61 pp` 字号 8→9.5pt，第 172 行 `Recovery method ≈ interchangeable` 字号 8.5→9.5pt，y 位置微调避免重叠\n- PDF/PNG 已重新生成至 `docs/paper/figures/paper/fig1_method_framework.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-fig2-framework.md"
+}

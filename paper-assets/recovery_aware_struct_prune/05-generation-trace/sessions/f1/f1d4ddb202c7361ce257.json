@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1d4ddb202c7361ce257",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 grpo rasp alpha1p0 20",
+  "task_key": "worker_analyze_eval_math500_grpo_rasp_alpha1p0_20_20260523T044344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_grpo_rasp_alpha1p0_20_20260523T044344_result.json",
+    "occurrence": 1,
+    "bytes": 421,
+    "sha256": "6e40983f74dbaff059c4d85e99dcc7ec10b2bae86803d279615636a796080d6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 汇总\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **22.6%** (113/500) |\n| **avg_response_length** | **903.5** |\n| **stderr** | ±1.87% |\n| **truncated** | 180/500 (36%) |\n| **conclusion** | success |\n\n### C1 decoupling 检验\n\n- SFT α=1.0 MATH-500: 21.2%\n- GRPO α=1.0 MATH-500: 22.6%\n- **|Δ| = 1.4pp < 2pp** → C1 decoupling 在 MATH-500 上成立"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-grpo-rasp-alpha1p0-20.md"
+}

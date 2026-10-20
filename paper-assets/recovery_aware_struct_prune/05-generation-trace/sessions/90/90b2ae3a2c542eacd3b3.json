@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "90b2ae3a2c542eacd3b3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval overflow",
+  "task_key": "worker_fix_eval-overflow_20260514T081131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval-overflow_20260514T081131_result.json",
+    "occurrence": 1,
+    "bytes": 1043,
+    "sha256": "d6decccf9fe50a7885358211fac4256e6cc85dd67cee5fcc89bf7c90914e83e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**READY**\n\n修复已完成并验证通过。\n\n### 修改内容 (`/root/recovery_aware_struct_prune/src/eval_gsm8k.py`)\n\n1. **添加 `import math`**\n2. **`normalize_answer()`** — 返回类型改为 `str | None`：\n   - 空字符串 → `None`\n   - `math.isfinite(val)` 检查：inf/nan → `None`（修复 OverflowError）\n3. **`extract_gold_answer()`** — 处理 `normalize_answer()` 返回 `None` 的情况，回退到原始字符串\n4. **`evaluate()` 中的比较** — `norm_pred is not None and norm_pred == gold`，None 直接标记为答错\n\n### 验证结果\n\n- pruned_standard_35 模型，20 个样本，全部完成，0 crash\n- 0% accuracy（剪枝模型质量差，符合预期）\n- test_eval.json 已删除\n\n### 注意\n\n服务器上有一个 tmux session `mvp_rasp_pipeline_v2` 在 16:12 启动（patch 之前），运行的是**旧代码**的 eval。这些进程（PID 170786/170787）仍在运行，可能还会遇到 OverflowError。Main Agent 重新 submit 时需要用修复后的代码。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-overflow.md"
+}

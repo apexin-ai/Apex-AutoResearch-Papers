@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39e58bbce27b43529574",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo cka only 15 gsm8k",
+  "task_key": "worker_eval_grpo_cka_only_15_gsm8k_20260520T133146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_cka_only_15_gsm8k_20260520T133146_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "209bf572b9a9dcfb64e7d197d31656ed2976e19e664f3c43bf039db759326b12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已提交并在运行，监控已注册。\n\n**汇总：**\n- **exp_id**: `eval_gsm8k_grpo_cka_only_15_v2` → RUNNING\n- **PID**: 252919 @ westd-29022 cuda:1 (13184 MiB)\n- **日志**: `/root/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_cka_only_15_v2.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_v2_n1319.json`\n- **Cron**: 每 8 分钟自动检查进度（job a85118fd）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-cka-only-15-gsm8k.md"
+}

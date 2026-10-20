@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0796b2f7846807732a8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk cleanup approved",
+  "task_key": "worker_ops_westd_disk_cleanup_approved_20260517T193957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_approved_20260517T193957_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "4430b66337836154b3e2174132ff4a416210871994328f2229e8826279ca9565"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成汇报\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 738G (99%) | 428G (57%) |\n| 可用 | 13G | 323G |\n| **释放** | — | **310G** |\n\n**删除的目录：**\n| 目录 | 大小 |\n|------|------|\n| `outputs/alpha_ablation/` | 127G |\n| `grpo_rasp_qwen_math/` | 38G |\n| `grpo_rasp_rlvr_20_qwen_math/` | 38G |\n| `grpo_standard_qwen_math/` | 38G |\n| `grpo_standard_25_qwen_math/` | 36G |\n| `grpo_rasp_25_qwen_math/` | 36G |\n\n**Eval 进程状态：** 3 个 eval 正常运行中\n- `eval_postprune_rasp_30` — cuda:2，运行约 80 min\n- `eval_postprune_standard_30` — cuda:0，运行约 31 min\n- `eval_sft_cka_only_20_n1319` — cuda:0 (排队/共享)，运行约 23 min\n\n4 张 GPU 均在高负载工作（utilization 85-98%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-approved.md"
+}

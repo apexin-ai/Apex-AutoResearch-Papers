@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e40a4641f0e3f3160dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis full status check",
+  "task_key": "worker_analysis_full-status-check_20260515T135834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_full-status-check_20260515T135834_result.json",
+    "occurrence": 1,
+    "bytes": 3409,
+    "sha256": "fb06926edb973ead0e1b6659f6d80b1e47b3981e3608a3edea0f8a161c2a05ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected. Here's the full status report.\n\n---\n\n## 1. GraSP 相关状态 (westd GPU 0)\n\n**GraSP post-prune eval (N=1319 全量)**:\n- `grasp_baseline_westd.log` 显示全量 eval 到 73/1319 后结束 (EXIT_CODE=0)\n- 中间指标 (50/1319): **acc=8.0%, eos_rate=2.0%, avg_len=4019** — 剪枝后模型几乎不可用\n\n**GraSP post-prune eval (N=100)**:\n- `eval_grasp_n100.log` 正在运行中，进度 3/100，速度 ~91s/sample\n- 预计还需 ~2.5h 完成\n\n**GraSP SFT**:\n- 输出目录 `/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/` **为空**，SFT 尚未产出模型\n- 日志文件 `sft_grasp_20_westd.log` 存在但未读取\n\n---\n\n## 2. GRPO v6 进度 (westb) — 双双 OOM 崩溃\n\n| 运行 | 崩溃点 | 错误 | EXIT_CODE |\n|------|--------|------|-----------|\n| RASP v6 | step 9/250 | OOM: 尝试分配 130 MiB，GPU 0 仅剩 44 MiB free | 129 |\n| Standard v6 | step 9/250 | OOM: 尝试分配 1.02 GiB，GPU 0 仅剩 214 MiB free | 129 |\n\n崩溃位置: `Adam._init_group()` — optimizer 状态初始化时爆显存\n\n**进程仍占用 GPU 未清理**:\n- PID 520997 (RASP): GPU 0, 67430 MiB\n- PID 521089 (Standard): GPU 1, 74318 MiB\n\n配置: `max_completion_length=1024, gradient_checkpointing=true, beta=0.01, temp=0.4, lr=1e-6, loss=dapo`\n\n两个 ref_model + train_model 在各自 GPU 上约占 95 GiB，optimizer 状态无法分配。\n\n---\n\n## 3. westd GPU 利用率\n\n| GPU | 显存 | 利用率 | 进程 |\n|-----|------|--------|------|\n| cuda:0 | 64542/97887 MiB | 95% | PID 38120 (13 GB) + PID 38514 (51 GB) |\n| cuda:1 | 50487/97887 MiB | 83% | PID 38802 (51 GB) |\n\n推测: GPU 0 跑 GraSP N=100 eval，GPU 1 跑 α=1.0 SFT\n\n---\n\n## 4. α ablation SFT 进度 (westd)\n\n### 剪枝后 (pre-SFT) eval 结果\n\n| α | accuracy | eos_rate | avg_len | 状态 |\n|---|---------|----------|---------|------|\n| 0.0 | 30% | 79% | 1266 | — |\n| 0.5 | 25% | 70% | 1559 | — |\n| 1.0 | 27% | 90% | 817 | — |\n| 2.0 | 29% | 64% | 1958 | — |\n| **4.0** | **40%** | 67% | 1979 | — |\n\nα=4.0 剪枝后准确率最高 (40%)，符合预期（更强调恢复信号的层保留更好）。\n\n### SFT 恢复训练进度\n\n| α | SFT 状态 | 模型文件 | 备注 |\n|---|---------|---------|------|\n| 0.0 | **完成** | 12.3 GB model.safetensors | 含 tokenizer |\n| 0.5 | **可能不完整** | 6.6 GB model.safetensors | 缺 tokenizer/chat_template |\n| 1.0 | **训练中** | 仅 checkpoint-935 | step 233/1870 (12%), loss=0.929, tok_acc=0.773 |\n| 2.0 | 无目录 | — | 未开始 |\n| 4.0 | **完成** | 12.3 GB model.safetensors + checkpoint-1870 | — |\n\n### Post-SFT eval (已完成)\n\n| α | accuracy | eos_rate | avg_len |\n|---|---------|----------|---------|\n| 4.0 | **62%** | 98% | 239 |\n\nα=4.0 SFT 后: 40% → 62%，eos_rate 67% → 98%，恢复效果显著。\n\n---\n\n## 关键问题汇总\n\n1. **westb GRPO v6 双双 OOM** — 需要减显存（减小 max_completion_length、用 8bit optimizer、或卸载 ref_model 到 CPU），且僵尸进程需清理\n2. **westd α=0.5 SFT 文件可能不完整** — model.safetensors 仅 6.6 GB（其他完整模型为 12.3 GB），缺 tokenizer 文件\n3. **GraSP 剪枝后 acc=8%** — 远低于所有 α ablation 的 pre-SFT 表现，GraSP 剪枝质量堪忧\n4. **α=1.0 SFT 预计还需 ~25 分钟完成** (剩余 1637 steps at ~1.1 it/s)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-full-status-check.md"
+}

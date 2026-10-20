@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5995b174f794beafa95",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check grpo 15v2 exit",
+  "task_key": "worker_check_grpo_15v2_exit_20260520T132856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grpo_15v2_exit_20260520T132856_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "dc912a1e0ef5b33dfd456edca0c4a61c35f1f87d94029c0a25045ce959c691f1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已经不存在（可能在之前的 session 创建，当前 session 无残留）。\n\n**总结：grpo_cka_only_15_v2 训练成功完成。**\n\n| 指标 | 值 |\n|---|---|\n| Steps | 100/100 (22min 34s) |\n| Final loss | 0.2027 |\n| Avg train loss | 0.11 |\n| Final reward | 0.4019 |\n| Final KL | 0.0018 |\n| Checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15_v2/model.safetensors` (12.2GB) |\n\nRegistry 已更新为 DONE/success，metrics 已记录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grpo-15v2-exit.md"
+}

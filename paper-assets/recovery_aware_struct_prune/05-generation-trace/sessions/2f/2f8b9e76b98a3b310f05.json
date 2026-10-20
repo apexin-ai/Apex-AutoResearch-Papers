@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f8b9e76b98a3b310f05",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo rasp 20 1p5b",
+  "task_key": "worker_code_grpo_rasp_20_1p5b_20260518T151310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_rasp_20_1p5b_20260518T151310_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "c3fdaf5b6a91e338edcb26d8665174484dec3696535f95265bf4f58857642393"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已确认启动并完成前 2 步。\n\n**汇报：**\n\n| 项目 | 值 |\n|---|---|\n| **PID** | 815395 |\n| **W&B Run ID** | `a18r8uyw` |\n| **W&B URL** | https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/a18r8uyw |\n| **服务器/GPU** | westb-23072 / cuda:1 |\n| **Step 速度** | ~32s/step |\n| **进度** | 2/100 steps 完成 |\n| **Registry** | `grpo_rasp_20_1p5b` → RUNNING |\n\nStep 1-2 已有输出，训练正常运行。100 steps 预计约 55 分钟完成。暂未看到 reward metrics（通常每 10 步 log 一次）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-rasp-20-1p5b.md"
+}

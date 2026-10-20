@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f63f467e646cd859c0c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d021 definitive reeval prep",
+  "task_key": "worker_code_d021-definitive-reeval-prep_20260515T094003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d021-definitive-reeval-prep_20260515T094003_result.json",
+    "occurrence": 1,
+    "bytes": 352,
+    "sha256": "249636738a1aee9f1354c68c2b290ad443ebdc74b5a9d99c336f5865a7aa7b8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态汇总：\n\n| 项目 | 状态 |\n|------|------|\n| SFT retrain | 1499/1870 (80%), ~7 min 剩余 |\n| GRPO v5 | GPU 0, 0/250 steps, 刚启动 |\n| Definitive re-eval 脚本 | PID 505715, 等待 SFT 完成后自动启动 |\n| Re-eval 参数 | N=100, max_new_tokens=4096, greedy, cuda:1 |\n\n4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d021-definitive-reeval-prep.md"
+}

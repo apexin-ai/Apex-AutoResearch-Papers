@@ -1,0 +1,597 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:alpha} has no matching \\label",
+          "location": "appendix.tex:97"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:math500} has no matching \\label",
+          "location": "appendix.tex:120"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:mbpp} has no matching \\label",
+          "location": "appendix.tex:128"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:cka_stability} has no matching \\label",
+          "location": "appendix.tex:138"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:sparsity_cliff} has no matching \\label",
+          "location": "appendix.tex:180"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:decoupling} has no matching \\label",
+          "location": "appendix.tex:223"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:cross_scale} has no matching \\label",
+          "location": "appendix.tex:251"
+        },
+        {
+          "kind": "ref_without_label",
+          "message": "\\ref{tab:recovery_gradient} has no matching \\label",
+          "location": "appendix.tex:255"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:overlap} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:diagnostics} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:inference} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:floor_ablation} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:gradient_flow} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:cka} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:sft_gradient} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:tost} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{eq:importance} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:cross_arch} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:intro} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:6"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:70"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "appendix.tex:262"
+        }
+      ],
+      "info": [],
+      "summary": "8 critical, 17 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "ethics.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 84,
+          "num_cites": 8
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 8,
+          "num_cites": 11
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 13,
+          "num_cites": 9
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 2,
+          "num_cites": 29
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "precision_mismatch",
+          "message": "Headline section 'conclusion' reports 0.54, but result section reports 0.5. Same metric must use identical precision.",
+          "location": "conclusion"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "conclusion": [
+              "\\Delta",
+              "\\alpha",
+              "\\sim",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\alpha",
+              "\\beta",
+              "\\ge",
+              "\\geq",
+              "\\gg",
+              "\\in",
+              "\\leq",
+              "\\mu",
+              "\\pm",
+              "\\sigma",
+              "\\sim",
+              "\\times",
+              "\\to",
+              "\\varepsilon"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\alpha",
+              "\\leq",
+              "\\to"
+            ],
+            "limitations": [
+              "\\alpha"
+            ],
+            "method": [
+              "\\Delta",
+              "\\alpha",
+              "\\approx",
+              "\\cdot",
+              "\\circ",
+              "\\ell",
+              "\\ge",
+              "\\geq",
+              "\\in",
+              "\\infty",
+              "\\ldots",
+              "\\le",
+              "\\leq",
+              "\\nabla",
+              "\\operatorname",
+              "\\rho",
+              "\\tau",
+              "\\times",
+              "\\to",
+              "\\top"
+            ],
+            "related_work": [
+              "\\Delta",
+              "\\leq"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 1,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/_audit_compile_w6r6wrox",
+        "main_tex": "main.tex",
+        "log_tail": "Underfull \\vbox (badness 1048) has occurred while \\output is active []\n\n [13]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n(./tables/tab5_cross_scale.tex)\nUnderfull \\hbox (badness 2469) in paragraph at lines 255--258\n\\T1/ptm/m/n/10.95 (+20) only 35.48% $\\OMS/cmsy/m/n/10.95 ^^]$ \\T1/ptm/m/sc/10.9\n5 (+20) Rasp \\T1/ptm/m/n/10.95 (+20) 26.16% $\\OML/cmm/m/it/10.95 >$ \\T1/ptm/m/n\n/10.95 (+20) Stan-dard\n []\n\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n[14]\n<figures/paper/fig_appendix_kl.pdf, id=1144, 380.4846pt x 235.9923pt>\nFile: figures/paper/fig_appendix_kl.pdf Graphic file (type pdf)\n<use figures/paper/fig_appendix_kl.pdf>\nPackage pdftex.def Info: figures/paper/fig_appendix_kl.pdf  used on input line \n303.\n(pdftex.def)             Requested size: 164.31459pt x 101.91762pt.\n\nUnderfull \\hbox (badness 5403) in paragraph at lines 308--311\n[]\\T1/ptm/m/sc/10.95 (+20) Rasp \\T1/ptm/m/n/10.95 (+20) at $\\OML/cmm/m/it/10.95\n \n[]\\OT1/cmr/m/n/10.95 1\\OML/cmm/m/it/10.95 :\\OT1/cmr/m/n/10.95 0$ \\T1/ptm/m/n/\n10.95 (+20) main-tains near-zero KL\n []\n\n[15 <./figures/paper/fig_appendix_kl.pdf>]\n\nLaTeX Warning: `h' float specifier changed to `ht'.\n\n) [16] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: 60B68747DA3177208332B59B3069FA73;6003.\n ) \nHere is how much of TeX's memory you used:\n 17691 strings out of 469438\n 280187 string characters out of 5468411\n 747623 words of memory out of 5000000\n 45373 multiletter control sequences out of 15000+600000\n 732792 words of font info for 455 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,13n,93p,1001b,640s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf\n-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/f\nonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/ty\npe1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\nlic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\nfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pf\nb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive\n/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fo\nnts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type\n1/urw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/\nutmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></us\nr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (16 pages, 4662019 bytes).\nPDF statistics:\n 1352 PDF objects out of 1440 (max. 8388607)\n 877 compressed objects within 9 object streams\n 158 named destinations out of 1000 (max. 500000)\n 91483 words of extra memory for PDF output out of 106986 (max. 10000000)\n",
+        "error": "",
+        "pages": 16,
+        "warnings": [
+          "`h' float specifier changed to `ht'.",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "Token not allowed in a PDF string (Unicode):",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'.",
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 16,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "Token not allowed in a PDF string (Unicode):",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 3--3",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 3--3",
+        "Underfull \\hbox (badness 1371) in paragraph at lines 27--32",
+        "Underfull \\vbox (badness 5832) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2158) in paragraph at lines 15--1",
+        "Underfull \\hbox (badness 3657) in paragraph at lines 69--70",
+        "Underfull \\hbox (badness 1515) in paragraph at lines 69--70",
+        "Underfull \\hbox (badness 5008) in paragraph at lines 28--31",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 78--82",
+        "Underfull \\hbox (badness 2150) in paragraph at lines 128--131",
+        "Underfull \\vbox (badness 3623) has occurred while \\output is active []",
+        "Underfull \\vbox (badness 10000) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 7796) in paragraph at lines 1--44",
+        "Underfull \\hbox (badness 1057) in paragraph at lines 85--91",
+        "Underfull \\hbox (badness 1024) in paragraph at lines 85--91",
+        "Underfull \\hbox (badness 1205) in paragraph at lines 117--121",
+        "Underfull \\hbox (badness 1371) in paragraph at lines 223--226",
+        "Underfull \\hbox (badness 3590) in paragraph at lines 251--256",
+        "Underfull \\hbox (badness 1325) in paragraph at lines 40--40",
+        "Underfull \\hbox (badness 4995) in paragraph at lines 43--44",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 52--53",
+        "Underfull \\hbox (badness 2970) in paragraph at lines 87--91",
+        "Underfull \\hbox (badness 1028) in paragraph at lines 97--103",
+        "Underfull \\hbox (badness 1062) in paragraph at lines 97--103",
+        "Overfull \\hbox (2.65851pt too wide) in paragraph at lines 6--13",
+        "Overfull \\hbox (3.07376pt too wide) in paragraph at lines 5--15",
+        "Underfull \\hbox (badness 1496) in paragraph at lines 193--193",
+        "Underfull \\hbox (badness 1048) in paragraph at lines 210--216",
+        "Underfull \\vbox (badness 1048) has occurred while \\output is active []",
+        "Underfull \\hbox (badness 2469) in paragraph at lines 255--258",
+        "Underfull \\hbox (badness 5403) in paragraph at lines 308--311"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "info",
+      "dimension": "叙事一致性",
+      "message": "Abstract→Intro→Method→Experiments→Conclusion 主线一致性良好。核心故事线 \"reward-accuracy decoupling + recovery capacity spectrum + SFT warmup dominance\" 从 Abstract 贯穿至 Conclusion，无 A/B 漂移。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "introduction.tex:37 Contribution C3 称 \"across all four criteria\" (51-64%) 后接 \"at most 1.14 pp\"，但 1.14 pp 来自 RASP α=2.0（Table 3），不属于\"四个主要 criteria\"（Standard/RASP α=1.0/CKA-only/Random 的最大 |Δ| 仅 0.61 pp）。句子将四 criteria 的 SFT 范围与含 α 变体的 max Δ 混在一起，scope 不一致。建议改为 \"at most 0.61 pp for the four main criteria (1.14 pp including α variants)\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "introduction.tex:37 C3 称 \"This dominance persists at 300 training steps\"，但 extended training（Appendix §Extended Training）只测了 CKA-only 和 Standard 2/4 criteria。C3 的 section reference \"(§5.3, §5.5)\" 暗示全谱验证，实际覆盖不完整。建议改为 \"persists at 300 steps for CKA-only and Standard\"。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "叙事一致性",
+      "message": "introduction.tex:10 Intro P2 称 \"for each criterion individually, SFT and GRPO recover the model to within 1 percentage point of each other\"，但 Table 2 中 RASP α=2.0 Δ=+1.14 pp 超过 1 pp。虽然语境指\"四个主要 criteria\"（max |Δ|=0.61），但 RASP α=2.0 出现在同一张 Table 2 中，审稿人可能认为这是反例。建议加限定 \"for the four main criteria at 20% sparsity\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 回答了四个必答问题（问题/方法/结果/意义）。~162 words，在 200 word 限制内。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Introduction 符合 5 段结构：P1 背景+可测试预测 → P2 预测不成立+decoupling → P3 为何惊讶+gap → P4 方法 RASP+dose-response → P5 贡献列表。结构清晰。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Related Work 按主题分组（structured pruning / pruning-aware recovery / RLVR dynamics），非 \"A did X. B did Y.\" 堆砌。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "C1 (decoupling) → §5.3 + Table 2 + TOST appendix。C2 (spectrum) → §5.2 + Table 1 + §5.4 + Table 3。C3 (SFT dominance) → §5.3 + §5.5。每条贡献均有正文 section/table 支撑。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "无孤儿章节。§5.5 Structural Evidence 支撑 C2 和 C3。"
+    },
+    {
+      "severity": "info",
+      "dimension": "贡献-范围对齐",
+      "message": "Abstract \"across three benchmarks\" = GSM8K + MATH-500 + MBPP，与实验匹配。\"preliminary cross-scale and cross-model evidence\" 适当 hedged。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "experiments.tex:51 \"Random... stagnates (reward 0.14--0.19, min f0 = 0.300)\"。Table 1 显示 Random Mean Rew.=0.164, Peak=0.190。range 下界 0.14 与表中 Mean 0.164 不符（应为 ~0.16）。文本中的 0.14 无法从 Table 1 溯源，可能来自训练曲线但不可追踪。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "Claim强度",
+      "message": "experiments.tex:76 \"dose-response α variations stay within 1.14 pp (Table~\\ref{tab:alpha}; Appendix~\\ref{sec:appendix_math500})\"。1.14 pp 仅在 GSM8K 上成立。MATH-500 α=2.0 Δ=+1.8 pp 超过此 bound。引用 Appendix MATH-500 暗示该 bound 也适用于 MATH-500，但实际不成立。建议改为 \"within 1.14 pp on GSM8K\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "\"4.4 times the peak RL reward\" — Table 1: 0.354/0.081=4.37。标为 4.4 属合理四舍五入。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "Conclusion \"mean |Δ|=0.54 pp\" — 验证: (0.48+0.55+0.61+0.53)/4=0.5425≈0.54 ✓。\"max 1.8 pp\" — MATH-500 α=2.0 Δ=+1.8 ✓。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "experiments.tex:33 Random 使用 TRL 默认 512-token 生成上限（其余 criteria 用 1024）。在宣称 \"controlled study\" 的标题下，这是一个未控制的变量。Random 的 reward stagnation 和较低 accuracy 可能部分归因于更短的生成长度而非随机剪枝本身。Spectrum ordering claim (§5.2) 受此 confound 影响。虽然在 setup 段落中已 disclosed，但 §5.2 讨论 spectrum 时未再提及此 caveat。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "实验严谨性",
+      "message": "MBPP 评估缺少 Random baseline（Table MBPP 只有 CKA-only, Standard, RASP, ShortGPT）。Abstract 称 \"across three benchmarks\"，但 MBPP 上只有 3/4 criteria + 1 depth baseline。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果 Table 2 中 CKA-only/Standard/Random 有 3 seeds ±std，RASP α=1.0 和 α 变体为 single seed。已在 Limitations 中声明。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Baselines 为 Standard (LLM-Pruner 2023) / Random / ShortGPT (2024)。Related Work 讨论的 RESP/RAC/Bonsai/SSGR 未作为实验 baseline——审稿人可能要求补充。论文的 framing 是 \"controlled comparison of criteria\" 而非 \"method comparison\"，但 RESP (2025, 同领域) 有可比实验设置。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "超参完整（Appendix Table hyperparams）。GPU 型号 (2× RTX PRO 6000 94GB) 已声明。SFT 训练时间 37 min 已给出。GRPO 训练时间未明确给出但可从 100 steps + 配置推算。Code 匿名链接已提供。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "Limitations section 存在 ✓。Ethics Statement 存在 ✓。AI assistance 声明在 Appendix ✓。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致性",
+      "message": "I(h), F(h), α, f₀, RASP 等核心符号全文一致。新符号首次出现均有定义。TOST, GRPO, CKA 等缩写在首次使用时已展开。"
+    },
+    {
+      "severity": "info",
+      "dimension": "符号一致性",
+      "message": "Abstract 中 \"RLVR\" 和 \"SFT\" 未在 Abstract 内展开定义。RLVR 首次出现在 Abstract 第一个词。按 paper-writing-norms §2.2 \"Abstract 中首次出现的缩写必须展开\"，这违反了规范。但两者在 NLP 社区极为常见。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号一致性",
+      "message": "abstract.tex:1 \"Reinforcement learning with verifiable rewards (RLVR)\" 和 \"supervised fine-tuning (SFT)\" 在 Abstract 中已展开定义 ✓。但 \"MLP\" 未在 Abstract 中展开（首次出现 \"structured MLP pruning\"）。\"CKA\" 在 Abstract 第 2 段出现但未展开（\"Centered Kernel Alignment (CKA)\" 只在 Method 中展开）。建议在 Abstract 首次使用 CKA 时加 \"(CKA)\" → \"Centered Kernel Alignment (CKA)\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Intro→Related Work→Method→Experiments→Conclusion 过渡自然，符合 CS 论文惯例。"
+    },
+    {
+      "severity": "info",
+      "dimension": "过渡",
+      "message": "Discussion 在 Appendix 中，未重复 Results 数字，提供了更高层解读（diagnostic probe 概念、deployment 含义、与 self-healing 的关系）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "3 个 distinct limitations: (1) 仅 Qwen2.5 family, (2) 仅 3 benchmarks, (3) single seeds for some variants。符合用户自定义规则 \"覆盖 3 个点左右\"。~64 words，虽不满足通用 ≥150 words 标准，但用户规则 \"[EMNLP 2026] Limitations 章节只需要写一小段\" 优先级更高。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "em-dash (—) 全文扫描: 0 处 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "解释性 en-dash ( – ) 全文扫描: 0 处 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "filler words (notably/importantly/furthermore/moreover/additionally/leverage/utilize/delve/myriad/plethora) 扫描: 0 处 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "-ing 分词短语检查: 未发现 \"..., demonstrating/highlighting/indicating the...\" 等 AI 典型模式。所有 -ing 用法均为正常语法结构。"
+    },
+    {
+      "severity": "info",
+      "dimension": "去AI",
+      "message": "段落长度检查: 未发现过度分段（2-3 句一段）。段落密度正常。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未发现内部实验编号、服务器名、内部 IP、数据路径等内部信息泄露。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "未发现隐含内部流程的表述或对内部工具的间接引用。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract ~162 words，在 EMNLP 2026 200-word 限制内 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations section 仅在正文 main.tex 中出现一次 (\\section*{Limitations})，appendix 中无 limitations section ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "ARR Responsible NLP Checklist 未出现在 PDF 中 ✓"
+    },
+    {
+      "severity": "info",
+      "dimension": "审稿规则",
+      "message": "main.tex 使用 \\usepackage[review]{acl}，review 模式 ✓"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "Figure 5 caption 不自包含：仅写 \"GRPO training dynamics at 20% sparsity\" + 子图标题，未描述关键发现（如 CKA-only 维持 reward 增长而 Standard/Random reward collapse）。审稿人扫描 caption 时无法从 caption 单独理解图表传达的核心 message"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "页面视觉密度极高：Figure 7（左栏）+ Figure 8（顶部跨栏）占据约 2/3 页面，Section 5 Conclusion 仅占右栏底部约 1/3 高度（~12 行）。虽然符合 8 页限制，但 Conclusion 视觉上显得仓促，整页压迫感强"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "Figure 1（dose-response bar chart）作为首页视觉锚点功能性可接受，直接对应标题问题。但其信息类型（α 参数扫描结果）偏实验细节；Figure 2（p3，框架总览图）更能一眼传达方法论全貌。若 Figure 2 能提前至 p2 出现，审稿人第一印象会更强"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 4 scatter plot 的 axis label 和数据点旁标注（如 \"+0.45\"、\"-0.61\"）字号偏小，目测约为正文字号的 60-65%，接近可读性下限。打印或缩放后可能辨识困难"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 5(b) 子图内 f₀ 曲线与 gradient norm 曲线在同一面板中重叠较严重，四条方法各有两种指标共 8 条线。建议用不同 line style（dashed/dotted）或拆为独立子图增强可区分性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 4",
+      "message": "Figure 3 CKA heatmap 使用 red-yellow 配色方案，虽为热力图标准配色，但对 red-green 色盲用户不够友好。可考虑 viridis 或 cividis colormap"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 7",
+      "message": "Figure 6 scatter plot 中数据点标签（如 \"CKA-only 20%\"、\"Standard 15%\"）字号较小且分布密集，部分标签有轻微重叠风险"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 8",
+      "message": "Figure 7 使用绿色系柱状图展示 CKA similarity，而其他图（Figure 4/5/6）主要用蓝/红/橙系。跨图颜色语义一致性可进一步优化——同一方法在所有图中应使用相同颜色"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 11-16",
+      "message": "Appendix 共 22 个子节（A-V），视觉上密集但格式统一，所有表格均使用 booktabs 风格，最优值加粗标注。无排版异常"
+    }
+  ],
+  "counts": {
+    "critical": 8,
+    "warning": 71,
+    "info": 36
+  },
+  "error": "",
+  "timestamp": "2026-05-26T08:48:00.359895+00:00"
+}

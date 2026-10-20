@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a03ffed57769f7a1803c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops d011 kill standard start rasp",
+  "task_key": "worker_ops_d011-kill-standard-start-rasp_20260514T225708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d011-kill-standard-start-rasp_20260514T225708_result.json",
+    "occurrence": 1,
+    "bytes": 47,
+    "sha256": "14975b971608973172556654cd429b594ad9eba8e8ad0de3107687d808b6c374"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后检查训练日志。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d011-kill-standard-start-rasp.md"
+}

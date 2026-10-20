@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eda6b423b3d5f8750c17",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check math500 sft standard",
+  "task_key": "worker_code_check_math500_sft_standard_20260517T095850",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_math500_sft_standard_20260517T095850_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "67308aa1f024fb55928da42a7c8f4ea07ca07fdaef4308b5d7d19eca56a28976"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Status: SUCCESS**\n\n| 指标 | 值 |\n|---|---|\n| Accuracy | **0.2600 ± 0.0196** |\n| Correct / Total | 130 / 500 |\n| Natural EOS | 57.8% (289/500) |\n| Truncated | 42.2% (211/500) |\n| 耗时 | ~3h35m |\n\n结果文件已写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_20.json`，exit code = 0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-math500-sft-standard.md"
+}

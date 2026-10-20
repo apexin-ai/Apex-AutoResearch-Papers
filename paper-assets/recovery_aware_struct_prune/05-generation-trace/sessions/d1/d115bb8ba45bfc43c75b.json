@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d115bb8ba45bfc43c75b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "verify grasp eval json",
+  "task_key": "worker_verify_grasp-eval-json_20260515T163844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_grasp-eval-json_20260515T163844_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "47753616a42e88c3567bf1735487c00536ebf1327da6eff198e8fa1b6af9de04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. JSON 文件完整性\n\n| 文件 | 路径 | 大小 | accuracy | n_total | 完整 |\n|------|------|------|----------|---------|------|\n| **GraSP post-SFT** | `results/eval_sft_grasp_20_n100.json` | 76KB, 919行 | **0.41** (41/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |\n| **GraSP pre-SFT** | `results/eval_pruned_graspune_20_greedy.json` | 98KB, 919行 | **0.07** (7/100) | 100 | ✓ JSON 头尾闭合，含 per-example results |\n\n两个 JSON 均有 `accuracy`, `stderr`, `model_path`, per-example results，结构完整。\n\n### 2. Eval 链状态\n\n**无活跃 eval 进程。** `ps aux` 无 eval/python 训练进程，无 tmux session。所有 eval 任务已完成。\n\n当前 `results/` 目录下已完成的 eval：\n- `eval_sft_alpha_0.0_n100.json` — α=0.0 post-SFT\n- `eval_sft_alpha_1.0_n100.json` — α=1.0 post-SFT\n- `eval_sft_alpha_2.0_n100.json` — α=2.0 post-SFT\n- `eval_alpha_4.0_greedy.json` — α=4.0\n- `eval_sft_grasp_20_n100.json` — GraSP post-SFT (**0.41**)\n- `eval_pruned_graspune_20_greedy.json` — GraSP pre-SFT (**0.07**)\n- `reeval_pruned_rasp_20_definitive_n100.json` — RASP re-eval\n\n`eval_sft_alpha_0.5_n100.log` 存在（1.3KB）但无对应 JSON，可能未完成或被中断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-grasp-eval-json.md"
+}

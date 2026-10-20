@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cceb7aeb79621f2321a5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval capture westd all results",
+  "task_key": "worker_eval_capture-westd-all-results_20260515T163912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_capture-westd-all-results_20260515T163912_result.json",
+    "occurrence": 1,
+    "bytes": 1033,
+    "sha256": "718b29c42df0c1aac9b91a573191c9571330054cfeeb466dd3c14d4fcc672ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新完成。汇总表：\n\n## GSM8K Accuracy 对比 (n=100, greedy)\n\n| 配置 | Post-Prune | Post-SFT | SFT 恢复 |\n|------|-----------|----------|---------|\n| α=0.0 (magnitude-only) | — | 64% | — |\n| **α=0.5** | 25% | **FAIL** (checkpoint 损坏) | — |\n| α=1.0 | 27% | 57% | +30pp |\n| **α=2.0** | 29% | **62%** | +33pp |\n| α=4.0 | 40% | 62% | +22pp |\n| Standard (LLM-Pruner) | 27% | 64% | +37pp |\n| RASP | 31% | 57% | +26pp |\n| **GraSP-20** | **7%** (eos_rate=2%) | **41%** | +34pp |\n\n### 关键发现\n\n1. **α=2.0 post-SFT = 62%**，与 α=4.0 持平，但 post-prune 更低 (29% vs 40%)。SFT 恢复能力强。\n2. **GraSP post-SFT = 41%**，虽然 SFT 恢复了 +34pp，但绝对值远低于其他方法。GraSP pre-SFT 仅 7% 且 eos_rate=2%（几乎全部 truncated），说明剪枝后模型结构严重受损。\n3. **α=0.5 eval 失败** — safetensors 文件损坏 (`incomplete metadata, file not fully covered`)，SFT checkpoint 需要重新保存或重训。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-capture-westd-all-results.md"
+}

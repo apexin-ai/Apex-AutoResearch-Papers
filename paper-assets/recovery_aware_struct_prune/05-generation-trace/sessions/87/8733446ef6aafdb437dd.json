@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8733446ef6aafdb437dd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis humaneval 2048 matrix",
+  "task_key": "worker_analysis_humaneval_2048_matrix_20260517T190756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_humaneval_2048_matrix_20260517T190756_result.json",
+    "occurrence": 1,
+    "bytes": 559,
+    "sha256": "ea0976d84cf9d3f18a0bff5b6671f4d1a73c1292b28b098408f6e56a7006fa67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已完成并注册为 artifact (`art_20260517_79570d`)。\n\n核心发现：\n- **GRPO+RASP 14.63%** 是剪枝模型中最高，但与其他变体的差异在 N=164 下未达统计显著性\n- 所有剪枝模型在 HumanEval 上 67-77% 相对下降（远超 GSM8K 的 25-35%），代码生成对结构容量更敏感\n- **C1 需要修正**：GRPO 的优势是条件性的（仅在 RASP 上有效），不是纯独立主效应，而是交互效应\n- **C3 得到支持**：GRPO+RASP 组合在两个 benchmark 上均为最优或并列最优"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-humaneval-2048-matrix.md"
+}

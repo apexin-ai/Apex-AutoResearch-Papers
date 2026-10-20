@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a94f4fbfde790865455",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "knowledge memory update sft results",
+  "task_key": "worker_knowledge_memory-update-sft-results_20260515T174006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_memory-update-sft-results_20260515T174006_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "80d2a33efbea724d0fbb188dcbf2b756e14124f0f4ecdf7a593fbbe7c0d1da10"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已追加三个新条目到 memory.md 末尾：westd SFT retrain 交叉验证、GRPO collapse 规律更新、GRPO 关键决策。原有内容未改动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-memory-update-sft-results.md"
+}

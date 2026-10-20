@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d227ebda5c1bbbf26c88",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval grpo standard 20 2048",
+  "task_key": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T175504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T175504_result.json",
+    "occurrence": 1,
+    "bytes": 411,
+    "sha256": "3070562ae41405bd57f77f21db8e03be0f1f39ba38fb1c51b3730dcef9783cbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**GRPO Standard 20% @2048 结果：pass@1 = 10.37% (17/164)**\n\n关键发现：\n- @512 的 1.83% 确认为截断伪影，扩展到 2048 tokens 后提升至 10.37%（+8.54pp）\n- 与 SFT RASP 20% @2048 完全相同（都是 10.37%, 17/164）\n- 远优于 SFT Standard 20%（negative）\n- 待 GRPO RASP @2048 结果完成对比，判断 RASP 在 GRPO 训练下是否有额外增益"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-grpo-standard-20-2048.md"
+}

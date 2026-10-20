@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e39c70e405273c016268",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prep 30 sparsity",
+  "task_key": "worker_ops_prep_30_sparsity_20260516T084317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep_30_sparsity_20260516T084317_result.json",
+    "occurrence": 1,
+    "bytes": 1908,
+    "sha256": "accd416cfbaf22b0bc66642413d50075af088689425ae1014967b6021e8f7087"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 30% Sparsity 准备报告\n\n### 1. prune.py 支持情况\n- `--sparsity` 参数接受任意 float，30% 直接可用\n- 无 `--dry_run` 参数\n- 需要外部文件：`--importance_path` (必需) + `--cka_path` (RASP 模式必需)\n\n### 2. Scores 可复用\nScores 是 per-head/per-layer 的绝对值。RASP 组合公式：`importance * (1 - overlap)^alpha`。sparsity 参数只决定剪多少结构（threshold），**不影响 score 计算，无需重算**。\n\nScore 文件位置：\n- `/root/recovery_aware_struct_prune/results/importance_scores.pt` (17KB)\n- `/root/recovery_aware_struct_prune/results/cka_scores.pt` (122KB)\n\n### 3. RASP 30% 已完成\n\n| 指标 | 值 |\n|------|-----|\n| 路径 | `/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_30/` |\n| 目标 sparsity | 30.00% |\n| 实际 sparsity | **28.73%** |\n| 剪枝参数量 | 5,427,842,560 |\n| Attn GQA groups 剪枝 | 0 / 112 |\n| MLP groups 剪枝 | 301 / 784 |\n| Forward pass | OK |\n| 磁盘占用 | 11GB |\n\n注意：实际 28.73% < 目标 30%，因为 `min_keep_mlp` 约束（每层保留 ≥40% MLP 容量）限制了进一步剪枝。同时 RASP scoring 将所有注意力 group 评为高重要性，0 个被剪。\n\n### 4. Standard 30% — 磁盘空间不足\n\n当前 `/root/autodl-tmp` **仅剩 8.7GB**，standard 30% 需要 ~11GB，无法执行。\n\n可清理候选（需确认）：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `pruned_rasp_alpha_0.0` | 12GB | 20% α=0 消融模型 |\n| `pruned_rasp_alpha_1.0` | 12GB | 20% α=1 消融模型 |\n| `grpo_stage2_standard_20_v8` | 12GB | 旧 GRPO checkpoint |\n| 多个空 GRPO 目录 | ~0 | v5/v6/v7 等 |\n\n### 5. 预计 SFT 后模型大小\n- 30% 剪枝后模型 ~11GB (bf16)\n- SFT 后大小类似（同参数量，不同权重值）\n\n### 需要你决定\n清理哪些旧产物来释放空间给 `pruned_standard_30`？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-30-sparsity.md"
+}

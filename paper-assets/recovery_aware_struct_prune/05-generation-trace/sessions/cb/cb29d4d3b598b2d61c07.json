@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "cb29d4d3b598b2d61c07",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo standard 20 fair",
+  "task_key": "worker_diagnose_eval_math500_grpo_standard_20_fair_20260518T180952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_standard_20_fair_20260518T180952_result.json",
+    "occurrence": 1,
+    "bytes": 2017,
+    "sha256": "1f23e4f275bfbf221a29d30934d57fc2bf76f9d31942c158c5069d6b815d562f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：进程未死亡，正在正常运行。**\n\n- PID 19616 状态 `Rl+`，GPU 1 利用率 99%，显存 16758MiB\n- 进度已推进到 22/500（15:13 elapsed），日志在 34 秒前刚更新\n- 每题耗时 33s-73s 不等，某些难题较慢导致进度条长时间不刷新，造成\"无声死亡\"的假象\n- tqdm 通过 `\\r` 更新进度条，`tee` 管道刷新有延迟，远程查看时容易看到过时输出\n\n```json\n{\n  \"root_cause\": \"进程未死亡。PID 19616 状态 Rl+，日志 30s 前仍在更新（22/500 at 15:13），tqdm 通过 \\\\r 刷新 + tee 管道延迟导致远程查看时误判为死亡\",\n  \"error_type\": \"false_alarm\",\n  \"fix_steps\": [\"无需修复，等待完成即可。按当前 ~57s/it 速率，预计剩余 ~7.5h\"],\n  \"can_auto_fix\": true,\n  \"gpu_status\": \"cuda:0=train_grpo_v5(PID11457,90626MiB,3h+运行中) | cuda:1=eval_math500(PID19616,16758MiB,正常运行) | cuda:2=0MiB但100%util(异常,无进程) | cuda:3=idle\",\n  \"other_evals_alive\": \"math500_sft_cka_only_v4 tmux session 不存在，cuda:2 无进程运行\"\n}\n```\n\n注意 cuda:2 状态异常：0MiB 显存但 100% utilization，无对应进程。可能是之前进程异常退出后 GPU 卡在 busy 状态，不影响当前实验，但如果后续要用 cuda:2 可能需要 `nvidia-smi -r` 重置。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "进程未死亡。PID 19616 状态 Rl+，日志 30s 前仍在更新（22/500 at 15:13），tqdm 通过 \\r 刷新 + tee 管道延迟导致远程查看时误判为死亡",
+              "error_type": "false_alarm",
+              "fix_steps": [
+                "无需修复，等待完成即可。按当前 ~57s/it 速率，预计剩余 ~7.5h"
+              ],
+              "can_auto_fix": true,
+              "gpu_status": "cuda:0=train_grpo_v5(PID11457,90626MiB,3h+运行中) | cuda:1=eval_math500(PID19616,16758MiB,正常运行) | cuda:2=0MiB但100%util(异常,无进程) | cuda:3=idle",
+              "other_evals_alive": "math500_sft_cka_only_v4 tmux session 不存在，cuda:2 无进程运行"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-standard-20-fair.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ad445d1604677e92a5f6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha4 eval collect",
+  "task_key": "worker_code_alpha4-eval-collect_20260515T134704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha4-eval-collect_20260515T134704_result.json",
+    "occurrence": 1,
+    "bytes": 441,
+    "sha256": "60d8f12a40dbc57fb728cd1122b90dc25114a80e943f5540b975fa8668e0ea41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n**sft_alpha4_0_westd_retry — DONE (success)**\n\n| 阶段 | 指标 | 值 |\n|------|------|-----|\n| 训练 | final loss | 0.7393 |\n| 训练 | steps / epochs | 1870 / 2 |\n| 训练 | runtime | ~30 min |\n| Eval | GSM8K accuracy (N=100) | **62% ± 4.9%** |\n| Eval | eos_rate | 98% |\n| Eval | avg_response_length | 238.56 |\n| 恢复 | post-prune → post-SFT | 40% → 62% (+22pp) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha4-eval-collect.md"
+}

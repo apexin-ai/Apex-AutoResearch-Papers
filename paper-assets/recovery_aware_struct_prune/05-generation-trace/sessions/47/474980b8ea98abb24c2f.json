@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "474980b8ea98abb24c2f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest math500 sft standard 25 v2 westb",
+  "task_key": "worker_ssh_harvest_math500_sft_standard_25_v2_westb_20260521T111839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_math500_sft_standard_25_v2_westb_20260521T111839_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "96eff757bb55665c93243ff464823a16aae03f0eaebd1f21f52e8330555c06d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **进程状态**: DEAD（PID 62714 已退出）\n- **结果**: v2 无任何输出（无日志、无 results JSON），进程启动即崩溃。但 v1 结果存在：**accuracy=0.13** (65/500)，结果文件 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json`\n- **Registry 更新**: 完成 — status=DONE, conclusion=failed, failure_reason 已记录，附注 v1 结果可用\n- **Cron 删除**: 完成\n\n如需重跑 v2 或直接采用 v1 结果更新 registry，请告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-math500-sft-standard-25-v2-westb.md"
+}

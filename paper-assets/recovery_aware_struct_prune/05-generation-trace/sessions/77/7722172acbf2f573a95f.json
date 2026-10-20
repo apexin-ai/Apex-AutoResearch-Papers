@@ -1,0 +1,580 @@
+{
+  "schema_version": "1.0",
+  "id": "7722172acbf2f573a95f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "diagnose eval sft rasp 20 full",
+  "task_key": "worker_diagnose_eval_sft_rasp_20_full_20260517T012539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_rasp_20_full_20260517T012539.log",
+    "occurrence": 1,
+    "bytes": 41302,
+    "sha256": "739d3445288c70e7ac70800974d384765b53c8788a93b19bdf2a4d49a9a2b870"
+  },
+  "statistics": {
+    "messages": 12,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "31372f1c-a11c-4612-9ec8-4350e38d42a6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778996400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a0ac7f47-504a-4e9f-89f6-06a45b4e6086",
+                "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me SSH to westb-23072 to check the eval_sft_rasp_20_full experiment logs.",
+              "signature": "EogCClkIDRgCKkDpfEWZevjlAYvNfbNCSoYgPWiiwvhIXrS55gdDLVyFlG68pVI61zXbIsEu/Tv9mVe+Cd7E21jLi5nhMjxMWNltMg9jbGF1ZGUtb3B1cy00LTY4ABIMEQx+uzmf2rLSvM+dGgwtQwZLL0vjarV3cZgiMAKXa71T6BPgxvcSAVh55WH0SYZaG5SGuMHF7HUXyH8cVSP20pUpPiDVqfq37u8JlCpdgcPCrUqf1wHXNbzh8OuWaF5ZQdcNM16QC68X+TcIF7WBYOdRw8RwLdy7nl7l5br4znh03jR34TT4dw95/FkviU/OIS0KGvCDlOk6oPab1+5tG1oEA4pw3jSC0h7DGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "c5df7db9-ad14-4ba0-a356-7e44e1ba5121",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRnnd6FBL7geU8VJj7CkSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12854,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12854
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TyhH2c167RCCij1VK1SYLo",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "30a990fe-bbf3-473d-9c01-7c6346518a77",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VRnnd6FBL7geU8VJj7CkSL",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12854,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12854
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T01:25:50.652Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01TyhH2c167RCCij1VK1SYLo",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "a267f452-39d4-44dd-978d-665913aa087a",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A8pmddD1dexje8mDe6hLu7",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "find /root -name \"*eval_sft_rasp_20_full*\" -mtime -2 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "a26bcd0e-17ec-4d30-9508-1ceadbb84384",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WHnCyE65ijBBXb7EDQLzKg",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 388,
+                "cache_read_input_tokens": 24695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 388
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T01:25:57.715Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A8pmddD1dexje8mDe6hLu7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "1fbae139-011e-4f27-aa83-b8167e2cd8f5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log\\n/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.45}}"
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0138gBDhsmVGS7FsfuBAB99W",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tail -50 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "b0317263-dbca-4f93-8981-71bb70c417d4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01H2veu6AXBUpxNN3NgDqfqm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 277,
+                "cache_read_input_tokens": 25083,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 277
+                },
+                "output_tokens": 61,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T01:26:03.897Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0138gBDhsmVGS7FsfuBAB99W",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 06:27:52,106 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\\n2026-05-17 06:27:52,808 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-17 06:29:33,417 [INFO] Loading GSM8K test set...\\\\n2026-05-17 06:29:34,761 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-17 06:29:34,833 [INFO] Evaluating on 1319 test samples\\\\n2026-05-17 06:29:34,835 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<57:14,  2.61s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:12<2:33:47,  7.01s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:13<1:34:12,  4.30s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:15<1:09:30,  3.17s/it]\\\\rEvaluating:   0%|          | 5/1319 [00:17<1:00:17,  2.75s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:23<1:26:31,  3.95s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:25<1:13:46,  3.37s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:26<59:17,  2.71s/it]  \\\\rEvaluating:   1%|          | 9/1319 [00:28<49:11,  2.25s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:29<42:55,  1.97s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:34<1:01:20,  2.81s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:35<48:55,  2.25s/it]  \\\\rEvaluating:   1%|          | 13/1319 [00:44<1:36:29,  4.43s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:46<1:17:46,  3.58s/it]\\\\rEvaluating:   1%|          | 15/1319 [00:48<1:11:06,  3.27s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:49<55:21,  2.55s/it]  \\\\rEvaluating:   1%|▏         | 17/1319 [00:50<46:29,  2.14s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:52<40:14,  1.86s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:53<36:12,  1.67s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:54<35:19,  1.63s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [00:57<40:33,  1.87s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [00:59<39:27,  1.82s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [01:01<46:26,  2.15s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [01:03<43:09,  2.00s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [01:04<37:56,  1.76s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [01:09<59:23,  2.76s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [01:12<1:00:45,  2.82s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [01:16<1:05:37,  3.05s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [01:20<1:13:53,  3.44s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [01:22<1:02:24,  2.90s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [01:23<50:26,  2.35s/it]  \\\\rEvaluating:   2%|▏         | 32/1319 [01:25<48:15,  2.25s/it]\\\\rEvaluating:   3%|▎         | 33/1319 [01:27<47:39,  2.22s/it]\\\\rEvaluating:   3%|▎         | 34/1319 [01:29<45:09,  2.11s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [01:32<53:34,  2.50s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [01:36<1:01:38,  2.88s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [01:39<59:29,  2.78s/it]  \\\\rEvaluating:   3%|▎         | 38/1319 [01:47<1:31:54,  4.30s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [01:48<1:14:44,  3.50s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [01:53<1:21:29,  3.82s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [01:54<1:06:07,  3.10s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [07:36<37:08:28, 104.71s/it]\\\\rEvaluating:   3%|▎         | 43/1319 [07:38<26:08:56, 73.77s/it] \\\\rEvaluating:   3%|▎         | 44/1319 [07:38<18:22:45, 51.89s/it]\\\\rEvaluating:   3%|▎         | 45/1319 [07:42<13:13:39, 37.38s/it]\\\\rEvaluating:   3%|▎         | 46/1319 [07:45<9:35:41, 27.13s/it] \\\\rEvaluating:   4%|▎         | 47/1319 [07:47<6:54:57, 19.57s/it]\\\\rEvaluating:   4%|▎         | 48/1319 [07:48<4:55:00, 13.93s/it]\\\\rEvaluating:   4%|▎         | 49/1319 [07:52<3:49:23, 10.84s/it]2026-05-17 06:37:29,555 [INFO] Progress: 50/1319, acc=0.5800, eos_rate=98.00%, avg_len=238\\\\n\\\\rEvaluating:   4%|▍         | 50/1319 [07:54<2:57:35,  8.40s/it]\\\\rEvaluating:   4%|▍         | 51/1319 [07:55<2:11:20,  6.21s/it]\\\\rEvaluating:   4%|▍         | 52/1319 [07:58<1:46:21,  5.04s/i\\\\n\\\\n... [截断: 输出过长，省略 80782 字符] ...\\\\n\\\\n1268/1319 [2:39:57<01:33,  1.82s/it]\\\\rEvaluating:  96%|█████████▌| 1269/1319 [2:40:01<01:52,  2.25s/it]\\\\rEvaluating:  96%|█████████▋| 1270/1319 [2:40:03<01:55,  2.36s/it]\\\\rEvaluating:  96%|█████████▋| 1271/1319 [2:40:06<01:52,  2.35s/it]\\\\rEvaluating:  96%|█████████▋| 1272/1319 [2:40:06<01:28,  1.88s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [2:40:08<01:19,  1.73s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [2:40:12<01:52,  2.50s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [2:40:14<01:38,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [2:40:16<01:31,  2.13s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [2:40:18<01:33,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [2:40:20<01:22,  2.01s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [2:40:22<01:19,  1.99s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [2:40:25<01:37,  2.51s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [2:40:27<01:27,  2.30s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [2:40:29<01:22,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1283/1319 [2:40:32<01:22,  2.30s/it]\\\\rEvaluating:  97%|██████��██▋| 1284/1319 [2:40:33<01:11,  2.05s/it]\\\\rEvaluating:  97%|█████████▋| 1285/1319 [2:40:34<00:56,  1.67s/it]\\\\rEvaluating:  97%|█████████▋| 1286/1319 [2:40:35<00:47,  1.45s/it]\\\\rEvaluating:  98%|█████████▊| 1287/1319 [2:40:38<01:00,  1.90s/it]\\\\rEvaluating:  98%|█████████▊| 1288/1319 [2:40:39<00:57,  1.85s/it]\\\\rEvaluating:  98%|█████████▊| 1289/1319 [2:40:41<00:51,  1.71s/it]\\\\rEvaluating:  98%|█████████▊| 1290/1319 [2:40:43<00:54,  1.88s/it]\\\\rEvaluating:  98%|█████████▊| 1291/1319 [2:40:48<01:16,  2.72s/it]\\\\rEvaluating:  98%|█████████▊| 1292/1319 [2:40:51<01:19,  2.95s/it]\\\\rEvaluating:  98%|█████████▊| 1293/1319 [2:40:53<01:07,  2.59s/it]\\\\rEvaluating:  98%|█████████▊| 1294/1319 [2:40:57<01:14,  2.99s/it]\\\\rEvaluating:  98%|█████████▊| 1295/1319 [2:41:00<01:08,  2.86s/it]\\\\rEvaluating:  98%|█████████▊| 1296/1319 [2:41:01<00:54,  2.38s/it]\\\\rEvaluating:  98%|█████████▊| 1297/1319 [2:41:02<00:45,  2.07s/it]\\\\rEvaluating:  98%|█████████▊| 1298/1319 [2:41:04<00:44,  2.13s/it]\\\\rEvaluating:  98%|█████████▊| 1299/1319 [2:41:06<00:37,  1.90s/it]2026-05-17 09:10:42,579 [INFO] Progress: 1300/1319, acc=0.6200, eos_rate=98.54%, avg_len=206\\\\n\\\\rEvaluating:  99%|█████████▊| 1300/1319 [2:41:07<00:33,  1.78s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [2:41:09<00:29,  1.63s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [2:41:11<00:33,  1.98s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [2:41:13<00:28,  1.79s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [2:41:17<00:37,  2.51s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [2:41:19<00:34,  2.45s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [2:41:22<00:31,  2.45s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [2:41:24<00:28,  2.40s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [2:41:25<00:23,  2.15s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [2:47:19<17:57, 107.70s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [2:47:22<11:25, 76.15s/it] \\\\rEvaluating:  99%|█████████▉| 1311/1319 [2:47:26<07:15, 54.43s/it]\\\\rEvaluating:  99%|█████████▉| 1312/1319 [2:47:28<04:31, 38.83s/it]\\\\rEvaluating: 100%|█████████▉| 1313/1319 [2:47:29<02:44, 27.38s/it]\\\\rEvaluating: 100%|█████████▉| 1314/1319 [2:47:31<01:39, 19.89s/it]\\\\rEvaluating: 100%|█████████▉| 1315/1319 [2:47:32<00:57, 14.29s/it]\\\\rEvaluating: 100%|█████████▉| 1316/1319 [2:47:34<00:31, 10.35s/it]\\\\rEvaluating: 100%|█████████▉| 1317/1319 [2:53:15<03:39, 109.73s/it]\\\\rEvaluating: 100%|█████████▉| 1318/1319 [2:53:17<01:17, 77.41s/it] \\\\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00, 54.56s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00,  7.88s/it]\\\\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\\\\n2026-05-17 09:22:53,824 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 1298,\\\\n  \\\\\\\"truncated\\\\\\\": 21,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.9840788476118272,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 210.9522365428355,\\\\n  \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n  \\\\\\\"min_response_length\\\\\\\": 42\\\\n}\\\\n2026-05-17 09:22:53,837 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.47}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "7f8b56a5-4522-47b6-b3d9-b113a2d1b564",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 06:27:52,106 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\\n2026-05-17 06:27:52,808 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-17 06:29:33,417 [INFO] Loading GSM8K test set...\\\\n2026-05-17 06:29:34,761 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-17 06:29:34,833 [INFO] Evaluating on 1319 test samples\\\\n2026-05-17 06:29:34,835 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<57:14,  2.61s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:12<2:33:47,  7.01s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:13<1:34:12,  4.30s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:15<1:09:30,  3.17s/it]\\\\rEvaluating:   0%|          | 5/1319 [00:17<1:00:17,  2.75s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:23<1:26:31,  3.95s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:25<1:13:46,  3.37s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:26<59:17,  2.71s/it]  \\\\rEvaluating:   1%|          | 9/1319 [00:28<49:11,  2.25s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:29<42:55,  1.97s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:34<1:01:20,  2.81s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:35<48:55,  2.25s/it]  \\\\rEvaluating:   1%|          | 13/1319 [00:44<1:36:29,  4.43s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:46<1:17:46,  3.58s/it]\\\\rEvaluating:   1%|          | 15/1319 [00:48<1:11:06,  3.27s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:49<55:21,  2.55s/it]  \\\\rEvaluating:   1%|▏         | 17/1319 [00:50<46:29,  2.14s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:52<40:14,  1.86s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:53<36:12,  1.67s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:54<35:19,  1.63s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [00:57<40:33,  1.87s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [00:59<39:27,  1.82s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [01:01<46:26,  2.15s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [01:03<43:09,  2.00s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [01:04<37:56,  1.76s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [01:09<59:23,  2.76s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [01:12<1:00:45,  2.82s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [01:16<1:05:37,  3.05s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [01:20<1:13:53,  3.44s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [01:22<1:02:24,  2.90s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [01:23<50:26,  2.35s/it]  \\\\rEvaluating:   2%|▏         | 32/1319 [01:25<48:15,  2.25s/it]\\\\rEvaluating:   3%|▎         | 33/1319 [01:27<47:39,  2.22s/it]\\\\rEvaluating:   3%|▎         | 34/1319 [01:29<45:09,  2.11s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [01:32<53:34,  2.50s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [01:36<1:01:38,  2.88s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [01:39<59:29,  2.78s/it]  \\\\rEvaluating:   3%|▎         | 38/1319 [01:47<1:31:54,  4.30s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [01:48<1:14:44,  3.50s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [01:53<1:21:29,  3.82s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [01:54<1:06:07,  3.10s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [07:36<37:08:28, 104.71s/it]\\\\rEvaluating:   3%|▎         | 43/1319 [07:38<26:08:56, 73.77s/it] \\\\rEvaluating:   3%|▎         | 44/1319 [07:38<18:22:45, 51.89s/it]\\\\rEvaluating:   3%|▎         | 45/1319 [07:42<13:13:39, 37.38s/it]\\\\rEvaluating:   3%|▎         | 46/1319 [07:45<9:35:41, 27.13s/it] \\\\rEvaluating:   4%|▎         | 47/1319 [07:47<6:54:57, 19.57s/it]\\\\rEvaluating:   4%|▎         | 48/1319 [07:48<4:55:00, 13.93s/it]\\\\rEvaluating:   4%|▎         | 49/1319 [07:52<3:49:23, 10.84s/it]2026-05-17 06:37:29,555 [INFO] Progress: 50/1319, acc=0.5800, eos_rate=98.00%, avg_len=238\\\\n\\\\rEvaluating:   4%|▍         | 50/1319 [07:54<2:57:35,  8.40s/it]\\\\rEvaluating:   4%|▍         | 51/1319 [07:55<2:11:20,  6.21s/it]\\\\rEvaluating:   4%|▍         | 52/1319 [07:58<1:46:21,  5.04s/i\\\\n\\\\n... [截断: 输出过长，省略 80782 字符] ...\\\\n\\\\n1268/1319 [2:39:57<01:33,  1.82s/it]\\\\rEvaluating:  96%|█████████▌| 1269/1319 [2:40:01<01:52,  2.25s/it]\\\\rEvaluating:  96%|█████████▋| 1270/1319 [2:40:03<01:55,  2.36s/it]\\\\rEvaluating:  96%|█████████▋| 1271/1319 [2:40:06<01:52,  2.35s/it]\\\\rEvaluating:  96%|█████████▋| 1272/1319 [2:40:06<01:28,  1.88s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [2:40:08<01:19,  1.73s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [2:40:12<01:52,  2.50s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [2:40:14<01:38,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [2:40:16<01:31,  2.13s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [2:40:18<01:33,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [2:40:20<01:22,  2.01s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [2:40:22<01:19,  1.99s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [2:40:25<01:37,  2.51s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [2:40:27<01:27,  2.30s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [2:40:29<01:22,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1283/1319 [2:40:32<01:22,  2.30s/it]\\\\rEvaluating:  97%|██████��██▋| 1284/1319 [2:40:33<01:11,  2.05s/it]\\\\rEvaluating:  97%|█████████▋| 1285/1319 [2:40:34<00:56,  1.67s/it]\\\\rEvaluating:  97%|█████████▋| 1286/1319 [2:40:35<00:47,  1.45s/it]\\\\rEvaluating:  98%|█████████▊| 1287/1319 [2:40:38<01:00,  1.90s/it]\\\\rEvaluating:  98%|█████████▊| 1288/1319 [2:40:39<00:57,  1.85s/it]\\\\rEvaluating:  98%|█████████▊| 1289/1319 [2:40:41<00:51,  1.71s/it]\\\\rEvaluating:  98%|█████████▊| 1290/1319 [2:40:43<00:54,  1.88s/it]\\\\rEvaluating:  98%|█████████▊| 1291/1319 [2:40:48<01:16,  2.72s/it]\\\\rEvaluating:  98%|█████████▊| 1292/1319 [2:40:51<01:19,  2.95s/it]\\\\rEvaluating:  98%|█████████▊| 1293/1319 [2:40:53<01:07,  2.59s/it]\\\\rEvaluating:  98%|█████████▊| 1294/1319 [2:40:57<01:14,  2.99s/it]\\\\rEvaluating:  98%|█████████▊| 1295/1319 [2:41:00<01:08,  2.86s/it]\\\\rEvaluating:  98%|█████████▊| 1296/1319 [2:41:01<00:54,  2.38s/it]\\\\rEvaluating:  98%|█████████▊| 1297/1319 [2:41:02<00:45,  2.07s/it]\\\\rEvaluating:  98%|█████████▊| 1298/1319 [2:41:04<00:44,  2.13s/it]\\\\rEvaluating:  98%|█████████▊| 1299/1319 [2:41:06<00:37,  1.90s/it]2026-05-17 09:10:42,579 [INFO] Progress: 1300/1319, acc=0.6200, eos_rate=98.54%, avg_len=206\\\\n\\\\rEvaluating:  99%|█████████▊| 1300/1319 [2:41:07<00:33,  1.78s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [2:41:09<00:29,  1.63s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [2:41:11<00:33,  1.98s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [2:41:13<00:28,  1.79s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [2:41:17<00:37,  2.51s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [2:41:19<00:34,  2.45s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [2:41:22<00:31,  2.45s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [2:41:24<00:28,  2.40s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [2:41:25<00:23,  2.15s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [2:47:19<17:57, 107.70s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [2:47:22<11:25, 76.15s/it] \\\\rEvaluating:  99%|█████████▉| 1311/1319 [2:47:26<07:15, 54.43s/it]\\\\rEvaluating:  99%|█████████▉| 1312/1319 [2:47:28<04:31, 38.83s/it]\\\\rEvaluating: 100%|█████████▉| 1313/1319 [2:47:29<02:44, 27.38s/it]\\\\rEvaluating: 100%|█████████▉| 1314/1319 [2:47:31<01:39, 19.89s/it]\\\\rEvaluating: 100%|█████████▉| 1315/1319 [2:47:32<00:57, 14.29s/it]\\\\rEvaluating: 100%|█████████▉| 1316/1319 [2:47:34<00:31, 10.35s/it]\\\\rEvaluating: 100%|█████████▉| 1317/1319 [2:53:15<03:39, 109.73s/it]\\\\rEvaluating: 100%|█████████▉| 1318/1319 [2:53:17<01:17, 77.41s/it] \\\\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00, 54.56s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00,  7.88s/it]\\\\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\\\\n2026-05-17 09:22:53,824 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 1298,\\\\n  \\\\\\\"truncated\\\\\\\": 21,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.9840788476118272,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 210.9522365428355,\\\\n  \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n  \\\\\\\"min_response_length\\\\\\\": 42\\\\n}\\\\n2026-05-17 09:22:53,837 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.47}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-17 06:27:52,106 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\n2026-05-17 06:27:52,808 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-17 06:29:33,417 [INFO] Loading GSM8K test set...\\n2026-05-17 06:29:34,761 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\"HTTP/1.1 404 Not Found\\\"\\n2026-05-17 06:29:34,833 [INFO] Evaluating on 1319 test samples\\n2026-05-17 06:29:34,835 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/1319 [00:02<57:14,  2.61s/it]\\rEvaluating:   0%|          | 2/1319 [00:12<2:33:47,  7.01s/it]\\rEvaluating:   0%|          | 3/1319 [00:13<1:34:12,  4.30s/it]\\rEvaluating:   0%|          | 4/1319 [00:15<1:09:30,  3.17s/it]\\rEvaluating:   0%|          | 5/1319 [00:17<1:00:17,  2.75s/it]\\rEvaluating:   0%|          | 6/1319 [00:23<1:26:31,  3.95s/it]\\rEvaluating:   1%|          | 7/1319 [00:25<1:13:46,  3.37s/it]\\rEvaluating:   1%|          | 8/1319 [00:26<59:17,  2.71s/it]  \\rEvaluating:   1%|          | 9/1319 [00:28<49:11,  2.25s/it]\\rEvaluating:   1%|          | 10/1319 [00:29<42:55,  1.97s/it]\\rEvaluating:   1%|          | 11/1319 [00:34<1:01:20,  2.81s/it]\\rEvaluating:   1%|          | 12/1319 [00:35<48:55,  2.25s/it]  \\rEvaluating:   1%|          | 13/1319 [00:44<1:36:29,  4.43s/it]\\rEvaluating:   1%|          | 14/1319 [00:46<1:17:46,  3.58s/it]\\rEvaluating:   1%|          | 15/1319 [00:48<1:11:06,  3.27s/it]\\rEvaluating:   1%|          | 16/1319 [00:49<55:21,  2.55s/it]  \\rEvaluating:   1%|▏         | 17/1319 [00:50<46:29,  2.14s/it]\\rEvaluating:   1%|▏         | 18/1319 [00:52<40:14,  1.86s/it]\\rEvaluating:   1%|▏         | 19/1319 [00:53<36:12,  1.67s/it]\\rEvaluating:   2%|▏         | 20/1319 [00:54<35:19,  1.63s/it]\\rEvaluating:   2%|▏         | 21/1319 [00:57<40:33,  1.87s/it]\\rEvaluating:   2%|▏         | 22/1319 [00:59<39:27,  1.82s/it]\\rEvaluating:   2%|▏         | 23/1319 [01:01<46:26,  2.15s/it]\\rEvaluating:   2%|▏         | 24/1319 [01:03<43:09,  2.00s/it]\\rEvaluating:   2%|▏         | 25/1319 [01:04<37:56,  1.76s/it]\\rEvaluating:   2%|▏         | 26/1319 [01:09<59:23,  2.76s/it]\\rEvaluating:   2%|▏         | 27/1319 [01:12<1:00:45,  2.82s/it]\\rEvaluating:   2%|▏         | 28/1319 [01:16<1:05:37,  3.05s/it]\\rEvaluating:   2%|▏         | 29/1319 [01:20<1:13:53,  3.44s/it]\\rEvaluating:   2%|▏         | 30/1319 [01:22<1:02:24,  2.90s/it]\\rEvaluating:   2%|▏         | 31/1319 [01:23<50:26,  2.35s/it]  \\rEvaluating:   2%|▏         | 32/1319 [01:25<48:15,  2.25s/it]\\rEvaluating:   3%|▎         | 33/1319 [01:27<47:39,  2.22s/it]\\rEvaluating:   3%|▎         | 34/1319 [01:29<45:09,  2.11s/it]\\rEvaluating:   3%|▎         | 35/1319 [01:32<53:34,  2.50s/it]\\rEvaluating:   3%|▎         | 36/1319 [01:36<1:01:38,  2.88s/it]\\rEvaluating:   3%|▎         | 37/1319 [01:39<59:29,  2.78s/it]  \\rEvaluating:   3%|▎         | 38/1319 [01:47<1:31:54,  4.30s/it]\\rEvaluating:   3%|▎         | 39/1319 [01:48<1:14:44,  3.50s/it]\\rEvaluating:   3%|▎         | 40/1319 [01:53<1:21:29,  3.82s/it]\\rEvaluating:   3%|▎         | 41/1319 [01:54<1:06:07,  3.10s/it]\\rEvaluating:   3%|▎         | 42/1319 [07:36<37:08:28, 104.71s/it]\\rEvaluating:   3%|▎         | 43/1319 [07:38<26:08:56, 73.77s/it] \\rEvaluating:   3%|▎         | 44/1319 [07:38<18:22:45, 51.89s/it]\\rEvaluating:   3%|▎         | 45/1319 [07:42<13:13:39, 37.38s/it]\\rEvaluating:   3%|▎         | 46/1319 [07:45<9:35:41, 27.13s/it] \\rEvaluating:   4%|▎         | 47/1319 [07:47<6:54:57, 19.57s/it]\\rEvaluating:   4%|▎         | 48/1319 [07:48<4:55:00, 13.93s/it]\\rEvaluating:   4%|▎         | 49/1319 [07:52<3:49:23, 10.84s/it]2026-05-17 06:37:29,555 [INFO] Progress: 50/1319, acc=0.5800, eos_rate=98.00%, avg_len=238\\n\\rEvaluating:   4%|▍         | 50/1319 [07:54<2:57:35,  8.40s/it]\\rEvaluating:   4%|▍         | 51/1319 [07:55<2:11:20,  6.21s/it]\\rEvaluating:   4%|▍         | 52/1319 [07:58<1:46:21,  5.04s/i\\n\\n... [截断: 输出过长，省略 80782 字符] ...\\n\\n1268/1319 [2:39:57<01:33,  1.82s/it]\\rEvaluating:  96%|█████████▌| 1269/1319 [2:40:01<01:52,  2.25s/it]\\rEvaluating:  96%|█████████▋| 1270/1319 [2:40:03<01:55,  2.36s/it]\\rEvaluating:  96%|█████████▋| 1271/1319 [2:40:06<01:52,  2.35s/it]\\rEvaluating:  96%|█████████▋| 1272/1319 [2:40:06<01:28,  1.88s/it]\\rEvaluating:  97%|█████████▋| 1273/1319 [2:40:08<01:19,  1.73s/it]\\rEvaluating:  97%|█████████▋| 1274/1319 [2:40:12<01:52,  2.50s/it]\\rEvaluating:  97%|█████████▋| 1275/1319 [2:40:14<01:38,  2.24s/it]\\rEvaluating:  97%|█████████▋| 1276/1319 [2:40:16<01:31,  2.13s/it]\\rEvaluating:  97%|█████████▋| 1277/1319 [2:40:18<01:33,  2.24s/it]\\rEvaluating:  97%|█████████▋| 1278/1319 [2:40:20<01:22,  2.01s/it]\\rEvaluating:  97%|█████████▋| 1279/1319 [2:40:22<01:19,  1.99s/it]\\rEvaluating:  97%|█████████▋| 1280/1319 [2:40:25<01:37,  2.51s/it]\\rEvaluating:  97%|█████████▋| 1281/1319 [2:40:27<01:27,  2.30s/it]\\rEvaluating:  97%|█████████▋| 1282/1319 [2:40:29<01:22,  2.24s/it]\\rEvaluating:  97%|█████████▋| 1283/1319 [2:40:32<01:22,  2.30s/it]\\rEvaluating:  97%|██████��██▋| 1284/1319 [2:40:33<01:11,  2.05s/it]\\rEvaluating:  97%|█████████▋| 1285/1319 [2:40:34<00:56,  1.67s/it]\\rEvaluating:  97%|█████████▋| 1286/1319 [2:40:35<00:47,  1.45s/it]\\rEvaluating:  98%|█████████▊| 1287/1319 [2:40:38<01:00,  1.90s/it]\\rEvaluating:  98%|█████████▊| 1288/1319 [2:40:39<00:57,  1.85s/it]\\rEvaluating:  98%|█████████▊| 1289/1319 [2:40:41<00:51,  1.71s/it]\\rEvaluating:  98%|█████████▊| 1290/1319 [2:40:43<00:54,  1.88s/it]\\rEvaluating:  98%|█████████▊| 1291/1319 [2:40:48<01:16,  2.72s/it]\\rEvaluating:  98%|█████████▊| 1292/1319 [2:40:51<01:19,  2.95s/it]\\rEvaluating:  98%|█████████▊| 1293/1319 [2:40:53<01:07,  2.59s/it]\\rEvaluating:  98%|█████████▊| 1294/1319 [2:40:57<01:14,  2.99s/it]\\rEvaluating:  98%|█████████▊| 1295/1319 [2:41:00<01:08,  2.86s/it]\\rEvaluating:  98%|█████████▊| 1296/1319 [2:41:01<00:54,  2.38s/it]\\rEvaluating:  98%|█████████▊| 1297/1319 [2:41:02<00:45,  2.07s/it]\\rEvaluating:  98%|█████████▊| 1298/1319 [2:41:04<00:44,  2.13s/it]\\rEvaluating:  98%|█████████▊| 1299/1319 [2:41:06<00:37,  1.90s/it]2026-05-17 09:10:42,579 [INFO] Progress: 1300/1319, acc=0.6200, eos_rate=98.54%, avg_len=206\\n\\rEvaluating:  99%|█████████▊| 1300/1319 [2:41:07<00:33,  1.78s/it]\\rEvaluating:  99%|█████████▊| 1301/1319 [2:41:09<00:29,  1.63s/it]\\rEvaluating:  99%|█████████▊| 1302/1319 [2:41:11<00:33,  1.98s/it]\\rEvaluating:  99%|█████████▉| 1303/1319 [2:41:13<00:28,  1.79s/it]\\rEvaluating:  99%|█████████▉| 1304/1319 [2:41:17<00:37,  2.51s/it]\\rEvaluating:  99%|█████████▉| 1305/1319 [2:41:19<00:34,  2.45s/it]\\rEvaluating:  99%|█████████▉| 1306/1319 [2:41:22<00:31,  2.45s/it]\\rEvaluating:  99%|█████████▉| 1307/1319 [2:41:24<00:28,  2.40s/it]\\rEvaluating:  99%|█████████▉| 1308/1319 [2:41:25<00:23,  2.15s/it]\\rEvaluating:  99%|█████████▉| 1309/1319 [2:47:19<17:57, 107.70s/it]\\rEvaluating:  99%|█████████▉| 1310/1319 [2:47:22<11:25, 76.15s/it] \\rEvaluating:  99%|█████████▉| 1311/1319 [2:47:26<07:15, 54.43s/it]\\rEvaluating:  99%|█████████▉| 1312/1319 [2:47:28<04:31, 38.83s/it]\\rEvaluating: 100%|█████████▉| 1313/1319 [2:47:29<02:44, 27.38s/it]\\rEvaluating: 100%|█████████▉| 1314/1319 [2:47:31<01:39, 19.89s/it]\\rEvaluating: 100%|█████████▉| 1315/1319 [2:47:32<00:57, 14.29s/it]\\rEvaluating: 100%|█████████▉| 1316/1319 [2:47:34<00:31, 10.35s/it]\\rEvaluating: 100%|█████████▉| 1317/1319 [2:53:15<03:39, 109.73s/it]\\rEvaluating: 100%|█████████▉| 1318/1319 [2:53:17<01:17, 77.41s/it] \\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00, 54.56s/it]\\rEvaluating: 100%|██████████| 1319/1319 [2:53:18<00:00,  7.88s/it]\\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\\n2026-05-17 09:22:53,824 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 1298,\\n  \\\"truncated\\\": 21,\\n  \\\"eos_rate\\\": 0.9840788476118272,\\n  \\\"avg_response_length\\\": 210.9522365428355,\\n  \\\"max_response_length\\\": 4096,\\n  \\\"min_response_length\\\": 42\\n}\\n2026-05-17 09:22:53,837 [INFO] Results saved to /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.47}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估**正常完成**，无任何 error/traceback。\n\n**日志路径**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log`\n\n**关键结果**:\n- **Accuracy: 61.56% (812/1319)**，95% CI ± 1.34%\n- EOS rate: 98.41% (natural_eos=1298, truncated=21)\n- 平均生成长度: 210.95 tokens\n- 总耗时: ~2h53m\n- 结果 JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json`\n\n**日志末尾关键行**:\n```\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\n2026-05-17 09:22:53,837 [INFO] Results saved to .../eval_sft_rasp_20_full_n1319.json\n```\n\n进程正常退出，只是没有写 sentinel 文件导致 cron 误判为异常。N=100 预估 57% → 全量 61.56%，略有上升。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "uuid": "81cc54f2-749d-486b-bc62-29f09296de80",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NxpEmAcTz17MTf5h72ufem",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5134,
+                "cache_read_input_tokens": 25360,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5134
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估**正常完成**，无任何 error/traceback。\n\n**日志路径**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log`\n\n**关键结果**:\n- **Accuracy: 61.56% (812/1319)**，95% CI ± 1.34%\n- EOS rate: 98.41% (natural_eos=1298, truncated=21)\n- 平均生成长度: 210.95 tokens\n- 总耗时: ~2h53m\n- 结果 JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json`\n\n**日志末尾关键行**:\n```\n2026-05-17 09:22:53,824 [INFO] GSM8K Accuracy: 0.6156 ± 0.0134 (812/1319)\n2026-05-17 09:22:53,837 [INFO] Results saved to .../eval_sft_rasp_20_full_n1319.json\n```\n\n进程正常退出，只是没有写 sentinel 文件导致 cron 误判为异常。N=100 预估 57% → 全量 61.56%，略有上升。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 27868,
+            "duration_api_ms": 22966,
+            "num_turns": 4,
+            "stop_reason": "end_turn",
+            "session_id": "aeefb28e-5057-4cb0-a0d8-56552f2a0161",
+            "total_cost_usd": 0.18027775000000001,
+            "usage": {
+              "input_tokens": 8,
+              "cache_creation_input_tokens": 18653,
+              "cache_read_input_tokens": 86979,
+              "output_tokens": 745,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 18653,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 353,
+                  "cache_read_input_tokens": 25360,
+                  "cache_creation_input_tokens": 5134,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 5134
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1432,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001542,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 8,
+                "outputTokens": 745,
+                "cacheReadInputTokens": 86979,
+                "cacheCreationInputTokens": 18653,
+                "webSearchRequests": 0,
+                "costUSD": 0.17873575,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "de6af32c-7b40-4ec1-baca-4d79fe718ee4"
+          },
+          "id": "event-000012"
+        }
+      ],
+      "message_count": 12
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-eval-sft-rasp-20-full.md"
+}

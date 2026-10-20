@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf9d03a433080c15e1ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval sft cka only 20 westd",
+  "task_key": "worker_fix_eval_sft_cka_only_20_westd_20260517T190740",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_sft_cka_only_20_westd_20260517T190740_result.json",
+    "occurrence": 1,
+    "bytes": 512,
+    "sha256": "ebf7d5b7c12a3be50952acc754839bd0f9be87483dfaad944fc38a40d5ffca83"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型已加载到 GPU（24GB VRAM），正在加载 GSM8K 数据集。eval 正常运行。\n\n完成：\n1. 诊断问题：westd 上 model.safetensors 损坏（370MB/12.3GB）\n2. 清理空间：删除损坏文件 + 一个已完成的 alpha ablation pruned checkpoint（`pruned_alpha_0.0`，eval JSON 已保存）\n3. 从 westb SCP 完整模型（12.3GB）到 westd\n4. 验证 tokenizer + 模型加载成功\n5. 提交 `eval_sft_cka_only_20_n1319` 到 westd cuda:0，registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-sft-cka-only-20-westd.md"
+}

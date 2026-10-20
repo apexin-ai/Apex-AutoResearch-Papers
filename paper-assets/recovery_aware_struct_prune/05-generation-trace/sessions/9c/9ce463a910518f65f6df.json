@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ce463a910518f65f6df",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops registry standard fair",
+  "task_key": "worker_ops_registry_____standard_fair_20260519T063521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_____standard_fair_20260519T063521_result.json",
+    "occurrence": 1,
+    "bytes": 1125,
+    "sha256": "16d3941f7557404dd1e759a190f6bb37d9fd4f8eae9ef1532cabcc46651fe72a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个任务的实际状态与预期不同：\n\n## Task B: `grpo_standard_20_fair`\n\n**已经是 DONE/success**，不需要更新。Registry 完整记录如下：\n- **status**: DONE, **conclusion**: success\n- **W&B**: `tyv20u2k`\n- **server**: westd-11672 (原始)，checkpoint 在 westd-29022\n- **checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair`\n- **metrics**: total_steps=100, runtime=3017s, peak_reward=0.081 (step 40), final_reward=0.054\n- **dynamics**: `dip_then_partial_recovery` — reward flat 0.03-0.08，frac_zero_std stuck 0.5-0.55\n\n## Task A: `eval_gsm8k_grpo_standard_20_fair`\n\n**GSM8K eval 不存在**。搜索确认：\n1. 服务器上无 `*gsm8k*standard*fair*` 结果文件\n2. `bootstrap_ci_accuracy_v2.json` 明确记录: `\"grpo_standard_20\": \"no n=1319 eval (only 25% available)\"`\n3. 数字 `0.5891` 不存在于任何结果文件中\n4. 唯一存在的 GSM8K 标准模型 eval 是 300 步 extended: accuracy=59.29% (782/1319)\n\n**需要先在 westd-29022 上跑 GSM8K eval**，然后才能注册。要现在提交评测任务吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-standard-fair.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "6c71975bbe43fe9c7d5f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code e1b prune 1p5b v2",
+  "task_key": "worker_code_e1b_prune_1p5b_v2_20260518T110237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1b_prune_1p5b_v2_20260518T110237.log",
+    "occurrence": 1,
+    "bytes": 694817,
+    "sha256": "0152be41dc4b78044a1ec2d84331f1651598eee257c704df6182e93129685c68"
+  },
+  "statistics": {
+    "messages": 472,
+    "user_turns": 0,
+    "tool_calls": 188,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 92,
+      "tool_call": 188,
+      "tool_result": 188,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 472,
+      "chunks": [
+        {
+          "path": "6c71975bbe43fe9c7d5f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c71975bbe43fe9c7d5f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6c71975bbe43fe9c7d5f-part-0003.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-e1b-prune-1p5b-v2.md"
+}

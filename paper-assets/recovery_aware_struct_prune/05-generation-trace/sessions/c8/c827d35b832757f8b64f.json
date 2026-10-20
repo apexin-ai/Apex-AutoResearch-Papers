@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c827d35b832757f8b64f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops collect westd eval results",
+  "task_key": "worker_ops_collect-westd-eval-results_20260515T192852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_collect-westd-eval-results_20260515T192852_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "d8edf24b6d3499a7348fa289d73536ee111ed10554de02e320ddaafad32689bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 cron 需要清理。\n\n## 结果汇总\n\n| Model | westd N=100 | westb 预期 | 偏差 |\n|-------|-------------|-----------|------|\n| **RASP 20%** | **67%** (±4.7%, eos=0.99, avg_len=182) | ~57% | **+10pp** ⚠️ |\n| **Standard 20%** | **63%** (±4.8%, eos=0.97, avg_len=260) | ~64% | -1pp ✓ |\n\n关键发现：\n- **Standard**: westd 63% ≈ westb 64%，cross-server reproducibility 确认\n- **RASP**: westd 67% >> westb 57%，偏差 10pp，**RASP 在 westd 上反超 Standard 4pp**（westb 上 Standard 领先），cross-server reproducibility 未确认\n- 两个 registry 条目已更新为 DONE，metrics 和偏差分析已记录\n\nRASP 在 westd 表现异常好，需要 N=1319 full eval 确认是 N=100 采样方差还是真实差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-collect-westd-eval-results.md"
+}

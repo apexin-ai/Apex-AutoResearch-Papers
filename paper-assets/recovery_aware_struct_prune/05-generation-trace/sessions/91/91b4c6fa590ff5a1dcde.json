@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91b4c6fa590ff5a1dcde",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec eval gsm8k sft alpha4 20 v4",
+  "task_key": "worker_exec_eval_gsm8k_sft_alpha4_20_v4_20260521T223221",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_eval_gsm8k_sft_alpha4_20_v4_20260521T223221_result.json",
+    "occurrence": 1,
+    "bytes": 408,
+    "sha256": "a944fe13856513f5bffc59c7880b417bd1f229c446007ec0a577b0e149bf910e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，已在跑。\n\n- **旧进程**: PID 425497 — 已 kill\n- **新进程**: PID 426306（子进程 426311），GPU 0 占用 12620 MiB\n- **参数确认**: `--max_new_tokens 2048`、`--max_samples 1319`（注：原命令 `--n_samples` 不存在，已改用正确参数名 `--max_samples`）\n- **日志**: `logs/eval_gsm8k_sft_alpha4_20_v4.log`，已开始 Evaluating 1319 samples"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-eval-gsm8k-sft-alpha4-20-v4.md"
+}

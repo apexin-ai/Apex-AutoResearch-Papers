@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6033e149f6985b50dc4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo cka only seed456 gsm8k",
+  "task_key": "worker_eval_grpo_cka_only_seed456_gsm8k_20260520T133113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_cka_only_seed456_gsm8k_20260520T133113_result.json",
+    "occurrence": 1,
+    "bytes": 363,
+    "sha256": "e3f646dae4659fb96f0ca8d926ff4f2bb7e704818798d0e9c7af4db3ae9652e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **eval_gsm8k_grpo_cka_only_20_seed456_full** 已提交并验证 RUNNING\n- 服务器: westd-29022, cuda:0, PID 252604\n- 模型加载中（Non-uniform MLP 检测到，intermediate_size [8128, 18944]）\n- Registry: RUNNING，parent=grpo_cka_only_20_seed456\n- Cron 监控: 每 8 分钟检查进度，完成后自动更新 registry"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-cka-only-seed456-gsm8k.md"
+}

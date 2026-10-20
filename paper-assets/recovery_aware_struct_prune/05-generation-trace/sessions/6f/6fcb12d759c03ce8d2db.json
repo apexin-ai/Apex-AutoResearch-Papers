@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6fcb12d759c03ce8d2db",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check cka only 30 retry",
+  "task_key": "worker_ops_check_cka_only_30_retry_20260517T230840",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_cka_only_30_retry_20260517T230840_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "ce6956cee5d2d99cf97fcf5cef2ab0531196e7c2d015ef86a9b9d145fc831646"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**PID 59403 状态：存活，是原始 eval 进程（重试后的新实例）**\n\n- PID 59403 是 wrapper bash 进程，启动时间 05:59 (UTC)\n- 子进程 PID 59408 是实际的 `python src/eval_gsm8k.py` 进程，CPU 106%，已运行 ~74 分钟\n\n**日志进度：**\n- 模型加载成功（Non-uniform MLP, intermediate_size range [8128, 18944]）\n- GSM8K 数据集加载成功（网络不可达，使用了 HF 缓存）\n- 评估进度：**49/200 samples (24.5%)**，速度 ~47-95s/sample\n- 日志中有一条 \"Terminated\" 字样出现在 sample 35 附近，但进程没有退出，之后速度加快（从 95s 降到 ~48s/it），可能是 GPU 竞争消除后加速\n\n**结果文件：**\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_cka_only_30.json` 尚未产出（评估未完成时不会写文件）\n\n**模型目录 (`pruned_cka_only_30/`)：完整**\n- config.json, generation_config.json, model.safetensors, tokenizer.json, tokenizer_config.json\n\n**预估完成时间：**\n- 剩余 151 samples × ~48s/sample ≈ 120 分钟（~2 小时后完成）\n- 预计 UTC 08:10 左右产出结果文件\n\n**结论：eval 正在正常运行中，无需干预。Registry 显示 DONE/failed 是旧状态，当前是成功重试后的新进程。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cka-only-30-retry.md"
+}

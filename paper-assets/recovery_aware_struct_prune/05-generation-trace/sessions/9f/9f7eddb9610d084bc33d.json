@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f7eddb9610d084bc33d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval gsm8k grpo cka only 20 extended 300",
+  "task_key": "worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_gsm8k_grpo_cka_only_20_extended_300_20260519T034758_result.json",
+    "occurrence": 1,
+    "bytes": 530,
+    "sha256": "f90082d25189416d836c1f515b591de720fc4da5cde1faf2769fffc4fac96465"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n**GSM8K 准确率: 64.37% (849/1319)** — 与 100 步完全相同。\n\n| 模型 | 步数 | GSM8K |\n|------|------|-------|\n| CKA-only 20% GRPO | 100 | 64.37% |\n| CKA-only 20% GRPO | **300** | **64.37%** |\n| Standard 20% GRPO | 100 | 58.91% |\n| RASP 20% GRPO | 100 | 56.71% |\n| Dense (unpruned) | — | 72.78% |\n\n**结论: negative** — 300 步训练在 GSM8K (ID) 上没有任何提升，模型在 100 步已饱和。Registry 已更新为 DONE/negative，分析报告已注册为 artifact。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-gsm8k-grpo-cka-only-20-extended-300.md"
+}

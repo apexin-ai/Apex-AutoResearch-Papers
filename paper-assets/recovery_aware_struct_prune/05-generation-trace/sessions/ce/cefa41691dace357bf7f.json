@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cefa41691dace357bf7f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "cleanup gradient checkpoints",
+  "task_key": "worker_cleanup_gradient-checkpoints_20260517T101359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_gradient-checkpoints_20260517T101359_result.json",
+    "occurrence": 1,
+    "bytes": 238,
+    "sha256": "fadc74e18daeb11ace4a270f668f11060d0e9779a71a222b8747be8a498bddcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 指标 | 删除前 | 删除后 |\n|------|--------|--------|\n| 数据盘已用 | 231G (93%) | 162G (65%) |\n| 可用空间 | 20G | 89G |\n| 释放量 | — | **~69G** |\n\n`model.safetensors` (12G) 完好。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-gradient-checkpoints.md"
+}

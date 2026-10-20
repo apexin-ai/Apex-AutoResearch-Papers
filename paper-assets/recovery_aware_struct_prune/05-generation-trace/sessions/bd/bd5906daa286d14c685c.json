@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd5906daa286d14c685c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check grpo cka only 25 and dose response checkpoints",
+  "task_key": "worker_ssh_check_grpo_cka_only_25_and_dose_response_checkpoints_20260523T194549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_grpo_cka_only_25_and_dose_response_checkpoints_20260523T194549_result.json",
+    "occurrence": 1,
+    "bytes": 1377,
+    "sha256": "f4b0d5a372ef0f539ec6d1e939f1a622111579271244da962bc596449754c3b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Checkpoint 存在性汇总\n\n### westd-32935（数据盘 650G，已用 577G / 89%）\n\n| Checkpoint | 路径 | 大小 | 存在 |\n|---|---|---|---|\n| **grpo_cka_only_25** | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25/model.safetensors` | **11G** | **✅** |\n| sft_rasp_alpha0p5_20 | `.../sft_rasp_alpha0p5_20/model.safetensors` | 12G | ✅ |\n| sft_rasp_alpha2p0_20 | `.../sft_rasp_alpha2p0_20/model.safetensors` | 12G | ✅ |\n| sft_alpha4_20 | `.../sft_alpha4_20/model.safetensors` | 12G | ✅ |\n| grpo_rasp_alpha0p5_20 | — | — | ❌ 不存在 |\n| grpo_rasp_alpha2p0_20 | `.../grpo_rasp_alpha2p0_20/model.safetensors` | 12G | ✅ |\n| grpo_alpha4_20 | `.../grpo_alpha4_20/model.safetensors` | 12G | ✅ |\n\n### westb-23072\n\n| Checkpoint | 路径 | 大小 | 存在 |\n|---|---|---|---|\n| **grpo_cka_only_25** | — | — | **❌ 不存在** |\n| sft_rasp_alpha3p0_20 | `.../sft_rasp_alpha3p0_20/checkpoint-935/model.safetensors` | 12G | ✅ |\n| grpo_rasp_alpha0p5_20 | `.../grpo_rasp_alpha0p5_20/model.safetensors` | 12G | ✅ |\n\n### 关键发现\n\n- **grpo_cka_only_25**：仅在 **westd-32935** 上存在（11G，May 21），westb-23072 上没有。Director 决策 25% MATH-500 用 westd 上这份即可。\n- **grpo_rasp_alpha0p5_20**：仅在 **westb-23072** 上存在（12G，May 23 刚生成），westd 上没有。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-grpo-cka-only-25-and-dose-response-checkpoints.md"
+}

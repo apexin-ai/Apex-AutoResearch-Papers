@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ce26943f6726fc7cb7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper cka figures",
+  "task_key": "worker_paper_cka-figures_20260515T055352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_cka-figures_20260515T055352_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "23921638d6d0b2fbb5e5be8e5cf0babee95c69587e84f325002f726382baf772"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**产出**\n\n| 文件 | 路径 | 大小 |\n|------|------|------|\n| Fig A: Per-layer overlap bar chart | `results/figures/cka_per_layer_overlap.pdf` | 21K |\n| Fig B: CKA heatmap (2×2) | `results/figures/cka_heatmap.pdf` | 32K |\n| 绘图脚本 | `src/plot_cka_figures.py` | — |\n\n**数据要点**\n\n- **MLP overlap 全局偏高**（0.89–0.99），各层 neuron group 间 CKA 相似度极高，说明 MLP 内部冗余度大，剪枝空间充足\n- **Attention overlap 变化明显**：浅层低（layer 0: 0.53），中深层高（layer 13: 0.86, layer 18: 0.86），表明中深层 attention head 间功能重叠严重\n- **Top-3 高 overlap 层**（▼ 标注）：集中在中间层，这些是优先剪枝候选\n- **Heatmap 对比**：高 overlap 层的 attention CKA 矩阵整体偏红（head 间高度相似），低 overlap 层则有明显的 head 分化（off-diagonal 值低）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-cka-figures.md"
+}

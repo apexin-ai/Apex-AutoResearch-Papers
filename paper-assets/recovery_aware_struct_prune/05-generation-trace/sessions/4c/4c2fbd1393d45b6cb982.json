@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c2fbd1393d45b6cb982",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix gpu collision kill diagnose fix",
+  "task_key": "worker_fix_gpu_collision_kill_diagnose_fix_20260522T060352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu_collision_kill_diagnose_fix_20260522T060352_result.json",
+    "occurrence": 1,
+    "bytes": 1254,
+    "sha256": "84c5c6eae1180c13d740a93bb01e1c5884192aff8893f5a61c01ab2619eea335"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 张 GPU 分配全部正确。\n\n```\n== Step 1: Kill ==\nPID 11979: killed\nPID 12421: already_dead\ntmux sessions: pipeline_alpha0p5_20 cleaned, pipeline_alpha2p0_20 not found\n\n== Step 2: MATH-500 eval health ==\nPID 2234: alive ✅\nGPU 0 status: 17532MiB, 98% util\n\n== Step 3: Root cause ==\nFiles with CUDA_VISIBLE_DEVICES override:\n- sft_recovery.py line 19-22: early `--gpu` parsing sets `os.environ[\"CUDA_VISIBLE_DEVICES\"] = sys.argv[_i + 1]` before torch import\n- train_grpo_v5.py: clean (args.gpu only used in log message)\n- eval_gsm8k.py: clean\n- eval_math500.py: clean\n- prune.py: clean\n\n== Step 4: Fix applied ==\n- sft_recovery.py: removed lines 19-23 (early CUDA_VISIBLE_DEVICES override block)\n  唯一的越界源头。pipeline 传 `--gpu 0` 导致覆盖外部 CUDA_VISIBLE_DEVICES=3/2 → 0\n\n== Step 5: Restart ==\nα=0.5 PID: 14672 (child of 13852) on GPU 3\nα=2.0 PID: 15120 (child of 14133) on GPU 2\n\n== Step 6: Verification ==\nGPU 0: PID 2234 (MATH-500 eval) 17532MiB ✅\nGPU 1: PID 5241 (eval) 16040MiB ✅\nGPU 2: PID 15120 (α=2.0 SFT) 9278MiB ✅\nGPU 3: PID 14672 (α=0.5 SFT) 12464MiB ✅\n\n== eval_gsm8k_sft_alpha4_20_v5 ==\nStatus: DONE (accuracy=61.94%, 817/1319, EOS rate=98.1%)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu-collision-kill-diagnose-fix.md"
+}

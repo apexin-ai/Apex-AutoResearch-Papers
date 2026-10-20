@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aacccd34a23c311ea363",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prepare full eval d008",
+  "task_key": "worker_prepare_full_eval_d008_20260514T184132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prepare_full_eval_d008_20260514T184132_result.json",
+    "occurrence": 1,
+    "bytes": 988,
+    "sha256": "71e5d866ad528595293dc7796b0a82e1dc044d81823dd5626debc33f3a1fab0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n### 产出\n\n**脚本已创建并部署到服务器：**\n- `src/run_full_eval_d008.sh` — 串行版，单 GPU，~8h\n- `src/run_full_eval_d008_parallel.sh` — 并行版，双 GPU，~4h\n\n**`--max_samples` 行为：** 默认 `None`，不传该参数即使用全部 1319 samples。不需要改 eval_gsm8k.py。\n\n**GSM8K test set：** 确认 1319 samples，本地已缓存。\n\n**耗时估算：** N=100 约 7-15 min → N=1319 约 **90-200 min（~2h）per eval**。串行 4 个 ~8h，并行版 ~4h。\n\n**GRPO 完成后执行命令：**\n```bash\n# 推荐：并行版（两个 GPU 都空闲时）\nnohup bash src/run_full_eval_d008_parallel.sh > results/eval_d008.log 2>&1 &\n\n# 或串行版（只用一个 GPU）\nnohup bash src/run_full_eval_d008.sh 0 > results/eval_d008.log 2>&1 &\n```\n\n**checkpoint 自动选择：** recovered 目录若有 `checkpoint-*` 子目录，自动选编号最大的；若没有则直接用目录本身。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prepare-full-eval-d008.md"
+}

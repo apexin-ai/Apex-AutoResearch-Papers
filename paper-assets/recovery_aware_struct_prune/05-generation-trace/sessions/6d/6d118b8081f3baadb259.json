@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d118b8081f3baadb259",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit eval postprune standard 30",
+  "task_key": "worker_ops_submit_eval_postprune_standard_30_20260517T190901",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_eval_postprune_standard_30_20260517T190901_result.json",
+    "occurrence": 1,
+    "bytes": 310,
+    "sha256": "12d9f20de184b253964c9d60e26d86cbab5e2c4bcb43d99b42d599f162fe3f5c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **PID**: 47667\n- **tmux session**: `eval_postprune_standard_30`\n- **log**: `~/runs/recovery_aware_struct_prune/eval_postprune_standard_30.log`\n- **GPU**: westd-11672 cuda:0\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_standard_30.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-eval-postprune-standard-30.md"
+}

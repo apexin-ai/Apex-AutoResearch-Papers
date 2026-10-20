@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6513166930935908072",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo random 20 seed456",
+  "task_key": "worker_diagnose_grpo_random_20_seed456_20260522T162635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_random_20_seed456_20260522T162635_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "4d42d2f553724e51d278467eb601054a90fc00cfb6e1836cf2f269caf7e52c06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型加载正常。\n\n**汇报：**\n\n1. **磁盘清理**：删除了损坏的 `grpo_random_20_seed456` 目录（12GB，checkpoint-100 内含部分写入的模型权重），释放 12GB\n2. **当前可用空间**：33GB（250G 总量，218G 已用，88%）\n3. **训练已重提交**：PID 225466，westb-23072:cuda:0，模型已加载并开始训练\n4. **预估完成时间**：~3 小时后（约 UTC+8 03:30 左右）\n\n注意：上次运行时 checkpoint-100 实际保存了完整的 12GB model.safetensors，说明训练 100 步完成且 checkpoint 保存成功，仅最终 save_pretrained 因磁盘满失败。这次多了 12GB 余量，保存不会再有问题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-random-20-seed456.md"
+}

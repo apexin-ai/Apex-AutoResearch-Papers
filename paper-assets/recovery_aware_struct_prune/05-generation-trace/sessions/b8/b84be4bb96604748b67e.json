@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b84be4bb96604748b67e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v6 dual submit",
+  "task_key": "worker_code_grpo-v6-dual-submit_20260515T124250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-v6-dual-submit_20260515T124250_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "fa99ac2f7021236eccfb816dd929720647c50d647b02dcfa5de06818418789ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 未空闲**，当前有 4 个 python 进程在运行：\n\n| PID | GPU | 运行时间 | 命令 |\n|-----|-----|---------|------|\n| 498479 | cuda:0 | 3h10m | train_grpo_v5.py RASP v5 (max_completion_length=512) |\n| 518416 | cuda:0 | 6m | train_grpo_v5.py Standard v5 (max_completion_length=512) |\n| 517379 | cuda:1 | 11m | eval_gsm8k.py sft_standard_20 |\n| 518908 | cuda:1 | 5m | train_grpo_v5.py Standard v5 (旧 output_dir) |\n\n需要先 kill 这 4 个进程才能提交 v6。是否 kill 全部？\n\n---\n\nCLI 参数已确认完毕，flag 名称如下：`--beta`, `--temperature`, `--repetition_penalty`, `--format_reward_weight`, `--gradient_checkpointing`, `--num_train_epochs`, `--max_samples`, `--learning_rate`, `--loss_type`, `--max_completion_length`。v6 命令已就绪，等你确认 kill 后立即提交。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v6-dual-submit.md"
+}

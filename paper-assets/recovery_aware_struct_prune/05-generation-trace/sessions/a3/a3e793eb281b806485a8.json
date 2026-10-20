@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a3e793eb281b806485a8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westb gpu processes",
+  "task_key": "worker_ops_check_westb_gpu_processes_20260517T132844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westb_gpu_processes_20260517T132844_result.json",
+    "occurrence": 1,
+    "bytes": 1130,
+    "sha256": "bac69bff2b13ae007829adbd160f661bcd36b4ed1a5600dd89234cee642f3cd2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**cuda:0 — PID 710618**\n- 任务：`eval_gsm8k.py`，评估 `pruned_cka_only_20` 模型，200 samples\n- 输出：`eval_cka_only_20_n200.json`\n- 启动时间：19:29，已跑 ~2h\n- 进度：21:01 时 50/200 (acc=0.4400)，当前应约 75%，预计还需 ~30min\n- 属于本项目 ✓\n\n**cuda:1 — PID 715803**\n- 任务：`eval_gsm8k.py`，同样评估 `pruned_cka_only_20`，200 samples\n- 输出：`eval_postprune_cka_only_20.json`\n- 来自 tmux session `scoring_ablation_random`，是 cka_only ablation 的 Step 2/4\n- 启动时间：20:28，已跑 ~1h\n- 进度：50% (99/200)，预计还需 ~44min\n- 属于本项目 ✓\n\n**tmux sessions：**\n- `scoring_ablation_random`：正在运行 cka_only 的 post-prune eval（cuda:1 上的进程）\n- `scoring_ablation_v2`：已完成，gradient SFT recovery 训练已结束并保存到 `sft_gradient_20`，终端空闲\n\n**注意**：两个进程都在评估同一个模型 (`pruned_cka_only_20`)，但输出文件名不同。可能是重复评估——PID 710618 不是从 tmux 启动的（`?` 终端），可能是之前 agent 发起的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westb-gpu-processes.md"
+}

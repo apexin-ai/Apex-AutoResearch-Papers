@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e48ba0cff3b30b77b456",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp grpo cka only 20 resubmit",
+  "task_key": "worker_fix_eval_mbpp_grpo_cka_only_20_resubmit_20260519T181537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_grpo_cka_only_20_resubmit_20260519T181537_result.json",
+    "occurrence": 1,
+    "bytes": 244,
+    "sha256": "1a9cf1b3518bdb5d5ea9f7589aa5a0df9760730001c476d3dada6d8329b060b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 已成功启动：\n\n- **tmux session**: `eval_mbpp_grpo_cka_only_20` 存活\n- **模型加载正常**: 从 `checkpoint-100` 加载，检测到 non-uniform MLP（符合剪枝模型预期）\n- **GPU**: CUDA_VISIBLE_DEVICES=1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-grpo-cka-only-20-resubmit.md"
+}

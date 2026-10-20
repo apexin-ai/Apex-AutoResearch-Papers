@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "557da39e8ca6884bcab2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "maintenance hypothesis backfill",
+  "task_key": "worker_maintenance_hypothesis_backfill_20260517T032254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_maintenance_hypothesis_backfill_20260517T032254_result.json",
+    "occurrence": 1,
+    "bytes": 553,
+    "sha256": "a61e5077c5083dbe99b5e845b5f85ccede7c214493bce61aa8b94b1853ded163"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- 检查 25 个实验\n- 修改 25 个 hypothesis（全部新写入顶层字段）\n- 新增 19 条 parent（5 个 pruning root 实验无 parent，`sft-alpha-1p0` 因 alpha ablation 的 pruning 步骤未独立注册故暂不设 parent）\n\nParent 推导链逻辑：\n- pruning 实验 → 无 parent（root）\n- SFT 实验 → parent 指向对应 prune 实验\n- eval 实验 → parent 指向对应 training（SFT/GRPO）实验\n- pass@k eval → parent 指向产出 checkpoint 的 GRPO/SFT 训练实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/maintenance-hypothesis-backfill.md"
+}

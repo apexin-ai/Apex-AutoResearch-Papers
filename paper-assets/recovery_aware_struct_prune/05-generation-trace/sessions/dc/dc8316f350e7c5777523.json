@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc8316f350e7c5777523",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo random 20 wandb",
+  "task_key": "worker_diagnose_grpo_random_20_wandb_20260518T020357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_random_20_wandb_20260518T020357_result.json",
+    "occurrence": 1,
+    "bytes": 1542,
+    "sha256": "3f03751ddb98b739baf55ea4cd6bd9ca8e1f701c06c4baff03f2951d3ebf38f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "W&B run 存在 (state: crashed) 但 **metrics 未同步到 W&B**（timeout 杀进程前未 flush）。Log 文件有完整 9 个 checkpoint 的数据。\n\n汇总结果：\n\n```\nW&B data available: no (run exists but metrics not synced before timeout kill)\nLog data available: yes\nSteps captured: 9 (step 10, 20, 30, 40, 50, 60, 70, 80, 90)\n```\n\n**从 log 提取的完整 dynamics：**\n\n| Step | reward | frac_zero_std | entropy | kl |\n|------|--------|---------------|---------|------|\n| 10   | 0.1606 | 0.300 | 0.2313 | 0.0042 |\n| 20   | 0.1419 | 0.325 | 0.2282 | 0.0047 |\n| 30   | 0.1663 | 0.325 | 0.2353 | 0.0046 |\n| 40   | 0.1450 | 0.400 | 0.2145 | 0.0046 |\n| 50   | 0.1750 | 0.300 | 0.2140 | 0.0046 |\n| 60   | 0.1844 | 0.350 | 0.2005 | 0.0042 |\n| 70   | 0.1900 | 0.300 | 0.2246 | 0.0045 |\n| 80   | 0.1419 | 0.375 | 0.2374 | 0.0049 |\n| 90   | 0.1725 | 0.325 | 0.2206 | 0.0042 |\n\n**Dynamics pattern: Stable plateau, no collapse.**\n- Reward: 振荡 0.14-0.19 (mean ~0.164), 无持续上升趋势\n- frac_zero_std: 振荡 0.30-0.40, 高位但未到 collapse (collapse = 0.8+)\n- Entropy: 稳定 0.20-0.24, 无崩塌\n- KL: 极低 0.004-0.005, 模型几乎未学习\n\n与已知 step 70 数据完全吻合 (reward=0.19, frac_zero_std=0.30)。\n\n**Recommendation: 可直接分析。** 9 个 checkpoint 覆盖 90% 训练过程，pattern 明确且稳定——不需要重跑。\"Random = plateau, no collapse\" 结论可确认为 success。\n\n是否需要我更新 registry 将此实验标记为 success？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-random-20-wandb.md"
+}

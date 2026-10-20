@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf35931c9e21b5cfe7dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit eval math500 sft standard 25",
+  "task_key": "worker_ssh_submit_eval_math500_sft_standard_25_20260521T151859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_eval_math500_sft_standard_25_20260521T151859_result.json",
+    "occurrence": 1,
+    "bytes": 537,
+    "sha256": "48a4c4d155a02e86e3b1babb6bdcb1ccbcf8ea2ebada66270f0214731f81065a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并更新 registry 为 RUNNING。\n\n总结：\n- **tmux session**: `eval_math500_sft_standard_25` @ westb-23072 cuda:1\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870`\n- **输出**: `/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/results.json`\n- **参数**: `--max_new_tokens 2048 --seed 42`\n- **日志**: `/root/runs/recovery_aware_struct_prune/eval_math500_sft_standard_25/run.log`\n- **Registry**: `eval_math500_sft_standard_25` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-eval-math500-sft-standard-25.md"
+}

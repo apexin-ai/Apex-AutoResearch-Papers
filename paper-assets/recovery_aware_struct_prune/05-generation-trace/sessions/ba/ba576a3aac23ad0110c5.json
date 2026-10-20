@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba576a3aac23ad0110c5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd full progress check",
+  "task_key": "worker_ops_westd_full_progress_check_20260519T030823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_full_progress_check_20260519T030823_result.json",
+    "occurrence": 1,
+    "bytes": 1002,
+    "sha256": "8a39a3b5b38b8cb79919907f644f88cf18e9b995550b659744c0ab55851b25ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 实验状态汇总\n\n| GPU | 实验 | 状态 | 进度 | 关键指标 |\n|-----|------|------|------|----------|\n| **cuda:0** | eval_math500_sft_standard_20_2048_v2 | 运行中 | **104/500 (20.8%)** | Acc=0.3500 |\n| **cuda:1** | eval_gsm8k_grpo_cka_only_20_extended_300 | 运行中 | **900/1319 (68.2%)** | Acc=64.22%, eos_rate=99.22%, avg_len=191 |\n| **cuda:2** | eval_math500_grpo_cka_only_20_2048 | **已完成** | 500/500 | **Acc=29.2%**, natural_eos=78%, avg_len=654.7 |\n| **cuda:3** | eval_gsm8k_grpo_standard_20_extended_300 | 运行中 | **264/1319 (20.0%)** | Acc=62.4%, eos_rate=98%, avg_len=231 |\n\n### cuda:2 完成结果详情 (math500_grpo_cka_only_20_2048)\n- **Accuracy: 29.2%** (146/500), stderr=0.0203\n- **EOS stats**: natural_eos=390 (78%), truncated=110 (22%)\n- 平均响应长度 654.7 tokens, 中位数 250.5\n- 22% 的样本被截断到 2048 tokens，说明模型在 MATH-500 上生成偏长\n\n### cuda:2 现在空闲，可用于新实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "889a18f6bd59ad7f6fe4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd 11672 connectivity",
+  "task_key": "worker_diagnose_westd-11672-connectivity_20260518T052159",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd-11672-connectivity_20260518T052159_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "58b6c30e99c94014a57f339d53edffaccb2c5db89479edf640b21e15c6755ad1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**westd-11672 不可达。** 主机 IP 可 ping 通（RTT 70ms），但 SSH 端口 11672 关闭，无法建立连接。\n\n最可能原因：AutoDL 实例被关机或休眠（欠费/手动关机）。需要登录 AutoDL 控制台人工检查实例状态。\n\n4 个实验的结果文件状态未知，需连接恢复后确认。报告已写入本地 artifacts 和 westb-23072。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-11672-connectivity-copy-2.md"
+}

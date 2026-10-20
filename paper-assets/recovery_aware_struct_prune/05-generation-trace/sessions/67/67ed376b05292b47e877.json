@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67ed376b05292b47e877",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh provenance fix westb",
+  "task_key": "worker_ssh_provenance_fix_westb_20260523T112649",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_provenance_fix_westb_20260523T112649_result.json",
+    "occurrence": 1,
+    "bytes": 1875,
+    "sha256": "76cf87d34abd4ab871887d89fcbdaba73b6f86b3d8e0c50d07756dc7c1fc3516"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有更新完成。汇报如下：\n\n---\n\n## 任务 1: MATH-500 Standard 25% GRPO = 12.8%\n\n**已确认**。文件路径：`/root/runs/recovery_aware_struct_prune/eval_math500_grpo_standard_25_v2/results.json`\n- accuracy=0.128, 64/500\n- Registry `eval_math500_grpo_standard_25_v2` 的 checkpoint_path 和 log_path 已有，已补填 `result_path`\n\n## 任务 2: 补填 3 个空 metrics\n\n| exp_id | 结果 | 来源 |\n|--------|------|------|\n| `eval_gsm8k_grpo_random_20_seed123_v2` | accuracy=0.5072, 669/1319 | 从 spec 字段提取，已写入 metrics。**westb 无结果文件**，原始运行在 westd-32935 |\n| `eval_gsm8k_sft_depth_first_20` | ~10%@50 (early-stopped) | spec note 提取。**westb 无文件**，原始运行在 westd-32935 |\n| `eval_gsm8k_grpo_depth_first_20` | ~8%@50 (early-stopped) | spec note 提取。**westb 无文件**，原始运行在 westd-32935 |\n\n三个 depth-first/random seed123 的 eval 均在 westd 上运行，westb 上未找到对应结果文件。\n\n## 任务 3: 30% cliff CKA-only\n\nRegistry 已有两条记录：\n- `eval_postprune_cka_only_30`: gsm8k_accuracy=**0.0%** (westd-11672, killed)\n- `prune_eval_cka_only_30`: accuracy=**1.6%** (N=500 partial, westd-29022, killed)\n\n**westb 上未找到 30% CKA-only 相关结果文件。**\n\n## 任务 4: Qwen-Math 缺失值\n\n| 指标 | 文件 (westb) | 数值 | Registry |\n|------|-------------|------|----------|\n| CKA Post-Prune | `results/gsm8k_postprune_cka_only_20_qwen_math_n200.json` | **1.0%** (2/200) | 新建 `eval_postprune_qwen_math_cka_only_20` |\n| CKA Post-SFT | `results/eval_gsm8k_sft_qwen_cka_only_20.json` | **51.5%** (103/200) | 已有 `eval_gsm8k_sft_qwen_cka_only_20` |\n| Standard Post-Prune | `results/gsm8k_postprune_standard_20_qwen_math_n200.json` | **18.5%** (37/200) | 新建 `eval_postprune_qwen_math_standard_20` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-provenance-fix-westb.md"
+}

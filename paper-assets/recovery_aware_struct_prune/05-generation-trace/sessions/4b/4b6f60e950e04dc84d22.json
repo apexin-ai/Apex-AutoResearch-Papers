@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b6f60e950e04dc84d22",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp grpo shortgpt 20 resubmit",
+  "task_key": "worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736_result.json",
+    "occurrence": 1,
+    "bytes": 378,
+    "sha256": "4e52fb308981c5b07a75c915ea98d6a1f6a608f71dc1ea8baf0320acfe516940"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。汇报：\n\n- **PID**: 148173\n- **状态**: 正在运行，模型已加载，MBPP 374 题评估进行中\n- **GPU cuda:3**: 15433 MiB 显存占用，90% 利用率\n- **工作目录**: 已修正为 `/root/recovery_aware_struct_prune`\n- **额外修复**: tmux 内非交互 shell 找不到 `python`，加了 `source conda.sh && conda activate base`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-grpo-shortgpt-20-resubmit.md"
+}

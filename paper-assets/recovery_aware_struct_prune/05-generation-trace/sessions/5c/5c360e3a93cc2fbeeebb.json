@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c360e3a93cc2fbeeebb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest dense 2048 and cascade",
+  "task_key": "worker_ops_harvest_dense_2048_and_cascade_20260519T013343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_dense_2048_and_cascade_20260519T013343_result.json",
+    "occurrence": 1,
+    "bytes": 688,
+    "sha256": "febe7fbad55603aea59342c168cf244933ed35c26eb607ba75cd964f5c6cf385"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**1. Dense @2048 最终结果**\n- Accuracy: **53.0%** (265/500), stderr ±2.2%\n- Natural EOS: 46.8%, 截断: 53.2%\n- 对比 Dense @4096 (73.6%)，下降 20.6pp，主因超半数样本被 2048 截断\n\n**2. cuda:0 下一步**\n- `eval_math500_sft_standard_20_2048_v2` 已启动 (PID 56146)，使用重训后的正确 SFT Standard 20% 模型\n\n**3. 其他 GPU 进度**\n| GPU | 任务 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | eval_math500_sft_standard_20_2048_v2 (刚启动) | 加载中 | - |\n| cuda:1 | Standard GRPO v2 | 19.3GB | 94% |\n| cuda:2 | GRPO CKA-only @2048 | 17.0GB | 91% |\n| cuda:3 | SFT RASP @2048 | 13.0GB | 84% |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-dense-2048-and-cascade.md"
+}

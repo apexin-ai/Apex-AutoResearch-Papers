@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d074c109eef014ba5e17",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd connectivity",
+  "task_key": "worker_diagnose_westd_connectivity_20260517T054259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_connectivity_20260517T054259_result.json",
+    "occurrence": 1,
+    "bytes": 686,
+    "sha256": "6d467e56151e7dc94b2368045b3c06730d7fb662aa8b1d8acc0087293314b8ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**westd-11672 不可达。**\n\n错误信息：`[Errno None] Unable to connect to port 11672 on 36.103.198.204`\n\n连接在 0.41 秒内被拒绝，说明端口完全不响应（服务器关机、实例被释放、或网络层阻断）。\n\n### 汇报\n\n| 项目 | 状态 |\n|------|------|\n| SSH 连接 | **失败** — port 11672 unreachable |\n| 实验进程 | 无法确认，大概率已中断 |\n| GPU/磁盘 | 无法检查 |\n\n4 个实验（eval_sft_rasp_20_seed123、eval_sft_standard_20_seed123、eval_sft_rasp_20_seed456、eval_sft_standard_20_seed456）均应视为中断/失败。需要等服务器恢复后重新提交，或转移到 westb-23072 执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-connectivity.md"
+}

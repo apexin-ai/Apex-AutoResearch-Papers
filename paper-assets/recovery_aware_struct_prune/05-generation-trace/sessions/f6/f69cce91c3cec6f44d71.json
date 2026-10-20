@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f69cce91c3cec6f44d71",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent manual submit verified",
+  "task_key": "worker_ops_urgent_manual_submit_verified_20260520T130027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_manual_submit_verified_20260520T130027_result.json",
+    "occurrence": 1,
+    "bytes": 479,
+    "sha256": "9d19bdcb56e92d33d63a1616e740324b413f3769d85706ce1734ba6dc71c5260"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**M023 完成。两个 GRPO 训练已确认 RUNNING：**\n\n| 实验 | PID | GPU | 显存 | 状态 |\n|------|-----|-----|------|------|\n| grpo_cka_only_20_seed456 | 249963 | cuda:0 | 12497 MiB | RUNNING |\n| grpo_cka_only_15_v2 | 250149 | cuda:1 | 13193 MiB | RUNNING |\n\n两个日志均无错误，模型已加载到 GPU，数据集已就绪，正在加载 ref_model 准备开始训练。按训练 1 历史 ~12.7s/step 估算，100 steps 约 21 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-manual-submit-verified.md"
+}

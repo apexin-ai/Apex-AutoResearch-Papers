@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56888ae8e1a92d0dbe2c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code anonymous repo prep",
+  "task_key": "worker_code_anonymous_repo_prep_20260523T125225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anonymous_repo_prep_20260523T125225_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "eb6894d455d64c3985e291c82d26ab9764fa47f0593854d294053f883f515efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报如下：\n\n---\n\n**仓库已就绪**\n\n| 项目 | 值 |\n|------|-----|\n| 公开 URL | `https://github.com/anonymous-nlp-2026/recovery_aware_struct_prune` |\n| Commit 数 | 1 |\n| Author | `Anonymous <anonymous@example.com>` |\n| .py 文件 | 35 |\n| .sh 文件 | 27 |\n| .md 文件 | 1 (README.md) |\n| .txt 文件 | 1 (requirements.txt) |\n| .gitignore | 1 |\n| **总计** | **65 files** |\n\n**目录结构**：\n```\n├── src/           (35 .py + 20 .sh) — 剪枝、训练、评估、分析核心代码\n├── scripts/       (8 .sh) — 端到端 pipeline 脚本\n├── figures/paper/ (7 .py) — 论文图表生成\n├── README.md\n├── requirements.txt\n└── .gitignore\n```\n\n**匿名化检查**：无残留个人信息（caoxiao / @qq.com / 服务器路径 / AutoDL / API key 全部清除）。Git author 为 Anonymous。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anonymous-repo-prep.md"
+}

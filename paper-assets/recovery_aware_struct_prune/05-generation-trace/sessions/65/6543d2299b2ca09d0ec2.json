@@ -1,0 +1,1167 @@
+{
+  "schema_version": "1.0",
+  "id": "6543d2299b2ca09d0ec2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops westb full status and harvest",
+  "task_key": "worker_ops_westb_full_status_and_harvest_20260519T030812",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_full_status_and_harvest_20260519T030812.log",
+    "occurrence": 1,
+    "bytes": 66440,
+    "sha256": "e0aabc8d004d50b9f501433a9bc80d5b9c7a837ddf3656bbb8efc49825d39ac6"
+  },
+  "statistics": {
+    "messages": 27,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "398e0a7e-4f80-40e8-9e2c-fd5f8503ba9d",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779174000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "1b768e5e-ce6e-42ee-ac8f-a76b1b50d4f0",
+                "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to do a status audit on westb-23072. Let me execute the commands via SSH.",
+              "signature": "EpYCClkIDRgCKkDfbHLBudRwPdMjjNh38fgD6x0kpyEWCx2Y6xs4UzQUzj8O+bSTquiyZ0c7Rhojuk+PdGE7Fw0Svt2/GRCZzLlRMg9jbGF1ZGUtb3B1cy00LTY4ABIMxSTgFd4S1PdueDz/GgxDYW9TgDLvjtxETG4iMBQFJd9fSJmZ3qDuTN88SP7pOGc9PFaH8hpl7BMaFRrsyMqYPuu3JyhJvq9u7MpczyprH2NJPXoajtg531/xabwbNHVfAGGdu5vq66FqIlQ9cFHAgWexHQj9zdojMQL4/5880Ftj8W81nKe0irmp/mcKnSvrChnwqdDiszIjcGY1Fo6Okxsg9SFKXvP+NYXtgGmFUneRn+rgKKjeRjUYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "f34e00fc-c9e2-4717-8300-5d2361c7cd50",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FyxEfVSxbZTF1rVYkpsste",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13216,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13216
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XaJ6WcVNiYAPpuGs2WbCEV",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "f8e548d8-950a-4bf4-a5c7-28d9b7fd5b9c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FyxEfVSxbZTF1rVYkpsste",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13216,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13216
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T03:08:27.674Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01XaJ6WcVNiYAPpuGs2WbCEV",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "59464613-bfe1-4c96-ba69-d76f649d98be",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AvtvTDDkc2C8rbAhwxwkBW",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "43bd483e-5b0a-443f-af42-99463bdbeff8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhB4RYKkCtAhKaJcjSAcNi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 385,
+                "cache_read_input_tokens": 25057,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 385
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G6VYCCw3XHoTcco9gCE1Hy",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "ps aux | grep 845212 | grep -v grep; echo \"---EXIT:$?\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "be0eb447-2fb6-43ac-a351-dbb2558a5ef0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhB4RYKkCtAhKaJcjSAcNi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 385,
+                "cache_read_input_tokens": 25057,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 385
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016zVgFoionnMkEiHiZcFnUo",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "ps aux | grep 842784 | grep -v grep; echo \"---EXIT:$?\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "747ca132-45f2-4487-ae91-e02c64eef0a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhB4RYKkCtAhKaJcjSAcNi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 385,
+                "cache_read_input_tokens": 25057,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 385
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T03:08:37.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AvtvTDDkc2C8rbAhwxwkBW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\\\\n0, 0 %, 0 MiB, 97887 MiB\\\\n1, 96 %, 6537 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "d6349cf3-96ef-4eb2-9ec1-565f1340af93",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\\\\n0, 0 %, 0 MiB, 97887 MiB\\\\n1, 96 %, 6537 MiB, 97887 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.77}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"index, utilization.gpu [%], memory.used [MiB], memory.total [MiB]\\n0, 0 %, 0 MiB, 97887 MiB\\n1, 96 %, 6537 MiB, 97887 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.77}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T03:08:39.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G6VYCCw3XHoTcco9gCE1Hy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---EXIT:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "79ea54b1-20eb-4317-ac5a-341a64cde362",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---EXIT:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"---EXIT:1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T03:08:41.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016zVgFoionnMkEiHiZcFnUo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     842784  0.0  0.0   4496  1616 pts/2    Ss+  07:02   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c '\\\\\\\"'\\\\\\\"'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\\\\\"'\\\\\\\"''; } > ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log 2>&1\\\\n---EXIT:0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "46c97630-b28f-44e1-827a-b38595ef1a0d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     842784  0.0  0.0   4496  1616 pts/2    Ss+  07:02   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c '\\\\\\\"'\\\\\\\"'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\\\\\"'\\\\\\\"''; } > ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log 2>&1\\\\n---EXIT:0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root     842784  0.0  0.0   4496  1616 pts/2    Ss+  07:02   0:00 bash -c rm -f /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\"EXIT_CODE=$_EC\\\" >> ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log; printf \\\"%s|%s\\\\n\\\" \\\"$_EC\\\" \\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\" > /tmp/agent-ml-exit/eval_gsm8k_sft_standard_20_1p5b.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=1 && timeout 86400 env bash -c 'bash -c '\\\"'\\\"'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\"'\\\"''; } > ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log 2>&1\\n---EXIT:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 845212 (rasp) 已退出，PID 842784 (standard) 仍在运行（cuda:1, 96% utilization, 6537 MiB）。读取 rasp 结果和 standard 的 tmux 输出。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "218b60c7-b30b-4469-b0d8-96be5ab7f5e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013swkCZDBgne5D6nJvLrSjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BmspwCDP7Wyte2qewPLxQZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_1p5b.json | python3 -m json.tool | head -30",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "cd2a1ec4-8212-4568-aef6-97d88fe985e0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013swkCZDBgne5D6nJvLrSjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0199DxrJxHVeywFDwTP1FSFr",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tmux capture-pane -t eval_gsm8k_sft_rasp_20_1p5b -p -S -30 2>/dev/null; echo \"---TMUX_EXIT:$?\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "0a1fb36f-6a9d-47b0-8365-ed24f003b98e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013swkCZDBgne5D6nJvLrSjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T03:08:47.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BmspwCDP7Wyte2qewPLxQZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "c7fc51ef-e0c6-40ab-aaf9-30feb5d28197",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DdYGnij3wK7nJ5uyZh5VJG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tmux capture-pane -t eval_gsm8k_sft_standard_20_1p5b -p -S -30 2>/dev/null; echo \"---TMUX_EXIT:$?\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "938dc07d-c11c-4c98-bb58-4081c0f08848",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013swkCZDBgne5D6nJvLrSjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019n2atZHvm8UyLg89RPfQ9k",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tail -30 ~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "b43d4c00-fdc4-4705-b237-b91a05b142da",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013swkCZDBgne5D6nJvLrSjH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1229,
+                "cache_read_input_tokens": 25442,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1229
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T03:08:49.391Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0199DxrJxHVeywFDwTP1FSFr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---TMUX_EXIT:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "04f45484-7700-4e72-9b4e-0782e1183cdc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---TMUX_EXIT:1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"---TMUX_EXIT:1\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T03:08:51.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DdYGnij3wK7nJ5uyZh5VJG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n---TMUX_EXIT:0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "ddee3109-1ea6-4a73-9a58-74bcc59888ef",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n\\\\n---TMUX_EXIT:0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n\\n---TMUX_EXIT:0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.69}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T03:08:53.604Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019n2atZHvm8UyLg89RPfQ9k",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 07:02:50,935 [INFO] Loading GSM8K test set...\\\\n2026-05-19 07:02:51,949 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 07:02:52,021 [INFO] Evaluating on 1319 test samples\\\\n2026-05-19 07:02:52,024 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<59:26,  2.71s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:08<1:35:08,  4.33s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:09<1:02:02,  2.83s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:10<52:16,  2.39s/it]  \\\\rEvaluating:   0%|          | 5/1319 [00:12<43:36,  1.99s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:14<42:31,  1.94s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:15<39:04,  1.79s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:17<38:18,  1.75s/it]\\\\rEvaluating:   1%|          | 9/1319 [00:18<32:28,  1.49s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:19<30:22,  1.39s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:21<37:36,  1.72s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:22<32:46,  1.50s/it]\\\\rEvaluating:   1%|          | 13/1319 [00:24<35:39,  1.64s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:25<31:40,  1.46s/it]\\\\rEvaluating:   1%|          | 15/1319 [00:28<43:09,  1.99s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:29<36:07,  1.66s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [00:31<33:35,  1.55s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:32<30:43,  1.42s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:33<29:09,  1.35s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:34<29:29,  1.36s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [00:36<31:23,  1.45s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [00:37<25:39,  1.19s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [00:39<36:13,  1.68s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [00:41<34:21,  1.59s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [00:43<36:03,  1.67s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [00:46<44:58,  2.09s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [00:49<50:18,  2.34s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [00:51<50:02,  2.33s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [00:53<49:32,  2.30s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [00:55<44:33,  2.07s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [02:39<11:40:07, 32.61s/it]\\\\rEvaluating:   2%|▏         | 32/1319 [02:40<8:19:43, 23.30s/it] \\\\rEvaluating:   3%|▎         | 33/1319 [02:42<6:01:34, 16.87s/it]\\\\rEvaluating:   3%|▎         | 34/1319 [02:44<4:26:03, 12.42s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [02:46<3:21:21,  9.41s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [02:53<3:02:51,  8.55s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [02:55<2:23:38,  6.72s/it]\\\\rEvaluating:   3%|▎         | 38/1319 [02:59<2:01:42,  5.70s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [03:00<1:31:44,  4.30s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [03:03<1:23:35,  3.92s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [03:05<1:09:24,  3.26s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [03:06<54:35,  2.56s/it]  \\\\rEvaluating:   3%|▎         | 43/1319 [03:07<44:41,  2.10s/it]\\\\rEvaluating:   3%|▎         | 44/1319 [03:08<39:15,  1.85s/it]\\\\rEvaluating:   3%|▎         | 45/1319 [03:10<38:49,  1.83s/it]\\\\rEvaluating:   3%|▎         | 46/1319 [03:12<39:49,  1.88s/it]\\\\rEvaluating:   4%|▎         | 47/1319 [03:13<35:39,  1.68s/it]\\\\rEvaluating:   4%|▎         | 48/1319 [03:14<30:43,  1.45s/it]\\\\rEvaluating:   4%|▎         | 49/1319 [03:16<37:38,  1.78s/it]2026-05-19 07:06:12,634 [INFO] Progress: 50/1319, acc=0.1800, eos_rate=98.00%, avg_len=239\\\\n\\\\rEvaluating:   4%|▍         | 50/1319 [03:20<50:56,  2.41s/it]\\\\rEvaluating:   4%|▍         | 51/1319 [03:21<41:59,  1.99s/it]\\\\rEvaluating:   4%|▍         | 52/1319 [03:24<44:44,  2.12s/it]\\\\rEvaluating:   4%|▍         | 53/1319 [03:25<40:27,  1.92s/it]\\\\rEvaluating:   4%|▍         | 54/1319 [03:27<38:29,  1.83s/it]\\\\rEvaluating:   4%|▍         | 55/1319 [03:27<31:07,  1.48s/it]\\\\rEvaluating:   4%|▍         | 56/1319 [03:29<31:05,  1.48s/\\\\n\\\\n... [截断: 输出过长，省略 78716 字符] ...\\\\n\\\\n2.36s/it]\\\\rEvaluating:  93%|█████████▎| 1224/1319 [3:54:59<14:09,  8.94s/it]\\\\rEvaluating:  93%|█████████▎| 1225/1319 [3:55:01<10:39,  6.81s/it]\\\\rEvaluating:  93%|█████████▎| 1226/1319 [3:55:04<08:29,  5.48s/it]\\\\rEvaluating:  93%|█████████▎| 1227/1319 [3:55:05<06:32,  4.27s/it]\\\\rEvaluating:  93%|█████████▎| 1228/1319 [3:55:07<05:37,  3.71s/it]\\\\rEvaluating:  93%|█████████▎| 1229/1319 [3:55:09<04:45,  3.17s/it]\\\\rEvaluating:  93%|█████���███▎| 1230/1319 [3:55:11<04:07,  2.78s/it]\\\\rEvaluating:  93%|█████████▎| 1231/1319 [3:55:13<03:29,  2.38s/it]\\\\rEvaluating:  93%|█████████▎| 1232/1319 [3:55:14<03:07,  2.16s/it]\\\\rEvaluating:  93%|█████████▎| 1233/1319 [3:55:16<03:06,  2.16s/it]\\\\rEvaluating:  94%|█████████▎| 1234/1319 [3:55:17<02:35,  1.83s/it]\\\\rEvaluating:  94%|█████████▎| 1235/1319 [3:55:20<02:40,  1.91s/it]\\\\rEvaluating:  94%|█████████▎| 1236/1319 [3:57:06<45:58, 33.24s/it]\\\\rEvaluating:  94%|█████████▍| 1237/1319 [3:57:08<32:43, 23.95s/it]\\\\rEvaluating:  94%|█████████▍| 1238/1319 [3:57:10<23:13, 17.20s/it]\\\\rEvaluating:  94%|█████████▍| 1239/1319 [3:57:13<17:23, 13.04s/it]\\\\rEvaluating:  94%|█████████▍| 1240/1319 [3:57:15<12:50,  9.75s/it]\\\\rEvaluating:  94%|█████████▍| 1241/1319 [3:57:17<09:27,  7.27s/it]\\\\rEvaluating:  94%|█████████▍| 1242/1319 [3:57:18<06:58,  5.43s/it]\\\\rEvaluating:  94%|█████████▍| 1243/1319 [3:57:19<05:23,  4.26s/it]\\\\rEvaluating:  94%|█████████▍| 1244/1319 [3:57:21<04:25,  3.54s/it]\\\\rEvaluating:  94%|█████████▍| 1245/1319 [3:59:07<42:23, 34.37s/it]\\\\rEvaluating:  94%|█████████▍| 1246/1319 [3:59:09<30:00, 24.67s/it]\\\\rEvaluating:  95%|█████████▍| 1247/1319 [3:59:11<21:22, 17.82s/it]\\\\rEvaluating:  95%|█████████▍| 1248/1319 [3:59:13<15:12, 12.86s/it]\\\\rEvaluating:  95%|█████████▍| 1249/1319 [3:59:14<11:01,  9.45s/it]2026-05-19 11:02:07,578 [INFO] Progress: 1250/1319, acc=0.2296, eos_rate=90.56%, avg_len=512\\\\n\\\\rEvaluating:  95%|█████████▍| 1250/1319 [3:59:15<07:58,  6.93s/it]\\\\rEvaluating:  95%|█████████▍| 1251/1319 [3:59:18<06:19,  5.59s/it]\\\\rEvaluating:  95%|█████████▍| 1252/1319 [3:59:19<04:57,  4.44s/it]\\\\rEvaluating:  95%|█████████▍| 1253/1319 [3:59:22<04:17,  3.91s/it]\\\\rEvaluating:  95%|█████████▌| 1254/1319 [3:59:25<03:50,  3.55s/it]\\\\rEvaluating:  95%|█████████▌| 1255/1319 [4:01:11<36:48, 34.50s/it]\\\\rEvaluating:  95%|█████████▌| 1256/1319 [4:01:12<25:37, 24.41s/it]\\\\rEvaluating:  95%|█████████▌| 1257/1319 [4:01:13<18:01, 17.44s/it]\\\\rEvaluating:  95%|█████████▌| 1258/1319 [4:01:15<12:47, 12.58s/it]\\\\rEvaluating:  95%|█████████▌| 1259/1319 [4:03:00<40:20, 40.34s/it]\\\\rEvaluating:  96%|█████████▌| 1260/1319 [4:03:02<28:21, 28.83s/it]\\\\rEvaluating:  96%|████████���▌| 1261/1319 [4:03:04<20:17, 20.99s/it]\\\\rEvaluating:  96%|█████████▌| 1262/1319 [4:03:07<14:45, 15.54s/it]\\\\rEvaluating:  96%|█████████▌| 1263/1319 [4:03:09<10:44, 11.51s/it]\\\\rEvaluating:  96%|█████████▌| 1264/1319 [4:03:11<07:49,  8.54s/it]\\\\rEvaluating:  96%|█████████▌| 1265/1319 [4:03:12<05:40,  6.30s/it]\\\\rEvaluating:  96%|█████████▌| 1266/1319 [4:03:13<04:11,  4.74s/it]\\\\rEvaluating:  96%|█████████▌| 1267/1319 [4:04:57<30:00, 34.62s/it]\\\\rEvaluating:  96%|█████████▌| 1268/1319 [4:04:59<21:02, 24.75s/it]\\\\rEvaluating:  96%|█████████▌| 1269/1319 [4:05:00<14:43, 17.67s/it]\\\\rEvaluating:  96%|█████████▋| 1270/1319 [4:05:02<10:31, 12.89s/it]\\\\rEvaluating:  96%|█████████▋| 1271/1319 [4:05:04<07:39,  9.57s/it]\\\\rEvaluating:  96%|█████████▋| 1272/1319 [4:05:05<05:27,  6.96s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [4:05:06<04:01,  5.25s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [4:05:08<03:08,  4.18s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [4:05:09<02:30,  3.41s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [4:05:10<01:56,  2.72s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [4:05:13<01:52,  2.67s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [4:05:14<01:28,  2.17s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [4:05:15<01:12,  1.80s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [4:05:18<01:26,  2.23s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [4:05:19<01:13,  1.94s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [4:05:21<01:04,  1.75s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.49}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "e03db3e7-7cda-4490-9596-1fd8a2ef0a41",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 07:02:50,935 [INFO] Loading GSM8K test set...\\\\n2026-05-19 07:02:51,949 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-19 07:02:52,021 [INFO] Evaluating on 1319 test samples\\\\n2026-05-19 07:02:52,024 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<59:26,  2.71s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:08<1:35:08,  4.33s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:09<1:02:02,  2.83s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:10<52:16,  2.39s/it]  \\\\rEvaluating:   0%|          | 5/1319 [00:12<43:36,  1.99s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:14<42:31,  1.94s/it]\\\\rEvaluating:   1%|          | 7/1319 [00:15<39:04,  1.79s/it]\\\\rEvaluating:   1%|          | 8/1319 [00:17<38:18,  1.75s/it]\\\\rEvaluating:   1%|          | 9/1319 [00:18<32:28,  1.49s/it]\\\\rEvaluating:   1%|          | 10/1319 [00:19<30:22,  1.39s/it]\\\\rEvaluating:   1%|          | 11/1319 [00:21<37:36,  1.72s/it]\\\\rEvaluating:   1%|          | 12/1319 [00:22<32:46,  1.50s/it]\\\\rEvaluating:   1%|          | 13/1319 [00:24<35:39,  1.64s/it]\\\\rEvaluating:   1%|          | 14/1319 [00:25<31:40,  1.46s/it]\\\\rEvaluating:   1%|          | 15/1319 [00:28<43:09,  1.99s/it]\\\\rEvaluating:   1%|          | 16/1319 [00:29<36:07,  1.66s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [00:31<33:35,  1.55s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [00:32<30:43,  1.42s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [00:33<29:09,  1.35s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [00:34<29:29,  1.36s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [00:36<31:23,  1.45s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [00:37<25:39,  1.19s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [00:39<36:13,  1.68s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [00:41<34:21,  1.59s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [00:43<36:03,  1.67s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [00:46<44:58,  2.09s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [00:49<50:18,  2.34s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [00:51<50:02,  2.33s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [00:53<49:32,  2.30s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [00:55<44:33,  2.07s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [02:39<11:40:07, 32.61s/it]\\\\rEvaluating:   2%|▏         | 32/1319 [02:40<8:19:43, 23.30s/it] \\\\rEvaluating:   3%|▎         | 33/1319 [02:42<6:01:34, 16.87s/it]\\\\rEvaluating:   3%|▎         | 34/1319 [02:44<4:26:03, 12.42s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [02:46<3:21:21,  9.41s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [02:53<3:02:51,  8.55s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [02:55<2:23:38,  6.72s/it]\\\\rEvaluating:   3%|▎         | 38/1319 [02:59<2:01:42,  5.70s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [03:00<1:31:44,  4.30s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [03:03<1:23:35,  3.92s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [03:05<1:09:24,  3.26s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [03:06<54:35,  2.56s/it]  \\\\rEvaluating:   3%|▎         | 43/1319 [03:07<44:41,  2.10s/it]\\\\rEvaluating:   3%|▎         | 44/1319 [03:08<39:15,  1.85s/it]\\\\rEvaluating:   3%|▎         | 45/1319 [03:10<38:49,  1.83s/it]\\\\rEvaluating:   3%|▎         | 46/1319 [03:12<39:49,  1.88s/it]\\\\rEvaluating:   4%|▎         | 47/1319 [03:13<35:39,  1.68s/it]\\\\rEvaluating:   4%|▎         | 48/1319 [03:14<30:43,  1.45s/it]\\\\rEvaluating:   4%|▎         | 49/1319 [03:16<37:38,  1.78s/it]2026-05-19 07:06:12,634 [INFO] Progress: 50/1319, acc=0.1800, eos_rate=98.00%, avg_len=239\\\\n\\\\rEvaluating:   4%|▍         | 50/1319 [03:20<50:56,  2.41s/it]\\\\rEvaluating:   4%|▍         | 51/1319 [03:21<41:59,  1.99s/it]\\\\rEvaluating:   4%|▍         | 52/1319 [03:24<44:44,  2.12s/it]\\\\rEvaluating:   4%|▍         | 53/1319 [03:25<40:27,  1.92s/it]\\\\rEvaluating:   4%|▍         | 54/1319 [03:27<38:29,  1.83s/it]\\\\rEvaluating:   4%|▍         | 55/1319 [03:27<31:07,  1.48s/it]\\\\rEvaluating:   4%|▍         | 56/1319 [03:29<31:05,  1.48s/\\\\n\\\\n... [截断: 输出过长，省略 78716 字符] ...\\\\n\\\\n2.36s/it]\\\\rEvaluating:  93%|█████████▎| 1224/1319 [3:54:59<14:09,  8.94s/it]\\\\rEvaluating:  93%|█████████▎| 1225/1319 [3:55:01<10:39,  6.81s/it]\\\\rEvaluating:  93%|█████████▎| 1226/1319 [3:55:04<08:29,  5.48s/it]\\\\rEvaluating:  93%|█████████▎| 1227/1319 [3:55:05<06:32,  4.27s/it]\\\\rEvaluating:  93%|█████████▎| 1228/1319 [3:55:07<05:37,  3.71s/it]\\\\rEvaluating:  93%|█████████▎| 1229/1319 [3:55:09<04:45,  3.17s/it]\\\\rEvaluating:  93%|█████���███▎| 1230/1319 [3:55:11<04:07,  2.78s/it]\\\\rEvaluating:  93%|█████████▎| 1231/1319 [3:55:13<03:29,  2.38s/it]\\\\rEvaluating:  93%|█████████▎| 1232/1319 [3:55:14<03:07,  2.16s/it]\\\\rEvaluating:  93%|█████████▎| 1233/1319 [3:55:16<03:06,  2.16s/it]\\\\rEvaluating:  94%|█████████▎| 1234/1319 [3:55:17<02:35,  1.83s/it]\\\\rEvaluating:  94%|█████████▎| 1235/1319 [3:55:20<02:40,  1.91s/it]\\\\rEvaluating:  94%|█████████▎| 1236/1319 [3:57:06<45:58, 33.24s/it]\\\\rEvaluating:  94%|█████████▍| 1237/1319 [3:57:08<32:43, 23.95s/it]\\\\rEvaluating:  94%|█████████▍| 1238/1319 [3:57:10<23:13, 17.20s/it]\\\\rEvaluating:  94%|█████████▍| 1239/1319 [3:57:13<17:23, 13.04s/it]\\\\rEvaluating:  94%|█████████▍| 1240/1319 [3:57:15<12:50,  9.75s/it]\\\\rEvaluating:  94%|█████████▍| 1241/1319 [3:57:17<09:27,  7.27s/it]\\\\rEvaluating:  94%|█████████▍| 1242/1319 [3:57:18<06:58,  5.43s/it]\\\\rEvaluating:  94%|█████████▍| 1243/1319 [3:57:19<05:23,  4.26s/it]\\\\rEvaluating:  94%|█████████▍| 1244/1319 [3:57:21<04:25,  3.54s/it]\\\\rEvaluating:  94%|█████████▍| 1245/1319 [3:59:07<42:23, 34.37s/it]\\\\rEvaluating:  94%|█████████▍| 1246/1319 [3:59:09<30:00, 24.67s/it]\\\\rEvaluating:  95%|█████████▍| 1247/1319 [3:59:11<21:22, 17.82s/it]\\\\rEvaluating:  95%|█████████▍| 1248/1319 [3:59:13<15:12, 12.86s/it]\\\\rEvaluating:  95%|█████████▍| 1249/1319 [3:59:14<11:01,  9.45s/it]2026-05-19 11:02:07,578 [INFO] Progress: 1250/1319, acc=0.2296, eos_rate=90.56%, avg_len=512\\\\n\\\\rEvaluating:  95%|█████████▍| 1250/1319 [3:59:15<07:58,  6.93s/it]\\\\rEvaluating:  95%|█████████▍| 1251/1319 [3:59:18<06:19,  5.59s/it]\\\\rEvaluating:  95%|█████████▍| 1252/1319 [3:59:19<04:57,  4.44s/it]\\\\rEvaluating:  95%|█████████▍| 1253/1319 [3:59:22<04:17,  3.91s/it]\\\\rEvaluating:  95%|█████████▌| 1254/1319 [3:59:25<03:50,  3.55s/it]\\\\rEvaluating:  95%|█████████▌| 1255/1319 [4:01:11<36:48, 34.50s/it]\\\\rEvaluating:  95%|█████████▌| 1256/1319 [4:01:12<25:37, 24.41s/it]\\\\rEvaluating:  95%|█████████▌| 1257/1319 [4:01:13<18:01, 17.44s/it]\\\\rEvaluating:  95%|█████████▌| 1258/1319 [4:01:15<12:47, 12.58s/it]\\\\rEvaluating:  95%|█████████▌| 1259/1319 [4:03:00<40:20, 40.34s/it]\\\\rEvaluating:  96%|█████████▌| 1260/1319 [4:03:02<28:21, 28.83s/it]\\\\rEvaluating:  96%|████████���▌| 1261/1319 [4:03:04<20:17, 20.99s/it]\\\\rEvaluating:  96%|█████████▌| 1262/1319 [4:03:07<14:45, 15.54s/it]\\\\rEvaluating:  96%|█████████▌| 1263/1319 [4:03:09<10:44, 11.51s/it]\\\\rEvaluating:  96%|█████████▌| 1264/1319 [4:03:11<07:49,  8.54s/it]\\\\rEvaluating:  96%|█████████▌| 1265/1319 [4:03:12<05:40,  6.30s/it]\\\\rEvaluating:  96%|█████████▌| 1266/1319 [4:03:13<04:11,  4.74s/it]\\\\rEvaluating:  96%|█████████▌| 1267/1319 [4:04:57<30:00, 34.62s/it]\\\\rEvaluating:  96%|█████████▌| 1268/1319 [4:04:59<21:02, 24.75s/it]\\\\rEvaluating:  96%|█████████▌| 1269/1319 [4:05:00<14:43, 17.67s/it]\\\\rEvaluating:  96%|█████████▋| 1270/1319 [4:05:02<10:31, 12.89s/it]\\\\rEvaluating:  96%|█████████▋| 1271/1319 [4:05:04<07:39,  9.57s/it]\\\\rEvaluating:  96%|█████████▋| 1272/1319 [4:05:05<05:27,  6.96s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [4:05:06<04:01,  5.25s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [4:05:08<03:08,  4.18s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [4:05:09<02:30,  3.41s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [4:05:10<01:56,  2.72s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [4:05:13<01:52,  2.67s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [4:05:14<01:28,  2.17s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [4:05:15<01:12,  1.80s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [4:05:18<01:26,  2.23s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [4:05:19<01:13,  1.94s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [4:05:21<01:04,  1.75s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.49}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-19 07:02:50,935 [INFO] Loading GSM8K test set...\\n2026-05-19 07:02:51,949 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\"HTTP/1.1 404 Not Found\\\"\\n2026-05-19 07:02:52,021 [INFO] Evaluating on 1319 test samples\\n2026-05-19 07:02:52,024 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/1319 [00:02<59:26,  2.71s/it]\\rEvaluating:   0%|          | 2/1319 [00:08<1:35:08,  4.33s/it]\\rEvaluating:   0%|          | 3/1319 [00:09<1:02:02,  2.83s/it]\\rEvaluating:   0%|          | 4/1319 [00:10<52:16,  2.39s/it]  \\rEvaluating:   0%|          | 5/1319 [00:12<43:36,  1.99s/it]\\rEvaluating:   0%|          | 6/1319 [00:14<42:31,  1.94s/it]\\rEvaluating:   1%|          | 7/1319 [00:15<39:04,  1.79s/it]\\rEvaluating:   1%|          | 8/1319 [00:17<38:18,  1.75s/it]\\rEvaluating:   1%|          | 9/1319 [00:18<32:28,  1.49s/it]\\rEvaluating:   1%|          | 10/1319 [00:19<30:22,  1.39s/it]\\rEvaluating:   1%|          | 11/1319 [00:21<37:36,  1.72s/it]\\rEvaluating:   1%|          | 12/1319 [00:22<32:46,  1.50s/it]\\rEvaluating:   1%|          | 13/1319 [00:24<35:39,  1.64s/it]\\rEvaluating:   1%|          | 14/1319 [00:25<31:40,  1.46s/it]\\rEvaluating:   1%|          | 15/1319 [00:28<43:09,  1.99s/it]\\rEvaluating:   1%|          | 16/1319 [00:29<36:07,  1.66s/it]\\rEvaluating:   1%|▏         | 17/1319 [00:31<33:35,  1.55s/it]\\rEvaluating:   1%|▏         | 18/1319 [00:32<30:43,  1.42s/it]\\rEvaluating:   1%|▏         | 19/1319 [00:33<29:09,  1.35s/it]\\rEvaluating:   2%|▏         | 20/1319 [00:34<29:29,  1.36s/it]\\rEvaluating:   2%|▏         | 21/1319 [00:36<31:23,  1.45s/it]\\rEvaluating:   2%|▏         | 22/1319 [00:37<25:39,  1.19s/it]\\rEvaluating:   2%|▏         | 23/1319 [00:39<36:13,  1.68s/it]\\rEvaluating:   2%|▏         | 24/1319 [00:41<34:21,  1.59s/it]\\rEvaluating:   2%|▏         | 25/1319 [00:43<36:03,  1.67s/it]\\rEvaluating:   2%|▏         | 26/1319 [00:46<44:58,  2.09s/it]\\rEvaluating:   2%|▏         | 27/1319 [00:49<50:18,  2.34s/it]\\rEvaluating:   2%|▏         | 28/1319 [00:51<50:02,  2.33s/it]\\rEvaluating:   2%|▏         | 29/1319 [00:53<49:32,  2.30s/it]\\rEvaluating:   2%|▏         | 30/1319 [00:55<44:33,  2.07s/it]\\rEvaluating:   2%|▏         | 31/1319 [02:39<11:40:07, 32.61s/it]\\rEvaluating:   2%|▏         | 32/1319 [02:40<8:19:43, 23.30s/it] \\rEvaluating:   3%|▎         | 33/1319 [02:42<6:01:34, 16.87s/it]\\rEvaluating:   3%|▎         | 34/1319 [02:44<4:26:03, 12.42s/it]\\rEvaluating:   3%|▎         | 35/1319 [02:46<3:21:21,  9.41s/it]\\rEvaluating:   3%|▎         | 36/1319 [02:53<3:02:51,  8.55s/it]\\rEvaluating:   3%|▎         | 37/1319 [02:55<2:23:38,  6.72s/it]\\rEvaluating:   3%|▎         | 38/1319 [02:59<2:01:42,  5.70s/it]\\rEvaluating:   3%|▎         | 39/1319 [03:00<1:31:44,  4.30s/it]\\rEvaluating:   3%|▎         | 40/1319 [03:03<1:23:35,  3.92s/it]\\rEvaluating:   3%|▎         | 41/1319 [03:05<1:09:24,  3.26s/it]\\rEvaluating:   3%|▎         | 42/1319 [03:06<54:35,  2.56s/it]  \\rEvaluating:   3%|▎         | 43/1319 [03:07<44:41,  2.10s/it]\\rEvaluating:   3%|▎         | 44/1319 [03:08<39:15,  1.85s/it]\\rEvaluating:   3%|▎         | 45/1319 [03:10<38:49,  1.83s/it]\\rEvaluating:   3%|▎         | 46/1319 [03:12<39:49,  1.88s/it]\\rEvaluating:   4%|▎         | 47/1319 [03:13<35:39,  1.68s/it]\\rEvaluating:   4%|▎         | 48/1319 [03:14<30:43,  1.45s/it]\\rEvaluating:   4%|▎         | 49/1319 [03:16<37:38,  1.78s/it]2026-05-19 07:06:12,634 [INFO] Progress: 50/1319, acc=0.1800, eos_rate=98.00%, avg_len=239\\n\\rEvaluating:   4%|▍         | 50/1319 [03:20<50:56,  2.41s/it]\\rEvaluating:   4%|▍         | 51/1319 [03:21<41:59,  1.99s/it]\\rEvaluating:   4%|▍         | 52/1319 [03:24<44:44,  2.12s/it]\\rEvaluating:   4%|▍         | 53/1319 [03:25<40:27,  1.92s/it]\\rEvaluating:   4%|▍         | 54/1319 [03:27<38:29,  1.83s/it]\\rEvaluating:   4%|▍         | 55/1319 [03:27<31:07,  1.48s/it]\\rEvaluating:   4%|▍         | 56/1319 [03:29<31:05,  1.48s/\\n\\n... [截断: 输出过长，省略 78716 字符] ...\\n\\n2.36s/it]\\rEvaluating:  93%|█████████▎| 1224/1319 [3:54:59<14:09,  8.94s/it]\\rEvaluating:  93%|█████████▎| 1225/1319 [3:55:01<10:39,  6.81s/it]\\rEvaluating:  93%|█████████▎| 1226/1319 [3:55:04<08:29,  5.48s/it]\\rEvaluating:  93%|█████████▎| 1227/1319 [3:55:05<06:32,  4.27s/it]\\rEvaluating:  93%|█████████▎| 1228/1319 [3:55:07<05:37,  3.71s/it]\\rEvaluating:  93%|█████████▎| 1229/1319 [3:55:09<04:45,  3.17s/it]\\rEvaluating:  93%|█████���███▎| 1230/1319 [3:55:11<04:07,  2.78s/it]\\rEvaluating:  93%|█████████▎| 1231/1319 [3:55:13<03:29,  2.38s/it]\\rEvaluating:  93%|█████████▎| 1232/1319 [3:55:14<03:07,  2.16s/it]\\rEvaluating:  93%|█████████▎| 1233/1319 [3:55:16<03:06,  2.16s/it]\\rEvaluating:  94%|█████████▎| 1234/1319 [3:55:17<02:35,  1.83s/it]\\rEvaluating:  94%|█████████▎| 1235/1319 [3:55:20<02:40,  1.91s/it]\\rEvaluating:  94%|█████████▎| 1236/1319 [3:57:06<45:58, 33.24s/it]\\rEvaluating:  94%|█████████▍| 1237/1319 [3:57:08<32:43, 23.95s/it]\\rEvaluating:  94%|█████████▍| 1238/1319 [3:57:10<23:13, 17.20s/it]\\rEvaluating:  94%|█████████▍| 1239/1319 [3:57:13<17:23, 13.04s/it]\\rEvaluating:  94%|█████████▍| 1240/1319 [3:57:15<12:50,  9.75s/it]\\rEvaluating:  94%|█████████▍| 1241/1319 [3:57:17<09:27,  7.27s/it]\\rEvaluating:  94%|█████████▍| 1242/1319 [3:57:18<06:58,  5.43s/it]\\rEvaluating:  94%|█████████▍| 1243/1319 [3:57:19<05:23,  4.26s/it]\\rEvaluating:  94%|█████████▍| 1244/1319 [3:57:21<04:25,  3.54s/it]\\rEvaluating:  94%|█████████▍| 1245/1319 [3:59:07<42:23, 34.37s/it]\\rEvaluating:  94%|█████████▍| 1246/1319 [3:59:09<30:00, 24.67s/it]\\rEvaluating:  95%|█████████▍| 1247/1319 [3:59:11<21:22, 17.82s/it]\\rEvaluating:  95%|█████████▍| 1248/1319 [3:59:13<15:12, 12.86s/it]\\rEvaluating:  95%|█████████▍| 1249/1319 [3:59:14<11:01,  9.45s/it]2026-05-19 11:02:07,578 [INFO] Progress: 1250/1319, acc=0.2296, eos_rate=90.56%, avg_len=512\\n\\rEvaluating:  95%|█████████▍| 1250/1319 [3:59:15<07:58,  6.93s/it]\\rEvaluating:  95%|█████████▍| 1251/1319 [3:59:18<06:19,  5.59s/it]\\rEvaluating:  95%|█████████▍| 1252/1319 [3:59:19<04:57,  4.44s/it]\\rEvaluating:  95%|█████████▍| 1253/1319 [3:59:22<04:17,  3.91s/it]\\rEvaluating:  95%|█████████▌| 1254/1319 [3:59:25<03:50,  3.55s/it]\\rEvaluating:  95%|█████████▌| 1255/1319 [4:01:11<36:48, 34.50s/it]\\rEvaluating:  95%|█████████▌| 1256/1319 [4:01:12<25:37, 24.41s/it]\\rEvaluating:  95%|█████████▌| 1257/1319 [4:01:13<18:01, 17.44s/it]\\rEvaluating:  95%|█████████▌| 1258/1319 [4:01:15<12:47, 12.58s/it]\\rEvaluating:  95%|█████████▌| 1259/1319 [4:03:00<40:20, 40.34s/it]\\rEvaluating:  96%|█████████▌| 1260/1319 [4:03:02<28:21, 28.83s/it]\\rEvaluating:  96%|████████���▌| 1261/1319 [4:03:04<20:17, 20.99s/it]\\rEvaluating:  96%|█████████▌| 1262/1319 [4:03:07<14:45, 15.54s/it]\\rEvaluating:  96%|█████████▌| 1263/1319 [4:03:09<10:44, 11.51s/it]\\rEvaluating:  96%|█████████▌| 1264/1319 [4:03:11<07:49,  8.54s/it]\\rEvaluating:  96%|█████████▌| 1265/1319 [4:03:12<05:40,  6.30s/it]\\rEvaluating:  96%|█████████▌| 1266/1319 [4:03:13<04:11,  4.74s/it]\\rEvaluating:  96%|█████████▌| 1267/1319 [4:04:57<30:00, 34.62s/it]\\rEvaluating:  96%|█████████▌| 1268/1319 [4:04:59<21:02, 24.75s/it]\\rEvaluating:  96%|█████████▌| 1269/1319 [4:05:00<14:43, 17.67s/it]\\rEvaluating:  96%|█████████▋| 1270/1319 [4:05:02<10:31, 12.89s/it]\\rEvaluating:  96%|█████████▋| 1271/1319 [4:05:04<07:39,  9.57s/it]\\rEvaluating:  96%|█████████▋| 1272/1319 [4:05:05<05:27,  6.96s/it]\\rEvaluating:  97%|█████████▋| 1273/1319 [4:05:06<04:01,  5.25s/it]\\rEvaluating:  97%|█████████▋| 1274/1319 [4:05:08<03:08,  4.18s/it]\\rEvaluating:  97%|█████████▋| 1275/1319 [4:05:09<02:30,  3.41s/it]\\rEvaluating:  97%|█████████▋| 1276/1319 [4:05:10<01:56,  2.72s/it]\\rEvaluating:  97%|█████████▋| 1277/1319 [4:05:13<01:52,  2.67s/it]\\rEvaluating:  97%|█████████▋| 1278/1319 [4:05:14<01:28,  2.17s/it]\\rEvaluating:  97%|█████████▋| 1279/1319 [4:05:15<01:12,  1.80s/it]\\rEvaluating:  97%|█████████▋| 1280/1319 [4:05:18<01:26,  2.23s/it]\\rEvaluating:  97%|█████████▋| 1281/1319 [4:05:19<01:13,  1.94s/it]\\rEvaluating:  97%|█████████▋| 1282/1319 [4:05:21<01:04,  1.75s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.49}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The rasp eval result file couldn't be read with python3 (not found). Let me try with the conda environment's python. Also, the standard eval is at 1282/1319, almost done (97%). Let me get the rasp results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "e6759e34-1138-4d80-a722-ff176de7d3d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F1Dch2crXYookS1XPUJe6i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6137,
+                "cache_read_input_tokens": 26671,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6137
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "rasp 结果文件需要用 conda 的 python 读取，standard 评估在 1282/1319 (97%)，即将完成。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "396bb7ee-a5d8-47f5-ad80-c30714daf0e1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F1Dch2crXYookS1XPUJe6i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6137,
+                "cache_read_input_tokens": 26671,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6137
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014jaDrfTb1cUdTzf5GHoSzh",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "source /root/miniconda3/bin/activate && cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_1p5b.json | python -m json.tool | head -30",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "e9cfba7c-39c6-4cab-8e79-bb3656ec9a51",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01F1Dch2crXYookS1XPUJe6i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6137,
+                "cache_read_input_tokens": 26671,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6137
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T03:09:03.087Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014jaDrfTb1cUdTzf5GHoSzh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\\\\\",\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"accuracy\\\\\\\": 0.26914329037149354,\\\\n    \\\\\\\"stderr\\\\\\\": 0.012211963572592724,\\\\n    \\\\\\\"n_correct\\\\\\\": 355,\\\\n    \\\\\\\"n_total\\\\\\\": 1319,\\\\n    \\\\\\\"eos_stats\\\\\\\": {\\\\n        \\\\\\\"natural_eos\\\\\\\": 1242,\\\\n        \\\\\\\"truncated\\\\\\\": 77,\\\\n        \\\\\\\"eos_rate\\\\\\\": 0.9416224412433661,\\\\n        \\\\\\\"avg_response_length\\\\\\\": 378.6482183472327,\\\\n        \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n        \\\\\\\"min_response_length\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"temperature\\\\\\\": 0.0,\\\\n    \\\\\\\"do_sample\\\\\\\": false,\\\\n    \\\\\\\"examples\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n            \\\\\\\"prediction\\\\\\\": \\\\\\\"143.4\\\\\\\",\\\\n            \\\\\\\"correct\\\\\\\": false,\\\\n            \\\\\\\"response\\\\\\\": \\\\\\\"First, we know that the ratio of their ages is 7:11, which means that their ages are 7x and 11x for x years.\\\\\\\\nWe know that their total age now is 162 years, so we can set up the equation 7x + 11x = 162.\\\\\\\\nCombining like terms, we get 17x = 162.\\\\\\\\nWe divide both sides by 17 to find x = 162/17 \\\\\\\\ufffd 8.4 years.\\\\\\\\nWe can find the age of Allen by multiplying x by 11, which gives 11 x 8.4 \\\\\\\\ufffd 113.4 years.\\\\\\\\nWe can find the age of Allen 10 years from now by adding 10 to his current age, which gives 113.4 + 10 \\\\\\\\ufffd 143.4\\\\\\\",\\\\n            \\\\\\\"response_length\\\\\\\": 199,\\\\n            \\\\\\\"hit_eos\\\\\\\": true\\\\n        },\\\\n        {\\\\n            \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"89\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "d6013459-cd62-4750-a620-4557bb5d8f2e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n    \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\\\\\",\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n    \\\\\\\"accuracy\\\\\\\": 0.26914329037149354,\\\\n    \\\\\\\"stderr\\\\\\\": 0.012211963572592724,\\\\n    \\\\\\\"n_correct\\\\\\\": 355,\\\\n    \\\\\\\"n_total\\\\\\\": 1319,\\\\n    \\\\\\\"eos_stats\\\\\\\": {\\\\n        \\\\\\\"natural_eos\\\\\\\": 1242,\\\\n        \\\\\\\"truncated\\\\\\\": 77,\\\\n        \\\\\\\"eos_rate\\\\\\\": 0.9416224412433661,\\\\n        \\\\\\\"avg_response_length\\\\\\\": 378.6482183472327,\\\\n        \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n        \\\\\\\"min_response_length\\\\\\\": 35\\\\n    },\\\\n    \\\\\\\"temperature\\\\\\\": 0.0,\\\\n    \\\\\\\"do_sample\\\\\\\": false,\\\\n    \\\\\\\"examples\\\\\\\": [\\\\n        {\\\\n            \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n            \\\\\\\"prediction\\\\\\\": \\\\\\\"143.4\\\\\\\",\\\\n            \\\\\\\"correct\\\\\\\": false,\\\\n            \\\\\\\"response\\\\\\\": \\\\\\\"First, we know that the ratio of their ages is 7:11, which means that their ages are 7x and 11x for x years.\\\\\\\\nWe know that their total age now is 162 years, so we can set up the equation 7x + 11x = 162.\\\\\\\\nCombining like terms, we get 17x = 162.\\\\\\\\nWe divide both sides by 17 to find x = 162/17 \\\\\\\\ufffd 8.4 years.\\\\\\\\nWe can find the age of Allen by multiplying x by 11, which gives 11 x 8.4 \\\\\\\\ufffd 113.4 years.\\\\\\\\nWe can find the age of Allen 10 years from now by adding 10 to his current age, which gives 113.4 + 10 \\\\\\\\ufffd 143.4\\\\\\\",\\\\n            \\\\\\\"response_length\\\\\\\": 199,\\\\n            \\\\\\\"hit_eos\\\\\\\": true\\\\n        },\\\\n        {\\\\n            \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\\\\\",\\\\n            \\\\\\\"gold\\\\\\\": \\\\\\\"89\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.64}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n    \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\",\\n    \\\"mode\\\": \\\"greedy\\\",\\n    \\\"accuracy\\\": 0.26914329037149354,\\n    \\\"stderr\\\": 0.012211963572592724,\\n    \\\"n_correct\\\": 355,\\n    \\\"n_total\\\": 1319,\\n    \\\"eos_stats\\\": {\\n        \\\"natural_eos\\\": 1242,\\n        \\\"truncated\\\": 77,\\n        \\\"eos_rate\\\": 0.9416224412433661,\\n        \\\"avg_response_length\\\": 378.6482183472327,\\n        \\\"max_response_length\\\": 4096,\\n        \\\"min_response_length\\\": 35\\n    },\\n    \\\"temperature\\\": 0.0,\\n    \\\"do_sample\\\": false,\\n    \\\"examples\\\": [\\n        {\\n            \\\"question\\\": \\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\",\\n            \\\"gold\\\": \\\"109\\\",\\n            \\\"prediction\\\": \\\"143.4\\\",\\n            \\\"correct\\\": false,\\n            \\\"response\\\": \\\"First, we know that the ratio of their ages is 7:11, which means that their ages are 7x and 11x for x years.\\\\nWe know that their total age now is 162 years, so we can set up the equation 7x + 11x = 162.\\\\nCombining like terms, we get 17x = 162.\\\\nWe divide both sides by 17 to find x = 162/17 \\\\ufffd 8.4 years.\\\\nWe can find the age of Allen by multiplying x by 11, which gives 11 x 8.4 \\\\ufffd 113.4 years.\\\\nWe can find the age of Allen 10 years from now by adding 10 to his current age, which gives 113.4 + 10 \\\\ufffd 143.4\\\",\\n            \\\"response_length\\\": 199,\\n            \\\"hit_eos\\\": true\\n        },\\n        {\\n            \\\"question\\\": \\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small buttons. How many buttons does she have by the end?\\\",\\n            \\\"gold\\\": \\\"89\\\",\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.64}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态审计结果\n\n### 1. GPU 状态\n\n| GPU | Utilization | Memory Used | Memory Total |\n|-----|------------|-------------|--------------|\n| cuda:0 | 0% | 0 MiB | 97887 MiB |\n| cuda:1 | 96% | 6537 MiB | 97887 MiB |\n\n### 2. eval_gsm8k_sft_rasp_20_1p5b (cuda:0) — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **26.91%** |\n| n_correct | 355 |\n| n_total | 1319 |\n| eos_rate | 94.16% |\n| avg_response_length | 378.6 |\n\n进程已退出，结果已写入 JSON。\n\n### 3. eval_gsm8k_sft_standard_20_1p5b (cuda:1) — 运行中\n\n- 进度: **1282/1319 (97.2%)**，即将完成\n- 最近一次中间报告 (1250/1319): acc=0.2296, eos_rate=90.56%, avg_len=512\n- 预计几分钟内完成\n\n### 4. 空闲 GPU\n\n- **cuda:0 完全空闲**（0% utilization, 0 MiB）\n- cuda:1 被 standard 评估占用，预计很快释放"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "uuid": "c7c30385-95ed-4949-b14a-a1918fb81db3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Xdv7e3TtVxVh1kZfNgYoAf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1290,
+                "cache_read_input_tokens": 32808,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1290
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态审计结果\n\n### 1. GPU 状态\n\n| GPU | Utilization | Memory Used | Memory Total |\n|-----|------------|-------------|--------------|\n| cuda:0 | 0% | 0 MiB | 97887 MiB |\n| cuda:1 | 96% | 6537 MiB | 97887 MiB |\n\n### 2. eval_gsm8k_sft_rasp_20_1p5b (cuda:0) — 已完成\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **26.91%** |\n| n_correct | 355 |\n| n_total | 1319 |\n| eos_rate | 94.16% |\n| avg_response_length | 378.6 |\n\n进程已退出，结果已写入 JSON。\n\n### 3. eval_gsm8k_sft_standard_20_1p5b (cuda:1) — 运行中\n\n- 进度: **1282/1319 (97.2%)**，即将完成\n- 最近一次中间报告 (1250/1319): acc=0.2296, eos_rate=90.56%, avg_len=512\n- 预计几分钟内完成\n\n### 4. 空闲 GPU\n\n- **cuda:0 完全空闲**（0% utilization, 0 MiB）\n- cuda:1 被 standard 评估占用，预计很快释放"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 48399,
+            "duration_api_ms": 38089,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "9227bf0d-35d7-41b3-a5aa-80c3ae2c1983",
+            "total_cost_usd": 0.24805475,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 22257,
+              "cache_read_input_tokens": 121819,
+              "output_tokens": 1856,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 22257,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 396,
+                  "cache_read_input_tokens": 32808,
+                  "cache_creation_input_tokens": 1290,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1290
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1514,
+                "outputTokens": 16,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001594,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 1856,
+                "cacheReadInputTokens": 121819,
+                "cacheCreationInputTokens": 22257,
+                "webSearchRequests": 0,
+                "costUSD": 0.24646075,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "10804fa6-e7fb-43fb-bfaa-c6b4eab2e4e7"
+          },
+          "id": "event-000027"
+        }
+      ],
+      "message_count": 27
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westb-full-status-and-harvest.md"
+}

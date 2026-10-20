@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f7b76d5eafcc9c9323b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft cka only 15 eval",
+  "task_key": "worker_ssh_submit_sft_cka_only_15_eval_20260520T160423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_cka_only_15_eval_20260520T160423_result.json",
+    "occurrence": 1,
+    "bytes": 465,
+    "sha256": "f249ac803c94140cdcab1b3417bbcf32e672a22cbe7501f0afb7ff1e02591f64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过。\n\n## eval_gsm8k_sft_cka_only_15 提交结果\n- PID: 262728 (parent 262723)\n- 验证：进程存活 ✓ | GPU memory 13336MiB ✓ | 日志输出 ✓\n- 状态：**RUNNING**\n- 进度：1/1319 samples, ~3.78s/it, 预计 ~83 分钟\n- 输出路径：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_cka_only_15_n1319.json`\n- 日志：`~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_cka_only_15.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-cka-only-15-eval.md"
+}

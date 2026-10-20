@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f5ef47f573c44a517e94",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec westb split gpu",
+  "task_key": "worker_exec_westb_split_gpu_20260522T003726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_westb_split_gpu_20260522T003726_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "c8416c0bc77153cb601ff770fe0a3404b5a2c5736a1123c6f83285136836769d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "v7 已成功启动并在 GPU 0 上开始推理（第 1 题，2.11s/it）。\n\n## 最终结果\n\n| 指标 | 值 |\n|------|-----|\n| **v6 (cka_only_20)** | 317/500 时被 kill |\n| **v7 (cka_only_20 重启)** | PID **133850**，GPU 0，12.9GB VRAM，已开始推理 |\n| **standard_25** | PID 104592，383/500，GPU 1，19.2GB VRAM |\n\n**GPU 最终分配：**\n- **GPU 0**: eval_math500_sft_cka_only_20_v7 (PID 133850) — 独占\n- **GPU 1**: eval_math500_sft_standard_25 (PID 104592) — 独占\n\n两个 eval 各占一张卡，v7 首题 2.1s/it（之前共享 GPU 时约 100s+ 平均），预计 ~2-3h 内完成 500 题。standard_25 剩 117 题，独占 GPU 后也会加速，预计 ~2-3h 完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-westb-split-gpu.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d46a5e6267a17fab93f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops step50 eval monitor",
+  "task_key": "worker_ops_step50-eval-monitor_20260515T223026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_step50-eval-monitor_20260515T223026_result.json",
+    "occurrence": 1,
+    "bytes": 54,
+    "sha256": "d6aea8e07b7c5fcef96fe241328cc2fa62c90db1cd1746f55cace2bd341f468c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 ~4.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-step50-eval-monitor.md"
+}

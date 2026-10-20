@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ab522b664fe79565362",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval check all evals status",
+  "task_key": "worker_eval_check_all_evals_status_20260513T105343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_all_evals_status_20260513T105343_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "a703157fcb8ff51beac64275cfc44201a79e34356816a5d3e8ddae151411b28d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. eval_D2_ckpt400 — 运行中 (cuda:0)\n\nscierc_test (551 samples) **已完成**，crossner_politics (651 samples) 进行中 ~12%，crossner_science 未开始。\n\n**scierc_test 结果：**\n\n| Metric | Value |\n|--------|-------|\n| entity_f1 | 0.5325 ± 0.3047 |\n| relation_f1 | 0.2379 ± 0.3517 |\n| f1_correctness | 0.3912 ± 0.2619 |\n| structural_validity | 1.0000 ± 0.0000 |\n| type_conformance | 0.9873 ± 0.1120 |\n| relational_constraint | 0.9180 ± 0.2687 |\n| structural_completeness | 0.9873 ± 0.1120 |\n| valid_json_rate | 1.0000 ± 0.0000 |\n\n预计剩余：crossner_politics ~38min + crossner_science ~44min ≈ **~80min**\n\n### 2. eval_D2_final — 未开始\n\n日志文件不存在。串行排在 D2_ckpt400 之后，预计 ~80min 后启动，自身需 ~2h。\n\n### 3. eval_D1_v4 — 运行中 (cuda:1)\n\nscierc_test 进行中 43/551 (~8%)，~5-6s/it。crossner_politics、crossner_science 未开始。\n\n预计剩余：scierc_test ~42min + crossner_politics ~44min + crossner_science ~44min ≈ **~130min**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-all-evals-status.md"
+}

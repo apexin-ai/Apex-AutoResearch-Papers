@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3bb76b9001f7e5c86352",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 sft rasp alpha1p0 20 v2",
+  "task_key": "worker_analyze_eval_math500_sft_rasp_alpha1p0_20_v2_20260522T225931",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_sft_rasp_alpha1p0_20_v2_20260522T225931_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "aba3c48eb112682c5040fe07dca216513c3112ea4483940689a7333892c338b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_math500_sft_rasp_alpha1p0_20_v2 结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **21.2%** (106/500) |\n| Stderr | ±1.83% |\n| Natural EOS | 314 (62.8%) |\n| Truncated | 186 (37.2%) |\n| Avg response length | 930.58 tokens |\n\n**模型**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd`（Non-uniform MLP, intermediate_size 范围 [8128, 18944]）\n\n**运行状态**: 正常完成，EXIT_CODE=0，耗时约 1h36m。\n\n**值得注意**: 37.2% 的回复被截断（达到 2048 token 上限），说明模型在较难题目上倾向于生成冗长但不收敛的推理链。截断样本的答案提取质量可能受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-sft-rasp-alpha1p0-20-v2.md"
+}

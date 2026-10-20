@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8591a82f869715c44a2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check scoring ablation magnitude 20 progress",
+  "task_key": "worker_check_scoring_ablation_magnitude_20_progress_20260518T042442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scoring_ablation_magnitude_20_progress_20260518T042442_result.json",
+    "occurrence": 1,
+    "bytes": 739,
+    "sha256": "8188b31c35fb2aa5f43b9d2cf5c5bbe3e3210f9b3720b8fa42961e1acc4ebb8f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**scoring_ablation_magnitude_20 状态：**\n\n| 项目 | 状态 |\n|------|------|\n| tmux session | 活跃 |\n| PID | 766802 |\n| 当前阶段 | Step 2/2: GSM8K eval |\n| Step 1 (剪枝) | 已完成，actual sparsity 18.99% |\n| GPU | cuda:0, 13GB/98GB, 78% util |\n\n**进度：97/200 samples (48.5%)**\n\n- 平均速度：~56.5s/sample\n- 已用时间：~1h30m\n- 剩余 103 samples × 56.5s ≈ **97 分钟（约 1h37m）**\n- 预计完成时间：约 **14:02 (UTC)**\n\n**异常：acc=0.0000 (50 samples 检查点时)**，eos_rate 仅 2%，avg_len=4054（接近 max_length）。Magnitude pruning 在 20% sparsity 下严重破坏了模型推理能力，生成几乎全部达到长度上限且无法产出正确答案。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scoring-ablation-magnitude-20-progress.md"
+}

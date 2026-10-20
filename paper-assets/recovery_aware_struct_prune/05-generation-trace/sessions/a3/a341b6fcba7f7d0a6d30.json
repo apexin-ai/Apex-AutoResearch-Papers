@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a341b6fcba7f7d0a6d30",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research rasp grpo collapse literature",
+  "task_key": "worker_research_rasp-grpo-collapse-literature_20260515T183848",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_rasp-grpo-collapse-literature_20260515T183848_result.json",
+    "occurrence": 1,
+    "bytes": 1541,
+    "sha256": "7b61256e1da8deb6f4a08da820c043b45c88ac455a93ab24b2504d1f6fa179a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/literature_review_cka_rl_stability.md`。核心结论：\n\n**四个问题的回答：**\n\n1. **CKA-guided pruning 在 RL 场景的失败先例** — 没有。文献空白。Self-Healing 等工作只用 standard importance pruning。\n\n2. **功能多样性如何影响 RL 稳定性** — 有间接证据链但无直接研究：Abbas (Nature 2024) 证明 plasticity 需要持续多样性注入；Obando-Ceron (ICML 2024) 证明 element-wise pruning 减少 gradient interference 有利于 RL；Choice of Divergence (2025) 证明 RLVR 本身有 diversity collapse 倾向。但**没有人研究过\"去除冗余保留多样性\"反而损害 RL 训练**。\n\n3. **Self-Healing 是否测试了其他 pruning criterion** — 没有。他们只用 standard structured pruning，聚焦 recovery method 创新。\n\n4. **\"Pruning criterion × recovery method interaction\"** — 仅有 supervised 场景先例（Renda ICLR 2020; PASER 2025; Think Before You Prune 2025）。**RL recovery 场景完全没有**。\n\n**Novelty 评级：高。** \n\n最强支撑假说的论文是 **Choice of Divergence (2509.07430)**——RLVR 的 reverse-KL 天然 mode-seeking，会压缩输出多样性。如果 CKA pruning 已经移除了结构冗余（减少表征空间的\"备用路径\"），GRPO 的 mode-seeking 机制会加速 collapse。Standard pruning 偶然保留冗余 = 天然的 plasticity buffer。这条\"CKA 去冗余 + RLVR mode-seeking = 双重压缩\"的机制链是完整的，且无人提出过。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-rasp-grpo-collapse-literature.md"
+}

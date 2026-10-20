@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df71819ef5af7df73bc1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp 15pct sparsity pipeline",
+  "task_key": "worker_exp_15pct_sparsity_pipeline_20260520T040632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_15pct_sparsity_pipeline_20260520T040632_result.json",
+    "occurrence": 1,
+    "bytes": 148,
+    "sha256": "e15bc37d3e406103aa86189866fb7bff4aa0aa246478524bb84a474612252ebe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO sessions launched on cuda:2 (CKA-only) and cuda:3 (Standard), 100 steps each. Checking back in ~90s to confirm training started."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-15pct-sparsity-pipeline.md"
+}

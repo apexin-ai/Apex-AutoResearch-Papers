@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93c5bdc36ba9e78fc8ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb progress",
+  "task_key": "worker_ssh_check_westb_progress_20260522T141821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb_progress_20260522T141821_result.json",
+    "occurrence": 1,
+    "bytes": 1226,
+    "sha256": "4c79fb781b2d518b3a4e2ef2dfcd5160ea2a6667c40b997deba2fffaddbd3779"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇报\n\n### 1. grpo_random_20_seed456 (PID 209508, GPU:0)\n- **状态**: 运行中，已运行 1h12m\n- **进度**: ~30/100 steps（completions 目录有 step 10/20/30 的 parquet）\n- **速度**: ~2.4 min/step\n- **预计剩余**: ~2.8h（70 steps × 2.4 min）\n- **GPU 占用**: 55.7GB / 97.9GB, 利用率 100%\n- **注意**: 未找到 nohup 日志文件，可能 stdout 直接丢弃了\n\n### 2. eval_gsm8k_grpo_qwen_math_cka_only_20_n500 (PID 202364, GPU:1)\n- **状态**: 运行中，已运行 2h11m\n- **进度**: **25/500** 样本 (5%)\n- **速度**: ~337s/sample（远慢于预估的 78s/sample，慢了 4.3x）\n- **预计剩余**: ~44h（475 × 337s）\n- **GPU 占用**: 29.6GB / 97.9GB, 利用率 98%\n- **警告**: 日志显示 `text generation call has exceeded the model's predefined maximum length (4096)`，模型生成超长导致速度极慢\n\n### 磁盘\n- 数据盘 `/root/autodl-tmp/`: 233GB/250GB used (**94%**)，仅剩 18GB，需关注\n\n### 关键问题\neval N=500 按当前速度需要 ~44h 而非预估的 11h。超长生成是主因——可能需要在 generation config 中加 `max_new_tokens` 限制，否则单个样本可能生成到 4096 tokens 才停。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-progress.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a259f1ad2e6a70b1f8f3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops step50 eval collect",
+  "task_key": "worker_ops_step50-eval-collect_20260515T223239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_step50-eval-collect_20260515T223239.log",
+    "occurrence": 1,
+    "bytes": 620094,
+    "sha256": "11d4eb85aa4cb5e9038298f2e3345bbd74bd2101d3ee0fd107410820cb4ff352"
+  },
+  "statistics": {
+    "messages": 528,
+    "user_turns": 0,
+    "tool_calls": 127,
+    "roles": {
+      "log": 1,
+      "system": 141,
+      "record": 2,
+      "assistant": 94,
+      "tool_call": 127,
+      "tool_result": 127,
+      "result": 36
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 528,
+      "chunks": [
+        {
+          "path": "a259f1ad2e6a70b1f8f3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a259f1ad2e6a70b1f8f3-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a259f1ad2e6a70b1f8f3-part-0003.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-step50-eval-collect.md"
+}

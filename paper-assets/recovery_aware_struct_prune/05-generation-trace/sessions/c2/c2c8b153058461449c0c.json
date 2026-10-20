@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2c8b153058461449c0c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prep mbpp eval",
+  "task_key": "worker_prep_mbpp_eval_20260522T080533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mbpp_eval_20260522T080533_result.json",
+    "occurrence": 1,
+    "bytes": 3604,
+    "sha256": "e8b0d5eabe162bd76b67f2168efd33cd3f73fc481a34b201107a59ca9f7773fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。汇总如下：\n\n---\n\n```\n== 过往 MBPP 失败 ==\n失败实验: 2 个（registry 中无记录，信息来自 memory.md）\n主要原因:\n  1. eval_mbpp_sft_rasp_20 (westb): 模型路径错误，sft_rasp_20 不存在，应为 sft_rasp_20_1p5b。37s 即崩溃。\n  2. eval_mbpp_sft_standard_20 (westd-29022): SIGTERM kill，189/374 完成后被外部终止（可能因其他实验抢 GPU）。\n     附加问题：westd-29022 需要 HF_DATASETS_OFFLINE=1 否则网络请求失败。\n修复方案: 两个都已修复并重跑成功。\n\n== Dry-run ==\nImport: SKIPPED（westd-32935 所有 4 卡均被占用，16-19GB/卡）\n参数检查: OK（已读完 eval_mbpp.py 全部源码）\n  关键参数:\n    --model_path (required)\n    --max_samples (可选，用于小样本测试)\n    --max_new_tokens (default=2048)\n    --timeout (default=10, per-task sandbox 超时)\n    --output_path (auto-generated if omitted)\n    --dtype (default=bfloat16)\n小样本测试: SKIPPED（无空闲 GPU）\n代码验证: 该脚本已在 westd-32935 上成功完成 8 次 eval，依赖无问题。\n\n== Timeout 分析 ==\nper-task sandbox 超时: 10s (--timeout 参数)\njob 级超时: 脚本内无，需外部 timeout 命令控制\n全量 374 tasks 预估:\n  - 正常速度 10-20s/task → 1-2h\n  - 遇到 non-EOS 生成（max_new_tokens=2048）40-80s/task → 4-8h\n  - memory 记录: sft_standard_20 平均 40s/it，部分 60-80s/it\n  - 已完成的 8 个 eval 均在 max_new_tokens=2048 下完成\n推荐 timeout_hours: 4（保守值，覆盖最坏情况）\n\n== 已完成 MBPP 结果 (westd-32935) ==\n| Model               | Pass@1 | Correct/Total |\n|---------------------|--------|---------------|\n| Dense Unpruned      | 0.5348 | 200/374       |\n| SFT CKA-only 20%   | 0.1283 | 48/374        |\n| SFT Standard 20%   | 0.1203 | 45/374        |\n| SFT RASP 20%       | 0.1176 | 44/374        |\n| GRPO Standard 20%  | 0.1310 | 49/374        |\n| GRPO RASP 20%      | 0.1310 | 49/374        |\n| SFT ShortGPT 20%   | 0.1043 | 39/374        |\n| GRPO ShortGPT 20%  | 0.1444 | 54/374        |\n\n== 可用 Checkpoint ==\n| Method     | SFT(westd)                | GRPO(westd)               | SFT(westb)       | GRPO(westb)       |\n|------------|---------------------------|---------------------------|-------------------|-------------------|\n| CKA-only   | ✅ sft_cka_only_20        | ⚠️ grpo_cka_only_20_seed456 | ✅ sft_cka_only_20 | ✅ grpo_cka_only_20 |\n| Standard   | ✅ sft_standard_20        | ✅ grpo_standard_20_seed123/456 | ❌             | ❌                |\n| Random     | ✅ sft_random_20          | ✅ grpo_random_20          | ❌                | ✅ grpo_random_20  |\n| RASP       | ⚠️ sft_rasp_20_westd      | ⚠️ grpo_rasp_20_seed456    | ❌                | ❌                |\n\n== 缺失 MBPP 评测 (4×2 核心组合) ==\n| 缺失 eval          | Checkpoint 位置                     |\n|---------------------|-------------------------------------|\n| SFT Random 20%     | westd: sft_random_20                |\n| GRPO Random 20%    | westd: grpo_random_20               |\n| GRPO CKA-only 20%  | westb: grpo_cka_only_20             |\n\n== 阻塞项 ==\n1. **westd-32935 无空闲 GPU** — 4 卡全占，无法立即跑 MBPP eval\n2. **GRPO CKA-only 20% checkpoint 不在 westd** — 主 checkpoint 在 westb-23072 (grpo_cka_only_20)，westd 只有 seed456 变种。需在 westb 上跑或确认 seed456 可用\n3. **westd 网络离线** — 运行时必须加 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-mbpp-eval.md"
+}

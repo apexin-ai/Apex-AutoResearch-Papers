@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a10afaa9c81d92f8e2c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 sft rasp alpha4p0 20 fixed",
+  "task_key": "worker_analysis_eval_math500_sft_rasp_alpha4p0_20_fixed_20260524T090550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_sft_rasp_alpha4p0_20_fixed_20260524T090550_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "2eec283dbb14ecea8686957f03e8efe0fcbd8478d31dda8f7469a9592b19ef36"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。汇总：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **27.80%** (139/500, ±2.00%) |\n| **avg_response_length** | 947.996 tokens |\n| **natural_eos** | 310 (62%) |\n| **truncated** | 190 (38%) |\n| **W&B run** | 无（eval 脚本未接入 W&B） |\n| **checkpoint_path** | `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20` |\n| **log_path** | `~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha4p0_20_fixed.log` |\n| **异常/警告** | 仅 HF Hub offline mode 使用本地缓存，无实质错误 |\n| **耗时** | 5h53m（~6 GPU-hours） |\n| **EXIT_CODE** | 0 |\n\n值得注意：38% 的回答被 truncated（达到 2048 token 上限），avg_response_length 仅 948 tokens，说明模型生成长度分布不均——部分问题生成很短就结束，部分则打满 2048。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-sft-rasp-alpha4p0-20-fixed.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d44ffab565c67f3012eb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill and restart math500 westd",
+  "task_key": "worker_ssh_kill_and_restart_math500_westd_20260521T132826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_and_restart_math500_westd_20260521T132826_result.json",
+    "occurrence": 1,
+    "bytes": 1004,
+    "sha256": "7df6db7020cf7322d2e9374382f74d85b3b8bae229826edc09a1e5b49f157a70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 显存已加载确认：\n\n| GPU | 显存占用 | 状态 |\n|-----|---------|------|\n| cuda:0 | 11825 MiB | eval_math500_grpo_cka_only_25_v2 ✓ |\n| cuda:1 | 0 MiB | 空闲（按要求留空） |\n| cuda:2 | 11825 MiB | eval_math500_sft_cka_only_25_v2 ✓ |\n| cuda:3 | 28911 MiB | eval_gsm8k_sft_standard_25 (PID 335301) 未动 ✓ |\n\n---\n\n**D097 执行汇报：**\n\n| 项目 | 结果 |\n|------|------|\n| Kill 3 进程 | PID 336961/359173/338876 全部已杀，确认 ALL_DEAD |\n| eval_gsm8k_sft_standard_25 | PID 335301 仍在运行，进度 1111/1319 (84%)，acc=0.5082, eos_rate=95.64%, avg_len=320 |\n| eval_math500_grpo_cka_only_25_v2 | PID **379999**，cuda:0，11825 MiB，正在加载 MATH dataset |\n| eval_math500_sft_cka_only_25_v2 | PID **380074**，cuda:2，11825 MiB，正在加载 MATH dataset |\n\n注：D097 指令中的参数名有误（`--output_dir`→`--output_path`，`--n_samples`→`--max_samples`，`--temperature` 不存在），已自动修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-and-restart-math500-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edcfd831a665e05167b4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis collapse onset timing",
+  "task_key": "worker_analysis_collapse_onset_timing_20260517T033610",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collapse_onset_timing_20260517T033610_result.json",
+    "occurrence": 1,
+    "bytes": 1527,
+    "sha256": "07dbf04885ff73b007db5ce6be5c4e5421eb3ae284f750a8ee8d3263aa041945"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总表：\n\n| Model | Method | Sparsity | COS | Peak | Final | Pattern |\n|-------|--------|----------|-----|------|-------|---------|\n| DeepSeek-R1-Qwen-7B | RASP | 20% | 10 | 0.900 | 0.900 | persistent_homogeneity |\n| DeepSeek-R1-Qwen-7B | Standard | 20% | never | 0.675 | 0.475 | no_collapse |\n| DeepSeek-R1-Qwen-7B | RASP | 25% | 10 | 0.925 | 0.875 | persistent_homogeneity |\n| DeepSeek-R1-Qwen-7B | Standard | 25% | 30 | 0.925 | 0.925 | permanent_collapse |\n| Qwen2.5-Math-7B | RASP | 20% | never | 0.700 | 0.675 | no_collapse |\n| Qwen2.5-Math-7B | Standard | 20% | 20 | 0.900 | 0.850 | transient_dip |\n| Qwen2.5-Math-7B | RASP | 25% | never | 0.575 | 0.350 | no_collapse |\n| Qwen2.5-Math-7B | Standard | 25% | never | 0.425 | 0.325 | no_collapse |\n\n关键发现：\n- **DeepSeek + RASP** 两个稀疏度均从 step 1 开始 persistent homogeneity（frac >= 0.9），说明 RASP 剪枝后模型无法产生多样化 reward\n- **DeepSeek + Standard 20%** 是唯一完全避免 collapse 的 DeepSeek 配置（peak 0.675）\n- **Qwen2.5-Math** 整体更抗 collapse：RASP 剪枝后 frac 最高仅 0.575-0.7，Standard 25% 仅 0.425\n- **Standard 方法在 Qwen2.5-Math 上表现反直觉**：更高稀疏度(25%)反而 frac 更低，可能因为更激进的剪枝反而保留了更有区分度的结构\n\n注：`grpo_standard_25` 的 wandb run ID 是 `6fclw4ro`（从项目 run 列表中找到）。原始任务指定的 `0wz7xpd5` (RASP 20% v8) 仅记录了 2 个数据点后 crash。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collapse-onset-timing.md"
+}

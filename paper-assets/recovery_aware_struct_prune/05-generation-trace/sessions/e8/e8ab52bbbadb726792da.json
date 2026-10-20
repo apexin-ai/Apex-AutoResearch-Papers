@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8ab52bbbadb726792da",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check cmdlines quick",
+  "task_key": "worker_ops_check-cmdlines-quick_20260517T000258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-cmdlines-quick_20260517T000258_result.json",
+    "occurrence": 1,
+    "bytes": 1114,
+    "sha256": "f655cb1b1cf3edcd7a9cea7bb50a59cc66b9e3d621a3d0ff6e299e8c6a526c94"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**PID 60022 (cuda:0)** — 已退出。当前 cuda:0 上运行的是 **PID 60027**：\n```\npython /root/autodl-tmp/recovery_aware_struct_prune/src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9 \\\n  --voting --num_samples_per_question 8 --voting_temperature 0.7 \\\n  --max_samples 200 --seed 42 --max_new_tokens 512 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_deepseek.json\n```\n\n**PID 60349 (cuda:2)** — 仍在运行：\n```\npython eval_pass_k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 \\\n  --k 8 --temperature 0.7 --max_samples 200 --seed 42 --max_new_tokens 4096 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_deepseek.json\n```\n\n注意：RASP 侧（PID 60027）用的是 `eval_gsm8k.py --voting`（max_new_tokens=512），Standard 侧（PID 60349）用的是 `eval_pass_k.py`（max_new_tokens=4096）。脚本和 token 限制不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-cmdlines-quick.md"
+}

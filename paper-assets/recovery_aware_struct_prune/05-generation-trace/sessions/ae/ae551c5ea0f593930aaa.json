@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae551c5ea0f593930aaa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pipeline depth first 20 and others",
+  "task_key": "worker_diagnose_pipeline_depth_first_20_and_others_20260522T111057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pipeline_depth_first_20_and_others_20260522T111057_result.json",
+    "occurrence": 1,
+    "bytes": 2107,
+    "sha256": "925e2bcab1c2f3cc29ad72189ecce898bc16cb13f7eaffebd940276273d0ffa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n### 结论：3 个实验均未失败，全部是 reconcile 误报\n\n---\n\n**1. pipeline_depth_first_20 (cuda:3)** — **仍在运行**\n\n- 当前状态：Phase 4 (eval_gsm8k on grpo_depth_first_20)，GSM8K 16/1319\n- PID 从 36167（parent bash）变为 40073（eval 子进程），reconcile 追踪的是旧 PID\n- Phase 2 (SFT) → Phase 3 (GRPO 100/100 steps) 均已完成，GRPO 模型已保存\n- GPU 3 占用 16234MiB，利用率 97%\n\n**2. eval_math500_grpo_standard_20_fair_2048_v2 (cuda:0)** — **正常完成**\n\n- 完成时间：2026-05-22 19:01:57\n- 结果：**MATH-500 Acc = 0.2640 ± 0.0197 (132/500)**\n- 结果已保存至 `/root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json`\n- GPU 0 已释放（0MiB）\n- 未写 sentinel 文件 → reconcile 认为进程异常退出\n\n**3. grpo_random_20_seed123 (cuda:2)** — **正常完成**\n\n- 完成时间：2026-05-22 19:02:13\n- GRPO 100/100 steps 完成，模型已保存至 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123`\n- W&B run: `grpo_sft_random_20` (run ID: `1silchcm`)\n- sentinel 文件只有 `grpo_random_20.exit`（5/21 旧的），无 `grpo_random_20_seed123.exit` → reconcile 匹配不到\n- GPU 2 已被新任务 `eval_gsm8k_sft_alpha3p0_20` (PID 37026) 接管\n\n---\n\n### 共同根因\n\n**Reconcile 系统误报**，不是实验失败。三个 false alarm 的原因：\n\n| 实验 | 误报原因 |\n|------|----------|\n| pipeline_depth_first_20 | 多阶段 pipeline 子进程 PID 与 reconcile 追踪的父 PID 不同 |\n| eval_math500 | Eval 脚本未写 sentinel 文件 |\n| grpo_random_20_seed123 | sentinel 文件名带 seed 后缀，与已有 sentinel 不匹配 |\n\n### 磁盘警告\n\n数据盘 `/root/autodl-tmp` 使用率 **98%**（636G/650G，仅剩 15GB）。pipeline_depth_first_20 后续还有 Phase 5（eval SFT）要跑，可能需要注意空间。\n\n### 行动\n\n- 无需重试任何实验\n- 两个已完成的实验结果可直接使用\n- pipeline_depth_first_20 正在跑，等它自然完成即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pipeline-depth-first-20-and-others.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "493d1928661aba777c35",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill std check grpo submit alpha2p0 westd0",
+  "task_key": "worker_ssh_kill_std_check_grpo_submit_alpha2p0_westd0_20260522T222348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_std_check_grpo_submit_alpha2p0_westd0_20260522T222348_result.json",
+    "occurrence": 1,
+    "bytes": 134,
+    "sha256": "fa7f81f06509f1fc9668790729620cf4fde1548a024aad00129b2153020fc1db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待已完成，任务 3 的 job 已在前面确认启动成功（模型加载正常）。无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-std-check-grpo-submit-alpha2p0-westd0.md"
+}

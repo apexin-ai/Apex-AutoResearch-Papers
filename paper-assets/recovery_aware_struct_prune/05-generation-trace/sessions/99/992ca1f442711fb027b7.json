@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "992ca1f442711fb027b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval sft alpha 1p0",
+  "task_key": "worker_analysis_eval-sft-alpha-1p0_20260515T152410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval-sft-alpha-1p0_20260515T152410_result.json",
+    "occurrence": 1,
+    "bytes": 1082,
+    "sha256": "190abea9d0ee50ff541cc54d7b3b992bfa7ce186bdf47ba2e2b0d55c8768bb79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕（status=DONE, conclusion=success, metrics 已写入）。\n\n## 结果\n\n**eval-sft-alpha-1p0: accuracy = 57%** (57/100, eos_rate=98%, avg_len=224.18)\n\n### α ablation 全景对比\n\n| 配置 | Post-Prune | Post-SFT |\n|------|-----------|----------|\n| α=0.0 (importance only) | — | **64%** |\n| α=0.5 | — | 待确认 |\n| **α=1.0 (本次)** | 27% | **57%** |\n| α=4.0 | — | **62%** |\n| Standard (importance-only) | — | **64%** |\n| RASP default (α=1.0, westb) | — | **57%** |\n\n### 关键发现\n\n1. **α=1.0 westd 结果 = 57%，与 sft_rasp_20 (westb) 的 57% 完全一致。** 尽管 calibration 样本数不同（westd=256 vs westb=512），最终 SFT 后的 accuracy 相同，说明 calibration 样本数在 256-512 范围内对最终结果影响可忽略。\n\n2. **α=1.0 是 ablation 中最弱的配置** — 低于 α=0.0 (64%)、α=4.0 (62%) 和 standard (64%)。recovery-awareness 在 α=1.0 时权重过大，反而损害了剪枝质量。\n\n3. **eos_rate=98%** 正常，avg_len=224 合理，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-sft-alpha-1p0.md"
+}

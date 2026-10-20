@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61c35455131d59ecb3d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "audit paper data integrity",
+  "task_key": "worker_audit_paper_data_integrity_20260523T191646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_paper_data_integrity_20260523T191646_result.json",
+    "occurrence": 1,
+    "bytes": 335,
+    "sha256": "f4b4dfdfb0ca3f2a64445733d35768084785e0af85b63d9eb70f6b27bd5e41ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。论文数据整体质量高——绝大多数数值可追溯到 registry 且算术正确。唯一需要修复的错误（appendix MATH-500 段落的 GSM8K 排序）已完成。conclusion.tex 的 4.62pp 经核实为正确（SFT gap，非 GRPO gap）。⚠️ 标注的 6 项建议 camera-ready 时关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-paper-data-integrity.md"
+}

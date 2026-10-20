@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbc69050d802e0897cd5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest seed456 eval",
+  "task_key": "worker_ssh_harvest_seed456_eval_20260520T160233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_seed456_eval_20260520T160233_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "cb3241b0def9121708a8f7aa27c1468b0b8a42031df4df943d1f06a69ce6081d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### cuda:0 — CKA-only 20% GRPO seed456 (已完成 ✅)\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **64.59%** (852/1319) ± 1.32% |\n| EOS rate | 98.86% (15 truncated) |\n| Avg length | 204.3 tokens |\n| 进程 PID 252604 | **DEAD** — 已正常退出 |\n\n### cuda:1 — CKA-only 15% GRPO v2 (已完成 ✅)\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **73.09%** (964/1319) ± 1.22% |\n| EOS rate | 98.94% (14 truncated) |\n| Avg length | 202.4 tokens |\n\n### cuda:2 — SFT Standard 15% (运行中)\n- 进度：**1171/1319** (88.8%)\n- 当前 acc：66.09%, eos_rate 99.48%, avg_len 176\n- 预计剩余 ~7 分钟\n\n### cuda:3 — GRPO Standard 15% v2 (运行中)\n- 进度：**1024/1319** (77.6%)\n- 当前 acc：66.00%, eos_rate 99.20%, avg_len 188\n- 预计剩余 ~15 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-seed456-eval.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a6f02107a47a62ebbd3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prepare sft eval",
+  "task_key": "worker_code_prepare-sft-eval_20260515T000847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare-sft-eval_20260515T000847_result.json",
+    "occurrence": 1,
+    "bytes": 889,
+    "sha256": "db1bf1627d505c90ac95b736dfa7dac12d8eb0af395567871f54744602b8e436"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已就绪，语法验证通过。\n\n**修改内容：**\n\n`eval_gsm8k.py` 新增：\n- `--temperature` 和 `--do_sample` CLI 参数\n- EOS 统计：每条 response 记录 `hit_eos`（最后 token 是否为 EOS）和 `response_length`\n- 汇总指标：`natural_eos` / `truncated` 计数、`eos_rate`、平均/最大/最小 response 长度\n- 进度日志每 50 条打印一次 acc + eos_rate + avg_len\n\n`run_sft_eval.sh` 执行计划：\n- GPU0：`sft_rasp_20` → sampling(temp=0.7) + greedy，共 2 轮\n- GPU1：`sft_standard_20` → sampling(temp=0.7) + greedy，共 2 轮\n- 两 GPU 并行，4 个 eval JSON 输出到 `/root/autodl-tmp/recovery_aware_struct_prune/eval_results/`\n- 结束后自动打印 summary 表：accuracy + eos_rate + avg_len\n\nSFT 完成后运行：\n```bash\ncd /root/recovery_aware_struct_prune/src && bash run_sft_eval.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-sft-eval.md"
+}

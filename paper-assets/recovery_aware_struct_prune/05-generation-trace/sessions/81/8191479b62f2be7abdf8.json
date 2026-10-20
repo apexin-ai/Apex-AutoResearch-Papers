@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8191479b62f2be7abdf8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag grasp eval output check",
+  "task_key": "worker_diag_grasp-eval-output-check_20260515T152341",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_grasp-eval-output-check_20260515T152341_result.json",
+    "occurrence": 1,
+    "bytes": 1581,
+    "sha256": "3852fecb53803f4cf97033b83c3df0c18a3175812181866d08da173037d6de70"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "找到了当前 run 的 log：`results/eval_grasp_n100.log`，进度 71/100，约 25 分钟后完成。\n\n## 汇总\n\n### 1. PID 38120 实际命令\n```\npython src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --max_samples 100 --max_new_tokens 4096\n```\n- 没有 `--output_path`\n- 没有显式 `--seed`\n\n### 2. 结果**不会丢失**\n源码分析：\n- `--seed` 默认值 = **42**，不传等同于传了 `--seed 42`\n- `--output_path` 为 None 时自动回退：`results/eval_pruned_graspune_20_greedy.json`\n- 脚本结束时**一定会** `json.dump` 保存完整结果（含 accuracy、stderr、per-example results、eos_stats）\n\n### 3. Log 文件状态\n- 当前 run log：`results/eval_grasp_n100.log` — 71/100，~51s/it\n- 50-sample checkpoint: accuracy=0.0600, eos_rate=2.00%, avg_len=4018\n- 预计 ~25 min 后完成\n\n### 4. SFT 模型确认\n`/root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20/` 存在，model.safetensors 12.6GB，config.json/tokenizer 齐全。\n\n### 5. GraSP post-SFT eval 命令（待 GraSP eval 完成后执行）\n```bash\ncd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python -u src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 \\\n  --max_samples 100 --max_new_tokens 4096 --seed 42 \\\n  --output_path results/eval_sft_grasp_20_n100.json \\\n  2>&1 | tee results/eval_sft_grasp_20_n100.log\n```\n\n需要我现在准备一个 tmux 命令等 GraSP eval 结束后自动启动 post-SFT eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-grasp-eval-output-check.md"
+}

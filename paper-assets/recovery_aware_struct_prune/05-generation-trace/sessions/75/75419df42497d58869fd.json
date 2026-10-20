@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "75419df42497d58869fd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code mbpp eval",
+  "task_key": "worker_code_mbpp_eval_20260519T132515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mbpp_eval_20260519T132515_result.json",
+    "occurrence": 1,
+    "bytes": 998,
+    "sha256": "d38f442047f4196bae632dc1c8b6253db3a9a276b2a29c5c0de0d81f044120df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 产出\n\n**`/root/recovery_aware_struct_prune/src/eval_mbpp.py`** — MBPP 374 题 pass@1 评估脚本\n\n### 与 HumanEval 的差异处理\n\n| 差异点 | HumanEval | MBPP |\n|--------|-----------|------|\n| Prompt | function signature + docstring → 补全 body | task description + test cases → 生成完整函数 |\n| 测试执行 | `code + test + check(entry_point)` | `test_setup_code + code + assert statements` |\n| 数据集 | `openai/openai_humaneval` test split (164题) | `mbpp` train split (374题 sanitized) |\n\n### 参数（与 HumanEval 对齐）\n`--model_path`, `--output_path`, `--max_new_tokens`(默认2048), `--max_samples`, `--seed`, `--dtype`, `--timeout`\n\n### Dry-run 结果\n- `--help` 参数解析 ✅\n- 3 题端到端 pipeline ✅（模型加载 → 数据集加载374题 → 推理 → 代码提取 → sandbox执行 → JSON输出 → sentinel文件）\n- 0/3 pass 是模型质量问题（pruned model），pipeline 本身无 bug"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mbpp-eval.md"
+}

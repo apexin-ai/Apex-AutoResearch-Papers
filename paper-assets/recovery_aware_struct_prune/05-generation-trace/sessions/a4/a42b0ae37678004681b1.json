@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a42b0ae37678004681b1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill sft depth first westd1",
+  "task_key": "worker_ssh_kill_sft_depth_first_westd1_20260522T142753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_sft_depth_first_westd1_20260522T142753_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "85bb1b52734facc58701f02981d7ad306803cd1c7045cec892fce8c1619cf622"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 52146 已 kill 成功。\n\nGPU 状态：\n\n| GPU | 利用率 | 显存占用 |\n|-----|--------|----------|\n| 0 | 91% | 29599 MiB |\n| **1** | **99%** | **19213 MiB** |\n| 2 | 91% | 26219 MiB |\n| 3 | 99% | 20803 MiB |\n\nGPU:1 仍有 99% 利用率和 19GB 显存占用，说明该卡上还有其他进程在跑。需要进一步确认 GPU:1 上剩余进程是什么，再决定是否可以启动 seed123 v2 GRPO。要我查一下吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-sft-depth-first-westd1.md"
+}

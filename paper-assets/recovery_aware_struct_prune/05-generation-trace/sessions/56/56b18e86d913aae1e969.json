@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b18e86d913aae1e969",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh rasp seed456 grpo v2",
+  "task_key": "worker_ssh_rasp_seed456_grpo_v2_20260521T044948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_rasp_seed456_grpo_v2_20260521T044948_result.json",
+    "occurrence": 1,
+    "bytes": 347,
+    "sha256": "b0d2dfcfad443834434117ea7f214a756acbf797c958a7e3278f00cbacc07471"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**SFT 模型不存在，放弃。**\n\n`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/` 目录在 westd-29022 上完全不存在，无法启动 GRPO seed456 v2。\n\n汇总：\n- **SFT 模型**: MISSING（目录不存在）\n- **磁盘空间**: 21GB 可用（足够）\n- **GRPO 启动**: 未执行，因 SFT 模型缺失"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-rasp-seed456-grpo-v2.md"
+}

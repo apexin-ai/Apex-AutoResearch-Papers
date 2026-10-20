@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c91a387ee5b13ca75871",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo stage2 healthcheck",
+  "task_key": "worker_ops_grpo-stage2-healthcheck_20260515T011348",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo-stage2-healthcheck_20260515T011348_result.json",
+    "occurrence": 1,
+    "bytes": 907,
+    "sha256": "3ddcce10681928af0d230b72c3b1bb81453da7f544569997ba4b637844e41c3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程都存活，正在准备数据集。当前状态：\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **RASP GRPO** (PID 263893, cuda:0) | 加载中 | 模型已加载，正在准备 GSM8K 数据集 |\n| **Standard GRPO** (PID 263971, cuda:1) | 加载中 | 模型已加载，正在准备 GSM8K 数据集 |\n\n**GPU 状态**：两张 RTX PRO 6000 Blackwell (98GB)，各占用 ~12.5GB，温度正常 (35-36°C)，功耗低 (84-95W)，GPU 利用率 0%（尚未开始计算）。\n\n两个训练都通过了模型加载阶段（Non-uniform MLP 检测正常，说明剪枝后的非均匀结构被正确识别），目前卡在 `Preparing GSM8K training dataset` 约 1.5 分钟。这是正常的数据预处理阶段。\n\n还没有训练 step 输出，无法检查 clipped_ratio / grad_norm。建议 **3-5 分钟后再查日志**，届时应该能看到第一批 step 指标。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-stage2-healthcheck.md"
+}

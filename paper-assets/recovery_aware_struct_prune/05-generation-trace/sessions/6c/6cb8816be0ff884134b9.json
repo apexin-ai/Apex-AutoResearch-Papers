@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6cb8816be0ff884134b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix delete 35pct models",
+  "task_key": "worker_fix_delete_35pct_models_20260514T161302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_delete_35pct_models_20260514T161302_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "a60cc13f33bfb2c41a837aa21de27448df7588db3c22cec4cc4babf2d7555d25"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "35% 模型目录已不存在，无需删除。但数据盘 250G 用了 247G（剩 3.8G），大头如下：\n\n| 目录 | 大小 |\n|------|------|\n| `/root/autodl-tmp/output/` | 150G |\n| `/root/autodl-tmp/schema-conform-ie-training/` | 19G |\n| `/root/autodl-tmp/models/` | 19G |\n| `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` | 15G |\n| `/root/autodl-tmp/pruned_standard_20/` | 12G |\n| `/root/autodl-tmp/pruned_rasp_20/` | 12G |\n| `/root/autodl-tmp/pruned_standard_25/` | 11G |\n| `/root/autodl-tmp/pruned_rasp_25/` | 11G |\n\n**汇报：**\n- 任务中列出的 8 个 35% 相关目录均已不存在（之前已被清理过）\n- 无 recovered_*/sft_* 残留，无 35% symlink\n- 数据盘仍然 99% 满，`output/` 目录占 150G 是最大头。如需进一步释放空间，需要清理 `output/` 或其他目录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-delete-35pct-models.md"
+}

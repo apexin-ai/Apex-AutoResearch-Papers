@@ -1,0 +1,28 @@
+{
+  "exp_id": "exp_004_d1_f1_dominant",
+  "project": "schema-conform-ie-training",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T03:23:17.592Z",
+    "updated_at": "2026-05-13T03:41:04.613Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/schema-conform-ie-training/code && echo 'IyBEMTogRjEtZG9taW5hbnQgd2VpZ2h0cyAoNzU6MjUpLCBubyBHRFBPCiMgVHVuaW5nIGZyb20gQjogcmFpc2UgRjEgd2VpZ2h0LCByZW1vdmUgR0RQTyBub3JtYWxpemF0aW9uCiMgSHlwb3RoZXNpczogY29uZm9ybWFuY2UgYXMgc29mdCByZWd1bGFyaXplciByYXRoZXIgdGhhbiBlcXVhbCBwYXJ0bmVyCm1vZGVsX25hbWU6ICJRd2VuL1F3ZW4zLjUtOUIiCm91dHB1dF9kaXI6ICIuL291dHB1dC9ncnBvX2QxIgpydW5fbmFtZTogImdycG8tZDEtZjEtZG9taW5hbnQiCgojIEdSUE8gZ2VuZXJhdGlvbgpudW1fZ2VuZXJhdGlvbnM6IDgKbWF4X25ld190b2tlbnM6IDEwMjQKbWF4X3Byb21wdF9sZW5ndGg6IDE1MzYKCiMgVHJhaW5pbmcKbnVtX3RyYWluX2Vwb2NoczogMwpwZXJfZGV2aWNlX3RyYWluX2JhdGNoX3NpemU6IDIKZ3JhZGllbnRfYWNjdW11bGF0aW9uX3N0ZXBzOiA4CmxlYXJuaW5nX3JhdGU6IDUuMGUtNgp3YXJtdXBfcmF0aW86IDAuMQpiZjE2OiB0cnVlCmdyYWRpZW50X2NoZWNrcG9pbnRpbmc6IHRydWUKCiMgUmV3YXJkIOKAlCBGMS1kb21pbmFudCwgc2ltcGxlIHdlaWdodGVkIHN1bSAobm8gR0RQTykKdXNlX2dkcG86IGZhbHNlCnJld2FyZF93ZWlnaHRzOgogIGYxX2NvcnJlY3RuZXNzOiAwLjc1CiAgc3RydWN0dXJhbF92YWxpZGl0eTogMC4wNQogIHR5cGVfY29uZm9ybWFuY2U6IDAuMDgKICByZWxhdGlvbmFsX2NvbnN0cmFpbnQ6IDAuMDgKICBzdHJ1Y3R1cmFsX2NvbXBsZXRlbmVzczogMC4wNAoKIyBMb1JBCnVzZV9sb3JhOiB0cnVlCmxvcmFfcjogNjQKbG9yYV9hbHBoYTogMTI4CmxvcmFfZHJvcG91dDogMC4wNQpsb3JhX3RhcmdldF9tb2R1bGVzOgogIC0gcV9wcm9qCiAgLSBrX3Byb2oKICAtIHZfcHJvagogIC0gb19wcm9qCiAgLSBnYXRlX3Byb2oKICAtIHVwX3Byb2oKICAtIGRvd25fcHJvagoKIyBSZXdhcmQgaGFja2luZyBkZXRlY3Rpb24KaGFja2luZ193YXJtdXBfc2FtcGxlczogMjAwCgojIExvZ2dpbmcKcmVwb3J0X3RvOiAid2FuZGIiCndhbmRiX3Byb2plY3Q6ICJzY2hlbWEtY29uZm9ybS1pZSIKbG9nZ2luZ19zdGVwczogMTAKc2F2ZV9zdGVwczogMTAwCnNlZWQ6IDQyCg==' | base64 -d > configs/grpo_d1.yaml && WANDB_MODE=offline python -m src.train_grpo --config configs/grpo_d1.yaml --data_dir /root/autodl-tmp/data/scierc --dataset scierc --output_dir /root/autodl-tmp/output/formal_D1 --max_steps 500 2>&1 | tee /root/autodl-tmp/logs/train_D1.log\"",
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "66204",
+      "log_path": "~/runs/schema-conform-ie-training/exp_004_d1_f1_dominant.log",
+      "submitted_at": "2026-05-13T03:23:17.574Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-13T03:41:04.659416+00:00",
+  "trigger": "update_registry"
+}

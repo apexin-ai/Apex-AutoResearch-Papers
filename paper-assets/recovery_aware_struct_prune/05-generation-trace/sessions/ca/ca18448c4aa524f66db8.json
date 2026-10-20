@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca18448c4aa524f66db8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo cka only math500 rerun westd3",
+  "task_key": "worker_ssh_submit_grpo_cka_only_math500_rerun_westd3_20260523T044553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_cka_only_math500_rerun_westd3_20260523T044553_result.json",
+    "occurrence": 1,
+    "bytes": 654,
+    "sha256": "8f5edba7440dd576255dfa420ad6070978200333eb268ea4ba335ad0a094a151"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型 `grpo_cka_only_20` 不在 westd-32935 上。情况如下：\n\n| 服务器 | 路径 | 状态 |\n|--------|------|------|\n| westb-23072 | `grpo_cka_only_20/checkpoint-100/model.safetensors` | 存在，12.3 GB |\n| westd-32935 | `grpo_cka_only_20_seed456/model.safetensors` | 存在，12.3 GB（不同 seed） |\n| westd-32935 | `grpo_cka_only_20/` | **不存在** |\n\n需要重跑的是默认 seed 的 `grpo_cka_only_20`，只在 westb-23072 上有。两个选项：\n\n1. **从 westb-23072 传到 westd-32935**（~12 GB，耗时取决于带宽）\n2. **改在 westb-23072 上跑**（需要确认有空闲 GPU）\n\n怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-cka-only-math500-rerun-westd3.md"
+}

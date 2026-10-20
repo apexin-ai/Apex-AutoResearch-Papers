@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3836ba44809cbfe92d36",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grasp baseline westd submit",
+  "task_key": "worker_code_grasp-baseline-westd-submit_20260515T134521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grasp-baseline-westd-submit_20260515T134521_result.json",
+    "occurrence": 1,
+    "bytes": 981,
+    "sha256": "8d50de3622b5d67619986f63ee6f7c99979889c94e3222ac3c75be015c9b98e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 执行结果\n\n**GraSP 剪枝**: 已完成（由前一个 Worker 执行）。模型在 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20/`。使用 GRASPrune 库，keep_ratio=0.80, rescale_alpha=0.5, 512 samples, 4 epochs gate training。\n\n**Eval**: 正在 westd GPU 0 上全量跑（1319 样本, PID 34206），已完成 69/1319, 预计还需 ~17.5 小时。\n\n**50 样本 checkpoint 结果**:\n\n| 指标 | GraSP 20% | RASP 20% |\n|------|-----------|----------|\n| Post-prune accuracy | **8.0%** | **29-31%** |\n| EOS rate | 2% | — |\n| Avg response length | 4019 (几乎全部截断) | — |\n\nGraSP 剪枝后模型严重退化：98% 的回答没有自然结束（没生成 boxed answer），一直输出到 4096 token 上限。RASP 的优势非常显著（~3.6x）。\n\n**问题**: 全量 eval 还要跑 ~17.5 小时。要不要 kill 掉改用 `--max_samples 100`？100 样本 ~85 分钟就够了，50 样本的趋势已经很明确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grasp-baseline-westd-submit.md"
+}

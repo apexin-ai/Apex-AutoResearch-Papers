@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e18dac86cd5e706f18c0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch eval gsm8k sft alpha3p0 westd2",
+  "task_key": "worker_launch_eval_gsm8k_sft_alpha3p0_westd2_20260522T102447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_eval_gsm8k_sft_alpha3p0_westd2_20260522T102447_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "1f80701cd779377755bf021e2abed9f4d317ec2e380d25ec95ad054d38f6bc3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Checkpoint 不在 westd，需要在 westb 上跑。**\n\n`sft_rasp_alpha3p0_20` 目录在 westd-32935 上完全不存在（目录本身和 find 搜索均无结果）。checkpoint-935 应该仍在 westb-23072 上。\n\nGPU 2 和 3 在 westd 上是空闲的，如果需要可以先把 checkpoint 从 westb 同步过来再跑，或者直接在 westb 上执行 eval。请指示。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-eval-gsm8k-sft-alpha3p0-westd2.md"
+}

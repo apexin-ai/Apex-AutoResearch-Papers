@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "987f953231b6ad023579",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig1 framework",
+  "task_key": "worker_paper_figure_fig1_framework_20260518T024533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_20260518T024533_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "54cf75495921959da985f607021e8383512e4ef4a4c8149c3c675622ea1bc1fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure generated and registered. Output files:\n\n- **PDF**: `artifacts/figures/fig1_framework.pdf` (58 KB)\n- **PNG**: `artifacts/figures/fig1_framework.png` (349 KB)\n- **Script**: `artifacts/figures/gen_fig1_framework.py`\n\nThe figure shows the 3-row pipeline: Pretrained LLM → Structural Analysis (Taylor I(h) + CKA F(h)) → 4 scoring criteria (color-coded with Okabe-Ito scheme) → identical SFT+GRPO recovery → divergent outcomes from Active Learning (green, reward 0.342) to Immediate Collapse (red-orange, reward ~0.01). A horizontal gradient bar at the bottom reinforces the recovery capacity spectrum. Standard and RASP boxes carry warning markers highlighting their reliance on gradient importance I(h)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b13fe4cba5f9bdda6e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops register eval cron",
+  "task_key": "worker_ops_register-eval-cron_20260515T223225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_register-eval-cron_20260515T223225_result.json",
+    "occurrence": 1,
+    "bytes": 236,
+    "sha256": "6dd20850f14d0771e1820a4d55e58a793325f160fe060f6c1e8ac39d3c2b0a8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **进程**: PID 66075，westd-11672 cuda:0，运行 `eval_gsm8k.py`（model: `grpo_standard_v8_step50`, N=1319, seed=42）\n- **Cron 监控**: 已注册，120s 轮询，日志 `/tmp/eval_grpo_step50.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-register-eval-cron.md"
+}

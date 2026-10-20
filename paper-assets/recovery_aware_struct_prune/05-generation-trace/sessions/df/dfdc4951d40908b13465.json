@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfdc4951d40908b13465",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose mf3 grpo exit status",
+  "task_key": "worker_diagnose_mf3_grpo_exit_status_20260522T095328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mf3_grpo_exit_status_20260522T095328_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "8f4ce5561f4ebaa6d17f48573586e8023e9b102442fe774daf23d6ab484e0fb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n结论: SUCCESS\n证据: 日志 \"100%|██████████| 100/100 [1:38:31<00:00, 59.12s/it]\" + \"GRPO v4 recovery training complete.\"\n最终 step: 100/100\nmodel.safetensors: 存在 size=11.5GB\nGPU 1 当前: 占用 (16547 MiB, 99%) — GSM8K 评估进程 PID 179898 正在运行\n```\n\n补充：GRPO 训练于 17:40:59 完成保存，之后自动触发了 GSM8K 评估（PID 179898，评估 1319 samples），目前仍在跑。GPU 0 被另一个 GRPO 任务 `grpo_rasp_alpha3p0_20`（PID 170676）占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mf3-grpo-exit-status.md"
+}

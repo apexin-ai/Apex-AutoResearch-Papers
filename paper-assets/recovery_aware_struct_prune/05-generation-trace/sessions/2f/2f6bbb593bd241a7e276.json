@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f6bbb593bd241a7e276",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westb disk cleanup urgent",
+  "task_key": "worker_fix_westb_disk_cleanup_urgent_20260522T090824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westb_disk_cleanup_urgent_20260522T090824_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "bb5b5efacc1a25422a4b2f71aaa8b148b7cbb8b6495f48bf5cb3326fe45f6c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n```\n清理前: 250G/250G (100%)\n清理后: 206G/250G (83%)\n释放: 44GB\n\n删除明细:\n- sft_rasp_alpha3p0_20/checkpoint-935/optimizer.pt: 11G\n- pruned_rasp_20/: 12G\n- pruned_standard_20/: 12G\n- pruned_cka_only_20/: 12G\n\n保留（确认未删）:\n- sft_rasp_alpha3p0_20/checkpoint-935/model.safetensors (12G) ✅\n- pruned_cka_only_20_qwen_math/ ✅\n- sft_qwen_math_cka_only_20_final/ ✅\n- grpo_rasp_alpha3p0_20/ ✅\n- grpo_qwen_math_cka_only_20/ ✅\n- Qwen2.5-Math-7B 基础模型 ✅\n```\n\n释放了 44G，离 50G 目标差 6G。如果需要进一步释放，下一批安全候选：\n- **pruned_rasp_alpha3p0_20/** (12G) — SFT 已完成，GRPO 用的是 SFT checkpoint 不是 pruned 模型\n- **pruned_standard_20_qwen_math/** (12G) — 如果对应 SFT 已完成\n\n要继续删吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westb-disk-cleanup-urgent.md"
+}

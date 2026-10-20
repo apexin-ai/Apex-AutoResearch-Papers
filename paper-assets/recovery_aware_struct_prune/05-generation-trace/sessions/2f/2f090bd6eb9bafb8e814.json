@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f090bd6eb9bafb8e814",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops backup westd westb",
+  "task_key": "worker_ops_backup_westd_westb_20260524T160307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_backup_westd_westb_20260524T160307_result.json",
+    "occurrence": 1,
+    "bytes": 293,
+    "sha256": "5caddb3851c6fc6b824a90db8ba2f9410c1cfcbe74157eda6b264e91eb0381fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 结果 |\n|------|------|\n| westd 备份大小 | 114M |\n| westb 备份大小 | 70M |\n| 传输方式 | 本地中转（westd → 本地 → westb，无法直连） |\n| 最终位置 | `westb-23072:/root/autodl-tmp/backups/` 下两个文件均已就位 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-backup-westd-westb.md"
+}

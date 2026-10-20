@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "f51e4a94dd997a268879",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "review paper figure quality",
+  "task_key": "worker_review_paper_figure_quality_20260523T234700",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_paper_figure_quality_20260523T234700_result.json",
+    "occurrence": 1,
+    "bytes": 2107108,
+    "sha256": "98da9efdc7b3bf6ee0777f2aa6969a9c2c07638dd486aa3fa8cb0bac550c5a5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2107128,
+                "serialized_sha256": "ac2d61560e5cf9dc91694c184bf75459f781d416c82a0f18fdd7f0914af5f574",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-paper-figure-quality.md"
+}

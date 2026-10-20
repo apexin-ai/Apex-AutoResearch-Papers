@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a8f5a672064a93b0a15",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd grpo restart verify",
+  "task_key": "worker_monitor_westd_grpo_restart_verify_20260516T140753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd_grpo_restart_verify_20260516T140753_result.json",
+    "occurrence": 1,
+    "bytes": 706,
+    "sha256": "5c4ca05ce2ca80a0cad2e9afa85a3264061ffe3cb556474bd18d40f00973e8fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "✅ **4 个 GRPO 训练全部健康启动**\n\n| 实验 | 进度 | 速度 | wandb run |\n|------|------|------|-----------|\n| grpo_rasp_qwen_math | 3/100 | ~27s/it | fijvduj2 |\n| grpo_standard_qwen_math | 2/100 | ~27s/it | xof06efr |\n| grpo_rasp_25_qwen_math | 3/100 | ~26s/it | bz6gmt0b |\n| grpo_standard_25_qwen_math | 3/100 | ~26s/it | idwo5jp0 |\n\n**磁盘状态**：\n- 根分区：5.1G/30G (17%) — 正常\n- 数据盘：268G/750G (36%) — 充裕\n\n**wandb symlink 生效**：`/root/recovery_aware_struct_prune/wandb → /root/autodl-tmp/recovery_aware_struct_prune/wandb`，不再写根分区。\n\n所有训练已过模型加载阶段，正在正常推进 step，无报错。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-grpo-restart-verify.md"
+}

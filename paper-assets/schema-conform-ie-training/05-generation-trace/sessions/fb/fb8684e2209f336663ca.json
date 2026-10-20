@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "id": "fb8684e2209f336663ca",
+  "project": "schema-conform-ie-training",
+  "kind": "worker",
+  "title": "deploy check and train",
+  "task_key": "worker_deploy_check-and-train_20260512T101943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_check-and-train_20260512T101943.log",
+    "occurrence": 1,
+    "bytes": 956446,
+    "sha256": "eddf906f59ed06096f656d8065fad8d47c95add5bc85daa7d8ebcea1aac17061"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 1,
+    "tool_calls": 156,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 2,
+      "assistant": 109,
+      "tool_call": 156,
+      "tool_result": 156,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 409,
+      "chunks": [
+        {
+          "path": "fb8684e2209f336663ca-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb8684e2209f336663ca-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "fb8684e2209f336663ca-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "fb8684e2209f336663ca-part-0003.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-check-and-train.md"
+}

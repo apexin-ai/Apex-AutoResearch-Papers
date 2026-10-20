@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "650cd891f5be1e83b169",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval gsm8k grpo standard 20 seed123 full",
+  "task_key": "worker_eval_gsm8k_grpo_standard_20_seed123_full_20260520T100815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k_grpo_standard_20_seed123_full_20260520T100815_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "4cf253056a71baddb8db66133c65ec886a0c0d1ade68a87351bc5f2774a7159a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 作业已完成提交和注册。\n\n**汇总：**\n\n| 实验 | exp_id | 服务器/GPU | 状态 | tmux session |\n|------|--------|-----------|------|-------------|\n| seed123 N=1319 | `eval_gsm8k_grpo_standard_20_seed123_full` | westd-29022 cuda:2 | RUNNING | `eval_seed123` |\n| seed456 N=1319 | `eval_gsm8k_grpo_standard_20_seed456_full` | westd-29022 cuda:3 | RUNNING | `eval_seed456` |\n\n日志路径：`/tmp/eval_seed123.log`、`/tmp/eval_seed456.log`。结果输出到 `/root/autodl-tmp/recovery_aware_struct_prune/results/` 下对应 JSON 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-grpo-standard-20-seed123-full.md"
+}

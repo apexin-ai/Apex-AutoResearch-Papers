@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b75b2342140cb91e6ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose alpha3p0 eval exit",
+  "task_key": "worker_ssh_diagnose_alpha3p0_eval_exit_20260522T144347",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_alpha3p0_eval_exit_20260522T144347_result.json",
+    "occurrence": 1,
+    "bytes": 454,
+    "sha256": "0bbc22f96785c8f7eed4ef924507f753a2a57184e6bce7ee16b7f76c7e56eac9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## α=3.0 GRPO Eval 结果\n\n| 指标 | 值 |\n|------|-----|\n| **accuracy** | **63.45%** (837/1319) |\n| stderr | ±1.33% |\n| eos_rate | 98.64% (1301 natural / 18 truncated) |\n| avg_response_length | 219.7 tokens |\n| mode | greedy (T=0) |\n| checkpoint | `grpo_rasp_alpha3p0_20_v2/checkpoint-100` |\n\n进程已退出，eval 完整跑完（1319/1319）。上次 88% 进度时 acc=63.04%，最终收敛到 **63.45%**，变化不大。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-alpha3p0-eval-exit.md"
+}

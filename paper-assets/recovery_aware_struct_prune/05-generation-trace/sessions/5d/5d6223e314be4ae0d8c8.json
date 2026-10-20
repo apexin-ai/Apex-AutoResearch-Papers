@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d6223e314be4ae0d8c8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo alpha1p0 math500 westd3",
+  "task_key": "worker_ssh_submit_grpo_alpha1p0_math500_westd3_20260522T230319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_alpha1p0_math500_westd3_20260522T230319_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "8080ba8b6f87d1559e5156f8c1cb1feed1474451804bf8ab25369e2758436c5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，正在加载模型。GPU:3 显存尚未上涨是因为模型还在 CPU 加载中，稍后会移到 GPU。\n\n**已提交：**\n- **Job**: `eval_math500_grpo_rasp_alpha1p0_20`\n- **Server**: westd-32935 GPU:3\n- **Model**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair` (GRPO RASP α=1.0, v5 fair)\n- **Log**: `~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20.log`\n- **Output**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-alpha1p0-math500-westd3.md"
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "78601770f61990b15671",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis sft cka only 20",
+  "task_key": "worker_analysis_sft_cka_only_20_20260517T142633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_cka_only_20_20260517T142633_result.json",
+    "occurrence": 1,
+    "bytes": 1953,
+    "sha256": "fd90c208d7e4c86a76eaa4380d33737ad7c9ebc45dd208aa6eeea063d83475ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"success\": true,\n  \"metrics\": {\n    \"train_loss_initial\": 1.958,\n    \"train_loss_final\": 0.6165,\n    \"train_loss_average\": 0.7486,\n    \"token_accuracy_final\": 0.8362,\n    \"greedy_accuracy_100\": null,\n    \"greedy_correct\": null,\n    \"greedy_total\": null,\n    \"eos_rate_greedy\": null,\n    \"greedy_avg_len\": null,\n    \"greedy_min_len\": null,\n    \"greedy_max_len\": null,\n    \"total_steps\": 1870,\n    \"train_time_min\": 33.4,\n    \"wandb_run_id\": null,\n    \"checkpoint_saved\": true,\n    \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/\"\n  },\n  \"analysis\": \"训练正常完成但未运行 greedy/sampling evaluation。初始 loss 1.958 高于 RASP (1.86) 和 Standard (1.70)，说明 CKA-only 剪枝对模型的初始损伤最大。最终 loss 0.62 略优于两个基线 (0.64)，token accuracy 0.836 与基线相当。需要补跑 greedy evaluation 才能对比准确率。\"\n}"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "success": true,
+              "metrics": {
+                "train_loss_initial": 1.958,
+                "train_loss_final": 0.6165,
+                "train_loss_average": 0.7486,
+                "token_accuracy_final": 0.8362,
+                "greedy_accuracy_100": null,
+                "greedy_correct": null,
+                "greedy_total": null,
+                "eos_rate_greedy": null,
+                "greedy_avg_len": null,
+                "greedy_min_len": null,
+                "greedy_max_len": null,
+                "total_steps": 1870,
+                "train_time_min": 33.4,
+                "wandb_run_id": null,
+                "checkpoint_saved": true,
+                "checkpoint_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/"
+              },
+              "analysis": "训练正常完成但未运行 greedy/sampling evaluation。初始 loss 1.958 高于 RASP (1.86) 和 Standard (1.70)，说明 CKA-only 剪枝对模型的初始损伤最大。最终 loss 0.62 略优于两个基线 (0.64)，token accuracy 0.836 与基线相当。需要补跑 greedy evaluation 才能对比准确率。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sft-cka-only-20.md"
+}

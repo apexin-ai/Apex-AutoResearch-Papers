@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2a17c6a73e0aa51708a7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check running eval progress",
+  "task_key": "worker_ssh_check_running_eval_progress_20260521T192458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_running_eval_progress_20260521T192458_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "39e6320b3d708a9b603dde07bafc0eeb7113a0afd2d683e2749c28c2232000af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验都在正常运行。汇总如下：\n\n| 实验 | 服务器 | 进度 | 已运行 | 预估剩余 | 中间 Acc |\n|------|--------|------|--------|----------|----------|\n| grpo_standard_25_v2 | westb-23072 cuda:0 | **320/500 (64%)** | 5h32m | ~2h40m | — |\n| grpo_random_20_v2 | westd-29022 cuda:1 | **280/500 (56%)** | 5h25m | ~2h24m | 11.2% @250 |\n| sft_random_20 | westd-29022 cuda:3 | **236/500 (47%)** | 4h36m | ~5h~6h30m | 12.0% @200 |\n\n关键数据：\n- **grpo_standard_25_v2**: 最快，320/500，~53s/it，预计再 2.5-3h 完成\n- **grpo_random_20_v2**: 280/500，速度波动大(40-100s/it)，tqdm 显示剩余 ~2h24m 但实际可能 3-4h\n- **sft_random_20**: 最慢，236/500，~89s/it，tqdm 显示剩余 ~6h33m；起步晚了约 48 分钟\n\n三个进程日志都在持续输出进度条，均处于活跃状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-running-eval-progress.md"
+}

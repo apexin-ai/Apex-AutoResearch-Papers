@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd875b1bda77b054f4f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix disk and monitor eval",
+  "task_key": "worker_fix_disk_and_monitor_eval_20260514T165324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk_and_monitor_eval_20260514T165324_result.json",
+    "occurrence": 1,
+    "bytes": 66,
+    "sha256": "a777a8b342f517d69d5cabe718b47c74a82d13229b01fe0a8bf04a293534c494"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后回来检查 standard_20 是否完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-disk-and-monitor-eval.md"
+}

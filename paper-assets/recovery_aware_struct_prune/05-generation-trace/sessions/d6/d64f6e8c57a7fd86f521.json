@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d64f6e8c57a7fd86f521",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3p0 grpo eval westb0",
+  "task_key": "worker_launch_alpha3p0_grpo_eval_westb0_20260522T102814",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3p0_grpo_eval_westb0_20260522T102814_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "b70731ecb778c96f2ebb161aefd4dba84e5b21f564155b9b4987947d431938dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：checkpoint 损坏，无法执行 eval**\n\n```\nCheckpoint: /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20/checkpoint-100/model.safetensors\n  实际大小: 7,661,944,832 bytes (7.2G)\n  期望大小: 12,323,931,248 bytes (11.5G) — 对比 sft_rasp_alpha3p0_20/checkpoint-935\n  状态: 截断/损坏 — safetensors 反序列化失败\n  原因: 数据盘 250G 已满 (100% used, 20K avail)，训练保存时写入被截断\n```\n\nGRPO alpha3p0 训练本身完成了 100 步（completions 文件齐全到 step 100），但保存 checkpoint 时磁盘满导致 `model.safetensors` 只写了 ~62% 就被截断。\n\n```\n=== nvidia-smi ===\nGPU 0: 0 MiB, 0% (空闲 — eval 已退出报错)\nGPU 1: 16547 MiB, 99% (其他任务)\n\n=== ps 输出 ===\n(无 eval_gsm8k 进程)\n\nGPU 0 占用确认: 否（进程已因 checkpoint 损坏退出）\n日志状态: 报错 — safetensors_rust.SafetensorError: incomplete metadata, file not fully covered\n```\n\n**需要你决策**：\n1. 清理数据盘腾出 ~5GB 空间，重新跑 GRPO alpha3p0 训练（~1.5h）再 eval\n2. 指定哪些目录可以删除腾空间（`grpo_qwen_math_cka_only_20` 占 38GB 最大）\n3. 等 westd-29022 恢复后检查是否有完整副本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3p0-grpo-eval-westb0.md"
+}

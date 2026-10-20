@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b394833fb196fd9800f0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup for grpo",
+  "task_key": "worker_ops_westb_disk_cleanup_for_grpo_20260516T090259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_for_grpo_20260516T090259_result.json",
+    "occurrence": 1,
+    "bytes": 616,
+    "sha256": "30ded6baca4a973982a9c5544764634016f6ae1798101733f0547527b7c8582d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**删除内容：**\n| 删除项 | 释放空间 |\n|--------|---------|\n| grpo_stage2_rasp_20_v9/checkpoint-20 | 27GB |\n| grpo_stage2_rasp_20_v9/checkpoint-30 | 27GB |\n| sft_standard_25/checkpoint-935 | 11GB |\n| 旧空 GRPO 目录 (v2/v5/v6/v7 等 7 个) | ~0 |\n\n**结果：8.7GB → 72GB 可用（释放 ~63GB），满足 GRPO 所需 40GB+。**\n\n**保留的关键数据：**\n- grpo_stage2_rasp_20_v9/（38GB：final model + checkpoint-10）\n- grpo_stage2_standard_20_v8/（12GB）\n- sft_rasp_25/、sft_standard_25/checkpoint-1870\n- pruned_standard_25/、pruned_rasp_25/"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-for-grpo.md"
+}

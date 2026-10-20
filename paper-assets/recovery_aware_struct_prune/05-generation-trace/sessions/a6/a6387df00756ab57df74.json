@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6387df00756ab57df74",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill math500 and fix",
+  "task_key": "worker_ssh_kill_math500_and_fix_20260521T024823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_math500_and_fix_20260521T024823_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "57e3d190a3dfb54e6b3053f67dc04d3f373230688bfd58a03c460b89a515b399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "第一题完成：**90.96s/it**，ETA **12.6h**。\n\n对比之前：320s/it → 91s/it，**提速 3.5x**。ETA 从 31h 降到 ~12.6h。\n\n汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **Kill** | PID 59502 + 子进程 59509 已杀，GPU 已释放 |\n| **原因** | `max_new_tokens` 默认 4096，模型带 `<think>` reasoning 打满上限，~320s/题 |\n| **修复** | `--max_new_tokens 2048` 重跑 |\n| **新进程** | PID 62714，cuda:0 (15GB)，99% 利用率 |\n| **新速度** | 91s/it，ETA ~12.6h（原 31h，提速 3.5x） |\n| **输出** | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_standard_25.json` |\n| **日志** | `/tmp/eval_math500_sft_standard_25.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-math500-and-fix.md"
+}

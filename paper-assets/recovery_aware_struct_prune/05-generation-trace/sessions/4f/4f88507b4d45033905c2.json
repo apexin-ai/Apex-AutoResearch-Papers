@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f88507b4d45033905c2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd disk cleanup and status",
+  "task_key": "worker_ssh_westd_disk_cleanup_and_status_20260520T215149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_disk_cleanup_and_status_20260520T215149_result.json",
+    "occurrence": 1,
+    "bytes": 676,
+    "sha256": "96e1622b70153c7948847b3a4c06504da0752eb60835584de7b119141d924bcc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理完成，汇总报告\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 磁盘已用 | 578G (94%) | 532G (86%) |\n| 可用空间 | **42G** | **88G** |\n\n**清理内容**：删除 7 个 optimizer.pt/scheduler.pt 文件，释放 ~46G（主要来自 3 个 16G/15G 的 optimizer.pt）。\n\n**GPU 进程状态**：\n- GPU 0: `eval_gsm8k` CKA-only 15% seed123 运行中\n- GPU 1: `eval_gsm8k` CKA-only 15% seed456 运行中\n- **GPU 2/3: 空闲**，可用于重跑 Standard 15% seed123/456 GRPO 训练\n\n**未删除**：Standard 15 seed123/456 目录只有 README.md 和 completions（无残留 checkpoint），wandb 无 offline runs。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-disk-cleanup-and-status.md"
+}

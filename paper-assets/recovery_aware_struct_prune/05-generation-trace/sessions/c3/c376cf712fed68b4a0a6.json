@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c376cf712fed68b4a0a6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor grpo v8 step30 check",
+  "task_key": "worker_monitor_grpo-v8-step30-check_20260515T174235",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo-v8-step30-check_20260515T174235_result.json",
+    "occurrence": 1,
+    "bytes": 994,
+    "sha256": "64beba1ddf9021e2432035ef924199150c2cf7314977e07c2f3cbb922ac2aea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都未到 step 30。以下是当前状态：\n\n```\nRASP v8 (PID 532861): ~step 28/100, still running\n  - grad_norm=0.011, frac_zero_std=0.9, reward=0.026, clipped_ratio=0.963\n  - 全部三个 kill 条件自 step 10 起就已满足（grad_norm<0.05, frac_zero_std≥0.85, reward<0.03）\n  - COLLAPSED, 指标继续恶化中\n  - ETA step 30: ~02:00 Beijing (May 16) ≈ 15 分钟后\n\nStandard v8 (PID 534667): ~step 26/100, HEALTHY\n  - grad_norm=1.586, frac_zero_std=0.675, reward=0.061, clipped_ratio=0.638\n  - frac_zero_std 趋势: 0.5 → 0.675（上升但仍安全）\n  - 无 kill 条件触发\n\nGPU: cuda:0 71.7/97.9GB 100%, cuda:1 71.7/97.9GB 100%\n磁盘: 77% used, 58GB free on /root/autodl-tmp/\n```\n\n步数估算基于 wandb history_offset 增长率和 completions parquet 时间戳（step 10→20 间隔 ~69 min，~6.9 min/step）。\n\nRASP 尚未到 step 30，暂不执行 kill。需要 ~15 分钟后再查。是否要我到时再来检查？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-v8-step30-check.md"
+}

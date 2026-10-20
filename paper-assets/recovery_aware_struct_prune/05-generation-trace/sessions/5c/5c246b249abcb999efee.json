@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c246b249abcb999efee",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo random 20 wandb",
+  "task_key": "worker_diagnose_grpo_random_20_wandb_20260518T014234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_random_20_wandb_20260518T014234_result.json",
+    "occurrence": 1,
+    "bytes": 1973,
+    "sha256": "0c542ab447cb623539eee3d8ca9ce26298fa938fd4806f065b5965c3f347fb50"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整。以下是报告。\n\n---\n\n## grpo_random_20 W&B Metrics 报告\n\n**Run**: `grpo_random_20` | ID: `z9nqlucg` | State: running (实际已被 timeout 杀死)\n**记录到 step 90**（logging_steps=10，max_steps=100，缺最后 step 100 的 log）\n\n### Step-level Reward 轨迹\n\n| Step | Reward | Loss | KL | Grad Norm |\n|------|--------|---------|--------|-----------|\n| 10   | 0.161  | -0.021  | 0.0042 | 3.75  |\n| 20   | 0.142  | -0.037  | 0.0047 | 8.63  |\n| 30   | 0.166  | 0.003   | 0.0046 | 3.67  |\n| 40   | 0.145  | -0.028  | 0.0046 | 4.19  |\n| 50   | 0.175  | -0.007  | 0.0046 | 4.75  |\n| 60   | 0.184  | -0.032  | 0.0042 | 3.59  |\n| 70   | 0.190  | 0.009   | 0.0045 | 7.09  |\n| 80   | 0.142  | -0.011  | 0.0049 | 3.69  |\n| 90   | 0.173  | 0.037   | 0.0042 | 7.53  |\n\n### Collapse Pattern 判断：**No collapse — flat-low (never learned)**\n\n- Reward 始终在 **0.14–0.19** 窄带内振荡，无上升趋势，也无突降\n- KL 极稳定 (~0.004)，说明模型几乎没有偏离 reference policy\n- Loss 在 0 附近振荡，无有效学习信号\n- 这不是 \"collapse\"（collapse 意味着先涨后崩），而是 **从未学会** — random pruning 在 20% sparsity 下已破坏模型能力到无法通过 GRPO 恢复的程度\n\n### 与其他实验对比\n\n| 实验 | Pattern | 特征 |\n|------|---------|------|\n| RASP | Early collapse ~step 10 | 有短暂学习后崩溃 |\n| Standard | Late collapse ~step 60 | 持续学习后崩溃 |\n| **Random 20%** | **Flat-low (no learning)** | **从未出现有效学习** |\n\n### 建议\n\n- **不需要重跑**。90 步数据已完整覆盖整个训练过程，pattern 清晰：reward 始终 flat-low，无 collapse 转折点。缺失的 step 91-100 不会改变结论。\n- 这个结果对论文有价值：random pruning 不仅导致 collapse（如 RASP/Standard），而是**完全阻断了 GRPO 的学习能力**，形成第三种 distinct pattern。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-random-20-wandb-copy-2.md"
+}

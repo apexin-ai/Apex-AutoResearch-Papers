@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c56ff92c4d438f26793",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prune cka only 30 and eval",
+  "task_key": "worker_ops_prune_cka_only_30_and_eval_20260517T214241",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prune_cka_only_30_and_eval_20260517T214241_result.json",
+    "occurrence": 1,
+    "bytes": 1123,
+    "sha256": "c2740ab22e509d139910a462ae64230ddc2694cc31ca6b75427f80e11e611fd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现。代码中的 RASP 评分公式（第 202 行）：\n\n```\nscore = importance × (1 - overlap)^alpha\n```\n\n**`alpha=0` 不是 CKA-only**，而是 `importance × 1 = importance`，等价于 standard 模式。\n\nimportance 作为乘法因子始终存在，当前代码无法纯靠参数组合得到 CKA-only scoring。\n\n汇报结果：\n\n1. **支持的 mode**: `standard`, `rasp`, `rasp-rlvr`（无 `cka_only`）\n2. **评分公式**:\n   - `rasp`: `I(h) × (1 - F(h))^α` — alpha 控制 CKA 权重，但 I(h) 始终是乘数\n   - `rasp-rlvr`: `I(h) × F(h)^α` — 反向 CKA\n   - `standard`: 纯 `I(h)`\n3. **alpha=0 → standard**，不是 CKA-only\n4. **要实现 CKA-only**，需要以下之一：\n   - 新增 mode，scoring 为 `(1 - F(h))^α`（去掉 importance 乘数）\n   - 或构造全 1 的 dummy importance_scores.pt，配合 `--mode rasp --alpha 1`\n5. **cuda:2 空闲**（0MiB, 0% util），随时可提交 eval\n6. **importance_scores.pt 和 cka_scores.pt 均存在**于 `results/` 下\n\n请决定下一步：改代码加 mode，还是用 dummy importance 绕过？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prune-cka-only-30-and-eval.md"
+}

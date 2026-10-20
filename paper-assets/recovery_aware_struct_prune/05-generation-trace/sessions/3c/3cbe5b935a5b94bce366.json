@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cbe5b935a5b94bce366",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval gsm8k seed123",
+  "task_key": "worker_eval_gsm8k_seed123_20260519T152714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k_seed123_20260519T152714_result.json",
+    "occurrence": 1,
+    "bytes": 498,
+    "sha256": "0cc8f84124e8035a42c9e7a35c7cf1c64c901cb0b06a1fcf1161764ab1b3578e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估任务已成功提交并运行中：\n\n- **实验 ID**: eval_gsm8k_grpo_cka_only_20_seed123\n- **服务器**: westb-23072, cuda:1\n- **PID**: 903935\n- **状态**: 模型加载中（已检测到 non-uniform MLP 结构）\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_seed123.log`\n- **结果输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20_seed123.json`\n- **对比目标**: seed=42 的 64.37% (849/1319)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-seed123.md"
+}

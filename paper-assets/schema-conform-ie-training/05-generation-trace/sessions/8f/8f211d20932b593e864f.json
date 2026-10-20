@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f211d20932b593e864f",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "eval check ab v3 results",
+  "task_key": "worker_eval_check_ab_v3_results_20260513T193856",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_ab_v3_results_20260513T193856_result.json",
+    "occurrence": 1,
+    "bytes": 845,
+    "sha256": "dcbc35798671e55b8b73085bf736b1fa76ed83972982894ef398661a6b0fc37a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### eval_A_v3: **COMPLETED**\n\n| Metric | scierc_test (n=551) | crossner_politics (n=651) | crossner_science (n=543) |\n|---|---|---|---|\n| entity_f1 | 0.4404 | 0.4460 | 0.5697 |\n| relation_f1 | 0.1810 | N/A | N/A |\n| f1_correctness | 0.3395 | 0.4460 | 0.5697 |\n| structural_validity | 1.0000 | 1.0000 | 1.0000 |\n| type_conformance | 0.9002 | 1.0000 | 0.9842 |\n| relational_constraint | 0.3371 | 0.0000 | 0.0000 |\n| structural_completeness | 0.9002 | 1.0000 | 0.9945 |\n| valid_json_rate | 1.0000 | 1.0000 | 1.0000 |\n\n### eval_B_v3: **RUNNING**\n\n正在评估 scierc_test，进度 26/551（~5%）。模型加载自 `/root/autodl-tmp/output/formal_B/merged`。结果目录已创建但为空。\n\n### train_A_continued: **RUNNING**\n\n进度 **296/500**（~59%），约 1h57m 已过，预计剩余 ~1h06m。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-ab-v3-results.md"
+}

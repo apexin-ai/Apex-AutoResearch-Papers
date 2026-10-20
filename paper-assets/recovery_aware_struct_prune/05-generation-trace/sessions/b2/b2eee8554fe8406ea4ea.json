@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2eee8554fe8406ea4ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3p0 grpo eval westd0 v2",
+  "task_key": "worker_launch_alpha3p0_grpo_eval_westd0_v2_20260522T115405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3p0_grpo_eval_westd0_v2_20260522T115405_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "5e500f251816dab39a164fa1a6444a56837dfb769ed64b173a763338995430db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行中。\n\n**汇总：**\n\n- **GRPO α=3.0 训练 (PID 42003)**: 已完成，checkpoint-100/model.safetensors 12.3GB 正常\n- **Eval PID**: 43755（实际 python 进程），父 shell PID 43749\n- **GPU 0**: 12682MiB / 97887MiB，89% utilization\n- **进度**: 8/1319 samples，~2.8s/it，预计 ~60 分钟完成\n- **模型**: cuda:0，Non-uniform MLP (intermediate_size [8128, 18944])，GSM8K 离线缓存加载成功\n\n**nvidia-smi 完整状态：**\n| GPU | Memory | Util | Process |\n|-----|--------|------|---------|\n| 0 | 12691MiB | 89% | PID 43755 — **eval_gsm8k grpo_rasp_alpha3p0_20** (本次启动) |\n| 1 | 17651MiB | 97% | PID 5241 |\n| 2 | 16261MiB | 91% | PID 37026 — eval_gsm8k sft_alpha3p0_20 |\n| 3 | 31358MiB | 94% | PID 40073 + 41541 — eval depth_first_20 + random_20_seed123 |\n\n**日志前几行：**\n```\nLoading model from .../grpo_rasp_alpha3p0_20_v2/checkpoint-100\nNon-uniform MLP detected: intermediate_size range [8128, 18944]\nModel device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=0)\nEvaluating on 1319 test samples\nEvaluating:   1%|          | 8/1319 [00:22<1:01:37, 2.82s/it]\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3p0-grpo-eval-westd0-v2.md"
+}

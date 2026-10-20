@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "683484bf27361ea7edc1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch grpo dual gpu",
+  "task_key": "worker_launch_grpo_dual_gpu_20260514T171025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_grpo_dual_gpu_20260514T171025_result.json",
+    "occurrence": 1,
+    "bytes": 879,
+    "sha256": "fb85c69bbf78be0cc4539b8d0672b14037a622d2ef5bed7b63503a90ec7fb87f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双 GPU 全部在线训练中。汇报：\n\n### 结果\n\n1. **Qwen3.5-9B 已删除**，autodl-tmp 剩余 190GB（25% 使用）\n\n2. **cuda:0 — GRPO rasp_20** ✅\n   - PID 221271，01:08 启动，tmux session `grpo_rasp_20`\n   - 62.9GB VRAM, 95% GPU util, 0/5604 steps 开始训练\n   - 模型路径：`/root/autodl-tmp/pruned_rasp_20` → 输出 `/root/autodl-tmp/recovered_rasp_20`\n\n3. **cuda:1 — GRPO standard_20** ✅\n   - PID 221911，01:14 开始训练，tmux session `grpo_standard_20`\n   - 13.3GB VRAM, 94% GPU util, 0/5604 steps\n   - 模型路径：`/root/autodl-tmp/pruned_standard_20` → 输出 `/root/autodl-tmp/recovered_standard_20`\n\n4. **cuda:1 上的 25% eval 已 kill**\n   - 被 kill 时进度：rasp_20 eval 已完成（结果在 `results/eval_pruned_rasp_20_quick.json`），standard_25 eval 在 71/100，rasp_25 eval 未开始"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-grpo-dual-gpu.md"
+}

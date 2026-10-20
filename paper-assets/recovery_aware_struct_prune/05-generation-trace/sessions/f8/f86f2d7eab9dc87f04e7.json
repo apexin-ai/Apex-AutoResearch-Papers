@@ -1,0 +1,1426 @@
+{
+  "schema_version": "1.0",
+  "id": "f86f2d7eab9dc87f04e7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related-work_20260515T045854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related-work_20260515T045854.log",
+    "occurrence": 1,
+    "bytes": 170708,
+    "sha256": "816eb6d83b7d1c0408b885851be1d6dffc482d0325d4aac895b7547275292b6b"
+  },
+  "statistics": {
+    "messages": 32,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 10,
+      "tool_result": 10,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "4af40659-9b0e-46eb-9ab7-e8dae45e8394",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778838000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "442d38fa-4b1f-4866-9ca4-1a00bd243ce7",
+                "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading all the input files to understand the context."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "c0927ded-b4af-4c87-a96c-7fd6438c6fd0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fqexs1nf7oaqAwMbEiQ2AH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11453,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11453
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011VjXiBsbPNAc1VyHsibgGF",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/literature_notes.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "a8bbc88c-940f-4a03-9eca-323f2b31287e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fqexs1nf7oaqAwMbEiQ2AH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11453,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11453
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T04:59:08.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011VjXiBsbPNAc1VyHsibgGF",
+              "type": "tool_result",
+              "content": "1\t# Related Work Literature Notes\n2\t\n3\t> Generated 2026-05-15. Verified via WebSearch + WebFetch.\n4\t\n5\t## Core Comparisons\n6\t\n7\t### 1. Self-Healing (2025)\n8\t- **Full Title**: Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning\n9\t- **Authors**: Yixin Ji, Zhimin Lin, Juntao Li, Kaixin Wu, Kai Yao, Xu Jia, Linjian Mo, Min Zhang\n10\t- **Venue/Year**: ICLR 2026 (submitted Sep 2025, modified Feb 2026)\n11\t- **arXiv**: Not found on arXiv; OpenReview ID: Cy8Qa4gAst\n12\t- **Core Method**: First work applying RLVR (reinforcement learning with verifiable reward) to recover pruned large reasoning models. Shows that structured pruning degrades math reasoning but doesn't destroy it — leaving room for RL-based recovery. RLVR treats recovery as active exploration rather than passive imitation (SFT).\n13\t- **Key Results**: At 25% compression, RLVR recovery achieves >95% accuracy vs ~80% with SFT across 5 LRMs on 6 math benchmarks, nearly matching unpruned performance.\n14\t- **vs RASP**: Self-Healing tests RLVR recovery with standard importance-based pruning at a single sparsity ratio. RASP optimizes the pruning decision itself FOR recovery by predicting recoverability via CKA, yielding better accuracy at the same sparsity+recovery budget.\n15\t\n16\t### 2. GRASPrune (ACL 2026)\n17\t- **Full Title**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\n18\t- **Authors**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\n19\t- **Venue/Year**: ACL 2026 Main\n20\t- **arXiv**: 2604.19398 (Apr 2026)\n21\t- **Core Method**: Jointly prunes FFN channels and KV head groups under a single global budget. Learns lightweight gate scores with a projected straight-through estimator enforcing a hard mask at every step, backbone weights frozen. Post-mask calibration of scaling factors mitigates scale mismatch.\n22\t- **Key Results**: LLaMA-2-7B at 50% params → 12.18 PPL on WikiText-2 with competitive zero-shot accuracy. At 0.4 retention ratio, achieves best average accuracy among structured pruning methods.\n23\t- **vs RASP**: SOTA budgeted pruning without studying post-pruning recovery. GRASPrune is our primary pruning baseline — RASP adds recovery-awareness (CKA functional overlap) on top of importance-based scoring.\n24\t\n25\t### 3. RESP (Dec 2025)\n26\t- **Full Title**: Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models\n27\t- **Authors**: Ziyan Wang, Enmao Diao, Qi Le, Pu Wang, Guanchu Wang, Minwoo Lee, Shu-ping Yeh, Li Yang\n28\t- **Venue/Year**: arXiv preprint, Dec 2025\n29\t- **arXiv**: 2512.02185\n30\t- **Core Method**: Self-reflective structured pruning (RESP) aligns pruning with the model's reasoning dynamics via three components: (1) self-generated reasoning traces as calibration (not human labels), (2) decode-only gradient-based importance estimation, (3) progressive calibration regeneration that refreshes traces as sparsity increases.\n31\t- **Key Results**: On Qwen3-8B at 40% sparsity: GSM8K 81.3%, MathQA 59.6% — surpassing strongest baselines by 66.87% and 47% respectively. Near-dense accuracy at 20-30% sparsity.\n32\t- **vs RASP**: RESP uses reasoning-trace calibration to improve pruning importance estimation but has no post-pruning recovery mechanism. RASP includes recovery-awareness in the pruning score itself via CKA overlap, enabling RLVR recovery to restore more reasoning capability.\n33\t\n34\t### 4. MPruner (2024)\n35\t- **Full Title**: MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning\n36\t- **Authors**: Seungbeom Hu, ChanJun Park, Andrew Ferraiuolo, Sang-Ki Ko, Jinwoo Kim, Haein Song, Jieung Kim\n37\t- **Venue/Year**: arXiv preprint, Aug 2024\n38\t- **arXiv**: 2408.13482\n39\t- **Core Method**: Leverages CKA similarity between consecutive layers to identify redundant layers via clustering. Uses mutual information through vector similarity for global layer-wise pruning decisions. Analysis stage runs in linear time.\n40\t- **Key Results**: Up to 50% reduction in parameters and memory for CNN and transformer models with minimal accuracy loss. Up to 70% compression in some configurations.\n41\t- **vs RASP**: MPruner uses inter-layer CKA for depth pruning (removing entire layers) in CNNs/transformers. RASP uses intra-layer CKA between individual attention heads for width pruning in reasoning LLMs, and crucially uses CKA as a recoverability predictor rather than a redundancy detector.\n42\t\n43\t### 5. PASER (2025)\n44\t- **Full Title**: PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery\n45\t- **Authors**: Bowei He, Lihao Yin, Hui-Ling Zhen, Xiaokun Zhang, Mingxuan Yuan, Chen Ma\n46\t- **Venue/Year**: ICLR 2026 (submitted Feb 2025, revised Feb 2026)\n47\t- **arXiv**: 2502.12594\n48\t- **Core Method**: Post-training data selection for pruned LLM recovery. Uses manifold learning and spectral clustering to group recovery instructions in semantic space, then allocates data budget across clusters by degree of capability degradation. Detects and filters conflicting/irrelevant recovery data.\n49\t- **Key Results**: Recovers general capabilities of pruned LLMs using only 4-20% of original post-training data, significantly outperforming conventional baselines.\n50\t- **vs RASP**: PASER optimizes recovery DATA selection; RASP optimizes pruning STRUCTURE. The two are complementary — PASER could be applied to RASP's recovery phase to further improve data efficiency.\n51\t\n52\t---\n53\t\n54\t## Additional Related Work\n55\t\n56\t### Pruning for Reasoning Models\n57\t\n58\t#### 6. SSGR (Nov 2025)\n59\t- **Full Title**: Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models\n60\t- **Authors**: Yang Xiang, Yixin Ji, Juntao Li, Min Zhang\n61\t- **arXiv**: 2511.18864\n62\t- **Core Method**: First empirical study of pruning LRMs. Proposes Selective Self-Generated Reasoning (SSGR) calibration data strategy — challenging, moderately-lengthy reasoning examples work best.\n63\t- **Key Results**: 10-13% reasoning improvement over general pruning methods on DeepSeek-R1-Distill models.\n64\t- **Relation**: Complements RESP's self-generated calibration approach; from same group as Self-Healing (Ji, Juntao Li, Min Zhang).\n65\t\n66\t#### 7. RAC — Reasoning-Aware Compression (Sep 2025)\n67\t- **Full Title**: Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction\n68\t- **Authors**: Ryan Lucas, Kayhan Behdin, Zhipeng Wang, Qingquan Song, Shao Tang, Rahul Mazumder\n69\t- **Venue/Year**: NeurIPS 2025\n70\t- **arXiv**: 2509.12464\n71\t- **Core Method**: During pruning, jointly reconstructs activations from input AND model's on-policy CoT traces. Integrates into SparseGPT-style pipelines without retraining.\n72\t- **Key Results**: Significant improvement over standard calibration for reasoning model compression.\n73\t- **Relation**: Focuses on unstructured/2:4 sparsity with CoT-aware calibration. RASP targets structured width pruning with recovery prediction.\n74\t\n75\t#### 8. From LLMs to LRMs (Jan 2026)\n76\t- **Full Title**: From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models\n77\t- **Authors**: Longwei Ding, Anhao Zhao, Fanghua Ye, Ziyang Chen, Xiaoyu Shen\n78\t- **arXiv**: 2601.18091\n79\t- **Core Method**: Systematic comparison of depth/width/dynamic pruning across instruction-following vs reasoning-augmented models on 17 tasks.\n80\t- **Key Results**: Width pruning outperforms depth pruning for generation and reasoning tasks. Static pruning better preserves reasoning; dynamic methods struggle with extended reasoning chains.\n81\t- **Relation**: Provides evidence motivating RASP's width-pruning focus.\n82\t\n83\t#### 9. Doing More With Less (Apr 2026)\n84\t- **Full Title**: Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\n85\t- **Authors**: Ocean Monjur, Shahriar Kabir Nahin, Anshuman Chhabra\n86\t- **arXiv**: 2604.25098\n87\t- **Core Method**: Studies pruning's impact on test-time scaling (TTS) in reasoning LLMs (s1.1-7B, Qwen3-8B).\n88\t- **Key Results**: Structured pruning significantly degrades TTS performance. Unstructured pruning can augment TTS and even outperform unpruned models. Layer-wise sparsity allocation improves TTS further.\n89\t- **Relation**: Directly motivates why structured pruning needs a recovery mechanism — the degradation is especially severe for reasoning tasks requiring longer chains.\n90\t\n91\t### Reasoning Trace Compression\n92\t\n93\t#### 10. ThinkPrune (Apr 2025)\n94\t- **Full Title**: ThinkPrune: Pruning Long Chain-of-Thought of LLMs via Reinforcement Learning\n95\t- **arXiv**: 2504.01296\n96\t- **Core Method**: Uses RL to prune (shorten) reasoning traces at inference time, addressing \"overthinking\" in long-CoT models.\n97\t- **Key Results**: On AIME24, DeepSeek-R1-Distill-Qwen-1.5B reasoning length reduced by 50% with only 2% performance drop.\n98\t- **Relation**: Orthogonal — prunes reasoning tokens, not model parameters. Could be combined with RASP for joint model+inference compression.\n99\t\n100\t#### 11. Think, Prune, Train, Improve (Apr 2025)\n101\t- **Full Title**: Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models\n102\t- **Authors**: Caia Costello, Simon Guo, Anna Goldie, Azalia Mirhoseini (Stanford)\n103\t- **arXiv**: 2504.18116\n104\t- **Core Method**: Iteratively fine-tunes models on their own correct CoT solutions. Ground-truth pruning filters incorrect traces.\n105\t- **Key Results**: GSM8K: Gemma2-2B 41.9%→57.6%, Gemma2-9B reaches 82% (matching LLaMA-3.1-70B), LLaMA-3.1-70B reaches 91% (surpassing GPT-4o).\n106\t- **Relation**: \"Prune\" refers to trace filtering, not parameter pruning. Different problem setting but relevant to reasoning capability scaling.\n107\t\n108\t---\n109\t\n110\t## Citation BibTeX\n111\t\n112\t```bibtex\n113\t@inproceedings{ji2025selfhealing,\n114\t  title={Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning},\n115\t  author={Ji, Yixin and Lin, Zhimin and Li, Juntao and Wu, Kaixin and Yao, Kai and Jia, Xu and Mo, Linjian and Zhang, Min},\n116\t  booktitle={International Conference on Learning Representations (ICLR)},\n117\t  year={2026},\n118\t  note={OpenReview ID: Cy8Qa4gAst}\n119\t}\n120\t\n121\t@inproceedings{wang2026grasprune,\n122\t  title={{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n123\t  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n124\t  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},\n125\t  year={2026},\n126\t  eprint={2604.19398},\n127\t  archivePrefix={arXiv}\n128\t}\n129\t\n130\t@article{wang2025resp,\n131\t  title={Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models},\n132\t  author={Wang, Ziyan and Diao, Enmao and Le, Qi and Wang, Pu and Wang, Guanchu and Lee, Minwoo and Yeh, Shu-ping and Yang, Li},\n133\t  journal={arXiv preprint arXiv:2512.02185},\n134\t  year={2025}\n135\t}\n136\t\n137\t@article{hu2024mpruner,\n138\t  title={{MPruner}: Optimizing Neural Network Size with {CKA}-Based Mutual Information Pruning},\n139\t  author={Hu, Seungbeom and Park, ChanJun and Ferraiuolo, Andrew and Ko, Sang-Ki and Kim, Jinwoo and Song, Haein and Kim, Jieung},\n140\t  journal={arXiv preprint arXiv:2408.13482},\n141\t  year={2024}\n142\t}\n143\t\n144\t@inproceedings{he2025paser,\n145\t  title={{PASER}: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},\n146\t  author={He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},\n147\t  booktitle={International Conference on Learning Representations (ICLR)},\n148\t  year={2026},\n149\t  eprint={2502.12594},\n150\t  archivePrefix={arXiv}\n151\t}\n152\t\n153\t@article{xiang2025ssgr,\n154\t  title={Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models},\n155\t  author={Xiang, Yang and Ji, Yixin and Li, Juntao and Zhang, Min},\n156\t  journal={arXiv preprint arXiv:2511.18864},\n157\t  year={2025}\n158\t}\n159\t\n160\t@inproceedings{lucas2025rac,\n161\t  title={Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction},\n162\t  author={Lucas, Ryan and Behdin, Kayhan and Wang, Zhipeng and Song, Qingquan and Tang, Shao and Mazumder, Rahul},\n163\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n164\t  year={2025},\n165\t  eprint={2509.12464},\n166\t  archivePrefix={arXiv}\n167\t}\n168\t\n169\t@article{ding2026lrmpruning,\n170\t  title={From {LLMs} to {LRMs}: Rethinking Pruning for Reasoning-Centric Models},\n171\t  author={Ding, Longwei and Zhao, Anhao and Ye, Fanghua and Chen, Ziyang and Shen, Xiaoyu},\n172\t  journal={arXiv preprint arXiv:2601.18091},\n173\t  year={2026}\n174\t}\n175\t\n176\t@article{monjur2026doingmore,\n177\t  title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n178\t  author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n179\t  journal={arXiv preprint arXiv:2604.25098},\n180\t  year={2026}\n181\t}\n182\t\n183\t@article{thinkprune2025,\n184\t  title={{ThinkPrune}: Pruning Long Chain-of-Thought of {LLMs} via Reinforcement Learning},\n185\t  journal={arXiv preprint arXiv:2504.01296},\n186\t  year={2025}\n187\t}\n188\t\n189\t@article{costello2025thinkprunetrain,\n190\t  title={Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models},\n191\t  author={Costello, Caia and Guo, Simon and Goldie, Anna and Mirhoseini, Azalia},\n192\t  journal={arXiv preprint arXiv:2504.18116},\n193\t  year={2025}\n194\t}\n195\t```\n196\t\n197\t---\n198\t\n199\t## Search Notes\n200\t\n201\t- **Self-Healing**: No arXiv ID found. Paper only on OpenReview (Cy8Qa4gAst). Submitted Sep 2025, accepted ICLR 2026.\n202\t- **RESP**: No confirmed venue acceptance. arXiv-only (2512.02185, Dec 2025).\n203\t- **SSGR vs RESP**: Both titled \"Think Before You Prune\" but different papers/groups. SSGR (2511.18864) from Ji/Li/Zhang group (same as Self-Healing). RESP (2512.02185) from Wang/Diao/Yang group.\n204\t- All 5 core papers verified real via WebSearch + WebFetch. No fabricated entries.\n205\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "3ae423b3-24f0-499d-9008-83a90e5b2583",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/literature_notes.md",
+                "content": "# Related Work Literature Notes\n\n> Generated 2026-05-15. Verified via WebSearch + WebFetch.\n\n## Core Comparisons\n\n### 1. Self-Healing (2025)\n- **Full Title**: Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning\n- **Authors**: Yixin Ji, Zhimin Lin, Juntao Li, Kaixin Wu, Kai Yao, Xu Jia, Linjian Mo, Min Zhang\n- **Venue/Year**: ICLR 2026 (submitted Sep 2025, modified Feb 2026)\n- **arXiv**: Not found on arXiv; OpenReview ID: Cy8Qa4gAst\n- **Core Method**: First work applying RLVR (reinforcement learning with verifiable reward) to recover pruned large reasoning models. Shows that structured pruning degrades math reasoning but doesn't destroy it — leaving room for RL-based recovery. RLVR treats recovery as active exploration rather than passive imitation (SFT).\n- **Key Results**: At 25% compression, RLVR recovery achieves >95% accuracy vs ~80% with SFT across 5 LRMs on 6 math benchmarks, nearly matching unpruned performance.\n- **vs RASP**: Self-Healing tests RLVR recovery with standard importance-based pruning at a single sparsity ratio. RASP optimizes the pruning decision itself FOR recovery by predicting recoverability via CKA, yielding better accuracy at the same sparsity+recovery budget.\n\n### 2. GRASPrune (ACL 2026)\n- **Full Title**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\n- **Authors**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\n- **Venue/Year**: ACL 2026 Main\n- **arXiv**: 2604.19398 (Apr 2026)\n- **Core Method**: Jointly prunes FFN channels and KV head groups under a single global budget. Learns lightweight gate scores with a projected straight-through estimator enforcing a hard mask at every step, backbone weights frozen. Post-mask calibration of scaling factors mitigates scale mismatch.\n- **Key Results**: LLaMA-2-7B at 50% params → 12.18 PPL on WikiText-2 with competitive zero-shot accuracy. At 0.4 retention ratio, achieves best average accuracy among structured pruning methods.\n- **vs RASP**: SOTA budgeted pruning without studying post-pruning recovery. GRASPrune is our primary pruning baseline — RASP adds recovery-awareness (CKA functional overlap) on top of importance-based scoring.\n\n### 3. RESP (Dec 2025)\n- **Full Title**: Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models\n- **Authors**: Ziyan Wang, Enmao Diao, Qi Le, Pu Wang, Guanchu Wang, Minwoo Lee, Shu-ping Yeh, Li Yang\n- **Venue/Year**: arXiv preprint, Dec 2025\n- **arXiv**: 2512.02185\n- **Core Method**: Self-reflective structured pruning (RESP) aligns pruning with the model's reasoning dynamics via three components: (1) self-generated reasoning traces as calibration (not human labels), (2) decode-only gradient-based importance estimation, (3) progressive calibration regeneration that refreshes traces as sparsity increases.\n- **Key Results**: On Qwen3-8B at 40% sparsity: GSM8K 81.3%, MathQA 59.6% — surpassing strongest baselines by 66.87% and 47% respectively. Near-dense accuracy at 20-30% sparsity.\n- **vs RASP**: RESP uses reasoning-trace calibration to improve pruning importance estimation but has no post-pruning recovery mechanism. RASP includes recovery-awareness in the pruning score itself via CKA overlap, enabling RLVR recovery to restore more reasoning capability.\n\n### 4. MPruner (2024)\n- **Full Title**: MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning\n- **Authors**: Seungbeom Hu, ChanJun Park, Andrew Ferraiuolo, Sang-Ki Ko, Jinwoo Kim, Haein Song, Jieung Kim\n- **Venue/Year**: arXiv preprint, Aug 2024\n- **arXiv**: 2408.13482\n- **Core Method**: Leverages CKA similarity between consecutive layers to identify redundant layers via clustering. Uses mutual information through vector similarity for global layer-wise pruning decisions. Analysis stage runs in linear time.\n- **Key Results**: Up to 50% reduction in parameters and memory for CNN and transformer models with minimal accuracy loss. Up to 70% compression in some configurations.\n- **vs RASP**: MPruner uses inter-layer CKA for depth pruning (removing entire layers) in CNNs/transformers. RASP uses intra-layer CKA between individual attention heads for width pruning in reasoning LLMs, and crucially uses CKA as a recoverability predictor rather than a redundancy detector.\n\n### 5. PASER (2025)\n- **Full Title**: PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery\n- **Authors**: Bowei He, Lihao Yin, Hui-Ling Zhen, Xiaokun Zhang, Mingxuan Yuan, Chen Ma\n- **Venue/Year**: ICLR 2026 (submitted Feb 2025, revised Feb 2026)\n- **arXiv**: 2502.12594\n- **Core Method**: Post-training data selection for pruned LLM recovery. Uses manifold learning and spectral clustering to group recovery instructions in semantic space, then allocates data budget across clusters by degree of capability degradation. Detects and filters conflicting/irrelevant recovery data.\n- **Key Results**: Recovers general capabilities of pruned LLMs using only 4-20% of original post-training data, significantly outperforming conventional baselines.\n- **vs RASP**: PASER optimizes recovery DATA selection; RASP optimizes pruning STRUCTURE. The two are complementary — PASER could be applied to RASP's recovery phase to further improve data efficiency.\n\n---\n\n## Additional Related Work\n\n### Pruning for Reasoning Models\n\n#### 6. SSGR (Nov 2025)\n- **Full Title**: Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models\n- **Authors**: Yang Xiang, Yixin Ji, Juntao Li, Min Zhang\n- **arXiv**: 2511.18864\n- **Core Method**: First empirical study of pruning LRMs. Proposes Selective Self-Generated Reasoning (SSGR) calibration data strategy — challenging, moderately-lengthy reasoning examples work best.\n- **Key Results**: 10-13% reasoning improvement over general pruning methods on DeepSeek-R1-Distill models.\n- **Relation**: Complements RESP's self-generated calibration approach; from same group as Self-Healing (Ji, Juntao Li, Min Zhang).\n\n#### 7. RAC — Reasoning-Aware Compression (Sep 2025)\n- **Full Title**: Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction\n- **Authors**: Ryan Lucas, Kayhan Behdin, Zhipeng Wang, Qingquan Song, Shao Tang, Rahul Mazumder\n- **Venue/Year**: NeurIPS 2025\n- **arXiv**: 2509.12464\n- **Core Method**: During pruning, jointly reconstructs activations from input AND model's on-policy CoT traces. Integrates into SparseGPT-style pipelines without retraining.\n- **Key Results**: Significant improvement over standard calibration for reasoning model compression.\n- **Relation**: Focuses on unstructured/2:4 sparsity with CoT-aware calibration. RASP targets structured width pruning with recovery prediction.\n\n#### 8. From LLMs to LRMs (Jan 2026)\n- **Full Title**: From LLMs to LRMs: Rethinking Pruning for Reasoning-Centric Models\n- **Authors**: Longwei Ding, Anhao Zhao, Fanghua Ye, Ziyang Chen, Xiaoyu Shen\n- **arXiv**: 2601.18091\n- **Core Method**: Systematic comparison of depth/width/dynamic pruning across instruction-following vs reasoning-augmented models on 17 tasks.\n- **Key Results**: Width pruning outperforms depth pruning for generation and reasoning tasks. Static pruning better preserves reasoning; dynamic methods struggle with extended reasoning chains.\n- **Relation**: Provides evidence motivating RASP's width-pruning focus.\n\n#### 9. Doing More With Less (Apr 2026)\n- **Full Title**: Doing More With Less: Revisiting the Effectiveness of LLM Pruning for Test-Time Scaling\n- **Authors**: Ocean Monjur, Shahriar Kabir Nahin, Anshuman Chhabra\n- **arXiv**: 2604.25098\n- **Core Method**: Studies pruning's impact on test-time scaling (TTS) in reasoning LLMs (s1.1-7B, Qwen3-8B).\n- **Key Results**: Structured pruning significantly degrades TTS performance. Unstructured pruning can augment TTS and even outperform unpruned models. Layer-wise sparsity allocation improves TTS further.\n- **Relation**: Directly motivates why structured pruning needs a recovery mechanism — the degradation is especially severe for reasoning tasks requiring longer chains.\n\n### Reasoning Trace Compression\n\n#### 10. ThinkPrune (Apr 2025)\n- **Full Title**: ThinkPrune: Pruning Long Chain-of-Thought of LLMs via Reinforcement Learning\n- **arXiv**: 2504.01296\n- **Core Method**: Uses RL to prune (shorten) reasoning traces at inference time, addressing \"overthinking\" in long-CoT models.\n- **Key Results**: On AIME24, DeepSeek-R1-Distill-Qwen-1.5B reasoning length reduced by 50% with only 2% performance drop.\n- **Relation**: Orthogonal — prunes reasoning tokens, not model parameters. Could be combined with RASP for joint model+inference compression.\n\n#### 11. Think, Prune, Train, Improve (Apr 2025)\n- **Full Title**: Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models\n- **Authors**: Caia Costello, Simon Guo, Anna Goldie, Azalia Mirhoseini (Stanford)\n- **arXiv**: 2504.18116\n- **Core Method**: Iteratively fine-tunes models on their own correct CoT solutions. Ground-truth pruning filters incorrect traces.\n- **Key Results**: GSM8K: Gemma2-2B 41.9%→57.6%, Gemma2-9B reaches 82% (matching LLaMA-3.1-70B), LLaMA-3.1-70B reaches 91% (surpassing GPT-4o).\n- **Relation**: \"Prune\" refers to trace filtering, not parameter pruning. Different problem setting but relevant to reasoning capability scaling.\n\n---\n\n## Citation BibTeX\n\n```bibtex\n@inproceedings{ji2025selfhealing,\n  title={Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning},\n  author={Ji, Yixin and Lin, Zhimin and Li, Juntao and Wu, Kaixin and Yao, Kai and Jia, Xu and Mo, Linjian and Zhang, Min},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  note={OpenReview ID: Cy8Qa4gAst}\n}\n\n@inproceedings{wang2026grasprune,\n  title={{GRASPrune}: Global Gating for Budgeted Structured Pruning of Large Language Models},\n  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2026},\n  eprint={2604.19398},\n  archivePrefix={arXiv}\n}\n\n@article{wang2025resp,\n  title={Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models},\n  author={Wang, Ziyan and Diao, Enmao and Le, Qi and Wang, Pu and Wang, Guanchu and Lee, Minwoo and Yeh, Shu-ping and Yang, Li},\n  journal={arXiv preprint arXiv:2512.02185},\n  year={2025}\n}\n\n@article{hu2024mpruner,\n  title={{MPruner}: Optimizing Neural Network Size with {CKA}-Based Mutual Information Pruning},\n  author={Hu, Seungbeom and Park, ChanJun and Ferraiuolo, Andrew and Ko, Sang-Ki and Kim, Jinwoo and Song, Haein and Kim, Jieung},\n  journal={arXiv preprint arXiv:2408.13482},\n  year={2024}\n}\n\n@inproceedings{he2025paser,\n  title={{PASER}: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},\n  author={He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},\n  booktitle={International Conference on Learning Representations (ICLR)},\n  year={2026},\n  eprint={2502.12594},\n  archivePrefix={arXiv}\n}\n\n@article{xiang2025ssgr,\n  title={Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models},\n  author={Xiang, Yang and Ji, Yixin and Li, Juntao and Zhang, Min},\n  journal={arXiv preprint arXiv:2511.18864},\n  year={2025}\n}\n\n@inproceedings{lucas2025rac,\n  title={Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction},\n  author={Lucas, Ryan and Behdin, Kayhan and Wang, Zhipeng and Song, Qingquan and Tang, Shao and Mazumder, Rahul},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025},\n  eprint={2509.12464},\n  archivePrefix={arXiv}\n}\n\n@article{ding2026lrmpruning,\n  title={From {LLMs} to {LRMs}: Rethinking Pruning for Reasoning-Centric Models},\n  author={Ding, Longwei and Zhao, Anhao and Ye, Fanghua and Chen, Ziyang and Shen, Xiaoyu},\n  journal={arXiv preprint arXiv:2601.18091},\n  year={2026}\n}\n\n@article{monjur2026doingmore,\n  title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n  author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n  journal={arXiv preprint arXiv:2604.25098},\n  year={2026}\n}\n\n@article{thinkprune2025,\n  title={{ThinkPrune}: Pruning Long Chain-of-Thought of {LLMs} via Reinforcement Learning},\n  journal={arXiv preprint arXiv:2504.01296},\n  year={2025}\n}\n\n@article{costello2025thinkprunetrain,\n  title={Think, Prune, Train, Improve: Scaling Reasoning without Scaling Models},\n  author={Costello, Caia and Guo, Simon and Goldie, Anna and Mirhoseini, Azalia},\n  journal={arXiv preprint arXiv:2504.18116},\n  year={2025}\n}\n```\n\n---\n\n## Search Notes\n\n- **Self-Healing**: No arXiv ID found. Paper only on OpenReview (Cy8Qa4gAst). Submitted Sep 2025, accepted ICLR 2026.\n- **RESP**: No confirmed venue acceptance. arXiv-only (2512.02185, Dec 2025).\n- **SSGR vs RESP**: Both titled \"Think Before You Prune\" but different papers/groups. SSGR (2511.18864) from Ji/Li/Zhang group (same as Self-Healing). RESP (2512.02185) from Wang/Diao/Yang group.\n- All 5 core papers verified real via WebSearch + WebFetch. No fabricated entries.\n",
+                "numLines": 205,
+                "startLine": 1,
+                "totalLines": 205
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019UsMwXpLerxsCywSwaaTZK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "f3e7c660-43e5-4585-bd15-701b9116725b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fqexs1nf7oaqAwMbEiQ2AH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11453,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11453
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T04:59:08.709Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019UsMwXpLerxsCywSwaaTZK",
+              "type": "tool_result",
+              "content": "1\t@article{deepseek2025r1,\n2\t  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},\n3\t  author={{DeepSeek-AI}},\n4\t  journal={arXiv preprint arXiv:2501.12948},\n5\t  year={2025},\n6\t  url={https://arxiv.org/abs/2501.12948}\n7\t}\n8\t\n9\t@article{qwen2.5,\n10\t  title={Qwen2.5 Technical Report},\n11\t  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and others},\n12\t  journal={arXiv preprint arXiv:2412.15115},\n13\t  year={2024},\n14\t  url={https://arxiv.org/abs/2412.15115}\n15\t}\n16\t\n17\t@article{cobbe2021gsm8k,\n18\t  title={Training Verifiers to Solve Math Word Problems},\n19\t  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n20\t  journal={arXiv preprint arXiv:2110.14168},\n21\t  year={2021},\n22\t  url={https://arxiv.org/abs/2110.14168}\n23\t}\n24\t\n25\t@article{shao2024grpo,\n26\t  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n27\t  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n28\t  journal={arXiv preprint arXiv:2402.03300},\n29\t  year={2024},\n30\t  url={https://arxiv.org/abs/2402.03300}\n31\t}\n32\t\n33\t@inproceedings{llmpruner2023,\n34\t  title={LLM-Pruner: On the Structural Pruning of Large Language Models},\n35\t  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},\n36\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n37\t  year={2023},\n38\t  url={https://arxiv.org/abs/2305.11627}\n39\t}\n40\t\n41\t@inproceedings{graspprune2026,\n42\t  title={GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models},\n43\t  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n44\t  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},\n45\t  year={2026},\n46\t  url={https://arxiv.org/abs/2604.19398}\n47\t}\n48\t\n49\t@article{resp2025,\n50\t  title={Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models},\n51\t  author={Wang, Ziyan and Diao, Enmao and Le, Qi and Wang, Pu and Wang, Guanchu and Lee, Minwoo and Yeh, Shu-ping and Yang, Li},\n52\t  journal={arXiv preprint arXiv:2512.02185},\n53\t  year={2025},\n54\t  url={https://arxiv.org/abs/2512.02185}\n55\t}\n56\t\n57\t@article{selfhealing2025,\n58\t  title={Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning},\n59\t  author={Ji, Yixin and Lin, Zhimin and Li, Juntao and Wu, Kaixin and Yao, Kai and Jia, Xu and Mo, Linjian and Zhang, Min},\n60\t  year={2025},\n61\t  note={Under review},\n62\t  url={https://openreview.net/forum?id=Cy8Qa4gAst}\n63\t}\n64\t\n65\t@inproceedings{bonsai2025,\n66\t  title={Everybody Prune Now: Structured Pruning of LLMs with only Forward Passes},\n67\t  author={Kolawole, Steven and Dery, Lucio and Kagy, Jean-Fran\\c{c}ois and Smith, Virginia and Neubig, Graham and Talwalkar, Ameet},\n68\t  booktitle={Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n69\t  year={2025},\n70\t  url={https://arxiv.org/abs/2402.05406}\n71\t}\n72\t\n73\t@article{paser2025,\n74\t  title={PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},\n75\t  author={He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},\n76\t  journal={arXiv preprint arXiv:2502.12594},\n77\t  year={2025},\n78\t  url={https://arxiv.org/abs/2502.12594},\n79\t  note={Under review}\n80\t}\n81\t\n82\t@inproceedings{rlsqueezes2026,\n83\t  title={RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs},\n84\t  author={Matsutani, Kohsei and Takashiro, Shota and Minegishi, Gouki and Kojima, Takeshi and Iwasawa, Yusuke and Matsuo, Yutaka},\n85\t  booktitle={Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n86\t  year={2026},\n87\t  url={https://arxiv.org/abs/2509.21128}\n88\t}\n89\t\n90\t@inproceedings{kornblith2019cka,\n91\t  title={Similarity of Neural Network Representations Revisited},\n92\t  author={Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n93\t  booktitle={Proceedings of the 36th International Conference on Machine Learning (ICML)},\n94\t  year={2019},\n95\t  url={https://arxiv.org/abs/1905.00414}\n96\t}\n97\t\n98\t@article{mpruner2024,\n99\t  title={MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning},\n100\t  author={Hu, Seungbeom and Park, Chanjun and Ferraiuolo, Andrew and Ko, Sang-Ki and Kim, Jinwoo and Song, Haein and Kim, Jieung},\n101\t  journal={arXiv preprint arXiv:2408.13482},\n102\t  year={2024},\n103\t  url={https://arxiv.org/abs/2408.13482}\n104\t}\n105\t\n106\t@mastersthesis{lachance2024cka,\n107\t  title={Using Centered Kernel Alignment for Understanding and Pruning Neural Networks},\n108\t  author={Lachance, Alex},\n109\t  school={University of Rhode Island},\n110\t  year={2024},\n111\t  url={https://digitalcommons.uri.edu/theses/2283/}\n112\t}\n113\t\n114\t@inproceedings{frankle2019lth,\n115\t  title={The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n116\t  author={Frankle, Jonathan and Carbin, Michael},\n117\t  booktitle={Proceedings of the 7th International Conference on Learning Representations (ICLR)},\n118\t  year={2019},\n119\t  url={https://arxiv.org/abs/1803.03635}\n120\t}\n121\t\n122\t@inproceedings{ainslie2023gqa,\n123\t  title={{GQA}: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints},\n124\t  author={Ainslie, Joshua and Lee-Thorp, James and de Jong, Michiel and Zemlyanskiy, Yury and Lebr{\\'o}n, Federico and Sanghai, Sumit},\n125\t  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n126\t  year={2023},\n127\t  url={https://arxiv.org/abs/2305.13245}\n128\t}\n129\t\n130\t@article{shortgpt2024,\n131\t  title={{ShortGPT}: Layers in Large Language Models are More Redundant Than You Expect},\n132\t  author={Men, Xin and Xu, Mingyu and Zhang, Qingyu and Wang, Bingning and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Chen, Weipeng},\n133\t  journal={arXiv preprint arXiv:2403.03853},\n134\t  year={2024},\n135\t  url={https://arxiv.org/abs/2403.03853}\n136\t}\n137\t\n138\t@inproceedings{slicegpt2024,\n139\t  title={{SliceGPT}: Compress Large Language Models by Deleting Rows and Columns},\n140\t  author={Ashkboos, Saleh and Croci, Maximilian L. and Gennari do Nascimento, Marcelo and Hoefler, Torsten and Hensman, James},\n141\t  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n142\t  year={2024},\n143\t  url={https://arxiv.org/abs/2401.15024}\n144\t}\n145\t\n146\t@inproceedings{wanda2024,\n147\t  title={A Simple and Effective Pruning Approach for Large Language Models},\n148\t  author={Sun, Mingjie and Liu, Zhuang and Bair, Anna and Kolter, J. Zico},\n149\t  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n150\t  year={2024},\n151\t  url={https://arxiv.org/abs/2306.11695}\n152\t}\n153\t\n154\t@article{llms2lrms2026,\n155\t  title={From {LLMs} to {LRMs}: Rethinking Pruning for Reasoning-Centric Models},\n156\t  author={Ding, Longwei and Zhao, Anhao and Ye, Fanghua and Chen, Ziyang and Shen, Xiaoyu},\n157\t  journal={arXiv preprint arXiv:2601.18091},\n158\t  year={2026},\n159\t  url={https://arxiv.org/abs/2601.18091}\n160\t}\n161\t\n162\t@inproceedings{rac2025,\n163\t  title={Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction},\n164\t  author={Lucas, Ryan and Behdin, Kayhan and Wang, Zhipeng and Song, Qingquan and Tang, Shao and Mazumder, Rahul},\n165\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n166\t  year={2025},\n167\t  url={https://arxiv.org/abs/2509.12464}\n168\t}\n169\t\n170\t@article{doingmore2026,\n171\t  title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n172\t  author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n173\t  journal={arXiv preprint arXiv:2604.25098},\n174\t  year={2026},\n175\t  url={https://arxiv.org/abs/2604.25098}\n176\t}\n177\t\n178\t@inproceedings{p2law2025,\n179\t  title={{P\\textsuperscript{2}} Law: Scaling Law for Post-Training After Model Pruning},\n180\t  author={Chen, Xiaodong and Hu, Yuxuan and Zhang, Xiaokang and Wang, Yanling and Li, Cuiping and Chen, Hong and Zhang, Jing},\n181\t  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n182\t  year={2025},\n183\t  url={https://arxiv.org/abs/2411.10272}\n184\t}\n185\t\n186\t@inproceedings{pat2025,\n187\t  title={{PAT}: Pruning-Aware Tuning for Large Language Models},\n188\t  author={Liu, Yijiang and Yang, Huanrui and Chen, Youxin and Zhang, Rongyu and Wang, Miao and Du, Yuan and Du, Li},\n189\t  booktitle={Proceedings of the 39th AAAI Conference on Artificial Intelligence (AAAI)},\n190\t  year={2025},\n191\t  url={https://arxiv.org/abs/2408.14721}\n192\t}\n193\t\n194\t@article{opsd2026,\n195\t  title={{OPSD} Compresses What {RLVR} Teaches: A Post-{RL} Compaction Stage for Reasoning Models},\n196\t  author={Kim, Jaehoon and Lee, Dongha},\n197\t  journal={arXiv preprint arXiv:2605.06188},\n198\t  year={2026},\n199\t  url={https://arxiv.org/abs/2605.06188}\n200\t}\n201\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "109390a0-3cba-46c6-93c9-5213f43367fb",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib",
+                "content": "@article{deepseek2025r1,\n  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},\n  author={{DeepSeek-AI}},\n  journal={arXiv preprint arXiv:2501.12948},\n  year={2025},\n  url={https://arxiv.org/abs/2501.12948}\n}\n\n@article{qwen2.5,\n  title={Qwen2.5 Technical Report},\n  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and others},\n  journal={arXiv preprint arXiv:2412.15115},\n  year={2024},\n  url={https://arxiv.org/abs/2412.15115}\n}\n\n@article{cobbe2021gsm8k,\n  title={Training Verifiers to Solve Math Word Problems},\n  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal={arXiv preprint arXiv:2110.14168},\n  year={2021},\n  url={https://arxiv.org/abs/2110.14168}\n}\n\n@article{shao2024grpo,\n  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n  journal={arXiv preprint arXiv:2402.03300},\n  year={2024},\n  url={https://arxiv.org/abs/2402.03300}\n}\n\n@inproceedings{llmpruner2023,\n  title={LLM-Pruner: On the Structural Pruning of Large Language Models},\n  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.11627}\n}\n\n@inproceedings{graspprune2026,\n  title={GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models},\n  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2026},\n  url={https://arxiv.org/abs/2604.19398}\n}\n\n@article{resp2025,\n  title={Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models},\n  author={Wang, Ziyan and Diao, Enmao and Le, Qi and Wang, Pu and Wang, Guanchu and Lee, Minwoo and Yeh, Shu-ping and Yang, Li},\n  journal={arXiv preprint arXiv:2512.02185},\n  year={2025},\n  url={https://arxiv.org/abs/2512.02185}\n}\n\n@article{selfhealing2025,\n  title={Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning},\n  author={Ji, Yixin and Lin, Zhimin and Li, Juntao and Wu, Kaixin and Yao, Kai and Jia, Xu and Mo, Linjian and Zhang, Min},\n  year={2025},\n  note={Under review},\n  url={https://openreview.net/forum?id=Cy8Qa4gAst}\n}\n\n@inproceedings{bonsai2025,\n  title={Everybody Prune Now: Structured Pruning of LLMs with only Forward Passes},\n  author={Kolawole, Steven and Dery, Lucio and Kagy, Jean-Fran\\c{c}ois and Smith, Virginia and Neubig, Graham and Talwalkar, Ameet},\n  booktitle={Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year={2025},\n  url={https://arxiv.org/abs/2402.05406}\n}\n\n@article{paser2025,\n  title={PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},\n  author={He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},\n  journal={arXiv preprint arXiv:2502.12594},\n  year={2025},\n  url={https://arxiv.org/abs/2502.12594},\n  note={Under review}\n}\n\n@inproceedings{rlsqueezes2026,\n  title={RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs},\n  author={Matsutani, Kohsei and Takashiro, Shota and Minegishi, Gouki and Kojima, Takeshi and Iwasawa, Yusuke and Matsuo, Yutaka},\n  booktitle={Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2509.21128}\n}\n\n@inproceedings{kornblith2019cka,\n  title={Similarity of Neural Network Representations Revisited},\n  author={Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle={Proceedings of the 36th International Conference on Machine Learning (ICML)},\n  year={2019},\n  url={https://arxiv.org/abs/1905.00414}\n}\n\n@article{mpruner2024,\n  title={MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning},\n  author={Hu, Seungbeom and Park, Chanjun and Ferraiuolo, Andrew and Ko, Sang-Ki and Kim, Jinwoo and Song, Haein and Kim, Jieung},\n  journal={arXiv preprint arXiv:2408.13482},\n  year={2024},\n  url={https://arxiv.org/abs/2408.13482}\n}\n\n@mastersthesis{lachance2024cka,\n  title={Using Centered Kernel Alignment for Understanding and Pruning Neural Networks},\n  author={Lachance, Alex},\n  school={University of Rhode Island},\n  year={2024},\n  url={https://digitalcommons.uri.edu/theses/2283/}\n}\n\n@inproceedings{frankle2019lth,\n  title={The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n  author={Frankle, Jonathan and Carbin, Michael},\n  booktitle={Proceedings of the 7th International Conference on Learning Representations (ICLR)},\n  year={2019},\n  url={https://arxiv.org/abs/1803.03635}\n}\n\n@inproceedings{ainslie2023gqa,\n  title={{GQA}: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints},\n  author={Ainslie, Joshua and Lee-Thorp, James and de Jong, Michiel and Zemlyanskiy, Yury and Lebr{\\'o}n, Federico and Sanghai, Sumit},\n  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.13245}\n}\n\n@article{shortgpt2024,\n  title={{ShortGPT}: Layers in Large Language Models are More Redundant Than You Expect},\n  author={Men, Xin and Xu, Mingyu and Zhang, Qingyu and Wang, Bingning and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Chen, Weipeng},\n  journal={arXiv preprint arXiv:2403.03853},\n  year={2024},\n  url={https://arxiv.org/abs/2403.03853}\n}\n\n@inproceedings{slicegpt2024,\n  title={{SliceGPT}: Compress Large Language Models by Deleting Rows and Columns},\n  author={Ashkboos, Saleh and Croci, Maximilian L. and Gennari do Nascimento, Marcelo and Hoefler, Torsten and Hensman, James},\n  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2401.15024}\n}\n\n@inproceedings{wanda2024,\n  title={A Simple and Effective Pruning Approach for Large Language Models},\n  author={Sun, Mingjie and Liu, Zhuang and Bair, Anna and Kolter, J. Zico},\n  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2306.11695}\n}\n\n@article{llms2lrms2026,\n  title={From {LLMs} to {LRMs}: Rethinking Pruning for Reasoning-Centric Models},\n  author={Ding, Longwei and Zhao, Anhao and Ye, Fanghua and Chen, Ziyang and Shen, Xiaoyu},\n  journal={arXiv preprint arXiv:2601.18091},\n  year={2026},\n  url={https://arxiv.org/abs/2601.18091}\n}\n\n@inproceedings{rac2025,\n  title={Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction},\n  author={Lucas, Ryan and Behdin, Kayhan and Wang, Zhipeng and Song, Qingquan and Tang, Shao and Mazumder, Rahul},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025},\n  url={https://arxiv.org/abs/2509.12464}\n}\n\n@article{doingmore2026,\n  title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n  author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n  journal={arXiv preprint arXiv:2604.25098},\n  year={2026},\n  url={https://arxiv.org/abs/2604.25098}\n}\n\n@inproceedings{p2law2025,\n  title={{P\\textsuperscript{2}} Law: Scaling Law for Post-Training After Model Pruning},\n  author={Chen, Xiaodong and Hu, Yuxuan and Zhang, Xiaokang and Wang, Yanling and Li, Cuiping and Chen, Hong and Zhang, Jing},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2025},\n  url={https://arxiv.org/abs/2411.10272}\n}\n\n@inproceedings{pat2025,\n  title={{PAT}: Pruning-Aware Tuning for Large Language Models},\n  author={Liu, Yijiang and Yang, Huanrui and Chen, Youxin and Zhang, Rongyu and Wang, Miao and Du, Yuan and Du, Li},\n  booktitle={Proceedings of the 39th AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2025},\n  url={https://arxiv.org/abs/2408.14721}\n}\n\n@article{opsd2026,\n  title={{OPSD} Compresses What {RLVR} Teaches: A Post-{RL} Compaction Stage for Reasoning Models},\n  author={Kim, Jaehoon and Lee, Dongha},\n  journal={arXiv preprint arXiv:2605.06188},\n  year={2026},\n  url={https://arxiv.org/abs/2605.06188}\n}\n",
+                "numLines": 201,
+                "startLine": 1,
+                "totalLines": 201
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PxP18SnDb7aEEfkbVqaBEb",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "8c437394-54e9-4257-b9d2-8d3187d85ba4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fqexs1nf7oaqAwMbEiQ2AH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11453,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11453
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T04:59:09.260Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PxP18SnDb7aEEfkbVqaBEb",
+              "type": "tool_result",
+              "content": "1\t\\section{Method: Recovery-Aware Structured Pruning}\n2\t\\label{sec:method}\n3\t\n4\tWe propose \\textbf{Recovery-Aware Structured Pruning (\\rasp{})}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\n5\tThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n6\t\n7\t\\subsection{Preliminaries and Notation}\n8\t\\label{sec:prelim}\n9\t\n10\t\\paragraph{Structured pruning.}\n11\tGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\n12\tWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n13\t\n14\t\\paragraph{Grouped Query Attention (GQA).}\n15\tIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\n16\tFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\n17\tWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n18\t\n19\t\\paragraph{RLVR and GRPO.}\n20\tReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\n21\tWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n22\t\n23\t\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n24\t\\label{sec:stage1}\n25\t\n26\t\\rasp{} computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's contribution to reasoning, and \\emph{functional overlap} $F(h)$ measuring the degree to which its function is recoverable from other structures.\n27\t\n28\t\\paragraph{Self-calibrated reasoning traces.}\n29\tFollowing~\\citet{resp2025}, we generate chain-of-thought reasoning traces from the model's own distribution rather than using external calibration data.\n30\tGiven a calibration set of reasoning problems $\\mathcal{D}_\\text{cal}$, we sample traces $\\{(x_j, \\hat{y}_j)\\}_{j=1}^{M}$ where $\\hat{y}_j \\sim p_\\mathcal{M}(\\cdot \\mid x_j)$.\n31\tThis ensures importance scores reflect the model's actual reasoning pathways.\n32\t\n33\t\\paragraph{Structural importance.}\n34\tFor each structure $h$, we compute importance $I(h)$ via first-order Taylor expansion on the reasoning trace loss:\n35\t\\begin{equation}\n36\t    I(h) = \\left| \\sum_{(x,\\hat{y}) \\in \\mathcal{D}_\\text{cal}} \\mathbf{a}_h(x, \\hat{y})^\\top \\frac{\\partial \\mathcal{L}(x, \\hat{y})}{\\partial \\mathbf{a}_h} \\right|,\n37\t    \\label{eq:importance}\n38\t\\end{equation}\n39\twhere $\\mathbf{a}_h$ denotes the activation of structure $h$ and $\\mathcal{L}$ is the language modeling loss over the reasoning trace.\n40\tFor a GQA group $g$ containing Q heads $\\{q_1, \\ldots, q_G\\}$ and KV head $k$, we aggregate: $I(g) = \\sum_{i=1}^{G} I(q_i) + I(k)$.\n41\t\n42\t\\paragraph{Functional overlap via CKA.}\n43\tWe measure functional overlap using linear Centered Kernel Alignment (CKA;~\\citealp{kornblith2019cka}), which quantifies similarity between two sets of representations invariant to invertible linear transformations.\n44\tGiven activation matrices $\\mathbf{X}, \\mathbf{Y} \\in \\mathbb{R}^{n \\times d}$ collected over $n$ calibration examples, linear CKA is:\n45\t\\begin{equation}\n46\t    \\text{CKA}(\\mathbf{X}, \\mathbf{Y}) = \\frac{\\text{HSIC}(\\mathbf{X}, \\mathbf{Y})}{\\sqrt{\\text{HSIC}(\\mathbf{X}, \\mathbf{X}) \\cdot \\text{HSIC}(\\mathbf{Y}, \\mathbf{Y})}},\n47\t    \\label{eq:cka}\n48\t\\end{equation}\n49\twhere $\\text{HSIC}(\\mathbf{X}, \\mathbf{Y}) = \\frac{1}{(n-1)^2} \\operatorname{tr}(\\mathbf{K} \\mathbf{H} \\mathbf{L} \\mathbf{H})$, with $\\mathbf{K} = \\mathbf{X}\\mathbf{X}^\\top$, $\\mathbf{L} = \\mathbf{Y}\\mathbf{Y}^\\top$, and $\\mathbf{H} = \\mathbf{I}_n - \\frac{1}{n}\\mathbf{1}\\mathbf{1}^\\top$.\n50\t\n51\tFor a GQA group $g_i$ in layer $\\ell$, we form its representation by concatenating its constituent Q head activations: $\\mathbf{X}_{g_i} = [\\mathbf{a}_{q_1}; \\ldots; \\mathbf{a}_{q_G}] \\in \\mathbb{R}^{n \\times Gd_h}$.\n52\tThe functional overlap of $g_i$ is the mean pairwise CKA with other groups in the same layer:\n53\t\\begin{equation}\n54\t    F(g_i) = \\frac{1}{|\\mathcal{G}_\\ell| - 1} \\sum_{\\substack{g_j \\in \\mathcal{G}_\\ell \\\\ j \\neq i}} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j}),\n55\t    \\label{eq:overlap}\n56\t\\end{equation}\n57\twhere $\\mathcal{G}_\\ell$ is the set of GQA groups in layer $\\ell$.\n58\tUnlike prior work that uses inter-layer CKA to identify globally redundant layers for depth pruning~\\citep{mpruner2024,lachance2024cka}, \\rasp{} uses \\emph{intra-layer} CKA between individual GQA groups to predict per-structure recoverability---a fundamentally different granularity and objective.\n59\t\n60\t\\subsection{Stage 2: Recovery-Aware Scoring}\n61\t\\label{sec:stage2}\n62\t\n63\tThe recovery-aware score combines importance and functional overlap:\n64\t\\begin{equation}\n65\t    S(h) = I(h) \\times \\big(1 - F(h)\\big)^\\alpha,\n66\t    \\label{eq:score}\n67\t\\end{equation}\n68\twhere $\\alpha > 0$ controls the strength of the recoverability penalty.\n69\tStructures with the lowest $S(h)$ are pruned up to the target sparsity ratio.\n70\t\n71\tThe scoring captures three regimes:\n72\t\\begin{itemize}[nosep,leftmargin=*]\n73\t    \\item \\textbf{High $I$, low $F$} (irreplaceable scaffolding): No other structure can assume its function. High $S$ $\\rightarrow$ \\emph{protected}.\n74\t    \\item \\textbf{High $I$, high $F$} (redundant but important): RLVR can redistribute its function via global exploration. Low $S$ $\\rightarrow$ \\emph{pruned preferentially}.\n75\t    \\item \\textbf{Low $I$} (unimportant): Pruned regardless of overlap.\n76\t\\end{itemize}\n77\t\n78\tThe key distinction from standard pruning---which ranks solely by $I(h)$---is that \\rasp{} additionally down-weights protection of structures whose function overlaps with retained structures.\n79\tThis is motivated by the finding that RLVR recovers through global exploration and path compression~\\citep{rlsqueezes2026}, making high-overlap structures more amenable to functional redistribution than unique structures of equivalent importance.\n80\t\n81\t\\paragraph{Per-layer capacity floor.}\n82\tGlobal ranking by $S(h)$ can concentrate pruning in layers where many structures have high overlap, collapsing that layer's representational capacity.\n83\tTo prevent this, we enforce a per-layer capacity floor: each layer must retain at least 40\\% of its MLP channel groups after pruning.\n84\tFor DeepSeek-R1-Distill-Qwen-7B, this requires ${\\ge}12$ of 28 MLP groups per layer.\n85\tDuring structure selection, if removing a candidate would violate this constraint, it is skipped in favor of the next lowest-scoring structure.\n86\tThis constraint adds negligible overhead to the scoring procedure but prevents representational collapse in individual layers---a failure mode we observed when unconstrained global ranking was applied at 20\\% sparsity.\n87\t\n88\tAttention GQA groups and MLP channel groups are scored jointly and ranked in a unified list, enabling cross-component pruning decisions subject to the per-layer floor.\n89\tAlgorithm~\\ref{alg:rasp} summarizes the complete pipeline.\n90\t\n91\t\\subsection{Stage 3: Two-Stage Recovery}\n92\t\\label{sec:stage3}\n93\t\n94\tAfter pruning, we recover reasoning ability through two stages: supervised finetuning (SFT) warmup followed by GRPO-based RLVR.\n95\t\n96\t\\paragraph{Motivation for two-stage recovery.}\n97\tDirectly applying GRPO to a pruned model fails.\n98\tStructured pruning disrupts the model's ability to generate end-of-sequence (EOS) tokens: in sampling mode, pruned models produce repetitive digit loops without termination, yielding sequences that are truncated at the maximum length.\n99\tSince GRPO computes rewards only from completed generations, this EOS collapse means no valid completions are produced, the clipped ratio reaches 1.0, and gradient norms drop to zero---making direct RLVR recovery impossible.\n100\t\n101\t\\paragraph{Stage 3a: SFT warmup.}\n102\tWe first apply a short SFT phase on reasoning demonstrations to restore two capabilities destroyed by pruning: (1) EOS token generation, ensuring the model can terminate sequences, and (2) basic format compliance, so that outputs follow the expected answer extraction pattern.\n103\tSFT warmup uses teacher-forced training on chain-of-thought traces, which does not require the model to produce complete generations and thus bypasses the EOS collapse problem.\n104\tThis stage is intentionally brief---its purpose is to restore the minimal generation competence needed for GRPO, not to recover full reasoning ability.\n105\t\n106\t\\paragraph{Stage 3b: GRPO recovery.}\n107\tWith generation competence restored, we apply GRPO-based RLVR on mathematical reasoning data to recover the pruned model's reasoning ability.\n108\tThe reward is binary: $r = 1$ if the model's final answer matches the ground truth, $r = 0$ otherwise.\n109\tRLVR is preferred over extended SFT for reasoning recovery because of their fundamentally different training dynamics: \\citet{rlsqueezes2026} show that RLVR \\emph{compresses} incorrect reasoning trajectories while SFT \\emph{expands} correct ones.\n110\tFor a pruned model, RLVR can globally explore and redistribute functionality across remaining structures, while SFT is limited to imitating fixed trajectories through a reduced architecture.\n111\tStructures with high functional overlap $F(h)$ are precisely those whose function can be absorbed by similar retained structures through RLVR's global optimization---the theoretical basis for \\rasp{}'s scoring criterion.\n112\t\n113\t\\begin{algorithm}[t]\n114\t\\caption{Recovery-Aware Structured Pruning (\\rasp{})}\n115\t\\label{alg:rasp}\n116\t\\begin{algorithmic}[1]\n117\t\\Require Model $\\mathcal{M}$, calibration problems $\\mathcal{D}_\\text{cal}$, target sparsity $s$, overlap weight $\\alpha$, SFT data $\\mathcal{D}_\\text{sft}$, RLVR data $\\mathcal{D}_\\text{rlvr}$, layer floor $\\tau$\n118\t\\Ensure Pruned and recovered model $\\mathcal{M}'$\n119\t\\Statex \\textit{\\% Stage 1: Reasoning-Trace Structural Analysis}\n120\t\\State Sample traces $\\{(x_j, \\hat{y}_j)\\} \\sim p_\\mathcal{M}(\\cdot \\mid \\mathcal{D}_\\text{cal})$\n121\t\\For{each structure $h \\in \\mathcal{H}$}\n122\t    \\State Compute $I(h)$ via Eq.~\\eqref{eq:importance}\n123\t    \\State Collect activations $\\mathbf{X}_h$\n124\t\\EndFor\n125\t\\For{each layer $\\ell = 1, \\ldots, L$}\n126\t    \\For{each group $g_i \\in \\mathcal{G}_\\ell$}\n127\t        \\State $F(g_i) \\gets \\frac{1}{|\\mathcal{G}_\\ell|-1} \\sum_{j \\neq i} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j})$\n128\t    \\EndFor\n129\t\\EndFor\n130\t\\Statex \\textit{\\% Stage 2: Recovery-Aware Scoring}\n131\t\\For{each structure $h \\in \\mathcal{H}$}\n132\t    \\State $S(h) \\gets I(h) \\times (1 - F(h))^\\alpha$\n133\t\\EndFor\n134\t\\State Sort $\\mathcal{H}$ by $S(h)$ ascending\n135\t\\State $\\mathcal{P} \\gets \\emptyset$\n136\t\\For{each $h$ in sorted $\\mathcal{H}$}\n137\t    \\If{layer($h$) retains $< \\tau$ fraction after adding $h$ to $\\mathcal{P}$}\n138\t        \\State \\textbf{continue}\n139\t    \\EndIf\n140\t    \\State $\\mathcal{P} \\gets \\mathcal{P} \\cup \\{h\\}$\n141\t    \\If{$\\sum_{h' \\in \\mathcal{P}} \\text{params}(h') \\ge s \\cdot |\\theta|$}\n142\t        \\State \\textbf{break}\n143\t    \\EndIf\n144\t\\EndFor\n145\t\\State $\\mathcal{M}_\\text{pruned} \\gets \\text{Remove}(\\mathcal{M}, \\mathcal{P})$\n146\t\\Statex \\textit{\\% Stage 3: Two-Stage Recovery}\n147\t\\State $\\mathcal{M}_\\text{warm} \\gets \\text{SFT}(\\mathcal{M}_\\text{pruned}, \\mathcal{D}_\\text{sft})$ \\hfill $\\triangleright$ restore EOS \\& format\n148\t\\State $\\mathcal{M}' \\gets \\text{GRPO}(\\mathcal{M}_\\text{warm}, \\mathcal{D}_\\text{rlvr})$ \\hfill $\\triangleright$ restore reasoning\n149\t\\State \\Return $\\mathcal{M}'$\n150\t\\end{algorithmic}\n151\t\\end{algorithm}\n152\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "4d86f043-c4e1-498f-8177-22323c5b6dd7",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/method.tex",
+                "content": "\\section{Method: Recovery-Aware Structured Pruning}\n\\label{sec:method}\n\nWe propose \\textbf{Recovery-Aware Structured Pruning (\\rasp{})}, a three-stage framework that optimizes structural pruning decisions for post-RLVR recoverability rather than immediate accuracy preservation.\nThe core insight is that structures with high functional overlap---those whose computations are redundant with other retained structures---are more recoverable under RLVR, because reinforcement learning can redistribute their function through global exploration~\\citep{rlsqueezes2026}.\n\n\\subsection{Preliminaries and Notation}\n\\label{sec:prelim}\n\n\\paragraph{Structured pruning.}\nGiven a pretrained transformer $\\mathcal{M}$ with $L$ layers, structured pruning removes entire computational units---attention heads or MLP channels---to reduce model size while maintaining hardware-friendly dense computation.\nWe denote the set of prunable structures as $\\mathcal{H} = \\{h_1, h_2, \\ldots, h_N\\}$.\n\n\\paragraph{Grouped Query Attention (GQA).}\nIn GQA architectures~\\citep{ainslie2023gqa}, $n_Q$ query heads share $n_{KV}$ key-value heads, with each KV head serving a group of $G = n_Q / n_{KV}$ query heads.\nFor DeepSeek-R1-Distill-Qwen-7B ($n_Q{=}28$, $n_{KV}{=}4$), $G = 7$, yielding 4 GQA groups per layer.\nWe treat each GQA group (7 Q heads + 1 KV head) as a single prunable unit, since removing a KV head necessitates removing all associated Q heads.\n\n\\paragraph{RLVR and GRPO.}\nReinforcement Learning with Verifiable Rewards (RLVR) recovers pruned model capabilities using outcome-based rewards from tasks with verifiable answers.\nWe use Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) as the recovery algorithm, following~\\citet{selfhealing2025}.\n\n\\subsection{Stage 1: Reasoning-Trace Structural Analysis}\n\\label{sec:stage1}\n\n\\rasp{} computes two complementary scores per structure: \\emph{importance} $I(h)$ capturing the structure's contribution to reasoning, and \\emph{functional overlap} $F(h)$ measuring the degree to which its function is recoverable from other structures.\n\n\\paragraph{Self-calibrated reasoning traces.}\nFollowing~\\citet{resp2025}, we generate chain-of-thought reasoning traces from the model's own distribution rather than using external calibration data.\nGiven a calibration set of reasoning problems $\\mathcal{D}_\\text{cal}$, we sample traces $\\{(x_j, \\hat{y}_j)\\}_{j=1}^{M}$ where $\\hat{y}_j \\sim p_\\mathcal{M}(\\cdot \\mid x_j)$.\nThis ensures importance scores reflect the model's actual reasoning pathways.\n\n\\paragraph{Structural importance.}\nFor each structure $h$, we compute importance $I(h)$ via first-order Taylor expansion on the reasoning trace loss:\n\\begin{equation}\n    I(h) = \\left| \\sum_{(x,\\hat{y}) \\in \\mathcal{D}_\\text{cal}} \\mathbf{a}_h(x, \\hat{y})^\\top \\frac{\\partial \\mathcal{L}(x, \\hat{y})}{\\partial \\mathbf{a}_h} \\right|,\n    \\label{eq:importance}\n\\end{equation}\nwhere $\\mathbf{a}_h$ denotes the activation of structure $h$ and $\\mathcal{L}$ is the language modeling loss over the reasoning trace.\nFor a GQA group $g$ containing Q heads $\\{q_1, \\ldots, q_G\\}$ and KV head $k$, we aggregate: $I(g) = \\sum_{i=1}^{G} I(q_i) + I(k)$.\n\n\\paragraph{Functional overlap via CKA.}\nWe measure functional overlap using linear Centered Kernel Alignment (CKA;~\\citealp{kornblith2019cka}), which quantifies similarity between two sets of representations invariant to invertible linear transformations.\nGiven activation matrices $\\mathbf{X}, \\mathbf{Y} \\in \\mathbb{R}^{n \\times d}$ collected over $n$ calibration examples, linear CKA is:\n\\begin{equation}\n    \\text{CKA}(\\mathbf{X}, \\mathbf{Y}) = \\frac{\\text{HSIC}(\\mathbf{X}, \\mathbf{Y})}{\\sqrt{\\text{HSIC}(\\mathbf{X}, \\mathbf{X}) \\cdot \\text{HSIC}(\\mathbf{Y}, \\mathbf{Y})}},\n    \\label{eq:cka}\n\\end{equation}\nwhere $\\text{HSIC}(\\mathbf{X}, \\mathbf{Y}) = \\frac{1}{(n-1)^2} \\operatorname{tr}(\\mathbf{K} \\mathbf{H} \\mathbf{L} \\mathbf{H})$, with $\\mathbf{K} = \\mathbf{X}\\mathbf{X}^\\top$, $\\mathbf{L} = \\mathbf{Y}\\mathbf{Y}^\\top$, and $\\mathbf{H} = \\mathbf{I}_n - \\frac{1}{n}\\mathbf{1}\\mathbf{1}^\\top$.\n\nFor a GQA group $g_i$ in layer $\\ell$, we form its representation by concatenating its constituent Q head activations: $\\mathbf{X}_{g_i} = [\\mathbf{a}_{q_1}; \\ldots; \\mathbf{a}_{q_G}] \\in \\mathbb{R}^{n \\times Gd_h}$.\nThe functional overlap of $g_i$ is the mean pairwise CKA with other groups in the same layer:\n\\begin{equation}\n    F(g_i) = \\frac{1}{|\\mathcal{G}_\\ell| - 1} \\sum_{\\substack{g_j \\in \\mathcal{G}_\\ell \\\\ j \\neq i}} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j}),\n    \\label{eq:overlap}\n\\end{equation}\nwhere $\\mathcal{G}_\\ell$ is the set of GQA groups in layer $\\ell$.\nUnlike prior work that uses inter-layer CKA to identify globally redundant layers for depth pruning~\\citep{mpruner2024,lachance2024cka}, \\rasp{} uses \\emph{intra-layer} CKA between individual GQA groups to predict per-structure recoverability---a fundamentally different granularity and objective.\n\n\\subsection{Stage 2: Recovery-Aware Scoring}\n\\label{sec:stage2}\n\nThe recovery-aware score combines importance and functional overlap:\n\\begin{equation}\n    S(h) = I(h) \\times \\big(1 - F(h)\\big)^\\alpha,\n    \\label{eq:score}\n\\end{equation}\nwhere $\\alpha > 0$ controls the strength of the recoverability penalty.\nStructures with the lowest $S(h)$ are pruned up to the target sparsity ratio.\n\nThe scoring captures three regimes:\n\\begin{itemize}[nosep,leftmargin=*]\n    \\item \\textbf{High $I$, low $F$} (irreplaceable scaffolding): No other structure can assume its function. High $S$ $\\rightarrow$ \\emph{protected}.\n    \\item \\textbf{High $I$, high $F$} (redundant but important): RLVR can redistribute its function via global exploration. Low $S$ $\\rightarrow$ \\emph{pruned preferentially}.\n    \\item \\textbf{Low $I$} (unimportant): Pruned regardless of overlap.\n\\end{itemize}\n\nThe key distinction from standard pruning---which ranks solely by $I(h)$---is that \\rasp{} additionally down-weights protection of structures whose function overlaps with retained structures.\nThis is motivated by the finding that RLVR recovers through global exploration and path compression~\\citep{rlsqueezes2026}, making high-overlap structures more amenable to functional redistribution than unique structures of equivalent importance.\n\n\\paragraph{Per-layer capacity floor.}\nGlobal ranking by $S(h)$ can concentrate pruning in layers where many structures have high overlap, collapsing that layer's representational capacity.\nTo prevent this, we enforce a per-layer capacity floor: each layer must retain at least 40\\% of its MLP channel groups after pruning.\nFor DeepSeek-R1-Distill-Qwen-7B, this requires ${\\ge}12$ of 28 MLP groups per layer.\nDuring structure selection, if removing a candidate would violate this constraint, it is skipped in favor of the next lowest-scoring structure.\nThis constraint adds negligible overhead to the scoring procedure but prevents representational collapse in individual layers---a failure mode we observed when unconstrained global ranking was applied at 20\\% sparsity.\n\nAttention GQA groups and MLP channel groups are scored jointly and ranked in a unified list, enabling cross-component pruning decisions subject to the per-layer floor.\nAlgorithm~\\ref{alg:rasp} summarizes the complete pipeline.\n\n\\subsection{Stage 3: Two-Stage Recovery}\n\\label{sec:stage3}\n\nAfter pruning, we recover reasoning ability through two stages: supervised finetuning (SFT) warmup followed by GRPO-based RLVR.\n\n\\paragraph{Motivation for two-stage recovery.}\nDirectly applying GRPO to a pruned model fails.\nStructured pruning disrupts the model's ability to generate end-of-sequence (EOS) tokens: in sampling mode, pruned models produce repetitive digit loops without termination, yielding sequences that are truncated at the maximum length.\nSince GRPO computes rewards only from completed generations, this EOS collapse means no valid completions are produced, the clipped ratio reaches 1.0, and gradient norms drop to zero---making direct RLVR recovery impossible.\n\n\\paragraph{Stage 3a: SFT warmup.}\nWe first apply a short SFT phase on reasoning demonstrations to restore two capabilities destroyed by pruning: (1) EOS token generation, ensuring the model can terminate sequences, and (2) basic format compliance, so that outputs follow the expected answer extraction pattern.\nSFT warmup uses teacher-forced training on chain-of-thought traces, which does not require the model to produce complete generations and thus bypasses the EOS collapse problem.\nThis stage is intentionally brief---its purpose is to restore the minimal generation competence needed for GRPO, not to recover full reasoning ability.\n\n\\paragraph{Stage 3b: GRPO recovery.}\nWith generation competence restored, we apply GRPO-based RLVR on mathematical reasoning data to recover the pruned model's reasoning ability.\nThe reward is binary: $r = 1$ if the model's final answer matches the ground truth, $r = 0$ otherwise.\nRLVR is preferred over extended SFT for reasoning recovery because of their fundamentally different training dynamics: \\citet{rlsqueezes2026} show that RLVR \\emph{compresses} incorrect reasoning trajectories while SFT \\emph{expands} correct ones.\nFor a pruned model, RLVR can globally explore and redistribute functionality across remaining structures, while SFT is limited to imitating fixed trajectories through a reduced architecture.\nStructures with high functional overlap $F(h)$ are precisely those whose function can be absorbed by similar retained structures through RLVR's global optimization---the theoretical basis for \\rasp{}'s scoring criterion.\n\n\\begin{algorithm}[t]\n\\caption{Recovery-Aware Structured Pruning (\\rasp{})}\n\\label{alg:rasp}\n\\begin{algorithmic}[1]\n\\Require Model $\\mathcal{M}$, calibration problems $\\mathcal{D}_\\text{cal}$, target sparsity $s$, overlap weight $\\alpha$, SFT data $\\mathcal{D}_\\text{sft}$, RLVR data $\\mathcal{D}_\\text{rlvr}$, layer floor $\\tau$\n\\Ensure Pruned and recovered model $\\mathcal{M}'$\n\\Statex \\textit{\\% Stage 1: Reasoning-Trace Structural Analysis}\n\\State Sample traces $\\{(x_j, \\hat{y}_j)\\} \\sim p_\\mathcal{M}(\\cdot \\mid \\mathcal{D}_\\text{cal})$\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State Compute $I(h)$ via Eq.~\\eqref{eq:importance}\n    \\State Collect activations $\\mathbf{X}_h$\n\\EndFor\n\\For{each layer $\\ell = 1, \\ldots, L$}\n    \\For{each group $g_i \\in \\mathcal{G}_\\ell$}\n        \\State $F(g_i) \\gets \\frac{1}{|\\mathcal{G}_\\ell|-1} \\sum_{j \\neq i} \\text{CKA}(\\mathbf{X}_{g_i}, \\mathbf{X}_{g_j})$\n    \\EndFor\n\\EndFor\n\\Statex \\textit{\\% Stage 2: Recovery-Aware Scoring}\n\\For{each structure $h \\in \\mathcal{H}$}\n    \\State $S(h) \\gets I(h) \\times (1 - F(h))^\\alpha$\n\\EndFor\n\\State Sort $\\mathcal{H}$ by $S(h)$ ascending\n\\State $\\mathcal{P} \\gets \\emptyset$\n\\For{each $h$ in sorted $\\mathcal{H}$}\n    \\If{layer($h$) retains $< \\tau$ fraction after adding $h$ to $\\mathcal{P}$}\n        \\State \\textbf{continue}\n    \\EndIf\n    \\State $\\mathcal{P} \\gets \\mathcal{P} \\cup \\{h\\}$\n    \\If{$\\sum_{h' \\in \\mathcal{P}} \\text{params}(h') \\ge s \\cdot |\\theta|$}\n        \\State \\textbf{break}\n    \\EndIf\n\\EndFor\n\\State $\\mathcal{M}_\\text{pruned} \\gets \\text{Remove}(\\mathcal{M}, \\mathcal{P})$\n\\Statex \\textit{\\% Stage 3: Two-Stage Recovery}\n\\State $\\mathcal{M}_\\text{warm} \\gets \\text{SFT}(\\mathcal{M}_\\text{pruned}, \\mathcal{D}_\\text{sft})$ \\hfill $\\triangleright$ restore EOS \\& format\n\\State $\\mathcal{M}' \\gets \\text{GRPO}(\\mathcal{M}_\\text{warm}, \\mathcal{D}_\\text{rlvr})$ \\hfill $\\triangleright$ restore reasoning\n\\State \\Return $\\mathcal{M}'$\n\\end{algorithmic}\n\\end{algorithm}\n",
+                "numLines": 152,
+                "startLine": 1,
+                "totalLines": 152
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AiQptgXkkqrahPm5Wn1sH8",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/figure_plan.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "3467a2ab-f8be-4e9c-a8f8-a9a12434de72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fqexs1nf7oaqAwMbEiQ2AH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11453,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11453
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T04:59:09.471Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AiQptgXkkqrahPm5Wn1sH8",
+              "type": "tool_result",
+              "content": "1\t# Figure Plan — Recovery-Aware Structured Pruning (RASP)\n2\t\n3\t---\n4\t\n5\t## Fig 1: RASP Pipeline Overview\n6\t\n7\t**类型**: 流程/架构图（method figure）\n8\t\n9\t**内容**:\n10\t```\n11\tPre-trained Reasoning LLM (DeepSeek-R1-Distill-Qwen-7B)\n12\t        │\n13\t        ├──────────────────────────┐\n14\t        ▼                          ▼\n15\t  Importance I(h)           CKA Overlap F(h)\n16\t  (Taylor gradient)        (intra-layer pairwise)\n17\t        │                          │\n18\t        └──────────┬───────────────┘\n19\t                   ▼\n20\t        RASP Score: S(h) = I(h) × (1 - F(h))^α\n21\t                   │\n22\t                   ▼\n23\t        Structured Pruning (remove lowest S(h))\n24\t                   │\n25\t                   ▼\n26\t        ┌──────────┴──────────┐\n27\t        ▼                     ▼\n28\t  SFT Warmup              [对比: Standard Pruning]\n29\t  (fix generation)         只用 I(h), 无 F(h) 修正\n30\t        │\n31\t        ▼\n32\t  GRPO RLVR Recovery\n33\t  (restore reasoning)\n34\t        │\n35\t        ▼\n36\t  Recovered Compact Model\n37\t```\n38\t\n39\t**关键设计要素**:\n40\t- 左侧主 pipeline 用蓝色系，右侧 Standard 对比用灰色/红色\n41\t- I(h) 和 F(h) 分支用不同颜色区分（如蓝 vs 橙），在合并处突出 RASP scoring 公式\n42\t- Standard pruning 旁路用虚线表示，标注 \"importance-only\"\n43\t- Recovery 阶段标注 \"SFT Warmup → GRPO\" 两步\n44\t- 在 CKA Overlap 框旁加小示意：同层 head 间 pairwise CKA matrix\n45\t\n46\t**数据可用性**: 无需实验数据，纯方法示意图\n47\t\n48\t**建议工具**: TikZ（最佳）或 matplotlib + patches + FancyArrowPatch\n49\t\n50\t**论文位置**: Section 3 (Method) 开头，首次引用\n51\t\n52\t**尺寸**: 双栏宽度（full width），高度约 6-8cm\n53\t\n54\t---\n55\t\n56\t## Fig 2: CKA Overlap vs Recoverability Scatter Plot\n57\t\n58\t**类型**: 散点图\n59\t\n60\t**内容**:\n61\t- **X 轴**: F(g) — per-structure CKA functional overlap（pruned structure 与其最相似 retained structure 的 CKA）\n62\t- **Y 轴**: Recoverability — retained structure 在 pruned model vs GRPO-recovered model 之间的 activation shift（1 - cosine similarity）\n63\t- 每个点 = 一个被剪掉的 structure（attention GQA group 或 MLP channel group）\n64\t- 按 structure type 着色：蓝色 = attention，橙色 = MLP\n65\t- 或按 layer index 着色（viridis colormap）+ colorbar\n66\t- 回归线 + Spearman ρ 及 95% CI 标注在图上\n67\t- 标注 2-3 个典型点（如 \"Layer 2 attn: low F(h), low recovery\" vs \"Layer 25 attn: high F(h), high recovery\"）\n68\t\n69\t**数据来源**:\n70\t- `correlation_analysis.py` 输出 `correlation_results.json`\n71\t- 需要：base model, pruned model (RASP 20%), GRPO-recovered model, `cka_scores.pt`, `pruning_metadata.pt`\n72\t- 服务器路径: `/root/autodl-tmp/recovery_aware_struct_prune/` 下的对应 checkpoint\n73\t\n74\t**数据可用性**: **待 correlation_analysis.py 执行**。代码已写好（`artifacts/correlation_analysis.py`），需 GRPO stage 2 checkpoint 完成后运行。GRPO v2 状态: DONE（`grpo_stage2_rasp_20_DONE_20260515`）\n75\t\n76\t**关键设计要素**:\n77\t- 颜色方案：attention (#1f77b4) vs MLP (#ff7f0e)，与 `correlation_analysis.py` 一致\n78\t- 点大小 30，alpha 0.7，黑色细边框\n79\t- 右下角文本框：ρ = X.XX, 95% CI [X.XX, X.XX], p < 0.001\n80\t- 如果 attention 和 MLP 趋势不同，可考虑分面（两个子图）\n81\t- 灰色虚线标注 \"Recoverable zone\" 阈值\n82\t\n83\t**建议工具**: matplotlib（已有 `make_scatter_plot` 函数，需微调为论文质量）\n84\t\n85\t**论文位置**: Section 5.3 (Claim 2: F(h) predicts recoverability)\n86\t\n87\t**尺寸**: 单栏宽度，约 8cm × 6cm\n88\t\n89\t---\n90\t\n91\t## Fig 3: RLVR vs SFT Recovery Trajectory\n92\t\n93\t**类型**: 折线图\n94\t\n95\t**内容**:\n96\t- **X 轴**: Training steps\n97\t- **Y 轴**: GSM8K accuracy (%) 或 reward mean\n98\t- **4 条线**:\n99\t  1. RASP + SFT → GRPO（蓝色实线，主角）\n100\t  2. Standard + SFT → GRPO（红色实线）\n101\t  3. RASP + SFT only（蓝色虚线）\n102\t  4. Standard + SFT only（红色虚线）\n103\t- 分两阶段：SFT warmup（左半）→ GRPO recovery（右半），用竖线分隔\n104\t- **关键标注**:\n105\t  - \"Reward Desert\" 区域：Standard + GRPO 在某步数后 reward 停滞的区间（灰色阴影）\n106\t  - RASP + GRPO 的持续上升趋势\n107\t  - 水平虚线标注 baseline accuracy (82.6%)\n108\t  - 各条线终点标注最终准确率\n109\t\n110\t**数据来源**:\n111\t- wandb runs: SFT training logs (train loss / eval accuracy per step)\n112\t- wandb runs: GRPO v2 training logs (reward_mean, gsm8k_accuracy per step)\n113\t- 4 个 run：`sft_rasp_20`, `sft_standard_20`, `grpo_stage2_rasp_20`, `grpo_stage2_standard_20`\n114\t\n115\t**数据可用性**: **部分已有**。SFT runs 已完成。GRPO stage 2 runs 已完成（DONE status）。需从 wandb 提取 step-level metrics。\n116\t\n117\t**关键设计要素**:\n118\t- 颜色方案：RASP = 蓝色系 (#1f77b4)，Standard = 红色系 (#d62728)；实线 = +GRPO，虚线 = SFT only\n119\t- X 轴两段拼接：SFT steps (0 → SFT_end) | GRPO steps (0 → 2000)，中间竖虚线分隔标注 \"SFT → GRPO\"\n120\t- 水平灰色虚线标 baseline 82.6%\n121\t- \"Reward Desert\" 灰色阴影区（Standard GRPO 停滞区间）\n122\t- 图例放右下角，避免遮挡曲线\n123\t\n124\t**建议工具**: matplotlib\n125\t\n126\t**论文位置**: Section 5.4 (Claim 3: Recovery method conditions optimal pruning)\n127\t\n128\t**尺寸**: 双栏宽度或 1.5 栏宽度，高度约 5-6cm\n129\t\n130\t---\n131\t\n132\t## Fig 4: α Ablation 曲线（可选）\n133\t\n134\t**类型**: 折线图 + 误差棒\n135\t\n136\t**内容**:\n137\t- **X 轴**: α 值 {0, 0.5, 1.0, 2.0, 4.0}\n138\t- **Y 轴**: Post-prune GSM8K accuracy (%)\n139\t- 单条线 + 95% CI 误差棒\n140\t- α=0 等价于 Standard pruning（标注）\n141\t- α=1.0 为当前默认值（用星号或不同 marker 高亮）\n142\t- 可选第二条线：post-recovery accuracy（如果有对应 GRPO 数据）\n143\t\n144\t**数据来源**:\n145\t- `src/run_alpha_ablation.sh` 输出\n146\t- α=1.0 已有结果（24.3% post-prune on full eval）\n147\t- 其他 α 值待运行\n148\t\n149\t**数据可用性**: **待 α ablation 实验执行**。代码和脚本已准备好（`src/run_alpha_ablation.sh`）。α=1.0 可复用。磁盘空间约束需顺序执行（每个 α prune → eval → 删除 → 下一个）。\n150\t\n151\t**关键设计要素**:\n152\t- X 轴用 log scale 或等距排列（0 作为特殊点）\n153\t- α=0 标注 \"= Standard\"\n154\t- α=1.0 用 ★ marker\n155\t- 如果存在最优点，用箭头标注\n156\t- 灰色水平虚线标 baseline\n157\t\n158\t**建议工具**: matplotlib\n159\t\n160\t**论文位置**: Section 5.5 (Ablation Studies)\n161\t\n162\t**尺寸**: 单栏宽度，约 7cm × 5cm\n163\t\n164\t---\n165\t\n166\t## Fig 5: Per-layer Pruning Distribution（可选）\n167\t\n168\t**类型**: 分组柱状图（grouped bar chart）\n169\t\n170\t**内容**:\n171\t- **X 轴**: Layer index (0-27)\n172\t- **Y 轴**: 该层被剪掉的 structure 数量（或剪枝比例 %）\n173\t- **两组柱**: Standard (红) vs RASP (蓝)\n174\t- 可分为上下两个子图：attention heads (上) + MLP groups (下)\n175\t- 突出关键差异：RASP 在哪些层保留更多、在哪些层剪掉更多\n176\t\n177\t**数据来源**:\n178\t- `pruning_metadata.pt` 中的 `attn_keep_masks` 和 `mlp_keep_masks`\n179\t- 需要 Standard 和 RASP 两个版本的 pruning metadata\n180\t- 服务器路径: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/` 和 `pruned_standard_20/`\n181\t\n182\t**数据可用性**: **已有**。两个 pruned model 目录中各有 `pruning_metadata.pt`。\n183\t\n184\t**关键设计要素**:\n185\t- 柱宽窄（28 层 × 2 组），用颜色区分 Standard vs RASP\n186\t- 标注差异最大的层（如 \"Layer 5: RASP 保留全部 4 GQA groups，Standard 只保留 2\"）\n187\t- 上方标注总剪枝预算相同（matched parameter count）\n188\t- 考虑用热力图替代（层 × method，颜色深浅 = 剪枝比例），更紧凑\n189\t\n190\t**建议工具**: matplotlib\n191\t\n192\t**论文位置**: Section 5.2 (Analysis) 或 Appendix\n193\t\n194\t**尺寸**: 双栏宽度（如果柱状图）或单栏（如果热力图）\n195\t\n196\t---\n197\t\n198\t## Fig 6: CKA Overlap Heatmap（可选）\n199\t\n200\t**类型**: 热力图\n201\t\n202\t**内容**:\n203\t- 展示某代表层（如 Layer 12）的 attention head/GQA group 间 pairwise CKA overlap matrix\n204\t- 或展示所有 28 层的 per-head mean overlap 作为 1D heatmap\n205\t- 对角线为 1.0，颜色从浅（低 overlap）到深（高 overlap）\n206\t- 标注高 overlap 区域 = \"redundant but recoverable\" 和低 overlap 区域 = \"unique, must preserve\"\n207\t\n208\t**数据来源**:\n209\t- `results/cka_scores.pt`\n210\t- 包含 `attn_cka_matrix` (per-layer pairwise CKA) 和 `attn_overlap` (per-head mean overlap)\n211\t\n212\t**数据可用性**: **已有**。`cka_scores.pt` (122KB) 已缓存在服务器。\n213\t\n214\t**关键设计要素**:\n215\t- 颜色方案：`coolwarm` 或 `YlOrRd`（学术标准）\n216\t- 如果展示单层 pairwise matrix：4×4 (GQA groups) 或更大\n217\t- 如果展示全层 summary：28 行 × N 列热力图\n218\t- 对角线标为灰色（self-overlap = 1.0，不 informative）\n219\t- 叠加 RASP 剪枝决策标记（✓ 保留 / ✗ 移除）\n220\t\n221\t**建议工具**: matplotlib + seaborn.heatmap\n222\t\n223\t**论文位置**: Section 4 (CKA-based Functional Overlap) 或 Appendix\n224\t\n225\t**尺寸**: 单栏宽度\n226\t\n227\t---\n228\t\n229\t## 汇总\n230\t\n231\t| 图号 | 标题 | 类型 | 数据状态 | 位置 | 宽度 |\n232\t|------|------|------|----------|------|------|\n233\t| Fig 1 | RASP Pipeline Overview | 流程图 | 无需数据 | §3 Method | 双栏 |\n234\t| Fig 2 | CKA Overlap vs Recoverability | 散点图 | 待 correlation_analysis 运行 | §5.3 Claim 2 | 单栏 |\n235\t| Fig 3 | Recovery Trajectory | 折线图 | 待 wandb 数据提取 | §5.4 Claim 3 | 双栏 |\n236\t| Fig 4 | α Ablation | 折线图 | 待 ablation 实验 | §5.5 Ablation | 单栏 |\n237\t| Fig 5 | Per-layer Pruning Distribution | 柱状图/热力图 | ✅ 已有 | §5.2 / Appendix | 双栏 |\n238\t| Fig 6 | CKA Overlap Heatmap | 热力图 | ✅ 已有 | §4 / Appendix | 单栏 |\n239\t\n240\t**优先级**: Fig 1 > Fig 3 > Fig 2 > Fig 5 > Fig 4 > Fig 6\n241\t\n242\t**全局风格约束**:\n243\t- 字体: 与 LaTeX 正文一致（serif / Computer Modern），matplotlib 中用 `plt.rcParams['font.family'] = 'serif'`\n244\t- 字号: 轴标签 ≥ 9pt，刻度标签 ≥ 8pt（单栏图缩放后仍可读）\n245\t- 颜色一致性: 全文 RASP = 蓝色 (#1f77b4)，Standard = 红色 (#d62728)，GRASPrune = 绿色 (#2ca02c)，Baseline = 灰色\n246\t- 输出格式: PDF（矢量图，用于 LaTeX）+ PNG 300dpi（备用）\n247\t- 无网格或仅用浅灰网格\n248\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "47410cb5-302f-4c0f-a79c-43574763a6cc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/_project/paper/figure_plan.md",
+                "content": "# Figure Plan — Recovery-Aware Structured Pruning (RASP)\n\n---\n\n## Fig 1: RASP Pipeline Overview\n\n**类型**: 流程/架构图（method figure）\n\n**内容**:\n```\nPre-trained Reasoning LLM (DeepSeek-R1-Distill-Qwen-7B)\n        │\n        ├──────────────────────────┐\n        ▼                          ▼\n  Importance I(h)           CKA Overlap F(h)\n  (Taylor gradient)        (intra-layer pairwise)\n        │                          │\n        └──────────┬───────────────┘\n                   ▼\n        RASP Score: S(h) = I(h) × (1 - F(h))^α\n                   │\n                   ▼\n        Structured Pruning (remove lowest S(h))\n                   │\n                   ▼\n        ┌──────────┴──────────┐\n        ▼                     ▼\n  SFT Warmup              [对比: Standard Pruning]\n  (fix generation)         只用 I(h), 无 F(h) 修正\n        │\n        ▼\n  GRPO RLVR Recovery\n  (restore reasoning)\n        │\n        ▼\n  Recovered Compact Model\n```\n\n**关键设计要素**:\n- 左侧主 pipeline 用蓝色系，右侧 Standard 对比用灰色/红色\n- I(h) 和 F(h) 分支用不同颜色区分（如蓝 vs 橙），在合并处突出 RASP scoring 公式\n- Standard pruning 旁路用虚线表示，标注 \"importance-only\"\n- Recovery 阶段标注 \"SFT Warmup → GRPO\" 两步\n- 在 CKA Overlap 框旁加小示意：同层 head 间 pairwise CKA matrix\n\n**数据可用性**: 无需实验数据，纯方法示意图\n\n**建议工具**: TikZ（最佳）或 matplotlib + patches + FancyArrowPatch\n\n**论文位置**: Section 3 (Method) 开头，首次引用\n\n**尺寸**: 双栏宽度（full width），高度约 6-8cm\n\n---\n\n## Fig 2: CKA Overlap vs Recoverability Scatter Plot\n\n**类型**: 散点图\n\n**内容**:\n- **X 轴**: F(g) — per-structure CKA functional overlap（pruned structure 与其最相似 retained structure 的 CKA）\n- **Y 轴**: Recoverability — retained structure 在 pruned model vs GRPO-recovered model 之间的 activation shift（1 - cosine similarity）\n- 每个点 = 一个被剪掉的 structure（attention GQA group 或 MLP channel group）\n- 按 structure type 着色：蓝色 = attention，橙色 = MLP\n- 或按 layer index 着色（viridis colormap）+ colorbar\n- 回归线 + Spearman ρ 及 95% CI 标注在图上\n- 标注 2-3 个典型点（如 \"Layer 2 attn: low F(h), low recovery\" vs \"Layer 25 attn: high F(h), high recovery\"）\n\n**数据来源**:\n- `correlation_analysis.py` 输出 `correlation_results.json`\n- 需要：base model, pruned model (RASP 20%), GRPO-recovered model, `cka_scores.pt`, `pruning_metadata.pt`\n- 服务器路径: `/root/autodl-tmp/recovery_aware_struct_prune/` 下的对应 checkpoint\n\n**数据可用性**: **待 correlation_analysis.py 执行**。代码已写好（`artifacts/correlation_analysis.py`），需 GRPO stage 2 checkpoint 完成后运行。GRPO v2 状态: DONE（`grpo_stage2_rasp_20_DONE_20260515`）\n\n**关键设计要素**:\n- 颜色方案：attention (#1f77b4) vs MLP (#ff7f0e)，与 `correlation_analysis.py` 一致\n- 点大小 30，alpha 0.7，黑色细边框\n- 右下角文本框：ρ = X.XX, 95% CI [X.XX, X.XX], p < 0.001\n- 如果 attention 和 MLP 趋势不同，可考虑分面（两个子图）\n- 灰色虚线标注 \"Recoverable zone\" 阈值\n\n**建议工具**: matplotlib（已有 `make_scatter_plot` 函数，需微调为论文质量）\n\n**论文位置**: Section 5.3 (Claim 2: F(h) predicts recoverability)\n\n**尺寸**: 单栏宽度，约 8cm × 6cm\n\n---\n\n## Fig 3: RLVR vs SFT Recovery Trajectory\n\n**类型**: 折线图\n\n**内容**:\n- **X 轴**: Training steps\n- **Y 轴**: GSM8K accuracy (%) 或 reward mean\n- **4 条线**:\n  1. RASP + SFT → GRPO（蓝色实线，主角）\n  2. Standard + SFT → GRPO（红色实线）\n  3. RASP + SFT only（蓝色虚线）\n  4. Standard + SFT only（红色虚线）\n- 分两阶段：SFT warmup（左半）→ GRPO recovery（右半），用竖线分隔\n- **关键标注**:\n  - \"Reward Desert\" 区域：Standard + GRPO 在某步数后 reward 停滞的区间（灰色阴影）\n  - RASP + GRPO 的持续上升趋势\n  - 水平虚线标注 baseline accuracy (82.6%)\n  - 各条线终点标注最终准确率\n\n**数据来源**:\n- wandb runs: SFT training logs (train loss / eval accuracy per step)\n- wandb runs: GRPO v2 training logs (reward_mean, gsm8k_accuracy per step)\n- 4 个 run：`sft_rasp_20`, `sft_standard_20`, `grpo_stage2_rasp_20`, `grpo_stage2_standard_20`\n\n**数据可用性**: **部分已有**。SFT runs 已完成。GRPO stage 2 runs 已完成（DONE status）。需从 wandb 提取 step-level metrics。\n\n**关键设计要素**:\n- 颜色方案：RASP = 蓝色系 (#1f77b4)，Standard = 红色系 (#d62728)；实线 = +GRPO，虚线 = SFT only\n- X 轴两段拼接：SFT steps (0 → SFT_end) | GRPO steps (0 → 2000)，中间竖虚线分隔标注 \"SFT → GRPO\"\n- 水平灰色虚线标 baseline 82.6%\n- \"Reward Desert\" 灰色阴影区（Standard GRPO 停滞区间）\n- 图例放右下角，避免遮挡曲线\n\n**建议工具**: matplotlib\n\n**论文位置**: Section 5.4 (Claim 3: Recovery method conditions optimal pruning)\n\n**尺寸**: 双栏宽度或 1.5 栏宽度，高度约 5-6cm\n\n---\n\n## Fig 4: α Ablation 曲线（可选）\n\n**类型**: 折线图 + 误差棒\n\n**内容**:\n- **X 轴**: α 值 {0, 0.5, 1.0, 2.0, 4.0}\n- **Y 轴**: Post-prune GSM8K accuracy (%)\n- 单条线 + 95% CI 误差棒\n- α=0 等价于 Standard pruning（标注）\n- α=1.0 为当前默认值（用星号或不同 marker 高亮）\n- 可选第二条线：post-recovery accuracy（如果有对应 GRPO 数据）\n\n**数据来源**:\n- `src/run_alpha_ablation.sh` 输出\n- α=1.0 已有结果（24.3% post-prune on full eval）\n- 其他 α 值待运行\n\n**数据可用性**: **待 α ablation 实验执行**。代码和脚本已准备好（`src/run_alpha_ablation.sh`）。α=1.0 可复用。磁盘空间约束需顺序执行（每个 α prune → eval → 删除 → 下一个）。\n\n**关键设计要素**:\n- X 轴用 log scale 或等距排列（0 作为特殊点）\n- α=0 标注 \"= Standard\"\n- α=1.0 用 ★ marker\n- 如果存在最优点，用箭头标注\n- 灰色水平虚线标 baseline\n\n**建议工具**: matplotlib\n\n**论文位置**: Section 5.5 (Ablation Studies)\n\n**尺寸**: 单栏宽度，约 7cm × 5cm\n\n---\n\n## Fig 5: Per-layer Pruning Distribution（可选）\n\n**类型**: 分组柱状图（grouped bar chart）\n\n**内容**:\n- **X 轴**: Layer index (0-27)\n- **Y 轴**: 该层被剪掉的 structure 数量（或剪枝比例 %）\n- **两组柱**: Standard (红) vs RASP (蓝)\n- 可分为上下两个子图：attention heads (上) + MLP groups (下)\n- 突出关键差异：RASP 在哪些层保留更多、在哪些层剪掉更多\n\n**数据来源**:\n- `pruning_metadata.pt` 中的 `attn_keep_masks` 和 `mlp_keep_masks`\n- 需要 Standard 和 RASP 两个版本的 pruning metadata\n- 服务器路径: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20/` 和 `pruned_standard_20/`\n\n**数据可用性**: **已有**。两个 pruned model 目录中各有 `pruning_metadata.pt`。\n\n**关键设计要素**:\n- 柱宽窄（28 层 × 2 组），用颜色区分 Standard vs RASP\n- 标注差异最大的层（如 \"Layer 5: RASP 保留全部 4 GQA groups，Standard 只保留 2\"）\n- 上方标注总剪枝预算相同（matched parameter count）\n- 考虑用热力图替代（层 × method，颜色深浅 = 剪枝比例），更紧凑\n\n**建议工具**: matplotlib\n\n**论文位置**: Section 5.2 (Analysis) 或 Appendix\n\n**尺寸**: 双栏宽度（如果柱状图）或单栏（如果热力图）\n\n---\n\n## Fig 6: CKA Overlap Heatmap（可选）\n\n**类型**: 热力图\n\n**内容**:\n- 展示某代表层（如 Layer 12）的 attention head/GQA group 间 pairwise CKA overlap matrix\n- 或展示所有 28 层的 per-head mean overlap 作为 1D heatmap\n- 对角线为 1.0，颜色从浅（低 overlap）到深（高 overlap）\n- 标注高 overlap 区域 = \"redundant but recoverable\" 和低 overlap 区域 = \"unique, must preserve\"\n\n**数据来源**:\n- `results/cka_scores.pt`\n- 包含 `attn_cka_matrix` (per-layer pairwise CKA) 和 `attn_overlap` (per-head mean overlap)\n\n**数据可用性**: **已有**。`cka_scores.pt` (122KB) 已缓存在服务器。\n\n**关键设计要素**:\n- 颜色方案：`coolwarm` 或 `YlOrRd`（学术标准）\n- 如果展示单层 pairwise matrix：4×4 (GQA groups) 或更大\n- 如果展示全层 summary：28 行 × N 列热力图\n- 对角线标为灰色（self-overlap = 1.0，不 informative）\n- 叠加 RASP 剪枝决策标记（✓ 保留 / ✗ 移除）\n\n**建议工具**: matplotlib + seaborn.heatmap\n\n**论文位置**: Section 4 (CKA-based Functional Overlap) 或 Appendix\n\n**尺寸**: 单栏宽度\n\n---\n\n## 汇总\n\n| 图号 | 标题 | 类型 | 数据状态 | 位置 | 宽度 |\n|------|------|------|----------|------|------|\n| Fig 1 | RASP Pipeline Overview | 流程图 | 无需数据 | §3 Method | 双栏 |\n| Fig 2 | CKA Overlap vs Recoverability | 散点图 | 待 correlation_analysis 运行 | §5.3 Claim 2 | 单栏 |\n| Fig 3 | Recovery Trajectory | 折线图 | 待 wandb 数据提取 | §5.4 Claim 3 | 双栏 |\n| Fig 4 | α Ablation | 折线图 | 待 ablation 实验 | §5.5 Ablation | 单栏 |\n| Fig 5 | Per-layer Pruning Distribution | 柱状图/热力图 | ✅ 已有 | §5.2 / Appendix | 双栏 |\n| Fig 6 | CKA Overlap Heatmap | 热力图 | ✅ 已有 | §4 / Appendix | 单栏 |\n\n**优先级**: Fig 1 > Fig 3 > Fig 2 > Fig 5 > Fig 4 > Fig 6\n\n**全局风格约束**:\n- 字体: 与 LaTeX 正文一致（serif / Computer Modern），matplotlib 中用 `plt.rcParams['font.family'] = 'serif'`\n- 字号: 轴标签 ≥ 9pt，刻度标签 ≥ 8pt（单栏图缩放后仍可读）\n- 颜色一致性: 全文 RASP = 蓝色 (#1f77b4)，Standard = 红色 (#d62728)，GRASPrune = 绿色 (#2ca02c)，Baseline = 灰色\n- 输出格式: PDF（矢量图，用于 LaTeX）+ PNG 300dpi（备用）\n- 无网格或仅用浅灰网格\n",
+                "numLines": 248,
+                "startLine": 1,
+                "totalLines": 248
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of all the inputs. Let me organize the Related Work section. I need to:\n\n1. Identify which citation keys are already in `references.bib` vs which need to be added\n2. Structure into 2-3 subsections\n3. Write ~500-600 words highlighting the gap\n\n**Already in references.bib:**\n- `selfhealing2025` ✓\n- `graspprune2026` ✓\n- `resp2025` ✓\n- `mpruner2024` ✓\n\n\n- `paser2025` ✓\n- `llmpruner2023` ✓\n- `kornblith2019cka` ✓\n- `lachance2024cka` ✓\n- `llms2lrms2026` ✓\n- `rac2025` ✓\n- `doingmore2026` ✓\n- `bonsai2025` ✓\n- `slicegpt2024` ✓\n- `wanda2024` ✓\n- `shortgpt2024` ✓\n- `frankle2019lth` ✓\n- `p2law2025` ✓\n\nGood, looks like all the major citations I need are already in the bibliography.\n\nNow I'm checking the literature notes against the references file to see what's missing. I notice the key naming conventions differ between the two files, so I need to match them carefully. Looking at the entries, I can see that some papers like the self-healing work have corresponding entries in the bibliography, but I need to verify which ones are actually missing and which ones just use different key formats. I need to add SSGR to the references and figure out how to handle the reasoning-focused papers. Now I'm organizing the related work into subsections: one covering general structured pruning methods for LLMs, another for reasoning-specific approaches that use calibration and chain-of-thought reconstruction, and a third section that I'm still planning out. The key gap I'm identifying is that existing work improves importance estimation but doesn't account for recovery after pruning. I'm organizing the related work around three core themes that align with RASP's contributions: structured pruning methods for LLMs, post-pruning recovery techniques, and representational similarity approaches. This should give me roughly 170-200 words per subsection to stay within the 500-600 word target while avoiding redundancy with the methods section. and columns of weight matrices after orthogonal transformations. GRASPrune jointly prunes FFN channels and KV head groups under a global budget using differentiable gating, achieving state-of-the-art results on LLaMA-2-7B at 50% sparsity.\n\nRecent work has adapted pruning techniques to reasoning models, with findings showing that width pruning outperforms depth pruning for these tasks. RESP uses self-generated reasoning traces for calibration, while SSGR demonstrates that selective self-generated data improves pruning of reasoning LLMs. RAC reconstructs activations from both inputs and on-policy chain-of-thought traces, and recent work shows that structured pruning significantly degrades test-time scaling performance, highlighting the need for recovery mechanisms.\n\nThe key insight is that existing methods focus on improving the pruning decision itself but don't account for how well the pruned model can actually be recovered afterward. RASP fills this gap by making recoverability part of the pruning score. For post-pruning recovery, standard supervised finetuning approaches exist, but RLVR-based recovery substantially outperforms SFT for pruned reasoning models, achieving over 95% of unpruned accuracy at 25% compression. However, Self-Healing applies this recovery to conventionally pruned models without modifying the pruning decision to facilitate recovery.\n\nSeveral methods optimize the recovery process itself: PASER uses manifold-based clustering and capability-aware budget allocation to recover pruned LLM capabilities with only 4-20% of post-training data, P²Law establishes scaling laws between pruning ratio and recovery data volume, and PAT co-optimizes pruning masks and recovery tuning through joint training. RASP complements these by optimizing which structures to prune for maximal recoverability, while methods like PASER and P²Law optimize the recovery process itself—the two directions can be combined.\n\nNow I'm looking at representational similarity approaches for pruning, starting with Centered Kernel Alignment, which measures similarity between neural network representations invariant to invertible linear transformations.\n\nPrior work uses CKA as a redundancy detector—MPruner clusters layers by inter-layer CKA similarity for depth pruning, other work analyzes and guides pruning through CKA, and ShortGPT identifies redundant layers via representational similarity. But RASP repurposes CKA differently, using it as a recoverability predictor rather than a redundancy detector. Instead of measuring inter-layer similarity for depth pruning, I'm computing intra-layer pairwise CKA between attention head groups to identify structures whose function can be redistributed across retained structures during recovery.\n\nNow I'm checking which citations need to be added to the references—looks like `xiang2025ssgr` is missing and needs to be added, while the others are already there. I'm checking the citation keys in references.bib against what's used in method.tex to ensure consistency. The keys follow a pattern like `selfhealing2025`, `resp2025`, `mpruner2024` rather than author-first formats. I notice my draft has `\\citet{ding2026lrmpruning}` but the actual key in references.bib is `llms2lrms2026`, so I need to fix that inconsistency and use `ssgr2025` for the new citation.\n\nAdding the BibTeX entry...\n\nNow I need to verify the citation syntax is consistent with the existing tex files — checking that `\\citet{}` renders correctly for textual citations and `\\citep{}` for parenthetical ones. Let me also confirm whether the paper directory and related_work.tex file already exist before writing.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "954062bc-8561-4fce-acd0-da4a81bf9ba8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5TTiHs9vPRz7gjgkz5ntf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17826,
+                "cache_read_input_tokens": 23294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 17826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check if `related_work.tex` already exists."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "bdad42b8-601e-4d33-93df-c5e3de982d3b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5TTiHs9vPRz7gjgkz5ntf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17826,
+                "cache_read_input_tokens": 23294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 17826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016Mr4dLmZB2dynfPNmfoHF8",
+              "name": "Glob",
+              "input": {
+                "pattern": "paper/**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "7dac8a74-0879-472f-867d-7d112a7280c7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5TTiHs9vPRz7gjgkz5ntf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 17826,
+                "cache_read_input_tokens": 23294,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 17826
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T05:00:19.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016Mr4dLmZB2dynfPNmfoHF8",
+              "type": "tool_result",
+              "content": "paper/introduction.tex\npaper/related_work.tex\npaper/experiments.tex\npaper/backup/experiments.tex\npaper/backup/introduction.tex\npaper/backup/method.tex\npaper/backup/related_work.tex\npaper/main.tex\npaper/abstract.tex\npaper/conclusion.tex\npaper/limitations.tex\npaper/appendix.tex\npaper/method.tex"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "aba7cbd5-a266-4bbd-abd6-0bbe3c32c6ff",
+            "tool_use_result": {
+              "filenames": [
+                "paper/introduction.tex",
+                "paper/related_work.tex",
+                "paper/experiments.tex",
+                "paper/backup/experiments.tex",
+                "paper/backup/introduction.tex",
+                "paper/backup/method.tex",
+                "paper/backup/related_work.tex",
+                "paper/main.tex",
+                "paper/abstract.tex",
+                "paper/conclusion.tex",
+                "paper/limitations.tex",
+                "paper/appendix.tex",
+                "paper/method.tex"
+              ],
+              "durationMs": 20,
+              "numFiles": 13,
+              "truncated": false
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ZxUMgSF3L2qEuQHonmKEW",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "c4f11268-da63-4448-88bd-201d6e9520d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017uerHsdXUMsd7iMYCk8inu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3509,
+                "cache_read_input_tokens": 41120,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3509
+                },
+                "output_tokens": 64,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T05:00:22.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ZxUMgSF3L2qEuQHonmKEW",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Structured Pruning of Large Language Models}\n5\t\\label{sec:rw_pruning}\n6\t\n7\tStructured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.\n8\tLLM-Pruner~\\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.\n9\tBonsai~\\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.\n10\tGRASPrune~\\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.\n11\tShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.\n12\t\n13\tFor reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n14\t\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.\n15\tRAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.\n16\t\\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential.\n17\t\n18\tRASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.\n19\t\n20\t\\subsection{Pruning-Aware Recovery and Re-training}\n21\t\\label{sec:rw_recovery}\n22\t\n23\tPost-pruning recovery is essential at moderate to high compression ratios.\n24\t\\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\\%+ accuracy at 25\\% compression, significantly outperforming SFT recovery (${\\sim}$80\\%).\n25\tThis establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \\emph{choice} of what to prune affects how well RLVR can recover.\n26\t\n27\tP\\textsuperscript{2} Law~\\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \\propto (1/\\rho)^\\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.\n28\tPASER~\\citep{paser2025} optimizes which recovery \\emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \\emph{structures} to prune for recoverability.\n29\tPAT~\\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.\n30\t\n31\tThe Lottery Ticket Hypothesis~\\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.\n32\tRASP extends this notion to what we term \\emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.\n33\t\n34\t\\subsection{RLVR Training Dynamics}\n35\t\\label{sec:rw_rlvr}\n36\t\n37\tUnderstanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.\n38\t\\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \\emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \\emph{expands} correct trajectories via local imitation.\n39\tThis asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.\n40\tOPSD~\\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.\n41\t\n42\t\\paragraph{CKA-based pruning.}\n43\tCKA~\\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.\n44\tMPruner~\\citep{mpruner2024} uses \\emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.\n45\t\\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.\n46\tBoth operate at the \\emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.\n47\tIn contrast, RASP uses \\emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\\ immediate accuracy preservation).\n48\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "dde78d5b-d209-4591-916d-cc2cac8a3472",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\subsection{Structured Pruning of Large Language Models}\n\\label{sec:rw_pruning}\n\nStructured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.\nLLM-Pruner~\\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.\nBonsai~\\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.\nGRASPrune~\\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.\nShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.\n\nFor reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.\nRAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.\n\\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential.\n\nRASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.\n\n\\subsection{Pruning-Aware Recovery and Re-training}\n\\label{sec:rw_recovery}\n\nPost-pruning recovery is essential at moderate to high compression ratios.\n\\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\\%+ accuracy at 25\\% compression, significantly outperforming SFT recovery (${\\sim}$80\\%).\nThis establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \\emph{choice} of what to prune affects how well RLVR can recover.\n\nP\\textsuperscript{2} Law~\\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \\propto (1/\\rho)^\\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.\nPASER~\\citep{paser2025} optimizes which recovery \\emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \\emph{structures} to prune for recoverability.\nPAT~\\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.\n\nThe Lottery Ticket Hypothesis~\\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.\nRASP extends this notion to what we term \\emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.\n\n\\subsection{RLVR Training Dynamics}\n\\label{sec:rw_rlvr}\n\nUnderstanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.\n\\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \\emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \\emph{expands} correct trajectories via local imitation.\nThis asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.\nOPSD~\\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.\n\n\\paragraph{CKA-based pruning.}\nCKA~\\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.\nMPruner~\\citep{mpruner2024} uses \\emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.\n\\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.\nBoth operate at the \\emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.\nIn contrast, RASP uses \\emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\\ immediate accuracy preservation).\n",
+                "numLines": 48,
+                "startLine": 1,
+                "totalLines": 48
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file already exists with a well-written Related Work section. Let me compare it with what I was planning:\n\nThe existing file has 4 subsections:\n1. Structured Pruning of Large Language Models\n2. Pruning-Aware Recovery and Re-training\n3. RLVR Training Dynamics (includes CKA-based pruning as a paragraph)\n\nThe existing version is quite good! It:\n- Cites all major papers from literature_notes.md except SSGR and ThinkPrune/ThinkPruneTrainImprove\n- Is well-organized\n- Highlights the RASP gap clearly\n\n\n- Uses correct citation keys from references.bib\n\nNow I'm checking what's missing from the current related_work.tex compared to literature_notes.md. SSGR is the main gap—it's relevant since it's from the same group as Self-Healing and addresses calibration for reasoning-specific scenarios, though ThinkPrune and Think, Prune, Train, Improve are more orthogonal since they focus on reasoning trace pruning rather than model pruning itself.\n\nLooking at the requirements, the existing version hits most of them: it has the subsections, highlights RASP distinctions, emphasizes the gap around CKA functional overlap for pruning decisions, and cites from both sources. The word count is around 580-620 words, which fits the target. I should verify all citation keys exist in references.bib and consider whether to add SSGR for completeness.\n\nLet me check the citations used: `llmpruner2023`, `bonsai2025`, `graspprune2026` are all there, and I need to verify the rest against the bibliography to make sure nothing's missing. The related_work.tex file is already comprehensive, but I should enhance it by adding the SSGR reference to the reasoning model pruning section and updating the bibliography accordingly. Let me incorporate that missing citation and verify everything is complete.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "ab3b455e-f1c6-4cf1-a4b7-75e7dd965504",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YR6RJPGtv3h4sWfkfwzVoQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1722,
+                "cache_read_input_tokens": 44629,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`related_work.tex` already exists with solid content. It covers most papers from `literature_notes.md` but is missing SSGR. Let me add it and verify all citation keys.\n\nThe only paper from `literature_notes.md` not yet cited is SSGR~\\citep{xiang2025ssgr} — relevant as reasoning-specific calibration work from the same group as Self-Healing. I'll add it to the pruning paragraph and append the bib entry."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "03390b8e-de94-4eef-908a-fe500e53b374",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YR6RJPGtv3h4sWfkfwzVoQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1722,
+                "cache_read_input_tokens": 44629,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Eam7Ag7FRUt7gTt4cCk8Tc",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex",
+                "old_string": "For reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.",
+                "new_string": "For reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\nSSGR~\\citep{ssgr2025} shows that selective self-generated calibration with challenging, moderately-lengthy reasoning examples further improves pruning quality for reasoning LLMs.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "75bf28f4-52cc-4df9-a848-1f647cfa678b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YR6RJPGtv3h4sWfkfwzVoQ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1722,
+                "cache_read_input_tokens": 44629,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1722
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T05:01:00.454Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Eam7Ag7FRUt7gTt4cCk8Tc",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "7d2a48b7-cd89-456e-bd8a-f346c6930d5e",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex",
+              "oldString": "For reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.",
+              "newString": "For reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\nSSGR~\\citep{ssgr2025} shows that selective self-generated calibration with challenging, moderately-lengthy reasoning examples further improves pruning quality for reasoning LLMs.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.",
+              "originalFile": "\\section{Related Work}\n\\label{sec:related}\n\n\\subsection{Structured Pruning of Large Language Models}\n\\label{sec:rw_pruning}\n\nStructured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.\nLLM-Pruner~\\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.\nBonsai~\\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.\nGRASPrune~\\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.\nShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.\n\nFor reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.\nRAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.\n\\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential.\n\nRASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.\n\n\\subsection{Pruning-Aware Recovery and Re-training}\n\\label{sec:rw_recovery}\n\nPost-pruning recovery is essential at moderate to high compression ratios.\n\\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\\%+ accuracy at 25\\% compression, significantly outperforming SFT recovery (${\\sim}$80\\%).\nThis establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \\emph{choice} of what to prune affects how well RLVR can recover.\n\nP\\textsuperscript{2} Law~\\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \\propto (1/\\rho)^\\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.\nPASER~\\citep{paser2025} optimizes which recovery \\emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \\emph{structures} to prune for recoverability.\nPAT~\\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.\n\nThe Lottery Ticket Hypothesis~\\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.\nRASP extends this notion to what we term \\emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.\n\n\\subsection{RLVR Training Dynamics}\n\\label{sec:rw_rlvr}\n\nUnderstanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.\n\\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \\emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \\emph{expands} correct trajectories via local imitation.\nThis asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.\nOPSD~\\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.\n\n\\paragraph{CKA-based pruning.}\nCKA~\\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.\nMPruner~\\citep{mpruner2024} uses \\emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.\n\\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.\nBoth operate at the \\emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.\nIn contrast, RASP uses \\emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\\ immediate accuracy preservation).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 11,
+                  "oldLines": 6,
+                  "newStart": 11,
+                  "newLines": 7,
+                  "lines": [
+                    " ShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.",
+                    " ",
+                    " For reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.",
+                    "+SSGR~\\citep{ssgr2025} shows that selective self-generated calibration with challenging, moderately-lengthy reasoning examples further improves pruning quality for reasoning LLMs.",
+                    " \\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.",
+                    " RAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.",
+                    " \\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now add the SSGR bib entry to `references.bib`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "f9a43948-d477-4c73-8579-ad44adf49a9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WW3MZc5vUWWoJS6oH8PzPq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1817,
+                "cache_read_input_tokens": 46351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1817
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Utmq6rWi3QqNd62gJYTmtL",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib",
+                "old_string": "@article{doingmore2026,",
+                "new_string": "@article{ssgr2025,\n  title={Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models},\n  author={Xiang, Yang and Ji, Yixin and Li, Juntao and Zhang, Min},\n  journal={arXiv preprint arXiv:2511.18864},\n  year={2025},\n  url={https://arxiv.org/abs/2511.18864}\n}\n\n@article{doingmore2026,"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "69b2f74c-10ed-4d50-b896-899aee5d3bf6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WW3MZc5vUWWoJS6oH8PzPq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1817,
+                "cache_read_input_tokens": 46351,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1817
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T05:01:06.679Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Utmq6rWi3QqNd62gJYTmtL",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "5a5f03ce-9ee2-4ca4-a744-f69699ee3598",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/references.bib",
+              "oldString": "@article{doingmore2026,",
+              "newString": "@article{ssgr2025,\n  title={Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models},\n  author={Xiang, Yang and Ji, Yixin and Li, Juntao and Zhang, Min},\n  journal={arXiv preprint arXiv:2511.18864},\n  year={2025},\n  url={https://arxiv.org/abs/2511.18864}\n}\n\n@article{doingmore2026,",
+              "originalFile": "@article{deepseek2025r1,\n  title={DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning},\n  author={{DeepSeek-AI}},\n  journal={arXiv preprint arXiv:2501.12948},\n  year={2025},\n  url={https://arxiv.org/abs/2501.12948}\n}\n\n@article{qwen2.5,\n  title={Qwen2.5 Technical Report},\n  author={Yang, An and Yang, Baosong and Zhang, Beichen and Hui, Binyuan and Zheng, Bo and Yu, Bowen and Li, Chengyuan and others},\n  journal={arXiv preprint arXiv:2412.15115},\n  year={2024},\n  url={https://arxiv.org/abs/2412.15115}\n}\n\n@article{cobbe2021gsm8k,\n  title={Training Verifiers to Solve Math Word Problems},\n  author={Cobbe, Karl and Kosaraju, Vineet and Bavarian, Mohammad and Chen, Mark and Jun, Heewoo and Kaiser, Lukasz and Plappert, Matthias and Tworek, Jerry and Hilton, Jacob and Nakano, Reiichiro and Hesse, Christopher and Schulman, John},\n  journal={arXiv preprint arXiv:2110.14168},\n  year={2021},\n  url={https://arxiv.org/abs/2110.14168}\n}\n\n@article{shao2024grpo,\n  title={DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models},\n  author={Shao, Zhihong and Wang, Peiyi and Zhu, Qihao and Xu, Runxin and Song, Junxiao and Zhang, Mingchuan and Li, Y.K. and Wu, Y. and Guo, Daya},\n  journal={arXiv preprint arXiv:2402.03300},\n  year={2024},\n  url={https://arxiv.org/abs/2402.03300}\n}\n\n@inproceedings{llmpruner2023,\n  title={LLM-Pruner: On the Structural Pruning of Large Language Models},\n  author={Ma, Xinyin and Fang, Gongfan and Wang, Xinchao},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.11627}\n}\n\n@inproceedings{graspprune2026,\n  title={GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models},\n  author={Wang, Ziyang and Xiao, Jiangfeng and Xiao, Chuan and Li, Ruoxiang and Mao, Rui and Qin, Jianbin},\n  booktitle={Proceedings of the 64th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2026},\n  url={https://arxiv.org/abs/2604.19398}\n}\n\n@article{resp2025,\n  title={Think Before You Prune: Self-Reflective Structured Pruning for Reasoning Language Models},\n  author={Wang, Ziyan and Diao, Enmao and Le, Qi and Wang, Pu and Wang, Guanchu and Lee, Minwoo and Yeh, Shu-ping and Yang, Li},\n  journal={arXiv preprint arXiv:2512.02185},\n  year={2025},\n  url={https://arxiv.org/abs/2512.02185}\n}\n\n@article{selfhealing2025,\n  title={Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning},\n  author={Ji, Yixin and Lin, Zhimin and Li, Juntao and Wu, Kaixin and Yao, Kai and Jia, Xu and Mo, Linjian and Zhang, Min},\n  year={2025},\n  note={Under review},\n  url={https://openreview.net/forum?id=Cy8Qa4gAst}\n}\n\n@inproceedings{bonsai2025,\n  title={Everybody Prune Now: Structured Pruning of LLMs with only Forward Passes},\n  author={Kolawole, Steven and Dery, Lucio and Kagy, Jean-Fran\\c{c}ois and Smith, Virginia and Neubig, Graham and Talwalkar, Ameet},\n  booktitle={Proceedings of the 42nd International Conference on Machine Learning (ICML)},\n  year={2025},\n  url={https://arxiv.org/abs/2402.05406}\n}\n\n@article{paser2025,\n  title={PASER: Post-Training Data Selection for Efficient Pruned Large Language Model Recovery},\n  author={He, Bowei and Yin, Lihao and Zhen, Hui-Ling and Zhang, Xiaokun and Yuan, Mingxuan and Ma, Chen},\n  journal={arXiv preprint arXiv:2502.12594},\n  year={2025},\n  url={https://arxiv.org/abs/2502.12594},\n  note={Under review}\n}\n\n@inproceedings{rlsqueezes2026,\n  title={RL Squeezes, SFT Expands: A Comparative Study of Reasoning LLMs},\n  author={Matsutani, Kohsei and Takashiro, Shota and Minegishi, Gouki and Kojima, Takeshi and Iwasawa, Yusuke and Matsuo, Yutaka},\n  booktitle={Proceedings of the 14th International Conference on Learning Representations (ICLR)},\n  year={2026},\n  url={https://arxiv.org/abs/2509.21128}\n}\n\n@inproceedings{kornblith2019cka,\n  title={Similarity of Neural Network Representations Revisited},\n  author={Kornblith, Simon and Norouzi, Mohammad and Lee, Honglak and Hinton, Geoffrey},\n  booktitle={Proceedings of the 36th International Conference on Machine Learning (ICML)},\n  year={2019},\n  url={https://arxiv.org/abs/1905.00414}\n}\n\n@article{mpruner2024,\n  title={MPruner: Optimizing Neural Network Size with CKA-Based Mutual Information Pruning},\n  author={Hu, Seungbeom and Park, Chanjun and Ferraiuolo, Andrew and Ko, Sang-Ki and Kim, Jinwoo and Song, Haein and Kim, Jieung},\n  journal={arXiv preprint arXiv:2408.13482},\n  year={2024},\n  url={https://arxiv.org/abs/2408.13482}\n}\n\n@mastersthesis{lachance2024cka,\n  title={Using Centered Kernel Alignment for Understanding and Pruning Neural Networks},\n  author={Lachance, Alex},\n  school={University of Rhode Island},\n  year={2024},\n  url={https://digitalcommons.uri.edu/theses/2283/}\n}\n\n@inproceedings{frankle2019lth,\n  title={The Lottery Ticket Hypothesis: Finding Sparse, Trainable Neural Networks},\n  author={Frankle, Jonathan and Carbin, Michael},\n  booktitle={Proceedings of the 7th International Conference on Learning Representations (ICLR)},\n  year={2019},\n  url={https://arxiv.org/abs/1803.03635}\n}\n\n@inproceedings{ainslie2023gqa,\n  title={{GQA}: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints},\n  author={Ainslie, Joshua and Lee-Thorp, James and de Jong, Michiel and Zemlyanskiy, Yury and Lebr{\\'o}n, Federico and Sanghai, Sumit},\n  booktitle={Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year={2023},\n  url={https://arxiv.org/abs/2305.13245}\n}\n\n@article{shortgpt2024,\n  title={{ShortGPT}: Layers in Large Language Models are More Redundant Than You Expect},\n  author={Men, Xin and Xu, Mingyu and Zhang, Qingyu and Wang, Bingning and Lin, Hongyu and Lu, Yaojie and Han, Xianpei and Chen, Weipeng},\n  journal={arXiv preprint arXiv:2403.03853},\n  year={2024},\n  url={https://arxiv.org/abs/2403.03853}\n}\n\n@inproceedings{slicegpt2024,\n  title={{SliceGPT}: Compress Large Language Models by Deleting Rows and Columns},\n  author={Ashkboos, Saleh and Croci, Maximilian L. and Gennari do Nascimento, Marcelo and Hoefler, Torsten and Hensman, James},\n  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2401.15024}\n}\n\n@inproceedings{wanda2024,\n  title={A Simple and Effective Pruning Approach for Large Language Models},\n  author={Sun, Mingjie and Liu, Zhuang and Bair, Anna and Kolter, J. Zico},\n  booktitle={Proceedings of the 12th International Conference on Learning Representations (ICLR)},\n  year={2024},\n  url={https://arxiv.org/abs/2306.11695}\n}\n\n@article{llms2lrms2026,\n  title={From {LLMs} to {LRMs}: Rethinking Pruning for Reasoning-Centric Models},\n  author={Ding, Longwei and Zhao, Anhao and Ye, Fanghua and Chen, Ziyang and Shen, Xiaoyu},\n  journal={arXiv preprint arXiv:2601.18091},\n  year={2026},\n  url={https://arxiv.org/abs/2601.18091}\n}\n\n@inproceedings{rac2025,\n  title={Reasoning Models Can be Accurately Pruned Via Chain-of-Thought Reconstruction},\n  author={Lucas, Ryan and Behdin, Kayhan and Wang, Zhipeng and Song, Qingquan and Tang, Shao and Mazumder, Rahul},\n  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n  year={2025},\n  url={https://arxiv.org/abs/2509.12464}\n}\n\n@article{doingmore2026,\n  title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},\n  author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},\n  journal={arXiv preprint arXiv:2604.25098},\n  year={2026},\n  url={https://arxiv.org/abs/2604.25098}\n}\n\n@inproceedings{p2law2025,\n  title={{P\\textsuperscript{2}} Law: Scaling Law for Post-Training After Model Pruning},\n  author={Chen, Xiaodong and Hu, Yuxuan and Zhang, Xiaokang and Wang, Yanling and Li, Cuiping and Chen, Hong and Zhang, Jing},\n  booktitle={Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (ACL)},\n  year={2025},\n  url={https://arxiv.org/abs/2411.10272}\n}\n\n@inproceedings{pat2025,\n  title={{PAT}: Pruning-Aware Tuning for Large Language Models},\n  author={Liu, Yijiang and Yang, Huanrui and Chen, Youxin and Zhang, Rongyu and Wang, Miao and Du, Yuan and Du, Li},\n  booktitle={Proceedings of the 39th AAAI Conference on Artificial Intelligence (AAAI)},\n  year={2025},\n  url={https://arxiv.org/abs/2408.14721}\n}\n\n@article{opsd2026,\n  title={{OPSD} Compresses What {RLVR} Teaches: A Post-{RL} Compaction Stage for Reasoning Models},\n  author={Kim, Jaehoon and Lee, Dongha},\n  journal={arXiv preprint arXiv:2605.06188},\n  year={2026},\n  url={https://arxiv.org/abs/2605.06188}\n}\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 167,
+                  "oldLines": 6,
+                  "newStart": 167,
+                  "newLines": 14,
+                  "lines": [
+                    "   url={https://arxiv.org/abs/2509.12464}",
+                    " }",
+                    " ",
+                    "+@article{ssgr2025,",
+                    "+  title={Think Before You Prune: Selective Self-Generated Calibration for Pruning Large Reasoning Models},",
+                    "+  author={Xiang, Yang and Ji, Yixin and Li, Juntao and Zhang, Min},",
+                    "+  journal={arXiv preprint arXiv:2511.18864},",
+                    "+  year={2025},",
+                    "+  url={https://arxiv.org/abs/2511.18864}",
+                    "+}",
+                    "+",
+                    " @article{doingmore2026,",
+                    "   title={Doing More With Less: Revisiting the Effectiveness of {LLM} Pruning for Test-Time Scaling},",
+                    "   author={Monjur, Ocean and Nahin, Shahriar Kabir and Chhabra, Anshuman},"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证最终文件内容和所有 citation key。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "9a731685-102e-485d-afd6-b43d4dbfea0b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013mbwHxmQc7w1gN4kvFpGVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 347,
+                "cache_read_input_tokens": 48168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0181UWVCzMn88pPssec6zfT9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "7e9e11f4-44be-4152-b270-7699454b5be5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013mbwHxmQc7w1gN4kvFpGVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 347,
+                "cache_read_input_tokens": 48168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T05:01:10.229Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0181UWVCzMn88pPssec6zfT9",
+              "type": "tool_result",
+              "content": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\subsection{Structured Pruning of Large Language Models}\n5\t\\label{sec:rw_pruning}\n6\t\n7\tStructured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.\n8\tLLM-Pruner~\\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.\n9\tBonsai~\\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.\n10\tGRASPrune~\\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.\n11\tShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.\n12\t\n13\tFor reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\n14\tSSGR~\\citep{ssgr2025} shows that selective self-generated calibration with challenging, moderately-lengthy reasoning examples further improves pruning quality for reasoning LLMs.\n15\t\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.\n16\tRAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.\n17\t\\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential.\n18\t\n19\tRASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.\n20\t\n21\t\\subsection{Pruning-Aware Recovery and Re-training}\n22\t\\label{sec:rw_recovery}\n23\t\n24\tPost-pruning recovery is essential at moderate to high compression ratios.\n25\t\\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\\%+ accuracy at 25\\% compression, significantly outperforming SFT recovery (${\\sim}$80\\%).\n26\tThis establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \\emph{choice} of what to prune affects how well RLVR can recover.\n27\t\n28\tP\\textsuperscript{2} Law~\\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \\propto (1/\\rho)^\\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.\n29\tPASER~\\citep{paser2025} optimizes which recovery \\emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \\emph{structures} to prune for recoverability.\n30\tPAT~\\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.\n31\t\n32\tThe Lottery Ticket Hypothesis~\\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.\n33\tRASP extends this notion to what we term \\emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.\n34\t\n35\t\\subsection{RLVR Training Dynamics}\n36\t\\label{sec:rw_rlvr}\n37\t\n38\tUnderstanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.\n39\t\\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \\emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \\emph{expands} correct trajectories via local imitation.\n40\tThis asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.\n41\tOPSD~\\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.\n42\t\n43\t\\paragraph{CKA-based pruning.}\n44\tCKA~\\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.\n45\tMPruner~\\citep{mpruner2024} uses \\emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.\n46\t\\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.\n47\tBoth operate at the \\emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.\n48\tIn contrast, RASP uses \\emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\\ immediate accuracy preservation).\n49\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "6153f9ba-4701-4a38-a930-ca62603b8f26",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/related_work.tex",
+                "content": "\\section{Related Work}\n\\label{sec:related}\n\n\\subsection{Structured Pruning of Large Language Models}\n\\label{sec:rw_pruning}\n\nStructured pruning removes entire architectural units---attention heads, MLP channels, or layers---to reduce model size while maintaining hardware-friendly dense computation.\nLLM-Pruner~\\citep{llmpruner2023} introduced dependency-aware structural pruning that respects inter-component coupling in transformer architectures.\nBonsai~\\citep{bonsai2025} achieves competitive structured pruning using only forward passes, eliminating the need for gradient computation.\nGRASPrune~\\citep{graspprune2026} advances the state of the art with global gating that jointly prunes FFN channels and KV head groups under a unified budget constraint.\nShortGPT~\\citep{shortgpt2024} and SliceGPT~\\citep{slicegpt2024} target layer-level depth pruning, while Wanda~\\citep{wanda2024} addresses unstructured weight sparsity---both complementary but orthogonal to the width-level structural pruning we study.\n\nFor reasoning models specifically, RESP~\\citep{resp2025} introduces self-reflective pruning using gradient-based importance on self-generated reasoning traces, achieving 81.3\\% on GSM8K at 40\\% structured sparsity without any recovery training.\nSSGR~\\citep{ssgr2025} shows that selective self-generated calibration with challenging, moderately-lengthy reasoning examples further improves pruning quality for reasoning LLMs.\n\\citet{llms2lrms2026} systematically compare width and depth pruning for reasoning-centric models, finding width pruning more robust to reasoning degradation but not studying RLVR recovery.\nRAC~\\citep{rac2025} demonstrates that chain-of-thought calibrated reconstruction dramatically improves unstructured and 2:4 semi-structured pruning but does not extend to full structural pruning.\n\\citet{doingmore2026} reveal that unstructured pruning can improve test-time scaling for reasoning while structured pruning degrades it, suggesting that \\emph{which} structures are removed critically shapes recovery potential.\n\nRASP differs from all the above in that it optimizes the pruning decision for post-RLVR recoverability: structures are scored not only by their importance but by whether their function can be redistributed across retained structures during reinforcement learning recovery.\n\n\\subsection{Pruning-Aware Recovery and Re-training}\n\\label{sec:rw_recovery}\n\nPost-pruning recovery is essential at moderate to high compression ratios.\n\\citet{selfhealing2025} demonstrate that RLVR recovery restores pruned reasoning models to 95\\%+ accuracy at 25\\% compression, significantly outperforming SFT recovery (${\\sim}$80\\%).\nThis establishes RLVR as the preferred recovery paradigm for reasoning models, but Self-Healing treats the pruning method as a black box and tests only one compression ratio---it does not study whether the \\emph{choice} of what to prune affects how well RLVR can recover.\n\nP\\textsuperscript{2} Law~\\citep{p2law2025} establishes scaling laws for post-training loss after pruning ($L \\propto (1/\\rho)^\\gamma$), predicting recovery data requirements at a given compression ratio, but studies only continual pre-training rather than RLVR or SFT.\nPASER~\\citep{paser2025} optimizes which recovery \\emph{data} to use through manifold learning and capability-aware budget allocation---complementary to RASP, which optimizes which \\emph{structures} to prune for recoverability.\nPAT~\\citep{pat2025} shows that jointly considering pruning and fine-tuning objectives outperforms the sequential prune-then-finetune pipeline.\n\nThe Lottery Ticket Hypothesis~\\citep{frankle2019lth} asks which subnetworks can train effectively from random initialization.\nRASP extends this notion to what we term \\emph{paradigm-conditioned trainability}: the optimal subnetwork to retain depends not only on the task but on the recovery paradigm (RLVR vs.\\ SFT), as each paradigm imposes fundamentally different functional requirements on the retained architecture.\n\n\\subsection{RLVR Training Dynamics}\n\\label{sec:rw_rlvr}\n\nUnderstanding how RLVR reshapes model representations is central to predicting which pruned structures are recoverable.\n\\citet{rlsqueezes2026} show that RLVR and SFT shape reasoning capabilities through fundamentally different mechanisms: RLVR \\emph{compresses} incorrect reasoning trajectories via global exploration, while SFT \\emph{expands} correct trajectories via local imitation.\nThis asymmetry provides the theoretical foundation for RASP---structures with high functional overlap are more amenable to RLVR's redistribution mechanism, as their function can be absorbed by similar retained structures during global policy optimization, whereas SFT's trajectory-imitation objective cannot achieve such redistribution.\nOPSD~\\citep{opsd2026} proposes a post-RL compaction stage that further compresses reasoning traces after RLVR training, reinforcing the view that RLVR-trained models exhibit compressible internal structure.\n\n\\paragraph{CKA-based pruning.}\nCKA~\\citep{kornblith2019cka} has been previously applied to pruning, but at a fundamentally different granularity and with a different objective.\nMPruner~\\citep{mpruner2024} uses \\emph{inter-layer} CKA to cluster globally redundant layers for depth pruning in CNNs and general transformers, achieving up to 50\\% parameter reduction by removing entire layers whose representations are similar to adjacent layers.\n\\citet{lachance2024cka} similarly apply CKA-based layer similarity for depth pruning of VGGNet.\nBoth operate at the \\emph{layer} level, using CKA to identify which layers are redundant and can be removed with minimal accuracy loss.\nIn contrast, RASP uses \\emph{intra-layer} CKA between individual GQA groups and MLP channels to predict per-structure recoverability under RLVR---a finer granularity (width vs.\\ depth pruning) optimizing for a different objective (post-recovery reasoning performance vs.\\ immediate accuracy preservation).\n",
+                "numLines": 49,
+                "startLine": 1,
+                "totalLines": 49
+              }
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XpyofQ6AsvyKWrQi1Ahhda",
+              "name": "Bash",
+              "input": {
+                "command": "grep -oP '\\\\cite[pt]?\\{([^}]+)\\}' paper/related_work.tex | grep -oP '\\{[^}]+\\}' | tr -d '{}' | tr ',' '\\n' | sort -u | while read key; do if grep -q \"^@.*{${key},\" paper/references.bib; then echo \"✓ $key\"; else echo \"✗ MISSING: $key\"; fi; done",
+                "description": "Verify all citation keys from related_work.tex exist in references.bib"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "ba7b5a5e-285c-422c-8566-27f4804286dd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013mbwHxmQc7w1gN4kvFpGVp",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 347,
+                "cache_read_input_tokens": 48168,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 347
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T05:01:13.132Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XpyofQ6AsvyKWrQi1Ahhda",
+              "type": "tool_result",
+              "content": "✓ bonsai2025\n✓ doingmore2026\n✓ frankle2019lth\n✓ graspprune2026\n✓ kornblith2019cka\n✓ lachance2024cka\n✓ llmpruner2023\n✓ llms2lrms2026\n✓ mpruner2024\n✓ opsd2026\n✓ p2law2025\n✓ paser2025\n✓ pat2025\n✓ rac2025\n✓ resp2025\n✓ rlsqueezes2026\n✓ selfhealing2025\n✓ shortgpt2024\n✓ slicegpt2024\n✓ ssgr2025\n✓ wanda2024",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "f77e002f-04f4-4ed7-97a8-70ee7583778e",
+            "tool_use_result": {
+              "stdout": "✓ bonsai2025\n✓ doingmore2026\n✓ frankle2019lth\n✓ graspprune2026\n✓ kornblith2019cka\n✓ lachance2024cka\n✓ llmpruner2023\n✓ llms2lrms2026\n✓ mpruner2024\n✓ opsd2026\n✓ p2law2025\n✓ paser2025\n✓ pat2025\n✓ rac2025\n✓ resp2025\n✓ rlsqueezes2026\n✓ selfhealing2025\n✓ shortgpt2024\n✓ slicegpt2024\n✓ ssgr2025\n✓ wanda2024",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 21 个 citation key 均在 `references.bib` 中存在。\n\n完成内容：\n- `paper/related_work.tex` — 3 个小节（Structured Pruning / Pruning-Aware Recovery / RLVR Training Dynamics + CKA），引用 21 篇文献，约 600 词\n- `paper/references.bib` — 新增 `ssgr2025` 条目\n- 原有文件已覆盖 `literature_notes.md` 中 5 篇核心 + 5 篇补充文献（ThinkPrune 和 Think-Prune-Train-Improve 是 reasoning trace 压缩，与 model pruning 正交，未纳入）\n- Gap 明确突出：现有工作未用 CKA functional overlap 指导剪枝决策来优化 RLVR recovery"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "uuid": "da205e9b-7116-4abb-bac3-e0d442835bd7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011s8g4K2ZFfzSK6ePeX9qje",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2202,
+                "cache_read_input_tokens": 48515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2202
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 21 个 citation key 均在 `references.bib` 中存在。\n\n完成内容：\n- `paper/related_work.tex` — 3 个小节（Structured Pruning / Pruning-Aware Recovery / RLVR Training Dynamics + CKA），引用 21 篇文献，约 600 词\n- `paper/references.bib` — 新增 `ssgr2025` 条目\n- 原有文件已覆盖 `literature_notes.md` 中 5 篇核心 + 5 篇补充文献（ThinkPrune 和 Think-Prune-Train-Improve 是 reasoning trace 压缩，与 model pruning 正交，未纳入）\n- Gap 明确突出：现有工作未用 CKA functional overlap 指导剪枝决策来优化 RLVR recovery"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 140102,
+            "duration_api_ms": 140935,
+            "num_turns": 11,
+            "stop_reason": "end_turn",
+            "session_id": "def7eee4-ddc1-4d7c-bdc2-76cc7ecb9c36",
+            "total_cost_usd": 0.533876,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 38876,
+              "cache_read_input_tokens": 263918,
+              "output_tokens": 6301,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 38876,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 242,
+                  "cache_read_input_tokens": 48515,
+                  "cache_creation_input_tokens": 2202,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2202
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1302,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001372,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 6301,
+                "cacheReadInputTokens": 263918,
+                "cacheCreationInputTokens": 38876,
+                "webSearchRequests": 0,
+                "costUSD": 0.532504,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "ef59e370-f29f-46fe-a9ec-92c46370d61a"
+          },
+          "id": "event-000032"
+        }
+      ],
+      "message_count": 32
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-writing-related-work.md"
+}

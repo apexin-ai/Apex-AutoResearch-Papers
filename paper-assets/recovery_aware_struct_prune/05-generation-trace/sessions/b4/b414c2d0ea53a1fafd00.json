@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b414c2d0ea53a1fafd00",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec unstructured prune westb",
+  "task_key": "worker_exec_unstructured_prune_westb_20260517T052903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_unstructured_prune_westb_20260517T052903_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "919256ee26e1d13aeeb413d1986d1436c940b6b53f3d68a2a779125a17f3694b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。\n\n## 结果汇总\n\n**Unstructured Pruning 完成**:\n- Target sparsity: 20.0%\n- Actual sparsity: **20.0430%** (1,307,865,434 / 6,525,288,448 zeroed)\n- Magnitude threshold: 0.00555420\n- Forward pass 验证通过\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20/` (15GB)\n\n**Post-prune Eval 已启动**:\n- tmux session: `eval_unstructured_20`\n- GPU: cuda:1 (15076MiB 已占用)\n- 评估: GSM8K, 1319 samples, greedy decoding, seed=42\n- 日志: `/root/runs/recovery_aware_struct_prune/eval_unstructured_20.log`\n- 结果将写入: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json`\n\ncuda:0 未被占用（scoring_ablation 如之前所述）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-unstructured-prune-westb.md"
+}

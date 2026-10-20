@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7957f7a94a4c4191d42",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd gpu release",
+  "task_key": "worker_ops_check_westd_gpu_release_20260517T174008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd_gpu_release_20260517T174008_result.json",
+    "occurrence": 1,
+    "bytes": 813,
+    "sha256": "e3b979cce5487d82587b0350960a05c72471f0e1852b72fdf33194eff584c2a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 GPU 状态报告\n\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| cuda:0 | **空闲** (0MiB, 0%) | 无 |\n| cuda:1 | **运行中** (34569MiB, 98%) | PID 14556: eval_math500 grpo_standard_20 (checkpoint-50) |\n| cuda:2 | **空闲** (0MiB, 0%) | 无 |\n| cuda:3 | **运行中** (31527MiB, 99%) | PID 31706: eval_math500 grpo_rasp_20_v9 |\n\n## 已完成实验结果 (HumanEval pass@1)\n\n| 实验 | pass@1 | 正确/总数 | 中位生成长度 |\n|------|--------|-----------|-------------|\n| **SFT standard_20** (2048 tokens) | **11.59%** | 19/164 | 2048 (截断) |\n| **GRPO standard_20** (2048 tokens) | **10.37%** | 17/164 | 2048 (截断) |\n\n两个实验 median response length 都是 2048，说明大量样本被截断。cuda:0 和 cuda:2 已释放，可用于新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-gpu-release.md"
+}

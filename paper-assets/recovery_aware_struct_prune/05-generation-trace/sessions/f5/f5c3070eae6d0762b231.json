@@ -1,0 +1,100 @@
+{
+  "schema_version": "1.0",
+  "id": "f5c3070eae6d0762b231",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code westd alpha4 sft gpu1 urgent",
+  "task_key": "worker_code_westd-alpha4-sft-gpu1-urgent_20260515T120711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-alpha4-sft-gpu1-urgent_20260515T120711.log",
+    "occurrence": 1,
+    "bytes": 2545688,
+    "sha256": "51614f50e75f27cbf341213cf59350db2e6e2f026ad48372bd8e3561aa6ca351"
+  },
+  "statistics": {
+    "messages": 1658,
+    "user_turns": 2,
+    "tool_calls": 640,
+    "roles": {
+      "log": 1,
+      "system": 43,
+      "record": 2,
+      "assistant": 320,
+      "tool_call": 640,
+      "tool_result": 640,
+      "user": 2,
+      "result": 10
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 900,
+      "chunks": [
+        {
+          "path": "f5c3070eae6d0762b231-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0005.json",
+          "message_count": 180
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 580,
+      "chunks": [
+        {
+          "path": "f5c3070eae6d0762b231-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0009.json",
+          "message_count": 40
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 178,
+      "chunks": [
+        {
+          "path": "f5c3070eae6d0762b231-part-0009.json",
+          "message_count": 140
+        },
+        {
+          "path": "f5c3070eae6d0762b231-part-0010.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-westd-alpha4-sft-gpu1-urgent.md"
+}

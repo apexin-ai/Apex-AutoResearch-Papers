@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff8a47eee083b2421163",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westd disk and restart prep",
+  "task_key": "worker_fix_westd_disk_and_restart_prep_20260516T140141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_disk_and_restart_prep_20260516T140141_result.json",
+    "occurrence": 1,
+    "bytes": 473,
+    "sha256": "d79da930e44b547bc020450af2effdf2e393207c4e6475987927d0db7264e44e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，全部验证通过：\n\n| 指标 | 清理前 | 清理后 | 状态 |\n|------|--------|--------|------|\n| 根分区可用 | 25G | 25G | >= 10G ✅ |\n| 数据盘可用 | **2.2M (100%)** | **483G (36%)** | >= 50G ✅ |\n| wandb 符号链接 | 无 | → `/root/autodl-tmp/recovery_aware_struct_prune/wandb` | ✅ |\n| GRPO 崩溃输出 | 486G (4个目录) | 已删除 | ✅ |\n\n数据盘释放约 **482G**，从 100% 满恢复到 36% 使用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-disk-and-restart-prep.md"
+}

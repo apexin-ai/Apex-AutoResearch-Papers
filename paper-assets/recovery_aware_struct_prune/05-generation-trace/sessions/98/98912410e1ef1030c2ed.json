@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "98912410e1ef1030c2ed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh seed123v2 result and math500 alpha1p0 westd0",
+  "task_key": "worker_ssh_seed123v2_result_and_math500_alpha1p0_westd0_20260522T163407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed123v2_result_and_math500_alpha1p0_westd0_20260522T163407.log",
+    "occurrence": 1,
+    "bytes": 576649,
+    "sha256": "fe511c16a95043376c6fa179265415853ef993152a9f9bf70121d30f098260ad"
+  },
+  "statistics": {
+    "messages": 420,
+    "user_turns": 0,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 176,
+      "tool_result": 176,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 420,
+      "chunks": [
+        {
+          "path": "98912410e1ef1030c2ed-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "98912410e1ef1030c2ed-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "98912410e1ef1030c2ed-part-0003.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-seed123v2-result-and-math500-alpha1p0-westd0.md"
+}

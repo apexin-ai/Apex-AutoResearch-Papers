@@ -1,0 +1,377 @@
+{
+  "schema_version": "1.0",
+  "id": "8145e5e05b6c02cb12b0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analysis eval math500 grpo rasp alpha1p0 20 fixed",
+  "task_key": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538.jsonl",
+    "occurrence": 1,
+    "bytes": 22245,
+    "sha256": "ac8378de5bac49267d3192b2b4f19f356ac08fb4dea941058743a60459f2316e"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T21:26:46.095687+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T21:26:46.096014+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T21:26:46.096196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "tail -50 ~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T21:26:46.096360+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T21:26:46.096620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-23 23:45:41,216 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\\n2026-05-23 23:45:41,889 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-23 23:47:08,395 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=1)\\\\n2026-05-23 23:47:08,396 [INFO] Loading MATH-500 dataset...\\\\nUsing the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-23 23:47:08,397 [WARNING] Using the latest cached version of the dataset since HuggingFaceH4/MATH-500 couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\\\n2026-05-23 23:47:08,398 [WARNING] Found the latest cached dataset configuration 'default' at /root/.cache/huggingface/datasets/HuggingFaceH4___math-500/default/0.0.0/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be (last modified on Thu May 21 21:33:23 2026).\\\\n2026-05-23 23:47:08,417 [INFO] Loaded 500 problems\\\\n2026-05-23 23:47:08,417 [INFO] Evaluating on 500 problems\\\\n\\\\rMATH-500 eval:   0%|          | 0/500 [00:00<?, ?it/s]\\\\rMATH-500 eval:   0%|          | 1/500 [00:02<21:00,  2.53s/it]\\\\rMATH-500 eval:   0%|          | 2/500 [01:43<8:23:37, 60.68s/it]\\\\rMATH-500 eval:   1%|          | 3/500 [01:48<4:51:39, 35.21s/it]\\\\rMATH-500 eval:   1%|          | 4/500 [01:51<3:04:07, 22.27s/it]\\\\rMATH-500 eval:   1%|          | 5/500 [01:59<2:22:30, 17.27s/it]\\\\rMATH-500 eval:   1%|          | 6/500 [02:00<1:37:31, 11.85s/it]\\\\rMATH-500 eval:   1%|▏         | 7/500 [03:39<5:29:50, 40.14s/it]\\\\rMATH-500 eval:   2%|▏         | 8/500 [03:48<4:07:38, 30.20s/it]\\\\rMATH-500 eval:   2%|▏         | 9/500 [03:50<2:55:50, 21.49s/i\n…[truncated 6450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T21:26:46.097011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"MATH-500\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.23,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01882020191177555,\\\\n  \\\\\\\"n_correct\\\\\\\": 115,\\\\n  \\\\\\\"n_total\\\\\\\": 500,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 320,\\\\n    \\\\\\\"truncated\\\\\\\": 180,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 903.536\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Convert the point $(0,3)$ in rectangular coordinates to polar coordinates.  Enter your answer in the form $(r,\\\\\\\\\\\\\\\\theta),$ where $r > 0$ and $0 \\\\\\\\\\\\\\\\le \\\\\\\\\\\\\\\\theta < 2 \\\\\\\\\\\\\\\\pi.$\\\\\\\",\\\\n      \\\\\\\"gold_answer\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\left( 3, \\\\\\\\\\\\\\\\frac{\\\\\\\\\\\\\\\\pi}{2} \\\\\\\\\\\\\\\\right)\\\\\\\",\\\\n      \\\\\\\"pred_answer\\\\\\\": \\\\\\\"2\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response_length\\\\\\\": 123\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"Define\\\\\\\\n\\\\\\\\\\\\\\\\[p = \\\\\\\\\\\\\\\\sum_{k = 1}^\\\\\\\\\\\\\\\\infty \\\\\\\\\\\\\\\\frac{1}{k^2} \\\\\\\\\\\\\\\\quad \\\\\\\\\\\\\\\\text{and} \\\\\\\\\\\\\\\\quad q = \\\\\\\\\\\\\\\\sum_{k = 1}^\\\\\\\\\\\\\\\\infty \\\\\\\\\\\\\\\\frac{1}{k^3}.\\\\\\\\\\\\\\\\]Find a way to write\\\\\\\\n\\\\\\\\\\\\\\\\[\\\\\\\\\\\\\\\\sum_{j = 1}^\\\\\\\\\\\\\\\\infty \\\\\\\\\\\\\\\\sum_{k = 1}^\\\\\\\\\\\\\\\\infty \\\\\\\\\\\\\\\\frac{1}{(j + k)^3}\\\\\\\\\\\\\\\\]in term\\\\\\\",\\\\n      \\\\\\\"gold_answer\\\\\\\": \\\\\\\"p - q\\\\\\\",\\\\n      \\\\\\\"pred_answer\\\\\\\": \\\\\\\"1\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"If $f(x) = \\\\\\\\\\\\\\\\frac{3x-2}{x-2}$, what is the value of $f(-2) +f(-1)+f(0)$? Express your answer as a common fraction.\\\\\\\",\\\\n      \\\\\\\"gold_answer\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\frac{14}{3}\\\\\\\",\\\\n      \\\\\\\"pred_answer\\\\\\\": \\\\\\\"23/3\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response_length\\\\\\\": 273\\\\n    },\\\\n    {\\\\n      \\\\\\\"problem\\\\\\\": \\\\\\\"How many positive whole-number divisors does 196 have?\\\\\\\",\\\\n      \\\\\\\"gold_answer\\\\\\\": \\\\\\\"9\\\\\\\",\\\\n      \\\\\\\"pred_answer\\\\\\\": \\\\\\\"15\\\\\\\",\\\\n    \n…[truncated 8119 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T21:26:46.097282+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_grpo_rasp_alpha1p0_20_fixed",
+              "field": "metrics",
+              "value": "{'accuracy': 0.23, 'n_correct': 115, 'n_total': 500, 'stderr': 0.0188, 'natural_eos': 320, 'truncated': 180, 'avg_response_length': 903.536}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T21:26:46.097447+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_grpo_rasp_alpha1p0_20_fixed",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T21:26:46.097627+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_grpo_rasp_alpha1p0_20_fixed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:44:56.850Z\\\", \\\"updated_at\\\": \\\"2026-05-23T21:26:05.777Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP α=1.0 20% MATH-500 with fixed eval script. Replaces buggy NEW result (22.6%) with consistent scoring.\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T15:45:34.279Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\\\", \\\"finished_at\\\": \\\"2026-05-23T21:23:51.075Z\\\", \\\"training_hours\\\": 5.64}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:45:38.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_2\n…[truncated 380 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T21:26:46.097786+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_grpo_rasp_alpha1p0_20_fixed",
+              "field": "log_path",
+              "value": "~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T21:26:46.097962+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_grpo_rasp_alpha1p0_20_fixed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:44:56.850Z\\\", \\\"updated_at\\\": \\\"2026-05-23T21:26:07.776Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP α=1.0 20% MATH-500 with fixed eval script. Replaces buggy NEW result (22.6%) with consistent scoring.\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T15:45:34.279Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\\\", \\\"finished_at\\\": \\\"2026-05-23T21:23:51.075Z\\\", \\\"training_hours\\\": 5.64}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:45:38.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_2\n…[truncated 505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T21:26:46.098155+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_grpo_rasp_alpha1p0_20_fixed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:44:56.850Z\\\", \\\"updated_at\\\": \\\"2026-05-23T21:26:09.573Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP α=1.0 20% MATH-500 with fixed eval script. Replaces buggy NEW result (22.6%) with consistent scoring.\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T15:45:34.279Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\\\", \\\"finished_at\\\": \\\"2026-05-23T21:23:51.075Z\\\", \\\"training_hours\\\": 5.64}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:45:38.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_2\n…[truncated 505 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T21:26:46.098328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_grpo_rasp_alpha1p0_20_fixed",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T21:26:46.098465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_math500_grpo_rasp_alpha1p0_20_fixed",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T21:26:46.098644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_grpo_rasp_alpha1p0_20_fixed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:44:56.850Z\\\", \\\"updated_at\\\": \\\"2026-05-23T21:26:27.722Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP α=1.0 20% MATH-500 with fixed eval script. Replaces buggy NEW result (22.6%) with consistent scoring.\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T15:45:34.279Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\\\", \\\"finished_at\\\": \\\"2026-05-23T21:23:51.075Z\\\", \\\"training_hours\\\": 5.64}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:45:38.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_2\n…[truncated 533 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T21:26:46.098900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_math500_grpo_rasp_alpha1p0_20_fixed\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T15:44:56.850Z\\\", \\\"updated_at\\\": \\\"2026-05-23T21:26:31.216Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP α=1.0 20% MATH-500 with fixed eval script. Replaces buggy NEW result (22.6%) with consistent scoring.\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-23T15:45:34.279Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"code_commit\\\": \\\"39afb8c6309aad601973b2b3cd6b4f1a8a3b0b6c\\\", \\\"finished_at\\\": \\\"2026-05-23T21:23:51.075Z\\\", \\\"training_hours\\\": 5.64}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha1p0_20_fixed.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_math500_grpo_rasp_alpha1p0_20_fixed.log\\\", \\\"submitted_at\\\": \\\"2026-05-23T15:45:38.369Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 20452.8, \\\"gpu_hours\\\": 5.68}, \\\"pid\\\": \\\"145167\\\", \\\"log_path\\\": \\\"~/runs/recovery_awa\n…[truncated 682 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T21:26:46.099191+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **23.0%** (115/500) ± 1.88% |\n| Natural EOS | 320 (64%) |\n| Truncated | 180 (36%) |\n| Avg response length | 903.5 tokens |\n| 运行时间 | 5h34m |\n| 异常 | 无 |\n\n### 与旧结果对比\n\n| 模型 | 旧 (buggy) | 新 (fixed) | 变化 |\n|------|-----------|-----------|------|\n| GRPO RASP α=1.0 20% | 22.6% | **23.0%** | +0.4pp |\n| SFT CKA-only 20% | 26.8% | 27.4% | +0.6pp |\n| SFT RASP α=1.0 20% | 21.2% | 21.6% | +0.4pp |\n\nFixed eval 脚本一致性地将所有模型的 accuracy 提升了 0.4-0.6pp，符合预期（expression extraction + space normalization bug 修复后匹配率提高）。GRPO RASP 的相对排序不变，仍然介于 SFT RASP (21.6%) 和 SFT CKA-only (27.4%) 之间。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-math500-grpo-rasp-alpha1p0-20-fixed.md"
+}

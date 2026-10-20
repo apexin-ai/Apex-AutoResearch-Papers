@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7f777bc2d751ce89441",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose v2 rasp humaneval harvest",
+  "task_key": "worker_diagnose_v2_rasp_humaneval_harvest_20260519T143546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_v2_rasp_humaneval_harvest_20260519T143546_result.json",
+    "occurrence": 1,
+    "bytes": 678,
+    "sha256": "87492cf0f4a77c5167b162133b4e673630a6eb0a301188ae10006fde6680f14a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**结果汇总：**\n\n| 模型 | HumanEval pass@1 |\n|------|------------------|\n| SFT Standard | 13.41% |\n| SFT CKA-only | 20.12% |\n| **SFT RASP 20%** | **10.37% (17/164)** |\n| GRPO RASP | 10.98% |\n\nSFT RASP 20% v2 重跑结果与 v1 一致（10.37%），确认非 truncation 问题。RASP 在 HumanEval 上表现最差，低于 Standard 和 CKA-only，与 GRPO RASP 接近。median_response_length=2048 说明大量生成被截断，模型在代码生成上存在冗长输出问题。\n\n**westd-29022 GPU 状态：** cuda:1 已空闲（0MiB, 0%），可用于下一个任务。cuda:0/2/3 均有进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-v2-rasp-humaneval-harvest.md"
+}

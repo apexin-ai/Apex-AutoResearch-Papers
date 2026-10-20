@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e15de457477a69cacd9f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest westb1 next eval 20260522",
+  "task_key": "worker_harvest_westb1_next_eval_20260522_20260522T021406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_westb1_next_eval_20260522_20260522T021406_result.json",
+    "occurrence": 1,
+    "bytes": 87,
+    "sha256": "827f34c32ff5980bbd418bc722a4cc33e9fb7e10156f039b23d201bc2e0b2323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background timer completed (no longer needed — task already finished)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-westb1-next-eval-20260522.md"
+}

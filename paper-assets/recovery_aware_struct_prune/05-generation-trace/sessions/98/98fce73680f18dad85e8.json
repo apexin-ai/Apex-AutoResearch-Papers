@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98fce73680f18dad85e8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code shortgpt prune westd cuda3",
+  "task_key": "worker_code_shortgpt_prune_westd_cuda3_20260519T141510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_shortgpt_prune_westd_cuda3_20260519T141510_result.json",
+    "occurrence": 1,
+    "bytes": 737,
+    "sha256": "7994be10bf249ae47ec4a2a14264e4723f5f5d85d6e5015b8c4b078a02af72c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 训练已启动并正常运行：\n- 7473 samples tokenized, 2 epochs, 1870 steps\n- ~1.15 it/s, 预计 ~27 分钟完成\n- cuda:3 占用 52.8GB, 88% 利用率\n\n**总结：**\n\n1. **ShortGPT pruning 完成** ✓\n   - 模型：DeepSeek-R1-Distill-Qwen-7B, 28 → 23 层\n   - 移除层：[15, 16, 17, 24, 25]（BI 最低的 5 层）\n   - 参数：7.62B → 6.45B (15.30% sparsity)\n   - 输出：`/root/autodl-tmp/recovery_aware_struct_prune/shortgpt_20`\n\n2. **SFT warmup 训练已提交** ✓\n   - exp_id: `sft_shortgpt_20`，westd-29022 cuda:3，PID 112015\n   - 超参与其他方法一致：2 epochs, lr=2e-5, batch=1, grad_accum=8, seq_len=2048\n   - Registry 状态：RUNNING\n   - 预计 ~27 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-shortgpt-prune-westd-cuda3.md"
+}

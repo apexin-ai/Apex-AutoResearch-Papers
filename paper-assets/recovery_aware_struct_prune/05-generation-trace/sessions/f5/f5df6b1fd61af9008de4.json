@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "f5df6b1fd61af9008de4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix eval overflow",
+  "task_key": "worker_fix_eval-overflow_20260514T081131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval-overflow_20260514T081131.log",
+    "occurrence": 1,
+    "bytes": 589270,
+    "sha256": "55e16ae7c32b53ce7391c1ec1109f7e420a84081f621e51a3beef4a327dc81e9"
+  },
+  "statistics": {
+    "messages": 300,
+    "user_turns": 0,
+    "tool_calls": 117,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 117,
+      "tool_result": 117,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 300,
+      "chunks": [
+        {
+          "path": "f5df6b1fd61af9008de4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f5df6b1fd61af9008de4-part-0002.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-eval-overflow.md"
+}

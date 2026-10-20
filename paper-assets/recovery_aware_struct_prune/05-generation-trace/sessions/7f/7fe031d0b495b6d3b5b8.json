@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fe031d0b495b6d3b5b8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "investigate westd cuda3 orphan",
+  "task_key": "worker_investigate_westd_cuda3_orphan_20260519T024658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_westd_cuda3_orphan_20260519T024658_result.json",
+    "occurrence": 1,
+    "bytes": 524,
+    "sha256": "592d9c612be693d3bb03af0f7b230ce46418bf6913999ca6808b63481c6a36ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调查完成。\n\n**结论：有效实验，非 orphan。**\n\n- PID 59413 正在 cuda:3 上运行 GSM8K 评估（grpo_standard_20_extended_300 模型），29610 MiB 显存，99% GPU 利用率\n- 在 tmux session `eval_gsm8k_standard_300` 中运行，启动于 10:18\n- 进度 207/1319 (16%)，accuracy 0.63，预计还需 ~74 min\n- 仅因未注册到 registry 被 reconcile_crons 标记\n\n建议保留，让评估自然完成后补录 registry。报告已写入 `artifacts/westd_cuda3_investigation.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-westd-cuda3-orphan.md"
+}

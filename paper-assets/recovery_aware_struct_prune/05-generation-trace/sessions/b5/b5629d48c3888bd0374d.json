@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b5629d48c3888bd0374d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westd0 floor ablation status",
+  "task_key": "worker_ssh_check_westd0_floor_ablation_status_20260523T091914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd0_floor_ablation_status_20260523T091914_result.json",
+    "occurrence": 1,
+    "bytes": 1260,
+    "sha256": "e6e7017d11ff50491cf0e0d577403a83e1c070cc854fb1a763e871b87b34e06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n**进程**: PID 114044 已死亡。\n\n**Pipeline 进度**: 走到了第 3 步 GRPO，训练本身已完成（100/100 steps），但在 **保存模型时磁盘空间不足崩溃**。\n\n| 阶段 | 状态 | 产出 |\n|------|------|------|\n| Prune | ✅ 完成 | `pruned_cka_only_20_floor_0.3/` — 12.3GB model.safetensors |\n| SFT | ✅ 完成 | `sft_cka_only_20_floor_0.3/` — 12.3GB model.safetensors |\n| GRPO | ❌ 保存失败 | `grpo_cka_only_20_floor_0.3/` — 仅 4.8GB（不完整，缺 tokenizer 等文件） |\n\n**失败原因**: `safetensors_rust.SafetensorError: No space left on device (os error 28)`\n- GRPO 训练 100 steps 全部跑完，在 `trainer.save_model()` 写 safetensors 时磁盘满\n- 当前数据盘 `/root/autodl-tmp` 用了 532G/650G（82%），剩 119GB — 说明崩溃后有部分临时文件已被清理或其他任务释放了空间\n\n**GPU 0**: 空闲（0% 利用率，0 MiB 显存）。GPU 1/2 被其他任务占用。\n\n**修复建议**: GRPO 训练已完成但模型没存好。可以清理不需要的旧 checkpoint 腾空间后，重新只跑 GRPO save 步骤（或重跑 GRPO，100 steps 约 21 分钟）。grpo 输出目录里已有 4.8GB 的不完整文件需要先删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd0-floor-ablation-status.md"
+}

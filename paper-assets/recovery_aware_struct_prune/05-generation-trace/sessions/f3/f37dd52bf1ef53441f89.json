@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f37dd52bf1ef53441f89",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops kill resubmit westb0 alpha3p0",
+  "task_key": "worker_ops_kill_resubmit_westb0_alpha3p0_20260524T090635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_resubmit_westb0_alpha3p0_20260524T090635_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "af382cd7561fb5bc8627962fde4691cbffac4565f31248f13640d02d1212d65a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `eval_math500_sft_rasp_alpha3p0_20_fixed_v2` |\n| PID | **370519** |\n| GPU | westb-23072 cuda:0 |\n| tmux session | `eval_math500_sft_rasp_alpha3p0_20_fixed_v2` |\n| log | `~/runs/recovery_aware_struct_prune/eval_math500_sft_rasp_alpha3p0_20_fixed_v2.log` |\n| status | RUNNING |\n| 旧实验 | `eval_math500_sft_rasp_alpha3p0_20_fixed` → DONE/failed |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-resubmit-westb0-alpha3p0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc4c1cf4a56161659d80",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo random 20 v2",
+  "task_key": "worker_diagnose_eval_math500_grpo_random_20_v2_20260522T000921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_random_20_v2_20260522T000921_result.json",
+    "occurrence": 1,
+    "bytes": 1106,
+    "sha256": "212b6ed78d4c7db10dba6a1864f5ccb64f95bbda76df6b10ef78f84a99619d41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 根因：代码 bug（`IsADirectoryError`）\n\n评估**跑完了全部 500/500 题**（耗时 ~10 小时），在最后保存结果时崩溃：\n\n```\nIsADirectoryError: [Errno 21] Is a directory: '/root/runs/recovery_aware_struct_prune/eval_math500_grpo_random_20_v2'\n```\n\n`--output_path` 传入的是目录路径，而运行时的代码版本在 `open()` 时未做 `isdir` 转换，直接尝试把目录当文件写入。当前服务器上的代码（lines 218-220）已有 `isdir` 检查，说明实验启动时跑的是旧版代码。\n\n### 结果可用性\n\n- **准确率已知**：**12.00% (60/500)**，stderr ±0.0145（从日志中读取）\n- **逐题详细结果丢失**：JSON 未写入磁盘，output 目录下只有 log 文件\n- 无 OOM、无 CUDA error、无磁盘满、模型文件完整\n\n### 建议修复方案\n\n1. **直接重试**即可——当前服务器代码已修复 `isdir` bug，cuda:1 当前空闲（0MB 占用）。同样命令重跑会自动生成 `eval_math500_checkpoint-100.json`\n2. 预计耗时 ~10 小时，无需改参数"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-random-20-v2.md"
+}

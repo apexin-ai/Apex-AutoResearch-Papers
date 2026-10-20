@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f44be37b6d2862bad6d7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis inference bench clean v2",
+  "task_key": "worker_analysis_inference_bench_clean_v2_20260519T015704",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_inference_bench_clean_v2_20260519T015704_result.json",
+    "occurrence": 1,
+    "bytes": 1644,
+    "sha256": "e3fab8b239d1f2f742993e3d393bd5e1a0fcfde0b2304e4535fd07abc05347a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 分析摘要\n\n**实验状态：成功完成，无异常（无 OOM、无 GPU contention、进程正常退出）。**\n\n### 指标表格\n\n| Model | Params | TPS | Speedup | First-token (ms) | Per-token (ms) |\n|---|---|---|---|---|---|\n| Dense (original) | 7.62B | 72.0 | 1.00x | 20.1 | 13.9 |\n| CKA-only 20% pruned | 6.16B (−19%) | 58.3 | **0.81x** | 16.4 (−18%) | 16.7 (+20%) |\n| Standard 20% pruned | 6.16B (−19%) | 58.2 | **0.81x** | 16.4 (−18%) | 16.7 (+20%) |\n\n### 核心结论\n\n1. **Pruned 模型没有 TPS speedup**：减少 19% 参数，TPS 反而慢 19%。原因是非均匀 MLP（intermediate_size 范围 8128~18944），irregular tensor shapes 导致 GPU kernel 效率低。\n2. **Prefill 有加速**：首 token 延迟从 20.1ms 降到 16.4ms（−18%），因为模型更小，前向传播确实更快。\n3. **Per-token generation 更慢**：13.9ms → 16.7ms（+20%），non-uniform 结构在 autoregressive decoding 中无法被 cuBLAS 高效处理。\n4. **CKA-only vs Standard 无速度差异**：58.28 vs 58.25 TPS，两者结构相同（同为 20% 剪枝率），剪枝策略不影响推理速度。\n5. **Pruned 模型生成更少 token**：7.6K / 7.1K vs 12.7K，pruned 模型在 GSM8K 上更早触发 EOS。\n\n### 对论文的影响\n\n不能用 naive HuggingFace 推理声称 inference speedup。参数减少和内存节省是实际的（−19% params），但 TPS 加速需要 uniform pruning 或 custom sparse kernels。论文中应报告 parameter efficiency 和 memory reduction，推理速度如需声称需额外工程优化（如 padding to uniform size 或 sparse GEMM）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-inference-bench-clean-v2.md"
+}

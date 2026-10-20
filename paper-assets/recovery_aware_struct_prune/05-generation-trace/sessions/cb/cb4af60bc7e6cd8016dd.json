@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb4af60bc7e6cd8016dd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix remote eval paths urgent",
+  "task_key": "worker_code_fix-remote-eval-paths-urgent_20260515T061342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-remote-eval-paths-urgent_20260515T061342_result.json",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "9843fe5f37c3bed509e0f70c3254274629bcc1f0bde8f20d29b89c6446758542"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**修改汇总：**\n\n| 文件 | 状态 | 修改行 | md5sum |\n|------|------|--------|--------|\n| `scripts/run_full_eval.sh` | 已是 `_v2`，无需修改 | — | `7caa6c68...` |\n| `src/run_full_eval.sh` | **已修复** | 第 35、36 行 | `4d363bce...` |\n\n- 第 35 行：`grpo_stage2_rasp_20` → `grpo_stage2_rasp_20_v2`\n- 第 36 行：`grpo_stage2_standard_20` → `grpo_stage2_standard_20_v2`\n- 语法检查通过，v2 目录均存在。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-remote-eval-paths-urgent.md"
+}

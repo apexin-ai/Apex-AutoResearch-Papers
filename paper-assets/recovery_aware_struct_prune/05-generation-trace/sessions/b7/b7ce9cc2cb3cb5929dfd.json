@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7ce9cc2cb3cb5929dfd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd kill and grasp sft",
+  "task_key": "worker_code_westd-kill-and-grasp-sft_20260515T135104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-kill-and-grasp-sft_20260515T135104_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "3a0fb69063fd95e5504b4c2653d56e1131526c6a05aec7a22c17a34ad1aa36a4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动，正在加载模型（模型较大，GPU 显存尚未分配是因为还在 CPU 加载阶段）。\n\n**执行结果：**\n- **Killed**: PID 34206 (GraSP full eval), PID 34195 (tmux), PID 37310 (重复 alpha_4.0 eval)\n- **GraSP eval 结果文件**：不存在（进程 kill 前未写入磁盘，partial 结果丢失）\n- **已提交**: `sft_grasp_20_westd` on GPU 0, PID 38509, 正在加载模型\n- **GPU 1**: 空闲可用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-kill-and-grasp-sft.md"
+}

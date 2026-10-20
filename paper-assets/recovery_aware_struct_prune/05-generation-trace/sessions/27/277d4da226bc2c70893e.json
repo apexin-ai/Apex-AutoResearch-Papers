@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "277d4da226bc2c70893e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh cka25 eval v3 submit",
+  "task_key": "worker_ssh_cka25_eval_v3_submit_20260521T045044",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cka25_eval_v3_submit_20260521T045044_result.json",
+    "occurrence": 1,
+    "bytes": 231,
+    "sha256": "d6cef77aedb540c9a87da3f16769c4f3b7d4758abd9abc098f284d730807ac6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`python` 命令不存在。这台机器需要激活 conda 环境。用 `python3` 或先 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` 重新启动。\n\n要我用 conda 激活后重跑吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cka25-eval-v3-submit.md"
+}

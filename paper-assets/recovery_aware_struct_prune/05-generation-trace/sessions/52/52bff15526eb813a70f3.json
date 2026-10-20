@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52bff15526eb813a70f3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_22_1779491079.md",
+  "task_key": "loop_22_1779491079",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_22_1779491079.md",
+    "occurrence": 1,
+    "bytes": 4497,
+    "sha256": "13688a59eaffe8d0755afb2ac6eaa19aa0a0c7536aeaa6697f4f29f185b139f0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 22\nreason: idle_timeout\nupdated: '2026-05-22T23:03:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-32935 cuda:0/1/2/3 + westb-23072 cuda:0/1，共 6 张。其他 GPU 即使 Director 指令也必须 push back\n- EMNLP 2026 ARR 截稿 ~2026-05-25（约 2 天后），所有实验和论文工作以此为硬 deadline\n- α dose-response pipeline 脚本（pipeline_alpha*.log）在 westd:2/3 上两次都 ~62min 后崩溃，修复前不要盲目重提交——等诊断 Worker 结果\n- eval 脚本版本不一致曾导致多次失败（westd 和 westb 的 eval_math500.py 版本不同，v3 已从 westb 同步代码）\n- submit_training_job 的 command 必须自带环境激活（如 `source /root/miniconda3/bin/activate && python ...`），不要假设 .venv 存在\n\n### 2. 🖥️ 基础设施快照\n- **westd-32935**：4× RTX PRO 6000，工作目录 `/root/recovery_aware_struct_prune/`，日志 `/root/recovery_aware_struct_prune/logs/`\n- **westb-23072**：2× RTX PRO 6000，同结构路径\n- Python：`/root/miniconda3/bin/python`（conda base 环境，`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 模型：DeepSeek-R1-Distill-Qwen-7B（主力）、Qwen2.5-1.5B（cross-scale）、Qwen2.5-Math-7B（cross-arch，PREPARING）\n- 活跃进程：\n  - westd:0 — eval_math500_grpo_standard_20_fair_2048_v2 (pid=2234, cron 监控中)\n  - westd:1 — eval_math500_sft_random_20_v3 (pid=5236, cron 监控中)\n  - westb:0 — eval_math500_sft_standard_20_1p5b (pid=147023, cron 监控中)\n  - westb:1 — eval_math500_sft_rasp_20_1p5b (pid=147308, cron 监控中)\n  - westd:2,3 — **空闲**（pipeline_alpha2p0_20 / alpha0p5_20 失败后释放）\n\n### 3. 📊 当前状态\n刚处理 `pipeline_alpha2p0_20` 失败回调（EXIT_CODE=1）和 `pipeline_alpha0p5_20`（EXIT_CODE=129），已向 Director 汇报。\n\n**RUNNING（4 个）**：\n- `eval_math500_grpo_standard_20_fair_2048_v2` — Standard 20% GRPO MATH-500 @2048，补全 C1 decoupling\n- `eval_math500_sft_random_20_v3` — Random 20% SFT MATH-500 @2048\n- `eval_math500_sft_standard_20_1p5b` — 1.5B Standard MATH-500 cross-scale\n- `eval_math500_sft_rasp_20_1p5b` — 1.5B RASP MATH-500 cross-scale\n\n**等待中**：\n- Worker `worker_diagnose_pipeline_alpha_failures`（06:53:30 启动）— 正在诊断两条 α pipeline 失败原因，**回调后立即修复并重提交到 westd:2,3**\n- Worker `worker_fix_grpo_sigterm_restart`（06:53:28 启动）— 修复 GRPO SIGTERM 重启问题\n- 32 个 PREPARING 实验排队（含 sft_alpha4_20_v2, grpo_unstructured_20, grpo_standard_1p5b_100steps 等）\n\n### 4. 📋 待办（条件触发式）\n- `worker_diagnose_pipeline_alpha_failures` 回调 → 根据 root_cause 修复脚本 → 重提交 pipeline_alpha0p5_20 和 pipeline_alpha2p0_20 到 westd:2,3（α dose-response 是论文因果证据核心，P0）\n- `worker_fix_grpo_sigterm_restart` 回调 → 整合修复到相关脚本\n- `eval_math500_grpo_standard_20_fair_2048_v2` 完成 → 与 SFT 25.8% 配对算 C1 Δ，更新 ROADMAP MATH-500 表\n- `eval_math500_sft_random_20_v3` 完成 → 与 GRPO 12.0% 配对算 C1 Δ\n- 1.5B MATH-500 两个 eval 完成 → cross-scale comparison 结论（CKA-only > Standard > RASP 是否 scale-invariant）\n- westb:0,1 释放（~2.5h）→ 最高优先提交 MF3 cross-arch GRPO（Qwen-Math），或 α=3.0 pipeline\n- α=0.5/1.0/2.0/4.0 四点齐全 → 绘制 dose-response curve（Figure），写 C2 mechanism 段落\n\n### 5. 🎯 战略上下文\n- **核心结论**：Pruning criterion shapes RLVR recovery capacity。排序 CKA-only >> Standard >> Random >> RASP。C1 decoupling 已在 7/7 pair 确认（|Δ| ≤ 1.0pp）\n- **关键缺口**：α dose-response 曲线只有 α=1.0 和 α=4.0 两个点，α=0.5/2.0/3.0 是因果证据的核心——这两条 pipeline 失败 = 论文最关键的新增证据断了，修复重跑是 P0\n- **D104 决策**：用户指出三大审稿硬伤，启动三线并行——α dose-response + cross-scale(1.5B) + cross-arch(Qwen-Math)\n- **易错点**：\n  - RASP MATH-500 GRPO eval 从未成功过（⛔标记），不要再投入 GPU 重试\n  - eval 脚本在不同服务器版本可能不一致，提交前确认代码已同步\n  - Pipeline 脚本是 multi-stage（prune→SFT→GRPO→eval×2），~62min 崩溃大概率在 SFT 阶段末尾或 GRPO 启动阶段，诊断时重点看该时间段日志\n  - Paper Agent W7-W9 待实验数据，不要催写——数据没到位写了也是废稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-22-1779491079.md"
+}

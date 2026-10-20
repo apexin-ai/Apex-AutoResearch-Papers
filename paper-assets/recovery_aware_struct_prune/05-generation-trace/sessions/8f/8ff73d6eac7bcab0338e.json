@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ff73d6eac7bcab0338e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp grpo standard 20 seed123",
+  "task_key": "worker_exp_grpo_standard_20_seed123_20260520T062029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_grpo_standard_20_seed123_20260520T062029_result.json",
+    "occurrence": 1,
+    "bytes": 827,
+    "sha256": "d14504aaf76c9cf830310176240c9546e4703c1929eb043dae90e790ac259425"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**总结：**\n\n- **Registry**: `grpo_standard_20_seed123` → RUNNING\n- **服务器**: westd-29022, cuda:2, tmux session `grpo_standard_20_seed123`\n- **PID**: 211972 (Python), 211967 (wrapper)\n- **配置**: v5 fair config — 100 steps, beta=0.01, loss_type=dapo, temperature=0.4, max_completion_length=1024, seed=123, WANDB_MODE=offline\n- **SFT checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_seed123`\n- **当前状态**: 模型已加载到 GPU (12.5GB)，正在加载 ref_model，数据集已从缓存加载 (7473 samples)\n- **注**: cuda:2 上同时有 seed=456 的 GRPO 任务（另一 agent 提交），但 98GB VRAM 足够两个训练共存。实际 seed=456 在 cuda:3。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-grpo-standard-20-seed123.md"
+}

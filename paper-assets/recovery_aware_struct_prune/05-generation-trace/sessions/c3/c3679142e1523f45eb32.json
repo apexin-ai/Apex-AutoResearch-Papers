@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3679142e1523f45eb32",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent status westd",
+  "task_key": "worker_ssh_urgent_status_westd_20260523T183555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_westd_20260523T183555_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "d043477c9b3ebd9abb73803593dda481c6d4bfaefb82b351ee62b9a0fa5194d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-32935 状态\n\n**GPU:**\n| GPU | 显存占用 | 总显存 | 利用率 | 状态 |\n|-----|---------|--------|--------|------|\n| cuda:0 | 0 MiB | 97887 MiB | 0% | **空闲** |\n| cuda:1 | 17541 MiB | 97887 MiB | 98% | 占用 |\n| cuda:2 | 19251 MiB | 97887 MiB | 98% | 占用 |\n| cuda:3 | 19251 MiB | 97887 MiB | 97% | 占用 |\n\n**空闲 GPU:** cuda:0\n\n**运行中 (3 个 eval):**\n| PID | GPU | 运行时长 | 实验 | 进度 |\n|-----|-----|---------|------|------|\n| 142477 | cuda:2 | 3h32m | eval_math500_grpo_standard_20_fixed | 252/500 (50%) |\n| 142638 | cuda:3 | 3h31m | eval_math500_sft_standard_20_fixed | 241/500 (48%) |\n| 145167 | cuda:1 | 2h50m | eval_math500_grpo_rasp_alpha1p0_20_fixed | 280/500 (56%) |\n\n**已完成 eval:**\n- **eval_math500_sft_rasp_alpha1p0_20_fixed**: accuracy=**21.6%**, correct=108/500, EXIT_CODE=0\n\n**PID 147914 (eval_math500_sft_rasp_alpha1p0_20_fixed):** 已结束，正常退出\n\n**sft_standard_25 checkpoint:** 存在，`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/model.safetensors`，10.8GB\n\n**预计剩余时间:** 3 个运行中的 eval 按当前速度还需约 2.5-3.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-westd.md"
+}

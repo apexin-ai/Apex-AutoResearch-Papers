@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "2e26a79f23b9d887d967",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d021 grpo v4 fix and launch",
+  "task_key": "worker_code_d021-grpo-v4-fix-and-launch_20260515T081725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d021-grpo-v4-fix-and-launch_20260515T081725.log",
+    "occurrence": 1,
+    "bytes": 1343525,
+    "sha256": "47d94c8e3075b79305f160ae124c2ddde4cb1413a216ec41bea0d56b8771d34e"
+  },
+  "statistics": {
+    "messages": 699,
+    "user_turns": 1,
+    "tool_calls": 241,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 189,
+      "tool_call": 241,
+      "tool_result": 241,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 597,
+      "chunks": [
+        {
+          "path": "2e26a79f23b9d887d967-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e26a79f23b9d887d967-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e26a79f23b9d887d967-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2e26a79f23b9d887d967-part-0004.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "2e26a79f23b9d887d967-part-0004.json",
+          "message_count": 102
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d021-grpo-v4-fix-and-launch.md"
+}

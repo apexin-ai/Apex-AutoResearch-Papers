@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "id": "44bad553c9fa3d8e6ed4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analyze eval humaneval grpo cka only 20 1p5b 2048",
+  "task_key": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652.jsonl",
+    "occurrence": 1,
+    "bytes": 7435,
+    "sha256": "bff62b8d65c81fc610858c297b05c6862be49ea6508ac79a7ca5bfd5e2560872"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:27:31.206379+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:27:31.206700+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:27:31.206865+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat ~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_1p5b_2048.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:27:31.207124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 19:46:03,024 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b\\\\n2026-05-19 19:46:03,585 [INFO] Non-uniform MLP detected: intermediate_size range [3738, 8960]\\\\n2026-05-19 19:46:28,015 [INFO] Loading HumanEval dataset...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\n2026-05-19 19:47:48,360 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/openai_humaneval/resolve/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544/openai_humaneval.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-19 19:47:48,360 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\n2026-05-19 19:47:49,363 [WARNING] Using the latest cached version of the dataset since openai/openai_humaneval couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-19 19:47:49,363 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-19 19:47:49,382 [INFO] Loaded 164 problems\\\\n\\\\rHumanEval:   0%|          | 0/164 [00:00<?, ?it/s]\\\\rHumanEval:   1%|          | 1/164 [00:36<1:39:42, 36.70s/it]\\\\rHumanEval:   1%|          | 2/164 [01:12<1:38:11, 36.37s/it]\\\\rHumanEval:   2%|▏         | 3/164 [01:48<1:36:40, 36.03s/it]\\\\rHumanEval:   2%|▏         | 4/164 [02:24<1:36:12, 36.08s/it]\\\\rHuma\n…[truncated 6426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:27:31.207327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:27:31.207635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.0,\\\\n  \\\\\\\"stderr\\\\\\\": 0.0,\\\\n  \\\\\\\"n_correct\\\\\\\": 0,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 1977.6951219512196,\\\\n    \\\\\\\"median_response_length\\\\\\\": 2048.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpoimnvrc2.py\\\\\\\\\\\\\\\", line 12\\\\\\\\n    The function checks if any two numbers in the list are closer than the threshold to each other. It returns True if there are such pairs, False otherwise.\\\\\\\\n                 ^^^^^^^^^^^^^\\\\\\\\nSyntaxError: expected 'else' after 'if' expression\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmp_83d8e7o.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function that takes a string with nested parentheses and then returns a list of strings, each representing the nested parentheses. The function should process the string by removing spaces and then splitting it into groups that represent nested parentheses. \\\\\\\\n            ^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpf_e8rtt2.py\\\\\\\\\\\\\\\", line 1\\\\\\\\n    The function is supposed to return the decimal part of a number. The number is a float, which is decomposed into an integer part (the largest integer smaller than the number) and the decimal part (leftover part always smaller than 1). The function should return the decimal part of the number.\\\\\\\\n        ^^^^^^^^\\\\\\\\nSynta\n…[truncated 7440 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:27:31.207869+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **pass@1: 0.0%**\n- **n_correct: 0**\n- **n_total: 164**\n- **W&B run_id**: 无（日志中未提及 W&B）\n\n**严重问题 — 模型输出全是自然语言，不是代码：**\n\n所有 164 题全部 SyntaxError。模型没有生成 Python 代码，而是输出 chain-of-thought 式的自然语言推理文本（如 \"Okay, I need to write a Python function...\"、\"The function checks if...\"），直到撞上 `max_tokens=2048` 截断，从未产出可执行代码。\n\n- **avg_response_length**: 1977.7 tokens\n- **median_response_length**: 2048 tokens（即绝大多数响应都被截断）\n\n这说明 GRPO + CKA-only 20% 剪枝后的 1.5B 模型的 code generation 能力已完全丧失，模型退化为纯文本推理模式。\n\n**路径信息：**\n- checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_1p5b`\n- results JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_1p5b_2048.json`\n- log: `~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_cka_only_20_1p5b_2048.log`"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analyze_eval_humaneval_grpo_cka_only_20_1p5b_2048_20260519T132652"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/analyze-eval-humaneval-grpo-cka-only-20-1p5b-2048.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d4e338c38d867e2ab458",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "infra deploy westd 11672",
+  "task_key": "worker_infra_deploy-westd-11672_20260515T061730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_deploy-westd-11672_20260515T061730_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "579f332f0f16070ca846a925b38178a37400459b9d8727536dbf04e0517e84a3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "部署完成。环境报告：\n\n| 项目 | 值 |\n|------|-----|\n| **服务器** | westd-11672 |\n| **Python** | 3.12.3 (conda base) |\n| **PyTorch** | 2.11.0+cu128 |\n| **CUDA Driver** | 580.119.02 (CUDA 13.0) |\n| **GPU** | 2× NVIDIA RTX PRO 6000 Blackwell (94GB each) |\n| **transformers** | 5.8.1 |\n| **datasets** | 4.8.5 |\n| **accelerate** | 1.13.0 |\n| **trl** | 1.4.0 |\n| **项目代码** | `/root/recovery_aware_struct_prune/` (49 files, git tracked) |\n| **数据盘** | `/root/autodl-tmp/` (250GB, 几乎全空) |\n| **根分区** | 30GB, 已用 6.5GB (22%) |\n| **HF_HOME** | `/root/autodl-tmp/.hf_cache` (已配置) |\n| **conda 激活** | `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base` |\n\n注意事项：\n- `python3` 不在 PATH，需通过 conda 环境使用 `python`\n- 无 nvcc（CUDA toolkit 未安装，但 PyTorch 自带 CUDA runtime 足够）\n- 临时传输密钥已清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-deploy-westd-11672.md"
+}

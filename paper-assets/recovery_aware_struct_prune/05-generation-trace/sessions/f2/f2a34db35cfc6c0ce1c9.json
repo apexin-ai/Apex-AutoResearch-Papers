@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2a34db35cfc6c0ce1c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh provenance fix westd",
+  "task_key": "worker_ssh_provenance_fix_westd_20260523T110636",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_provenance_fix_westd_20260523T110636_result.json",
+    "occurrence": 1,
+    "bytes": 2285,
+    "sha256": "eca6aa0af1d28705df9d1bcf876158cb56426594cf84b1ad0ec4cbba6221f61a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 任务 1: MATH-500 Standard 25% GRPO = 12.8%\n**westd-32935 上未找到结果文件。** 没有 `math500*grpo*standard*25*` 文件。\n\n现有 25% standard 文件：\n| 文件 | accuracy | n_total | 实际是什么 |\n|------|----------|---------|-----------|\n| `eval_grpo_standard_25.json` | 63.5% | 200 | qwen_math eval |\n| `eval_grpo_standard_25_n1319.json` | 51.1% | 1319 | GSM8K eval |\n| `eval_postprune_standard_25.json` | 16.0% | 100 | post-prune (无recovery) |\n\nRegistry 中 `eval_math500_grpo_standard_25_v2` **已有** accuracy=0.128, n_correct=64, n_total=500。原始 `eval_math500_grpo_standard_25` 状态为 killed。该结果文件可能在 westb-23072。\n\n---\n\n### 任务 2: 补填 3 个空 metrics\n**三个结果文件均未在 westd-32935 上找到：**\n- `eval_gsm8k_grpo_random_20_seed123_v2` — 无 GSM8K random 文件（只有 `eval_math500_grpo_random_20_v2.json`）\n- `eval_gsm8k_sft_depth_first_20` — 无任何 depth_first 文件\n- `eval_gsm8k_grpo_depth_first_20` — 同上\n\nRegistry 确认这三个条目 status=DONE, conclusion=success，但 metrics 为空。结果文件可能在 westb-23072。\n\n---\n\n### 任务 3: 30% cliff CKA-only 核实\n**无 CKA-only 30% recovery 结果文件。** 找到的 30% 文件均为 post-prune（recovery 前）：\n\n| 文件 | accuracy | n_total |\n|------|----------|---------|\n| `eval_postprune_rasp_30.json` | 0.0% | 200 |\n| `eval_postprune_standard_30.json` | 4.0% | 200 |\n\n- 这些都是 N=200，不是 N=100\n- 整个服务器上 N=100 的文件只有 3 个（`eval_postprune_rasp_25`、`eval_postprune_standard_25`、`eval_sft_grasp_20_greedy`），均与 30% CKA-only 无关\n\n---\n\n### 任务 4: Extended training 300 步 GSM8K eval\n**是真实的 300 步 GSM8K eval，不是复用 100 步的值。**\n\n| 文件 | accuracy | n_correct | n_total | model_path |\n|------|----------|-----------|---------|------------|\n| `eval_gsm8k_grpo_standard_20_extended_300.json` | 59.29% | 782 | 1319 | `grpo_standard_20_extended_300/` |\n| `eval_gsm8k_grpo_cka_only_20_extended_300.json` | 64.37% | 849 | 1319 | `grpo_cka_only_20_extended_300` |\n\n日志确认 2026-05-19 从 `grpo_standard_20_extended_300/` 加载模型、实际运行 GSM8K 1319 道题。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-provenance-fix-westd.md"
+}

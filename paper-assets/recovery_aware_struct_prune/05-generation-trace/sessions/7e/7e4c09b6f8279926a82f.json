@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e4c09b6f8279926a82f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_21_1779488078.md",
+  "task_key": "loop_21_1779488078",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_21_1779488078.md",
+    "occurrence": 1,
+    "bytes": 4582,
+    "sha256": "e7e1d9607244b5bbaab60328859d932dbee94c176913b53a7e99e0a25130feca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 21\nreason: idle_timeout\nupdated: '2026-05-22T00:07:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1，westd-29022 cuda:0/1/2/3。白名单外 GPU 即使 Director 指令也必须 push back\n- westd-29022 **网络离线**：所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF 库 HEAD 请求崩溃（已踩坑 5+ 次）\n- westb 模型路径：RASP 20% SFT 模型是 `sft_rasp_20_1p5b`（不是 `sft_rasp_20`），之前因路径错误 failed\n- eval_gsm8k_grpo_cka_only_25 前两版因模型路径错误 failed。v3 用 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25`（根目录即完整模型）。**不要再改路径**\n- Standard 25% GRPO reward ≈ 0 不是 bug，是真实结果（论文核心 evidence）\n- 投稿 deadline：**EMNLP 2026 ARR May 25 ≈ 剩 ~4 天**，只补 25% cross-sparsity 数据，**不要动论文结构**\n- PREPARING 队列 30 个实验大部分是历史遗留，**不要盲目全部启动**\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, 数据/模型 `/root/autodl-tmp/recovery_aware_struct_prune/`, Python `/root/miniconda3/bin/python`, conda base, ~23GB free\n- **westd-29022**: 4× RTX PRO 6000, 同上路径结构, conda base, ~21GB free（待清理到 ≥48GB）\n- W&B: GRPO 训练用 W&B 追踪，eval 类无 W&B\n- 活跃进程:\n  - westb cuda:0: eval_math500_sft_standard_25_v2 (PID 62714)\n  - westb cuda:1: eval_gsm8k_grpo_standard_25 (PID 75282)\n  - westd cuda:0: eval_gsm8k_grpo_cka_only_25_v3 (PID 322443) — **#1 优先级**\n  - westd cuda:1: eval_gsm8k_sft_cka_only_25 (PID 329698)\n  - westd cuda:2: eval_gsm8k_sft_random_20 (PID 329770)\n  - westd cuda:3: Worker `worker_ssh_scp_sft_std25_and_eval_cuda3` (running) — SFT Standard 25% 拷贝+eval\n- 活跃 cron: 5 个，分别监控上述 5 个 RUNNING 实验\n\n### 3. 📊 当前状态\nLoop #21 刚完成 session-start 初始化：registry 同步、cron reconcile（5 个全部 still running）、修正 eval_gsm8k_grpo_standard_25 的 spec 缺失 gpu/pid 字段、向 Director 汇报了 6/6 GPU 全占用状态。\n\nRegistry RUNNING (5):\n- eval_gsm8k_grpo_cka_only_25_v3: CKA-only 25% GRPO GSM8K — 最关键数据点\n- eval_gsm8k_grpo_standard_25: Standard 25% GRPO GSM8K — 预期极低（reward collapse）\n- eval_gsm8k_sft_cka_only_25: CKA-only 25% SFT floor\n- eval_gsm8k_sft_random_20: Random 20% SFT floor\n- eval_math500_sft_standard_25_v2: MATH-500 cross-benchmark，非关键路径\n\n等待中：Worker cuda:3 完成 SFT Standard 25% eval 启动；5 个 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- eval_gsm8k_grpo_cka_only_25_v3 完成 → **立即更新 registry + Table 2 25% 行 CKA-only GRPO 格 → 汇报 Director**（cross-sparsity 最后关键数据点）\n- eval_gsm8k_grpo_standard_25 完成 → 更新 registry，写入 Table 2 25% Standard GRPO 格（预期 accuracy 极低，确认 stagnation）\n- eval_gsm8k_sft_cka_only_25 + eval_gsm8k_sft_random_20 完成 → 更新 registry，补齐 SFT floor\n- eval_math500_sft_standard_25_v2 完成 → 更新 MATH-500 cross-benchmark 表\n- Worker cuda:3 完成 → 检查产出，若 SFT Standard 25% eval 已启动则注册 cron 监控；若未启动则 spawn 新 Worker 处理\n- westd 磁盘清理完成（≥48GB）→ 可启动 GRPO Random 20% 等 Tier 4 实验\n- **所有 25% eval 完成 → 汇总 cross-method 对比（CKA-only vs Standard vs RASP vs Random），更新论文 Table 2，通知 Director 投稿准备就绪**\n\n### 5. 🎯 战略上下文\n**核心发现**: CKA-only pruning criterion 在 GRPO recovery 上显著优于 importance-based (Standard)。20% 三种子: +4.55pp (p=0.0009)；15% 三种子: +7.20pp (p<0.001)。25% 更极端——Standard GRPO reward 几乎 collapse (0.0125@step10)，CKA-only reward=0.2875，差距 20x+。\n\n**论文定位**: Analysis paper，核心 claim: pruning criterion shapes post-RLVR recovery capacity。已有 15%/20% 三种子统计显著数据入论文。25% 是补强数据，reviewer 评估加入后 3.5→有望 4.0。Round 3 全部 34 issues resolved，主文本 ≤8 页编译通过。\n\n**易错点**:\n- eval_gsm8k_grpo_cka_only_25 已经 fail 两次（v1/v2 都是路径错误），v3 已修正，**不要再碰路径**\n- 资源追踪器之前看不到 westb cuda:1（eval_gsm8k_grpo_standard_25 spec 缺 gpu 字段），本轮已修正\n- westd 磁盘只有 ~21GB，启动新实验前必须先清理\n- PREPARING 队列 30 个实验是历史遗留，当前只聚焦 25% eval 补齐 + 投稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-21-1779488078.md"
+}

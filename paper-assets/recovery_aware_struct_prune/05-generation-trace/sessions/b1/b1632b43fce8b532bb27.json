@@ -1,0 +1,91 @@
+{
+  "schema_version": "1.0",
+  "id": "b1632b43fce8b532bb27",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops download e3 cka v2",
+  "task_key": "worker_ops_download_e3_cka_v2_20260518T200827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_e3_cka_v2_20260518T200827.log",
+    "occurrence": 1,
+    "bytes": 1774327,
+    "sha256": "3bbaeb853427f26f4870d3c60329a0045dad106141c1e3e8c3d575073ea6166b"
+  },
+  "statistics": {
+    "messages": 404,
+    "user_turns": 3,
+    "tool_calls": 142,
+    "roles": {
+      "log": 1,
+      "system": 44,
+      "record": 1,
+      "assistant": 70,
+      "tool_call": 142,
+      "tool_result": 142,
+      "user": 3,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 100,
+      "chunks": [
+        {
+          "path": "b1632b43fce8b532bb27-part-0001.json",
+          "message_count": 81
+        },
+        {
+          "path": "b1632b43fce8b532bb27-part-0002.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 92,
+      "chunks": [
+        {
+          "path": "b1632b43fce8b532bb27-part-0002.json",
+          "message_count": 62
+        },
+        {
+          "path": "b1632b43fce8b532bb27-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 64,
+      "chunks": [
+        {
+          "path": "b1632b43fce8b532bb27-part-0003.json",
+          "message_count": 64
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "b1632b43fce8b532bb27-part-0003.json",
+          "message_count": 86
+        },
+        {
+          "path": "b1632b43fce8b532bb27-part-0004.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-e3-cka-v2.md"
+}

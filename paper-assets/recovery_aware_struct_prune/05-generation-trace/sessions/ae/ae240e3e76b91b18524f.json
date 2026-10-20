@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "ae240e3e76b91b18524f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "git push anonymous repo",
+  "task_key": "worker_git_push-anonymous-repo_20260525T191639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_git_push-anonymous-repo_20260525T191639.jsonl",
+    "occurrence": 1,
+    "bytes": 172,
+    "sha256": "e2456e5bc90ce2f0119ada522dd65ead788b79750836d83d8f53aff90526eb9c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-25T19:16:49.947669+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "You've hit your limit · resets 12am (UTC)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_git_push-anonymous-repo_20260525T191639"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/git-push-anonymous-repo.md"
+}

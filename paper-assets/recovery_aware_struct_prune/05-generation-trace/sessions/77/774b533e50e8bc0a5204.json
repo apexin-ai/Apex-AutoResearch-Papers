@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "774b533e50e8bc0a5204",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo unstructured 20 disk",
+  "task_key": "worker_diagnose_grpo_unstructured_20_disk_20260519T044411",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_unstructured_20_disk_20260519T044411_result.json",
+    "occurrence": 1,
+    "bytes": 2960,
+    "sha256": "bd646dce29fa4b44f01b44c76b9e524face5f44cc8955a279bd2905bb49bfd39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 诊断结果\n\n**根因**：`/root/autodl-tmp` 分区（250G）在 checkpoint step 100 保存时 100% 满。model.safetensors (15G) 写入成功后，写 optimizer state (~9.5G) 时磁盘空间不足，触发 `iostream error`。optimizer.pt 写入失败后被清理，目前分区恢复到 9.5G 可用（97%）。\n\n**空间占用**：\n| 路径 | 大小 |\n|---|---|\n| `recovery_aware_struct_prune/` | ~226G（清理后）|\n| `DeepSeek-R1-Distill-Qwen-7B/` | 15G |\n| `data/` | 1.5G |\n| **总计** | ~241G / 250G |\n\n**checkpoint-100 状态**：model.safetensors + tokenizer 完好，optimizer.pt 和 training_args.bin 缺失。可用于推理/eval，不能恢复训练。\n\n**可清理项**（不执行，仅列出）：\n- `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` — 15G（如不再需要）\n- `grpo_unstructured_20/checkpoint-100/` — 15G（重跑时可删）\n- 已完成实验的 checkpoint 子目录（如 `grpo_cka_only_20/checkpoint-100` 12G、`grpo_rasp_25` 11G 等）\n- 预计可释放 30-50G+\n\n**修复方案**：在 `train_grpo_v5.py` 的 GRPOConfig 中加 `save_only_model=True`，跳过 optimizer/scheduler 保存（每个 checkpoint 省 ~9.5G）。当前代码未设置该参数。\n\n```json\n{\"root_cause\":\"autodl-tmp 250G 分区在 checkpoint step 100 写 optimizer.pt (~9.5GB) 时磁盘空间耗尽（model shard 15G 写入后剩余不足 1G）\",\"error_type\":\"resource\",\"disk_free_gb\":9.5,\"checkpoint_dir\":\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20\",\"partial_files\":\"checkpoint-100 缺 optimizer.pt 和 training_args.bin（写入失败后被清理），model.safetensors 15G 完好\",\"fix_steps\":[\"在 train_grpo_v5.py GRPOConfig 中添加 save_only_model=True（每 checkpoint 省 9.5G）\",\"删除 grpo_unstructured_20/checkpoint-100（15G，无法恢复训练，重跑即可）\",\"考虑删除 /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B（15G，如不再需要）\",\"考虑清理已完成实验的旧 checkpoint 目录释放 30G+\"],\"can_auto_fix\":true}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "autodl-tmp 250G 分区在 checkpoint step 100 写 optimizer.pt (~9.5GB) 时磁盘空间耗尽（model shard 15G 写入后剩余不足 1G）",
+              "error_type": "resource",
+              "disk_free_gb": 9.5,
+              "checkpoint_dir": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20",
+              "partial_files": "checkpoint-100 缺 optimizer.pt 和 training_args.bin（写入失败后被清理），model.safetensors 15G 完好",
+              "fix_steps": [
+                "在 train_grpo_v5.py GRPOConfig 中添加 save_only_model=True（每 checkpoint 省 9.5G）",
+                "删除 grpo_unstructured_20/checkpoint-100（15G，无法恢复训练，重跑即可）",
+                "考虑删除 /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B（15G，如不再需要）",
+                "考虑清理已完成实验的旧 checkpoint 目录释放 30G+"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-unstructured-20-disk.md"
+}

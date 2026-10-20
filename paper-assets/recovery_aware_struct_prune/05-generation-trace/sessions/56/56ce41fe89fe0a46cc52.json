@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56ce41fe89fe0a46cc52",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd cuda2 launch sft standard math500",
+  "task_key": "worker_ops_westd_cuda2_launch_sft_standard_math500_20260518T221735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_cuda2_launch_sft_standard_math500_20260518T221735_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "0504491c55459a05dd1820507a34138846334aa23fdcc4cf24165ca38aca2289"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:2 已成功启动，模型已加载到 GPU（12458MiB），正在加载 MATH 数据集。\n\n## 汇总\n\n**cuda:2 — eval_math500_sft_standard_20_2048** ✅ 已启动\n- 模型：`sft_qwen_math_standard_20`（注：`sft_standard_20_westd` 缺权重，用了完整的 `sft_qwen_math_standard_20`）\n- PID 33033, 12458MiB 占用\n- 输出：`results/math500_sft_standard_20_2048.json`\n- 日志：`results/math500_sft_standard_20_2048.log`\n\n**其他 GPU 进度：**\n\n| GPU | 实验 | 进度 | 备注 |\n|-----|------|------|------|\n| cuda:0 | eval_math500_dense_2048 | 运行中（17658MiB, 91%） | 无可定位的独立日志文件 |\n| cuda:1 | eval_math500_grpo_standard_20_fair_v2 | ~41/500（8%），日志停更于 02:22 但 GPU 仍活跃（19251MiB, 99%） | tqdm 可能未 flush |\n| cuda:3 | eval_math500_grpo_rasp_20_fair | **371/500（74%）**, 中间 Acc@300=0.2567, Acc@350=0.2429 | 预计还需 ~2-3h |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda2-launch-sft-standard-math500.md"
+}

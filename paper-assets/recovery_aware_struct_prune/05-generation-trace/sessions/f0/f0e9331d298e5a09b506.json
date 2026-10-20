@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0e9331d298e5a09b506",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest sft cka25 gsm8k",
+  "task_key": "worker_ssh_harvest_sft_cka25_gsm8k_20260521T101625",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_sft_cka25_gsm8k_20260521T101625_result.json",
+    "occurrence": 1,
+    "bytes": 390,
+    "sha256": "963b6165e106f48042b55ed17178b6982f6a95dbf6d081993000a2ec94d0dbd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_gsm8k_sft_cka_only_25 完成。**\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 正常完成 |\n| GSM8K Accuracy | **60.12%** |\n| Correct / Total | 793 / 1319 |\n| Stderr (±) | ± 0.0135 |\n| EOS rate | 98.03% (1293 natural, 26 truncated) |\n| 平均生成长度 | 243.6 tokens |\n| 耗时 | ~3h 25m |\n| 结果文件 | `results/eval_sft_cka_only_25_greedy.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-sft-cka25-gsm8k.md"
+}

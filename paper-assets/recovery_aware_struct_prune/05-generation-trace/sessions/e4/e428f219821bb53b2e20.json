@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e428f219821bb53b2e20",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval sft grasp 20 westd retry",
+  "task_key": "worker_eval_sft_grasp_20_westd_retry_20260516T030437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_grasp_20_westd_retry_20260516T030437_result.json",
+    "occurrence": 1,
+    "bytes": 168,
+    "sha256": "9ac5152f46aac0c967a4080340c852e603baff5b0e3eb2492bbd162d497d35ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Background task completed (the wait timer from before context compaction — no longer needed since the eval already finished and results are collected)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-grasp-20-westd-retry.md"
+}

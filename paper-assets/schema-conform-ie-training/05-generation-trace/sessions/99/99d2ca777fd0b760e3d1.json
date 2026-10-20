@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "99d2ca777fd0b760e3d1",
+  "project": "schema-conform-ie-training",
+  "kind": "worker",
+  "title": "audit eval code version",
+  "task_key": "worker_audit_eval_code_version_20260514T014250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_eval_code_version_20260514T014250.log",
+    "occurrence": 1,
+    "bytes": 630870,
+    "sha256": "4241d9b5b7623e0e5fa27e6b953bca2035441b55d4e1428ccbbb7a03f415c055"
+  },
+  "statistics": {
+    "messages": 196,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 40,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 196,
+      "chunks": [
+        {
+          "path": "99d2ca777fd0b760e3d1-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "99d2ca777fd0b760e3d1-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/audit-eval-code-version.md"
+}

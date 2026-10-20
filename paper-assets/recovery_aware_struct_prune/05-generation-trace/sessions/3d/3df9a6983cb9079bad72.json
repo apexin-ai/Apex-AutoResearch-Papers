@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3df9a6983cb9079bad72",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prepare cka 25 pruning",
+  "task_key": "worker_code_prepare_cka_25_pruning_20260519T033337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_cka_25_pruning_20260519T033337_result.json",
+    "occurrence": 1,
+    "bytes": 1221,
+    "sha256": "3ab92faa37a77443e8d84a64aab53a8428fb42bb3ac654d0ef72782b106d87ac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已确认。以下是准备好的命令：\n\n## CKA-only 25% Sparsity Pruning 命令\n\n```bash\ncd /root/recovery_aware_struct_prune && \\\nCUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/prune.py \\\n  --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --cka_path /root/autodl-tmp/recovery_aware_struct_prune/results/cka_scores_qwen_math.pt \\\n  --mode cka_only \\\n  --sparsity 0.25 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_25 \\\n  --seed 42 \\\n  --dtype bfloat16\n```\n\n## 说明\n\n- **`--importance_path` 不需要**：`cka_only` 模式只用 CKA overlap scores（`score = 1 - overlap`），不需要 importance scores\n- **CKA scores 已存在**：`cka_scores_qwen_math.pt` 包含 28 层的 attn_overlap 和 mlp_overlap，无需重新计算\n- **输出路径**：写入数据盘 `/root/autodl-tmp/`（遵守 C002 约束）\n- **GPU 需求**：模型加载到 CPU 做 pruning（代码中 `device_map=\"cpu\"`），仅 forward pass 验证需要少量 GPU。单卡即可，预计 2-3 分钟完成\n- **参考**：RASP 25% pruning 实际达到 24.05% sparsity（从 7.6B 剪到 5.8B params），CKA-only 25% 预计类似量级"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-cka-25-pruning.md"
+}

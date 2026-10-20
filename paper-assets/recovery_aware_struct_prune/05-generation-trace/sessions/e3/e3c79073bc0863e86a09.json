@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3c79073bc0863e86a09",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh full status check 20260522T3",
+  "task_key": "worker_ssh_full_status_check_20260522T3_20260522T221637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_full_status_check_20260522T3_20260522T221637_result.json",
+    "occurrence": 1,
+    "bytes": 2212,
+    "sha256": "983f448f64a53a0fb6483172ea3934fd37349bad1d49d747e1ef17df8c900874"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n### 任务 1: westd-32935 GPU 状态\n\n| GPU | Util | VRAM | 进程 | 任务 |\n|-----|------|------|------|------|\n| 0 | 0% | 0/98GB | 无 | **空闲** |\n| 1 | 98% | 17.0/98GB | PID 75284 | CKA-only MATH-500 |\n| 2 | 0% | 0/98GB | 无 | **空闲**（α=0.5 已完成） |\n| 3 | 87% | 13.0/98GB | PID 79030 | α=1.0 MATH-500 v2 |\n\n### 任务 2: westb-23072 GPU 状态\n\n| GPU | Util | VRAM | 进程 | 任务 |\n|-----|------|------|------|------|\n| 0 | **100%** | **0 MiB** | 无 | **异常** — 高 util 但无进程无显存 |\n| 1 | 96% | 16.5/98GB | PID 220343 | MF3 v3 Qwen-Math |\n\n### 任务 3: 所有 MATH-500 结果汇总\n\n| 模型 | Accuracy | Correct/Total | Truncated | 位置 |\n|------|----------|---------------|-----------|------|\n| **Unpruned** (DeepSeek-R1-Qwen-7B) | **73.6%** | 368/500 | 124 | autodl-tmp |\n| SFT Standard 20% | 26.0% | 130/500 | 211 | autodl-tmp |\n| GRPO Standard 20% (fair 2048 v2) | 26.4% | 132/500 | 222 | relative |\n| SFT RASP (α=1.0 default) | 24.2% | 121/500 | 174 | autodl-tmp |\n| SFT RASP α=0.5 | 25.4% | 127/500 | 220 | autodl-tmp |\n| SFT RASP α=2.0 | 24.0% | 120/500 | 155 | relative |\n| SFT RASP α=3.0 | 23.2% | 116/500 | 144 | autodl-tmp |\n| SFT RASP α=4.0 | **26.6%** | 133/500 | 190 | autodl-tmp |\n| SFT Random 20% (v3) | 14.4% | 72/500 | 329 | relative |\n| SFT RASP α=1.0 v2 | **进行中** | ~306/500 | — | — |\n| SFT CKA-only | **进行中** | ~290/500 | — | — |\n\n### 任务 4: α=0.5 — **已完成**\naccuracy=25.4%, 结果已保存。\n\n### 任务 5: α=1.0 v2 — **进行中**\n306/500 (61%)，~56 min elapsed，ETA ~30-40 min。\n\n### 任务 6: CKA-only — **进行中**\n290/500 (58%)，日志从 05-23 04:08 开始，已跑 ~2h，ETA ~1.5h（该模型每步较慢，~30s/it 平均）。\n\n### 任务 7: MF3 v3 (westb:1) — **进行中**\nPID 220343 活跃，占用 16.5GB VRAM。结果文件尚未生成。\n\n### 任务 8: α=3.0 GSM8K\n- `eval_gsm8k_sft_alpha3p0_20.json`: accuracy=**64.1%** (846/1319)\n\n### 异常项\n- **westb GPU 0**: 100% utilization 但 0 MiB 显存、无计算进程 — 持续异常，可能需要重启实例或 `nvidia-smi -r` 重置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-status-check-20260522t3.md"
+}

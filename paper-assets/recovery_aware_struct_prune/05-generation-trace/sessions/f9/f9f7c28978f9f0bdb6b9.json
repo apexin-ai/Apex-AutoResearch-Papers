@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f9f7c28978f9f0bdb6b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix gqa group pruning",
+  "task_key": "worker_fix_gqa-group-pruning_20260514T050654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gqa-group-pruning_20260514T050654.log",
+    "occurrence": 1,
+    "bytes": 869880,
+    "sha256": "2f25a7998b6a50b1b6e080f5330bd552267b035941b32ce00d2d60ef1e08e703"
+  },
+  "statistics": {
+    "messages": 211,
+    "user_turns": 1,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 45,
+      "tool_call": 79,
+      "tool_result": 79,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 88,
+      "chunks": [
+        {
+          "path": "f9f7c28978f9f0bdb6b9-part-0001.json",
+          "message_count": 88
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "f9f7c28978f9f0bdb6b9-part-0001.json",
+          "message_count": 12
+        },
+        {
+          "path": "f9f7c28978f9f0bdb6b9-part-0002.json",
+          "message_count": 111
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-gqa-group-pruning.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c06609d1efa5038b2e6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill duplicate westd2",
+  "task_key": "worker_ssh_kill_duplicate_westd2_20260523T032207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_duplicate_westd2_20260523T032207_result.json",
+    "occurrence": 1,
+    "bytes": 354,
+    "sha256": "ff9fbcf09a320cdd46b2915a7f95590b561fb24934f69964094156809465a55d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n| 指标 | Kill 前 | Kill 后 |\n|------|---------|---------|\n| GPU 2 显存 | 32094 MiB | 16049 MiB |\n| PID 83554 | 存活 | 已终止 |\n| PID 83161 | 存活 | 存活，正常运行 |\n\n显存从 ~32GB 降至 ~16GB，符合预期。PID 83161（`eval_math500_grpo_random_20_v2.json`）继续正常执行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicate-westd2.md"
+}

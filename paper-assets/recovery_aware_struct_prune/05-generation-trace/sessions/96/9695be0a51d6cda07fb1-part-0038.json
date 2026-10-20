@@ -1,0 +1,3610 @@
+{
+  "schema_version": "1.0",
+  "session_id": "9695be0a51d6cda07fb1",
+  "rounds": [
+    {
+      "number": 549,
+      "messages": [
+        {
+          "source_line": 6661,
+          "timestamp": "2026-05-19T22:19:23.371598+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__allocate_and_submit,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-006661"
+        },
+        {
+          "source_line": 6662,
+          "timestamp": "2026-05-19T22:19:23.422177+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 50
+          },
+          "id": "event-006662"
+        },
+        {
+          "source_line": 6663,
+          "timestamp": "2026-05-19T22:19:37.862430+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'eval_mbpp_sft_shortgpt_20'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-006663"
+        },
+        {
+          "source_line": 6664,
+          "timestamp": "2026-05-19T22:19:37.913417+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'sft_shortgpt_20'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-006664"
+        },
+        {
+          "source_line": 6665,
+          "timestamp": "2026-05-19T22:19:38.618736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6995}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 756
+          },
+          "id": "event-006665"
+        },
+        {
+          "source_line": 6666,
+          "timestamp": "2026-05-19T22:19:39.322182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6702}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 1408
+          },
+          "id": "event-006666"
+        },
+        {
+          "source_line": 6667,
+          "timestamp": "2026-05-19T22:19:44.392437+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_shortgpt",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "output_mode": "files_with_matches"
+            }
+          },
+          "id": "event-006667"
+        },
+        {
+          "source_line": 6668,
+          "timestamp": "2026-05-19T22:19:44.995419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Found 8 files\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/chats/feishu_group_oc_2d56471446f147ebef110a443640b554.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/chats/feishu_group_oc_04e6cf8fe41be27a49d5657e80962f12_director.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/chats/cron_hook_eval_mbpp_grpo_rasp_20.jsonl\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/report.md\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/eval_mbpp_sft_shortgpt_20_QUEUED_20260519T215934.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/eval_mbpp_sft_shortgpt_20_PENDING_20260519T215541.json\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/checkpoints/eval_mbpp_sft_shortgpt_20_PREPARING_20260519T215531.json"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 602
+          },
+          "id": "event-006668"
+        },
+        {
+          "source_line": 6669,
+          "timestamp": "2026-05-19T22:19:45.346909+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "shortgpt.*20",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "glob": "registry.yaml",
+              "output_mode": "content",
+              "-C": "5"
+            }
+          },
+          "id": "event-006669"
+        },
+        {
+          "source_line": 6670,
+          "timestamp": "2026-05-19T22:19:45.447734+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (21.7KB). Full output saved to: /home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune--claude-sessions-agent-edc8ba15/325591d1-aac8-41cb-b054-bb14dfdf9fd3/tool-results/toolu_01TNtTKfKT4SnCGPA8eMJqTw.txt\n\nPreview (first 2KB):\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9089-      split_half_rho: 0.9932\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9090-      n_splits: 5\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9091-      size_sensitivity_128: 0.982\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9092-      size_sensitivity_256: 0.989\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9093-      size_sensitivity_512: 0.995\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml:9094:  sft_shortgpt_20:\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9095-    status: DONE\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9096-    retry_count: 0\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9097-    created_at: '2026-05-19T14:22:26.084Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9098-    updated_at: '2026-05-19T18:02:48.590Z'\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9099-    hypothesis: 'ShortGPT depth pruning (20%, 5/28 layers removed) after SFT warmup\n/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml-9100-      will show lower rec\n…[truncated 274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-006670"
+        },
+        {
+          "source_line": 6671,
+          "timestamp": "2026-05-19T22:19:48.609796+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "offset": "9094",
+              "limit": "50"
+            }
+          },
+          "id": "event-006671"
+        },
+        {
+          "source_line": 6672,
+          "timestamp": "2026-05-19T22:19:49.066838+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9094\t  sft_shortgpt_20:\n9095\t    status: DONE\n9096\t    retry_count: 0\n9097\t    created_at: '2026-05-19T14:22:26.084Z'\n9098\t    updated_at: '2026-05-19T18:02:48.590Z'\n9099\t    hypothesis: 'ShortGPT depth pruning (20%, 5/28 layers removed) after SFT warmup\n9100\t      will show lower recovery capacity than fine-grained structural pruning methods\n9101\t      (Standard/CKA-only/RASP) because coarse layer removal destroys more distributed\n9102\t      representations needed for GRPO recovery. Layers removed: [15,16,17,24,25],\n9103\t      actual param sparsity 15.30%.'\n9104\t    spec:\n9105\t      command: python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/shortgpt_20\n9106\t        --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\n9107\t        --gpu 3 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps\n9108\t        8 --max_seq_length 2048 --logging_steps 10 --seed 42\n9109\t      server: westd-29022\n9110\t      gpu:\n9111\t      - cuda:3\n9112\t      pid: '112015'\n9113\t      log_path: ~/runs/recovery_aware_struct_prune/sft_shortgpt_20.log\n9114\t      backend: tmux\n9115\t      account: root\n9116\t      data_path: openai/gsm8k\n9117\t      data_count: 7473\n9118\t      model_name: shortgpt_20\n9119\t      seed: 42\n9120\t      checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/shortgpt_20\n9121\t      checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\n9122\t    failure_reason: 'startup recovery: process dead, no active cron monitor'\n9123\t    conclusion: success\n9124\t    completed_at: '2026-05-19T17:41:29.305Z'\n9125\t  eval_mbpp_grpo_cka_only_20:\n9126\t    status: DONE\n9127\t    retry_count: 1\n9128\t    created_at: '2026-05-19T14:41:07.213Z'\n9129\t    updated_at: '2026-05-19T18:17:54.178Z'\n9130\t    hypothesis: MBPP pass@1 eval on GRPO CKA-only 20% model @2048. Dense baseline=53.48%\n9131\t      (200/374). CKA-only GRPO showed strongest recovery on GSM8K (64.37%) and HumanEval\n9132\n…[truncated 524 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "elapsed_ms": 457
+          },
+          "id": "event-006672"
+        },
+        {
+          "source_line": 6673,
+          "timestamp": "2026-05-19T22:19:49.167703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_shortgpt_20:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-A": "30"
+            }
+          },
+          "id": "event-006673"
+        },
+        {
+          "source_line": 6674,
+          "timestamp": "2026-05-19T22:19:49.218302+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9824:  eval_mbpp_sft_shortgpt_20:\n9825-    status: ALLOCATED\n9826-    retry_count: 0\n9827-    created_at: '2026-05-19T21:55:30.750Z'\n9828-    updated_at: '2026-05-19T21:59:43.511Z'\n9829-    hypothesis: ShortGPT SFT 20% MBPP pass@1 @2048. ShortGPT GSM8K SFT=44.73%, GRPO=43.37%\n9830-      (GRPO退化). Depth pruning (整层移除) 在 MBPP 上预期也显著差于 fine-grained methods (CKA-only\n9831-      SFT 12.83%, RASP SFT 11.76%). 验证 coarse layer removal 对代码生成的破坏性。关联 ShortGPT\n9832-      baseline comparison。\n9833-    server: westd-29022\n9834-    gpu: cuda:1\n9835-    account: root\n9836-    reproduce:\n9837-      server: westd-29022\n9838-      gpu: cuda:1\n9839-      started_at: '2026-05-19T21:59:43.511Z'\n9840-  eval_mbpp_grpo_rasp_20_v2:\n9841-    status: PREPARING\n9842-    retry_count: 0\n9843-    created_at: '2026-05-19T21:55:33.867Z'\n9844-    updated_at: '2026-05-19T21:57:27.088Z'\n9845-    notes: 取消：eval_mbpp_grpo_rasp_20 已实际完成 (pass@1=13.1%, 49/374)，v2 不需要。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006674"
+        },
+        {
+          "source_line": 6675,
+          "timestamp": "2026-05-19T22:19:56.501955+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_cka_only_20:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-A": "30"
+            }
+          },
+          "id": "event-006675"
+        },
+        {
+          "source_line": 6676,
+          "timestamp": "2026-05-19T22:19:56.553479+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9384:  eval_mbpp_sft_cka_only_20:\n9385-    status: DONE\n9386-    retry_count: 0\n9387-    created_at: '2026-05-19T17:20:00.596Z'\n9388-    updated_at: '2026-05-19T19:58:30.970Z'\n9389-    hypothesis: MBPP pass@1 eval on SFT CKA-only 20% model. Dense baseline=53.48%\n9390-      (200/374). CKA-only preserves most code generation capability after pruning.\n9391-      Compare SFT vs GRPO on MBPP to test redistribution hypothesis on second code\n9392-      benchmark.\n9393-    spec:\n9394-      command: CUDA_VISIBLE_DEVICES=3 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n9395-        --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_cka_only_20.json\n9396-      server: westd-29022\n9397-      gpu: cuda:3\n9398-      pid: 123029\n9399-      log_path: /tmp/eval_mbpp_sft_cka_only_20.log\n9400-      checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\n9401-      eval_data: MBPP sanitized (374 tasks)\n9402-      data_path: google-research-datasets/mbpp (sanitized)\n9403-      data_count: 374\n9404-      model_name: Qwen2.5-7B-pruned-20%-SFT-CKA-only\n9405-      seed: 42\n9406-    conclusion: success\n9407-    metrics:\n9408-      pass_at_1: 0.1283\n9409-      stderr: 0.0173\n9410-      n_correct: 48\n9411-      n_total: 374\n9412-      dense_baseline_pass_at_1: 0.5348\n9413-      degradation_pct: 76.01\n9414-      avg_response_length: 643.8"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 51
+          },
+          "id": "event-006676"
+        },
+        {
+          "source_line": 6677,
+          "timestamp": "2026-05-19T22:20:05.149999+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__submit_on_allocated",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006677"
+        },
+        {
+          "source_line": 6678,
+          "timestamp": "2026-05-19T22:20:05.150398+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006678"
+        },
+        {
+          "source_line": 6679,
+          "timestamp": "2026-05-19T22:20:21.464106+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_shortgpt_20",
+              "command": "bash -c 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_shortgpt_20.json'",
+              "timeout_hours": "8",
+              "project": "recovery_aware_struct_prune",
+              "work_dir": "/root/autodl-tmp/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006679"
+        },
+        {
+          "source_line": 6680,
+          "timestamp": "2026-05-19T22:20:28.777869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_shortgpt_20\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu_ids\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_file\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_shortgpt_20.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"eval_mbpp_sft_shortgpt_20\\\", \\\"cuda_visible_devices\\\": \\\"1\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 7313
+          },
+          "id": "event-006680"
+        },
+        {
+          "source_line": 6681,
+          "timestamp": "2026-05-19T22:20:34.531577+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_shortgpt_20",
+              "field": "spec",
+              "value": "{'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20', 'eval_data': 'MBPP sanitized (374 tasks)', 'data_path': 'google-research-datasets/mbpp (sanitized)', 'data_count': 374, 'model_name': 'Qwen2.5-7B-ShortGPT-20%-SFT', 'seed': 42}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006681"
+        },
+        {
+          "source_line": 6682,
+          "timestamp": "2026-05-19T22:20:35.585566+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:55:30.750Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:20:35.132Z\\\", \\\"hypothesis\\\": \\\"ShortGPT SFT 20% MBPP pass@1 @2048. ShortGPT GSM8K SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning (整层移除) 在 MBPP 上预期也显著差于 fine-grained methods (CKA-only SFT 12.83%, RASP SFT 11.76%). 验证 coarse layer removal 对代码生成的破坏性。关联 ShortGPT baseline comparison。\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-19T21:59:43.511Z\\\", \\\"command\\\": \\\"bash -c 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_shortgpt_20.json'\\\"}, \\\"spec\\\": {\\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\\\", \\\"eval_data\\\": \\\"MBPP sanitized (374 tasks)\\\", \\\"data_path\\\": \\\"google-research-datasets/mbpp (sanitized)\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"Qwen2.5-7B-ShortGPT-20%-SFT\\\", \\\"seed\\\": 42}, \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_sft_shortgpt_20.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0506}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1053
+          },
+          "id": "event-006682"
+        },
+        {
+          "source_line": 6683,
+          "timestamp": "2026-05-19T22:20:41.141244+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_mbpp_sft_shortgpt_20 已提交并运行在 westd:1。\n\n当前 GPU 状态：\n- **westd:0**: eval_mbpp_sft_standard_20_clean (RUNNING)\n- **westd:1**: eval_mbpp_sft_shortgpt_20 (RUNNING, 刚提交)\n- **westd:2**: eval_mbpp_grpo_standard_20_v4 (RUNNING)\n- **westd:3**: cka_scoring_stability_ablation (RUNNING)\n- **westb:0**: standby\n- **westb:1**: eval_mbpp_sft_cka_only_20_1p5b (RUNNING)\n\n等待 Worker 回报 westd 上 3 个手动 tmux 实验的状态。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006683"
+        }
+      ]
+    },
+    {
+      "number": 550,
+      "messages": [
+        {
+          "source_line": 6684,
+          "timestamp": "2026-05-19T22:20:55.978704+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_westd_tmux_status_20260519T220216 已完成（status=done）。用 `get_worker_status('worker_check_westd_tmux_status_20260519T220216')` 读取结果，然后处理。\n\n- worker_id: worker_check_westd_tmux_status_20260519T220216\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006684"
+        },
+        {
+          "source_line": 6685,
+          "timestamp": "2026-05-19T22:21:04.463275+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_worker_status",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006685"
+        },
+        {
+          "source_line": 6686,
+          "timestamp": "2026-05-19T22:21:04.554632+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 91
+          },
+          "id": "event-006686"
+        },
+        {
+          "source_line": 6687,
+          "timestamp": "2026-05-19T22:21:07.571501+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_westd_tmux_status_20260519T220216"
+            }
+          },
+          "id": "event-006687"
+        },
+        {
+          "source_line": 6688,
+          "timestamp": "2026-05-19T22:21:07.672429+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_westd_tmux_status_20260519T220216\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:westd_tmux_status\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:02:16.335254+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:20:52.890167+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"汇总如下：\\\\n\\\\n---\\\\n\\\\n### 1. cka_scoring_stability_ablation — **已完成** ✓\\\\n\\\\nPID 143187 已退出。结果文件存在，核心指标：\\\\n\\\\n| 对比 | Attn ρ | MLP ρ | Combined ρ |\\\\n|------|--------|-------|------------|\\\\n| 256 vs 512 | 0.9890 | 0.9683 | **0.9788** |\\\\n| 256 vs 1024 | 0.9762 | 0.9464 | **0.9641** |\\\\n| 512 vs 1024 | 0.9950 | 0.9908 | **0.9938** |\\\\n\\\\n**Summary**: min_combined_ρ = 0.964, mean = 0.979, **stable = true**（阈值 0.95）。CKA scoring 在不同 calibration size 下高度稳定。\\\\n\\\\n---\\\\n\\\\n### 2. eval_mbpp_sft_standard_20_clean — **失败** ✗\\\\n\\\\n日志时间 `2026-05-20 04:35`，模型加载成功但下载 MBPP 数据集时因 **网络不可达** (`[Errno 101] Network is unreachable`) 崩溃。没有缓存可用，没有结果文件产出。\\\\n\\\\n**原因**: 未执行 `source /etc/network_turbo`，AutoDL 实例无法访问 HuggingFace。\\\\n\\\\n---\\\\n\\\\n### 3. eval_mbpp_grpo_standard_20_v4 — **未找到**\\\\n\\\\n没有任何对应的日志或结果文件。可能从未成功启动，或者命名不同。\\\\n\\\\n注意：`eval_mbpp_grpo_rasp_20` 是存在且已完成的（pass@1 = **0.1310 ± 0.0174**, 49/374），但这是 RASP 变体，不是 standard v4。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-006688"
+        },
+        {
+          "source_line": 6689,
+          "timestamp": "2026-05-19T22:21:44.024587+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cka_scoring_stability_ablation",
+              "field": "metrics",
+              "value": "{'spearman_256v512_attn': 0.989, 'spearman_256v512_mlp': 0.9683, 'spearman_256v512_combined': 0.9788, 'spearman_256v1024_attn': 0.9762, 'spearman_256v1024_mlp': 0.9464, 'spearman_256v1024_combined': 0.9641, 'spearman_512v1024_attn': 0.995, 'spearman_512v1024_mlp': 0.9908, 'spearman_512v1024_combined': 0.9938, 'min_combined_rho': 0.964, 'mean_combined_rho': 0.979, 'stable': True}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006689"
+        },
+        {
+          "source_line": 6690,
+          "timestamp": "2026-05-19T22:21:45.631273+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cka_scoring_stability_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:21:10.933Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:21:44.736Z\\\", \\\"hypothesis\\\": \\\"CKA scoring stability across calibration sizes (256/512/1024). If Spearman ρ > 0.95 between all pairs, CKA scoring is robust to calibration size — directly answers reviewer concern about scoring sensitivity. Plan_014, C2 mechanism evidence.\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T21:22:39.744Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/cka_stability_analysis.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json --device cuda:0\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 143187, \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1024, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/logs/cka_stability.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json\\\"}, \\\"metrics\\\": {\\\"spearman_256v512_attn\\\": 0.989, \\\"spearman_256v512_mlp\\\": 0.9683, \\\"spearman_256v512_combined\\\": 0.9788, \\\"spearman_256v1024_attn\\\": 0.9762, \\\"spearman_256v1024_mlp\\\": 0.9464, \\\"spearman_256v1024_combined\\\": 0.9641, \\\"spearman_512v1024_attn\\\": 0.995, \\\"spearman_512v1024_mlp\\\": 0.9908, \\\"spearman_512v1024_combined\\\": 0.9938, \\\"min_combined_rho\\\": 0.964, \\\"mean_combined_rho\\\": 0.979, \\\"stable\\\": true}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1898}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1606
+          },
+          "id": "event-006690"
+        },
+        {
+          "source_line": 6691,
+          "timestamp": "2026-05-19T22:21:45.631730+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cka_scoring_stability_ablation",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'checkpoint_path': '/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json', 'log_path': '/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json'}"
+            }
+          },
+          "id": "event-006691"
+        },
+        {
+          "source_line": 6692,
+          "timestamp": "2026-05-19T22:21:46.836447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cka_scoring_stability_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:21:10.933Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:21:46.304Z\\\", \\\"hypothesis\\\": \\\"CKA scoring stability across calibration sizes (256/512/1024). If Spearman ρ > 0.95 between all pairs, CKA scoring is robust to calibration size — directly answers reviewer concern about scoring sensitivity. Plan_014, C2 mechanism evidence.\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T21:22:39.744Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/cka_stability_analysis.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json --device cuda:0\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 143187, \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1024, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json\\\"}, \\\"metrics\\\": {\\\"spearman_256v512_attn\\\": 0.989, \\\"spearman_256v512_mlp\\\": 0.9683, \\\"spearman_256v512_combined\\\": 0.9788, \\\"spearman_256v1024_attn\\\": 0.9762, \\\"spearman_256v1024_mlp\\\": 0.9464, \\\"spearman_256v1024_combined\\\": 0.9641, \\\"spearman_512v1024_attn\\\": 0.995, \\\"spearman_512v1024_mlp\\\": 0.9908, \\\"spearman_512v1024_combined\\\": 0.9938, \\\"min_combined_rho\\\": 0.964, \\\"mean_combined_rho\\\": 0.979, \\\"stable\\\": true}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1825}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1204
+          },
+          "id": "event-006692"
+        },
+        {
+          "source_line": 6693,
+          "timestamp": "2026-05-19T22:21:52.939633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "cka_scoring_stability_ablation",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006693"
+        },
+        {
+          "source_line": 6694,
+          "timestamp": "2026-05-19T22:21:53.573763+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_clean",
+              "field": "conclusion",
+              "value": "failed",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'checkpoint_path': 'N/A', 'log_path': 'N/A'}"
+            }
+          },
+          "id": "event-006694"
+        },
+        {
+          "source_line": 6695,
+          "timestamp": "2026-05-19T22:21:55.082282+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"cka_scoring_stability_ablation\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:21:10.933Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:21:53.770Z\\\", \\\"hypothesis\\\": \\\"CKA scoring stability across calibration sizes (256/512/1024). If Spearman ρ > 0.95 between all pairs, CKA scoring is robust to calibration size — directly answers reviewer concern about scoring sensitivity. Plan_014, C2 mechanism evidence.\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T21:22:39.744Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"python src/cka_stability_analysis.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --output_path /root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json --device cuda:0\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 143187, \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1024, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/cka_stability_results.json\\\"}, \\\"metrics\\\": {\\\"spearman_256v512_attn\\\": 0.989, \\\"spearman_256v512_mlp\\\": 0.9683, \\\"spearman_256v512_combined\\\": 0.9788, \\\"spearman_256v1024_attn\\\": 0.9762, \\\"spearman_256v1024_mlp\\\": 0.9464, \\\"spearman_256v1024_combined\\\": 0.9641, \\\"spearman_512v1024_attn\\\": 0.995, \\\"spearman_512v1024_mlp\\\": 0.9908, \\\"spearman_512v1024_combined\\\": 0.9938, \\\"min_combined_rho\\\": 0.964, \\\"mean_combined_rho\\\": 0.979, \\\"stable\\\": true}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-19T22:21:53.771Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1441}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2142
+          },
+          "id": "event-006695"
+        },
+        {
+          "source_line": 6696,
+          "timestamp": "2026-05-19T22:21:56.185489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:20:59.505Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:21:55.678Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 前4次被杀（exit code 143/124/129），排查确认为 submit_training_job 的 timeout wrapper 和 SIGHUP。清理 exit 文件后用全新 session 名 mbpp_sft_std_clean 重跑，绕过旧 session 名匹配。预期 ~12.8%。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MBPP\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"sft_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"eval_data\\\": \\\"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\\\", \\\"pid\\\": 141113, \\\"tmux_session\\\": \\\"mbpp_sft_std_clean\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"failed\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0572}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2611
+          },
+          "id": "event-006696"
+        },
+        {
+          "source_line": 6697,
+          "timestamp": "2026-05-19T22:22:07.712109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_clean",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006697"
+        },
+        {
+          "source_line": 6698,
+          "timestamp": "2026-05-19T22:22:08.967485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_clean",
+              "field": "failure_reason",
+              "value": "MBPP dataset download failed — westd network unreachable, command missing HF_DATASETS_OFFLINE=1",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006698"
+        },
+        {
+          "source_line": 6699,
+          "timestamp": "2026-05-19T22:22:09.669455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:20:59.505Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:22:08.364Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 前4次被杀（exit code 143/124/129），排查确认为 submit_training_job 的 timeout wrapper 和 SIGHUP。清理 exit 文件后用全新 session 名 mbpp_sft_std_clean 重跑，绕过旧 session 名匹配。预期 ~12.8%。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MBPP\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"sft_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"eval_data\\\": \\\"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\\\", \\\"pid\\\": 141113, \\\"tmux_session\\\": \\\"mbpp_sft_std_clean\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T22:22:08.364Z\\\"}, \\\"hint\\\": \\\"💡 建议将故障原因写入 memory.md（如何避免再犯）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9671}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1957
+          },
+          "id": "event-006699"
+        },
+        {
+          "source_line": 6700,
+          "timestamp": "2026-05-19T22:22:10.775630+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T21:20:59.505Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:22:10.288Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 前4次被杀（exit code 143/124/129），排查确认为 submit_training_job 的 timeout wrapper 和 SIGHUP。清理 exit 文件后用全新 session 名 mbpp_sft_std_clean 重跑，绕过旧 session 名匹配。预期 ~12.8%。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_v3\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --max_new_tokens 2048\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MBPP\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"sft_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"eval_data\\\": \\\"MBPP (374 tasks, sanitized, pass@1, max_new_tokens=2048)\\\", \\\"pid\\\": 141113, \\\"tmux_session\\\": \\\"mbpp_sft_std_clean\\\", \\\"log_path\\\": \\\"N/A\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-19T22:22:08.364Z\\\", \\\"failure_reason\\\": \\\"MBPP dataset download failed — westd network unreachable, command missing HF_DATASETS_OFFLINE=1\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0609}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1808
+          },
+          "id": "event-006700"
+        },
+        {
+          "source_line": 6701,
+          "timestamp": "2026-05-19T22:22:54.301619+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "fix:standard_mbpp_resubmit",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "紧急任务：诊断并重新提交 westd-29022 上两个 Standard MBPP eval。\n\n**背景**:\n- westd-29022 网络不通，所有实验必须用 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1\n- eval_mbpp_sft_standard_20_clean (westd:0) 因缺少 HF offline 标志导致 MBPP 数据集下载失败\n- eval_mbpp_grpo_standard_20_v4 (westd:2) 在手动 tmux 中，但检查 Worker 未找到相关 tmux session 或日志\n\n**步骤**:\n\n1. **诊断 westd:2 的 GRPO standard v4 状态**（用 ssh_read_only）:\n   - `tmux ls` 列出所有 tmux session\n   - 搜索可能的 session 名: `tmux ls 2>/dev/null | grep -iE \"grpo|standard|mbpp\"`\n   - 检查 GPU 使用: `nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader`\n   - 如果 cuda:2 空闲，说明 v4 已死\n\n2. **验证 MBPP 数据集缓存**（ssh_read_only）:\n   - `find /root/.cache/huggingface/datasets -name \"*.arrow\" 2>/dev/null | grep -i mbpp | head -5`\n   - `ls -la /root/.cache/huggingface/datasets/ 2>/dev/null | grep mbpp`\n   - 如果没有缓存，检查其他可能的缓存路径：`find /root/autodl-tmp/.hf_cache -name \"*.arrow\" 2>/dev/null | grep -i mbpp | head -5`\n   - 也检查 `/root/.cache/huggingface/hub/` 下的 datasets\n\n3. **重新提交 SFT Standard MBPP eval**（用 ssh_execute，在 westd:0 上）:\n   - 确认 MBPP 数据集有缓存后，用手动 tmux 方式提交:\n   ```bash\n   tmux new-session -d -s mbpp_sft_std_v5 'CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20.json 2>&1 | tee /tmp/eval_mbpp_sft_standard_20_v5.log'\n   ```\n   - 验证进程启动: `sleep 5 && tmux capture-pane -t mbpp_sft_std_v5 -p -S -20`\n   - 记录 PID: `ps aux | grep eval_mbpp | grep -v grep`\n\n4. **重新提交 GRPO Standard MBPP eval**（如果 v4 确认已死，用 ssh_execute，在 westd:2 上）:\n   - ```bash\n   tmux new-session -d -s mbpp_grpo_std_v5 'CUDA_VISIBLE_DEVICES=2 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20/checkpoint-100 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_standard_20.json 2>&1 | tee /tmp/eval_mbpp_grpo_standard_20_v5.log'\n   ```\n   - 同样验证启动并记录 PID\n\n5. **如果 MBPP 数据集完全没有缓存**:\n   - 检查成功完成的 MBPP eval 是怎么加载数据的: `grep -r \"mbpp\\|MBPP\" /root/autodl-tmp/recovery_aware_struct_prune/src/eval_mbpp.py | head -20`\n   - 可能数据集内置在代码中或有本地副本\n\n**项目路径**: /root/autodl-tmp/recovery_aware_struct_prune\n**关键**: 所有命令必须包含 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1\n**重要**: 不要在命令中包含 source /etc/network_turbo（网络不通，没用）\n\n汇报时提供:\n- 每个实验的 PID\n- tmux session 名\n- MBPP 数据集缓存位置\n- 如果有问题无法启动，具体报错信息",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-006701"
+        },
+        {
+          "source_line": 6702,
+          "timestamp": "2026-05-19T22:23:00.282651+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_standard_mbpp_resubmit_20260519T222254\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_standard_mbpp_resubmit_20260519T222254.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_fix_standard_mbpp_resubmit_20260519T222254 started. Use get_worker_status('worker_fix_standard_mbpp_resubmit_20260519T222254') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5981
+          },
+          "id": "event-006702"
+        },
+        {
+          "source_line": 6703,
+          "timestamp": "2026-05-19T22:23:06.263297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/skills/resource-saturation.skill.md",
+              "limit": "30"
+            }
+          },
+          "id": "event-006703"
+        },
+        {
+          "source_line": 6704,
+          "timestamp": "2026-05-19T22:23:06.314148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/.claude/sessions/agent_edc8ba15."
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "elapsed_ms": 50
+          },
+          "id": "event-006704"
+        },
+        {
+          "source_line": 6705,
+          "timestamp": "2026-05-19T22:23:09.576339+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+            }
+          },
+          "id": "event-006705"
+        },
+        {
+          "source_line": 6706,
+          "timestamp": "2026-05-19T22:23:09.727320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "elapsed_ms": 150
+          },
+          "id": "event-006706"
+        },
+        {
+          "source_line": 6707,
+          "timestamp": "2026-05-19T22:23:12.304441+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource*saturation*",
+              "path": "/home/ubuntu/agent-ml-research"
+            }
+          },
+          "id": "event-006707"
+        },
+        {
+          "source_line": 6708,
+          "timestamp": "2026-05-19T22:23:12.562679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "elapsed_ms": 258
+          },
+          "id": "event-006708"
+        },
+        {
+          "source_line": 6709,
+          "timestamp": "2026-05-19T22:23:16.027066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md",
+              "limit": "50"
+            }
+          },
+          "id": "event-006709"
+        },
+        {
+          "source_line": 6710,
+          "timestamp": "2026-05-19T22:23:16.128779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Read",
+            "elapsed_ms": 101
+          },
+          "id": "event-006710"
+        },
+        {
+          "source_line": 6711,
+          "timestamp": "2026-05-19T22:23:27.012440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__main_agent_post_to_director",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006711"
+        },
+        {
+          "source_line": 6712,
+          "timestamp": "2026-05-19T22:23:27.012769+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006712"
+        },
+        {
+          "source_line": 6713,
+          "timestamp": "2026-05-19T22:23:42.964112+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | 实际在跑 2-3 (westd:1 ShortGPT MBPP, westb:1 1.5B CKA-only MBPP, westd:2 待确认) | westd:0+westd:3 空闲修复中 | Worker 2 (GPU 1 / CPU 1)\n\n## CKA Scoring Stability Ablation — ✅ 完成 (plan_014)\n\nCalibration size 256/512/1024 三组 Spearman rank correlation 全部 > 0.95：\n\n| 对比 | Attn ρ | MLP ρ | Combined ρ |\n|------|--------|-------|------------|\n| 256 vs 512 | 0.989 | 0.968 | **0.979** |\n| 256 vs 1024 | 0.976 | 0.946 | **0.964** |\n| 512 vs 1024 | 0.995 | 0.991 | **0.994** |\n\n**结论**: min ρ = 0.964, mean = 0.979, 全部 > 0.95 阈值。CKA scoring 对 calibration size 高度稳定，直接回应 reviewer \"scoring sensitivity\" 疑虑。westd:3 已释放。\n\n## Standard MBPP Eval 状态更新\n\n- **eval_mbpp_sft_standard_20_clean** (westd:0): 失败——命令缺少 HF_DATASETS_OFFLINE=1，MBPP 数据集下载触发网络请求报错。已标记 DONE/failed。\n- **eval_mbpp_grpo_standard_20_v4** (westd:2): 检查 Worker 未找到对应 tmux session 或日志，状态待确认。\n\n已派 Worker 修复：验证 MBPP 数据集缓存 → 用 HF_DATASETS_OFFLINE=1 在 westd:0 和 westd:2 手动 tmux 重新提交两个 Standard MBPP eval。\n\n## ShortGPT MBPP Eval\n\n审批通过后已提交 eval_mbpp_sft_shortgpt_20 在 westd:1，timeout=8h，cron 已注册。\n\n## 关键路径\n\nStandard SFT + GRPO MBPP（重跑修复中） → 补完 MBPP 7B 3×2 矩阵 → 更新 paper_framing.md → 启动 Paper Agent",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006713"
+        },
+        {
+          "source_line": 6714,
+          "timestamp": "2026-05-19T22:23:44.120606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 1156
+          },
+          "id": "event-006714"
+        },
+        {
+          "source_line": 6715,
+          "timestamp": "2026-05-19T22:23:47.850428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__save_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006715"
+        },
+        {
+          "source_line": 6716,
+          "timestamp": "2026-05-19T22:23:47.951287+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-006716"
+        },
+        {
+          "source_line": 6717,
+          "timestamp": "2026-05-19T22:23:53.908514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "memory.md",
+              "max_chars": "6000"
+            }
+          },
+          "id": "event-006717"
+        },
+        {
+          "source_line": 6718,
+          "timestamp": "2026-05-19T22:23:53.959178+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\\\", \\\"content\\\": \\\"# 诊断报告：eval_mbpp_sft_rasp_20 失败\\\\n\\\\n**日期**: 2026-05-20\\\\n**服务器**: westb-23072\\\\n**运行时长**: 37 秒\\\\n**退出码**: 1\\\\n\\\\n## 错误信息\\\\n\\\\n```\\\\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20'. Use `repo_type` argument if needed.\\\\n```\\\\n\\\\n崩溃点：`eval_mbpp.py:98` → `AutoTokenizer.from_pretrained(args.model_path)`\\\\n\\\\n## 根因\\\\n\\\\n**模型路径不存在。** 命令指定 `--model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`，但该目录不存在。\\\\n\\\\nwestb-23072 上实际可用的 SFT RASP 20% 模型：\\\\n\\\\n| 路径 | 说明 |\\\\n|------|------|\\\\n| `sft_rasp_20_1p5b` | SFT RASP 20% (1.5B) ← **应该用这个** |\\\\n| `sft_rasp_25` | SFT RASP 25% |\\\\n| `sft_rasp_rlvr_20` | SFT RASP RLVR 20% |\\\\n\\\\n同类成功实验 `eval_humaneval_sft_rasp_20` 使用的路径正是 `sft_rasp_20_1p5b`。\\\\n\\\\nTransformers 发现本地路径不存在后，尝试将路径当作 HuggingFace repo id 解析，触发 `HFValidationError`（绝对路径不是合法 repo id），最终抛出 `OSError`。\\\\n\\\\n## 修复\\\\n\\\\n重新提交实验，将模型路径改为正确路径：\\\\n\\\\n```bash\\\\nCUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py \\\\\\\\\\\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b \\\\\\\\\\\\n  --max_new_tokens 2048 \\\\\\\\\\\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\\\\n```\\\\n\\\\n---\\\\n\\\\n# 诊断报告：eval_mbpp_sft_standard_20 失败\\\\n\\\\n**日期**: 2026-05-20\\\\n**服务器**: westd-29022\\\\n**运行时长**: ~2h15m（02:08→04:23 UTC+8）\\\\n**退出码**: 143 (SIGTERM)\\\\n\\\\n## 进度\\\\n\\\\n完成 189/374（50.5%）。最后一次 checkpoint log 在 180/374，Pass@1=0.1278。\\\\n\\\\nPass@1 趋势：\\\\n| 进度 | Pass@1 | 正确数 |\\\\n|------|--------|--------|\\\\n| 20/374 | 0.2500 | 5 |\\\\n| 40/374 | 0.2250 | 9 |\\\\n| 140/374 | 0.1286 | 18 |\\\\n| 160/374 | 0.1313 | 21 |\\\\n| 180/374 | 0.1278 | 23 |\\\\n\\\\n## SIGTERM 来源\\\\n\\\\n**外部 kill（非 OOM、非 timeout wrapper）。**\\\\n\\\\n排除项：\\\\n- ❌ OOM killer：OOM 发送 SIGKILL (EXIT_CODE=137)，不是 SIGTERM (143)；且无 kern.log/syslog 记录\\\\n-\n…[truncated 743 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-006718"
+        },
+        {
+          "source_line": 6719,
+          "timestamp": "2026-05-19T22:24:16.712487+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__save_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "memory.md",
+              "content": "# 诊断报告：eval_mbpp_sft_rasp_20 失败\n\n**日期**: 2026-05-20\n**服务器**: westb-23072\n**运行时长**: 37 秒\n**退出码**: 1\n\n## 错误信息\n\n```\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': '/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20'. Use `repo_type` argument if needed.\n```\n\n崩溃点：`eval_mbpp.py:98` → `AutoTokenizer.from_pretrained(args.model_path)`\n\n## 根因\n\n**模型路径不存在。** 命令指定 `--model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20`，但该目录不存在。\n\nwestb-23072 上实际可用的 SFT RASP 20% 模型：\n\n| 路径 | 说明 |\n|------|------|\n| `sft_rasp_20_1p5b` | SFT RASP 20% (1.5B) ← **应该用这个** |\n| `sft_rasp_25` | SFT RASP 25% |\n| `sft_rasp_rlvr_20` | SFT RASP RLVR 20% |\n\n同类成功实验 `eval_humaneval_sft_rasp_20` 使用的路径正是 `sft_rasp_20_1p5b`。\n\nTransformers 发现本地路径不存在后，尝试将路径当作 HuggingFace repo id 解析，触发 `HFValidationError`（绝对路径不是合法 repo id），最终抛出 `OSError`。\n\n## 修复\n\n重新提交实验，将模型路径改为正确路径：\n\n```bash\nCUDA_VISIBLE_DEVICES=0 python src/eval_mbpp.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b \\\n  --max_new_tokens 2048 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_rasp_20.json\n```\n\n---\n\n# 诊断报告：eval_mbpp_sft_standard_20 失败\n\n**日期**: 2026-05-20\n**服务器**: westd-29022\n**运行时长**: ~2h15m（02:08→04:23 UTC+8）\n**退出码**: 143 (SIGTERM)\n\n## 进度\n\n完成 189/374（50.5%）。最后一次 checkpoint log 在 180/374，Pass@1=0.1278。\n\nPass@1 趋势：\n| 进度 | Pass@1 | 正确数 |\n|------|--------|--------|\n| 20/374 | 0.2500 | 5 |\n| 40/374 | 0.2250 | 9 |\n| 140/374 | 0.1286 | 18 |\n| 160/374 | 0.1313 | 21 |\n| 180/374 | 0.1278 | 23 |\n\n## SIGTERM 来源\n\n**外部 kill（非 OOM、非 timeout wrapper）。**\n\n排除项：\n- ❌ OOM killer：OOM 发送 SIGKILL (EXIT_CODE=137)，不是 SIGTERM (143)；且无 kern.log/syslog 记录\n- ❌ `timeout` wrapper：timeout 命令返回 EXIT_CODE=124（如 eval_mbpp_grpo_standard_20 所示），而非 143\n- ❌ 进程自身崩溃：日志无 traceback，只有 `Terminated`\n\n最可能原因：被 `kill_job` 工具或其他 Worker 发送 `kill <pid>` 终止。时间线吻合——04:00 左右新的 MBPP eval (sft_rasp_20, grpo_standard_20) 在同服务器启动，可能需要释放 GPU 资源。\n\n## Partial Results\n\n**无。** `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_standard_20.json` 不存在。脚本只在全部完成后才写结果文件。\n\n## 速度分析\n\n平均 ~40s/it，部分问题 60-80s/it。按此速度完成 374 题需 ~4.5h。对比 sft_rasp_20 在同服务器仅 ~10s/it，sft_standard_20 慢 4x，可能因为模型生成更长的无效代码（max_new_tokens=2048）。\n\n## 建议\n\n需要重提交。考虑增加 `--timeout_per_task` 或降低 `--max_new_tokens` 来加速，避免再次超时被 kill。\n\n---\n\n# CKA Scoring Stability 验证结论\n\n**日期**: 2026-05-19\n**实验**: cka_scoring_stability_ablation (plan_014)\n\nCKA scoring 对 calibration size (256/512/1024) 高度稳定：min combined ρ = 0.964, mean = 0.979。所有 pair 均 > 0.95 阈值。这意味着 reviewer 关于 \"scoring 对样本量敏感\" 的潜在质疑可以直接用数据回应：即使 calibration 减半（512→256），排名几乎不变。\n\n---\n\n# westd-29022 网络离线约束\n\n**日期**: 2026-05-19 确认\nwestd-29022 网络不通。所有在 westd 上的实验命令必须包含 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HuggingFace datasets 库即使有本地缓存也会先发 HEAD 请求导致崩溃。eval_mbpp_sft_standard_20_clean 因缺少此标志而失败（第5次 Standard MBPP eval 失败）。\n"
+            }
+          },
+          "id": "event-006719"
+        },
+        {
+          "source_line": 6720,
+          "timestamp": "2026-05-19T22:24:16.764447+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__save_project_file",
+            "elapsed_ms": 51
+          },
+          "id": "event-006720"
+        },
+        {
+          "source_line": 6721,
+          "timestamp": "2026-05-19T22:24:20.318614+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA stability 已更新到 DONE/success，memory.md 已写入关键发现。Worker 正在修复 Standard MBPP evals（westd:0 和 westd:2）。等待 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006721"
+        }
+      ]
+    },
+    {
+      "number": 551,
+      "messages": [
+        {
+          "source_line": 6722,
+          "timestamp": "2026-05-19T22:24:20.848841+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval_mbpp_sft_cka_only_20_1p5b** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westb-23072 检查日志 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval_mbpp_sft_cka_only_20_1p5b')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "cron"
+          },
+          "id": "event-006722"
+        },
+        {
+          "source_line": 6723,
+          "timestamp": "2026-05-19T22:24:41.150013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:eval_mbpp_sft_cka_only_20_1p5b",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "实验 eval_mbpp_sft_cka_only_20_1p5b 进程已退出，需要诊断结果。\n\n**服务器**: westb-23072\n**实验**: eval_mbpp_sft_cka_only_20_1p5b — 1.5B SFT CKA-only 20% 模型的 MBPP pass@1 eval\n**预期**: pass@1 接近 0%（1.5B Standard 只有 0.80%，CKA-only 预期更低或接近）\n\n**步骤**（全部用 ssh_read_only）:\n\n1. 读日志最后 50 行:\n   ```\n   tail -50 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log\n   ```\n\n2. 检查结果文件是否存在:\n   ```\n   ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b*.json 2>/dev/null || ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/ | grep -i \"mbpp.*cka.*1p5b\"\n   ```\n\n3. 如果有结果 JSON，读取内容:\n   ```\n   cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b*.json\n   ```\n\n4. 如果日志或结果中没有明确指标，检查日志中的进度信息:\n   ```\n   grep -E \"pass@1|n_correct|n_total|374|error|Error|traceback|Traceback\" /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20_1p5b.log | tail -20\n   ```\n\n5. 根据诊断结果:\n   - 如果成功完成（有 pass@1 指标）: 调用 update_registry(exp_id=\"eval_mbpp_sft_cka_only_20_1p5b\", field=\"metrics\", value={...}) 写入指标，然后设 conclusion=success（或 negative 如果指标符合预期但很低），最后设 status=DONE。设 DONE 前必须先设 spec 中的 checkpoint_path 和 log_path。\n   - 如果失败（有 error/traceback）: 设 conclusion=failed, failure_reason=具体错误, status=DONE。同样需要 checkpoint_path=\"N/A\" 和 log_path。\n\n6. 清除 cron 监控: 调用 delete_cron(\"eval_mbpp_sft_cka_only_20_1p5b\")\n\n汇报时提供: 最终 pass@1（如果有）、n_correct/n_total、是否正常完成。",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['delete_cron']"
+            }
+          },
+          "id": "event-006723"
+        },
+        {
+          "source_line": 6724,
+          "timestamp": "2026-05-19T22:24:47.023451+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441 started. Use get_worker_status('worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5873
+          },
+          "id": "event-006724"
+        },
+        {
+          "source_line": 6725,
+          "timestamp": "2026-05-19T22:24:51.359585+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已派 Worker 诊断 westb:1 上的 1.5B CKA-only MBPP eval 结果。等待两个 Worker 回调：\n- `worker_fix_standard_mbpp_resubmit` — westd Standard MBPP 重新提交\n- `worker_check_eval_mbpp_sft_cka_only_20_1p5b` — westb:1 结果诊断"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006725"
+        }
+      ]
+    },
+    {
+      "number": 552,
+      "messages": [
+        {
+          "source_line": 6726,
+          "timestamp": "2026-05-19T22:24:51.368748+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_fix_standard_mbpp_resubmit_20260519T222254 已完成（status=done）。用 `get_worker_status('worker_fix_standard_mbpp_resubmit_20260519T222254')` 读取结果，然后处理。\n\n- worker_id: worker_fix_standard_mbpp_resubmit_20260519T222254\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006726"
+        },
+        {
+          "source_line": 6727,
+          "timestamp": "2026-05-19T22:24:56.621894+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_fix_standard_mbpp_resubmit_20260519T222254"
+            }
+          },
+          "id": "event-006727"
+        },
+        {
+          "source_line": 6728,
+          "timestamp": "2026-05-19T22:24:56.722772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_standard_mbpp_resubmit_20260519T222254\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"fix:standard_mbpp_resubmit\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:22:55.056480+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:23:39.383712+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"两个 v4 eval 都**正在运行中**，无需重新提交。\\\\n\\\\n## 当前状态\\\\n\\\\n| Session | GPU | 进度 | Pass@1 | 状态 |\\\\n|---------|-----|------|--------|------|\\\\n| `eval_mbpp_sft_standard_20_v4` | cuda:0 (98% util, 17277 MiB) | 85/374 (23%) | 0.1750 | **运行中** |\\\\n| `eval_mbpp_grpo_standard_20_v4` | cuda:2 (97% util, 17019 MiB) | 108/374 (29%) | 0.1100 | **运行中** |\\\\n\\\\n## 关键细节\\\\n\\\\n- **MBPP 数据集缓存**: `/root/autodl-tmp/.hf_cache/datasets/mbpp/full/0.0.0/4bb6404fdc6cacfda99d4ac4205087b89d32030c`\\\\n- GRPO v4 最初在线下载了数据集（网络当时可用），现在 SFT v4 使用了离线缓存\\\\n- 两个 eval 都已正确设置 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`\\\\n- 第三个 session `cka_stability` 也在运行（GPU 1 和 3 空闲，该 session 可能使用其他资源）\\\\n\\\\n**不需要重新提交。两个 v4 eval 都在正常跑，预计还需 2-4 小时完成。**\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-006728"
+        },
+        {
+          "source_line": 6729,
+          "timestamp": "2026-05-19T22:25:54.074428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_standard_20_v4:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-A": "15"
+            }
+          },
+          "id": "event-006729"
+        },
+        {
+          "source_line": 6730,
+          "timestamp": "2026-05-19T22:25:54.124996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006730"
+        },
+        {
+          "source_line": 6731,
+          "timestamp": "2026-05-19T22:26:08.114736+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__register_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006731"
+        },
+        {
+          "source_line": 6732,
+          "timestamp": "2026-05-19T22:26:08.216606+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 101
+          },
+          "id": "event-006732"
+        },
+        {
+          "source_line": 6733,
+          "timestamp": "2026-05-19T22:26:15.295433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20.json', 'server': 'westd-29022', 'gpu': ['cuda:0'], 'data_path': 'google-research-datasets/mbpp (sanitized)', 'data_count': 374, 'model_name': 'sft_standard_20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20', 'eval_data': 'MBPP sanitized (374 tasks)', 'tmux_session': 'eval_mbpp_sft_standard_20_v4'}"
+            }
+          },
+          "id": "event-006733"
+        },
+        {
+          "source_line": 6734,
+          "timestamp": "2026-05-19T22:26:15.949903+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6516}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 654
+          },
+          "id": "event-006734"
+        },
+        {
+          "source_line": 6735,
+          "timestamp": "2026-05-19T22:26:22.424182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "hypothesis",
+              "value": "MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006735"
+        },
+        {
+          "source_line": 6736,
+          "timestamp": "2026-05-19T22:26:23.478199+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0583}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-006736"
+        },
+        {
+          "source_line": 6737,
+          "timestamp": "2026-05-19T22:26:26.965874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "parent",
+              "value": "eval_mbpp_sft_standard_20_clean",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006737"
+        },
+        {
+          "source_line": 6738,
+          "timestamp": "2026-05-19T22:26:27.519425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "status",
+              "value": "PENDING",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006738"
+        },
+        {
+          "source_line": 6739,
+          "timestamp": "2026-05-19T22:26:28.071662+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:27.579Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0836}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1105
+          },
+          "id": "event-006739"
+        },
+        {
+          "source_line": 6740,
+          "timestamp": "2026-05-19T22:26:29.977310+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:28.655Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8837}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2457
+          },
+          "id": "event-006740"
+        },
+        {
+          "source_line": 6741,
+          "timestamp": "2026-05-19T22:26:34.043779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006741"
+        },
+        {
+          "source_line": 6742,
+          "timestamp": "2026-05-19T22:26:36.217071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:34.862Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.165}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2173
+          },
+          "id": "event-006742"
+        },
+        {
+          "source_line": 6743,
+          "timestamp": "2026-05-19T22:26:40.433876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "server",
+              "value": "westd-29022",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006743"
+        },
+        {
+          "source_line": 6744,
+          "timestamp": "2026-05-19T22:26:41.339436+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "gpu",
+              "value": "cuda:0",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006744"
+        },
+        {
+          "source_line": 6745,
+          "timestamp": "2026-05-19T22:26:41.842214+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:41.023Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"server\\\": \\\"westd-29022\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0483}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1408
+          },
+          "id": "event-006745"
+        },
+        {
+          "source_line": 6746,
+          "timestamp": "2026-05-19T22:26:41.994426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "account",
+              "value": "root",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006746"
+        },
+        {
+          "source_line": 6747,
+          "timestamp": "2026-05-19T22:26:42.650464+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:42.121Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1339}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1311
+          },
+          "id": "event-006747"
+        },
+        {
+          "source_line": 6748,
+          "timestamp": "2026-05-19T22:26:43.704437+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:43.224Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0524}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1710
+          },
+          "id": "event-006748"
+        },
+        {
+          "source_line": 6749,
+          "timestamp": "2026-05-19T22:26:48.071744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006749"
+        },
+        {
+          "source_line": 6750,
+          "timestamp": "2026-05-19T22:26:49.878323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:26:48.626Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8197}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1806
+          },
+          "id": "event-006750"
+        },
+        {
+          "source_line": 6751,
+          "timestamp": "2026-05-19T22:27:01.137416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20.json', 'server': 'westd-29022', 'gpu': ['cuda:0'], 'data_path': 'google-research-datasets/mbpp (sanitized)', 'data_count': 374, 'model_name': 'sft_standard_20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20', 'eval_data': 'MBPP sanitized (374 tasks)', 'tmux_session': 'eval_mbpp_sft_standard_20_v4'}"
+            }
+          },
+          "id": "event-006751"
+        },
+        {
+          "source_line": 6752,
+          "timestamp": "2026-05-19T22:27:03.196864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:26:22.996Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:27:01.776Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on SFT Standard 20% @2048. Dense baseline=53.48%. 此为手动 tmux 提交的 orphan 进程补录。目前 85/374 (23%), interim pass@1=0.175。HF_DATASETS_OFFLINE=1。关联 C2。\\\", \\\"parent\\\": \\\"eval_mbpp_sft_standard_20_clean\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"spec\\\": {\\\"command\\\": \\\"HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20.json\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"google-research-datasets/mbpp (sanitized)\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"sft_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"eval_data\\\": \\\"MBPP sanitized (374 tasks)\\\", \\\"tmux_session\\\": \\\"eval_mbpp_sft_standard_20_v4\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.0601}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2059
+          },
+          "id": "event-006752"
+        },
+        {
+          "source_line": 6753,
+          "timestamp": "2026-05-19T22:27:07.663765+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_standard_20_v4",
+              "server": "westd-29022",
+              "pid": "eval_mbpp_sft_standard_20_v4",
+              "project": "recovery_aware_struct_prune",
+              "interval_seconds": "300"
+            }
+          },
+          "id": "event-006753"
+        },
+        {
+          "source_line": 6754,
+          "timestamp": "2026-05-19T22:27:08.116382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"pid\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-19T22:27:07.675Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 452
+          },
+          "id": "event-006754"
+        },
+        {
+          "source_line": 6755,
+          "timestamp": "2026-05-19T22:27:08.769044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_standard_20_v4",
+              "server": "westd-29022",
+              "pid": "eval_mbpp_grpo_standard_20_v4",
+              "project": "recovery_aware_struct_prune",
+              "interval_seconds": "300"
+            }
+          },
+          "id": "event-006755"
+        },
+        {
+          "source_line": 6756,
+          "timestamp": "2026-05-19T22:27:08.920115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20_v4\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"pid\\\": \\\"eval_mbpp_grpo_standard_20_v4\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-19T22:27:08.802Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 151
+          },
+          "id": "event-006756"
+        },
+        {
+          "source_line": 6757,
+          "timestamp": "2026-05-19T22:27:32.945051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'grpo_shortgpt_20'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']"
+            }
+          },
+          "id": "event-006757"
+        },
+        {
+          "source_line": 6758,
+          "timestamp": "2026-05-19T22:27:33.598589+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6147}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 653
+          },
+          "id": "event-006758"
+        },
+        {
+          "source_line": 6759,
+          "timestamp": "2026-05-19T22:27:37.482416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "grpo_shortgpt_20:",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/registry.yaml",
+              "output_mode": "content",
+              "-A": "15"
+            }
+          },
+          "id": "event-006759"
+        },
+        {
+          "source_line": 6760,
+          "timestamp": "2026-05-19T22:27:37.510078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "9286:  grpo_shortgpt_20:\n9287-    status: DONE\n9288-    retry_count: 0\n9289-    created_at: '2026-05-19T16:04:46.243Z'\n9290-    updated_at: '2026-05-19T18:02:50.896Z'\n9291-    hypothesis: GRPO recovery on ShortGPT depth-pruned model (5/28 layers removed\n9292-      by BI scoring, 15.3% sparsity). After SFT warmup (loss=0.62). Tests whether\n9293-      coarse layer removal (ShortGPT) leads to lower GRPO recovery than fine-grained\n9294-      structural pruning (CKA-only 64.37%, Standard 59.44%, RASP 60.88%). Expected\n9295-      to show collapse or severe stagnation because removing entire layers destroys\n9296-      more distributed representations needed for RL training.\n9297-    parent: sft_shortgpt_20\n9298-    spec:\n9299-      command: CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_shortgpt_20\n9300-        --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20\n9301-        --max_steps 100 --seed 42 --run_name grpo_shortgpt_20\n--\n9353:  eval_gsm8k_grpo_shortgpt_20:\n9354-    status: DONE\n9355-    retry_count: 0\n9356-    created_at: '2026-05-19T17:19:18.419Z'\n9357-    updated_at: '2026-05-19T18:17:53.164Z'\n9358-    hypothesis: GSM8K eval on ShortGPT GRPO checkpoint-100. ShortGPT SFT=44.73%, if\n9359-      GRPO improves significantly it suggests depth-pruned models can still benefit\n9360-      from RL. If minimal improvement or collapse, confirms coarse layer removal limits\n9361-      GRPO recovery capacity vs fine-grained methods (CKA-only 64.37%, Standard 59.44%).\n9362-    parent: grpo_shortgpt_20\n9363-    spec:\n9364-      command: python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100\n9365-        --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_shortgpt_20.json\n9366-      server: westd-29022\n9367-      gpu: cuda:0\n9368-      pid: 122867"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 27
+          },
+          "id": "event-006760"
+        },
+        {
+          "source_line": 6761,
+          "timestamp": "2026-05-19T22:27:48.092416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__get_project_resource_usage",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006761"
+        },
+        {
+          "source_line": 6762,
+          "timestamp": "2026-05-19T22:27:48.193174+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-006762"
+        },
+        {
+          "source_line": 6763,
+          "timestamp": "2026-05-19T22:27:50.753085+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_project_resource_usage"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006763"
+        },
+        {
+          "source_line": 6764,
+          "timestamp": "2026-05-19T22:27:51.405819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"allocated_gpus\\\": [{\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:0\\\"}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:1\\\"}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:2\\\"}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:3\\\"}], \\\"actually_running_gpus\\\": [{\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:2\\\", \\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20_v4\\\"}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\"}], \\\"allocated_but_idle\\\": [{\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:0\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:1\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}, {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu_id\\\": \\\"cuda:3\\\", \\\"idle_min\\\": null, \\\"util_pct\\\": null}], \\\"registered_but_hw_idle\\\": [], \\\"unregistered_but_hw_active\\\": [], \\\"running_experiments\\\": [{\\\"exp_id\\\": \\\"eval_mbpp_grpo_standard_20_v4\\\", \\\"gpus\\\": [\\\"cuda:2\\\"], \\\"util_avg\\\": null}, {\\\"exp_id\\\": \\\"eval_mbpp_sft_standard_20_v4\\\", \\\"gpus\\\": [\\\"cuda:0\\\"], \\\"util_avg\\\": null}], \\\"worker_pool\\\": {\\\"total\\\": 0, \\\"gpu_tasks\\\": 0, \\\"cpu_tasks\\\": 0, \\\"details\\\": []}, \\\"summary\\\": \\\"分配 6 张, 实际跑 2 张 ⚠️ | Worker 0 (GPU 0 / CPU 0)\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_project_resource_usage",
+            "elapsed_ms": 652
+          },
+          "id": "event-006764"
+        },
+        {
+          "source_line": 6765,
+          "timestamp": "2026-05-19T22:28:08.914008+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "hypothesis",
+              "value": "MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006765"
+        },
+        {
+          "source_line": 6766,
+          "timestamp": "2026-05-19T22:28:10.017945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0617}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1103
+          },
+          "id": "event-006766"
+        },
+        {
+          "source_line": 6767,
+          "timestamp": "2026-05-19T22:28:13.243405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "parent",
+              "value": "grpo_shortgpt_20",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006767"
+        },
+        {
+          "source_line": 6768,
+          "timestamp": "2026-05-19T22:28:13.945962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "status",
+              "value": "PENDING",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006768"
+        },
+        {
+          "source_line": 6769,
+          "timestamp": "2026-05-19T22:28:14.297707+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:28:13.834Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0403}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1054
+          },
+          "id": "event-006769"
+        },
+        {
+          "source_line": 6770,
+          "timestamp": "2026-05-19T22:28:16.154425+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PENDING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:28:14.890Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.8298}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2208
+          },
+          "id": "event-006770"
+        },
+        {
+          "source_line": 6771,
+          "timestamp": "2026-05-19T22:28:19.166070+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__feishu_send_approval_card",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006771"
+        },
+        {
+          "source_line": 6772,
+          "timestamp": "2026-05-19T22:28:19.166445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-006772"
+        },
+        {
+          "source_line": 6773,
+          "timestamp": "2026-05-19T22:28:27.765993+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__feishu_send_approval_card"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "summary": "GRPO ShortGPT 20% MBPP pass@1 @2048 eval on westd:3. 与 SFT ShortGPT (westd:1) 配对，完成 ShortGPT MBPP SFT/GRPO 对比。预期差于 fine-grained methods。",
+              "risk_reason": "低风险 eval，复用已有 GRPO ShortGPT checkpoint。westd:3 空闲，timeout=8h。",
+              "diff_summary": "无代码变更。使用 grpo_shortgpt_20/checkpoint-100 模型，eval_mbpp.py 脚本，HF_DATASETS_OFFLINE=1。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006773"
+        },
+        {
+          "source_line": 6774,
+          "timestamp": "2026-05-19T22:28:30.727477+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message_id\\\": \\\"om_x100b6ffa0e2b0c6cc4d633f2f8b22fe\\\", \\\"chat_id\\\": \\\"oc_04e6cf8fe41be27a49d5657e80962f12\\\", \\\"msg_type\\\": \\\"interactive\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__feishu_send_approval_card",
+            "elapsed_ms": 2961
+          },
+          "id": "event-006774"
+        },
+        {
+          "source_line": 6775,
+          "timestamp": "2026-05-19T22:28:36.725505+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审批卡已发送。当前状态：\n\n**westd GPU 全部有任务：**\n- westd:0: eval_mbpp_sft_standard_20_v4 (RUNNING, 85/374) — cron ✓\n- westd:1: eval_mbpp_sft_shortgpt_20 (RUNNING) — cron ✓\n- westd:2: eval_mbpp_grpo_standard_20_v4 (RUNNING, 108/374) — cron ✓\n- westd:3: eval_mbpp_grpo_shortgpt_20 (PENDING, 等审批)\n\n**westb：**\n- westb:0: standby (Director 指示)\n- westb:1: eval_mbpp_sft_cka_only_20_1p5b (进程已退出，Worker 诊断中)\n\n等待两个回调：1.5B 诊断 Worker + GRPO ShortGPT 审批。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006775"
+        }
+      ]
+    },
+    {
+      "number": 553,
+      "messages": [
+        {
+          "source_line": 6776,
+          "timestamp": "2026-05-19T22:28:37.266581+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441 已完成（status=done）。用 `get_worker_status('worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441')` 读取结果，然后处理。\n\n- worker_id: worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006776"
+        },
+        {
+          "source_line": 6777,
+          "timestamp": "2026-05-19T22:28:42.933914+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441"
+            }
+          },
+          "id": "event-006777"
+        },
+        {
+          "source_line": 6778,
+          "timestamp": "2026-05-19T22:28:43.035510+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_eval_mbpp_sft_cka_only_20_1p5b_20260519T222441\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:eval_mbpp_sft_cka_only_20_1p5b\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:24:41.908942+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:25:54.502048+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。\\\\n\\\\n- **状态**: 正常完成，374/374 题全部跑完\\\\n- **pass@1**: 0.0000 ± 0.0000 (0/374)\\\\n- **结论**: negative — 1.5B CKA-only 20% 模型在 MBPP 上 0 分，甚至低于 1.5B Standard 的 0.80%，CKA-only 恢复对 1.5B 代码能力无帮助\\\\n- **Registry**: metrics 已写入，conclusion=negative，status=DONE\\\\n- **Cron**: 已清除\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-006778"
+        },
+        {
+          "source_line": 6779,
+          "timestamp": "2026-05-19T22:29:04.039791+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | 实际在跑 4 (westd:0/1/2 + westb:1→完成) | westd:3 待审批 | westb:0+westb:1 空闲 | Worker 0\n\n## 1.5B CKA-only MBPP — negative (预期内)\n\neval_mbpp_sft_cka_only_20_1p5b: pass@1 = **0.00%** (0/374)。vs 1.5B Standard 0.80%。\n\n确认 1.5B 在 MBPP 上无区分力，cross-scale story 限于 GSM8K。westb:1 释放。\n\n## 进度汇总\n\n| 实验 | GPU | 进度 | 状态 |\n|------|-----|------|------|\n| eval_mbpp_sft_standard_20_v4 | westd:0 | 85/374 (23%) | RUNNING, cron ✓ |\n| eval_mbpp_sft_shortgpt_20 | westd:1 | 刚启动 | RUNNING, cron ✓ |\n| eval_mbpp_grpo_standard_20_v4 | westd:2 | 108/374 (29%) | RUNNING, cron ✓ |\n| eval_mbpp_grpo_shortgpt_20 | westd:3 | — | PENDING 审批 |\n| cka_scoring_stability_ablation | westd:3 | ✅ | DONE, min ρ=0.964 |\n| eval_mbpp_sft_cka_only_20_1p5b | westb:1 | ✅ | DONE/negative, 0.00% |\n\nwestb:0 + westb:1 空闲。westb 上有可以跑的任务吗？",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006779"
+        },
+        {
+          "source_line": 6780,
+          "timestamp": "2026-05-19T22:29:07.552407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3512
+          },
+          "id": "event-006780"
+        },
+        {
+          "source_line": 6781,
+          "timestamp": "2026-05-19T22:29:12.394565+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已汇报 Director。当前等待：\n- Standard MBPP 两项完成（westd:0/2, cron 监控中）\n- ShortGPT SFT MBPP 完成（westd:1, cron 监控中）\n- GRPO ShortGPT MBPP 审批（westd:3）\n- Director 指示 westb:0/1 任务分配"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006781"
+        }
+      ]
+    },
+    {
+      "number": 554,
+      "messages": [
+        {
+          "source_line": 6782,
+          "timestamp": "2026-05-19T22:29:35.735251+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[APPROVAL GRANTED] 实验 **eval_mbpp_grpo_shortgpt_20** 审批已通过，已进入执行队列（QUEUED）。请立即检查队列并开始执行该实验。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "approval"
+          },
+          "id": "event-006782"
+        },
+        {
+          "source_line": 6783,
+          "timestamp": "2026-05-19T22:29:42.313583+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "server",
+              "value": "westd-29022",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006783"
+        },
+        {
+          "source_line": 6784,
+          "timestamp": "2026-05-19T22:29:43.070756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "gpu",
+              "value": "cuda:3",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006784"
+        },
+        {
+          "source_line": 6785,
+          "timestamp": "2026-05-19T22:29:43.826191+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "account",
+              "value": "root",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006785"
+        },
+        {
+          "source_line": 6786,
+          "timestamp": "2026-05-19T22:29:44.428744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:29:43.975Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T22:29:42.817Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.1219}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2115
+          },
+          "id": "event-006786"
+        },
+        {
+          "source_line": 6787,
+          "timestamp": "2026-05-19T22:29:45.582592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:29:45.103Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T22:29:42.817Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1153}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2511
+          },
+          "id": "event-006787"
+        },
+        {
+          "source_line": 6788,
+          "timestamp": "2026-05-19T22:29:46.637619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ALLOCATED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:29:46.169Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T22:29:42.817Z\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0537}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 2811
+          },
+          "id": "event-006788"
+        },
+        {
+          "source_line": 6789,
+          "timestamp": "2026-05-19T22:29:51.659431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_on_allocated"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "command": "bash -c 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_shortgpt_20.json'",
+              "timeout_hours": "8",
+              "project": "recovery_aware_struct_prune",
+              "work_dir": "/root/autodl-tmp/recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006789"
+        },
+        {
+          "source_line": 6790,
+          "timestamp": "2026-05-19T22:29:58.735615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"status\\\": \\\"RUNNING\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_file\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_shortgpt_20.log\\\", \\\"account\\\": \\\"root\\\", \\\"tmux_session\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"cron_registered\\\": true, \\\"code_synced\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 7.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__submit_on_allocated",
+            "elapsed_ms": 7076
+          },
+          "id": "event-006790"
+        },
+        {
+          "source_line": 6791,
+          "timestamp": "2026-05-19T22:30:04.288514+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "field": "spec",
+              "value": "{'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100', 'eval_data': 'MBPP sanitized (374 tasks)', 'data_path': 'google-research-datasets/mbpp (sanitized)', 'data_count': 374, 'model_name': 'Qwen2.5-7B-ShortGPT-20%-GRPO', 'seed': 42}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006791"
+        },
+        {
+          "source_line": 6792,
+          "timestamp": "2026-05-19T22:30:05.800182+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T22:28:09.552Z\\\", \\\"updated_at\\\": \\\"2026-05-19T22:30:05.173Z\\\", \\\"hypothesis\\\": \\\"MBPP pass@1 eval on GRPO ShortGPT 20% @2048. ShortGPT GSM8K: SFT=44.73%, GRPO=43.37% (GRPO退化). Depth pruning 在 MBPP 上预期同样差于 fine-grained methods。与 eval_mbpp_sft_shortgpt_20 配对，完成 ShortGPT MBPP SFT/GRPO 对比。关联 ShortGPT baseline。\\\", \\\"parent\\\": \\\"grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-29022\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"started_at\\\": \\\"2026-05-19T22:29:42.817Z\\\", \\\"command\\\": \\\"bash -c 'HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_shortgpt_20.json'\\\"}, \\\"spec\\\": {\\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100\\\", \\\"eval_data\\\": \\\"MBPP sanitized (374 tasks)\\\", \\\"data_path\\\": \\\"google-research-datasets/mbpp (sanitized)\\\", \\\"data_count\\\": 374, \\\"model_name\\\": \\\"Qwen2.5-7B-ShortGPT-20%-GRPO\\\", \\\"seed\\\": 42}, \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_shortgpt_20.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4914}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 1511
+          },
+          "id": "event-006792"
+        },
+        {
+          "source_line": 6793,
+          "timestamp": "2026-05-19T22:30:10.857310+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_mbpp_grpo_shortgpt_20 已提交到 westd:3, RUNNING, cron 已注册, timeout=8h。\n\nwestd 全部 4 张 GPU 满载：\n- westd:0: SFT Standard MBPP (85/374)\n- westd:1: SFT ShortGPT MBPP (刚启动)\n- westd:2: GRPO Standard MBPP (108/374)\n- westd:3: GRPO ShortGPT MBPP (刚启动)\n\n等待 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006793"
+        }
+      ]
+    },
+    {
+      "number": 555,
+      "messages": [
+        {
+          "source_line": 6794,
+          "timestamp": "2026-05-19T22:30:10.867130+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **ShortGPT GRPO MBPP 已批准 westd:3。westb 情况。**\n\n1. eval_mbpp_grpo_shortgpt_20 → westd:3，用 checkpoint-100 路径（`grpo_shortgpt_20/checkpoint-100`），加 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，timeout_hours=8。\n\n2. westb:0 + westb:1 空闲 — westb 上所有有价值的 eval 已做完（7B 模型 eval 在 westd，1.5B MBPP 已确认无区分度）。westb 待命：如果 westd 任何实验再次失败，可以 rsync 模型到 westb 重跑。否则暂不分配。\n\n当前关键路径全在 westd：Standard SFT(23%) + Standard GRPO(29%) + ShortGPT SFT(刚启动) + ShortGPT GRPO(即将启动)。全部完成后 MBPP 矩阵完整，进入 paper_framing 更新和 Paper Agent 阶段。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "director"
+          },
+          "id": "event-006794"
+        },
+        {
+          "source_line": 6795,
+          "timestamp": "2026-05-19T22:30:26.985440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | westd 4/4 在跑 | westb 2 待命备份 | Worker 0\n\n收到。\n\n- eval_mbpp_grpo_shortgpt_20 已在 westd:3 RUNNING（审批前已提交，cron ✓，timeout=8h，HF offline ✓）\n- westb:0+westb:1 待命，westd 实验失败时 rsync 重跑\n\nwestd 全卡状态：\n| GPU | 实验 | 进度 |\n|-----|------|------|\n| 0 | SFT Standard v4 | 85/374 |\n| 1 | SFT ShortGPT | 刚启动 |\n| 2 | GRPO Standard v4 | 108/374 |\n| 3 | GRPO ShortGPT | 刚启动 |\n\n4 cron 注册，完成后自动回调 → 更新 registry → 汇报。全部完成后进入 paper_framing 更新 + Paper Agent。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006795"
+        },
+        {
+          "source_line": 6796,
+          "timestamp": "2026-05-19T22:30:32.059567+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 5074
+          },
+          "id": "event-006796"
+        },
+        {
+          "source_line": 6797,
+          "timestamp": "2026-05-19T22:30:37.073234+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_mbpp_grpo_shortgpt_20 已在 westd:3 上 RUNNING（审批通过后立即提交，cron 已注册，timeout=8h，HF_DATASETS_OFFLINE=1）。\n\nwestb:0+westb:1 待命，作为 westd 实验失败时的备份。\n\n当前 westd 全卡在跑：\n\n| GPU | 实验 | 进度 | 预计剩余 |\n|-----|------|------|---------|\n| westd:0 | eval_mbpp_sft_standard_20_v4 | 85/374 | ~3h |\n| westd:1 | eval_mbpp_sft_shortgpt_20 | 刚启动 | ~4-6h |\n| westd:2 | eval_mbpp_grpo_standard_20_v4 | 108/374 | ~3h |\n| westd:3 | eval_mbpp_grpo_shortgpt_20 | 刚启动 | ~4-6h |\n\n4 个 cron 全部注册，完成后自动回调。等 cron 通知。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006797"
+        }
+      ]
+    },
+    {
+      "number": 556,
+      "messages": [
+        {
+          "source_line": 6798,
+          "timestamp": "2026-05-19T22:37:29.106521+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631 已完成（status=done）。用 `get_worker_status('worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631')` 读取结果，然后处理。\n\n- worker_id: worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006798"
+        },
+        {
+          "source_line": 6799,
+          "timestamp": "2026-05-19T22:37:37.142355+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631"
+            }
+          },
+          "id": "event-006799"
+        },
+        {
+          "source_line": 6800,
+          "timestamp": "2026-05-19T22:37:37.243577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"fix:eval_mbpp_sft_shortgpt_20_v2\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:36:31.324673+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:37:25.073598+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"完成。\\\\n\\\\n- 旧 `eval_mbpp_sft_shortgpt_20_v2` session 已清理并重建\\\\n- 实验已在 tmux session `eval_mbpp_sft_shortgpt_20_v2` 中启动，使用 `cuda:1`\\\\n- GPU 1 当前占用 15435/97887 MiB（90% utilization），实验正在运行\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-006800"
+        },
+        {
+          "source_line": 6801,
+          "timestamp": "2026-05-19T22:37:50.456958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__poll_cron",
+              "max_results": "1"
+            }
+          },
+          "id": "event-006801"
+        },
+        {
+          "source_line": 6802,
+          "timestamp": "2026-05-19T22:37:50.557843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "ToolSearch",
+            "elapsed_ms": 100
+          },
+          "id": "event-006802"
+        },
+        {
+          "source_line": 6803,
+          "timestamp": "2026-05-19T22:37:54.973433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_shortgpt_20",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+              "glob": "crons.yaml",
+              "output_mode": "content",
+              "-A": "5"
+            }
+          },
+          "id": "event-006803"
+        },
+        {
+          "source_line": 6804,
+          "timestamp": "2026-05-19T22:37:55.024088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 50
+          },
+          "id": "event-006804"
+        },
+        {
+          "source_line": 6805,
+          "timestamp": "2026-05-19T22:37:58.085998+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/cron*\"",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17"
+            }
+          },
+          "id": "event-006805"
+        },
+        {
+          "source_line": 6806,
+          "timestamp": "2026-05-19T22:37:58.086462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No files found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-006806"
+        },
+        {
+          "source_line": 6807,
+          "timestamp": "2026-05-19T22:38:02.755908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "eval_mbpp_sft_shortgpt_20",
+              "path": "/home/ubuntu/agent-ml-research",
+              "glob": "*cron*\"",
+              "output_mode": "content",
+              "-A": "5"
+            }
+          },
+          "id": "event-006807"
+        },
+        {
+          "source_line": 6808,
+          "timestamp": "2026-05-19T22:38:02.856848+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matches found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "Grep",
+            "elapsed_ms": 100
+          },
+          "id": "event-006808"
+        },
+        {
+          "source_line": 6809,
+          "timestamp": "2026-05-19T22:38:09.680211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_mbpp_sft_shortgpt_20",
+              "server": "westd-29022",
+              "pid": "eval_mbpp_sft_shortgpt_20_v2",
+              "project": "recovery_aware_struct_prune",
+              "interval_seconds": "300"
+            }
+          },
+          "id": "event-006809"
+        },
+        {
+          "source_line": 6810,
+          "timestamp": "2026-05-19T22:38:09.885436+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_mbpp_sft_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"pid\\\": \\\"eval_mbpp_sft_shortgpt_20_v2\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-19T22:38:09.710Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 205
+          },
+          "id": "event-006810"
+        },
+        {
+          "source_line": 6811,
+          "timestamp": "2026-05-19T22:38:14.439764+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已更新，监控 `eval_mbpp_sft_shortgpt_20_v2` tmux session。westd:1 正常运行中。\n\n当前 westd 4 卡全部在跑，4 个 cron 全部就绪，等待完成回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006811"
+        }
+      ]
+    },
+    {
+      "number": 557,
+      "messages": [
+        {
+          "source_line": 6812,
+          "timestamp": "2026-05-19T22:57:06.195882+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652 已完成（status=done）。用 `get_worker_status('worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652')` 读取结果，然后处理。\n\n- worker_id: worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006812"
+        },
+        {
+          "source_line": 6813,
+          "timestamp": "2026-05-19T22:57:12.901595+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652"
+            }
+          },
+          "id": "event-006813"
+        },
+        {
+          "source_line": 6814,
+          "timestamp": "2026-05-19T22:57:13.003232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_diagnose_eval_mbpp_grpo_shortgpt_20_v2_20260519T223652\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"diagnose:eval_mbpp_grpo_shortgpt_20_v2\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:36:52.760956+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:57:04.405300+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"**根因：工作目录错误。**\\\\n\\\\n提交命令用相对路径 `src/eval_mbpp.py`，但 cwd 是数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`，Python 找不到 `/root/autodl-tmp/recovery_aware_struct_prune/src/eval_mbpp.py`。实际脚本在 `/root/recovery_aware_struct_prune/src/eval_mbpp.py`。\\\\n\\\\n**修复**：命令中加 `cd /root/recovery_aware_struct_prune &&`，或将 `src/eval_mbpp.py` 改为绝对路径 `/root/recovery_aware_struct_prune/src/eval_mbpp.py`。\\\\n\\\\n诊断报告已写入 `artifacts/diagnose_eval_mbpp_grpo_shortgpt_20_v2.md`。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 101
+          },
+          "id": "event-006814"
+        },
+        {
+          "source_line": 6815,
+          "timestamp": "2026-05-19T22:57:35.595484+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "fix:eval_mbpp_grpo_shortgpt_20_resubmit",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "修复 eval_mbpp_grpo_shortgpt_20 失败并重新提交。\n\n**问题**: 工作目录错误。`src/eval_mbpp.py` 脚本在 `/root/recovery_aware_struct_prune/src/`，但之前 cwd 设为了 `/root/autodl-tmp/recovery_aware_struct_prune/`。\n\n**服务器**: westd-29022\n**GPU**: cuda:3\n\n**步骤**:\n\n1. 清理旧 tmux session（ssh_execute）:\n   ```bash\n   tmux kill-session -t eval_mbpp_grpo_shortgpt_20 2>/dev/null; tmux kill-session -t eval_mbpp_grpo_shortgpt_20_v2 2>/dev/null; echo \"cleaned\"\n   ```\n\n2. 创建新 tmux session，cd 到正确的代码目录（ssh_execute）:\n   ```bash\n   tmux new-session -d -s eval_mbpp_grpo_shortgpt_20_v3 'cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20/checkpoint-100 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_shortgpt_20.json 2>&1 | tee /tmp/eval_mbpp_grpo_shortgpt_20_v3.log'\n   ```\n\n3. 验证启动成功（ssh_read_only）:\n   - `sleep 10 && tmux capture-pane -t eval_mbpp_grpo_shortgpt_20_v3 -p -S -20`\n   - `nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader`\n   - 确认 cuda:3 有显存占用\n\n4. 获取 PID（ssh_read_only）:\n   ```bash\n   ps aux | grep \"eval_mbpp.*shortgpt.*checkpoint-100\" | grep -v grep\n   ```\n\n汇报: PID、启动是否成功、GPU 占用情况。",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-006815"
+        },
+        {
+          "source_line": 6816,
+          "timestamp": "2026-05-19T22:57:41.469936+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736 started. Use get_worker_status('worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 5874
+          },
+          "id": "event-006816"
+        },
+        {
+          "source_line": 6817,
+          "timestamp": "2026-05-19T22:57:47.383757+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 派出修复中。同时需要更新 eval_mbpp_sft_shortgpt_20 的 cron，确认其 v2 重启是否也需要路径修正——但 fix worker 已经处理过了且在运行中，暂不干预。等 Worker 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006817"
+        }
+      ]
+    },
+    {
+      "number": 558,
+      "messages": [
+        {
+          "source_line": 6818,
+          "timestamp": "2026-05-19T22:59:06.792054+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736 已完成（status=done）。用 `get_worker_status('worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736')` 读取结果，然后处理。\n\n- worker_id: worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006818"
+        },
+        {
+          "source_line": 6819,
+          "timestamp": "2026-05-19T22:59:13.407883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736"
+            }
+          },
+          "id": "event-006819"
+        },
+        {
+          "source_line": 6820,
+          "timestamp": "2026-05-19T22:59:13.510949+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_fix_eval_mbpp_grpo_shortgpt_20_resubmit_20260519T225736\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"fix:eval_mbpp_grpo_shortgpt_20_resubmit\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-19T22:57:36.365388+00:00\\\", \\\"ended_at\\\": \\\"2026-05-19T22:59:04.993254+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"启动成功。汇报：\\\\n\\\\n- **PID**: 148173\\\\n- **状态**: 正在运行，模型已加载，MBPP 374 题评估进行中\\\\n- **GPU cuda:3**: 15433 MiB 显存占用，90% 利用率\\\\n- **工作目录**: 已修正为 `/root/recovery_aware_struct_prune`\\\\n- **额外修复**: tmux 内非交互 shell 找不到 `python`，加了 `source conda.sh && conda activate base`\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 103
+          },
+          "id": "event-006820"
+        },
+        {
+          "source_line": 6821,
+          "timestamp": "2026-05-19T22:59:17.626220+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_cron"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "tool_args": {
+              "exp_id": "eval_mbpp_grpo_shortgpt_20",
+              "server": "westd-29022",
+              "pid": "eval_mbpp_grpo_shortgpt_20_v3",
+              "project": "recovery_aware_struct_prune",
+              "interval_seconds": "300"
+            }
+          },
+          "id": "event-006821"
+        },
+        {
+          "source_line": 6822,
+          "timestamp": "2026-05-19T22:59:17.827419+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"registered\\\": {\\\"exp_id\\\": \\\"eval_mbpp_grpo_shortgpt_20\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"pid\\\": \\\"eval_mbpp_grpo_shortgpt_20_v3\\\", \\\"wandb_run_id\\\": null, \\\"log_path\\\": null, \\\"interval_seconds\\\": 300, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"tracked_metrics\\\": null, \\\"chat_id\\\": null, \\\"hooks\\\": null, \\\"last_checked\\\": null, \\\"created_at\\\": \\\"2026-05-19T22:59:17.655Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__register_cron",
+            "elapsed_ms": 201
+          },
+          "id": "event-006822"
+        },
+        {
+          "source_line": 6823,
+          "timestamp": "2026-05-19T22:59:22.780714+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd 全卡状态确认：\n\n| GPU | 实验 | PID | 状态 |\n|-----|------|-----|------|\n| westd:0 | eval_mbpp_sft_standard_20_v4 | — | RUNNING, cron ✓ |\n| westd:1 | eval_mbpp_sft_shortgpt_20 | — | RUNNING, cron ✓ (v2 session) |\n| westd:2 | eval_mbpp_grpo_standard_20_v4 | — | RUNNING, cron ✓ |\n| westd:3 | eval_mbpp_grpo_shortgpt_20 | 148173 | RUNNING, cron ✓ (v3 session) |\n\n等 cron 回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006823"
+        }
+      ]
+    },
+    {
+      "number": 559,
+      "messages": [
+        {
+          "source_line": 6824,
+          "timestamp": "2026-05-20T01:44:55.629007+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval_mbpp_grpo_standard_20_v4** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-29022 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval_mbpp_grpo_standard_20_v4')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "cron"
+          },
+          "id": "event-006824"
+        },
+        {
+          "source_line": 6825,
+          "timestamp": "2026-05-20T01:45:15.355733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:eval_mbpp_grpo_standard_20_v4",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "实验 eval_mbpp_grpo_standard_20_v4 进程已退出，需要诊断结果。\n\n**服务器**: westd-29022\n**实验**: eval_mbpp_grpo_standard_20_v4 — GRPO Standard 20% 模型的 MBPP pass@1 eval\n**GPU**: cuda:2\n**预期**: pass@1 ~13.1%（之前 v1 在 335/374 时 partial result ~13.1%）\n**tmux session 名**: eval_mbpp_grpo_standard_20_v4\n\n**步骤**（全部用 ssh_read_only）:\n\n1. 检查 tmux session 最后输出:\n   ```\n   tmux capture-pane -t eval_mbpp_grpo_standard_20_v4 -p -S -50 2>/dev/null || echo \"SESSION_GONE\"\n   ```\n\n2. 检查结果文件:\n   ```\n   ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_standard_20*.json 2>/dev/null\n   cat /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_grpo_standard_20*.json 2>/dev/null\n   ```\n\n3. 检查日志文件:\n   ```\n   ls -la /tmp/eval_mbpp_grpo_standard_20*.log 2>/dev/null\n   tail -50 /tmp/eval_mbpp_grpo_standard_20*.log 2>/dev/null\n   ```\n   也检查 runs 目录:\n   ```\n   tail -50 ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_standard_20_v4.log 2>/dev/null\n   ```\n\n4. 如果找不到日志/结果，搜索相关进程或文件:\n   ```\n   grep -r \"pass@1\\|n_correct\\|374\" /tmp/eval_mbpp_grpo_standard* 2>/dev/null\n   find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*grpo*standard*\" -o -name \"*mbpp*standard*\" 2>/dev/null\n   ```\n\n5. 根据诊断结果更新 registry:\n   - 如果成功完成（有 pass@1）: 设 metrics → conclusion=success → checkpoint_path 和 log_path → status=DONE\n   - 如果失败: 设 conclusion=failed, failure_reason → checkpoint_path=\"N/A\", log_path → status=DONE\n\n6. 清除 cron: delete_cron(\"eval_mbpp_grpo_standard_20_v4\")\n\n汇报: pass@1 数值（如有）、n_correct/n_total、是否正常完成、失败原因（如有）。",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['delete_cron']"
+            }
+          },
+          "id": "event-006825"
+        },
+        {
+          "source_line": 6826,
+          "timestamp": "2026-05-20T01:45:21.606990+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516 started. Use get_worker_status('worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 6251
+          },
+          "id": "event-006826"
+        },
+        {
+          "source_line": 6827,
+          "timestamp": "2026-05-20T01:45:25.933595+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Worker 已派出诊断 GRPO Standard MBPP eval 结果。等待回调。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006827"
+        }
+      ]
+    },
+    {
+      "number": 560,
+      "messages": [
+        {
+          "source_line": 6828,
+          "timestamp": "2026-05-20T01:47:24.807296+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[WORKER DONE] Worker worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516 已完成（status=done）。用 `get_worker_status('worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516')` 读取结果，然后处理。\n\n- worker_id: worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516\n- project: recovery_aware_struct_prune\n- status: done"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "worker:done"
+          },
+          "id": "event-006828"
+        },
+        {
+          "source_line": 6829,
+          "timestamp": "2026-05-20T01:47:31.431572+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516"
+            }
+          },
+          "id": "event-006829"
+        },
+        {
+          "source_line": 6830,
+          "timestamp": "2026-05-20T01:47:31.532503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516\\\", \\\"status\\\": \\\"done\\\", \\\"task_type\\\": \\\"check:eval_mbpp_grpo_standard_20_v4\\\", \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"started_at\\\": \\\"2026-05-20T01:45:16.181202+00:00\\\", \\\"ended_at\\\": \\\"2026-05-20T01:47:22.432191+00:00\\\", \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"result\\\": {\\\"raw\\\": \\\"诊断完成：\\\\n\\\\n- **状态**: 正常完成（`.done` 标记存在，completed_at = 2026-05-20T09:41:44）\\\\n- **pass@1 = 13.10%**（49/374），stderr = 1.75%\\\\n- **与预期一致**：v1 partial result ~13.1% 在全量 374 tasks 上得到确认\\\\n- avg response length = 1058.7 tokens，median = 726\\\\n\\\\nRegistry 已更新为 DONE/success，cron 已清除。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-006830"
+        },
+        {
+          "source_line": 6831,
+          "timestamp": "2026-05-20T01:47:55.392555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | westd 在跑 3/4 (westd:2 空闲) | westb 2 待命 | Worker 0\n\n## GRPO Standard MBPP ✅ 完成\n\neval_mbpp_grpo_standard_20_v4: **pass@1 = 13.10%** (49/374, stderr=1.75%)\n\n## MBPP 7B 矩阵进度\n\n| | SFT | GRPO |\n|---|---|---|\n| CKA-only | ✅ 12.83% | ✅ 14.17% |\n| Standard | 🔄 westd:0 | ✅ **13.10%** |\n| RASP | ✅ 11.76% | ✅ 13.10% |\n| ShortGPT | 🔄 westd:1 | 🔄 westd:3 |\n\n**Pattern**: CKA-only GRPO (14.17%) > Standard GRPO = RASP GRPO (13.10%)。Recovery gradient 在 MBPP 上成立。\n\n## 当前 GPU\n\n| GPU | 实验 | 状态 |\n|-----|------|------|\n| westd:0 | SFT Standard v4 | RUNNING（最后观测 85/374，预计还 ~2h） |\n| westd:1 | SFT ShortGPT | RUNNING |\n| westd:2 | **空闲** | — |\n| westd:3 | GRPO ShortGPT | RUNNING (PID 148173) |\n\nwestd:2 有任务吗？或者待命等 Standard SFT 完成后进入 paper_framing 阶段？",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006831"
+        },
+        {
+          "source_line": 6832,
+          "timestamp": "2026-05-20T01:47:59.271595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3879
+          },
+          "id": "event-006832"
+        },
+        {
+          "source_line": 6833,
+          "timestamp": "2026-05-20T01:48:05.691784+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO Standard MBPP 完成：**pass@1 = 13.10%** (49/374)。MBPP 7B 矩阵只剩 Standard SFT。westd:2 释放。\n\n更新矩阵状态：\n\n| | SFT | GRPO |\n|---|---|---|\n| CKA-only | ✅ 12.83% | ✅ 14.17% |\n| Standard | 🔄 westd:0 | ✅ 13.10% |\n| RASP | ✅ 11.76% | ✅ 13.10% |\n\nCKA-only GRPO (14.17%) > Standard GRPO (13.10%) = RASP GRPO (13.10%)。Recovery gradient 在 MBPP 上同样成立。\n\nwestd:2 空闲，向 Director 汇报并询问分配。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006833"
+        }
+      ]
+    },
+    {
+      "number": 561,
+      "messages": [
+        {
+          "source_line": 6834,
+          "timestamp": "2026-05-20T01:48:41.470766+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Director 指令] **GRPO Standard MBPP 13.10% 收到。westd:2 暂不分配。**\n\nMBPP 3×2 矩阵只差 SFT Standard。ShortGPT 两个 eval 是额外 baseline。\n\nwestd:2 空闲不需要填——当前重点是确保 westd:0/1/3 三个 eval 顺利完成。你的优先级：\n1. 监控 westd:0 SFT Standard 进度（应该 ~2h 完成）\n2. 确保 westd:1/3 ShortGPT eval registry 条目正确（v2 版本）\n3. 任何 eval 完成立即收录 metrics + 汇报\n\n三个 eval 全部完成后，我会更新 ROADMAP + paper_framing.md，然后启动 Paper Agent。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "director"
+          },
+          "id": "event-006834"
+        },
+        {
+          "source_line": 6835,
+          "timestamp": "2026-05-20T01:48:49.340170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "text": "[资源] GPU 6/6 分配 | westd 在跑 3/4 (westd:2 待命) | westb 2 待命 | Worker 0\n\n收到。westd:2 不分配，聚焦监控 westd:0/1/3 三个 eval。\n\n三个 cron 均已注册，完成后自动回调 → 收录 metrics → 汇报。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-006835"
+        },
+        {
+          "source_line": 6836,
+          "timestamp": "2026-05-20T01:48:53.021339+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 3681
+          },
+          "id": "event-006836"
+        }
+      ]
+    },
+    {
+      "number": 562,
+      "messages": [
+        {
+          "source_line": 6837,
+          "timestamp": "2026-05-20T02:14:50.313081+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON 需要判断] 实验 **eval_mbpp_sft_standard_20_v4** 的进程已退出但无 W&B 数据，日志内容模糊，无法自动判断成功/失败。\n\n请派 Worker SSH 到 westd-29022 检查日志 `None` 最后几行，然后 `update_registry` 更新状态并 `delete_cron('eval_mbpp_sft_standard_20_v4')` 清除监控。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "source": "cron"
+          },
+          "id": "event-006837"
+        },
+        {
+          "source_line": 6838,
+          "timestamp": "2026-05-20T02:15:02.553472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "check:eval_mbpp_sft_standard_20_v4",
+              "project": "recovery_aware_struct_prune",
+              "task_prompt": "实验 eval_mbpp_sft_standard_20_v4 进程已退出，需要诊断结果。\n\n**服务器**: westd-29022\n**实验**: eval_mbpp_sft_standard_20_v4 — SFT Standard 20% 模型的 MBPP pass@1 eval\n**GPU**: cuda:0\n**预期**: pass@1 ~12.8%（之前 partial result 在 180/374 时 pass@1=0.1278）\n**tmux session 名**: eval_mbpp_sft_standard_20_v4\n\n**步骤**（全部用 ssh_read_only）:\n\n1. 检查 tmux session 最后输出:\n   ```\n   tmux capture-pane -t eval_mbpp_sft_standard_20_v4 -p -S -50 2>/dev/null || echo \"SESSION_GONE\"\n   ```\n\n2. 检查结果文件:\n   ```\n   ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20*.json 2>/dev/null\n   cat /root/autodl-tmp/recovery_aware_struct_prune/results/mbpp_sft_standard_20*.json 2>/dev/null\n   ```\n\n3. 检查日志文件:\n   ```\n   tail -50 /tmp/eval_mbpp_sft_standard_20*.log 2>/dev/null\n   tail -50 ~/runs/recovery_aware_struct_prune/eval_mbpp_sft_standard_20_v4.log 2>/dev/null\n   ```\n\n4. 搜索其他可能的结果文件:\n   ```\n   find /root/autodl-tmp/recovery_aware_struct_prune/results/ -name \"*sft*standard*\" 2>/dev/null\n   ```\n\n5. 根据诊断结果更新 registry:\n   - 如果成功（有 pass@1）: 设 metrics → conclusion=success → spec 中设 checkpoint_path 和 log_path → status=DONE\n   - 如果失败: 设 conclusion=failed, failure_reason → spec 中设 checkpoint_path=\"N/A\", log_path → status=DONE\n\n6. 清除 cron: delete_cron(\"eval_mbpp_sft_standard_20_v4\")\n\n汇报: pass@1（如有）、n_correct/n_total、是否正常完成。这是 MBPP 7B 3×2 矩阵的最后一格！",
+              "tool_groups": "['ssh', 'registry']",
+              "tools": "['delete_cron']"
+            }
+          },
+          "id": "event-006838"
+        },
+        {
+          "source_line": 6839,
+          "timestamp": "2026-05-20T02:15:10.350193+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_check_eval_mbpp_sft_standard_20_v4_20260520T021503\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/logs/workers/worker_check_eval_mbpp_sft_standard_20_v4_20260520T021503.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_check_eval_mbpp_sft_standard_20_v4_20260520T021503 started. Use get_worker_status('worker_check_eval_mbpp_sft_standard_20_v4_20260520T021503') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 7796
+          },
+          "id": "event-006839"
+        },
+        {
+          "source_line": 6840,
+          "timestamp": "2026-05-20T02:15:13.245697+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MBPP 7B 矩阵最后一格。Worker 派出诊断中。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_2d56471446f147ebef110a443640b554"
+          },
+          "id": "event-006840"
+        }
+      ]
+    }
+  ]
+}

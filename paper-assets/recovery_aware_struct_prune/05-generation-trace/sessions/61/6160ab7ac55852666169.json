@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6160ab7ac55852666169",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval humaneval grpo rasp 20 2048",
+  "task_key": "worker_diagnose_eval_humaneval_grpo_rasp_20_2048_20260517T162616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_humaneval_grpo_rasp_20_2048_20260517T162616_result.json",
+    "occurrence": 1,
+    "bytes": 964,
+    "sha256": "e07d8233cc5277ebec310e489ffa455aad363fa1e2e49abbb5b8dbdc12b8e5bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验实际上**已完成全部 164 题并保存了结果**。EXIT_CODE=129 是在结果写入之后才收到的 SIGHUP，属于 SSH session 断连导致的无害信号。\n\n## 诊断结论\n\n| 项目 | 详情 |\n|------|------|\n| **失败根因** | 非真实失败。164/164 题全部跑完，结果已保存。SIGHUP 在脚本结束后触发，可能是 nohup/tmux session 超时断连 |\n| **完成进度** | 164/164 (100%) |\n| **最终结果** | **Pass@1: 0.1463 ± 0.0276 (24/164)** |\n| **耗时** | ~2h28m (21:56:30 → 00:24:32) |\n| **结果文件** | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_rasp_20_2048.json` |\n| **OOM** | 无 |\n| **错误/异常** | 无（HF Hub 网络不可达已 fallback 到本地缓存） |\n\n**不需要重跑。** 结果完整，JSON 已保存。Pass@1 逐步下降趋势（20题 0.25 → 120题 0.167 → 164题 0.146）说明后半段题目更难，模型表现较弱。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-humaneval-grpo-rasp-20-2048.md"
+}

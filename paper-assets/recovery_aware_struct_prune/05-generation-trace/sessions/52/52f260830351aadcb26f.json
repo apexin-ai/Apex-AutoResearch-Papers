@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52f260830351aadcb26f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check sft unpruned and alpha",
+  "task_key": "worker_ops_check-sft-unpruned-and-alpha_20260516T001645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-sft-unpruned-and-alpha_20260516T001645_result.json",
+    "occurrence": 1,
+    "bytes": 1356,
+    "sha256": "597020eb39831c6d6b983d952b76e0f8d1a6a045ae2cac8858e469654173ac3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Here's the summary:\n\n## Part A: sft_unpruned_baseline (westd cuda:1)\n**Status: DONE** ✓\n\n| Metric | Value |\n|--------|-------|\n| Final loss | 0.3321 |\n| Final token_accuracy | 0.909 |\n| Avg train loss | 0.4253 |\n| Total steps | 1870/1870 (2 epochs) |\n| Runtime | 31m48s (1908s) |\n| Checkpoint | 14.2GB @ `/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/` |\n\n**N=100 eval launched** → PID 71116 on westd cuda:1 (running, ~15-20min to complete)\n\n## Part B: α sweep + v9 (westb cuda:0)\n**α sweep: DONE** ✓ — All 5 alphas complete (cal=512, sparsity=20%, N=100 greedy):\n\n| α | Accuracy | EOS rate | Avg length |\n|---|----------|----------|------------|\n| 0.0 | **27%** | 0.80 | 1192 |\n| 0.25 | **23%** | 0.63 | 1834 |\n| 0.5 | **22%** | 0.81 | 1141 |\n| 1.0 | **31%** | 0.92 | 733 |\n| 2.0 | **36%** | 0.59 | 2130 |\n\nPattern: non-monotonic, α=2.0 best (36%), α=0.5 worst (22%). Higher α → stronger CKA penalty → better reasoning retention at this sparsity. α=1.0 has best EOS discipline (0.92).\n\n**GRPO RASP v9: RUNNING** — Auto-launcher triggered successfully at 08:04 UTC.\n- PID 566666, wandb run `mrikafz3` (`grpo_stage2_rasp_20_v9`)\n- Config: 30 steps, lr=1e-6, dapo loss, temp=0.4\n- Progress: step 1/30 (~7min/step → ETA ~3.5h from launch, ~11:30 UTC)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-unpruned-and-alpha.md"
+}

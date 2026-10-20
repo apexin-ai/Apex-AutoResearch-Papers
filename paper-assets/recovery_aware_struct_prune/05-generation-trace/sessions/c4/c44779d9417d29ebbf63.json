@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44779d9417d29ebbf63",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd chain evals",
+  "task_key": "worker_ops_westd-chain-evals_20260515T154434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-chain-evals_20260515T154434_result.json",
+    "occurrence": 1,
+    "bytes": 418,
+    "sha256": "ed3a57df11fdedbbd16168a427eb4b8a73bdf7b83f2afbdca2e1ebc34234f72b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 tmux session 全部就位：\n\n| Session | GPU | 状态 |\n|---------|-----|------|\n| `eval_sft_alpha_2p0` | cuda:1 | 正在运行 α=2.0 eval |\n| `eval_sft_alpha_0p5` | cuda:1 | 等待 PID 45428 (α=2.0) 退出后自动启动 |\n| `eval_sft_grasp_20` | cuda:0 | 等待 PID 38120 (GraSP pre-SFT) 退出后自动启动 |\n\nRegistry 已为 `eval_sft_grasp_20` 创建条目，状态 PREPARING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-chain-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d611083b16e08667307",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research literature update may2026",
+  "task_key": "worker_research_literature_update_may2026_20260514T132612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_literature_update_may2026_20260514T132612_result.json",
+    "occurrence": 1,
+    "bytes": 1283,
+    "sha256": "3f3fe6efdff2dd304bfb710409b34592c482c1f38f558295d2a9aeaeb9a2d4a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n### literature_map.yaml 更新（19 → 24 篇）\n\n新增 5 篇论文：\n\n| ID | 标题 | 年份 | 类别 | 相关度 |\n|---|---|---|---|---|\n| `dppo_2026` | DPPO: Unbiased Dynamic Pruning for GRPO | 2026.03 | method-component | 5 |\n| `arrol_2026` | ARRoL: Online Rollout Pruning for RLVR | 2026.03 | method-component | 5 |\n| `task_neurons_2026` | Task-Specific Neurons, Model Collapse, and Recovery | 2026.04 | background | 6 |\n| `ddp_2026` | Deterministic Differentiable Structured Pruning | 2026.03 | background | 5 |\n| `pruning_vlm_recovery_2026` | Structural Pruning of VLMs: Dynamics, Recovery, Data Efficiency | 2026.04 | background | 5 |\n\n**未入选但值得关注的论文：**\n- STOP (2605.13165) — 剪裁推理 trace 而非模型权重，与 RASP 问题不同\n- UniComp (2602.09130) — 通用压缩评估框架，relevance 4\n- SlimLLM (2505.22689) — 结构化剪枝+线性回归恢复，2025 年 5 月，信息不足未入\n\n**搜索未发现的空白：** 无论文同时使用 CKA + width pruning + RLVR recovery，确认 RASP 的 novelty 仍然成立。\n\n### 产出文件\n- `literature_map.yaml` — 已更新\n- `artifacts/related_work_notes.md` — 5 个 subsection + usable claims + RASP 定位 narrative"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-literature-update-may2026.md"
+}

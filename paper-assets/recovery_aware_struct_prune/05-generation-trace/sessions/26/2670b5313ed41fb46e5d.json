@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2670b5313ed41fb46e5d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval gsm8k grpo random 20 seed123",
+  "task_key": "worker_eval_gsm8k_grpo_random_20_seed123_20260522T112252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k_grpo_random_20_seed123_20260522T112252_result.json",
+    "occurrence": 1,
+    "bytes": 538,
+    "sha256": "3ea102b32c294881a9b8956be2690ed9e565e7c0d18c05b8fb47a91a68b74a11"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已提交并确认运行中：\n\n- **PID**: 41541 (tmux session: `eval_gsm8k_grpo_random_20_seed123`)\n- **服务器**: westd-32935, GPU 3 (RTX PRO 6000, 16243/97887 MiB, 98% util)\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123/checkpoint-100`\n- **输出**: `/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.json`\n- **日志**: `/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.log`\n- **Registry**: RUNNING, spec 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-grpo-random-20-seed123.md"
+}

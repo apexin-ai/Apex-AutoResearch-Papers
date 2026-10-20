@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc8f4412aab3a877e1a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix graspune script v2",
+  "task_key": "worker_code_fix-graspune-script-v2_20260515T000926",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-graspune-script-v2_20260515T000926_result.json",
+    "occurrence": 1,
+    "bytes": 450,
+    "sha256": "4733ba19a2366cd3a70521762221d42eba8ebfda5c69fd40e3e05407bcd14c02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 处修改全部完成，语法检查通过：\n\n| 变量 | 修改前 | 修改后 |\n|------|--------|--------|\n| `KEEP_RATIO` | `0.65` | `0.80` |\n| `OUTPUT_DIR` | `/root/recovery_aware_struct_prune/models/pruned_graspune_35` | `/root/autodl-tmp/pruned_graspune_20` |\n| `GRASPUNE_OUTPUT` | `${GRASPUNE_DIR}/outputs/DeepSeek-R1-Distill-Qwen-7B_pruned_65` | `/root/autodl-tmp/graspune_output/DeepSeek-R1-Distill-Qwen-7B_pruned_80` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-graspune-script-v2.md"
+}

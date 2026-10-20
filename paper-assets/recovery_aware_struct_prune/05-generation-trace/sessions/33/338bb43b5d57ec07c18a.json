@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "338bb43b5d57ec07c18a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup unstructured",
+  "task_key": "worker_ops_westb_disk_cleanup_unstructured_20260519T080709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_unstructured_20260519T080709_result.json",
+    "occurrence": 1,
+    "bytes": 171,
+    "sha256": "a8843de308a5e81497458d00ed930e5760e7bce3f9bcb27dd175e5776d866672"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`grpo_unstructured_20/` 已删除，释放 ~14G，可用空间从 9.5G → **24G (91%)**。已满足 >15G 要求，无需再删 `pruned_unstructured_20/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-unstructured.md"
+}

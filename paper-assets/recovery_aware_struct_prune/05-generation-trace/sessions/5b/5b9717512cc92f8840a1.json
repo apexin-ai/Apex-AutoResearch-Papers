@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b9717512cc92f8840a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train sft standard 25 retry4",
+  "task_key": "worker_train_sft_standard_25_retry4_20260516T062038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft_standard_25_retry4_20260516T062038_result.json",
+    "occurrence": 1,
+    "bytes": 492,
+    "sha256": "abbd2e6cf51eb077f6d9b619f3ead6d057e1827141ab973ddecd5946a742cc13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**sft_standard_25 训练已完成，无需第四次重试。**\n\n总结：\n- 之前提交的重试实际成功完成了 2 epochs（1870 steps，35分30秒）\n- `model.safetensors` 完好：11.58 GB，339 keys，5.79B params\n- `optimizer.pt` 保存时有 RuntimeError，但 optimizer 仅用于 resume training，不影响推理/评估\n- GPU 1 已释放（0 MiB）\n- 最终 checkpoint 路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/checkpoint-1870/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-standard-25-retry4.md"
+}

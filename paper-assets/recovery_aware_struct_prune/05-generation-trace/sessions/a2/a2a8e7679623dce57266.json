@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a2a8e7679623dce57266",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check qwen phase1 eval results",
+  "task_key": "worker_check_qwen_phase1_eval_results_20260520T053052",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_qwen_phase1_eval_results_20260520T053052_result.json",
+    "occurrence": 1,
+    "bytes": 177,
+    "sha256": "4cdcb609e0db91501a383046d191a9c887cef0f430c3f572a2aa085f4c9acda9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 还在跑。Standard @50 samples 中间 accuracy 为 18.0%。两者预计 ~40 分钟后完成，届时自动回来读取最终结果并做 go/no-go 判断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-qwen-phase1-eval-results.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b435d0e8eaa5494df5e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix kill 427456",
+  "task_key": "worker_fix_kill_427456_20260521T225902",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_427456_20260521T225902_result.json",
+    "occurrence": 1,
+    "bytes": 263,
+    "sha256": "9bb8772a32e019c5385bf41baa4508411a17b93842ddc1f7c8a4d18af8f833af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "碰撞已解除。\n\n**GPU 0 当前状态**：\n- PID 426311 (`eval_gsm8k_sft_alpha4_20_v4`) — 16258 MiB — 独占运行中\n- PID 427456 (`eval_math500_grpo_standard_20_fair_2048`) — 已杀掉\n\nGPU 0 现在只剩一个进程，无碰撞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-427456.md"
+}

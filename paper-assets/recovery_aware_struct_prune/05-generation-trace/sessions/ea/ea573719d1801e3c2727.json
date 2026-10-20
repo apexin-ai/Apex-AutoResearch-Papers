@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea573719d1801e3c2727",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research compile evidence table",
+  "task_key": "worker_research_compile-evidence-table_20260516T051959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_compile-evidence-table_20260516T051959_result.json",
+    "occurrence": 1,
+    "bytes": 982,
+    "sha256": "03a960faff5fb3c89c1702b68b3f78f198dc8e6219f189aa9c5da4318fcb2fc9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。文件写入 `artifacts/evidence_table.md` 并注册。\n\n**核心发现**：\n\n**一致性审查结果**：paper_framing.md 中 14 个关键数字与 registry 全部匹配，发现 3 个问题：\n\n1. **⚠️ grad→0.007** — paper_framing.md 引用了 RASP collapse 时的 grad_norm=0.007，但 registry 中 v9=1.398、v8=0.011，均不匹配。需核查 W&B run mrikafz3 的 step-level 数据。\n2. **⚠️ Unpruned frac_zero_std ≤0.275** — registry 中无此数据，可能来自 W&B，需验证。\n3. **⚠️ step-90 estimate** — paper 写 \"~81.00%\"，实际 registry 值为 80.59%，应更正。\n\n**3 个 RUNNING 实验**：unpruned step-100 和 step-90 eval 看起来已完成（有完整 1319 结果）但 status 未更新；RASP step-10 eval 仅完成 249/1319。\n\n**Claim 强度**：Claim 1（decoupling）和 Claim 2（collapse gradient）证据充分；Claim 3（tradeoff）的 SFT 方向仍是关键弱点（p=0.25）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-compile-evidence-table.md"
+}

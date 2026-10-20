@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "939ac07cda445664f59f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis results compilation",
+  "task_key": "worker_analysis_results-compilation_20260515T223025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_results-compilation_20260515T223025_result.json",
+    "occurrence": 1,
+    "bytes": 897,
+    "sha256": "59d008699e989382d69a41d54d65d183fc35267dd1a50d7bf496e9dc0ee1c591"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已生成并注册：\n\n**`paper_results_tables.md`** — 3 张表：\n- **Table 1**: Post-prune accuracy，分 westb(cal=512) / westd(cal=256) / α ablation 三个 panel\n- **Table 2**: Post-SFT recovery，含 N=1319 definitive results (RASP 61.49% vs Standard 59.29%)、N=100 三方对比 (Standard 64% > RASP 57% > GraSP 41%)、α ablation post-SFT\n- **Table 3**: GRPO collapse timeline (RASP step~10 < Standard step~50-60 < Unpruned step~80)\n\n**`statistical_summary.md`** — 完整统计分析：\n- 所有 pairwise z-test：2 个显著 (GraSP vs Standard p=0.001, GraSP vs RASP p=0.024)，其余全部 ns\n- 所有 accuracy 的 95% CI\n- Power analysis：N=100 最小可检测效应 ~14pp，N=1319 ~4pp\n- α ablation 无显著差异 → SFT equalization effect\n\n缺失数据：α=0.0 post-prune accuracy 未在 registry 中找到（仅有 post-SFT 64%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-results-compilation.md"
+}

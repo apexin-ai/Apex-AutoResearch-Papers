@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e20c7a22986fb60af207",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "director / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3969,
+    "sha256": "a2ad7301174eca9a033a7bd5b73c7552acc59b47b25522d788bb077e23a4f16c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: max_messages\nupdated: '2026-05-17T07:17:49+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 分配：westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3（共 6 张）\n- westd 刚从宕机恢复，连接可能不稳定，提交 job 后必须 verify PID 存活\n- GRASPrune baseline 数据已存在 (D033/D034)，**不要重新启动 plan_005**\n- scoring ablation 必须加 `--skip_attention` 参数（否则 magnitude/random 会剪 attention groups 导致 load_pruned_model 崩溃）\n- eval 脚本必须带 `--output_path`（之前遗漏导致结果未保存）\n- Agent 有\"写代码但不执行\"的模式——收到 Worker done 后必须确认 GPU 进程实际启动（要 PID）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072 (connect.westb.seetacloud.com) + westd-11672 (connect.westd.seetacloud.com)，user=root\n- 代码路径：`/root/recovery_aware_struct_prune`（两台均有），数据/模型在 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- SFT 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_{rasp,standard}_20_westb` (westb) 或 `sft_{rasp,standard}_20_westd` (westd)\n- eval 脚本：`src/eval_gsm8k.py`, `src/eval_math500.py`, `src/eval_humaneval.py`\n- 活跃进程 westb：scoring_ablation_v2 (cuda:0/1, --skip_attention fix 中) + multi-seed serial eval (cuda:0)\n- 活跃进程 westd：MATH-500 × 3 (cuda:0/1/2, unpruned+sft_rasp+sft_standard, ETA ~2h) + HumanEval sft_rasp_20 即将提交 (cuda:3)\n- 磁盘：westb 43GB 可用（已删 grpo_stage2_rasp_20_v9/checkpoint-10）；westd 未检\n\n### 3. 📊 当前状态\n刚完成：eval_grpo_rasp_25 (53.15%, C1 25% 确认) + COS metric 分析 + negative 实验深度复盘 + Manager hypothesis 自检。\n\nRUNNING/进行中：\n- Plan_012 extended eval：MATH-500 unpruned/sft_rasp/sft_standard (westd cuda:0/1/2, ~2h)；HumanEval grpo_rasp 已完成 (10.37%! 意外高于 unpruned 1.83%)\n- Plan_007 scoring ablation v2：--skip_attention fix 后重跑 (westb)\n- Plan_006 multi-seed：westb cuda:0 串行 4×N=200 (seed=123/456 × RASP/Standard)\n- Plan_017 unstructured baseline：eval_unstructured_20 (westb cuda:1)\n\n等待：multi-seed cron 回调 (~30min)；MATH-500 完成 (~2h)；scoring ablation 全程 (~6-8h)\n\n### 4. 📋 待办\n- multi-seed 4 个结果到齐 → 计算 seed=42/123/456 的 mean±std，判断是否需要 seed=789\n- MATH-500 完成 → 比较 unpruned vs sft_rasp vs sft_standard，验证 C1 在 MATH 上是否成立（post-GRPO ≈ post-SFT）\n- HumanEval sft_rasp_20 完成 → 如果 ≈10% 则 GRPO 对 code 无增量 (confirms C1 cross-benchmark)；如果远低于 10% 则 GRPO 意外提升 code（改论文 story）\n- scoring ablation 4 methods 完成 → 构建 Table: magnitude/gradient/random/cka_only post-SFT accuracy 对比\n- 全部 Plan_007/012/017 完成 → 更新 experiment_plan.yaml coverage + 跑 dream_simulate(review_mode=\"full\") 评估最终论文强度\n- Qwen Math 25%>20% paradox：如果 DeepSeek eval_grpo_rasp_25 (53.15%) ≈ 20% (60.65%)差距大，说明 DeepSeek 无 paradox，Qwen Math 是特例 → footnote 处理\n\n### 5. 🎯 战略上下文\n- 论文核心 framing (D048/D050 后)：C1 = GRPO reward-accuracy decoupling (cosmetic collapse)，C2 = collapse dynamics as diagnostic (COS metric 刚量化)，C3 降级为 descriptive finding\n- pass@k 2×2 矩阵完整：RASP 91.5%/89% vs Standard 91%/85.5%，C1 diversity 证据到位\n- RLVR-aware scoring 是 negative ablation (D050)，不是独立贡献\n- HumanEval 意外发现：pruned+SFT 模型 (10.37%) >> unpruned (1.83%)。原因可能是 SFT 激活了 instruction-following。需要 sft vs grpo 隔离实验确认\n- DDL: ARR May 25 (~8 天)。算力充足 (768h 可用，需求 <100h)，瓶颈是执行速度\n- Manager 刚推了 hypothesis-driven methodology：每个新实验必须有可证伪 hypothesis + parent 推导链\n- 易错点：Agent 容易\"写脚本不执行\"——必须要 PID 确认；westd 可能再次不稳定\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12.md"
+}

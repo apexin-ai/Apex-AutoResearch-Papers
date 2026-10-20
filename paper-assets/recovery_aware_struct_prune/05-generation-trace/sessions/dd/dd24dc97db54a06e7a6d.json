@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dd24dc97db54a06e7a6d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd full eval collect",
+  "task_key": "worker_ops_westd-full-eval-collect_20260515T213655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-eval-collect_20260515T213655_result.json",
+    "occurrence": 1,
+    "bytes": 932,
+    "sha256": "d323dc53fcb7a8d8cf41f126dcb9f801bb929df687c207959bd1a64710420a01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## N=1319 Full Eval Results (westd)\n\n| Model | N | Accuracy | Stderr | EOS Rate | Avg Len |\n|-------|---|----------|--------|----------|---------|\n| Standard SFT | 1319 | 59.29% | ±1.35% | 98.03% | 226.7 |\n| RASP SFT | 1319 | 61.49% | ±1.34% | 98.26% | 216.5 |\n\n**Δ(RASP - Standard) = +2.20pp, z = 1.154, p-value = 0.248, 95% CI = [-1.53, +5.93]pp**\n\n差异不显著 (p=0.248 > 0.05)，95% CI 跨越零点。\n\n### Cross-server comparison\n| Setting | N | Standard | RASP | Δ(RASP-Std) |\n|---------|---|----------|------|-------------|\n| westb N=100 | 100 | 64% | 57% | -7pp |\n| westd N=100 | 100 | 63% | 67% | +4pp |\n| **westd N=1319** | **1319** | **59.29%** | **61.49%** | **+2.20pp** |\n\nFull eval 显示 RASP 有微弱优势（+2.2pp），但统计上不显著。N=100 时看到的 ±7pp 波动确认为小样本噪声——full eval 把差异压缩到了 CI 内。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-full-eval-collect.md"
+}

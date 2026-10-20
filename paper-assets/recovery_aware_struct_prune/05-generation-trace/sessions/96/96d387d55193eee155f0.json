@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96d387d55193eee155f0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check grpo dose response checkpoints",
+  "task_key": "worker_check_grpo_dose_response_checkpoints_20260523T215104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_grpo_dose_response_checkpoints_20260523T215104_result.json",
+    "occurrence": 1,
+    "bytes": 2392,
+    "sha256": "fc9c4b0d113592d11bda2c00366d64ddc308f4da4443338ec34dfc83e348e0f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果如下：\n\n## GRPO Dose-Response Checkpoints 状态\n\n### 20% Sparsity — Alpha 变体\n\n| 模型 | 状态 | 位置 |\n|------|------|------|\n| grpo_alpha0p5_20 | ❌ 不存在 | westd-32935 无此目录。注意：**westb-23072 有 `grpo_rasp_alpha0p5_20/`**（12.3GB model.safetensors）✅ |\n| grpo_alpha2p0_20 | ❌ 不存在 | westd-32935 无此目录。但有 **`grpo_rasp_alpha2p0_20/`**（12.3GB model.safetensors）✅ |\n| grpo_alpha4_20 | ✅ 完整 | westd-32935: `grpo_alpha4_20/`（12.3GB model.safetensors） |\n| grpo_alpha4_20/checkpoint-100 | ❌ 不存在 | 无子目录 checkpoint |\n| grpo_rasp_alpha3p0_20_v2 | ❌ 不完整 | westd-32935: 仅有 README.md + completions/，**无 model.safetensors** |\n\n### 20% Sparsity — 其他 GRPO\n\n| 模型 | 状态 | 位置 |\n|------|------|------|\n| grpo_random_20 | ❌ 不完整 | westd-32935: 仅有 README + config，**无 model.safetensors** |\n| grpo_random_20_retrain | ✅ 完整 | westb-23072: 12.2GB model.safetensors |\n| grpo_stage2_rasp_20_fair | ✅ 完整 | westd-32935: 12.3GB model.safetensors |\n| grpo_stage2_standard_20_fair | ✅ 完整 | westd-32935: 12.3GB model.safetensors |\n\n### 25% Sparsity\n\n| 模型 | 状态 | 位置 |\n|------|------|------|\n| grpo_cka_only_25 | ✅ 完整 | westd-32935: 11.6GB model.safetensors |\n| grpo_standard_25 | ✅ 完整 | westd-32935: 11.6GB model.safetensors |\n\n### SFT (验证)\n\n| 模型 | 状态 | 位置 |\n|------|------|------|\n| sft_rasp_alpha0p5_20 | ✅ 完整 | westd-32935: 12.3GB model.safetensors |\n| sft_rasp_alpha2p0_20 | ✅ 完整 | westd-32935: 12.3GB model.safetensors |\n| sft_alpha4_20 | ✅ 完整 | westd-32935: 12.3GB model.safetensors |\n| sft_cka_only_25 | ✅ 完整 | westd-32935: 11.6GB model.safetensors |\n\n### 关键发现\n\n1. **命名差异**：alpha0p5 和 alpha2p0 的 GRPO 版本实际命名为 `grpo_rasp_alpha*`（带 `rasp_` 前缀），不是 `grpo_alpha*`。alpha0p5 在 westb-23072 上，alpha2p0 在 westd-32935 上。\n2. **grpo_rasp_alpha3p0_20_v2**：目录存在但模型文件缺失，需重训或重新导出。\n3. **grpo_random_20**：westd-32935 上目录不完整（无模型权重），但 westb-23072 上有完整的 `grpo_random_20_retrain`。\n4. westb-23072 上无 `grpo_standard_25` 和 `grpo_cka_only_25`（这两个都在 westd-32935 上完整存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-grpo-dose-response-checkpoints.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74ccaba14aba31f85aa8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify westb gpu0",
+  "task_key": "worker_ssh_verify_westb_gpu0_20260522T231357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_westb_gpu0_20260522T231357_result.json",
+    "occurrence": 1,
+    "bytes": 727,
+    "sha256": "eb4a3460c4322e3277a6d42d5f1a9061482a50251a9decd3869d6cf6d1529916"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n| GPU | 利用率 | VRAM | 进程 | PID | 内容 |\n|-----|--------|------|------|-----|------|\n| **cuda:0** | 99% | 16.3/95.6 GB | `eval_math500.py` | **250771** | MATH-500 eval on `sft_qwen_math_cka_only_20_final`，约 16 分钟前启动，正在运行 |\n| **cuda:1** | 99% | 16.5/95.6 GB | `eval_gsm8k.py` | **220343** | GSM8K eval on `grpo_qwen_math_cka_only_20`（500 samples），已跑约 8 小时 |\n\n- PID 250766 存在，是 MATH-500 eval 的父 bash wrapper。\n- **GSM8K eval (`eval_gsm8k_sft_qwen_math`) 没在跑**——当前 cuda:1 上跑的是 GRPO 模型的 GSM8K eval，不是 SFT 模型的。\n- tmux session `scoring_ablation_v2` 仍在（5月17日创建的旧 session）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-westb-gpu0.md"
+}

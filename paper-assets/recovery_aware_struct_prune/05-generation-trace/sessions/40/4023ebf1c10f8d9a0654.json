@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4023ebf1c10f8d9a0654",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix alpha scripts remote",
+  "task_key": "worker_code_fix-alpha-scripts-remote_20260515T045143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-alpha-scripts-remote_20260515T045143_result.json",
+    "occurrence": 1,
+    "bytes": 937,
+    "sha256": "a031baa3d01ab9e353cf29f6ae64aaee00ff764a0646c810623583963469d7bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 修改报告\n\n| 脚本 | 修改前 α（注释） | 修改后 α（注释） | 实际数组（未变） |\n|------|-----------------|-----------------|----------------|\n| v1 `run_alpha_ablation.sh` | `{0.0, 0.5, 1.0, 2.0, 4.0}` | `{0.0, 0.25, 0.5, 1.0, 2.0}` | `(0.0 0.25 0.5 1.0 2.0)` ✓ |\n| v2 `run_alpha_ablation_v2.sh` | `{0.0, 0.25, 0.5, 0.75, 1.0}` | `{0.0, 0.25, 0.5, 1.0, 2.0}` | `(0.0 0.25 0.5 1.0 2.0)` ✓ |\n| v3 `run_alpha_ablation_v3.sh` | 无需修改 | — | `(0.0 0.25 0.5 1.0 2.0)` ✓ |\n\n三个脚本的 ALPHAS 数组、ALPHA_TAGS、内嵌 Python alphas 列表均为正确值 `{0.0, 0.25, 0.5, 1.0, 2.0}`。此次修改仅是头部注释对齐——功能代码之前已被修正。语法检查全部通过。\n\n**md5sum 验证凭证**：\n- v1: `25264725391903eb98958cf355362a4f`\n- v2: `48c048617f92e2e7bf48c29195657c3d`\n- v3: `0fa5349b14dac099c44d0b452c2d9668`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-alpha-scripts-remote.md"
+}

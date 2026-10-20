@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e908492a82d27e0db335",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag rasp grpo checkpoint check",
+  "task_key": "worker_diag_rasp-grpo-checkpoint-check_20260515T223312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_rasp-grpo-checkpoint-check_20260515T223312_result.json",
+    "occurrence": 1,
+    "bytes": 1749,
+    "sha256": "ad91379a82eaad8cbba7c7ffc2bc88fbc90ec0572ecc7939c95f78eab43f03e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RASP GRPO Checkpoint Survey (westb)\n\n| Version | Output Dir | 内容 | Checkpoints | 训练步数(推测) | Has Peak Checkpoint? |\n|---------|-----------|------|-------------|---------------|---------------------|\n| v2 | `grpo_stage2_rasp_20_v2` | completions (step 10-30) | **0** | ~30 steps | **NO** |\n| v3 | `grpo_stage2_rasp_20_v3` | 空目录 | **0** | 未知 | **NO** |\n| v4 | `grpo_stage2_rasp_20_v4` | completions (空) | **0** | 未知 | **NO** |\n| v5 | `grpo_stage2_rasp_20_v5` | completions (step 10-90) | **0** | ~90 steps | **NO** |\n| v6 | `grpo_stage2_rasp_20_v6` | completions (空) | **0** | 未知 | **NO** |\n| v7 | `grpo_rasp_20_v7` | 空目录 | **0** | 未知 | **NO** |\n| v7 | `grpo_stage2_rasp_20_v7` | 空目录 | **0** | 未知 | **NO** |\n| v8 | `grpo_rasp_20_v8` | completions (step 10-20) | **0** | ~20-30 steps | **NO** |\n\n**Standard GRPO v8**: `grpo_stage2_standard_20_v8/checkpoint-50` — 12GB, 完整 checkpoint，save_steps=50, max_steps=100, reward 在 step 40 达到 0.096 后 step 50 跌回 0.037。\n\n### 结论\n\n**RASP GRPO 全版本（v2-v8）没有任何 checkpoint 保存在磁盘上。**\n\n原因：\n- 所有版本 `save_steps` 默认 100-200，而 RASP GRPO 大多在 step 30 之前就 collapse/被 kill\n- v5 跑到了 ~90 steps 但 save_steps 也是 100，差 10 步就能保存\n- v8 `save_steps=50`，但在 step ~28-30 被 kill，未达到保存阈值\n- 即使有 `save_total_limit`，从未触发过保存\n\n**只有 completions parquet 文件留存，没有模型权重。** 这是论文核心对比的致命缺口——无法从 checkpoint 恢复 peak 性能模型。\n\n**需要用 `save_steps=5` 重跑** 才能捕获 collapse 前 peak 附近的 checkpoint。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-rasp-grpo-checkpoint-check.md"
+}

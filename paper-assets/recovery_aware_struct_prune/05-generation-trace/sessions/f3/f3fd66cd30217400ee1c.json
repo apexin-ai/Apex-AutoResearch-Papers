@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3fd66cd30217400ee1c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp grpo rasp 20 gpu remap",
+  "task_key": "worker_fix_eval_mbpp_grpo_rasp_20_gpu_remap_20260519T182153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_grpo_rasp_20_gpu_remap_20260519T182153_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "816eee5c937da7395f12940a9b5f4721ad963d610a833e1a0abdfb13397a90b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 映射正确：\n\n- **GPU 1**: PID 127000, 12488MiB — eval_mbpp_grpo_rasp_20 ✓\n- GPU 0: PID 125512, 16758MiB — eval_mbpp_sft_standard_20（不受影响）\n- GPU 2/3: 其他实验（不受影响）\n\n模型已加载完成，正在加载 MBPP 数据集，即将开始推理。任务完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-grpo-rasp-20-gpu-remap.md"
+}

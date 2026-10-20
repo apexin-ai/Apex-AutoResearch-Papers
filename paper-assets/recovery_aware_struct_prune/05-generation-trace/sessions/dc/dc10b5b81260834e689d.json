@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc10b5b81260834e689d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check sft standard 20 and gpu status",
+  "task_key": "worker_ssh_check_sft_standard_20_and_gpu_status_20260520T194245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_sft_standard_20_and_gpu_status_20260520T194245_result.json",
+    "occurrence": 1,
+    "bytes": 880,
+    "sha256": "eccaac0367e4dff61e5854679c3a627900777c483be5fcab6f02004b25a02773"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### westd-29022\n\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| cuda:0 | **99%** | 29,619 / 97,887 MiB | eval_gsm8k_sft_standard_20 (PID 266847) |\n| cuda:1 | 0% | 0 MiB | 空闲 |\n| cuda:2 | 0% | 0 MiB | 空闲 |\n| cuda:3 | 0% | 0 MiB | 空闲 |\n\n**eval_gsm8k_sft_standard_20 进度：1181/1319 (89.5%)**\n- 已运行 2h37m，当前 accuracy = **0.5896**（eos_rate=98.52%，avg_len=205）\n- 剩余 138 条，约 ~2.5s/it，预计还需 ~6 分钟完成\n\n### westb-23072\n\n| GPU | 利用率 | 显存占用 | 进程 |\n|-----|--------|----------|------|\n| cuda:0 | 0% | 0 MiB | 空闲 |\n| cuda:1 | 0% | 0 MiB | 空闲 |\n\n无 python 训练/评估进程在运行。后台仅有 jupyter-lab、tensorboard、http.server 等基础服务，以及一个已完成的 `eval_unstructured_20` tmux session。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-sft-standard-20-and-gpu-status.md"
+}

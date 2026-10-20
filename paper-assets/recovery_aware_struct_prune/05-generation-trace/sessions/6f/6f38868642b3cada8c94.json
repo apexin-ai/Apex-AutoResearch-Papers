@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6f38868642b3cada8c94",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest rasp grpo 1p5b and check cuda2",
+  "task_key": "worker_ops_harvest_rasp_grpo_1p5b_and_check_cuda2_20260518T230020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_rasp_grpo_1p5b_and_check_cuda2_20260518T230020_result.json",
+    "occurrence": 1,
+    "bytes": 1083,
+    "sha256": "2f5b8d853a2a77ae7dc874470824ecb166a0ca202c3013e831cac340fc2b4067"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n### Part 1: westb — RASP GRPO 1.5B GSM8K\n\n| 指标 | 值 |\n|------|------|\n| **Accuracy** | **26.16%** (345/1319) |\n| Stderr | ±1.21% |\n| EOS rate | 93.78% |\n| Avg response length | 392.7 tokens |\n| Model | grpo_rasp_20_1p5b/checkpoint-100 |\n\nRegistry 已更新为 DONE/success。\n\n**下一个 eval 已启动：** `eval_gsm8k_sft_standard_20_1p5b` on westb cuda:1 (PID 842784)。\n\n### Part 2: westd cuda:2 — SFT Standard 重训\n\n- PID 34346 正在跑 `sft_recovery.py --model_path pruned_standard_20 --output_dir sft_standard_20 --gpu 2`\n- 进度：**1249/1870 steps (66.8%)**\n- 速度：~1.10 it/s\n- Loss：~0.80，mean_token_accuracy：~0.79\n- **预计剩余：~9-10 分钟完成**\n\n### 1.5B GSM8K 对比表（截至目前）\n\n| Method | Post-SFT | Post-GRPO | GRPO Δ |\n|--------|----------|-----------|--------|\n| Standard 20% | (eval 进行中) | 22.29% | — |\n| RASP 20% | — | **26.16%** | — |\n| CKA-only 20% | — | — | — |\n\nRASP GRPO 1.5B 26.16% 显著优于 Standard GRPO 1.5B 22.29% (+3.87pp)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-rasp-grpo-1p5b-and-check-cuda2.md"
+}

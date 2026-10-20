@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2cec2d5aa9846939e4a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb eval status",
+  "task_key": "worker_check_westb_eval_status_20260521T195210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_eval_status_20260521T195210_result.json",
+    "occurrence": 1,
+    "bytes": 1788,
+    "sha256": "40157f10066b94226aa3efb0173ddcfae9358331b522b5ba1142fa39156f4deb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### westb-23072\n\n| PID | 任务 | GPU | 状态 | 运行时间 | 显存 |\n|-----|------|-----|------|---------|------|\n| 99426 | eval_math500_grpo_standard_25_v2 | cuda:0 | **RUNNING** | 6h02m | 19186MiB |\n| 104592 | eval_math500_sft_standard_25_2048 | cuda:1 | **RUNNING** | 4h32m | 18568MiB |\n| 118095 | eval_math500_sft_cka_only_20_v6 | cuda:1 | **RUNNING** | 19m | 16546MiB |\n| 62714 | eval_math500_sft_standard_25_v2 | cuda:0 | **COMPLETED** | — | — |\n| 59663 | eval_humaneval_sft_standard_25 | cuda:1 | **COMPLETED** | — | — |\n\nGPU 利用率：cuda:0 100%, cuda:1 100%\n\n**已完成结果：**\n- **eval_humaneval_sft_standard_25** → pass@1 = **1.83%** (3/164)，max_new_tokens=512\n- **eval_math500_sft_standard_25** (v2) → accuracy = **13.0%** (65/500)，truncated=318/500，avg_len=1376\n\n注意：PID 62714 的结果文件在 `/root/autodl-tmp/.../results/eval_math500_sft_standard_25.json`（无 `_v2` 后缀），未找到 `_v2.json` 文件。\n\n---\n\n### westd-29022\n\n| PID | 任务 | GPU | 状态 | 运行时间 | 显存 |\n|-----|------|-----|------|---------|------|\n| 382470 | eval_math500_grpo_random_20_v2 | cuda:1 | **RUNNING** | 5h55m | 17642MiB |\n| 385685 | eval_math500_sft_random_20 | cuda:3 | **RUNNING** | 5h07m | 17642MiB |\n| 412988 | eval_gsm8k_grpo_alpha4_20 | cuda:0 | **RUNNING** | 24m | 29134MiB |\n| 412817 | eval_math500_grpo_alpha4_20 | cuda:2 | **RUNNING** | 24m | 17518MiB |\n| 310542 | grpo_cka_only_25 (训练) | cuda:2 | **COMPLETED** | — | — |\n\nGPU 利用率：4 卡全部 96-99%\n\n**已完成结果：**\n- **grpo_cka_only_25** — GRPO 训练已完成，模型保存至 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25`，wandb run: `grpo_sft_cka_only_25` (mirgxi5b)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-eval-status.md"
+}

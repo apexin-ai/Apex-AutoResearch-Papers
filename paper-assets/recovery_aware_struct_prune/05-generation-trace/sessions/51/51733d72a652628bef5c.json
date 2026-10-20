@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51733d72a652628bef5c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit grpo rasp alpha3p0 20 v2",
+  "task_key": "worker_submit_grpo_rasp_alpha3p0_20_v2_20260522T112417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_grpo_rasp_alpha3p0_20_v2_20260522T112417_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "e617561d7540ccde757403b7327cc4b41e48496741124f8812fb7ac1b3ce34b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **SFT checkpoint**: 存在于 westd-32935，12G，无需复制\n- **磁盘**: 15G 可用，够存 GRPO checkpoint\n- **训练已提交**: PID=42003，westd-32935:cuda:0，模型正在加载（已检测到非均匀 MLP）\n- **Registry**: 已更新为 RUNNING，完整 spec 已填入\n\n注意：任务描述中的 `--num_steps` 不存在，实际参数为 `--max_steps 100`。另外原始实验用的 `--per_device_train_batch_size 1`（非默认 2），已按原始配置完整复现。磁盘较紧（98%），训练完成后建议清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-grpo-rasp-alpha3p0-20-v2.md"
+}

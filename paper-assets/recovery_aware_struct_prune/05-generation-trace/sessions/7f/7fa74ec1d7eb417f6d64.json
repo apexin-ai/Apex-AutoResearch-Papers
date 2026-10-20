@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa74ec1d7eb417f6d64",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westb cuda1 eval check",
+  "task_key": "worker_code_westb-cuda1-eval-check_20260515T110018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westb-cuda1-eval-check_20260515T110018_result.json",
+    "occurrence": 1,
+    "bytes": 1373,
+    "sha256": "9e2cbd9114705d8d496aff729cec5be8f63ed3f255cfbb78b7d6fe4705102ceb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. sft_standard_20 eval — 已完成\n- **Accuracy: 64/100 (64.0%)**\n- EOS rate: 99%, avg response length: 182.48\n- PID 507411: 已结束（ps aux 中不存在）\n\n### 2. sft_rasp_20 eval — 已完成\n- **Accuracy: 57/100 (57.0%)**\n- EOS rate: 99%, avg response length: 179.83\n\n### 3. D023 re-eval pruned_standard_20 — 进行中\n- PID 509954 存活，cuda:1 上运行，GPU 利用率 78%，显存 13003 MiB\n- **进度: 51/100，当前 acc=0.28，eos_rate=68%**\n- 结果文件尚未生成\n- 注意：eos_rate 仅 68%，avg_len=1594，说明 pruned 模型生成偏长且频繁截断\n\n### 4. GPU 状态\n| GPU | 利用率 | 显存 | 进程 |\n|-----|--------|------|------|\n| cuda:0 | 100% | 65187/97887 MiB | GRPO v5 (PID 498479) |\n| cuda:1 | 79% | 13003/97887 MiB | re-eval pruned_standard_20 (PID 509954) |\n\n### 5. GRPO v5 最新进度\n- **Step 41/250 (16%)**，速度 113.12 s/it，ETA ~6h34m\n- 日志显示模型在生成重复计数步骤（\"Step 18: ...is 25+1=26\", \"Step 19: ...is 26+1=27\"...），有退化迹象\n\n### 关键发现\n- pruned_standard_20 re-eval 中间准确率仅 **28%**（对比 SFT 后 64%），且 eos_rate 低（68%），确认剪枝后未经 SFT 恢复的模型质量严重下降\n- GRPO v5 的生成出现重复步骤退化，可能需要关注 repetition_penalty 是否足够"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westb-cuda1-eval-check.md"
+}

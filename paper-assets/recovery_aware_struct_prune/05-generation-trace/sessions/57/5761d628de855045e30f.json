@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5761d628de855045e30f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scoring ablation random 20",
+  "task_key": "worker_code_scoring_ablation_random_20_20260517T110954",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_random_20_20260517T110954_result.json",
+    "occurrence": 1,
+    "bytes": 82,
+    "sha256": "06ed89bc2c576907775ed765b5855f83f90f8709cc9dadc3a91fd4984e92fd93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval is running, will check back in ~4 minutes for progress update."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scoring-ablation-random-20.md"
+}

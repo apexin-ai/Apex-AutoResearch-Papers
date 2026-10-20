@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc1e8fc2d60e18a27361",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v2 step30 monitor",
+  "task_key": "worker_code_grpo-v2-step30-monitor_20260515T073628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-v2-step30-monitor_20260515T073628_result.json",
+    "occurrence": 1,
+    "bytes": 1968,
+    "sha256": "f69e9cb418176e49c5b560206ad77d06ae0fe053192b83f873ea38b3e647cc20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已全部获取。\n\n```\nRASP (pid 274151):\n- 当前 step: 32/250 (13%)\n- reward_mean: 0.0375 → 0.0125 → 0.0125 (趋势: ↓ 后停滞)\n- clipped_ratio: 0.981 → 0.988 → 0.981\n- frac_reward_zero_std: 0.90 → 0.95 → 0.95\n- mean_completion_length: 1006 → 1013 → 1007 (趋近 max 1024)\n- loss: 0.003 → ~0 → ~0\n- grad_norm: 0.44 → 0.25 → 0 (已归零)\n- entropy: 0.084 → 0.080 → 0.087 (极低)\n- 判断: COLLAPSE\n  理由: reward 趋零、grad_norm 归零、loss 归零、生成内容为\n  \"#### 3*2*60\" 无限重复、mean_length 贴近 max。\n  frac_reward_zero_std=0.95 虽未过 0.98 阈值，但其余指标\n  已全面崩溃，模型已停止学习。\n\nStandard (pid 276973):\n- 当前 step: 30/250 (12%)\n- reward_mean: 0.075 → 0.019 → 0.031 (趋势: ↓ 后微回升)\n- clipped_ratio: 0.731 → 0.819 → 0.769\n- frac_reward_zero_std: 0.825 → 0.925 → 0.900\n- mean_completion_length: 811 → 874 → 844\n- loss: 0.031 → -0.003 → 0.027 (波动)\n- grad_norm: 0.31 → 0.38 → 0 (step 30 归零)\n- entropy: 0.138 → 0.150 → 0.146 (高于 RASP)\n- 判断: PRE-COLLAPSE / UNCERTAIN\n  理由: 指标整体优于 RASP（mean_length 未贴顶、clipped_ratio ~77%、\n  entropy 更高），但 grad_norm 已在 step 30 归零，生成内容出现\n  \"#### 7248\" 大量重复。frac_reward_zero_std=0.9 还未过 0.98，\n  有微弱回升迹象但趋势不乐观。\n\n磁盘: /root 30G 总量，已用 8.6G (29%)，剩余 22G — 健康。\n\n总体结论: \n- RASP 已确认 collapse，继续训练无意义。\n- Standard 处于 pre-collapse 边缘，grad_norm 归零是强烈警告信号，\n  大概率在 step 40-50 前完全 collapse。\n- 建议启动 v3 应急方案。两个实验的 lr=1e-6 + max_completion_length=1024\n  组合在当前模型规模下 reward signal 太稀疏，\n  核心问题是几乎所有 completion 都 hit length limit 且拿不到 reward。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v2-step30-monitor.md"
+}

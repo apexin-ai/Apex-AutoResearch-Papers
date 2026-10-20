@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cc7a8b2245189bb110a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb disk cleanup",
+  "task_key": "worker_ssh_westb_disk_cleanup_20260523T193526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_disk_cleanup_20260523T193526_result.json",
+    "occurrence": 1,
+    "bytes": 782,
+    "sha256": "43ad8c9a7aa3b3c5afcd490100fec7ac9606e6058dfb61be0fdc00baa9ba2b13"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇报：\n\n**已删除：**\n- `grpo_random_20_retrain/checkpoint-100/` 整目录（optimizer.pt 14.5GB + model.safetensors 11.3GB + 其他）→ 释放 ~26GB\n- 5 个非保护目录的 `training_args.bin`（grpo_random_20_retrain, grpo_cka_only_20_seed123, sft_qwen_math_cka_only_20_final, sft_standard_20_qwen_math_final, grpo_qwen_math_cka_only_20）\n\n**未动：**\n- 所有 model.safetensors / 最终 checkpoint\n- 所有 results/ 下的 eval 结果\n- 所有保护目录（sft_rasp_alpha3p0_20/checkpoint-935, grpo_cka_only_20/checkpoint-100, sft_random_20, grpo_random_20_retrain/model.safetensors, sft_cka_only_20）\n\n**当前磁盘状态：**\n- `/root/autodl-tmp/`: 220GB used / 250GB total, **31GB 可用**（88%）\n- 目标 30GB ✅ 达成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-disk-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f6b01514233a2af66ae",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval sft rasp 20 full",
+  "task_key": "worker_eval_sft_rasp_20_full_20260516T222646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_rasp_20_full_20260516T222646_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "14c55108759a47248bd78b07ac4536f731e432c85eb32b1d1e5e613c7c3daef8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动并注册。\n\n**状态摘要：**\n- PID: 648988 @ westb-23072 cuda:1\n- 模型加载中（non-uniform MLP 已检测，说明 pruned 结构正确加载）\n- Registry: `eval_sft_rasp_20_full` → RUNNING\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full_n1319.json`\n- 日志: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_20_full.log`\n- 预计 ~1.5h 完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-rasp-20-full.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "51060789ee8ff980e13c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d023 reeval postprune urgent",
+  "task_key": "worker_code_d023-reeval-postprune-urgent_20260515T084833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-reeval-postprune-urgent_20260515T084833_result.json",
+    "occurrence": 1,
+    "bytes": 2355302,
+    "sha256": "9a8f12bb46bcccc098e8b604bfacb5deee5f3b4859cba573a53d0ff1ea013485"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2355322,
+                "serialized_sha256": "0afa5e03907a9b454fbaa7e09d3fabc57bc39d79f8396e4960af72132f8d5d10",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d023-reeval-postprune-urgent.md"
+}

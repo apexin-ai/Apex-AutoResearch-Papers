@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4830521323a757602b1e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit floor ablation 0p5 westd3",
+  "task_key": "worker_ssh_submit_floor_ablation_0p5_westd3_20260523T085804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_floor_ablation_0p5_westd3_20260523T085804_result.json",
+    "occurrence": 1,
+    "bytes": 540,
+    "sha256": "69301c0ca350facbe7ed7c5057ffdb0d419225370f602fc2e1625b97b542561a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已成功启动并在运行中。\n\n| 项目 | 状态 |\n|------|------|\n| **PID** | 118436 (wrapper), 118445 (run_floor_ablation.sh) |\n| **GPU 3** | 已分配，剪枝阶段刚完成（显存尚未大量占用，正在保存剪枝模型） |\n| **进度** | 剪枝完成 — mode=cka_only, sparsity=18.99% (target 20%), MLP pruned 199/784 groups, Attn pruned 0/112 groups。正在保存剪枝模型到 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20_floor_0.5`，之后将进入恢复训练阶段 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-floor-ablation-0p5-westd3.md"
+}

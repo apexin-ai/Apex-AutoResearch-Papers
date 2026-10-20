@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e82c03c7165fd4a54703",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scoring ablation magnitude 20",
+  "task_key": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_magnitude_20_20260518T024943_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "e7e5fe8bc1dedabc7dee5325b34b96e6fbb2dd37c68b8b81966079b2c3f139fa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行 3:52 分钟 (含 ~2 分钟加载)，实际 eval ~2 分钟。约完成 2-3 个 sample。\n\n当前状态总结：\n\n**已完成：**\n- Magnitude pruning at 20%: 成功，actual sparsity 18.99%\n- 剪枝模式：MLP-only（199/784 groups），集中在 layer 0-10（各剪 16/28 groups），后层几乎保留全部\n- Pruned model 保存到 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/`\n\n**进行中：**\n- GSM8K eval (200 samples)，~57s/sample，预计 ~3 小时完成（~11:50 UTC 前后）\n- 速度慢是因为模型严重损坏（早期层被大量剪枝），每个 sample 都生成到 max_new_tokens=4096\n\n**预期结果：**\n- 根据之前的 continue 脚本注释 \"acc=0%\"，post-prune accuracy 很可能为 0% 或接近 0%\n\n任务 `scoring_ablation_magnitude_20` 在 westb-23072 cuda:0 上运行，tmux session 同名，3 小时 timeout。如果想加速，可以 kill 后用更小的 `--max_new_tokens`（如 2048）重跑，但结果不会有实质差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scoring-ablation-magnitude-20.md"
+}

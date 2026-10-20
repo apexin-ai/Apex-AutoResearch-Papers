@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a6d536ae2695c777905a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh m023 verify standard 15 v3",
+  "task_key": "worker_ssh_m023_verify_standard_15_v3_20260520T215909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m023_verify_standard_15_v3_20260520T215909_result.json",
+    "occurrence": 1,
+    "bytes": 1215,
+    "sha256": "cbe478a4256ff7cdca1ac5e46e3e731dcf2df8aab3b9adc58c9920ca7721a38c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n**两个实验正在启动中，处于模型加载阶段，暂无报错。**\n\n| 检查项 | seed123 (PID 287784) | seed456 (PID 287862) |\n|--------|---------------------|---------------------|\n| 进程状态 | 存活，Python 子进程 287789 CPU 514% | 存活，Python 子进程 287867 CPU 483% |\n| GPU 显存 | cuda:2 = **3 MiB**（未上卡） | cuda:3 = **3 MiB**（未上卡） |\n| Log 最后输出 | `Loading pruned model from .../sft_standard_15` → `Non-uniform MLP detected` | 同左 |\n| 网络错误 | 无 | 无 |\n\n**分析**：\n- 两个进程刚启动约 1 分钟，正在 CPU 上加载模型权重（CPU 占用 500%+ 说明在做大文件 mmap/反序列化），尚未将模型搬到 GPU。这是正常行为。\n- `HF_HUB_OFFLINE=1` 生效，没有触发任何网络请求 — v2 的下载问题已解决。\n- Log 中 `Non-uniform MLP detected: intermediate_size range [8128, 18944]` 确认读到了正确的剪枝模型。\n- GPU 0/1 被 GSM8K eval 占用（~30GB each），与本实验无冲突。\n\n**结论**：v3 启动正常，预计 2-3 分钟后模型上卡，GPU 2/3 显存会跳到 ~14-15GB 并开始训练。如需二次确认可稍后再查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m023-verify-standard-15-v3.md"
+}

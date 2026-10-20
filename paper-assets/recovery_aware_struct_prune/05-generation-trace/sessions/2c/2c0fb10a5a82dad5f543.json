@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c0fb10a5a82dad5f543",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh progress check all 6",
+  "task_key": "worker_ssh_progress_check_all_6_20260524T035446",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_progress_check_all_6_20260524T035446_result.json",
+    "occurrence": 1,
+    "bytes": 1402,
+    "sha256": "97884c691db3348aed7ab6d3860625e7e5c728b4f35282f8df8e6efbf6062909"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 实验 | Server:GPU | PID | 进度 | 速度 | ETA (UTC) | 状态 |\n|------|-----------|-----|------|------|-----------|------|\n| sft_standard_25_fixed_v2 | westd:0 | 166245 | **381/500** (76%) | ~85s/it | ~14:43 | 正常运行 |\n| sft_rasp_alpha0p5_20_fixed | westd:1 | 184381 | **101/500** (20%) | ~83s/it | ~21:09 | 正常，已开始推理 |\n| sft_rasp_alpha4p0_20_fixed | westd:2 | 185975 | **64/500** (13%) | ~75s/it | ~21:00 | 正常，已开始推理 |\n| sft_standard_20_fixed_v4 | westd:3 | 182208 | **139/500** (28%) | ~74s/it | ~19:18 | 正常运行 |\n| grpo_random_20_fixed | westb | 330254 | **315/500** (63%) | ~66s/it | ~15:18 | 正常运行 |\n| sft_random_20_fixed_v3 | westb | 335348 | **241/500** (48%) | ~89s/it | ~18:18 | 正常运行 |\n\n**特别关注项：**\n- **westd:3 sft_standard_20_fixed_v4** — 显存 17532 MiB，无报错，已稳定跑到 139/500。本次正常。\n- **westd:1 sft_rasp_alpha0p5_20_fixed** — 模型已加载，推理中 (101/500)，显存 17508 MiB 正常。\n- **westd:2 sft_rasp_alpha4p0_20_fixed** — 模型已加载，推理中 (64/500)，显存 17518 MiB 正常。\n\n注意：westb 日志实际路径在 `/root/autodl-tmp/recovery_aware_struct_prune/logs/`，不是 `~/runs/`。预计最先完成的是 **sft_standard_25_fixed_v2**（~14:43 UTC），最后完成的是 **sft_rasp_alpha0p5_20_fixed**（~21:09 UTC）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-progress-check-all-6.md"
+}

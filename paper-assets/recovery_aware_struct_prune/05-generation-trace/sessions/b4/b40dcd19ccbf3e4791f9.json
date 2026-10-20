@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b40dcd19ccbf3e4791f9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval failures westd",
+  "task_key": "worker_diagnose_eval_failures_westd_20260519T123849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_failures_westd_20260519T123849_result.json",
+    "occurrence": 1,
+    "bytes": 1669,
+    "sha256": "a04575929b6c72f9ea1581fbce34fc7fd068ba092c7fbf64efff235b101a5fa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断报告\n\n**结论：3 个实验全部已成功完成。监控系统误报。**\n\n### 各实验状态\n\n| 实验 | 状态 | 完成时间 | 结果 |\n|------|------|----------|------|\n| eval_gsm8k_grpo_standard_20_fair_v2 | 成功 | 20:28 | Accuracy = 0.5944 ± 0.0135 (784/1319) |\n| eval_humaneval_grpo_standard_20_fair_2048_v3 | 成功 | 19:14 | Results saved to JSON |\n| eval_humaneval_sft_cka_only_20_2048_v2 | 成功 | 19:05 | Pass@1 = 0.2012 ± 0.0313 (33/164) |\n\n### 误报原因（共同原因，系统性问题）\n\n监控系统判定 \"process dead\" 的依据是检测 **W&B metrics** 或 **sentinel 文件**。这 3 个 eval 脚本都不产生这两种信号：\n\n1. **不写 W&B** — eval 脚本只在最后写一个 JSON 结果文件\n2. **不写 sentinel** — 没有心跳机制\n3. **运行时间长**（3-4 小时）— 监控系统在这段时间内反复检测不到信号，5 次后判定为 dead\n\n### 关于实验 2 的额外说明\n\n`humaneval_grpo_standard_20_fair_2048.log`（1667 bytes, 14:38）是最初的尝试，加载完数据集后在 0% 停住了（可能是 GPU 冲突被 kill），随后以 v3 名称重试并完成。\n\n### 当前服务器状态\n\n3 个新实验正在运行中：\n- `eval_humaneval_sft_standard_20_2048_v3` — cuda:3, 76% (125/164)\n- `eval_humaneval_sft_cka_only_20_1p5b_2048` — cuda:1, 19:45 启动\n- `eval_humaneval_grpo_cka_only_20_1p5b_2048` — cuda:2, 19:45 启动\n\n### 修复建议\n\n在 eval 脚本中加一个周期性 sentinel 写入（如每 N 个 sample 写一次 `/tmp/agent-ml-sentinel/<exp_name>.heartbeat`），让监控系统能检测到进程存活。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-failures-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8555236a006df29ec8a4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify eval script consistency",
+  "task_key": "worker_ssh_verify_eval_script_consistency_20260523T032302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_eval_script_consistency_20260523T032302_result.json",
+    "occurrence": 1,
+    "bytes": 3048,
+    "sha256": "2be9a82e3e8be7fb73eb3e13b48d52f788ab3d049e41f2876c1297a45366faa7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "关键发现：同一 checkpoint、同一 greedy 输出（EOS stats 完全一致），差异 **100% 来自 answer extraction 逻辑**。\n\n## 结论\n\n### 1. 当前脚本版本\n两台服务器（westb-23072、westd-32935）的 `eval_math500.py` 完全一致，均为**新版**：\n- 字段名：`pred_answer` / `gold_answer`（无 `idx`）\n- 文件从未提交 git，无版本历史\n\n### 2. 脚本变更时间点\n根据结果文件的字段名和时间戳，分界线在 **May 19 → May 23** 之间：\n\n| 时间 | 字段 | 脚本版本 |\n|------|------|----------|\n| May 17-19 | `pred`/`gold`/`idx` | 旧版 |\n| May 23 | `pred_answer`/`gold_answer` | 新版 |\n\n### 3. 结果文件一览\n\n**旧版脚本（`pred`/`gold`/`idx`）— May 17-19：**\n\n| 文件 | Acc | 日期 |\n|------|-----|------|\n| eval_math500_sft_rasp_20.json | 24.2% | May 17 |\n| eval_math500_sft_standard_20.json | 26.0% | May 17 |\n| eval_math500_unpruned.json | 73.6% | May 17 |\n| math500_grpo_unpruned.json | 69.0% | May 18 |\n| math500_dense_2048.json | 53.0% | May 19 |\n| math500_dense_unpruned.json | 73.6% | May 19 |\n| math500_grpo_cka_only_20_2048.json | 29.2% | May 19 |\n| math500_grpo_rasp_20_fair.json | 24.0% | May 19 |\n| math500_grpo_standard_20_fair_v2.json | 26.4% | May 19 |\n| math500_sft_cka_only_20_v4.json | **29.0%** | May 19 |\n| math500_sft_rasp_20_2048.json | 22.6% | May 19 |\n| math500_sft_standard_20_2048_v2.json | 25.8% | May 19 |\n\n**新版脚本（`pred_answer`/`gold_answer`）— May 23：**\n\n| 文件 | Acc | 日期 |\n|------|-----|------|\n| eval_math500_sft_rasp_alpha0p5_20.json | 25.4% | May 23 |\n| eval_math500_sft_rasp_alpha1p0_20_v2.json | 21.2% | May 23 |\n| eval_math500_sft_rasp_alpha3p0_20.json | 23.2% | May 23 |\n| eval_math500_sft_rasp_alpha4p0_20.json | 26.6% | May 23 |\n| eval_math500_sft_cka_only_20.json | **26.8%** | May 23 |\n| eval_math500_grpo_rasp_alpha2p0_20.json | 26.2% | May 23 |\n\n### 4. 提取差异的根因\n\nCKA-only SFT 两次 eval 使用**同一 checkpoint、同一 greedy 输出**（natural_eos=384, truncated=116, avg_len=673.278 完全一致），但 19 个问题判定不同（11 个 old✓new✗，8 个 old✗new✓）。\n\n新版脚本对复杂答案提取更差——频繁 fallback 到\"取最后一个数字\"：\n- `6+9i` → 新版提取为 `9` ✗\n- `(-1,6)` → 新版提取为 `6` ✗\n- `11\\sqrt{2}` → 新版提取为 `2` ✗\n- `-\\frac{\\pi}{6}` → 新版提取为 `6` ✗\n\n### 5. C1 |Δ| 可信度\n\n**如果 C1 表格内的对比都在同一版本内（全部 May 17-19 或全部 May 23），则 |Δ| 可信。**\n\n**不可信的情况**：如果 α ablation 结果（May 23 新版）与 main table baselines（May 17-19 旧版）做跨版本对比，则 |Δ| 被脚本差异污染。典型案例就是 CKA-only SFT 的 29.0%（旧）vs 26.8%（新），2.2pp 差距完全是提取逻辑造成的。\n\n**建议**：用当前新版脚本对 May 17-19 的所有 baseline checkpoint 重跑 eval，统一到同一版本后再比较。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-eval-script-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80204adc5ffbb714629e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd eval check and cleanup",
+  "task_key": "worker_ssh_westd_eval_check_and_cleanup_20260521T034354",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_eval_check_and_cleanup_20260521T034354_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "62d6af680d6b232c71ab3a20247db65a3a69d7b392523e8b7652978f4505aa19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO 正在加载模型，运行正常。\n\n---\n\n## 汇报\n\n### 1. eval_gsm8k_grpo_cka_only_25 状态\n**已失败。** 没有活跃进程，没有 tmux session，所有 GPU 0MiB。\n- Log 内容：`python: can't open file '/root/recovery_aware_struct_prune/eval_gsm8k.py': [Errno 2] No such file or directory` (EXIT_CODE=2)\n- 原因：启动命令路径错误，应为 `src/eval_gsm8k.py` 而非 `eval_gsm8k.py`\n- 需要用正确路径重新提交\n\n### 2. 磁盘清理\n| | Used | Avail | Use% |\n|---|---|---|---|\n| 清理前 | 610G | 9.5G | 99% |\n| 清理后 | 588G | **32G** | 95% |\n\n删除了两个重复的 checkpoint-100 目录（root 级别已有相同 model.safetensors）：\n- `grpo_cka_only_20_seed456/checkpoint-100` (~12G)\n- `grpo_cka_only_25/checkpoint-100` (~11G)\n\n无 optimizer.pt 文件可清理。\n\n### 3. GRPO Random 20% 已启动\n- **exp_id**: grpo_random_20\n- **server**: westd-29022, **GPU**: cuda:0\n- **PID**: 317332, **tmux session**: grpo_random_20\n- **log**: `~/runs/recovery_aware_struct_prune/grpo_random_20.log`\n- 状态：模型加载中，检测到 pruned 结构（non-uniform MLP/attention）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-eval-check-and-cleanup.md"
+}

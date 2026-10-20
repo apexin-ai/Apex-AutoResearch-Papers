@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49a4ae236daefc3186fe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose failed exps westd 20260522",
+  "task_key": "worker_diagnose_failed_exps_westd_20260522_20260522T111900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_failed_exps_westd_20260522_20260522T111900_result.json",
+    "occurrence": 1,
+    "bytes": 2746,
+    "sha256": "d3329c8b298c9a8dd96b2e05c51536224cdf2c404bb7e280153db41cca1ebd73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。汇报如下：\n\n---\n\n## 诊断结果\n\n### 实验 1: pipeline_depth_first_20\n\n**失败根因**: **训练实际已完成，不是真正失败。** 监控系统误判。\n\n三个阶段全部成功产出：\n- `pruned_depth_first_20/` — 剪枝完成 (May 22 18:23)，含 `pruning_metadata.pt`\n- `sft_depth_first_20/` — SFT 完成 (May 22 18:47)\n- `grpo_depth_first_20/` — GRPO 100步完成 (May 22 19:06)，W&B run `immasi23`，checkpoint-100 完整\n\n**缺失**: eval 步骤未执行。没有找到 `pipeline_depth_first_20.log`，说明 pipeline 不是通过标准日志机制启动的，导致监控系统找不到 sentinel/W&B。\n\n**需要做的**: 只需跑 eval（GSM8K / MATH500），训练无需重跑。\n\n---\n\n### 实验 2: grpo_random_20_seed123\n\n**失败根因**: **训练实际已完成，不是真正失败。** 监控系统误判。\n\n- GRPO 100步全部完成 (May 22 19:01)，W&B run `1silchcm`\n- 完整模型 (~12GB) 和 10 个 completion parquet 文件都在\n- `sft_random_20` 源模型在 westd-32935 上存在\n\n**缺失**: eval 步骤未执行。\n\n**需要做的**: 只需跑 eval，训练无需重跑。\n\n---\n\n### 关键环境问题\n\n| 条件 | 状态 |\n|------|------|\n| westb-23072 磁盘 | **100% 满** (250G/250G，仅剩 3.3MB) — 无法在此运行任何实验 |\n| westb-23072 `sft_random_20` | **不存在** |\n| westd-32935 磁盘 | 98% (15G 剩余) — eval 应该够用（不产生大文件） |\n| westd-32935 GPU | cuda:0 空闲，cuda:1/2/3 被占用 |\n| westb-23072 GPU | cuda:0 空闲，cuda:1 被占用 |\n\n---\n\n### 重跑建议\n\n**不需要重跑训练**，只需在 westd-32935:cuda:0 上跑两个 eval：\n\n**Eval 1 — depth_first_20 GRPO 模型 (GSM8K)**:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_depth_first_20 --output_path results/eval_grpo_depth_first_20.json --max_samples 1319 --seed 42 --dtype bfloat16\n```\n\n**Eval 2 — random_20_seed123 GRPO 模型 (GSM8K)**:\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123 --output_path results/eval_grpo_random_20_seed123.json --max_samples 1319 --seed 42 --dtype bfloat16\n```\n\n两个 eval 需要串行跑（共用 cuda:0），每个约 20-30 分钟。也可以考虑跑 MATH500 eval（如果实验计划需要）。westb-23072 因磁盘满无法使用，建议先清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-failed-exps-westd-20260522.md"
+}

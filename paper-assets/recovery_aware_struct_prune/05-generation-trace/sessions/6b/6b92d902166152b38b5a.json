@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b92d902166152b38b5a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag westb grpo v8 verify",
+  "task_key": "worker_diag_westb-grpo-v8-verify_20260515T161818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_westb-grpo-v8-verify_20260515T161818_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "e8b40f14f1c711b9e2d1e3f9933f99f8b69f3f31502a219661e70837a9fbf30f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**两个进程都在正常运行，双卡满载。** Director 报告的\"只有1张卡\"是误报。\n\n| 项目 | 状态 |\n|------|------|\n| **RASP v8** (PID 532861) | cuda:0, 运行 1h44m, GPU 100%, 显存 71674/97887 MiB |\n| **Standard v8** (PID 534667) | cuda:1, 运行 1h35m, GPU 100%, 显存 71692/97887 MiB |\n| GPU 温度 | 两卡均 83°C, 功耗 ~600W/600W |\n\n两个 GRPO v8 训练进程均健康运行，无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-westb-grpo-v8-verify.md"
+}

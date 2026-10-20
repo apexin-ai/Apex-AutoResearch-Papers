@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47b56775d37c75864911",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related-work_20260515T045854",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related-work_20260515T045854_result.json",
+    "occurrence": 1,
+    "bytes": 613,
+    "sha256": "ac94f1f38437d16d4629a54fccb3924ea19ac1abf4ad98d2c28b194404879614"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 21 个 citation key 均在 `references.bib` 中存在。\n\n完成内容：\n- `paper/related_work.tex` — 3 个小节（Structured Pruning / Pruning-Aware Recovery / RLVR Training Dynamics + CKA），引用 21 篇文献，约 600 词\n- `paper/references.bib` — 新增 `ssgr2025` 条目\n- 原有文件已覆盖 `literature_notes.md` 中 5 篇核心 + 5 篇补充文献（ThinkPrune 和 Think-Prune-Train-Improve 是 reasoning trace 压缩，与 model pruning 正交，未纳入）\n- Gap 明确突出：现有工作未用 CKA functional overlap 指导剪枝决策来优化 RLVR recovery"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work.md"
+}

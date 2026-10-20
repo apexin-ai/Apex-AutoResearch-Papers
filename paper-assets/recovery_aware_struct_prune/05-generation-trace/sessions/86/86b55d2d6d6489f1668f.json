@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86b55d2d6d6489f1668f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westd gpu grpo 15pct",
+  "task_key": "worker_fix_westd_gpu_grpo_15pct_20260520T050426",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_gpu_grpo_15pct_20260520T050426_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "b0544aae53d597436f05179a97229f407b3fb5ccae2e6b5b13a2f676afdcef43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**修复完成。** 两个 GRPO 15% 训练已确认在 GPU 上运行：\n\n| 实验 | PID | GPU | VRAM | Util |\n|------|-----|-----|------|------|\n| CKA-only 15% GRPO | 204464 | cuda:2 | 26663 MiB | 92% |\n| Standard 15% GRPO | 204542 | cuda:3 | 26281 MiB | 91% |\n\n**执行摘要：**\n1. 旧进程 199774/199849 已 kill\n2. `--gpu` 参数仅用于日志记录（`help=\"GPU index (for logging only, use CUDA_VISIBLE_DEVICES)\"`），实际 GPU 通过 `device_map=\"auto\"` + `CUDA_VISIBLE_DEVICES` 控制\n3. 用 `train_grpo_v5.py` 重提交，参数与 20% fair run 一致（max_steps=100, max_completion_length=1024, save_steps=10, beta=0.01, loss_type=dapo, temperature=0.4, adamw_8bit）\n4. tmux session: `grpo_cka15` (GPU 2), `grpo_std15` (GPU 3)\n5. Registry `pipeline_cka_only_15` 和 `pipeline_standard_15` 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-gpu-grpo-15pct.md"
+}

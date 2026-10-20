@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b66646a9e1227c06eb4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb models and submit",
+  "task_key": "worker_ssh_check_westb_models_and_submit_20260521T192943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb_models_and_submit_20260521T192943_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "e19e950f0c4dca50c75d4fb56224ca1657e47ded2c8c0a51b304dbc37b411323"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Job 启动成功，模型正在加载。\n\n**已提交**: `eval_math500_sft_cka_only_20_v5` → westb:1 (cuda:1)\n- 模型: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` (CKA-only 20% SFT, 12GB)\n- 参数: `--max_new_tokens 2048 --seed 42`\n- 输出: `/root/runs/recovery_aware_struct_prune/eval_math500_sft_cka_only_20/results.json`\n- Registry: `eval_math500_sft_cka_only_20_v5` (RUNNING)\n\n**westb GPU 占用**:\n- cuda:0: `eval_math500_grpo_standard_25_v2` (RUNNING)\n- cuda:1: `eval_math500_sft_cka_only_20_v5` (刚提交)\n\n**说明**: 虽然 `eval_math500_sft_cka_only_20_v4_restart` 在 registry 中标记为 success，但其结果文件不在 westb 上（可能在 westd）。Dense unpruned baseline 在 westb 上也没有完整模型（HF cache 只有 4KB refs）。westb 上能跑的最有价值的缺失数据点就是这个 CKA-only 20% SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-models-and-submit.md"
+}

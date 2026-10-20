@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "950c67c74a99a57e5b77",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix sft max seq length",
+  "task_key": "worker_code_fix_sft_max_seq_length_20260521T181040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_sft_max_seq_length_20260521T181040_result.json",
+    "occurrence": 1,
+    "bytes": 872,
+    "sha256": "4adb7094ef2c59eae0e4d187e2ddbcfaac5091237c7a392be162306882ce9c97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。总结：\n\n### 报告\n\n| | westd-29022 | westb-23072 |\n|---|---|---|\n| TRL 版本 | 1.4.0 | 1.1.0 |\n| 修复前 | 已修正（`max_length`） | **有 bug**（`max_seq_length`） |\n| 修复后 | 无需改动 | `max_length=args.max_seq_length` ✓ |\n\n**修改内容**：`westb-23072:/root/recovery_aware_struct_prune/src/train_sft_warmup.py` line 94，`max_seq_length=args.max_seq_length` → `max_length=args.max_seq_length`\n\n**验证**：两台服务器 SFTConfig 实例化均通过（`SFTConfig OK, max_length=2048`）。\n\n**`sft_recovery.py`**：两台服务器均已正确使用 `max_length`，无需修改。\n\n**`run_alpha4_pipeline.sh`**：调用 `train_sft_warmup.py` 的 CLI 参数 `--max_seq_length` 未被传入（使用默认值 2048），不受此 bug 影响——但修复后即使显式传入也不会报错了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-sft-max-seq-length.md"
+}

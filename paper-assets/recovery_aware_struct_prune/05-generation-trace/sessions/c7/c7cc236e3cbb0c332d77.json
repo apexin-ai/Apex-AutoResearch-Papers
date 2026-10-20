@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7cc236e3cbb0c332d77",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_15_1778965538.md",
+  "task_key": "loop_15_1778965538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778965538.md",
+    "occurrence": 1,
+    "bytes": 3930,
+    "sha256": "c64ce66346af288419c1670540210a51c84063587938438e921d9ebf8b6c8138"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T21:05:28+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb cuda:0/1, westd cuda:0/1（config `gpu_ids`）。其余 GPU 禁用\n- westb↔westd 无 SCP 互信，模型传输需中间节点\n- Qwen Math 系列模型 `eos_token_id` 必须加 `[151643, 151645]`，否则 generate() 不停止\n- `sft_recovery.py` 参数名：`--learning_rate` / `--num_train_epochs` / `--gradient_accumulation_steps`（非 --lr/--epochs/--grad_accum）\n- eval 脚本不走 W&B → cron 会误判 failed。收到 eval 类 failed 回调先检查 registry 是否已有 metrics\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, `/root/recovery_aware_struct_prune`（代码）, `/root/autodl-tmp/` (模型/数据)\n- **westd-11672**: root@westd-11672, 同目录结构\n- Python: `/root/miniconda3/bin/python`（conda base，不是 venv）\n- 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/{sft_rasp_20, sft_standard_20, grpo_rasp_25, grpo_standard_25, ...}`\n- Dense model: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- 活跃进程:\n  - `eval_grpo_rasp_25`: PID 639423, westb cuda:0, cron 监控中\n  - `eval_grpo_standard_25`: PID eval_grpo_std25_full, westd cuda:1, cron 监控中\n  - `inference_speedup_plan016`: PID 642942, westb cuda:1 — **cron 报 process gone (miss 1/5)，可能已崩**\n\n### 3. 📊 当前状态\n**刚完成**: D044/D045 narrative pivot（universal decoupling），D050 RASP-RLVR 降级为 negative ablation，25% GRPO 训练完成\n\n**RUNNING (3)**:\n- `eval_grpo_rasp_25` — 25% RASP post-GRPO GSM8K N=1319 eval，验证 collapse 后 accuracy ≈ pre-GRPO (52.99%)\n- `eval_grpo_standard_25` — 25% Standard post-GRPO GSM8K N=200 eval，验证 near-collapse 影响\n- `inference_speedup_plan016` — Dense vs RASP vs Standard inference speedup benchmark（**疑似崩溃，需 Worker 检查**）\n\n**等待中**:\n- inference_speedup_plan016 cron escalation（miss 1/5，再 4 次 miss 会 auto-fail）\n- eval_grpo_rasp_25 和 eval_grpo_standard_25 完成回调\n- Paper Agent Step 2 (Plot Generation) 产出\n- Qwen2.5-Math-7B pruning 进展（westd 上的 CPU 任务）\n\n### 4. 📋 待办（条件触发式）\n- `inference_speedup_plan016` cron 再报 miss → spawn Worker SSH 到 westb 检查 `/tmp/pip_install.log` 或进程状态，决定重跑还是手动 resolve\n- `eval_grpo_rasp_25` 完成 → accuracy ≈52.99% 则确认 C1 25% decoupling；偏差大则更新 C2 collapse 叙事\n- `eval_grpo_standard_25` 完成 → 对比 sft_standard_25 (51.25%)，量化 near-collapse 损失\n- 两个 25% eval 都完成 → 更新 paper_framing.md + report.md → 向 Director 汇报 25% 全部数据点齐备\n- 25% eval 齐备后 → 启动 grpo_standard_20_v8 + grpo_rasp_20_v8（如 Director 批准）\n- Paper Agent Step 2 完成 → 审查 plots，准备 Step 3 (Draft)\n\n### 5. 🎯 战略上下文\n**核心叙事 (D044 pivot 后)**:  \nGRPO alignment fundamentally fails on structurally pruned reasoning models — reward improves but accuracy never follows (C1 universal decoupling)。Pruning adds training collapse whose severity diagnoses structural damage type (C2)。Functional redundancy plays opposite roles under SFT vs RLVR (C3 marginal)。\n\n**决策链**: D044 pivot → D045 core complete → D046 cal=256 footnote → D048 C3 reframe → D049 保持 C1 → D050 RLVR 降格\n\n**易错点**:\n- **不要混淆 GC4-par 和 GC4-seq** 或不同 calibration 数的结果（westb cal=512, westd cal=256 有 ~5% group selection 差异）\n- C3 (RASP SFT +2.2pp) 统计不显著 (p=0.25)，论文只能说 \"marginally better\"，不能 claim significance\n- Pass@8 证据：pruning 降低 solution accessibility 而非 existence（论文补充证据）\n- **DDL 9 天** — 25% + Qwen Math + Paper 必须全并行，不能串行\n- eval cron 误报是已知问题（eval 不走 W&B），先查 registry 再决定是否真 failed\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778965538.md"
+}

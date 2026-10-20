@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3968b9068613c9a5680f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779407609.md",
+  "task_key": "loop_20_1779407609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779407609.md",
+    "occurrence": 1,
+    "bytes": 4415,
+    "sha256": "b2cf748a44a40bc788a03d3c53836308521ab7a0d4924b48316ef603e8fe7f0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T21:10:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-29022 网络离线**——所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF datasets HEAD 请求直接崩溃（已因此失败 5+ 次）\n- **westd 数据盘 99% 满**（/root/autodl-tmp 仅剩 ~9.7GB）——pipeline_alpha4_0 已因磁盘满写 safetensors 失败。**任何新 checkpoint 写入前必须先清理**。损坏的 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20`（9.7GB 部分写入）待删除。大规模清理需 Director 批准\n- GPU 白名单：westd cuda:0-3, westb cuda:0-1（共 6 卡）\n- **EMNLP 2026 ARR 截稿 May 25（~3.5 天）**——所有实验和论文修复必须在此之前完成\n- RASP 模型路径在 westb 是 `sft_rasp_20_1p5b`（不是 `sft_rasp_20`），westd 类似\n\n### 2. 🖥️ 基础设施快照\n- **westd-29022**: 4× RTX PRO 6000 (97GB each), 工作目录 `/root/recovery_aware_struct_prune`, 数据 `/root/autodl-tmp/recovery_aware_struct_prune`\n- **westb-23072**: 2× RTX PRO 6000, 同路径结构\n- Python: `/root/miniconda3/bin/python`（conda base，激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- 活跃进程:\n\n| exp_id | Server:GPU | PID | 说明 |\n|--------|------------|-----|------|\n| eval_gsm8k_grpo_alpha4_20 | westd:0 | 412988 | α=4.0 GSM8K, ~30min ETA |\n| eval_math500_grpo_random_20_v2 | westd:1 | 382470 | Random GRPO MATH-500, 56% |\n| eval_math500_grpo_alpha4_20 | westd:2 | 412817 | α=4.0 MATH-500, ~8-10h |\n| eval_math500_sft_random_20 | westd:3 | 385685 | Random SFT MATH-500, 47% |\n| eval_math500_grpo_standard_25_v2 | westb:0 | 99426 | Standard 25% GRPO MATH-500, 64% |\n\n- westb:1 应该在跑 eval_math500_sft_standard_25（ROADMAP 标记 running），但 **不在 cron 监控中**，需要核实是否还活着\n- Cron 活跃: 上述 5 个实验均有 cron 监控\n- Worker 池: **0**（全部已完成退出）\n\n### 3. 📊 当前状态\n**刚做完**: 上一轮 session 提交了 α=4.0 的 GSM8K 和 MATH-500 eval（westd:0 和 westd:2），6/6 GPU 满载。Round 5 (3.0/5) D098 审稿修复 Paper Agent 大部分已完成，待 α=4.0 数据和 MATH-500 全表 patch。\n\n**正在等待**:\n- eval_gsm8k_grpo_alpha4_20 结果（最紧急，ETA ~30min from last ROADMAP update at 19:32 UTC）\n- 4 个 MATH-500 @2048 eval 完成（今晚内）\n- westb:1 的 eval_math500_sft_standard_25 状态确认\n\n**PREPARING 队列**: 33 个实验，但大部分被磁盘空间和 GPU 占用阻塞。关键阻塞项: sft_alpha4_20_v2（需 westd 磁盘清理后才能跑 pipeline）。\n\n### 4. 📋 待办（条件触发式）\n- **eval_gsm8k_grpo_alpha4_20 cron 回调到达** → 读结果。如果 ~55-64% → α=4.0 避免 RASP collapse，确认 α 依赖性，patch 论文 RASP 段落（\"α tuning mitigates collapse\"）。如果 near-zero → RASP collapse 是结构性的，α 无法挽救，patch 论文为更强 negative claim\n- **MATH-500 eval 全部完成** → 汇总全 cross-benchmark 表（20% 四方法 + 25% 双方法 + 15% 双方法），Paper Agent patch Table 3\n- **westb:1 确认** → 如果 eval_math500_sft_standard_25 已死，需重启（加 --max_new_tokens 2048）\n- **westd 磁盘清理** → 删除 pruned_alpha4_20（损坏）+ Director 批准后清理旧 checkpoint → 解锁 sft_alpha4_20_v2 pipeline\n- **Round 5 D098 修复全部完成** → 触发 Round 6 审稿\n\n### 5. 🎯 战略上下文\n- **核心 narrative**: Pruning criterion shapes post-RLVR recovery capacity。CKA-only >> Standard >> Random >> RASP。CKA functional overlap 作为 pruning signal 保留了 RL recovery 所需的结构多样性\n- **决策链关键节点**: D090 确定 3-seed mean（非 2-seed）; D096 25% 数据定调为\"补强覆盖不升级 claim\"; D097 kill 全部 @4096 改用 @2048; D098 Round 5 action matrix\n- **α=4.0 是最后一个关键消融**——grpo_alpha4_20 reward 轨迹已确认 active learning（0.146→0.256），与 α=1.0 collapse（0.008）形成对比。GSM8K 结果决定这个数据点在论文中的叙述角度\n- **易踩的坑**: (1) westd 所有命令忘加 HF_OFFLINE 标志 (2) westd 磁盘满导致写入失败 (3) RASP 模型路径是 `sft_rasp_20_1p5b` 不是 `sft_rasp_20` (4) eval_math500 @2048 单题可能跑 300+ 秒，必须加 --max_new_tokens 2048 (5) 不要把不同 sparsity 的结果直接对比\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779407609.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77a6d00219a80f686fad",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp grpo rasp 20 clean retry",
+  "task_key": "worker_fix_eval_mbpp_grpo_rasp_20_clean_retry_20260519T183640",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_grpo_rasp_20_clean_retry_20260519T183640_result.json",
+    "occurrence": 1,
+    "bytes": 851,
+    "sha256": "4d2d8d1d5013b273c4af80bcde9f9d00362939af5e7ce87a45f664989c65cd87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**已越过 8/374 死亡点！** 进程存活，tqdm 更新为 8/374 [05:37 elapsed, 55.12s/it]。\n\n上次在 8/374 时进程被杀，这次顺利通过。继续监控到 20/374。按当前速度 ~55s/task，还需约 11 分钟到达 20/374。Cron 每 4 分钟会自动检查。\n\n## 汇总\n\n| 项目 | 状态 |\n|------|------|\n| dmesg | 不可访问（AutoDL 容器权限限制），无法排查 OOM |\n| cuda:1 | 被 eval_mbpp_grpo_rasp_20 自身占用（已有人提交第三次重试） |\n| PID | 127964，运行 8:39，CPU 162%，GPU 16767 MiB / 93% |\n| 进度 | **8/374** — 已越过上次死亡点 |\n| Registry | status=RUNNING |\n| Cron | 已注册，每 4 分钟监控 |\n| 预计完成 | ~5.7 小时（55s/task × 374） |\n\n无需干净重启 — 实验已在运行且刚通过危险区。Cron 将持续监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-grpo-rasp-20-clean-retry.md"
+}

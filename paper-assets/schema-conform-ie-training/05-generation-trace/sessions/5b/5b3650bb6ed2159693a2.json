@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "5b3650bb6ed2159693a2",
+  "project": "schema-conform-ie-training",
+  "kind": "worker",
+  "title": "deploy fix model and crossner",
+  "task_key": "worker_deploy_fix-model-and-crossner_20260512T104000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_fix-model-and-crossner_20260512T104000.log",
+    "occurrence": 1,
+    "bytes": 591648,
+    "sha256": "7171c6e2fb9f66c4a0c5169d9ff84a3ba1091ec81bb73a5bbf4fa9139fcb760c"
+  },
+  "statistics": {
+    "messages": 397,
+    "user_turns": 0,
+    "tool_calls": 149,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 95,
+      "tool_call": 149,
+      "tool_result": 149
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 397,
+      "chunks": [
+        {
+          "path": "5b3650bb6ed2159693a2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b3650bb6ed2159693a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "5b3650bb6ed2159693a2-part-0003.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-fix-model-and-crossner.md"
+}

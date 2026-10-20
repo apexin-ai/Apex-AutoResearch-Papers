@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9e249e1ae08c2b30dc4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops full gpu state audit",
+  "task_key": "worker_ops_full_gpu_state_audit_20260519T090108",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_full_gpu_state_audit_20260519T090108_result.json",
+    "occurrence": 1,
+    "bytes": 2800,
+    "sha256": "be67991a6b7d6750be05e3c6ad891276fdba9ba904b9c145e59dbd27bd11359d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是完整报告：\n\n---\n\n## westd-29022 — 4 × RTX PRO 6000 Blackwell\n\n| GPU | 实验 | Session | 状态 | 进度 | 当前指标 |\n|-----|------|---------|------|------|----------|\n| cuda:0 | GSM8K Standard fair v2 | `eval_gsm8k_std_fair_v2` | **ALIVE, 运行中** | 4/1319 (~0.3%) | 刚启动 (16:58)，~4s/it |\n| cuda:1 | HumanEval SFT CKA-only v2 | `eval_humaneval_sft_cka_only_20_2048_v2` | **ALIVE, 运行中** | 79/164 (48%) | Pass@1 中间值波动中，最近 checkpoint: 60→0.3167, 80未到 |\n| cuda:2 | HumanEval GRPO Standard fair v3 | `eval_humaneval_grpo_standard_20_fair_2048_v3` | **ALIVE, 运行中** | 84/164 (51%) | Pass@1=0.1125 (@ 80) |\n| cuda:3 | HumanEval GRPO RASP fair | `eval_humaneval_rasp_fair` (PID 74303) | **ALIVE, 运行中** | 134/164 (82%) | Pass@1=0.1250 (@ 120) |\n\n### 详细进度快照\n\n**cuda:0 — GSM8K Standard fair v2**\n- 刚启动 3 分钟 (16:58)，4/1319 samples，ETA ~1.5h\n- 网络不通但成功使用 HF cache\n\n**cuda:1 — HumanEval SFT CKA-only v2** (最高优先级)\n- 48% 完成 (79/164)，已运行 ~1h20m\n- 中间 Pass@1 snapshot: 20→0.3000, 40→0.2750, 60→0.3167\n- 速度 ~24-70s/it，ETA ~1-2h\n- **尚未完成，无最终结果文件**\n\n**cuda:2 — HumanEval GRPO Standard fair v3**\n- 51% 完成 (84/164)，已运行 ~1h56m\n- 中间 Pass@1 snapshot: 20→0.0500, 40→0.0750, 60→0.1333, 80→0.1125\n- 速度 ~75-105s/it，ETA ~2h+\n\n**cuda:3 — HumanEval GRPO RASP fair**\n- 82% 完成 (134/164)，已运行 ~2h20m\n- 中间 Pass@1 snapshot: 20→0.1500, 40→0.1500, 60→0.1333, 80→0.1375, 100→0.1300, 120→0.1250\n- **最接近完成**，ETA ~45min\n\n---\n\n## westb-23072 — 2 × RTX PRO 6000 Blackwell\n\n| GPU | 实验 | 状态 | 进度 |\n|-----|------|------|------|\n| cuda:0 | **空闲** | 0% util, 0 MiB | 无进程 |\n| cuda:1 | GRPO CKA-only seed123 训练 | **ALIVE** | **45/100 steps (45%)** |\n\n**cuda:1 — GRPO CKA-only seed123 训练**\n- PID 857962, 已运行 ~5h16m\n- 45/100 steps, ~417s/step\n- ETA: ~55 steps × 418s ≈ **6.4h 剩余**\n- WandB 已连接记录中\n- tmux session `grpo_cka_only_20_seed123` 活跃\n\n---\n\n## 任务 3：结果收割\n\n**所有实验均未完成，暂无最终结果文件可收割。** 预计完成顺序：\n\n1. **cuda:3 RASP HumanEval** — ~45min 后完成（134/164）\n2. **cuda:1 SFT CKA-only HumanEval v2** — ~1-2h 后完成（79/164）\n3. **cuda:2 Standard HumanEval v3** — ~2h+ 后完成（84/164）\n4. **cuda:0 GSM8K Standard fair v2** — ~1.5h 后完成（刚启动）\n5. **westb seed123 训练** — ~6.4h 后完成（45/100 steps）\n\n**关键观察：** SFT CKA-only 的中间 Pass@1 (~0.28-0.32) 明显优于 GRPO Standard (~0.11) 和 GRPO RASP (~0.13)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-full-gpu-state-audit.md"
+}

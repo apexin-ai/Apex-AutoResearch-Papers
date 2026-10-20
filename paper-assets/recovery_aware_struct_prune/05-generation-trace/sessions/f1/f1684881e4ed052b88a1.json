@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1684881e4ed052b88a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor pass k results check",
+  "task_key": "worker_monitor_pass_k_results_check_20260516T173614",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_pass_k_results_check_20260516T173614_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "25cd2831f0c140b9a41bb9ac1aa4482745ab65634309c08f302fff6cf7513f64"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验均在运行中，尚无结果文件。当前进度：\n\n| 实验 | GPU | PID | 进度 | 中间 pass@8 | 预估剩余 | 备注 |\n|------|-----|-----|------|------------|---------|------|\n| unpruned (grpo_unpruned_v2) | cuda:1 | 25341 | **137/200** (68%) | 0.9500 @100 | ~20 min | 运行顺畅 |\n| RASP-20 SFT (sft_qwen_math_rasp_20) | cuda:2 | 25442 | **90/200** (45%) | 0.9000 @50 | ~40-60 min | 有 max_length 4096 溢出，多次严重减速 |\n| RASP-20 GRPO (grpo_rasp_qwen_math) | cuda:3 | 25538 | **130/200** (65%) | 0.8900 @100 | ~25 min | 同样有 max_length 溢出减速 |\n\n**关键观察**：\n- SFT 和 GRPO 模型都触发了 `max_length (4096)` 警告，导致个别 sample 生成时间从 ~15s 暴涨到 100-200s+，严重拖慢进度（sample 28、64、89 附近）\n- 中间指标趋势：unpruned (0.95) > SFT (0.90) > GRPO (0.89)，但中间值会波动，需等最终结果\n- GPU 0 上另有一个 `sft_rasp_rlvr_qwen_math` 训练在跑（PID 28243，占用 50.9GB 显存）\n\nunpruned 和 GRPO 预计 ~20-25 分钟内完成，SFT 因减速最慢，预计 ~40-60 分钟。需要稍后再查最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-pass-k-results-check.md"
+}

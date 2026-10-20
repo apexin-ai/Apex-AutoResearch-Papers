@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd8394a960fb75a092e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_18_1779061126.md",
+  "task_key": "loop_18_1779061126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779061126.md",
+    "occurrence": 1,
+    "bytes": 5792,
+    "sha256": "8199ff5bc3c228bf19ebe94d2e71b011e7dd6b965da8b2126fd177a5839b7df0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-17T23:14:41+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 (C004): westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3，共 6 张，严禁用其他 GPU\n- 大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，禁止写根分区（仅 30GB，C002）\n- MATH-500 GRPO vs SFT 对比不可用于 C3 论证——配置不公平（D051），只能做 supplementary evidence\n- CKA-only pruning 没有专用 mode：用 dummy importance (全1) + `--mode rasp --alpha 1` 实现纯 CKA-only scoring\n- 跨服务器传模型需走 EC2 跳板 rsync（westb↔westd 不能直连）\n- SFT checkpoint 传到另一台机器后，必须检查 tokenizer 文件是否齐全（AutoTokenizer 常找不到）\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× ~98GB GPU (RTX PRO 6000)，root 账号\n  - 工作目录: `/root/recovery_aware_struct_prune`，数据盘: `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - Python: `/root/miniconda3/bin/python`（`source /root/miniconda3/bin/activate`）\n  - 活跃: grpo_cka_only_20 (PID 725227, cuda:0, tmux) + grpo_random_20 (PID 719679, cuda:1, tmux)\n- **westd-11672**: 4× ~95GB GPU，root 账号\n  - 同样路径结构，conda 同上\n  - 活跃: eval_math500_grpo_standard_20 (PID 14556, cuda:1) + eval_math500_grpo_rasp_20_v3 (PID 31706, cuda:3) + eval_sft_cka_only_20_n1319 (PID 49475, cuda:0) + eval_postprune_cka_only_30 (PID 59403, cron 显示 running 但 report 标 failed，需确认) + eval_math500_grpo_unpruned (PID 64467, cuda:2, 刚提交 PREPARING 态)\n- **Cron 监控**: 6 个活跃 cron（上述 6 个 RUNNING 实验各一个）\n- **W&B**: project=recovery_aware_struct_prune，run_name 与 exp_id 对应\n- **磁盘**: westd 上次清理后 ~312GB 可用\n\n### 3. 📊 当前状态\n**刚做完**: D053-D055 narrative pivot（C2 升级为 recovery capacity hierarchy，C1 收窄为 in-distribution decoupling，C3 降级为 observation），提交了 grpo_cka_only_20 和 grpo_random_20 两个关键 ablation GRPO 实验。\n\n**RUNNING (6 个实验)**:\n| exp_id | 服务器/GPU | 摘要 |\n|--------|-----------|------|\n| grpo_cka_only_20 | westb:0 | CKA-only GRPO 100步，step70 时 reward 0.31↑ 无 collapse（D053 核心证据）|\n| grpo_random_20 | westb:1 | Random GRPO 100步，step70 时 reward 0.19 缓慢，未 collapse |\n| eval_math500_grpo_standard_20 | westd:1 | MATH-500 eval，已 309/500，28.33% |\n| eval_math500_grpo_rasp_20_v3 | westd:3 | MATH-500 eval (no timeout)，已 256/500，28.00% |\n| eval_sft_cka_only_20_n1319 | westd:0 | CKA-only SFT GSM8K N=1319，已 1037/1319，63% |\n| eval_postprune_cka_only_30 | westd:? | cron 说 running (PID 59403) 但 report 标 failed，需 poll 确认 |\n\n**等待中**:\n- eval_math500_grpo_unpruned 刚提交 (westd:2, PID 64467)，状态仍 PREPARING，需确认是否已转 RUNNING 并注册 cron\n- 0 个 Worker 在运行 ← 违反 L1 硬约束（Worker 池 < 2），但当前所有任务都是 cron 监控的 eval/training，无需 Worker 常驻\n- Paper Agent Step 2 (Plot Generation) 状态不明，ROADMAP 说\"进行中\"但无 Worker\n\n### 4. 📋 待办（条件触发式）\n- grpo_cka_only_20 完成 → spawn worker 跑 GSM8K eval (N=1319) + 分析 collapse dynamics 全程 → 汇报 Director 确认 D053 最终结论\n- grpo_random_20 完成 → 同上 eval → 与 CKA-only/RASP/Standard 四方 GRPO collapse 对比表 → 确认 recovery capacity hierarchy 排序\n- eval_math500_grpo_standard_20 + eval_math500_grpo_rasp_20_v3 两个都完成 → 对比 MATH-500 GRPO decoupling (预期两者 ≈28%)，与 SFT MATH-500 数据 (Standard 26%, RASP 24.2%) 对比 → 更新 C1 in-distribution decoupling 证据\n- eval_sft_cka_only_20_n1319 完成 → 确认 SFT equalization (~63%) → 更新 paper tables\n- eval_math500_grpo_unpruned 完成 → 确认 unpruned MATH-500 baseline，如 ≈73.6% 则 decoupling 确认\n- 上述 eval 全部完成后 → westd 4 卡全空 → 优先启动: (1) 25% GRPO (grpo_standard_25 + grpo_rasp_25) 用 westb 2 卡, (2) Qwen2.5-Math-7B pipeline 继续 (prune → SFT → eval) 用 westd\n- Paper Agent 需推进 → 派 Worker 继续 Step 2 plot generation 或直接进 Step 3 drafting（用 20% 核心数据先写主体，后续 patch 25%/ablation 数据）\n- DDL 距今 ~8 天 (May 25 ARR)，论文写作和实验必须并行\n\n### 5. 🎯 战略上下文\n**核心叙事 (D044/D045 pivot 后)**:\n- **C1 (in-distribution decoupling)**: GRPO reward 涨但 accuracy 不跟，pruned/unpruned 都是。GSM8K 数据充分，MATH-500 正在补充\n- **C2 (recovery capacity hierarchy)**: 主力贡献。四种 scoring 的 GRPO collapse 行为形成清晰排序: CKA-only(最稳) > Random > Standard(borderline) > RASP(instant collapse)。这**逆转**了原始 hypothesis——保留冗余结构 = GRPO 更稳定，移除冗余(RASP) = 最脆弱。这是 Redundancy-Stability Tradeoff 的核心证据\n- **C3 (SFT recovery)**: 降级为 observation，不是 core claim\n\n**最容易判断错的事**:\n1. **CKA-only 结果逆转了 narrative**——原来预测 CKA-only 最快 collapse（因为移除冗余最多），结果它最稳定。不要按旧 hypothesis 理解结果\n2. **D053 是 provisional**——grpo_cka_only_20 和 grpo_random_20 还在跑，最终 100 步的 collapse 行为可能变化（尤其 CKA-only 可能 late collapse）。汇报时标注 provisional\n3. **MATH-500 数据不能和 GSM8K 简单混用**——D051 裁定 GRPO 的 MATH-500 对比有配置公平性问题，只能做 supplementary\n4. **eval_postprune_cka_only_30 状态矛盾**——cron 说 running 但 report 说 failed，接手后第一件事 poll 确认\n5. **Paper writing 严重滞后**——ROADMAP 说 Step 2 进行中但无活跃 Worker，距 DDL 8 天，必须立即并行推进写作\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779061126.md"
+}

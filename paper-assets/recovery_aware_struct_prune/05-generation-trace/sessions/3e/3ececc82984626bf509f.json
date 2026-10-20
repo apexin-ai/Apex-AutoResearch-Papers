@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ececc82984626bf509f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code math500 sft evals westd",
+  "task_key": "worker_code_math500_sft_evals_westd_20260518T130015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_math500_sft_evals_westd_20260518T130015_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "e21aa96655caeb2d80c2088a20bd8417baa82f9bad6a32ccb102e540f4f21218"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "推理已启动。500 题，~2.1s/it，预估约 17 分钟完成。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| **SFT CKA-only 20% MATH-500** | 运行中，PID 2529，cuda:2，~17min 完成 |\n| 模型路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20` |\n| 输出路径 | `.../results/math500_sft_cka_only_20.json` |\n| 日志 | `~/runs/recovery_aware_struct_prune/math500_sft_cka_only_20.log` |\n| **SFT Unpruned baseline** | **缺失** — 两台服务器均无模型权重（westd 目录为空，westb 不存在）|\n| **Dense Unpruned baseline** | 已有结果：`eval_math500_unpruned.json`，accuracy = **73.6%**（模型: DeepSeek-R1-Distill-Qwen-7B）|\n\n**SFT Unpruned 缺失说明**：需要先在某台服务器上对 dense 模型做 SFT 训练，才能得到 SFT Unpruned baseline。如果只是需要 \"unpruned 在 MATH-500 上的表现\"，dense 模型的 73.6% 已经可用。\n\n另外注意 cuda:1 上有另一个 eval 在跑（`math500_standard_grpo_fair`），CKA-only 完成后如果需要串行第二个 eval，cuda:2 可以复用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math500-sft-evals-westd.md"
+}

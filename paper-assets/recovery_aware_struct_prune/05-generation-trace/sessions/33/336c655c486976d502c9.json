@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "336c655c486976d502c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd eval progress",
+  "task_key": "worker_ops_check-westd-eval-progress_20260516T044358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westd-eval-progress_20260516T044358_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "20bfc64d71457f57b46e3ec398d97b3fd8f2a428db8cc41c1a11c9bb4a669bac"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都即将完成：\n\n| eval | 进度 | accuracy@1300 | 已用时间 | ETA |\n|------|------|--------------|---------|-----|\n| **step100** (cuda:0) | 1316/1319 (99.8%) | **0.8177** | ~1h03m | ~10s |\n| **step90** (cuda:1) | 1305/1319 (98.9%) | **0.8100** | ~1h03m | ~30s |\n\n结果文件尚未写入（results/ 目录只有之前的 `eval_sft_grasp_20_greedy.json`）。两个任务应该在你看到这条消息时已经跑完了。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-eval-progress.md"
+}

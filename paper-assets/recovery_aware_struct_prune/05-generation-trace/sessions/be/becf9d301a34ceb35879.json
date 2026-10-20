@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "becf9d301a34ceb35879",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose sft rasp rlvr qwen math then continue",
+  "task_key": "worker_diagnose_sft_rasp_rlvr_qwen_math_then_continue_20260516T175711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_rasp_rlvr_qwen_math_then_continue_20260516T175711_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "08ed611864ca303c6dd2159b7315fb9d387130ba98b2b94cd03342112f2488c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进度总结：**\n- **Part 1 完成**: SFT 成功 — final loss 0.4774, token_acc 0.9001, 2 epochs, 1729s runtime. Registry 已更新。\n- **Part 2 进行中**: Eval 已提交到 westd-11672 cuda:0 (tmux: `eval_sft_rasp_rlvr_20_qwen_math`)，registry 状态 RUNNING。\n- 2 分钟后轮询 eval 完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-rasp-rlvr-qwen-math-then-continue.md"
+}

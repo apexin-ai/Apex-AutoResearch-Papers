@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "95ff68928dced9d58a0a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix standard mbpp exit watchdog clean resubmit",
+  "task_key": "worker_fix_standard_mbpp_exit_watchdog_clean_resubmit_20260519T211830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_standard_mbpp_exit_watchdog_clean_resubmit_20260519T211830_result.json",
+    "occurrence": 1,
+    "bytes": 1425,
+    "sha256": "2348f13c52d9442a0d10238ba5e6902a3341c8585c52f7ff02a4b40aedee1629"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**排查结果**：\n- **无 watchdog 进程、无 crontab** — 不存在主动杀进程的监控机制\n- Exit 文件是 submit_training_job 框架的**退出记录**（被动记录，非主动杀手）\n- 进程被杀的真正原因：框架的 **timeout wrapper**（exit 124）和 **SIGHUP**（exit 129，tmux session 被杀时触发）\n\n**Exit 文件证据**：\n| 文件 | Exit Code | 含义 |\n|------|-----------|------|\n| `eval_mbpp_sft_standard_20.exit` | 143 | SIGTERM |\n| `eval_mbpp_grpo_standard_20.exit` | 124 | timeout |\n| `eval_mbpp_grpo_standard_20_v2.exit` | 129 | SIGHUP |\n| `eval_mbpp_grpo_rasp_20.exit` | 129 | SIGHUP |\n\n**已清理**：3 个 standard 相关 exit 文件 + 死掉的 `eval_mbpp_sft_standard_20_v3` session\n\n**当前运行状态**（3 个实验全部存活）：\n| 实验 | Session | PID | GPU | 状态 |\n|------|---------|-----|-----|------|\n| SFT Standard | `mbpp_sft_std_clean` | 141113 | cuda:0 | 加载中 |\n| GRPO Standard v4 | `eval_mbpp_grpo_standard_20_v4` | 139816 | cuda:2 | 运行中 |\n| GRPO RASP | `eval_mbpp_grpo_rasp_20` | 127964 | cuda:1 | 运行中 (~2.8h) |\n\n**Registry 更新**：\n- `eval_mbpp_sft_standard_20_v3` → DONE/failed\n- `eval_mbpp_sft_standard_20_clean` → RUNNING (parent=v3, PID 141113)\n- `eval_mbpp_grpo_standard_20_v4` → 保持 RUNNING（进程存活）\n- 每 8 分钟自动监控三个实验"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-standard-mbpp-exit-watchdog-clean-resubmit.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbe92e6701968aca04a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix importance downproj",
+  "task_key": "worker_fix_importance-downproj_20260514T030601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_importance-downproj_20260514T030601_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "ed4123d55132568505f670f5127bd15f1127a7c967158309700fa4482b6ab4fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 修复完成\n\n### 1. Diff\n\n在 `src/importance_score.py` 第 151 行（up_proj 块之后）插入了 10 行 down_proj Taylor score 计算：\n\n```diff\n                     mlp_importance[layer_idx] += group_scores.cpu()\n \n+                # down_proj: [hidden, intermediate] — split on dim=1\n+                down_w = layer.mlp.down_proj.weight\n+                down_g = layer.mlp.down_proj.weight.grad\n+                if down_g is not None:\n+                    usable = n_groups * group_size\n+                    w_r = down_w[:, :usable].view(-1, n_groups, group_size)\n+                    g_r = down_g[:, :usable].view(-1, n_groups, group_size)\n+                    taylor = (w_r * g_r).float()\n+                    group_scores = taylor.permute(1, 0, 2).reshape(n_groups, -1).norm(dim=1)\n+                    mlp_importance[layer_idx] += group_scores.cpu()\n+\n         if (batch_idx + 1) % 50 == 0:\n```\n\n维度处理：down_proj shape `[hidden_size, intermediate_size]`，channel group 在 dim=1 上切分（`down_w[:, :usable].view(-1, n_groups, group_size)`），然后 `permute(1,0,2)` 把 group 维提前再 flatten + L2 norm。\n\n### 2. Dry-run 验证\n\n- `--help` 正常\n- `n_samples=2` dry-run 在 cuda:0 上完成，无报错，生成 `/tmp/test_importance.pt`（19KB）\n- 28 层全部输出 importance range（score 全 0 是 2-sample bfloat16 的数值精度问题，非代码 bug）\n\n### 3. MLP importance 计算现为\n\n```\nI_mlp(i) = ||w_gate[i] * grad_gate[i]||_2\n         + ||w_up[i] * grad_up[i]||_2\n         + ||w_down[:,i] * grad_down[:,i]||_2\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-importance-downproj.md"
+}

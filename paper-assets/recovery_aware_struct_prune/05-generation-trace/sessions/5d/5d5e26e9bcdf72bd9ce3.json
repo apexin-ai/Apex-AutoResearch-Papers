@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d5e26e9bcdf72bd9ce3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag check grpo warmup and status",
+  "task_key": "worker_diag_check-grpo-warmup-and-status_20260515T193516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_check-grpo-warmup-and-status_20260515T193516_result.json",
+    "occurrence": 1,
+    "bytes": 1410,
+    "sha256": "2b9b19158a5d4449596593745214fb667e06cc2ad1d18c84b4a18a311c0a40b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Warmup 配置\n- **train_grpo_v5.py 中无任何 warmup 参数**（grep 返回空）\n- GRPOConfig（行 242-269）未设置 `warmup_ratio` 或 `warmup_steps`\n- 使用 TRL/transformers 默认值：**warmup_ratio=0.0, warmup_steps=0**（无 warmup）\n\n### num_generations\n- argparse 默认值：**4**（行 194）\n- 实际运行命令未指定 `--num_generations`，使用默认值 **4**\n\n### learning_rate\n- 实际运行：`--learning_rate 1e-6`\n\n### Standard v8 当前状态\n| 指标 | 值 |\n|------|-----|\n| PID | 534667，已运行 **4h52m** |\n| GPU | cuda:0 = 0 MiB (0%), cuda:1 = 71701/97887 MiB (**99%**) |\n| 磁盘 | /root/autodl-tmp/ 177G/250G，**剩余 74G (29%)** |\n| 当前进度 | completions 到 **step 40**（completions_00040.parquet, May 16 03:23） |\n| trainer_state.json | **不存在** |\n| wandb 目录 | **不存在** |\n\n### Completions 时间线（估算速度）\n| 文件 | 时间 | 间隔 |\n|------|------|------|\n| completions_00010 | May 15 23:55 | — |\n| completions_00020 | May 16 01:04 | ~69 min |\n| completions_00030 | May 16 02:15 | ~71 min |\n| completions_00040 | May 16 03:23 | ~68 min |\n\n~70 min / 10 steps → **预计 step 50 在 May 16 04:30 左右**。\n\n### checkpoint-50\n**尚未保存**（save_steps=50，当前约 step 40）。预计约 1 小时后到达 step 50 并触发首次 checkpoint 保存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-check-grpo-warmup-and-status.md"
+}

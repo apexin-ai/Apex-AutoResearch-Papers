@@ -1,0 +1,936 @@
+{
+  "schema_version": "1.0",
+  "id": "5d2cbe0fd3c61ed394ca",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ops registry housekeeping",
+  "task_key": "worker_ops_registry-housekeeping_20260515T024745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_registry-housekeeping_20260515T024745.jsonl",
+    "occurrence": 1,
+    "bytes": 44374,
+    "sha256": "168694a65e194744c1a27c63065aca5618532a469cf7f620c415d1cac962ca94"
+  },
+  "statistics": {
+    "messages": 45,
+    "user_turns": 0,
+    "tool_calls": 22,
+    "roles": {
+      "tool_call": 22,
+      "tool_result": 22,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T02:49:51.705176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/experiment_plan.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T02:49:51.705612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\texperiments:\n2\t- id: plan_001\n3\t  claim: 1\n4\t  description: Full GSM8K eval (1319 samples) for baseline + RASP_20 + Standard_20.\n5\t    Currently only N=100 — need full test set for tight CIs (±2.4pp vs ±9pp).\n6\t  priority: P0\n7\t  gpu_budget_hours: 5\n8\t  deps: []\n9\t  registry_id: null\n10\t  status_note: baseline eval was running on GPU0, may be done\n11\t- id: plan_002\n12\t  claim: 1\n13\t  description: SFT warmup recovery for RASP_20 and Standard_20. Teacher-forcing on\n14\t    GSM8K train gold solutions to restore basic generation ability (fix no-EOS problem).\n15\t    Both models in parallel on 2 GPUs.\n16\t  priority: P0\n17\t  gpu_budget_hours: 10\n18\t  deps: []\n19\t  registry_id: sft_rasp_20\n20\t  status_note: DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success\n21\t- id: plan_003\n22\t  claim: 1\n23\t  description: GRPO recovery on SFT-warmed models. RASP_20 and Standard_20 in parallel.\n24\t    This is the core MVP-completion experiment — demonstrate RASP enables RLVR recovery\n25\t    while Standard cannot recover.\n26\t  priority: P0\n27\t  gpu_budget_hours: 35\n28\t  deps:\n29\t  - plan_002\n30\t  registry_id: grpo_stage2_rasp_20\n31\t  status_note: RUNNING. Paired with grpo_stage2_standard_20 (control). cuda:0=RASP, cuda:1=Standard\n32\t- id: plan_004\n33\t  claim: 1\n34\t  description: Full GSM8K eval (1319 samples) for all recovered models. Final numbers\n35\t    for paper Table 1.\n36\t  priority: P0\n37\t  gpu_budget_hours: 8\n38\t  deps:\n39\t  - plan_003\n40\t  registry_id: null\n41\t- id: plan_005\n42\t  claim: 1\n43\t  description: GRASPrune baseline at 20% sparsity. Clone repo, run gate training,\n44\t    eval post-prune, then SFT→GRPO recovery. Primary external baseline (ACL 2026 SOTA).\n45\t  priority: P0\n46\t  gpu_budget_hours: 30\n47\t  deps: []\n48\t  registry_id: null\n49\t  status_note: GRASPrune research memo in memory.md, Qwen-compatible\n50\t- id: plan_006\n51\t  claim: 1\n52\t  description: Multi-seed RASP_20 + Standard_20 post-prune eval (5 seeds total incl.\n53\t    seed 42). Dream reviewers flagged 3 s\n…[truncated 4637 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T02:49:51.705908+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T02:49:51.706064+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T02:49:51.706202+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'sft_rasp_20'}"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T02:49:51.706379+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0412}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T02:49:51.706510+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'sft_standard_20'}"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T02:49:51.706649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0424}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T02:49:51.706768+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'grpo_stage2_rasp_20'}"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T02:49:51.706891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0556}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T02:49:51.707005+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "filters": "{'exp_id': 'grpo_stage2_standard_20'}"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T02:49:51.707124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.045}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T02:49:51.707238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/eval_results/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T02:49:51.707413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T02:49:51.707564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "fields": "['*']",
+              "limit": "0"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T02:49:51.707968+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_standard_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:37:34.863Z\\\", \\\"updated_at\\\": \\\"2026-05-15T01:13:31.529Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --num_train_epochs 2 --learning_rate 2e-5\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"249655\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:47:25.361Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"wall_clock_seconds\\\": 2999.5, \\\"gpu_hours\\\": 0.83}, \\\"hypothesis\\\": \\\"D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T00:28:23.640Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T00:28:25.338475+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.7, \\\"token_accuracy\\\": 0.83, \\\"eos_rate_greedy_100\\\": 0.99, \\\"eos_rate_sampling_5\\\": 1, \\\"greedy_accuracy_100\\\": 0.64, \\\"avg_gen_length\\\": 176.3, \\\"total_steps\\\": 1870, \\\"train_time_min\\\": 37}, \\\"completed_at\\\": \\\"2026-05-15T00:37:24.899Z\\\"}, \\\"sft_rasp_20\\\": {\n…[truncated 20857 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T02:49:51.708144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"*eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T02:49:51.708380+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"*.json\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T02:49:51.708574+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gpu1_all.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/rasp_eval.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/standard_eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T02:49:51.708730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-935/config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-935/generation_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-935/tokenizer_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-935/tokenizer.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-935/trainer_state.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-1870/config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-1870/generation_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-1870/tokenizer_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-1870/tokenizer.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/checkpoint-1870/trainer_state.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/generation_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/tokenizer_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/tokenizer.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-935/config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-935/generation_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-935/tokenizer_config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-935/tokenizer.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-935/trainer_state.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-1870/config.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/checkpoint-1870/generation_config.json\\\\n/root/autodl-tmp/recovery_aware_str\n…[truncated 686 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T02:49:51.708917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_results/rasp_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T02:49:51.709084+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[GPU0] RASP sampling eval starting...\\\\n2026-05-15 08:40:21,616 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\\n2026-05-15 08:40:22,318 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-15 08:42:09,558 [INFO] Loading GSM8K test set...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-15 08:43:29,759 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-15 08:43:29,759 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-15 08:43:30,761 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 07:50:44 2026).\\\\n2026-05-15 08:43:30,763 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 07:50:44 2026).\\\\n2026-05-15 08:43:30,820 [INFO] Evaluating on 100 test samples\\\\n2026-05-15 08:43:30,823 [INFO] Generation config: do_sample=True, temperature=0.7\\\\n\\\\rEvaluating:   0%|          | 0/100 [00:00<?, ?it/s]\\\\rEvaluating:   1%|          | 1/100 [00:03<05:54,  3.58s/it]\\\\rEvaluating:   2%|▏         | 2/100 [00:09<07:58,  4.88s/it]\\\\rEvaluating:   3%|▎         | 3/100 [00:10<05:13,  3.23s/it]\\\\rEvaluating:   4%|▍         | 4/100 [00:13<05:02,  3.16s/it]\\\\rEvaluating:   5%|▌  \n…[truncated 426 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T02:49:51.709228+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_results/standard_eval.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T02:49:51.709402+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name \"*eval*\" -not -path \"*/checkpoint*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T02:49:51.709528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "find /root/recovery_aware_struct_prune/ -name \"*eval*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T02:49:51.709705+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[GPU1] Standard sampling eval starting...\\\\n2026-05-15 08:40:21,646 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\\n2026-05-15 08:40:22,378 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-15 08:42:11,417 [INFO] Loading GSM8K test set...\\\\n'[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\n2026-05-15 08:43:31,638 [WARNING] '[Errno 101] Network is unreachable' thrown while requesting HEAD https://huggingface.co/datasets/openai/gsm8k/resolve/740312add88f781978c0658806c59bc2815b9866/gsm8k.py\\\\nRetrying in 1s [Retry 1/5].\\\\n2026-05-15 08:43:31,638 [WARNING] Retrying in 1s [Retry 1/5].\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\n2026-05-15 08:43:32,640 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 07:50:44 2026).\\\\n2026-05-15 08:43:32,642 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 15 07:50:44 2026).\\\\n2026-05-15 08:43:32,714 [INFO] Evaluating on 100 test samples\\\\n2026-05-15 08:43:32,717 [INFO] Generation config: do_sample=True, temperature=0.7\\\\n\\\\rEvaluating:   0%|          | 0/100 [00:00<?, ?it/s]\\\\rEvaluating:   1%|          | 1/100 [00:02<04:14,  2.57s/it]\\\\rEvaluating:   2%|▏         | 2/100 [00:11<09:51,  6.04s/it]\\\\rEvaluating:   3%|▎         | 3/100 [00:12<06:26,  3.99s/it]\\\\rEvaluating:   4%|▍         | 4/100 [00:14<05:04,  3.18s/it]\\\\rEvaluating: \n…[truncated 1191 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T02:49:51.709880+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gpu1_all.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/rasp_eval.log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_results/standard_eval.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T02:49:51.710022+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\n/root/recovery_aware_struct_prune/src/__pycache__/eval_gsm8k.cpython-312.pyc\\\\n/root/recovery_aware_struct_prune/src/run_eval_25.sh\\\\n/root/recovery_aware_struct_prune/src/run_post_recovery_eval.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_d008.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_d008_parallel.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_all.sh\\\\n/root/recovery_aware_struct_prune/src/run_sft_eval.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval.sh\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_rasp_35.json\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_standard_35.json\\\\n/root/recovery_aware_struct_prune/results/eval_baseline_7b_quick.json\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_standard_35_v3_quick.json\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_rasp_35_v3_quick.json\\\\n/root/recovery_aware_struct_prune/results/eval_baseline_7b_quick2.json\\\\n/root/recovery_aware_struct_prune/results/eval_baseline_7b_quick_fixed.json\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_rasp_20_quick.json\\\\n/root/recovery_aware_struct_prune/results/eval_pruned_standard_20_quick.json\\\\n/root/recovery_aware_struct_prune/results/eval_all_master.log\\\\n/root/recovery_aware_struct_prune/results/eval_all_gpu1.log\\\\n/root/recovery_aware_struct_prune/results/eval_all_gpu0.log\\\\n/root/recovery_aware_struct_prune/results/eval_sft_rasp_20_combined.json\\\\n/root/recovery_aware_struct_prune/results/eval_sft_standard_20_combined.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T02:49:51.710190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_rasp_20_combined.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T02:49:51.710354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_standard_20_combined.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T02:49:51.710528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\\\\\",\\\\n  \\\\\\\"greedy_accuracy\\\\\\\": 0.57,\\\\n  \\\\\\\"greedy_correct\\\\\\\": 57,\\\\n  \\\\\\\"greedy_total\\\\\\\": 100,\\\\n  \\\\\\\"greedy_eos_rate\\\\\\\": 0.99,\\\\n  \\\\\\\"greedy_avg_len\\\\\\\": 179.83,\\\\n  \\\\\\\"greedy_max_len\\\\\\\": 4096,\\\\n  \\\\\\\"greedy_min_len\\\\\\\": 59,\\\\n  \\\\\\\"sampling_eos_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"sampling_samples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Jared is trying to increase his typing speed. He starts with 47 words per minute\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 119,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, I will find Jared's typing speed after one lesson by adding his increase of 5 words per minute to his initial speed of 47 WPM, resulting in a speed of 52 WPM.\\\\\\\\nThen, I will find the average of t\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Jordan has 2 children who wear diapers.  Each child requires 5 diaper changes pe\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 151,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, I will calculate the total number of diapers that need to be changed per day by multiplying the number of children by the number of changes each child makes per day. This gives us 2 * 5 = <<2*5\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"A wooden bridge can carry no more than 5000 pounds. A delivery truck filled with\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 82,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"The maximum weight the truck can take is 5000 - 3755 = <<5000-3755=1245>>1245 pounds.\\\\\\\\nThe maximum number of boxes that can be loaded is 1245 / 15 = <<1245/15=86>>86.\\\\\\\\n#### 86\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Tim has a box with 7 blue shoe boxes and 9 red shoe boxes. If he uses 3 blue sho\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 217,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First find the total number of blue shoe boxes by adding the number of blue boxes to the number of red boxes: 7 boxes + 9 boxes \n…[truncated 626 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T02:49:51.710788+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\\\\\",\\\\n  \\\\\\\"greedy_accuracy\\\\\\\": 0.64,\\\\n  \\\\\\\"greedy_correct\\\\\\\": 64,\\\\n  \\\\\\\"greedy_total\\\\\\\": 100,\\\\n  \\\\\\\"greedy_eos_rate\\\\\\\": 0.99,\\\\n  \\\\\\\"greedy_avg_len\\\\\\\": 176.31,\\\\n  \\\\\\\"greedy_max_len\\\\\\\": 4096,\\\\n  \\\\\\\"greedy_min_len\\\\\\\": 43,\\\\n  \\\\\\\"sampling_eos_rate\\\\\\\": 1.0,\\\\n  \\\\\\\"sampling_samples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Jared is trying to increase his typing speed. He starts with 47 words per minute\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 147,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"The first measurement is 47 WPM.\\\\\\\\nThe second measurement is 52 WPM.\\\\\\\\nThe third measurement is 52 WPM + 5 WPM = <<52+5=57>>57 WPM.\\\\\\\\nThe sum of the three measurements is 47 WPM + 52 WPM + 57 WPM = <<47+52+\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Jordan has 2 children who wear diapers.  Each child requires 5 diaper changes pe\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 65,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"The 2 children require 2 x 5 = <<2*5=10>>10 diaper changes per day.\\\\\\\\nHalf of the diapers are changed by Jordan's wife, so Jordan needs to change 10/2 = <<10/2=5>>5 diapers per day.\\\\\\\\n#### 5\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"A wooden bridge can carry no more than 5000 pounds. A delivery truck filled with\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 128,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"The total weight that can pass over the bridge is 5000 pounds.\\\\\\\\nThe combined weight of the driver and the empty truck is 3755 pounds, meaning the truck can carry an additional 5000 - 3755 = <<5000-3755\\\\\\\"\\\\n    },\\\\n    {\\\\n      \\\\\\\"q\\\\\\\": \\\\\\\"Tim has a box with 7 blue shoe boxes and 9 red shoe boxes. If he uses 3 blue sho\\\\\\\",\\\\n      \\\\\\\"len\\\\\\\": 207,\\\\n      \\\\\\\"eos\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, we need to determine the number of blue shoe boxes Tim used. Since he used 3 out of the 7 bl\n…[truncated 648 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T02:49:51.711020+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/experiment_plan.yaml",
+              "old_string": "  registry_id: sft_rasp_20\n  status_note: DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success",
+              "new_string": "  registry_id: [sft_rasp_20, sft_standard_20]\n  status_note: DONE. sft_rasp_20 (57%) + sft_standard_20 (64%) both success"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T02:49:51.711195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T02:49:51.711357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/experiment_plan.yaml",
+              "old_string": "  registry_id: grpo_stage2_rasp_20\n  status_note: RUNNING. Paired with grpo_stage2_standard_20 (control). cuda:0=RASP, cuda:1=Standard",
+              "new_string": "  registry_id: [grpo_stage2_rasp_20, grpo_stage2_standard_20]\n  status_note: RUNNING. Paired with grpo_stage2_standard_20 (control). cuda:0=RASP, cuda:1=Standard"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T02:49:51.711514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/experiment_plan.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T02:49:51.711657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sft_rasp_20",
+              "field": "metrics",
+              "value": "{'train_loss_final': 0.64, 'train_loss_initial': 1.86, 'token_accuracy': 0.83, 'greedy_accuracy_100': 0.57, 'greedy_correct': 57, 'greedy_total': 100, 'eos_rate_greedy_100': 0.99, 'greedy_avg_len': 179.83, 'greedy_min_len': 59, 'greedy_max_len': 4096, 'sampling_eos_rate_5': 1, 'total_steps': 1870, 'train_time_min': 37}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T02:49:51.711849+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_rasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:37:33.162Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:49:30.056Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --num_train_epochs 2 --learning_rate 2e-5\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"249577\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_rasp_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:47:23.413Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_rasp_20\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\", \\\"wall_clock_seconds\\\": 2961.2, \\\"gpu_hours\\\": 0.82}, \\\"hypothesis\\\": \\\"D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T00:28:21.036Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T00:28:21.234043+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.86, \\\"token_accuracy\\\": 0.83, \\\"greedy_accuracy_100\\\": 0.57, \\\"greedy_correct\\\": 57, \\\"greedy_total\\\": 100, \\\"eos_rate_greedy_100\\\": 0.99, \\\"greedy_avg_len\\\": 179.83, \\\"greedy_min_len\\\": 59, \\\"greedy_max_len\\\": 4096, \\\"sampling_eos_rate_5\\\": 1, \\\"total_steps\\\": 1870, \\\"train_time_min\\\": 37}, \\\"completed_at\\\": \\\"2026-05-15T00:36:44.657Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapse\n…[truncated 23 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T02:49:51.712012+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sft_standard_20",
+              "field": "metrics",
+              "value": "{'train_loss_final': 0.64, 'train_loss_initial': 1.7, 'token_accuracy': 0.83, 'greedy_accuracy_100': 0.64, 'greedy_correct': 64, 'greedy_total': 100, 'eos_rate_greedy_100': 0.99, 'greedy_avg_len': 176.31, 'greedy_min_len': 43, 'greedy_max_len': 4096, 'sampling_eos_rate_5': 1, 'total_steps': 1870, 'train_time_min': 37}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T02:49:51.712203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_standard_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:37:34.863Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:49:31.984Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --num_train_epochs 2 --learning_rate 2e-5\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"249655\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:47:25.361Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"wall_clock_seconds\\\": 2999.5, \\\"gpu_hours\\\": 0.83}, \\\"hypothesis\\\": \\\"D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T00:28:23.640Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T00:28:25.338475+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.7, \\\"token_accuracy\\\": 0.83, \\\"greedy_accuracy_100\\\": 0.64, \\\"greedy_correct\\\": 64, \\\"greedy_total\\\": 100, \\\"eos_rate_greedy_100\\\": 0.99, \\\"greedy_avg_len\\\": 176.31, \\\"greedy_min_len\\\": 43, \\\"greedy_max_len\\\": 4096, \\\"sampling_eos_rate_5\\\": 1, \\\"total\n…[truncated 154 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T02:49:51.712377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sft_rasp_20",
+              "field": "notes",
+              "value": "SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Greedy eval N=100: 57% accuracy, avg_len=179.83, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_rasp_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T02:49:51.712562+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_rasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:37:33.162Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:49:39.222Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 --num_train_epochs 2 --learning_rate 2e-5\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"249577\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_rasp_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:47:23.413Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_rasp_20\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\\\", \\\"wall_clock_seconds\\\": 2961.2, \\\"gpu_hours\\\": 0.82}, \\\"hypothesis\\\": \\\"D013 Stage 1: SFT warmup on RASP-pruned model (20%, 29% GSM8K) to restore EOS generation ability before GRPO Stage 2.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T00:28:21.036Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T00:28:21.234043+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT warmup SUCCESS. EOS恢复100% (5/5测试). Loss 1.86→0.64, token_accuracy 83%. 平均生成77 tokens, 无重复循环, 遵循GSM8K格式. 训练时间37min, 1870 steps (2 epochs). Greedy eval N=100: 57% accuracy, avg_len=179.83, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_rasp_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20/\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.86, \\\"token_accuracy\\\": 0.83, \\\"greedy_accuracy_100\\\": 0.57, \\\"greedy_correct\\\": 57, \\\"greedy_total\\\": 100, \\\"eos_rate_greedy_100\\\": 0.99, \\\"greedy_avg_len\\\": 179.83, \\\"greedy_mi\n…[truncated 227 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T02:49:51.712710+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "sft_standard_20",
+              "field": "notes",
+              "value": "SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Greedy eval N=100: 64% accuracy, avg_len=176.31, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_standard_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T02:49:51.712893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_standard_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:37:34.863Z\\\", \\\"updated_at\\\": \\\"2026-05-15T02:49:41.141Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --num_train_epochs 2 --learning_rate 2e-5\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"249655\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:47:25.361Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20\\\", \\\"wall_clock_seconds\\\": 2999.5, \\\"gpu_hours\\\": 0.83}, \\\"hypothesis\\\": \\\"D013 Stage 1: SFT warmup on Standard-pruned model (20%, 1% GSM8K) as negative control. Expected: SFT partially recovers format but reasoning remains limited.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T00:28:23.640Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T00:28:25.338475+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT warmup SUCCESS (负对照). EOS恢复100% (3/3测试). Loss 1.70→0.64, token_accuracy 83%. 但推理准确率有限(2/3, 12+15算成41), 说明standard pruning破坏了关键推理结构, SFT只恢复了格式+EOS, 无法完全恢复数学推理. 平均生成49 tokens, 无重复循环. 训练37min, 1870 steps. Greedy eval N=100: 64% accuracy, avg_len=176.31, eos_rate=99%. N=100 sampling eval was killed (OOM by concurrent GRPO). Eval JSON: /root/recovery_aware_struct_prune/results/eval_sft_standard_20_combined.json. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"train_loss_initial\\\": 1.7, \\\"token_accuracy\\\": 0.83, \\\"greedy_accu\n…[truncated 361 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T02:49:51.713075+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**任务 1 — experiment_plan.yaml 更新：**\n- `plan_002.registry_id`: `sft_rasp_20` → `[sft_rasp_20, sft_standard_20]`\n- `plan_003.registry_id`: `grpo_stage2_rasp_20` → `[grpo_stage2_rasp_20, grpo_stage2_standard_20]`\n\n**任务 2 — Registry metrics 更新：**\n\n两个 SFT 实验的 metrics 已从 eval JSON 补全（来源：`/root/recovery_aware_struct_prune/results/eval_sft_*_combined.json`，N=100 greedy）：\n\n| 指标 | sft_rasp_20 | sft_standard_20 |\n|------|-------------|-----------------|\n| greedy_accuracy | 57% (57/100) | 64% (64/100) |\n| eos_rate_greedy | 0.99 | 0.99 |\n| greedy_avg_len | 179.83 | 176.31 |\n| greedy_min_len | 59 | 43 |\n| greedy_max_len | 4096 | 4096 |\n\n新增字段：`greedy_correct`, `greedy_total`, `greedy_min_len`, `greedy_max_len`。原有 metrics 数值确认与 JSON 一致。\n\n注意：N=100 sampling eval（temperature=0.7）在两个模型上都被 kill 了（RASP 跑到 6%，Standard 跑到 18%），应该是 GRPO 训练抢了显存。`sampling_eos_rate_5` 仍是 5 样本快测数据。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_registry-housekeeping_20260515T024745"
+          },
+          "id": "event-000045"
+        }
+      ],
+      "message_count": 45
+    }
+  ],
+  "readable_path": "readable/conversations/ops-registry-housekeeping.md"
+}

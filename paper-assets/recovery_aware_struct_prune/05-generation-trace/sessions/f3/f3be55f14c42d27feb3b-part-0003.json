@@ -1,0 +1,449 @@
+{
+  "schema_version": "1.0",
+  "session_id": "f3be55f14c42d27feb3b",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 361,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 内存 95.4GB/97.9GB（97.5%），非常接近满！两个 SFT + 我们的 eval 可能导致 OOM。检查是否出错。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "ee12236a-77c7-40b6-ab5f-b9620be221b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JxVqoUUr1uzHQYbBt7U1zH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 91075,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 927
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000361"
+        },
+        {
+          "source_line": 362,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Pwhk117AXecAhuwMKhPiaD",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tail -10 /root/recovery_aware_struct_prune/logs/eval_standard_25.log 2>/dev/null; echo \"---\"; nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "2be5c9b7-8247-48af-b1ad-82cb75112da9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JxVqoUUr1uzHQYbBt7U1zH",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 927,
+                "cache_read_input_tokens": 91075,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 927
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000362"
+        },
+        {
+          "source_line": 363,
+          "timestamp": "2026-05-16T05:33:36.340Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Pwhk117AXecAhuwMKhPiaD",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n---\\\\n585623, 29644 MiB\\\\n591607, 47696 MiB\\\\n591877, 47696 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "03980790-819c-4a70-a9b4-7fa8a5fc2cb3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n---\\\\n585623, 29644 MiB\\\\n591607, 47696 MiB\\\\n591877, 47696 MiB\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.82}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n---\\n585623, 29644 MiB\\n591607, 47696 MiB\\n591877, 47696 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"
+              }
+            }
+          },
+          "id": "event-000363"
+        },
+        {
+          "source_line": 364,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "PID 591877 now shows 47696 MiB (up from 11780 MiB earlier). Two SFT processes each using 47.7GB = 95.4GB. Our eval (PID 592221) is NOT in nvidia-smi at all. It seems like the SFT processes have taken all the GPU memory!\n\nTotal: 47696 + 47696 = 95392 MiB on GPU 1 (out of 97887 MiB). That leaves only 2.4GB for our eval. The model can't be loaded.\n\n\nThe SFT jobs are consuming nearly all available GPU memory, which means the eval process is likely stuck waiting for resources or has already crashed. I need to investigate whether it's still running or if it failed to start.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "bc6c2ce2-aee2-4b5f-8fc3-084ac4f06258",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GsREhU2ZW3afZ4AgMbrnXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1011,
+                "cache_read_input_tokens": 92002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1011
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000364"
+        },
+        {
+          "source_line": 365,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 训练各占 47.7GB = 95.4GB，GPU 1 几乎满了。我们的 eval 无法加载模型。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "bbb3f6dc-f969-44a8-87f6-04cada8388b1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GsREhU2ZW3afZ4AgMbrnXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1011,
+                "cache_read_input_tokens": 92002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1011
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000365"
+        },
+        {
+          "source_line": 366,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MiF8TcduM6NRJNWkbuTsPs",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "ps -p 592221 -o pid,state,etime= 2>/dev/null; tmux list-sessions; echo \"---\"; tail -3 /root/recovery_aware_struct_prune/logs/eval_standard_25.log",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "67421ab8-4867-4059-9f85-5974a4542ca4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GsREhU2ZW3afZ4AgMbrnXq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1011,
+                "cache_read_input_tokens": 92002,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1011
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000366"
+        },
+        {
+          "source_line": 367,
+          "timestamp": "2026-05-16T05:33:43.775Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MiF8TcduM6NRJNWkbuTsPs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID S            \\\\n592221 R       01:40\\\\neval_grpo_rasp_v9_step10: 1 windows (created Sat May 16 12:57:36 2026)\\\\neval_standard_25: 1 windows (created Sat May 16 13:32:03 2026)\\\\nsft_standard_25: 1 windows (created Sat May 16 13:31:07 2026)\\\\n---\\\\n2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "96a599eb-5fc0-461a-a977-ceb1f41aa7d6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID S            \\\\n592221 R       01:40\\\\neval_grpo_rasp_v9_step10: 1 windows (created Sat May 16 12:57:36 2026)\\\\neval_standard_25: 1 windows (created Sat May 16 13:32:03 2026)\\\\nsft_standard_25: 1 windows (created Sat May 16 13:31:07 2026)\\\\n---\\\\n2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID S            \\n592221 R       01:40\\neval_grpo_rasp_v9_step10: 1 windows (created Sat May 16 12:57:36 2026)\\neval_standard_25: 1 windows (created Sat May 16 13:32:03 2026)\\nsft_standard_25: 1 windows (created Sat May 16 13:31:07 2026)\\n---\\n2026-05-16 13:32:07,893 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25\\n2026-05-16 13:32:08,567 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+              }
+            }
+          },
+          "id": "event-000367"
+        },
+        {
+          "source_line": 368,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The eval process (592221) is in state R (running) but the log hasn't progressed past model detection (13:32:08). It's been 1:40 and the model still hasn't loaded to GPU.\n\nThere's a \"sft_standard_25\" tmux session with TWO SFT training processes (591607 and 591877) taking up all GPU 1 memory. Our eval can't load.\n\nOptions:\n1. Wait for the SFT training to finish - this could take hours\n2. Kill one or both SFT processes to free GPU memory - but I shouldn't kill jobs from other tasks without permission\n\n\n3. Kill the eval and wait for GPU space\n\nThe sft_standard_25 session started at 13:31:07, just before my eval began, so it was likely launched by another agent. I can't terminate their jobs without permission. I'm stuck waiting for their training to complete or free up memory, though there's a slim chance CUDA garbage collection or memory fluctuations during their forward passes might eventually give the eval enough space to load.\n\nWith the two SFT processes consuming 95.4GB of the 97.9GB available, my 12GB model has nowhere to fit. The eval will almost certainly crash with an out-of-memory error when it tries to allocate space, so I need to check whether it's still waiting for memory or has already failed.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "71533671-651c-4fbd-a782-d21f3a149d4f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WQdwR3j6LADquQ2XamJ18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 93013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 799
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000368"
+        },
+        {
+          "source_line": 369,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 进程在运行但卡在模型加载（GPU 1 已被两个 SFT 训练占满 95.4GB/97.9GB）。检查 eval 是否会 OOM。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "adec6258-13ac-460b-9b44-2587202b93bb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WQdwR3j6LADquQ2XamJ18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 93013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 799
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000369"
+        },
+        {
+          "source_line": 370,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XuoHvjfuFSDoRPqftkenNt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-23072",
+                "command": "tail -20 /root/recovery_aware_struct_prune/logs/eval_standard_25.log 2>/dev/null",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "6c745f4c-442b-47be-964e-814c167f724b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019WQdwR3j6LADquQ2XamJ18",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 799,
+                "cache_read_input_tokens": 93013,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 799
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000370"
+        },
+        {
+          "source_line": 371,
+          "timestamp": "2026-05-16T05:33:58.441Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XuoHvjfuFSDoRPqftkenNt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 3650, in to\\\\n    return super().to(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1381, in to\\\\n    return self._apply(convert)\\\\n           ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  [Previous line repeated 2 more times]\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 964, in _apply\\\\n    param_applied = fn(param)\\\\n                    ^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1367, in convert\\\\n    return t.to(\\\\n           ^^^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 8.88 MiB is free. Process 591607 has 46.58 GiB memory in use. Process 591877 has 46.58 GiB memory in use. Including non-PyTorch memory, this process has 1.79 GiB memory in use. Of the allocated memory 1.23 GiB is allocated by PyTorch, and 17.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "c8249485-c4b3-4bce-a086-0fb076e7c31a",
+            "uuid": "3b2317d4-8a7b-4d4f-95f8-ae6eb53c47d6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\\\\\", line 3650, in to\\\\n    return super().to(*args, **kwargs)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1381, in to\\\\n    return self._apply(convert)\\\\n           ^^^^^^^^^^^^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 933, in _apply\\\\n    module._apply(fn)\\\\n  [Previous line repeated 2 more times]\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 964, in _apply\\\\n    param_applied = fn(param)\\\\n                    ^^^^^^^^^\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\\\\\", line 1367, in convert\\\\n    return t.to(\\\\n           ^^^^^\\\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 8.88 MiB is free. Process 591607 has 46.58 GiB memory in use. Process 591877 has 46.58 GiB memory in use. Including non-PyTorch memory, this process has 1.79 GiB memory in use. Of the allocated memory 1.23 GiB is allocated by PyTorch, and 17.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"  File \\\"/root/miniconda3/lib/python3.12/site-packages/transformers/modeling_utils.py\\\", line 3650, in to\\n    return super().to(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1381, in to\\n    return self._apply(convert)\\n           ^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 933, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 933, in _apply\\n    module._apply(fn)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 933, in _apply\\n    module._apply(fn)\\n  [Previous line repeated 2 more times]\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 964, in _apply\\n    param_applied = fn(param)\\n                    ^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/torch/nn/modules/module.py\\\", line 1367, in convert\\n    return t.to(\\n           ^^^^^\\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 26.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 8.88 MiB is free. Process 591607 has 46.58 GiB memory in use. Process 591877 has 46.58 GiB memory in use. Including non-PyTorch memory, this process has 1.79 GiB memory in use. Of the allocated memory 1.23 GiB is allocated by PyTorch, and 17.98 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"
+              }
+            }
+          },
+          "id": "event-000371"
+        }
+      ]
+    }
+  ]
+}

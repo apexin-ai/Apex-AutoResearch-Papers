@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1fb1b3b281abd42cf52",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup urgent",
+  "task_key": "worker_ops_westb-disk-cleanup-urgent_20260515T193136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-disk-cleanup-urgent_20260515T193136_result.json",
+    "occurrence": 1,
+    "bytes": 223,
+    "sha256": "86427d37f82df4dfcd5108b2046eebdf65060bbdd8e036c7c261a72f018b32c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n- **释放 74G**，数据盘从 250G/250G (100%) → 177G/250G (**71%**，可用 74G)\n- Standard v8 GRPO (PID 534667) 正常运行中\n- Step 50 checkpoint (~18-24GB) 有充足空间写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-urgent.md"
+}

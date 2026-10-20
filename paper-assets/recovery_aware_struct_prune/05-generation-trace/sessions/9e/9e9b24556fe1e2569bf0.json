@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e9b24556fe1e2569bf0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check disk and eval results",
+  "task_key": "worker_check_disk_and_eval_results_20260514T165550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_disk_and_eval_results_20260514T165550_result.json",
+    "occurrence": 1,
+    "bytes": 318,
+    "sha256": "fa75982f3426eeb4b93ad881fcbd73fea054a71503fb59f920ef9e3de521007b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n**总结：**\n- 磁盘已清理，172GB 可用\n- 3/5 个 eval 已完成：baseline 94%, rasp_20 29%, standard_20 1%\n- standard_25 和 rasp_25 被 GRPO 训练挤掉，需等训练完成后重跑\n- 初步结论：20% 剪枝下 RASP (29%) 远优于 standard (1%)，29 倍优势"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-disk-and-eval-results.md"
+}

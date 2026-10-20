@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6656d12bdfbecc72ca88",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops restart sft unpruned westd",
+  "task_key": "worker_ops_restart-sft-unpruned-westd_20260515T223655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_restart-sft-unpruned-westd_20260515T223655_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "50e6a93e5ed248d1fc74402d1f8b6a13ca6e9f60689d6e08711fd9cb2d5c4a9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已正常运行。\n\n**摘要：**\n- **PID**: 67546\n- **GPU**: cuda:1 (61770MiB, 96% utilization) ✓\n- **tmux session**: `sft_unpruned`\n- **进度**: 31/1870 steps (~1.05s/it)，loss 从 1.234 降到 0.913\n- **预计完成**: 1870 steps × ~1.05s ≈ 33 分钟，约 07:11 UTC"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-restart-sft-unpruned-westd.md"
+}

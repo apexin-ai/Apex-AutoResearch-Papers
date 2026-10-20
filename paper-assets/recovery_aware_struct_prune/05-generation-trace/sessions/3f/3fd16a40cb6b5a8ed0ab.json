@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fd16a40cb6b5a8ed0ab",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify sft running",
+  "task_key": "worker_ops_verify-sft-running_20260514T235847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify-sft-running_20260514T235847_result.json",
+    "occurrence": 1,
+    "bytes": 1119,
+    "sha256": "f18f998696031351e3db101408ad5352c04b91e2d1bc4f35e84ac94fdc143abf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 SFT 训练都在正常运行。汇总：\n\n## SFT 训练状态报告\n\n### GPU Health\n| GPU | 型号 | 温度 | 功耗 | 显存占用 | 利用率 |\n|-----|------|------|------|----------|--------|\n| 0 | RTX PRO 6000 Black (96GB) | 57°C | 299W/600W | 51.6GB/96GB | 77% |\n| 1 | RTX PRO 6000 Black (96GB) | 60°C | 372W/600W | 51.6GB/96GB | 79% |\n\nGPU 温度和功耗正常，双卡各跑一个训练进程（PID 249582, 249660）。\n\n### 训练进度\n\n| 任务 | 当前步数 | 总步数 | 进度 | 速度 | 已用时间 |\n|------|----------|--------|------|------|----------|\n| sft_rasp_20 | ~483/1870 | 1870 | **26%** | ~1.07s/it | ~8min38s |\n| sft_standard_20 | ~476/1870 | 1870 | **25%** | ~1.06s/it | ~8min27s |\n\n### 预计完成时间\n- 剩余步数：~1390 步\n- 速度：~1.07s/step\n- 剩余时间：**~25 分钟**\n- 预计完成：**~08:35 UTC（服务器时间）**\n\n两个 SFT 任务均正常推进，loss 日志中每 10 步打印一次（可通过 checkpoint 的 trainer_state.json 查看，目前还未保存第一个 checkpoint）。无报错，状态健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-sft-running.md"
+}

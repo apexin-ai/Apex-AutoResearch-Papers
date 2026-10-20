@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "745c843886e07fdbae5a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest cka only eval result",
+  "task_key": "worker_harvest_cka_only_eval_result_20260517T124229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_cka_only_eval_result_20260517T124229_result.json",
+    "occurrence": 1,
+    "bytes": 515,
+    "sha256": "da1ca14992721dbeea83b15db39acad274d449e77578705b78c9ace6464e6d4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval 状态：进行中**\n\n- PID 710618 仍在运行，已处理 **106/200** (53%)\n- 中间 checkpoint (100/200): **acc = 43.00%**, EOS rate = 54.00%, avg_len = 2538\n- 已运行 ~1h11m，平均 ~40s/sample，预计还需 ~63 min 完成\n- **cuda:0**: 72% utilization, 13003/97887 MiB\n- **cuda:1**: 80% utilization, 13003/97887 MiB（另有任务在跑）\n\n当前 accuracy 在 43-44% 区间波动（50样本时44%，100样本时43%）。需要等完成后才能获取最终结果和 stderr。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-cka-only-eval-result.md"
+}

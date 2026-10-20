@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4365f5c43dcd431b0ff1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check 30pct probe status",
+  "task_key": "worker_check_30pct_probe_status_20260520T050717",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_30pct_probe_status_20260520T050717_result.json",
+    "occurrence": 1,
+    "bytes": 859,
+    "sha256": "8c95aa1aff8b0912ec42098e330b8baaa47c472d629674d0f019d0e0ace2229d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇报\n\n### 原始进程 (PID 191446/191519)\n**已被 Terminated**。两个都在 43/1319 (~3.3%) 处被杀掉，大约在 12:44。\n\n### Retry 进程（正在运行）\n已经有人在 12:53 重启了两个 eval：\n\n| 方法 | PID | GPU | 进度 | 速度 |\n|------|-----|-----|------|------|\n| CKA-only 30% | 201928 | cuda:0 (85%, 11.5GB) | ~16/1319 | ~48s/sample |\n| Standard 30% | 202006 | cuda:1 (85%, 11.6GB) | ~16/1319 | ~48s/sample |\n\n### 预估完成时间\n1319 × 48s ≈ **17.6 小时**。已跑 ~15 分钟，剩余约 **17.3 小时**。\n\n**ETA: 明天 (5/21) ~06:00-06:30**。\n\n### 与 20% 的对比（待结果出来）\n- 20% post-prune: CKA-only ~31%, Standard ~1%, RASP ~31%\n- 30% post-prune: 预计 accuracy 会进一步下降\n\n目前无需操作，等明天早上结果出来后再更新 registry。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-30pct-probe-status.md"
+}

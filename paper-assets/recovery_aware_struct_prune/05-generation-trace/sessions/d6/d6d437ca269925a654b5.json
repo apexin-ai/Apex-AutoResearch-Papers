@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6d437ca269925a654b5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code disk cleanup restart gradient",
+  "task_key": "worker_code_disk_cleanup_restart_gradient_20260517T091327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_disk_cleanup_restart_gradient_20260517T091327_result.json",
+    "occurrence": 1,
+    "bytes": 1448,
+    "sha256": "e1ae4100179ad06306174d147ee6ae2f41a94ba37dbb115bff99c623d3aaa174"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 报告\n\n### Top 20 目录（删除前）\n| 大小 | 目录 |\n|------|------|\n| 15G | pruned_unstructured_20 |\n| 12G | sft_standard_20, sft_rasp_rlvr_20, sft_rasp_20, pruned_rasp_rlvr_20, pruned_rasp_alpha_1.0, pruned_rasp_alpha_0.0, pruned_random_20, **pruned_magnitude_20**, pruned_gradient_20, grpo_stage2_standard_20_v8, grpo_stage2_rasp_20_v9 |\n| 11G | sft_standard_25, sft_rasp_25, pruned_standard_30, pruned_standard_25, pruned_rasp_30, pruned_rasp_25, grpo_rasp_25 |\n| 5.5G | **sft_gradient_20**（之前磁盘满中断的残留） |\n\n### 删除结果\n- `pruned_magnitude_20` (12G) — 已删除\n- `sft_magnitude_20` — 不存在（之前未跑到 SFT 阶段）\n- `sft_gradient_20` (5.5G) — 已删除\n\n释放约 **17G** 空间。\n\n### 磁盘状态\n```\n/dev/md0  250G  234G  17G  94%  /root/autodl-tmp\n```\n\n### Gradient SFT 启动状态\n- **PID**: 697500\n- **Session**: scoring_ablation_v2\n- **GPU**: cuda:0 (12.5GB VRAM)\n- **进度**: 16/1870 steps, loss=1.703, ~35min 预估完成\n- **命令**: `CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path pruned_gradient_20 --output_dir sft_gradient_20 --gpu 0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42`\n\n### Random Eval 进度\n- **Session**: scoring_ablation_random\n- **GPU**: cuda:1 (12.9GB VRAM)\n- **进度**: 33/200 samples (16%), ~1.5h 剩余"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-disk-cleanup-restart-gradient.md"
+}

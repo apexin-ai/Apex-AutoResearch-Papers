@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "396c0f5cf52ff8fb9d2d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops submit next westb0 eval",
+  "task_key": "worker_ops_submit_next_westb0_eval_20260524T085922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_submit_next_westb0_eval_20260524T085922_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "06afe4e0917421d7ac25bdb45a95642bd8228e71bf693ce3d60ca382fd562ea5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提交完成。\n\n**结果：**\n- `eval_math500_sft_rasp_alpha3p0_20_fixed` → **RUNNING** on westb-23072 cuda:0, PID 369799\n  - checkpoint: `sft_rasp_alpha3p0_20/checkpoint-935`\n  - output: `results/eval_math500_sft_rasp_alpha3p0_20_fixed.json`\n- `eval_math500_grpo_rasp_alpha4p0_20_fixed` → **无可用 checkpoint**（`grpo_rasp_alpha4p0_20` 和 `grpo_alpha4_20` 均不存在于 westb）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-submit-next-westb0-eval.md"
+}

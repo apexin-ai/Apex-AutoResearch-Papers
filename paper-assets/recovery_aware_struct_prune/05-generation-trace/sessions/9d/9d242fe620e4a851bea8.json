@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d242fe620e4a851bea8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag grpo speed crisis",
+  "task_key": "worker_diag_grpo-speed-crisis_20260515T031634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_grpo-speed-crisis_20260515T031634_result.json",
+    "occurrence": 1,
+    "bytes": 4006,
+    "sha256": "f79861408c039563d57a4d3c45d9f7f561325827aa6a3fdfbf352b2f834caa67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No checkpoints saved yet (only `completions/` dir), so we can reuse the same output directories.\n\n---\n\n## 当前进度\n- **RASP**: step 1/500, 1h51m/step, 已运行 2h7m, ETA 922h (38.4天)\n- **Standard**: step 1/500, 1h52m/step, 已运行 2h7m, ETA 932h (38.8天)\n- GPU: 两块都 100% 利用率, ~52GB/98GB\n\n## 代码分析\n| 参数 | 当前值 | 来源 |\n|------|--------|------|\n| `num_generations` | **4** | 默认值（未显式传参） |\n| `per_device_train_batch_size` | **1** | 默认值 |\n| `gradient_accumulation_steps` | **4** | 默认值 |\n| `max_completion_length` | **4096** | 显式传参 |\n| `max_samples` | **2000** | 显式传参 |\n| vLLM | **未启用** | GRPOConfig 中无 `use_vllm`；且非均匀剪枝模型 intermediate_size=[8128,18944] 不兼容 vLLM |\n| 总 steps | **500** | 2000/(1×4) |\n\n## 瓶颈分析\n\n**主因：`max_completion_length=4096` + `num_generations=4`**\n\n每个 training step 需要生成 4 micro-batches × 4 completions = 16 个序列。TRL 的 batched generation 等待最长序列完成。即使 99% EOS rate @~180 tokens，16 个序列中至少一个不停止的概率 ~15%，此时该序列跑满 4096 tokens，拖慢整个 batch。\n\nvLLM 不可用（非均匀剪枝架构 + 版本不兼容 0.18.1 vs 支持的 0.11-0.17.1），只能优化参数。\n\n## 重启方案\n\n**建议：Kill 两个进程，重启。** 无 checkpoint 可 resume，且参数需要改。\n\n### 参数变更\n\n| 参数 | 旧值 | 新值 | 理由 |\n|------|------|------|------|\n| `max_completion_length` | 4096 | **384** | SFT avg ~180 tokens, 2.1x 安全余量，封死 worst-case |\n| `num_generations` | 4 | **2** | GRPO 最小值，generation 开销减半 |\n| `max_samples` | 2000 | **1000** | 步数 500→250，总时间减半 |\n| `save_steps` | 100 | **50** | 适配 250 steps (保存于 50,100,150,200,250) |\n| 其他 | 不变 | 不变 | lr, grad_accum, batch_size, patience 保持 |\n\n### RASP 命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/train_grpo.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20 \\\n  --gpu 0 \\\n  --max_completion_length 384 \\\n  --num_generations 2 \\\n  --num_train_epochs 1 \\\n  --max_samples 1000 \\\n  --learning_rate 1e-6 \\\n  --save_total_limit 3 \\\n  --save_steps 50 \\\n  --reward_desert_patience 50 \\\n  --run_name grpo_stage2_rasp_20_v2\n```\n\n### Standard 命令\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/train_grpo.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20 \\\n  --gpu 1 \\\n  --max_completion_length 384 \\\n  --num_generations 2 \\\n  --num_train_epochs 1 \\\n  --max_samples 1000 \\\n  --learning_rate 1e-6 \\\n  --save_total_limit 3 \\\n  --save_steps 50 \\\n  --reward_desert_patience 50 \\\n  --run_name grpo_stage2_standard_20_v2\n```\n\n### 预估时间\n\n| 指标 | 保守估计 | 乐观估计 |\n|------|----------|----------|\n| Step 时间 | ~12 min | ~5 min |\n| 250 steps 总时间 | ~50h | ~21h |\n| 加速比 | ~9x | ~22x |\n\n保守估计基于 worst-case generation 从 4096→384 (~10.7x) 和 num_generations 4→2 (2x) 的折衷。第一个 step 通常有 warmup 开销，后续会更快。\n\n**建议**：重启后观察前 3 个 step 的平均时间。如果 >15 min/step，可进一步将 `max_samples` 降到 500（125 steps，~31h 保守估计）。\n\n### 执行步骤\n1. `kill 263888 263966`\n2. 清理旧 output dir 的 `completions/` 子目录\n3. 启动两个新实验（nohup + 日志重定向）\n4. 等 step 1 完成后检查速度\n\n是否执行 kill 和重启？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-grpo-speed-crisis.md"
+}

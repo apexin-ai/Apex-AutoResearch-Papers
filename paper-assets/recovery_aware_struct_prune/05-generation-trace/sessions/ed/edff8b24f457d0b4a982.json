@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "edff8b24f457d0b4a982",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval unpruned grpo step100",
+  "task_key": "worker_ops_eval-unpruned-grpo-step100_20260516T030420",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-unpruned-grpo-step100_20260516T030420_result.json",
+    "occurrence": 1,
+    "bytes": 375,
+    "sha256": "ec27e5119849e89eff090a0154c295775aa6a8c46c325bdd433789b47665b72b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **checkpoint-100 存在** — `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-100/`，model.safetensors ~15GB\n- **eval 已启动** — westd-11672 cuda:0，PID 80736，tmux session `eval_grpo_unpruned_v2_step100`\n- **registry 已注册** — `eval_grpo_unpruned_v2_step100`，状态 RUNNING，parent: grpo_unpruned_v2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-unpruned-grpo-step100.md"
+}

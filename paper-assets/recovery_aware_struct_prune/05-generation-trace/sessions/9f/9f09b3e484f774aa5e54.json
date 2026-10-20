@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f09b3e484f774aa5e54",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka25 grpo final",
+  "task_key": "worker_ssh_harvest_cka25_grpo_final_20260521T081617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka25_grpo_final_20260521T081617_result.json",
+    "occurrence": 1,
+    "bytes": 396,
+    "sha256": "878655b48b3660f8a200c78bf6f76624fa11d7f4bf3c20cc9802a7d66c557ab4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 成功完成。\n\n**结果：GSM8K Accuracy = 59.59% ± 1.35% (786/1319)**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 0.5959 |\n| Stderr | ± 0.0135 |\n| Correct / Total | 786 / 1319 |\n| EOS rate | 98.18% |\n| Avg response length | 237.1 tokens |\n| Truncated samples | 24 / 1319 |\n| 耗时 | ~3h 14m |\n| 结果文件 | `results/eval_grpo_cka_only_25_greedy.json` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka25-grpo-final.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abf030187f7ec5d1100d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval gsm8k 1p5b cka only",
+  "task_key": "worker_ops_eval_gsm8k_1p5b_cka_only_20260518T163600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_gsm8k_1p5b_cka_only_20260518T163600_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "08d2746e4b4e3a04c4ed6eb73ccf556e7eabb4c30aeda7d33dd38c769504a6b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已启动，状态汇总：\n\n- **实验**: `eval_gsm8k_grpo_cka_only_20_1p5b`\n- **PID**: 822503\n- **tmux session**: `eval_gsm8k_cka_only`\n- **GPU**: westb-23072 cuda:1（模型加载中，GPU 显存尚未占用）\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_cka_only_20_1p5b.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_20_1p5b.json`\n- **Registry**: RUNNING\n\n注意到有一个旧的 `eval_unstructured_20` tmux session (PID 680597) 仍存在于 cuda:1，但其 python 进程可能已结束（GPU 显存仅 3 MiB）。如需清理可告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-gsm8k-1p5b-cka-only.md"
+}

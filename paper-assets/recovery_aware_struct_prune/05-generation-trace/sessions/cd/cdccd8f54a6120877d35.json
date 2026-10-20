@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cdccd8f54a6120877d35",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval shortgpt gsm8k",
+  "task_key": "worker_eval_shortgpt_gsm8k_20260519T154539",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_shortgpt_gsm8k_20260519T154539_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "aaf87e9bbec7fd43a822613d76e9b9b8adfccd3e64767fd95dbe0436c3554b07"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交并注册：\n\n- **exp_id**: `eval_gsm8k_sft_shortgpt_20`\n- **服务器**: westd-29022, cuda:3\n- **PID**: 117124\n- **状态**: RUNNING\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_sft_shortgpt_20.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_sft_shortgpt_20.json`\n\n模型已加载完成，GSM8K 数据集正在加载中。1319 样本 greedy decoding 预计需要 30-60 分钟。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-shortgpt-gsm8k.md"
+}

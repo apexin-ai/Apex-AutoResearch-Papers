@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f64abd7b03c218ac82fe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 grpo rasp alpha2p0 20",
+  "task_key": "worker_analysis_eval_math500_grpo_rasp_alpha2p0_20_20260523T031600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_grpo_rasp_alpha2p0_20_20260523T031600_result.json",
+    "occurrence": 1,
+    "bytes": 921,
+    "sha256": "900a944dda6ae08e78c503173968e982234d1edec1690d7515079a787d197def"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。总结：\n\n**GRPO RASP α=2.0 MATH-500 结果：26.2% (131/500)**\n\n| 配置 | MATH-500 |\n|------|----------|\n| SFT α=2.0 | 24.0% |\n| **GRPO RASP α=2.0** | **26.2%** |\n| GRPO Standard 20% | 26.4% |\n| GRPO CKA-only 20% | 26.6% |\n\n**Δ(GRPO RASP − SFT) = +2.2pp**，超过 1pp 阈值。\n\n**C1 decoupling 判定**：在 MATH-500 上，GRPO RASP (26.2%) 与 SFT (24.0%) 差距 2.2pp，不满足 |Δ| < 1pp 的严格标准。不过 GRPO 三种剪枝方式（Standard 26.4%、CKA-only 26.6%、RASP 26.2%）之间差异极小（<0.4pp），说明 GRPO 恢复训练本身在 MATH-500 上一致性地比 SFT 高约 2pp——这更可能反映 GRPO 训练目标对数学推理的微弱增益，而非结构差异效应。C1 decoupling 在**剪枝方法间**依然成立（三种方法互差 <0.5pp），但 GRPO vs SFT 的 training-objective gap 需要在论文中区分讨论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-grpo-rasp-alpha2p0-20.md"
+}

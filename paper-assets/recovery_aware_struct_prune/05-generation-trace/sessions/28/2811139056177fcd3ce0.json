@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2811139056177fcd3ce0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cuda2 harvest and case study",
+  "task_key": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda2_harvest_and_case_study_20260519T110142_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "65d549d133f897b0b22061518304ce66f4555b0420afbda125970ba2edf11546"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 任务 A：GRPO Standard fair v3\n- **仍在运行**，PID 76392，进度 **156/164 (95.1%)**\n- 中间 pass@1 约 **0.1143** (at problem 140)\n- 预计 ~15 分钟完成\n- 已更新 registry notes\n\n### 任务 B：HumanEval Case Study (GRPO CKA-only vs GRPO RASP fair)\nSFT CKA-only v2 (PID 78740) 仍在运行，按计划使用 GRPO CKA-only vs GRPO RASP fair 做对比。\n\n**核心发现**：\n\n| | CKA-only | RASP fair |\n|---|---|---|\n| 通过数 | 33/164 (20.12%) | 18/164 (10.98%) |\n| CKA独有通过 | 28 | - |\n| RASP独有通过 | - | 13 |\n| 两者都通过 | 5 | 5 |\n\n**失败模式对比**：\n- **Reasoning-as-code**（输出自然语言推理而非代码）：CKA 47次 vs RASP 59次，RASP 更严重\n- **Logic error**（代码能跑但答案错）：CKA 8次 vs RASP **27次**，RASP 的算法准确性受损更严重\n- CKA 独有通过的 28 题中，RASP 失败原因：11个 reasoning-as-code + 8个 logic error\n- RASP 独有通过的 13 题中，CKA 失败原因：6个 max length + 4个 reasoning-as-code（CKA 在简单题上随机陷入冗长推理）\n\n报告已写入远程 `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md` 并注册为 artifact (`art_20260519_04604c`)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda2-harvest-and-case-study.md"
+}

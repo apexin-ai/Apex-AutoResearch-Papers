@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c80c3b4c76693cdbca01",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit grpo alpha4 20",
+  "task_key": "worker_submit_grpo_alpha4_20_20260521T185824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_grpo_alpha4_20_20260521T185824_result.json",
+    "occurrence": 1,
+    "bytes": 668,
+    "sha256": "522d364f8837287ccfbf3e07de0acbf4287782e22dfe487a879c2cb927c30731"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已启动确认。\n\n**GRPO 训练已提交:**\n\n| 项目 | 值 |\n|------|-----|\n| exp_id | `grpo_alpha4_20` |\n| PID | 406593 |\n| 服务器 | westd-29022, cuda:2 |\n| model_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/` |\n| output_dir | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/` |\n| 超参 | 100 steps, lr=1e-6, bs=2×8, DAPO loss, β=0.01, temp=0.4, num_gen=4, adamw_8bit |\n| 日志 | `/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_alpha4_20.log` |\n| 预计完成 | ~2-3 小时（约 21:00-22:00 UTC） |\n\n注：`train_grpo_v5.py` 不支持 `--save_only_model` 参数，未添加。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-grpo-alpha4-20.md"
+}

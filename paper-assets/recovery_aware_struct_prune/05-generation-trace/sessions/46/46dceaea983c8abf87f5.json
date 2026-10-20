@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46dceaea983c8abf87f5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd urgent status",
+  "task_key": "worker_monitor_westd_urgent_status_20260516T180049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd_urgent_status_20260516T180049_result.json",
+    "occurrence": 1,
+    "bytes": 1448,
+    "sha256": "3e3608f4c18946e4f2dc2d362155a44919eb0cd9e4b071be009be4017aff8a38"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 GPU 状态总览\n\n### GPU 占用表\n\n| GPU | VRAM 占用 | PID | 实验名 | 状态 |\n|-----|-----------|-----|--------|------|\n| cuda:0 | 12,663 / 97,887 MiB (92% util) | 30610 | eval_sft_rasp_rlvr_20_qwen_math (greedy) | Running |\n| cuda:1 | 0 / 97,887 MiB (0% util) | — | 空闲 | Idle |\n| cuda:2 | 29,171 / 97,887 MiB (91% util) | 25442 | eval_pass_k8_rasp_20_sft_qwen_math | Running (1h17m) |\n| cuda:3 | 29,621 / 97,887 MiB (91% util) | 25538 | eval_pass_k8_rasp_20_grpo_qwen_math | Running (1h16m) |\n\n### RLVR Pipeline (cuda:0)\n- PID 28243 已不存在（原 RLVR 训练已结束）\n- tmux session `eval_sft_rasp_rlvr_20_qwen_math` 存在，正在运行 greedy eval\n- PID 30610 正在评估 `sft_rasp_rlvr_20_qwen_math` 模型（greedy，无 pass@k）\n\n### pass@k 评估状态\n- **cuda:2** (PID 25442): `sft_qwen_math_rasp_20` pass@8 评估中，已跑 1h17m\n- **cuda:3** (PID 25538): `grpo_rasp_qwen_math` pass@8 评估中，已跑 1h16m\n- 两个均未产出结果文件\n\n### 已完成的 pass@k 结果\n\n| 模型 | pass@8 | accuracy | stderr |\n|------|--------|----------|--------|\n| grpo_unpruned_v2 (baseline) | **0.965** | 0.965 | ±0.013 |\n\n（`eval_pass_k8_unpruned_qwen_math.json` — 200 problems, temp=0.7, k=8）\n\n### 总结\n- **cuda:1 完全空闲**，可立即使用\n- 3 个评估任务并行运行中（1 greedy + 2 pass@k），预计 pass@k 还需一段时间完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-urgent-status.md"
+}

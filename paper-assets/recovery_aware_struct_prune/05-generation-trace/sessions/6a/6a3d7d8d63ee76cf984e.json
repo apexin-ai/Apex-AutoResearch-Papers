@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a3d7d8d63ee76cf984e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval postprune 25",
+  "task_key": "worker_eval_eval_postprune_25_20260516T200920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_postprune_25_20260516T200920_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "871791cb01eba5e9c233b8a76ff2de16e8da441b8f8b8aa8500b19c1f3237322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验都已经完成，结果已在 registry 中。\n\n## 25% Sparsity Post-Prune GSM8K 结果\n\n| Method | Accuracy | N |\n|--------|----------|---|\n| RASP 25% | **21%** | 100 |\n| Standard 25% | **16%** | 100 |\n\n对比 20% sparsity：\n- RASP: 31% → 21% (−10 pp)\n- Standard: 27% → 16% (−11 pp)\n\nRASP 在 25% sparsity 仍然领先 Standard 5 个百分点，差距与 20% 时 (4 pp) 基本一致。两个实验均已标记 DONE，结果 JSON 在 `/root/autodl-tmp/recovery_aware_struct_prune/results/` 下。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-postprune-25.md"
+}

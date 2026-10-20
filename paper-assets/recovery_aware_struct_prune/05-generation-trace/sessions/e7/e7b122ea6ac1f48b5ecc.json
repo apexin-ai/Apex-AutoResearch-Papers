@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e7b122ea6ac1f48b5ecc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check unstructured grpo and submit eval",
+  "task_key": "worker_ssh_check_unstructured_grpo_and_submit_eval_20260520T205521",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_unstructured_grpo_and_submit_eval_20260520T205521_result.json",
+    "occurrence": 1,
+    "bytes": 457,
+    "sha256": "26e1a859618c2791ff87433e62283846dddced49b92455d25fccd8a92d66d3f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 结果已存在，无需重新提交。\n\n**结果汇报：**\n\n| 项目 | 值 |\n|------|-----|\n| Checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20/checkpoint-100` |\n| **GSM8K Accuracy** | **87.64%** (1156/1319) |\n| Stderr | ±0.91% |\n| EOS rate | 98.2% (24 truncated) |\n| 磁盘 (`/root/autodl-tmp`) | 241G / 250G used (**97%, 仅剩 9.8G**) |\n\n磁盘接近满载，需注意后续实验空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-unstructured-grpo-and-submit-eval.md"
+}

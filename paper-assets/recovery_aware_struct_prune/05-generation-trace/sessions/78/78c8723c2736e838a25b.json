@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "78c8723c2736e838a25b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest inference bench and cuda3",
+  "task_key": "worker_ops_harvest_inference_bench_and_cuda3_20260519T021419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_inference_bench_and_cuda3_20260519T021419_result.json",
+    "occurrence": 1,
+    "bytes": 1113,
+    "sha256": "062875b68db868737d8dbf5dd7d0e06133a997d0e09702422a6c93be2c025250"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验成功完成，`EXIT_CODE=0`。结果：\n\n| Model | Params | tok/s | Speedup | TTFT (mean) | Per-token latency (mean) |\n|---|---|---|---|---|---|\n| **Dense (original)** | 7.62B | 72.0 | 1.00x | 20.1ms | 13.9ms |\n| **pruned_cka_only_20** | 6.16B | 58.3 | 0.81x | 16.4ms | 16.7ms |\n| **pruned_standard_20** | 6.16B | 58.2 | 0.81x | 16.4ms | 16.7ms |\n\n关键发现：\n\n- 两个剪枝模型参数量一致（6.16B，削减 19.1%），throughput 和 latency 也几乎相同\n- **剪枝后 throughput 反而下降了 19%**（72.0 → 58.3 tok/s），speedup 为 0.81x 而非 >1.0x\n- TTFT 改善了 18%（20.1ms → 16.4ms），说明 prefill 阶段参数减少确实有加速\n- 但 per-token latency 反升（13.9ms → 16.7ms，+20%），这是 throughput 下降的根因\n\nthroughput 下降大概率因为 **non-uniform MLP**（intermediate_size 范围 8128–18944）导致 GPU kernel 效率低。非均匀结构无法充分利用 tensor core 对齐，实际推理反而变慢。这在结构化剪枝中是已知问题，论文中需要讨论或考虑使用 uniform pruning ratio。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-inference-bench-and-cuda3.md"
+}

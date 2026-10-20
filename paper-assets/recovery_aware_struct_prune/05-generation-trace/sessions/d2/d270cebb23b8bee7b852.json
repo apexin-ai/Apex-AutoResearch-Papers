@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d270cebb23b8bee7b852",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig1 rasp pipeline",
+  "task_key": "worker_paper_figure_fig1-rasp-pipeline_20260515T071719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1-rasp-pipeline_20260515T071719_result.json",
+    "occurrence": 1,
+    "bytes": 768,
+    "sha256": "c3a638732d7d107aaf632d462a63456370d9650ad5f5089dcee29a9362d711ee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 1 已生成并注册。\n\n**输出文件**：\n- PDF: `docs/paper/figures/fig1_rasp_pipeline.pdf` (54KB, 矢量)\n- PNG: `docs/paper/figures/fig1_rasp_pipeline.png` (217KB, 300 DPI)\n- 脚本: `artifacts/plot_fig1_pipeline.py`\n\n**图表内容**：\n- **Stage 1**: 模型 + CoT 数据 → 注意力头重要性 I(h) (Taylor) 和功能重叠 F(h) (CKA) 梯度条\n- **Stage 2** (核心): Standard Pruning (按 I 排序) vs RASP (按 S=I×(1-F)^α 排序) 对比面板。关键交换标注：B (I=.85, F=.80) 因高 overlap 被剪枝；D (I=.55, F=.05) 因低 overlap 被保护。三色图例区分 Protected / Redundant / Unimportant\n- **Stage 3**: Pruned Model → SFT Warmup (format+EOS) → GRPO RLVR (reasoning recovery) → Recovered Model"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-rasp-pipeline.md"
+}

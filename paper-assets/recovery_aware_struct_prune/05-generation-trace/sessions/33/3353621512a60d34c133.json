@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3353621512a60d34c133",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix experiments tex review",
+  "task_key": "worker_fix_experiments-tex-review_20260514T090242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_experiments-tex-review_20260514T090242_result.json",
+    "occurrence": 1,
+    "bytes": 1513,
+    "sha256": "779854ef4b7b85396a6dae6c6454fc908d807b125ba06e801003a930e8fca813"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。改动汇总：\n\n### 修改的文件\n\n**paper/references.bib** — 新增 3 个 bib 条目：\n- `deepseek2025r1`：DeepSeek-AI, \"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning\", 2025, arXiv:2501.12948\n- `qwen2.5`：An Yang et al., \"Qwen2.5 Technical Report\", 2024, arXiv:2412.15115\n- `cobbe2021gsm8k`：Karl Cobbe et al., \"Training Verifiers to Solve Math Word Problems\", 2021, arXiv:2110.14168\n\n**paper/experiments.tex**（从 `docs/paper/` 移入）— 4 处修改：\n\n1. **Citation keys 统一**：\n   - `\\citep{ma2024llmpruner}` → `\\citep{llmpruner2023}`\n   - `\\citep{wang2026graspune}` → `\\citep{graspprune2026}`\n   - `\\citep{shao2024deepseekmath}` → `\\citep{shao2024grpo}`\n   - `deepseek2025r1`、`qwen2.5`、`cobbe2021gsm8k` 保留（已在 bib 中新建对应条目）\n\n2. **文件路径**：从 `docs/paper/` 移到 `paper/`，与其他 .tex 文件一致。旧文件已删除。\n\n3. **RASP 公式去重**：删除 `\\begin{equation} S(h)=... \\label{eq:rasp_score} \\end{equation}` 独立公式块，改为行内引用 `(Eq.~\\eqref{eq:score})`，指向 method.tex 中的 Eq. 4。\n\n4. **Recoverability proxy 说明**：在 Correlation Analysis 段落补充 activation shift 代理指标的定义（$1 - \\cos(\\mathbf{a}^{\\text{pre}}_h, \\mathbf{a}^{\\text{post}}_h)$）及合理性论证（feature disruption 与 accuracy degradation 正相关；可逐 structure 计算无需 recovery 训练）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-experiments-tex-review.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82b6bcc2b5662dbc6242",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh scp sft std25 and eval cuda3",
+  "task_key": "worker_ssh_scp_sft_std25_and_eval_cuda3_20260521T074832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp_sft_std25_and_eval_cuda3_20260521T074832_result.json",
+    "occurrence": 1,
+    "bytes": 438,
+    "sha256": "0430747f2b01449c0b87fc8291500adee664d2b428e534db5eef7b2042fd6f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GSM8K eval 已成功启动并在 cuda:3 上运行。\n\n**结果汇总：**\n- **模型传输**：成功。westb → westd，文件大小一致（11582559224 bytes），6 个文件全部到位\n- **Eval 状态**：\n  - PID: 335301\n  - GPU: cuda:3（GPU-893d671d），占用 11780 MiB\n  - 模型已加载，正在加载 GSM8K 测试集\n  - 日志：`/root/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_25.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-scp-sft-std25-and-eval-cuda3.md"
+}

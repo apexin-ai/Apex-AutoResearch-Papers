@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "858e33a140c6a9c5c22d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch grpo random seed456 westb0",
+  "task_key": "worker_launch_grpo_random_seed456_westb0_20260522T120101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_grpo_random_seed456_westb0_20260522T120101_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "305b4aecff7adcaa08d201a520a359c24b461fe23cbab9d798802c243ef5e79f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无法启动 GRPO，sft_random_20 模型不可用。**\n\n现状：\n- **westb-23072**: `sft_random_20` 目录不存在（只有 `grpo_random_20/completions` 残留）\n- **westd-32935**: 从 westb SCP 时无法解析主机名\n- **westd-29022**: 连接失败（端口不通，可能已关机）\n\nGPU/磁盘状态：\n- **cuda:0**: 空闲（0MiB / 97887MiB）\n- **cuda:1**: 被占用（16547MiB, 99% util, PID 179898）\n- **磁盘**: `/root/autodl-tmp/` 29GB free（250G 总量）\n\n需要你提供 sft_random_20 模型的可用来源，或者确认 westd 服务器状态后重试。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-grpo-random-seed456-westb0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "abd0ddf92fc5abf492fe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor grpo v8 early check",
+  "task_key": "worker_monitor_grpo-v8-early-check_20260515T150447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo-v8-early-check_20260515T150447_result.json",
+    "occurrence": 1,
+    "bytes": 1770,
+    "sha256": "cf71ac1e56e840768b3d3ae72024b05524f1f6e064965c8c46363efddf08128b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GRPO v8 早期信号检查报告\n\n### 进程状态：✅ 两个实验都在运行\n\n| 实验 | PID | Step | Speed | Uptime | ETA |\n|------|-----|------|-------|--------|-----|\n| **RASP v8** | 532861 | 3/100 | ~400s/step | 31min | ~10.8h |\n| **Standard v8** | 534667 | 2/100 | ~411s/step | 22min | ~11.2h |\n\n### GPU 状态：✅ 正常\n| GPU | VRAM | Utilization |\n|-----|------|-------------|\n| cuda:0 (RASP) | 72GB / 98GB | 100% |\n| cuda:1 (Standard) | 72GB / 98GB | 100% |\n\n### WandB 指标：⏳ 尚无训练指标\n- `logging_steps=10`，当前 step 2-3，首次指标日志预计在 **step 10**（RASP ~47min 后，Standard ~55min 后）\n- wandb run 存活，已记录系统指标（_step=83/55），但 reward/grad_norm/loss 尚未到首次记录点\n\n### 磁盘状态：⚠️ WARNING\n| 分区 | 使用率 | 可用空间 |\n|------|--------|----------|\n| 根分区 /root | 29% | 22GB ✅ |\n| 数据盘 /root/autodl-tmp | **89%** | **29GB** ⚠️ |\n\n**风险：** sft_rasp_20 和 sft_standard_20 各占 81GB（共 162GB）。`save_steps=50` 且 `save_only_model=false`，每个 checkpoint 约 18-24GB。step 50 时两个实验几乎同时保存，**29GB 不够存两个 checkpoint，第二个会因磁盘满失败**（v7 崩溃根因重现）。\n\n### 建议操作（step 50 前必须执行之一）\n1. 清理旧 GRPO v1-v7 空目录 + 不需要的文件释放空间\n2. 或设置 `save_only_model=true` 减小 checkpoint 体积（需重启训练）\n3. 或将其中一个 SFT 模型移到其他位置（两者共 162GB）\n\n### 下次检查时间\n- **Step 5 check**（~33min 后）：确认 wandb 有无异常系统指标\n- **Step 10 check**（~47min 后）：首批训练指标可用，验证 reward>0 和 grad_norm>0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-v8-early-check.md"
+}

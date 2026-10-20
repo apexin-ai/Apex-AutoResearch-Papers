@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b0b16f4c51b89265344",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk cleanup",
+  "task_key": "worker_ops_westd_disk_cleanup_20260520T094742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_20260520T094742_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "e847308a5f73f079f67c4f48cb9a0b9a4794aadea6c7c4dee45f18c61a8835f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果**: /dev/md0 可用空间从 70G → **185G**，释放 115G，目标达成。\n\n清理内容：\n- 2 个 optimizer.pt（22G）\n- 8 个冗余 checkpoint-100 目录（97G）——均已验证 root 目录有相同的最终模型\n\n安全跳过了 grpo_cka_only_15、grpo_shortgpt_20、grpo_standard_15 的 checkpoint（无 root 模型，是唯一副本）。\n\n报告已写入 `artifacts/westd_cleanup_report.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32994a126a575deacd62",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze grpo random 20 retrain v2",
+  "task_key": "worker_analyze_grpo_random_20_retrain_v2_20260523T192328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grpo_random_20_retrain_v2_20260523T192328_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "b9d0ea9a05b0ed2847f3de5069f43c1ffb41a93e0c21fe906322f2a48f3571ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n---\n\n**分析结论（汇报用）：**\n\n`grpo_random_20_retrain_v2` 训练正常完成（100 steps, 3.07h）。Final reward=0.2875，处于 standard_20 (0.15–0.30) 范围的高端，高于 cka_only_20 (0.15–0.25)。训练过程中 reward 在 0.16–0.29 间波动，无 collapse 迹象，KL 稳定在 ~0.004。Random pruning 作为最弱 baseline，其 GRPO recovery reward 与 structured methods 差距不大，说明 GRPO recovery 对 pruning criterion 的敏感度可能低于预期——这对后续 method comparison 分析值得关注。Checkpoint 已保存至 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_retrain/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grpo-random-20-retrain-v2.md"
+}

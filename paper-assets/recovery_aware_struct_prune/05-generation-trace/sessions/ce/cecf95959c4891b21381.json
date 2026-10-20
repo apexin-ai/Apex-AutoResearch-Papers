@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cecf95959c4891b21381",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check urgent server status",
+  "task_key": "worker_check_urgent_server_status_20260514T161048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_urgent_server_status_20260514T161048_result.json",
+    "occurrence": 1,
+    "bytes": 2125,
+    "sha256": "e4534fb08671e11d41a9cb7d5d7a8fe227d8cf5a56055b769cbd7efda8a1569f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 服务器状态汇报\n\n| 项目 | 状态 |\n|------|------|\n| **1. 根分区** | 22G 可用 / 30G (29% used) — 正常 |\n| **2. autodl-tmp** | **3.8G 可用 / 250G (99% used) — 危险** |\n| **3. 模型位置** | 全部在数据盘，根分区 `models/` 目录下是符号链接 → `/root/autodl-tmp/` |\n| **4. Base model** | `models/DeepSeek-R1-Distill-Qwen-7B` → `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` ✅ 有效（~14.2GB safetensors） |\n| **5-6. GPU 进程** | 见下表 |\n| **7. results 文件** | 见下方 |\n| **8. scores 文件** | `importance_scores.pt` ✅ (17KB) / `cka_scores.pt` ✅ (122KB) |\n\n### GPU 进程\n\n| GPU | PID | 命令 | 显存 | 利用率 | 进度 |\n|-----|-----|------|------|--------|------|\n| cuda:0 | 206303 | `eval_gsm8k.py --model_path models/pruned_standard_20` | 13003MiB / 97887MiB | 81% | **45/100** (~54s/it, 预计还约50min) |\n| cuda:1 | 214454 | `eval_gsm8k.py --model_path models/pruned_rasp_20` | 13003MiB / 97887MiB | 69% | **71/100** (~7s/it, 预计还约3min) |\n\nGPU 1 完成 rasp_20 后会依次自动执行 `standard_25` → `rasp_25`。\n\n### 已有 results 文件\n\n```\ncka_scores.pt                          (122KB)\nimportance_scores.pt                   (17KB)\neval_baseline_7b_quick.json            (87KB)\neval_baseline_7b_quick2.json           (44KB)\neval_baseline_7b_quick_fixed.json      (44KB)\neval_pruned_standard_35.json           (1.3MB)\neval_pruned_standard_35_v3_quick.json  (95KB)\neval_pruned_rasp_35.json               (1.3MB)\neval_pruned_rasp_35_v3_quick.json      (102KB)\ndebug_extract_results.json             (4.8KB)\nanalysis/                              (子目录)\n```\n\n### 剪枝模型符号链接\n\n- `pruned_standard_20` → `/root/autodl-tmp/pruned_standard_20`\n- `pruned_standard_25` → `/root/autodl-tmp/pruned_standard_25`\n- `pruned_rasp_20` → `/root/autodl-tmp/pruned_rasp_20`\n- `pruned_rasp_25` → `/root/autodl-tmp/pruned_rasp_25`\n\n**⚠️ autodl-tmp 磁盘 99% 满，仅剩 3.8G。** 后续写入（eval 输出、新 checkpoint）可能失败，需要清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-urgent-server-status.md"
+}

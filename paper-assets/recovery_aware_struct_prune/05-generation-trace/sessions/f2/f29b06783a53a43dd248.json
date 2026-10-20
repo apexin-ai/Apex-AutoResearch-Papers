@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f29b06783a53a43dd248",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing results framework",
+  "task_key": "worker_paper_writing_results-framework_20260515T070336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_results-framework_20260515T070336_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "d51828ab7dace9bfe33415eb77f7aff3843b784da7344affe4132e160d49161f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All three table files exist in `paper/tables/`. All `\\ref` and `\\cite` keys verified against existing labels and bib entries.\n\n**更新摘要：**\n\n**Results** (§4.4)：\n- 添加了 `\\input` 引用 Table 1 和 Table 2\n- Post-prune 段落：RASP 29% vs Standard 1%，解释 RASP 移除 important-but-redundant groups、保护 functionally unique structures\n- Recovery pipeline 段落：SFT 后 Standard 64% vs RASP 57%，解释 SFT trajectory imitation 偏好 importance-based selection 导致反超；GRPO 结果 TBD 占位\n- Recovery Δ 和 Statistical significance 段落均用 TBD 占位，等 GRPO 完成后填充\n\n**Ablation** (§4.5)：\n- 添加了 `\\input` 引用 Table 3\n- α ablation 框架：解释 α=0 退化为 Standard，α 增大增加 CKA 权重；α=1.0 已有 29% 数据，其余 TBD\n- Per-layer capacity floor ablation：τ ∈ {0%, 20%, 40%, 60%} 预留占位\n\nGRPO 结果到位后需更新 6 处 TBD 标记。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-results-framework.md"
+}

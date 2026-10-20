@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e137745efeda90cdf410",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb v8 launch",
+  "task_key": "worker_ops_westb-v8-launch_20260515T143227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-v8-launch_20260515T143227_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "2ae150b7f0e90b1667bf319c21d9f497138498120b40523be8abc3802bf9564b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡均已稳定运行。\n\n---\n\n## 最终报告\n\n| 项目 | 状态 |\n|------|------|\n| **磁盘清理** | 根分区 22G 可用 (29%)，数据盘 29G 可用 |\n| **RASP v8 (cuda:0)** | PID 532861，稳定运行，1/100 steps，wandb: `0wz7xpd5`，GPU 0 占用 71674 MiB / 97887 MiB，100% util |\n| **Standard v8 (cuda:1)** | PID 534667，稳定运行，0/100 steps（进度条已出现），wandb: `q34vz8j2`，GPU 1 占用 44344 MiB / 97887 MiB，99% util |\n\n**异常处理记录**：\n- Standard v7 残留进程 (PID 532557) 占据 GPU 1 共 62.5 GB，导致 Standard v8 首次启动 OOM。该进程在 kill 前自行退出，清理后重新启动 Standard v8 成功。\n- 初始 `pkill -f train_grpo` 因 SSH exit code -1 未成功执行，v7 残留未被清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-v8-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbd8355642f486a4c269",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit grpo standard 25 westd",
+  "task_key": "worker_submit_grpo_standard_25_westd_20260516T182647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_grpo_standard_25_westd_20260516T182647_result.json",
+    "occurrence": 1,
+    "bytes": 317,
+    "sha256": "6b2052777019400948ccd6c08920eb62b56175b0c11ed25cc481e2068616db71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**grpo_standard_25 已成功启动。**\n\n- 服务器: westd-11672, GPU cuda:1\n- PID: 32427, 显存占用 11780 MiB\n- 状态: 模型已加载至 GPU，正在准备数据集，即将开始 GRPO 训练\n- Registry: RUNNING\n- 日志: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-grpo-standard-25-westd.md"
+}

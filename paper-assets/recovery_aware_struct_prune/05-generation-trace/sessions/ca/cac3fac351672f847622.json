@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cac3fac351672f847622",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd v2 evals",
+  "task_key": "worker_ops_check_westd_v2_evals_20260515T201003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd_v2_evals_20260515T201003_result.json",
+    "occurrence": 1,
+    "bytes": 623,
+    "sha256": "094d53336e4d150cb921f3fe3a143ee8d481d9019554a48d6ca1820d827a4c3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均已完成，registry 已更新为 DONE。\n\n**结果总结：**\n\n| 实验 | Accuracy | N_correct/N_total | EOS Rate | Avg Len |\n|------|----------|-------------------|----------|---------|\n| Standard SFT (westd) | **63%** | 63/100 | 0.97 | 260.57 |\n| RASP SFT (westd) | **67%** | 67/100 | 0.99 | 182.39 |\n\n与预期对比：\n- **Standard 63%** — 接近预期 64%，跨服务器可复现 ✓\n- **RASP 67%** — 超出预期 57%，比 Standard 高 4 个点。RASP 在 westd 上的 SFT 恢复效果优于 westb，且 eos_rate 更高（0.99）、生成更简洁（avg_len 182 vs 261）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-v2-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da7da790762ea8de7d17",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code sft alpha4 eval collect",
+  "task_key": "worker_code_sft-alpha4-eval-collect_20260515T134621",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft-alpha4-eval-collect_20260515T134621_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "7c6bbe0689987c22a1b70f1bba7ffa013b1a4151c4c248efdaa2c50ae7c1f6f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry updated. Summary:\n\n**`sft_alpha4_0_westd_retry` → DONE (success)**\n\n| Metric | Value |\n|---|---|\n| Post-prune accuracy | 40% |\n| **Post-SFT accuracy** | **62%** (62/100, stderr=0.049) |\n| SFT recovery gain | +22pp |\n| Train loss (final) | 0.7393 |\n| EOS rate | 98% |\n| Avg response length | 238.56 |\n\n**vs. α=1.0 RASP post-SFT (57%)**: α=4.0 is +5pp higher, confirming that higher CKA weight amplifies SFT recovery from pruned models."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-alpha4-eval-collect.md"
+}

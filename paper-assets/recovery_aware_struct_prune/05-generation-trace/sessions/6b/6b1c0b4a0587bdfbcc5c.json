@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b1c0b4a0587bdfbcc5c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops alpha sweep monitor v3",
+  "task_key": "worker_ops_alpha-sweep-monitor-v3_20260515T213943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_alpha-sweep-monitor-v3_20260515T213943_result.json",
+    "occurrence": 1,
+    "bytes": 1422,
+    "sha256": "c8ca59e40e5ac4786cf62003fb4ff334e23d5b16ff0e94cd1c706cc136c0cb6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。最终摘要：\n\n## α Ablation Sweep (westb, cal=512, post-prune GSM8K N=100)\n\n| α | Accuracy | EOS Rate | Avg Len |\n|---|----------|----------|---------|\n| 0.0 | 27% | 80% | 1192 |\n| 0.25 | 23% | 63% | 1834 |\n| 0.5 | 22% | 81% | 1141 |\n| **1.0** | **31%** | **92%** | **733** |\n| **2.0** | **36%** | 59% | 2130 |\n\n### vs westd (cal=256)\n\n| α | westb (cal=512) | westd (cal=256) |\n|---|----------------|----------------|\n| 0.0 | 27% | 30% |\n| 0.5 | 22% | 25% |\n| 1.0 | 31% | 27% |\n| 2.0 | 36% | — |\n| 4.0 | — | 40% |\n\n### 分析\n\n1. **非单调关系在两个 calibration 设定下均确认**：小 α (0.25-0.5) 反而比 α=0.0 更差，大 α (≥1.0) 才有增益。Recovery 信号在低权重时引入噪声，需要足够强的权重才能有效引导剪枝决策。\n\n2. **α=2.0 精度最高 (36%) 但生成质量差**：EOS 率仅 59%（41% 截断），平均长度 2130。α=1.0 是精度-生成质量的最佳平衡点（31%, EOS 92%, avg_len 733）。\n\n3. **Calibration 影响**：westb (cal=512) 在 α=1.0 时优于 westd (cal=256) (31% vs 27%)，说明更多 calibration 样本在中等 α 时帮助更大。两者都呈 U 形曲线。\n\n4. **α=2.0 的高精度可能是假象**：低 EOS 率+长响应意味着模型倾向用更多 token \"暴力搜索\"答案，而非高效推理。α=1.0 的短响应+高精度更有说服力。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-alpha-sweep-monitor-v3.md"
+}

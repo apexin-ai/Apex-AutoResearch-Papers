@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bc9d6446ea84c1f321e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval sft standard 25",
+  "task_key": "worker_eval_eval_sft_standard_25_20260516T070530",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_sft_standard_25_20260516T070530_result.json",
+    "occurrence": 1,
+    "bytes": 365,
+    "sha256": "6b4b6db7eb3f0e0d176698cc25262b6abf8e54082c2cbe08e9cf6014cd553f27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **exp_id**: eval_sft_standard_25\n- **PID**: 598079 on westb-23072 cuda:1\n- **Registry**: RUNNING，spec 已写入\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_sft_standard_25.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_25.json`\n- **预计耗时**: ~50 分钟"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-sft-standard-25.md"
+}

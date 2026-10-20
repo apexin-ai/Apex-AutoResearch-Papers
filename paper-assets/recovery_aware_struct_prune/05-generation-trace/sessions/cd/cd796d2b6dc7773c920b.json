@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd796d2b6dc7773c920b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd full status",
+  "task_key": "worker_diagnose_westd_full_status_20260522T121343",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_full_status_20260522T121343_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "4216b7de90d2502551f49ad355612528f612c80896c0c3102c2b6550f4d9e530"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== GPU STATUS ===\n0, 29137 MiB, 97887 MiB, 93 %\n1, 17651 MiB, 97887 MiB, 98 %\n2, 0 MiB, 97887 MiB, 0 %\n3, 31358 MiB, 97887 MiB, 95 %\n\n=== α=3.0 GRPO eval (GPU 0, PID 43755) ===\n 43755       19:17  130\nRUNNING\nEvaluating:  15%|█▌        | 200/1319 — acc=0.6500, eos_rate=100.00%, avg_len=165\n（最新进度约 15%，已运行 19m17s）\n\n=== α=3.0 SFT eval (GPU 2) ===\nNO_RESULT_FILE\nNO_LOG\n\n=== GRPO random seed123 eval (GPU 3) ===\nNO_LOG（进程在跑但 log 可能被 tee 缓冲）\n\n=== MF5 depth-first (GPU 3) ===\ndepth-first GRPO eval 正在 GPU 3 上运行（PID 40073，已运行 73m）\n\n=== MATH-500 (GPU 1) ===\nNO_LOG\n\n=== ALL RUNNING PYTHON PROCS ===\n- PID 43755 (GPU 0): eval_gsm8k GRPO RASP α=3.0 — 运行中\n- PID 40073 (GPU 3→实际占用): eval_gsm8k GRPO depth-first — 运行中 (73m)\n- PID 41541 (GPU 3): eval_gsm8k GRPO random seed123 — 运行中 (56m)\n- GPU 1: MATH-500 相关进程在跑（17.6GB 显存占用）但未匹配 grep 模式\n- GPU 2: 空闲（0 MiB）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-full-status.md"
+}

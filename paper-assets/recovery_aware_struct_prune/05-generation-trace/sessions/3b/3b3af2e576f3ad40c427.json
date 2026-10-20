@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "3b3af2e576f3ad40c427",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d023 definitive reeval gpu1",
+  "task_key": "worker_code_d023-definitive-reeval-gpu1_20260515T101831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-definitive-reeval-gpu1_20260515T101831.log",
+    "occurrence": 1,
+    "bytes": 624562,
+    "sha256": "3b6a6f79556fe18e60090a706c03b0064f77bb017fc6e99fc8d034c4552a495a"
+  },
+  "statistics": {
+    "messages": 595,
+    "user_turns": 0,
+    "tool_calls": 266,
+    "roles": {
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 266,
+      "tool_result": 266,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 595,
+      "chunks": [
+        {
+          "path": "3b3af2e576f3ad40c427-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b3af2e576f3ad40c427-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b3af2e576f3ad40c427-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3b3af2e576f3ad40c427-part-0004.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d023-definitive-reeval-gpu1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74a9e16cb1a7d6827325",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d019 sft standard retrain",
+  "task_key": "worker_code_d019-sft-standard-retrain_20260515T075735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d019-sft-standard-retrain_20260515T075735_result.json",
+    "occurrence": 1,
+    "bytes": 1518,
+    "sha256": "489db8fba1d86fd6aa445851d5b26b82644c585762284ad3316f568ab94fef8c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行，loss 会在 epoch 1 结束时保存到 trainer_state.json。\n\n## 产出报告\n\n**1. SFT 训练脚本和完整命令**\n- 脚本：`/root/recovery_aware_struct_prune/src/sft_recovery.py`\n- 命令：\n```\npython src/sft_recovery.py \\\n  --model_path /root/autodl-tmp/pruned_standard_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 \\\n  --gpu 1 \\\n  --num_train_epochs 2 \\\n  --learning_rate 2e-5 \\\n  --batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --max_seq_length 2048 \\\n  --logging_steps 10 \\\n  --seed 42\n```\n- 参数来源：从 `sft_rasp_20/training_args.bin` 反向确认（epochs=2, lr=2e-5, batch=1, grad_acc=8, cosine scheduler, seed=42）\n\n**2. 训练启动确认**\n- tmux session: `sft_standard_20_retrain`\n- PID: 239077\n- GPU: cuda:1 (00000000:C8:00.0)，占用 12622 MiB\n- 数据集：7473 samples（GSM8K full train，从缓存加载）\n- 总步数：1870（935 steps/epoch × 2 epochs）\n\n**3. 初始 loss**\n- 不可见：`report_to=\"none\"` 导致 loss 不输出到日志。训练无报错，进度条正常推进，视为正常运行。\n\n**4. 预计完成时间**\n- 当前速度：~4.5 s/step\n- 预计总时长：~2h 20min\n- 预计完成：约 **18:30 UTC**（比任务预估的 37-40 min 慢很多，可能原始训练在不同 GPU 或不同 batch 配置下进行）\n\n**注意**：GPU 0 上有另一个实验 `grpo_stage2_rasp_20_v3`（PID 233489, 41GB），两个实验互不干扰。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d019-sft-standard-retrain.md"
+}

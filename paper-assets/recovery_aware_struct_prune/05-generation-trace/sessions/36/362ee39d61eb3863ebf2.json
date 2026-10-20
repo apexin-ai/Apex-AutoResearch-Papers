@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "362ee39d61eb3863ebf2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v3 emergency scripts",
+  "task_key": "worker_code_grpo-v3-emergency-scripts_20260515T071556",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo-v3-emergency-scripts_20260515T071556_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "7b9595c95a6e2985758a3b3a8dbc5b767d927a2a3a29ac706c59f38a7a5d511e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n**产出汇总**\n\n**创建的文件（3 个）：**\n| 文件 | 说明 |\n|------|------|\n| `src/train_grpo_v3.py` | v3 训练脚本，基于 train_grpo.py 修改 |\n| `scripts/run_grpo_stage2_v3_rasp.sh` | RASP 变体启动脚本（cuda:0） |\n| `scripts/run_grpo_stage2_v3_standard.sh` | Standard 变体启动脚本（cuda:1） |\n\n**reward function 修改：**\n- 原版：`accuracy_reward` 仅 1.0（正确）/ 0.0（错误）\n- v3：`accuracy_reward + format_reward`，其中 `format_reward = 0.1 if \\boxed{...} in completion else 0.0`\n- format_reward_weight 可通过 `--format_reward_weight` 调整（默认 0.1）\n\n**v3 新增参数（相对原 train_grpo.py）：**\n- `--beta 0.01` → 传入 GRPOConfig 启用 KL penalty\n- `--loss_type dapo` → 传入 GRPOConfig\n- `--format_reward_weight 0.1` → 控制 format reward 权重\n- `--max_completion_length` 默认值从 4096 改为 2048\n\n**需 Director 注意：**\n1. **sft_standard_20 不存在** — westb-23072 上已删除，standard 脚本无法直接运行。需确认 checkpoint 来源（其他服务器/重训）。\n2. **beta=0.01 兼容性** — 依赖 trl GRPOConfig 支持 `beta` 和 `loss_type` 参数，已写入配置但未做 runtime 验证（避免触发模型加载）。\n3. 两个脚本均 **未启动**，等待审批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v3-emergency-scripts.md"
+}

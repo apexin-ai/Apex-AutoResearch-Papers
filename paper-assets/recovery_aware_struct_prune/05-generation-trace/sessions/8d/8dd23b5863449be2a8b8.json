@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8dd23b5863449be2a8b8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check multiseed logs",
+  "task_key": "worker_code_check_multiseed_logs_20260517T074810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_multiseed_logs_20260517T074810_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "0cec44082ca77136b5785975e00d97d24c14c278763f4ca2c00aa31dce5d91af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结论：partial — 实验设计与预期不符**\n\n实验成功完成（EXIT_CODE=0），但实际跑的是 **2 methods × 2 seeds**，不是预期的 4 seeds × Standard：\n\n| # | 配置 | Accuracy |\n|---|------|----------|\n| 1/4 | RASP seed=123 | 0.6050 (121/200) |\n| 2/4 | Standard seed=123 | 0.6450 (129/200) |\n| 3/4 | RASP seed=456 | 0.6000 (120/200) |\n| 4/4 | Standard seed=456 | 0.6100 (122/200) |\n\n**缺失：** seed 42 和 seed 789 的结果文件不存在。实际脚本只跑了 seed 123 和 456，且同时跑了 RASP 和 Standard 两种方法。\n\n**判断：partial** — 进程本身无错误退出，但覆盖范围与任务描述（4 seeds × Standard only）不一致。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-multiseed-logs.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2843f338ca59fe4934ff",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch grpo alpha3p0 westb0",
+  "task_key": "worker_launch_grpo_alpha3p0_westb0_20260522T084857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_grpo_alpha3p0_westb0_20260522T084857_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "84b8ffea6ba9979c863049f99ecae7f4b803c5999549b70e4c88fc0797cb1cda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "管线已成功启动，当前处于数据集准备阶段。\n\n```\nPID: 170671 (bash) → 170676 (python)\nGPU 0 显存: 12491 MiB\n日志确认: 正常启动\n  - 模型加载完成 (checkpoint-935 → cuda:0)\n  - 当前阶段: Preparing GSM8K training dataset（tokenization 中）\n```\n\n管线流程：GRPO 训练 (100 steps) → eval_gsm8k 评估。训练开始后可用 `tail -f /tmp/alpha3p0_grpo.log` 监控进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-grpo-alpha3p0-westb0.md"
+}

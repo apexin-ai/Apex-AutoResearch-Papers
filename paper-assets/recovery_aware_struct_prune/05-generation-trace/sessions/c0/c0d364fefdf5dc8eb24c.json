@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c0d364fefdf5dc8eb24c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd gpu status check",
+  "task_key": "worker_monitor_westd_gpu_status_check_20260516T162234",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd_gpu_status_check_20260516T162234_result.json",
+    "occurrence": 1,
+    "bytes": 1139,
+    "sha256": "2974decbc12fe7ea8b4070116f87d0a38f3818899faddff067ac4558dbc81264"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## GPU 状态 (westd-11672)\n\n| GPU | 显存占用 | 进程 | 状态 |\n|-----|---------|------|------|\n| cuda:0 | 83180/97887 MiB (94%) | PID 21408 grpo_rasp_25 (30min) + PID 22389 eval_grpo_rasp_25_qwen_math (22min) | 训练正常 + eval 仍在跑 |\n| cuda:1 | 77618/97887 MiB (97%) | PID 21488 sft_standard_25 (30min) + PID 22465 eval_grpo_standard_25_qwen_math (22min) | 训练正常 + eval 仍在跑 |\n| cuda:2 | 0 MiB | 空 | Qwen 20% eval 已退出 |\n| cuda:3 | 0 MiB | 空 | Qwen 20% eval 已退出 |\n\n## DeepSeek 25% 进程\n- **PID 21408** (grpo_rasp_25): 运行 30 分钟，正常\n- **PID 21488** (sft_standard_25): 运行 30 分钟，正常\n\n## 注意\ncuda:0/1 上各有一个 **25% Qwen Math eval** 进程与 DeepSeek 训练共享 GPU，已跑 22 分钟，结果文件尚未生成。\n\n## 已完成的 Qwen Math eval (20% 剪枝率)\n\n| 模型 | GSM8K Accuracy |\n|------|---------------|\n| eval_grpo_rasp_20_qwen_math | **72.5%** |\n| eval_grpo_standard_20_qwen_math | **70.5%** |\n\nRASP 20% 比 Standard 20% 高 2 个点。25% 的 eval 仍在运行中，预计稍后完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-gpu-status-check.md"
+}

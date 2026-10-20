@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e86568e84228e208eda",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis mvp rasp pipeline v2",
+  "task_key": "worker_analysis_mvp_rasp_pipeline_v2_20260514T135102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mvp_rasp_pipeline_v2_20260514T135102_result.json",
+    "occurrence": 1,
+    "bytes": 655,
+    "sha256": "faac6924e07888d6a32f749f5b15683e4945af1f62a8ba65a58b8fa753c944e7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已产出并注册。核心结论：\n\n**判定: FAILED — 实验未完成**\n\n- **Post-prune**: 两模型均 0.15% accuracy（完全退化）\n- **GRPO**: 直接跑在退化模型上，loss=0 / grad_norm=0，在 step 177/5604 (3%) 被 SIGTERM 终止\n- **根因**: V2 pipeline 脚本遗漏了 SFT warmup 步骤，导致 GRPO 重复了已知的失败模式\n- **Spearman ρ**: 未计算（Step 5/6 均未执行）\n- **唯一有趣信号**: RASP 模型 entropy 0.34 vs Standard 0.05，RASP 偶有微弱 reward，暗示功能多样性差异，但不足以得出结论\n\n下一步需修复 pipeline 加入 SFT warmup 再重新跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mvp-rasp-pipeline-v2.md"
+}

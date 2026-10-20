@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d811abdac00022e4a5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch seed123 eval westd2",
+  "task_key": "worker_launch_seed123_eval_westd2_20260522T130546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_seed123_eval_westd2_20260522T130546_result.json",
+    "occurrence": 1,
+    "bytes": 702,
+    "sha256": "e90d9a5b149d31b6ad6eeaeecc9b540d749e5f329cc07145af8fc4b6c781ae79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实际情况和预期不同：\n\n| GPU | PID | 进程 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| 0 | 43755 | eval_gsm8k rasp_alpha3p0_20 | 29590MiB | 91% |\n| 1 | 5241 | eval_math500 sft_random_20 | 17642MiB | 98% |\n| **2** | **46229** | **eval_gsm8k seed123** | 26210MiB | 99% |\n| **3** | **40073** | **eval_gsm8k depth_first_20** | 16474MiB | 91% |\n\nseed123 (PID 46229) 已经在 GPU 2 上，depth_first (PID 40073) 在 GPU 3 上 — 它们各占一张卡，并没有双 eval 共享同一 GPU 的情况。四张卡都在跑任务，没有空闲 GPU。\n\n要怎么处理？继续 kill seed123 重启（但没有空闲卡），还是维持现状让它跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-seed123-eval-westd2.md"
+}

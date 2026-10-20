@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38fd7434df67395255c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pass k8 standard v2",
+  "task_key": "worker_diagnose_pass_k8_standard_v2_20260516T232218",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pass_k8_standard_v2_20260516T232218_result.json",
+    "occurrence": 1,
+    "bytes": 493,
+    "sha256": "afa3aa305b622f530c1625d7edba52220fb44189723015d6f2b0b9b0dfbaa0fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估完成，registry 已更新为 success（cron 已不存在，无需删除）。\n\n**结果汇总：**\n\n| Metric | Value |\n|--------|-------|\n| pass@8 | **0.91** ± 0.0202 |\n| n_problems | 200 |\n| k | 8 |\n| temperature | 0.7 |\n| eos_rate | 0.9994 (1599/1600 natural EOS) |\n| truncated | 1 |\n| avg_response_length | 130.0 tokens |\n| 运行时间 | ~68 min |\n\nStandard 20% 剪枝模型 post-GRPO 的 pass@8 = 0.91，EOS rate 接近 1.0，几乎无 truncation。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pass-k8-standard-v2.md"
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfa1516a87d97f82b78",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code westd grasp gpu0 urgent",
+  "task_key": "worker_code_westd-grasp-gpu0-urgent_20260515T120657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-grasp-gpu0-urgent_20260515T120657.log",
+    "occurrence": 1,
+    "bytes": 2804994,
+    "sha256": "558359c8c2a7fdfad456c493b64d561169e424244c2d9cd1c9a57e9461d98f2a"
+  },
+  "statistics": {
+    "messages": 1010,
+    "user_turns": 3,
+    "tool_calls": 360,
+    "roles": {
+      "log": 1,
+      "system": 22,
+      "record": 2,
+      "assistant": 260,
+      "tool_call": 360,
+      "tool_result": 360,
+      "user": 3,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 170,
+      "chunks": [
+        {
+          "path": "7bfa1516a87d97f82b78-part-0001.json",
+          "message_count": 140
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "7bfa1516a87d97f82b78-part-0002.json",
+          "message_count": 82
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0003.json",
+          "message_count": 169
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 555,
+      "chunks": [
+        {
+          "path": "7bfa1516a87d97f82b78-part-0003.json",
+          "message_count": 11
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7bfa1516a87d97f82b78-part-0007.json",
+          "message_count": 4
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "7bfa1516a87d97f82b78-part-0007.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-westd-grasp-gpu0-urgent.md"
+}

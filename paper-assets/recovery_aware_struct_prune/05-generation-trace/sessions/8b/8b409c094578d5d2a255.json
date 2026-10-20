@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b409c094578d5d2a255",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd cuda2 harvest and fill",
+  "task_key": "worker_ops_westd_cuda2_harvest_and_fill_20260519T105243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_cuda2_harvest_and_fill_20260519T105243_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "85d39b9e7ab9e738570f51018979edd416d3757124f74a78d2cffec33ee4627a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**cuda:2 状态：运行中**\n\n- PID 76392 仍在执行，GPU 利用率 97%，80°C / 577W\n- 进度：151/164 (92%)，当前 pass@1 ≈ 0.1143\n- 预计剩余 ~15-20 分钟完成\n- 已运行约 3 小时 47 分钟（15:03 启动）\n\ncuda:2 尚未空闲，预计很快完成。无需操作 registry，等下一次检查收割结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda2-harvest-and-fill.md"
+}

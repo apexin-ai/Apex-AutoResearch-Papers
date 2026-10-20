@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca263987ff4bc214b4f6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd gpu processes",
+  "task_key": "worker_ops_check_westd_gpu_processes_20260517T132852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd_gpu_processes_20260517T132852_result.json",
+    "occurrence": 1,
+    "bytes": 962,
+    "sha256": "4b5465e91f55c956e7801f6267c9e532a51e6000e9ab4c06d891259ee0e76686"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 GPU 状态汇报\n\n| GPU | PID | 任务 | 进度 | 当前指标 | 预计完成 |\n|-----|-----|------|------|---------|---------|\n| **cuda:0** | 23707 | `eval_humaneval` unpruned (2048 tokens) | **119/164** (73%) | Pass@1: 0.53~0.60 | **~21:50 今晚** |\n| **cuda:1** | 14556 | `eval_math500` grpo_standard_20 (v8/ckpt-50) | **96/500** (19%) | Acc@50: 0.3600 | **~明天 14:00** |\n| **cuda:2** | — | **空闲** | — | — | — |\n| **cuda:3** | 11896 | `eval_math500` grpo_rasp_20 (v9) | **152/500** (30%) | Acc@150: 0.3067 | **~明天 08:40** |\n\n**关键信息：**\n- **PID 校正**：rasp_20_v2 的实际 PID 是 11896（不是 11891），standard_20 的 PID 14556 正确\n- **结果文件**：两个 math500 eval 都未生成最终 JSON（仅完成后写入）\n- **速度**：standard_20 约 2.5 min/problem，rasp_20 约 1.9 min/problem（rasp 模型更小所以更快）\n- **cuda:2 完全空闲**，可立即使用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-gpu-processes.md"
+}

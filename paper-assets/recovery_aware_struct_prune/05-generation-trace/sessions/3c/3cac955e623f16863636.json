@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cac955e623f16863636",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "reviewer / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_16.md",
+    "occurrence": 1,
+    "bytes": 4050,
+    "sha256": "be969d905e7a76e9c1b79925b21e51bba71be21eeeed5099e07a454e963b9ec1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-21T01:43:47+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 C005：westd-29022 cuda:0/1/2/3 + westb-23072 cuda:0/1。越界立即 CRITICAL。\n- westd 是 AutoDL 实例：根分区 30GB（禁止存大文件），所有 checkpoint/模型必须在 `/root/autodl-tmp/`。\n- HF 下载必须 `source /etc/network_turbo` + 设 `HF_HOME=/root/autodl-tmp/.hf_cache`。`HF_DATASETS_OFFLINE=1` 会阻断 eval——CKA-only 15% eval 的旧命令带了这个变量但靠缓存幸存，新提交必须去掉。\n- Cron 监控有误判倾向：eval 遇到长序列 stall（100-180s/sample）会被 cron 标 \"failed\"。**确认进程死亡前必须 `ps -p PID` + 读日志尾部**，不能只看 cron 通知。\n\n### 2. 🖥️ 基础设施快照\n- **westd-29022** (root)：`/root/recovery_aware_struct_prune`（代码），`/root/autodl-tmp/recovery_aware_struct_prune`（checkpoints/results）\n- **westb-23072** (root)：`/root/recovery_aware_struct_prune`（代码），checkpoints 在本地\n- Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n- HF cache：`/root/autodl-tmp/.hf_cache`（westd），GSM8K cached at `/root/autodl-tmp/.hf_cache/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866`\n- 论文本地路径：`/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/`\n- 活跃进程：**全部 6 GPU 空闲**（westd 0/1/2/3 + westb 0/1 均 0% util，0 MiB）\n- 25% pipeline worker 刚完成探查，尚未看到实际训练启动\n\n### 3. 📊 当前状态\n**刚完成**：15% multi-seed GRPO eval 全部 4 个实验成功完成并验证：\n- CKA-only 15%: 72.76% ± 0.57pp (seeds: 73.09/73.09/72.10)\n- Standard 15%: 65.56% ± 0.50pp (seeds: 66.11/65.13/65.43)\n- Gap: 7.20pp, p<0.001\n\n**Registry DONE/success**：eval_gsm8k_grpo_cka_only_15_seed123, seed456, eval_gsm8k_grpo_standard_15_seed123_v3, seed456_v3\n\n**已向 Director 提交**：\n1. Table 5 reward 修复验证通过（peak reward 统一）\n2. 15% 三种子完整结果 + 统计\n3. Standard 15% GRPO delta per-seed 超 1pp 的 warning（decoupling claim 需弱化措辞）\n4. 全景 ROI 评估（推荐 15% CKA heatmap + 25% 单种子）\n\n**等待中**：Director 对 25% pipeline 和 15% heatmap 的决策；Round 2 审稿结果\n\n### 4. 📋 待办（条件触发式）\n- 25% 训练启动 → 核实 GPU 在 C005 白名单内 + 确认 checkpoint 写入 autodl-tmp\n- 25% eval 出结果 → 验证 accuracy，计算 CKA-only vs Standard gap，判断是否半 collapse\n- 15% CKA heatmap 完成 → 与 20% heatmap 对比 diagonal mean（20% 是 0.62 vs 0.88-0.92）\n- Round 2 审稿报告到 → 按 review-report-action skill 评估，标注哪些 finding 需要补实验\n- 论文 appendix 15% 表格更新 → 核实 3-seed mean/std 数值一致性\n- Decoupling claim 措辞修改 → 审查是否从 \"universally |Δ|<1pp\" 改为 \"mean |Δ|<1pp\"\n\n### 5. 🎯 战略上下文\n- **核心结论**：CKA-only >> importance-based pruning for GRPO recovery capacity。证据链完整：20% 3-seed (4.55pp, p=0.0009) + 15% 3-seed (7.20pp, p<0.001) + recovery gradient (4 methods) + cross-architecture (Qwen-Math SFT 30.5pp gap)\n- **决策链关键节点**：D084(scenario A 确认) → D086(Standard 15%) → D088(SFT 15%) → D090(3-seed 恢复) → D091(维持 3-seed)\n- **最易判断错的事**：\n  1. Cron \"failed\" 通知 ≠ 进程死亡。本 session 中两次 cron 误报（eval stall 被误判为 kill）。**始终独立验证 PID + 日志**。\n  2. Registry 可能被 worker 错误更新（如诊断 worker 把 RUNNING 改成 DONE/failed）。**读 registry 后如有疑点，SSH 核实实际进程状态**。\n  3. 论文有两个 SFT Standard 20% 模型（westb 59.21% vs westd 59.29%），D090/D091 决定保留 3-seed mean（含跨服务器 seed）。不要重新质疑这个决策。\n  4. Table 5 的 1.5B 列用 \"training mean\" reward（非 peak），7B 列用 peak。两套约定在 caption 中明确标注，不要标为 inconsistency。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-copy-3.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c8a022c9743a5216790",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops transfer scores westd 20260522",
+  "task_key": "worker_ops_transfer_scores_westd_20260522_20260522T051106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_transfer_scores_westd_20260522_20260522T051106_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "0ecc6812003cc2735eb416a6bd4eab8bdc25158eee439a72996d7d5289e2ed79"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**无需中转。westd-32935 已有 7B DeepSeek scores。**\n\n```\n== 找到的 scores 文件 ==\nwestb: /root/recovery_aware_struct_prune/results/{importance_scores,cka_scores}.pt (17KB, 122KB)\nwestd: /root/recovery_aware_struct_prune/results/{importance_scores,cka_scores}.pt (17KB, 122KB, 同大小)\n\n== 7B DeepSeek scores ==\nimportance: /root/recovery_aware_struct_prune/results/importance_scores.pt ✓ (28层×4 KV groups)\ncka: /root/recovery_aware_struct_prune/results/cka_scores.pt ✓ (28层, keys=attn_overlap/mlp_overlap/attn_cka_matrix)\n\n== 中转状态 ==\n无需传输 — westd-32935 已有完整文件\n\n== 验证 ==\nwestd importance_scores: OK (weights_only=True 加载成功)\nwestd cka_scores: OK (weights_only=True 加载成功)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-transfer-scores-westd-20260522.md"
+}

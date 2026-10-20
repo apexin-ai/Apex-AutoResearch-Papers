@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd09a17a0cd6556bde4b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops clipped ratio monitor",
+  "task_key": "worker_ops_clipped-ratio-monitor_20260514T224349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_clipped-ratio-monitor_20260514T224349_result.json",
+    "occurrence": 1,
+    "bytes": 1806,
+    "sha256": "e358931ef564ddfae90165c0eff0469e5446a8bc86f507422b66f4a930c53a96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 监测报告：grpo_standard_20_4096 前 10 步\n\n### 判断：**FAIL** — `completions/clipped_ratio = 0.9938`\n\n4096 长度仍然不够。情况与 D009（1024 限制）本质相同。\n\n### 关键指标\n\n| 指标 | 值 | 含义 |\n|------|-----|------|\n| `completions/clipped_ratio` | **0.9938** | 99.4% 被截断，远超 0.95 阈值 |\n| `completions/mean_length` | 4089 | 均值接近 4096 上限 |\n| `completions/mean_terminated_length` | 294.9 | 仅 ~0.6% 自然终止（约 295 token） |\n| `loss` | -1.863e-10 | 有效为零 |\n| `grad_norm` | 0 | **零梯度，无学习** |\n| `reward` | 0.00625 | ~1/160 答对率 |\n| `frac_reward_zero_std` | 0.975 | 97.5% prompt 各 generation 分数相同 |\n\n### Completion 样本\n\n模型输出全是无意义重复数字：\n- `\"Gary currently has 15.110.75111111111111…\"` → reward 0.00\n- `\"Gary, 120. But 51.112222222222222222…\"` → reward 0.00\n\n### 根因分析\n\n**问题不是 max_completion_length 不够，而是模型太弱。** pruned_standard_20 准确率仅 1%，模型已丧失：\n1. 生成结构化推理的能力\n2. 正确产出 EOS token 的能力\n3. 形成连贯句子的能力\n\n模型只是生成重复 token 填满整个窗口。即使设 8192/16384 也无济于事。\n\n### 额外风险\n\nReward desert callback 不会触发——reward=0.00625≠0（有极少数偶然答对），训练会持续跑满 500 步，浪费约 24 小时 GPU 时间。\n\n### grpo_rasp_20_4096 状态\n\n尚未启动（无日志文件）。\n\n### 建议\n\n1. **停止 grpo_standard_20_4096**——继续训练无意义\n2. **GRPO 无法直接恢复 1% accuracy 的模型**——需要 SFT warmup 先教模型基本回答格式\n3. 或者：使用剪枝更少的模型（如 10% 剪枝而非 20%）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-clipped-ratio-monitor.md"
+}

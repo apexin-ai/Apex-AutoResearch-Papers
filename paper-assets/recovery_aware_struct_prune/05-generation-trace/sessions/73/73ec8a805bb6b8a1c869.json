@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73ec8a805bb6b8a1c869",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3p0 sft eval or mf2 westd2",
+  "task_key": "worker_launch_alpha3p0_sft_eval_or_mf2_westd2_20260522T102731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3p0_sft_eval_or_mf2_westd2_20260522T102731_result.json",
+    "occurrence": 1,
+    "bytes": 532,
+    "sha256": "2b8781138f63df670de838db0649e11b5dc61f3f6f437e26890cd7536f6bda08"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行。GPU 2 占用 24.9GB，正在推理 1319 个 GSM8K 测试样本。\n\n```\n执行路径: α=3.0 SFT eval\ncheckpoint-935 在 westd: 否（从 westb SCP 成功传输）\nSCP: 成功（12GB model.safetensors + 6 个辅助文件完整到位）\n\nEval 已启动:\n  PID: 37024\n  脚本: eval_gsm8k.py → eval_gsm8k_sft_alpha3p0_20.json\n  样本数: 1319\n  nvidia-smi:\n    GPU 0: 19251MiB, 98%\n    GPU 1: 17651MiB, 98%\n    GPU 2: 24954MiB, 91%  ← α=3.0 SFT eval\n    GPU 3: 54119MiB, 93%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3p0-sft-eval-or-mf2-westd2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91e9a2b5900d1dc34662",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 westd failures",
+  "task_key": "worker_diagnose_eval_math500_westd_failures_20260521T134339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_westd_failures_20260521T134339_result.json",
+    "occurrence": 1,
+    "bytes": 2486,
+    "sha256": "6ec9b5ce7331dc70435b0fa065512643e34805ff1308d95f49a0d4cda2e9abc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断信息收集完毕。\n\n## 诊断报告\n\n### 每个实验的状态\n\n| 实验 | GPU | 进度 | 最后时间戳 | 终止方式 |\n|------|-----|------|-----------|---------|\n| grpo_cka_only_25 | cuda:0 | 205/500 (41%), acc=0.18 | ~21:25 | 日志显式 `Terminated` (SIGTERM) |\n| sft_cka_only_25 | cuda:2 | 179/500 (36%), acc=0.2067 | ~21:23 | 日志截断，无错误信息 |\n| grpo_random_20 | cuda:1 | 43/500 (9%), acc未知 | ~21:25 | 日志截断，无错误信息 |\n\n### 根因分析\n\n**3 个进程在同一时间窗口（~21:23-21:25）被外部 kill**，不是 OOM/CUDA 错误/磁盘满导致的自然崩溃。证据：\n\n1. grpo_cka_only_25 日志末尾有明确的 `Terminated`（SIGTERM 信号）\n2. 三个进程的最后活动时间高度一致，说明是协调性操作\n3. 日志中无 Python traceback、无 CUDA error、无 OOM 信息\n4. **v2 进程已在运行**：PID 379999（grpo_cka_only_25_v2, GPU 0）和 PID 380074（sft_cka_only_25_v2, GPU 2）已启动约 14 分钟，参数改为 `--max_new_tokens 2048`（原默认值 4096）\n\n**推测原因**：有人（或自动化脚本）认为原始运行太慢，手动终止并用优化参数重启。原始命令未指定 `--max_new_tokens`，默认 4096 导致每个样本生成时间过长：\n- grpo_cka_only_25: ~1.4 min/sample → 预计总时长 ~12h\n- sft_cka_only_25: ~1.5 min/sample → 预计总时长 ~13h\n- grpo_random_20: **~4.3 min/sample → 预计总时长 ~36h**（异常慢）\n\n### 附加风险\n\n**数据盘 `/root/autodl-tmp` 使用率 99%**（610G/619G，仅剩 9.7G）。当前不是直接致死原因，但如果 v2 运行完毕写结果或新实验产生 checkpoint，可能立即磁盘满。\n\n### 当前 GPU 状态\n\n| GPU | 进程 | 说明 |\n|-----|------|------|\n| 0 | eval_math500 grpo_cka_only_25 **v2** (PID 379999) | 已重启 |\n| 1 | **空闲** | grpo_random_20 未被重启 |\n| 2 | eval_math500 sft_cka_only_25 **v2** (PID 380074) | 已重启 |\n| 3 | eval_gsm8k sft_standard_25 (PID 335301, 5.5h) | 其他实验 |\n\n### 修复建议\n\n1. **grpo_cka_only_25 和 sft_cka_only_25**：v2 已在运行，无需操作，等待完成即可\n2. **grpo_random_20**：需手动在 GPU 1 上重启，加 `--max_new_tokens 2048`。但此模型原本就极慢（4.3 min/sample），即使限制 token 数也可能需要 ~18h+，建议确认是否值得跑\n3. **数据盘**：清理不需要的 checkpoint 释放空间，防止后续写入失败"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-westd-failures.md"
+}

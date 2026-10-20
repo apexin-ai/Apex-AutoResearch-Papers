@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94a3f9699197182aecba",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh wait scp and resubmit sft std25",
+  "task_key": "worker_ssh_wait_scp_and_resubmit_sft_std25_20260521T081357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_wait_scp_and_resubmit_sft_std25_20260521T081357_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "7862efaac00fcc83ea51177774fb5f58117f8b15667375d3ff611ac26677654c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果汇总：\n\n**1. SCP 完成确认**\n- 文件大小: 11,582,559,224 bytes (~10.8GB)，传输完成，大小稳定\n\n**2. 模型验证**\n- safetensors 加载成功，339 keys，完整无损\n\n**3. SFT Standard 25% Eval**\n- 已在运行中（PID 335301, GPU cuda:3）\n- 进度: 50/1319，当前 acc=0.6000\n- 预估 ~2.5s/it，剩余约 53 分钟\n\n**4. GRPO CKA-only 25% v3 最终结果**\n- **GSM8K Accuracy: 59.59% (786/1319) ± 1.35%**\n- EOS rate: 98.18%, avg response length: 237\n- 结果已保存: `results/eval_grpo_cka_only_25_greedy.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-wait-scp-and-resubmit-sft-std25.md"
+}

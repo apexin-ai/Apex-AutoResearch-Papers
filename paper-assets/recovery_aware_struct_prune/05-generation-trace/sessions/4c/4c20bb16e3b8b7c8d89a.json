@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c20bb16e3b8b7c8d89a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check sft qwen standard 25 exit",
+  "task_key": "worker_ops_check_sft_qwen_standard_25_exit_20260516T120239",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_sft_qwen_standard_25_exit_20260516T120239_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "55787e44513ffff73e8d98ac369b77daedaebfcae49a3f5499b480a7be0283bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练成功完成。**\n\n## 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | ✓ 正常完成 |\n| final train_loss | 0.6122 (avg), 末 step ~0.499 |\n| final mean_token_accuracy | 0.8607 |\n| epochs completed | 2.0 |\n| train_runtime | 1666s (~27.8 min) |\n| train_samples_per_second | 8.973 |\n| train_steps_per_second | 1.123 |\n\n## 输出模型路径\n\n`/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_25/`\n\n包含完整模型文件：`model.safetensors` (10.8GB) + config.json + tokenizer + chat_template。无 checkpoint 子目录（仅保存了最终模型）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-qwen-standard-25-exit.md"
+}

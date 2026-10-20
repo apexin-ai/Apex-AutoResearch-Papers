@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d82ee57808756991256",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "submit pipeline alpha4 0",
+  "task_key": "worker_submit_pipeline_alpha4_0_20260521T173102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_submit_pipeline_alpha4_0_20260521T173102_result.json",
+    "occurrence": 1,
+    "bytes": 700,
+    "sha256": "feb61d489c2e3c1770e9e91a4444383b203066fbbf3f8e737556a98f6bfe1b05"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已成功启动，正在运行 Step 1 (Pruning)。\n\n**总结：**\n\n| 项目 | 详情 |\n|------|------|\n| **exp_id** | `pipeline_alpha4_0` |\n| **服务器/GPU** | westd-29022 cuda:2 |\n| **PID** | 396205 |\n| **tmux session** | `pipeline_alpha4_0` |\n| **日志** | `~/runs/recovery_aware_struct_prune/pipeline_alpha4_0.log` |\n| **Pipeline 阶段** | Prune(α=4.0, 20%) → SFT(2ep) → GRPO(100steps, DAPO) → GSM8K eval(N=1319) |\n| **当前状态** | Step 1/4 Pruning 进行中，模型加载完成 |\n| **预计总时长** | ~3.5-4.5h，timeout=6h |\n\n脚本已修改：移除了 3 处 `CUDA_VISIBLE_DEVICES=$GPU` 赋值，由框架注入 `CUDA_VISIBLE_DEVICES=2`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/submit-pipeline-alpha4-0.md"
+}

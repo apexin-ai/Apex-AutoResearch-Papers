@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b9a999ec5480703861a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cuda1 pruning or download",
+  "task_key": "worker_ops_westb-cuda1-pruning-or-download_20260516T044351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-cuda1-pruning-or-download_20260516T044351_result.json",
+    "occurrence": 1,
+    "bytes": 1478,
+    "sha256": "3c1ec8fafb30ed8593914e79d1bbd31053c1f81713fc03dd6446b88f3182f8c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报如下：\n\n## Qwen2.5-Math-7B 下载状态：进行中\n\n- 正在下载 `model-00003-of-00004.safetensors`（3.65GB，速度 ~800KB/s）\n- 已完成 3/4 个 safetensors 文件（shard 1、2、4 已下载，shard 3 在临时目录中下载中）\n- 已占用 15GB 磁盘空间\n- **预计剩余时间**：shard 3 正在写入中，按当前速度估计还需数十分钟到一两小时完成剩余部分\n\n## 25% sparsity 剪枝可行性：**可行**\n\n所需资源全部就绪：\n- **模型**：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`（~14.2GB，完整，含 config.json）\n- **importance scores**：`/root/recovery_aware_struct_prune/results/importance_scores.pt`\n- **CKA scores**：`/root/recovery_aware_struct_prune/results/cka_scores.pt`\n- **prune.py** 支持 `--sparsity 0.25`（默认 0.35）\n\n剪枝命令格式：\n```bash\npython /root/recovery_aware_struct_prune/src/prune.py \\\n  --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --importance_path /root/recovery_aware_struct_prune/results/importance_scores.pt \\\n  --cka_path /root/recovery_aware_struct_prune/results/cka_scores.pt \\\n  --mode rasp \\\n  --sparsity 0.25 \\\n  --alpha 1.0 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25 \\\n  --dtype bfloat16\n```\n\n## 建议\n\nQwen2.5-Math-7B 下载未完成，按 Director 指令应先用 DeepSeek-R1-Distill-Qwen-7B 做 25% sparsity 剪枝。等待确认是否启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cuda1-pruning-or-download.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5bdbecee0acedcc54f25",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo alpha0p5 math500 westb1",
+  "task_key": "worker_ssh_submit_grpo_alpha0p5_math500_westb1_20260523T025549",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_alpha0p5_math500_westb1_20260523T025549_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "c5a570d3e766044696ffb8b47cbb8bf0de8d30997f5ca081950153c2e1f6fda1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已确认运行正常。\n\n**汇总**：\n- **模型 SCP**：从 westd-32935 传输到 westb-23072，23GB，约 2 分钟完成\n- **GPU**：cuda:1 占用 12745 MiB，利用率 97%\n- **PID**：262771\n- **tmux session**：`eval_math500_grpo_alpha0p5`\n- **进度**：MATH-500 eval 0/500 已启动（@2048 max_new_tokens）\n- **数据集**：网络不通但从本地缓存成功加载\n- **Registry**：`eval_math500_grpo_rasp_alpha0p5_20` → RUNNING\n- **日志**：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha0p5_20.log`\n\n注：同一服务器 cuda:0 上还有另一个 eval（sft_qwen_math_cka_only_20，PID 250771）在跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-alpha0p5-math500-westb1.md"
+}

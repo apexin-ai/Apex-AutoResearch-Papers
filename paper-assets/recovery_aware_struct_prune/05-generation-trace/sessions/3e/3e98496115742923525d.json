@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e98496115742923525d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops investigate rasp 1p5b checkpoint",
+  "task_key": "worker_ops_investigate_rasp_1p5b_checkpoint_20260518T163841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_investigate_rasp_1p5b_checkpoint_20260518T163841_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "04e79f75f1a5d381e2d3dfafc1eb7b0e54920cb9e6527dfb66f9a10fb55a77e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**checkpoint 完整可用。**\n\n- `checkpoint-100/model.safetensors`: 2.91 GB, 339 tensors, 1.45B 参数 — 文件完整，可正常加载\n- 崩溃发生在保存 **optimizer state** 阶段（`torch.save(self.optimizer.state_dict())`），模型权重在此之前已成功保存\n- completions 也完整保存了全部 100 步（10 个 parquet 文件）\n- 缺少 `optimizer.pt` 和 `scheduler.pt`，意味着无法从此 checkpoint **继续训练**，但用于推理/评估完全没有问题\n\n**不需要重跑。** 模型权重完好，可以直接用于下游实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-investigate-rasp-1p5b-checkpoint.md"
+}

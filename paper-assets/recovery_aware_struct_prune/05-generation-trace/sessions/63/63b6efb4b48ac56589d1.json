@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "63b6efb4b48ac56589d1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo qwen math batch",
+  "task_key": "worker_analysis_grpo_qwen_math_batch_20260516T154509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_qwen_math_batch_20260516T154509_result.json",
+    "occurrence": 1,
+    "bytes": 2647,
+    "sha256": "465b20eee6e112cd2057dfe26fb505b1c97745822daeee9e514c3d1241c2f3a2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 全部更新成功。\n\n```\n=== GRPO Qwen Math Batch Analysis ===\n\n[grpo_rasp_25_qwen_math]: conclusion=success\n  - Collapse: 有(mild/partial), onset ~step 10, NOT permanent\n  - Key metrics: reward_final=0.206, reward_std_final=0.400, frac_zero_std_final=0.35, completion_length_final=812\n  - frac_zero_std range: 0.25~0.575 (peak step 10), reward range: 0.11~0.23\n  - Early stop: 否 (完成 100 steps)\n  - 与 DeepSeek 对比：差异显著。DeepSeek RASP 20% 是 permanent collapse (frac_zero_std→0.95, reward→0.039)，\n    Qwen Math RASP 25% 仅 mild partial collapse，frac_zero_std 最高 0.575 且逐步下降，reward 维持 0.1-0.2。\n    Qwen Math 对 RASP 剪枝的 collapse 抵抗力明显更强。\n\n[grpo_standard_25_qwen_math]: conclusion=success\n  - Collapse: 有(KL explosion transient), onset step 20, transient (recovery step 90)\n  - Key metrics: reward_final=0.182, reward_std_final=0.367, frac_zero_std_final=0.325, completion_length_final=527\n  - KL 爆炸: step 20 kl=56.08, step 80 kl=4.1M, loss=220K → step 90 恢复 kl=0.026\n  - Early stop: 否 (完成 100 steps)\n  - 与 DeepSeek 对比：部分一致。DeepSeek Standard 20% 表现为 reward transient dip (step ~60 dip, ~90 recovery)，\n    Qwen Math Standard 25% 表现为 KL/loss 数值爆炸后恢复——instability 机制不同（KL explosion vs reward dip），\n    但都是 transient 模式。reward 本身维持 0.1-0.2 无明显 dip。\n\n[grpo_standard_qwen_math_v3]: conclusion=success\n  - Collapse: 有(permanent), onset step 10, PERMANENT\n  - Key metrics: reward_final=0.044, reward_std_final=0.146, frac_zero_std_final=0.85, completion_length_final=921\n  - frac_zero_std: 0.75(step10) → 0.85(step20) → 0.90(step30) → 0.85(step100)\n  - Early stop: 否 (完成 100 steps, reward_desert_patience 未触发因 reward 不是严格 0)\n  - 与 DeepSeek 对比：意外发现！DeepSeek Standard 20% 是 transient dip+recovery，\n    但 Qwen Math Standard 20% 却是 PERMANENT COLLAPSE，pattern 更接近 DeepSeek RASP 20%。\n    这说明 Qwen2.5-Math-7B Standard 20% 剪枝造成的损伤比 DeepSeek 同条件更严重。\n\n=== 跨模型对比总结 ===\nQwen2.5-Math-7B 的 collapse 模式与 DeepSeek-R1-Distill-Qwen-7B 有系统性差异：\n1. Standard 20%: DeepSeek=transient, Qwen Math=PERMANENT (意外反转)\n2. RASP 25%: 预期 permanent collapse 未完全出现，仅 mild partial\n3. Standard 25%: KL 数值爆炸 transient instability (DeepSeek 未观察到此模式)\n→ Collapse 严重程度不仅取决于剪枝方法，还强依赖于 base model 的 GRPO 适应性。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-qwen-math-batch.md"
+}

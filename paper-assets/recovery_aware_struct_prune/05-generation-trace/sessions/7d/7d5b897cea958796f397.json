@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d5b897cea958796f397",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb status",
+  "task_key": "worker_check_westb_status_20260516T200709",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_status_20260516T200709_result.json",
+    "occurrence": 1,
+    "bytes": 1477,
+    "sha256": "7a756d7a087fc607e6b75bb6d318b6c8a101d4641ea59a845866285f1278a0d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 使用\n\n| GPU | 进程 | VRAM | Util |\n|-----|------|------|------|\n| cuda:0 | eval_grpo_rasp_25 (PID 639423) | 28.9/97.9 GB | 99% |\n| cuda:1 | grpo_rasp_rlvr_20 (PID 635524) | 71.7/97.9 GB | 100% |\n\n---\n\n### 1. `grpo_rasp_rlvr_20` — **RUNNING** (cuda:1)\n- 进度: **14/100 steps** (~1h35m elapsed, ~9h40m remaining)\n- 速度: ~405s/step\n- W&B run: `hmhrxpn0` (started 5/17 02:31 UTC)\n- 预计完成: 5/17 ~12:00 UTC\n\n### 2. `grpo_stage2_standard_20_v8` — **COMPLETED (partial, step 50/100)**\n- W&B run: `q34vz8j2` (started 5/15 22:47)\n- 只保存了 checkpoint-50，无最终模型 → 可能被 `reward_desert_patience` 早停或手动 kill\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50/`\n\n### 3. `grpo_stage2_rasp_20_v9` — **COMPLETED (success)**\n- 最终模型已保存（model.safetensors + config 全套）\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/`\n- 有 checkpoint-10\n\n### 4. `grpo_standard_25` — **FAILED/KILLED**\n- W&B run: `halzuhy3` (started 5/16 16:13)\n- log 停在 `0%|  | 0/100`，无 output dir → 启动后立即失败或被 kill\n- 输出目录不存在\n\n### 5. `eval_grpo_rasp_25` — **RUNNING** (cuda:0, tmux session)\n- 正在评估 grpo_rasp_25 模型的 GSM8K（1319 samples）\n- 进度: 59/1319 (~19min elapsed)\n- 中间结果 @50 samples: **acc=0.5000**, eos_rate=94%, avg_len=385"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-status.md"
+}

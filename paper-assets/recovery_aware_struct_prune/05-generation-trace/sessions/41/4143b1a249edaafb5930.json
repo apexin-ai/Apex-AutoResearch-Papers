@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4143b1a249edaafb5930",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scp and eval gsm8k grpo cka only 20",
+  "task_key": "worker_code_scp_and_eval_gsm8k_grpo_cka_only_20_20260518T045905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scp_and_eval_gsm8k_grpo_cka_only_20_20260518T045905_result.json",
+    "occurrence": 1,
+    "bytes": 533,
+    "sha256": "2cbd64c3d3ffb54d05aac7734b5a3bc721fdcc8b8f58fc6a94e64c6874d2ebdd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **SCP 完成** — grpo_cka_only_20 模型（38GB, 29文件）从 westb-23072 复制到 westd-11672，MD5 校验一致\n2. **Eval 已启动** — PID 88554，westd cuda:2（GPU 利用率 94%，显存 12.7GB），进度 ~2.5s/it，预计约 55 分钟完成\n3. **Registry 已注册** — `eval_gsm8k_grpo_cka_only_20` 状态 RUNNING\n\n结果将写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json`，日志在 `/tmp/eval_gsm8k_grpo_cka_only_20.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scp-and-eval-gsm8k-grpo-cka-only-20.md"
+}

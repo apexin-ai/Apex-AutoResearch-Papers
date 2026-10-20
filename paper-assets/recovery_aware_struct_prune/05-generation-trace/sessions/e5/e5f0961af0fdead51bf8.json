@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5f0961af0fdead51bf8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix prune grpo warnings",
+  "task_key": "worker_fix_prune-grpo-warnings_20260514T031253",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_prune-grpo-warnings_20260514T031253_result.json",
+    "occurrence": 1,
+    "bytes": 1928,
+    "sha256": "c30ad5e9f24530c85f0af81756ca85dde4115defb4d2115ab831fe0a1b9552c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改已确认正确。汇报如下：\n\n---\n\n## 修复汇报\n\n### Fix 1: prune.py — config 更新 + forward pass 验证\n\n**修改位置**：`main()` 函数，剪枝执行后、保存前（L334-387）\n\n**新增逻辑**：\n1. 遍历每层 `self_attn.num_heads` / `num_key_value_heads`，检测是否均匀剪枝\n2. **均匀**：直接更新 `model.config.num_attention_heads` 和 `num_key_value_heads`\n3. **非均匀**：config 设为 min 值，同时存 `per_layer_num_attention_heads` / `per_layer_num_key_value_heads` 列表到 config\n4. 同样处理 `intermediate_size`（MLP 剪枝）\n5. forward pass 验证：`dummy_input (1,32)` → 成功则 log shape，失败则 `raise RuntimeError`\n\n**注**：`prune_attention_heads` 函数中已有 per-layer `attn.num_heads`/`attn.num_key_value_heads`/`attn.head_dim` 更新（原代码已正确），本次补的是 **config 级别** 和 **forward pass 验证**。\n\n### Fix 2: train_grpo.py — max_completion_length 2048\n\n**修改位置**：L147\n- `--max_new_tokens` default: `512` → `2048`\n- 该值通过 `max_completion_length=args.max_new_tokens` 传入 GRPOConfig\n- batch_size=2 保持不变（96GB 显存 + 剪枝后 ~4.5B 参数足够）\n\n### Fix 3: train_grpo.py — W&B 日志\n\n**修改**：\n- L24-26: 添加 `import wandb`（try/except 容错）\n- L160: `os.environ.setdefault(\"WANDB_PROJECT\", \"recovery_aware_struct_prune\")`\n- L191: 添加 `run_name=f\"grpo_{os.path.basename(args.model_path)}\"`\n- L199: `report_to=\"none\"` → `report_to=\"wandb\"`\n\n### W&B 登录状态\n\n**未登录**。训练前需执行 `wandb login <API_KEY>` 或设置 `WANDB_API_KEY` 环境变量。\n\n### Dry-run\n\n未执行。服务器上只有 `cka_scores_dryrun.pt`，缺少 importance scores `.pt` 文件，无法运行 prune.py。forward pass 验证逻辑已集成到 prune.py 中，首次实际剪枝时会自动验证。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-prune-grpo-warnings.md"
+}

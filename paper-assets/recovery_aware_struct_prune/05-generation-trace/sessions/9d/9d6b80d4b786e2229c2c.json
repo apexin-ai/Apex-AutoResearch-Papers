@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d6b80d4b786e2229c2c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd submit cka eval and 30pct",
+  "task_key": "worker_ops_westd_submit_cka_eval_and_30pct_20260517T182046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_submit_cka_eval_and_30pct_20260517T182046_result.json",
+    "occurrence": 1,
+    "bytes": 1187,
+    "sha256": "f79653b4f3fb5f507c7362bd350404be61b1f94575bb492f90df819d34e5b3ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个新实验进程均已启动。\n\n---\n\n## 报告\n\n### 新实验 PID\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| eval_sft_cka_only_20_full (GSM8K N=1319) | cuda:0 | 44066 | 启动中（模型加载） |\n| eval_postprune_rasp_30 (GSM8K N=200) | cuda:2 | 44265 | 启动中（模型加载） |\n\n### GPU 占用确认\n| GPU | 进程 | 任务 |\n|-----|-------|------|\n| cuda:0 | PID 44066 | eval_sft_cka_only_20_full |\n| cuda:1 | PID 14556 | eval_math500_grpo_standard_20 |\n| cuda:2 | PID 44265 | eval_postprune_rasp_30 |\n| cuda:3 | PID 31706 | math500_grpo_rasp_20_v3 |\n\n### HumanEval 结果（2048 token）\n\n| 模型 | pass@1 | n_correct/n_total | avg_response_len | median_response_len |\n|------|--------|-------------------|------------------|---------------------|\n| sft_standard_20 | **11.59%** | 19/164 | 1850.7 | 2048 |\n| grpo_standard_20 (ckpt-50) | **10.37%** | 17/164 | 1843.0 | 2048 |\n\n两个模型 HumanEval 表现都很差，median response length 触顶 2048（大量截断），且错误模式显示模型在输出思维链而非直接生成代码（CoT 泄漏到代码生成任务）。GRPO 甚至略差于 SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-submit-cka-eval-and-30pct.md"
+}

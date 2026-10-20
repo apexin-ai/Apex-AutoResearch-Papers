@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "846957c80e1e7cb79a81",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill alpha1p0 launch alpha3p0 westd0",
+  "task_key": "worker_ssh_kill_alpha1p0_launch_alpha3p0_westd0_20260522T174439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_alpha1p0_launch_alpha3p0_westd0_20260522T174439_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "98c5a735ac9b9b5849c2460706364e2d1ed98aa869ee04772f56c07d0b856f88"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n## α=1.0 kill\n- PID 63603: killed (SIGTERM, 无需 force kill)\n\n## α=3.0 MATH-500 启动\n- PID: 66822 (子进程已在推理中)\n- 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935`\n- GPU:0 显存: **12969 MiB**, utilization **96%**\n- 进度: 1/500, ~3.14s/it，预计约 26 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-alpha1p0-launch-alpha3p0-westd0.md"
+}

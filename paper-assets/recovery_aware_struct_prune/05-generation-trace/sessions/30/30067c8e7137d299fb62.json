@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30067c8e7137d299fb62",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest westb gradient eval",
+  "task_key": "worker_harvest_westb-gradient-eval_20260517T103720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_westb-gradient-eval_20260517T103720_result.json",
+    "occurrence": 1,
+    "bytes": 647,
+    "sha256": "c398f0b90c27ec09d9e923a1f9fb4c10fcd2ead3f346b6d01492682e2fa63ffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Gradient post-SFT eval 结果\n\n| 指标 | 值 |\n|---|---|\n| **模型** | `sft_gradient_20` |\n| **GSM8K Accuracy** | **61.50% ± 3.44%** (123/200) |\n| **EOS rate** | 99.5% (199/200 natural) |\n| **Avg response length** | 167.5 tokens |\n| **结果文件** | `eval_gradient_postsft.json`（非 `eval_gradient_sft_20.json`） |\n\n## 当前 GPU 状态\n\n| GPU | 状态 | 进程 |\n|---|---|---|\n| cuda:0 | 空闲 (0MiB) | — |\n| cuda:1 | 76% (12.9GB) | `eval_postprune_random_20` (200 samples) 运行中 |\n\n活跃 tmux: `scoring_ablation_random`, `scoring_ablation_v2`\n\n## 磁盘\n\n`/root/autodl-tmp`: 162G/250G (65%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-westb-gradient-eval.md"
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "a6a347d69bfa6eb7f468",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd alpha4 sft gpu1 urgent",
+  "task_key": "worker_code_westd-alpha4-sft-gpu1-urgent_20260515T120711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-alpha4-sft-gpu1-urgent_20260515T120711_result.json",
+    "occurrence": 1,
+    "bytes": 2377664,
+    "sha256": "b4a32a599bb7bb9f8fd65970667699a8399a805459080985b59ca4f393ac157e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2377684,
+                "serialized_sha256": "ebbc46cd08152398298ddf09d489c6248e482d6c4bf27f3d6bddc823a27303aa",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-alpha4-sft-gpu1-urgent.md"
+}

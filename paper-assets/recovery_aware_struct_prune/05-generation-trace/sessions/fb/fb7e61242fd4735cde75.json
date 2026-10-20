@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb7e61242fd4735cde75",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig2 reward accuracy",
+  "task_key": "worker_paper_figure_fig2_reward_accuracy_20260516T082757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig2_reward_accuracy_20260516T082757_result.json",
+    "occurrence": 1,
+    "bytes": 439,
+    "sha256": "9b5964c9747525cc0ffc8da30e16193399e2af66fbc55dfeffc7cce7fd4ee893"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 生成完成。\n\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/figures/paper/fig2_reward_accuracy.pdf` (23K)\n- **PNG**: 同路径 `.png` (222K, 3531×1280)\n- **Artifact**: `art_20260516_ff2291` 已注册\n\n使用了 fallback 稀疏数据点（W&B fetch 工具不可用）。如后续获取到 per-step W&B 曲线数据，可替换插值点使曲线更平滑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig2-reward-accuracy.md"
+}

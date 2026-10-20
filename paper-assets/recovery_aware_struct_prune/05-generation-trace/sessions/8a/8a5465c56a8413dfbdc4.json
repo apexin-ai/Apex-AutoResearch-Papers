@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a5465c56a8413dfbdc4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill 225471 westb0",
+  "task_key": "worker_ssh_kill_225471_westb0_20260522T163435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_225471_westb0_20260522T163435_result.json",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "91a2ce8deb36b084a4cf8aa0543c2ad3295424e8fd4a3afd0bb55815ad84c1f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID 225471**: 已 killed\n- **GPU:0 进程**: PID 224705 独占（`eval_gsm8k.py` 评估 `grpo_random_20_seed456`），占用 12672MiB，GPU 利用率 92%，无其他进程占 GPU:0\n- **GPU:1**: 有 PID 220343 在跑另一个 eval_gsm8k（`grpo_qwen_math_cka_only_20`），不影响 GPU:0\n\nGPU:0 状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-225471-westb0.md"
+}

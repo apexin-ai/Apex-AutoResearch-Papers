@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5826e1b719185f126141",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code mvp pipeline v2",
+  "task_key": "worker_code_mvp-pipeline-v2_20260514T031607",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-pipeline-v2_20260514T031607_result.json",
+    "occurrence": 1,
+    "bytes": 2073,
+    "sha256": "00c49f18c50d6f4ff7ee41daf2d146b8ab1cce5aa3580f461af3e3f33f511740"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。汇报如下：\n\n---\n\n### 1. correlation_analysis.py 功能\n\nStructure-level 相关性分析脚本，计算 CKA overlap F(h) 与剪枝决策的 Spearman ρ 相关性：\n- Model-level recoverability 指标（R = recovered_acc / original_acc, Δ = recovered - pruned）\n- Attention head 层面：F(h) vs 是否被 RASP/Standard 保留的 Spearman ρ\n- Bootstrap 95% CI（10000 次）+ Permutation test（10000 次）\n- Scatter plot 输出 + JSON 结果\n- MVP 判定：ρ ≥ 0.4 = PASS, [0.3, 0.4) = WARNING, < 0.3 = FAIL\n\n### 2. run_mvp.sh 步骤（7 步）\n\n| 步骤 | 内容 | GPU |\n|------|------|-----|\n| Step 0 | Baseline eval（未剪枝） | cuda:0 |\n| Step 1+2 | CKA overlap + Importance scoring 并行 | cuda:0 + cuda:1 |\n| Step 3 | Standard + RASP 剪枝并行 | cuda:0 + cuda:1 |\n| Step 3.5 | Post-prune eval（剪枝后、恢复前） | cuda:0 + cuda:1 |\n| Step 4 | GRPO RLVR Recovery 并行（~12-15h） | cuda:0 + cuda:1 |\n| Step 5 | Post-recovery eval | cuda:0 + cuda:1 |\n| Step 6 | Correlation analysis | CPU |\n\n已添加 `WANDB_PROJECT=recovery_aware_struct_prune` 环境变量。\n\n### 3. 前次修复确认\n\n| 修复项 | 状态 | 依据 |\n|--------|------|------|\n| prune.py: config.num_attention_heads 更新 | ✅ | L346-354，同时更新 num_key_value_heads |\n| prune.py: forward pass 验证 | ✅ | L387 有 RuntimeError 检查 |\n| train_grpo.py: max_completion_length=2048 | ✅ | L147 default=2048 |\n| train_grpo.py: report_to=\"wandb\" | ✅ | L199 |\n| train_grpo.py: wandb project 名 | ⏳ | 脚本内未设 wandb.init(project=...)，已在 run_mvp.sh 中通过 `WANDB_PROJECT` 环境变量解决 |\n| importance_score.py: down_proj Taylor | ✅ | L152-154 |\n\n### 4. eval_gsm8k.py 输出格式兼容性\n\n✅ 兼容。输出 JSON 包含 `accuracy` 字段（float），run_mvp.sh 的 `json.load(...)['accuracy']` 提取方式完全匹配。\n\n### 5. 验证结果\n\n- `correlation_analysis.py --help`：✅ 正常输出所有参数\n- `bash -n run_mvp.sh`：✅ SYNTAX OK"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-pipeline-v2.md"
+}

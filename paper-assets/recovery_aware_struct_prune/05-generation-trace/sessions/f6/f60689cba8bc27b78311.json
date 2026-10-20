@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f60689cba8bc27b78311",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_16_1779039663.md",
+  "task_key": "loop_16_1779039663",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779039663.md",
+    "occurrence": 1,
+    "bytes": 3967,
+    "sha256": "8f4cb42702719c1e55baa5158c8280c241db8b1a89bb40408e41de251884e493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T11:16:06+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（共 6 张）\n- westd-11672 近期有 SSH 连接不稳定（多个 seed eval 因连接失败 failed），提交前确认连通性\n- 实验命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（服务器无 .venv）\n- EMNLP 2026 ARR May 25 截止（距今 ~8 天），所有决策以此 DDL 为锚\n- unpruned HumanEval baseline = 1.83% pass@1（极低，模型本身不擅长 code）\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2×GPU (~98GB each), 工作目录 /root/runs/recovery_aware_struct_prune/\n  - Python: /root/miniconda3/bin/python\n  - 活跃进程: eval_unstructured_20 (cuda:1), scoring_ablation_batch_v2 (cuda:0), multiseed_serial_westb (cuda:0, PID 681896)\n- **westd-11672**: 4×GPU (~95GB each), 工作目录 ~/runs/recovery_aware_struct_prune/\n  - 活跃进程: eval_math500_unpruned, eval_math500_sft_rasp_20, eval_math500_sft_standard_20（均 RUNNING，cron 监控中）\n  - eval_humaneval_grpo_rasp_20.log 已生成（进程退出）\n- W&B: 数据可用（cron 报告 \"W&B data available\"）\n- 磁盘充裕：westb 7.3T/14T, westd 5.3T/7.3T\n\n### 3. 📊 当前状态\n**刚做完**: Session 启动初始化，收到 eval_humaneval_grpo_rasp_20 cron 回调（进程正常退出，ANALYZING）。\n\n**已派发未回**: Worker `worker_analysis_eval_humaneval_grpo_rasp_20_20260517T071349` 正在 SSH 读取日志+提取 metrics+更新 registry。等其 [WORKER DONE] 回调。\n\n**RUNNING (6 个)**:\n- eval_unstructured_20 — westb cuda:1, 非结构化剪枝 baseline eval\n- scoring_ablation_batch_v2 — westb cuda:0, scoring 消融实验（MLP-only）\n- multiseed_serial_westb — westb cuda:0, 多 seed 串行 eval (RASP×2+Standard×2)\n- eval_math500_unpruned — westd, MATH-500 dense baseline\n- eval_math500_sft_rasp_20 — westd, MATH-500 RASP post-SFT\n- eval_math500_sft_standard_20 — westd, MATH-500 Standard post-SFT\n\n**PREPARING (20 个)**: 包括 scoring ablation 各变体、extended eval、25% GRPO 等\n\n### 4. 📋 待办（条件触发式）\n- Worker analysis 回调 → 读 metrics，判断 conclusion（GRPO 未提升 HumanEval = success for C1），更新 report.md，汇报 Director\n- eval_math500_* 三个完成 → 对比 unpruned vs RASP vs Standard 在 MATH-500 上差异，验证 C1 跨 benchmark 泛化\n- scoring_ablation_batch_v2 完成 → 提取 5 种 scoring 方法对比，支撑 C3 (RASP scoring 价值)\n- multiseed_serial_westb 完成 → 计算 5-seed std，确认 Table 1 统计显著性\n- eval_unstructured_20 完成 → structured vs unstructured gap，补充 paper ablation\n- 上述全完成 + westd GPU 空出 → 立即启动 25% GRPO（grpo_standard_25 + grpo_rasp_25），这是 scope expansion 关键缺口\n- Paper Agent Step 2 (Plot Generation) 需要跟进状态\n\n### 5. 🎯 战略上下文\n**核心叙事** (D044/D045 pivot 后): GRPO alignment 在结构化剪枝模型上根本性失败——reward 提升但 accuracy 不跟随（universal decoupling）。剪枝引入训练 collapse，collapse 严重程度可诊断结构损伤类型。\n\n**三个 Core Claims**:\n- C1: Universal reward-accuracy decoupling（GRPO 在剪枝模型上无效）\n- C2: Collapse gradient（RASP permanent vs Standard transient vs Unpruned none）\n- C3: Functional redundancy 在 SFT vs RLVR 下角色相反\n\n**易错点**:\n- D050: RASP-RLVR 已降级为 ablation（negative result），不要再把它当主线推\n- D049: 不采纳 \"pruning disables GRPO\" 叙事，维持 C1 是 decoupling 不是 disable\n- HumanEval baseline 极低(1.83%)，这个 eval 主要验证 \"GRPO 在非 GSM8K 任务上也不提升\"，不是指望高分\n- westd 多 seed eval 因 SSH 不稳定批量失败过，multiseed 已转移到 westb 执行\n- 25% GRPO 是最大缺口——必须尽快启动，预期 collapse 比 20% 更快更剧烈\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779039663.md"
+}

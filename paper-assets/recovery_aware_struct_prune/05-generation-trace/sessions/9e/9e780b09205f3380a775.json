@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e780b09205f3380a775",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code update math500 table",
+  "task_key": "worker_code_update_math500_table_20260523T234457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_math500_table_20260523T234457_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "7e9aa7945d2cc40fb9f18bc67be1974a4b7825cd747bcc268041a75920eecd7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "生成完成。汇报如下：\n\n---\n\n**已填入的 5 个确认结果 — 全部正确**：\n\n| exp_id | 预期 | 表中 |\n|--------|------|------|\n| sft_cka_only_20_fixed_v2 | 27.4 | 27.4 ✓ |\n| grpo_cka_only_20_fixed | 27.6 | 27.6 ✓ |\n| grpo_standard_20_fixed | 27.0 | 27.0 ✓ |\n| grpo_rasp_alpha1p0_20_fixed | 23.0 | 23.0 ✓ |\n| sft_rasp_alpha1p0_20_fixed | 21.6 | 21.6 ✓ |\n\n另外 Dense baseline (SFT 73.6, GRPO 69.0) 也已填入。\n\n**修复**：`eval_math500_grpo_standard_20_fixed` 的 registry metrics 使用 `math500_acc` 而非 `accuracy`，在 `extract_from_registry` 中加了 fallback：`metrics.get(\"accuracy\") or metrics.get(\"math500_acc\")`。\n\n**缺失 cells（14 个实验，显示 \"--\"）**：\n\n方法对比 20%:\n- Standard: SFT 缺 | GRPO Trunc 缺\n- Random: SFT+GRPO 全缺\n\nα sweep:\n- α=0.5: 全缺（SFT 有 status=DONE 但无 metrics）\n- α=2.0 / 3.0 / 4.0: 全缺\n\n25% sparsity:\n- Standard 25%: SFT 缺\n- CKA-only 25%: SFT+GRPO 全缺（GRPO 状态 RUNNING）\n\n**部分 truncation rate 也缺失**：grpo_cka_only (27.6% 但无 trunc)、sft_rasp_alpha1p0 (21.6% 但无 trunc)、grpo_standard (27.0% 但无 trunc — registry 中有 `truncated=222/500=44.4%` 但脚本没匹配到，因为缺少 `num_total` key 而用了 `math500_total`)。\n\n需要我也修复 truncation rate 的 key fallback 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-math500-table.md"
+}

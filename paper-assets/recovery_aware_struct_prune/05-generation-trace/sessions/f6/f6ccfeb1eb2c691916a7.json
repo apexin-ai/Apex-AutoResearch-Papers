@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6ccfeb1eb2c691916a7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh registry audit all gpus",
+  "task_key": "worker_ssh_registry_audit_all_gpus_20260523T234445",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_registry_audit_all_gpus_20260523T234445_result.json",
+    "occurrence": 1,
+    "bytes": 928,
+    "sha256": "ec4e24f987bac6f688db4c0e0b4372d1c1e5b45acc47d737c9daf0e452a36d43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 6 个进程与 registry 完全匹配，无缺失、无多余。\n\n## 核对结果\n\n| Server:GPU | PID | 实验 | Registry 状态 | 备注 |\n|---|---|---|---|---|\n| westd:0 | 166245 | eval_math500_sft_standard_25_fixed_v2 | RUNNING ✓ | 16824 MiB, GPU 98% |\n| westd:1 | 168524 | eval_math500_grpo_rasp_alpha2p0_20_fixed | RUNNING ✓ | 16984 MiB, GPU 99% |\n| westd:2 | 171964 | eval_math500_sft_rasp_alpha2p0_20_fixed | RUNNING ✓ | 16984 MiB, GPU 91% |\n| westd:3 | 168451 | eval_math500_grpo_cka_only_25_fixed | RUNNING ✓ | 16846 MiB, GPU 98% |\n| westb:0 | 335348 | eval_math500_sft_random_20_fixed_v3 | RUNNING ✓ | 15354 MiB, GPU 99% |\n| westb:1 | 330254 | eval_math500_grpo_random_20_fixed | RUNNING ✓ | 15354 MiB, GPU 99% |\n\n## 缺失记录（需补）\n\n无。\n\n## 意外发现\n\n无。所有 6 张 GPU 上的进程 PID 与 registry 预期一一对应，全部正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-registry-audit-all-gpus.md"
+}

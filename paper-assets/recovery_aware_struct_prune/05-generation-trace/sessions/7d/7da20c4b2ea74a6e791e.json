@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "7da20c4b2ea74a6e791e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "check 15pct grpo verify",
+  "task_key": "worker_check_15pct_grpo_verify_20260520T050807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_15pct_grpo_verify_20260520T050807.log",
+    "occurrence": 1,
+    "bytes": 628828,
+    "sha256": "5f0850654a07c2443fe5a29c39f7540b54e4c472b11a69ada1b7a311cc6aa66e"
+  },
+  "statistics": {
+    "messages": 104,
+    "user_turns": 0,
+    "tool_calls": 41,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 18,
+      "tool_call": 41,
+      "tool_result": 41,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 104,
+      "chunks": [
+        {
+          "path": "7da20c4b2ea74a6e791e-part-0001.json",
+          "message_count": 97
+        },
+        {
+          "path": "7da20c4b2ea74a6e791e-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/check-15pct-grpo-verify.md"
+}

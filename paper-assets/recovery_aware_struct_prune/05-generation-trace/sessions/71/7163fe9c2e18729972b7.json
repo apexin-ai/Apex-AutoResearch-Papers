@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7163fe9c2e18729972b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo rasp 25 completion",
+  "task_key": "worker_diagnose_grpo_rasp_25_completion_20260516T170406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_rasp_25_completion_20260516T170406_result.json",
+    "occurrence": 1,
+    "bytes": 664,
+    "sha256": "de836d2a74b411d41642f325d8f60047cebda26c3d84ac0ec96cb807dc23b464"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**grpo_rasp_25 诊断结果：训练成功完成。**\n\n| 指标 | Step 100 (最终) |\n|------|----------------|\n| reward | 0.009375 |\n| reward_std | 0.03149 |\n| frac_reward_zero_std | 0.875 |\n| KL | 0.0007035 |\n| loss | 0.01275 |\n| entropy | 0.04262 |\n| 耗时 | 57.95 min |\n| W&B run | bc4ojqie |\n\n注意：frac_reward_zero_std 从 step 10 的 0.925 略降到 0.875，但整体 reward 仍极低（0.009375），表明 RASP 25% 模型在 GRPO 100 steps 内几乎无法获得有效 reward 信号——符合假设中\"collapse 比 20% 更严重\"的预期。\n\nRegistry 已更新为 DONE/success，cron 无需删除（已不存在）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-rasp-25-completion.md"
+}

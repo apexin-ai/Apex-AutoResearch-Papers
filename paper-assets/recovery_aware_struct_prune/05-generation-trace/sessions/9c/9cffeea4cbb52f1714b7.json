@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9cffeea4cbb52f1714b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16.md",
+    "occurrence": 1,
+    "bytes": 5286,
+    "sha256": "25be9007978c5240f182455d1736cb7beee1dd1bb24efed1f467f6b973ddb305"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-17T09:45:22+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（config 写 cuda:0-3，两台服务器共用配置）\n- westb 磁盘已满（/dev/md0 250G 100%）——scoring_ablation_batch_v2 的 gradient_sft 阶段因磁盘满中断。**提交新实验到 westb 前必须清理磁盘**\n- westb↔westd 无 SSH 互信，模型不能 SCP 直传\n- Qwen2.5 系列模型必须在 generate() 里加 `eos_token_id=[151643, 151645]`，否则不停止生成\n- sft_recovery.py 参数名：`--learning_rate` / `--num_train_epochs` / `--gradient_accumulation_steps`（不是 --lr / --epochs / --grad_accum）\n- eval 类实验不走 W&B，cron 可能误判 failed——收到 eval failed 回调先检查 registry 是否已有 metrics\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`\n  - 模型/数据: `/root/autodl-tmp/recovery_aware_struct_prune/` (SFT/GRPO checkpoints)\n  - ⚠️ 磁盘 100% 满，需清理\n- **westd-11672**: root@, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`\n  - 模型/数据: `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - 磁盘状况未知（上次未报警）\n- **活跃进程**:\n  - `gradient_sft_v3`: PID 699032, westb cuda:0, tmux session (SFT on gradient-pruned model)\n  - `scoring_ablation_batch_v2`: westb cuda:0, tmux=scoring_ablation_v2 (random_postprune 26/200 进行中)\n  - `eval_math500_grpo_standard_20`: westd, tmux=eval_math500_standard, PID 14556\n  - `eval_math500_grpo_rasp_20_v2`: westd cuda:3, PID 11891\n  - `eval_math500_unpruned`: westd, tmux=eval_math500_unpruned (still running per cron)\n  - `eval_math500_sft_standard_20`: westd, tmux=eval_math500_standard (still running per cron)\n- **Cron 监控**: 4 active crons (scoring_ablation_batch_v2, eval_math500_unpruned, eval_math500_sft_standard_20, eval_math500_grpo_standard_20)\n- **Workers**: 0 running\n\n### 3. 📊 当前状态\n**刚完成**: Session 启动，reconcile crons 确认 4 个实验仍在跑。无 Worker 在运行（Worker 池 = 0，违反 L1 红线第 4 条——但无 Director 新指令待处理）。\n\n**RUNNING 实验 (4)**:\n1. `gradient_sft_v3` — westb cuda:0, gradient-pruned model 做 SFT recovery（scoring ablation 的 gradient 分支，前次磁盘满失败后重启）\n2. `scoring_ablation_batch_v2` — westb cuda:0, random scoring postprune eval 进行中 (26/200)，magnitude 已完成(acc=0%), gradient postprune=25.5%, gradient SFT 磁盘满失败\n3. `eval_math500_grpo_standard_20` — westd, MATH-500 eval for Standard GRPO model\n4. `eval_math500_grpo_rasp_20_v2` — westd cuda:3, MATH-500 eval for RASP GRPO v9\n\n**注意**: `eval_math500_unpruned` 和 `eval_math500_sft_standard_20` cron 显示 still running，但 registry 里它们是 PREPARING 状态——可能是 cron 与 registry 不同步，需要下一轮确认。\n\n**等待中**: 无 Worker 回调待处理。上述 4 个 RUNNING 实验的 cron 完成回调会自动触发。\n\n### 4. 📋 待办（条件触发式）\n- scoring_ablation_batch_v2 的 random_postprune 完成 → 如果 random acc ≈ 0%，继续 CKA-only scoring；如果 >10%，检查实现\n- gradient_sft_v3 完成 → 记录 gradient SFT accuracy，与 RASP 61%/Standard 59% 对比，更新 scoring ablation 表\n- eval_math500_grpo_standard_20 完成 → 与 eval_math500_sft_standard_20 对比，验证 C1 cross-benchmark\n- eval_math500_grpo_rasp_20_v2 完成 → 与 eval_math500_sft_rasp_20 (已有: 52.8%) 对比，C1 验证\n- **westb 磁盘满** → 下一个 Worker 必须先清理 westb 磁盘再继续 scoring ablation 后续阶段 (CKA-only SFT, random SFT)\n- 所有 MATH-500 eval 完成 → 汇总 2×2 矩阵 (RASP/Standard × SFT/GRPO) 在 MATH-500 上的结果，更新 paper_framing\n- 25% GRPO 实验待启动（ROADMAP 优先项）→ Director 决策后用 westd GPU 启动\n\n### 5. 🎯 战略上下文\n**核心结论链**:\n- D044/D045: Narrative pivot 完成 — 从 \"RASP enables better RLVR\" 转向 \"GRPO universal decoupling + collapse as structural damage diagnostic\"\n- C1: Reward-accuracy decoupling 是 universal（unpruned/RASP/Standard 全部复现）\n- C2: Collapse severity 诊断结构损伤类型（RASP permanent vs Standard transient vs Unpruned none）\n- C3: CKA-aware scoring marginally better for SFT (+2.2pp, not significant) — reframed as \"functional redundancy plays opposite roles under SFT vs RLVR\"\n- D050: RASP-RLVR 降级为 ablation negative result\n\n**易错点**:\n- scoring_ablation_batch_v2 和 gradient_sft_v3 共享 westb cuda:0——检查是否冲突（可能 scoring_ablation 的 random eval 是 CPU-bound 部分而 gradient_sft 用 GPU）\n- MATH-500 eval 结果已有 `eval_math500_sft_rasp_20` = 52.8% (success)，但前次 `eval_math500_grpo_rasp_20` failed（OOM），v2 是重试\n- 磁盘满是当前最大 blocker——阻止 westb 上任何需要写 checkpoint 的新实验\n- DDL: EMNLP 2026 ARR May 25 提交，距今 ~8 天。25% GRPO + Qwen Math pipeline 是 scope expansion 的关键但时间极紧\n- Paper Agent Step 2 (Plot Generation) 应该正在进行但没有活跃 Worker——需要确认状态并推进\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e902158d9fbd2d1ccf94",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops confirm pid 61473",
+  "task_key": "worker_ops_confirm-pid-61473_20260517T001527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_confirm-pid-61473_20260517T001527_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "9603794d8d7459fddee0303add5d1f0386f2e1b13faad37031549705a65a5e4f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PID 61473 正常运行，占用 GPU 0 约 12982MiB 显存。旧 cron 误报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-confirm-pid-61473.md"
+}

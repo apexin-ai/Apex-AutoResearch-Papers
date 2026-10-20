@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e167405c685f8b53426a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh resubmit floor 0p5 westd3",
+  "task_key": "worker_ssh_resubmit_floor_0p5_westd3_20260523T092231",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_resubmit_floor_0p5_westd3_20260523T092231_result.json",
+    "occurrence": 1,
+    "bytes": 101,
+    "sha256": "c038b38ffc8f70b704974b6145363be33865e64f3e01426ba0347f4956a9f2be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30s 等待已完成，验证已在上一步同步执行完毕。Job 正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-resubmit-floor-0p5-westd3.md"
+}

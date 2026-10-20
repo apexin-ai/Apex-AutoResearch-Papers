@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb5cc2110aaf679b6a5e",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "verify checkpoint a",
+  "task_key": "worker_verify_checkpoint_a_20260513T032321",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_checkpoint_a_20260513T032321_result.json",
+    "occurrence": 1,
+    "bytes": 931,
+    "sha256": "946ab36bd5381be7926fb3a77b26ee43e8634ac16ad8ee6cb84c9a518a4d98cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Group A Checkpoint 情况\n\n**checkpoint-250 不存在。** save_steps=100，所以只有整百的 checkpoint。\n\n### 可用 checkpoint 列表\n\n| Checkpoint | 大小 | 时间 |\n|---|---|---|\n| checkpoint-100 | 1.4G | May 12 22:08 |\n| checkpoint-200 | 1.4G | May 13 00:28 |\n| checkpoint-300 | 1.4G | May 13 02:13 |\n| checkpoint-400 | 1.4G | May 13 04:01 |\n| checkpoint-500 | 1.4G | May 13 05:48 |\n\n### Checkpoint 完整性\n\n以 checkpoint-300 为例，内容完整：\n- `adapter_model.safetensors` — 465MB（LoRA adapter 权重）\n- `adapter_config.json` — LoRA 配置\n- `optimizer.pt` — 931MB\n- `tokenizer.json` + `tokenizer_config.json`\n- `trainer_state.json`, `training_args.bin`, `scheduler.pt`, `rng_state.pth`\n\n训练已完成（共 500 steps），还生成了 `merged/` 目录和 `completions/` 目录。最近可用的 checkpoint 是 **checkpoint-200** 和 **checkpoint-300**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-checkpoint-a.md"
+}

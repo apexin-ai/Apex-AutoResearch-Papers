@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ced908451aff35b22d82",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train sft alpha 2p0 retry",
+  "task_key": "worker_train_sft-alpha-2p0-retry_20260515T143611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-alpha-2p0-retry_20260515T143611_result.json",
+    "occurrence": 1,
+    "bytes": 221,
+    "sha256": "0328e9a00001f7eacbdeb454538a1d63c43bbd099e09731100c2f2bff38e24e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "α=0.0 eval 当前 34/100，有一次异常慢的 sample（#31 花了 ~5.5 分钟，可能是生成了超长序列），之后恢复到 ~2-3s/it。预计还需 ~3-4 分钟完成，2 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-alpha-2p0-retry.md"
+}

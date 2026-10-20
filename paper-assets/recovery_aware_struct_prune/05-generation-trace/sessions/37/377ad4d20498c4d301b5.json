@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "377ad4d20498c4d301b5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper experiment tables",
+  "task_key": "worker_paper_experiment-tables_20260515T043938",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_experiment-tables_20260515T043938_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "7983bbe4babf88520d806ca2e5a40485587ff9423da9af7c00e823b8449d79aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个表格已创建：\n\n- `artifacts/tables/table1_postprune.tex` — Post-prune 对比，已填入 Baseline/Standard/RASP 20% 数据\n- `artifacts/tables/table2_recovery.tex` — Recovery pipeline 对比，已填入 Post-Prune 和 +SFT 数据\n- `artifacts/tables/table3_alpha.tex` — α 消融，已填入 α=1.0 数据\n\n所有表格使用 booktabs + siunitx S 列类型，TBD 以 `\\textcolor{gray}{TBD}` 标记。主论文引用方式：`\\input{tables/table1_postprune}`。需要在 preamble 中加载 `booktabs`、`siunitx`、`xcolor`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-experiment-tables.md"
+}

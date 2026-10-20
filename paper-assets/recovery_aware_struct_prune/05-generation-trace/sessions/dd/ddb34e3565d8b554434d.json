@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ddb34e3565d8b554434d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis cka calibration stability westb",
+  "task_key": "worker_analysis_cka_calibration_stability_westb_20260519T141527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cka_calibration_stability_westb_20260519T141527_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "3ffc2f447d7cc2208a0a4048a9eac278b9aa71fa4315ccb27ef57f2b85bbebb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已在 westb-23072 cuda:0 上启动（tmux session: `cka_reliability`）。\n\n**运行配置**：\n- 原始模型：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- 剪枝模型：`/root/autodl-tmp/recovery_aware_struct_prune/pruned_cka_only_20`\n- 1024 calibration samples, 5 splits, seed 42\n- 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/cka_reliability_ablation.json`\n- 日志：`/root/autodl-tmp/recovery_aware_struct_prune/logs/cka_reliability_ablation.log`\n\n3 分钟后自动检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cka-calibration-stability-westb.md"
+}

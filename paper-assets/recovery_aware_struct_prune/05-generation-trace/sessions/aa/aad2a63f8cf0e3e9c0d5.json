@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aad2a63f8cf0e3e9c0d5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose and submit westd3",
+  "task_key": "worker_ssh_diagnose_and_submit_westd3_20260524T015135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_and_submit_westd3_20260524T015135_result.json",
+    "occurrence": 1,
+    "bytes": 547,
+    "sha256": "9066a23ff71a974c507a71a498bbc7fc0180de8100411657ff8ccd7fe1baa6b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Part 1 — eval_math500_grpo_cka_only_25_fixed 诊断**\n| 指标 | 值 |\n|------|-----|\n| accuracy | 17.6% (88/500) |\n| stderr | 0.017 |\n| truncated | 133/500 (26.6%) |\n| natural_eos | 367/500 |\n| avg_response_length | 719.35 |\n\nRegistry 已更新为 DONE/success，cron 已删除。\n\n**Part 2 — eval_math500_sft_standard_20_fixed_v4 已提交**\n- 服务器: westd-32935, GPU 3\n- PID: 182199\n- Registry 状态: RUNNING\n- Timeout: 20h\n- 模型正在加载中（进程已确认运行）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-and-submit-westd3.md"
+}

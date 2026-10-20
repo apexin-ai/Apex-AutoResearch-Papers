@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f284bd0aa29a600af6ac",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill mf3 restart v2 westb1",
+  "task_key": "worker_ssh_kill_mf3_restart_v2_westb1_20260522T142504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_mf3_restart_v2_westb1_20260522T142504_result.json",
+    "occurrence": 1,
+    "bytes": 943,
+    "sha256": "1ad1a4cecc50c467684f9908c271892a5dc1a42dc03c5cd3c683583309abc4d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 个 sample 完成，实际平均 61s/sample（305s / 5）。有的 sample 很快（<10s, 早 EOS），有的约 100s（接近 2048 token 上限）。\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| 1. 旧进程 kill | 成功 (PID 202364 已终止) |\n| 2. 参数名 | `--max_new_tokens`（默认 4096，第 320 行） |\n| 3. 新 PID | **217798**（python 子进程，bash wrapper PID 217793） |\n| 4. GPU 显存 | GPU:1 占用 **16307 MiB**，利用率 99% |\n| 5. 前 5 个 sample 速度 | 平均 **~61s/sample**，比之前快（部分 sample <10s 因 EOS 提前终止） |\n\n注意事项：\n- 模型路径需用绝对路径 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20`（脚本目录在 `/root/recovery_aware_struct_prune/`，相对路径找不到）\n- Log 文件中混有旧进程（217502）的 traceback，是因为两个进程短暂同时写同一文件，不影响当前评估"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-mf3-restart-v2-westb1.md"
+}

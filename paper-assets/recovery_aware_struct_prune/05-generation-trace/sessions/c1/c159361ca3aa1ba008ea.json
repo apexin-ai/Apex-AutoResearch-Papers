@@ -1,0 +1,326 @@
+{
+  "schema_version": "1.0",
+  "id": "c159361ca3aa1ba008ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "paper intro rewrite d056",
+  "task_key": "worker_paper_intro-rewrite-d056_20260517T234428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_intro-rewrite-d056_20260517T234428.jsonl",
+    "occurrence": 1,
+    "bytes": 14970,
+    "sha256": "46664151644934b28fc15d236e06654b66cec3b4395dcb4bbae620fe9e18cb4a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T23:48:07.392663+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T23:48:07.392982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T23:48:07.393165+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "paper_framing.md",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T23:48:07.393491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — recovery_aware_struct_prune\\\\n\\\\n## Target Venue\\\\n- Primary: EMNLP 2026 Main (ARR May 25 submission)\\\\n- Deadline: ARR May 25, 2026\\\\n\\\\n## Core Insight (Recovery Capacity Gradient)\\\\nStructural pruning criterion determines post-RLVR recovery capacity of reasoning LLMs. We discover a **recovery capacity gradient** across pruning methods during GRPO training: CKA-only (pure representational diversity preservation) enables **active super-recovery** from transient RL instability, while gradient-based importance scoring progressively destroys this capacity.\\\\n\\\\nThe gradient: **CKA-only > Random > Standard > RASP**\\\\n\\\\nMechanism: Gradient importance scoring (used in Standard and RASP) removes structures that are \\\\\\\"unimportant\\\\\\\" by gradient metrics but **representationally unique** — precisely the diversity that RL exploration requires. CKA-only scoring removes only truly redundant structures (high pairwise similarity), preserving the full representational vocabulary that enables policy recovery from training perturbations.\\\\n\\\\nSeparately, GRPO reward-accuracy decoupling is primarily an **in-distribution saturation effect**: on GSM8K (saturated), reward rises but accuracy is unchanged; on MATH-500 (unsaturated), GRPO provides only marginal improvement for pruned models (+2-3pp), far below unpruned baseline (73.6%).\\\\n\\\\n## Core Claims (2 + 1 observation)\\\\n\\\\n### C1: GRPO reward-accuracy decoupling is in-distribution specific (saturation effect)\\\\nGRPO does not improve reasoning accuracy on saturated benchmarks for ANY model: unpruned (81.27% = SFT 81.27%, identical 1072/1319), Standard-pruned (58.91% vs SFT 59.29%), RASP-pruned (60.65% vs SFT 61.49%). Reward rises dramatically (unpruned: 0→0.661) but accuracy is unchanged on GSM8K.\\\\n\\\\nOn MATH-500 (unsaturated OOD benchmar\n…[truncated 11893 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T23:48:07.393682+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T23:48:07.393891+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:intro}\n3\t\n4\tLarge Language Models (LLMs) trained with Reinforcement Learning with Verifiable Rewards (RLVR) achieve strong mathematical reasoning~\\citep{deepseek2025r1,shao2024grpo}, but their parameter counts and extended chain-of-thought traces make deployment costly.\n5\tStructured pruning, which removes entire attention heads or MLP channels, provides a hardware-friendly compression path that reduces both memory and latency without specialized sparse-computation support~\\citep{llmpruner2023,graspprune2026}.\n6\tBecause structured pruning at moderate sparsity severely degrades reasoning ability, a post-pruning recovery stage is essential.\n7\tThe standard compression pipeline therefore proceeds in three stages: prune, recover via Supervised Fine-Tuning (SFT), then align via RLVR to restore reasoning quality.\n8\tThis final alignment step appears straightforward: on an unpruned DeepSeek-R1-Distill-Qwen-7B~\\citep{deepseek2025r1}, 100 steps of Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) raises the reward from 0 to 0.661.\n9\tYet accuracy on GSM8K~\\citep{cobbe2021gsm8k} remains exactly 81.27\\%, with 1,072 of 1,319 test problems producing identical correct answers before and after alignment.\n10\tThe reward improvement is an illusion: GRPO learns to produce outputs that score higher rewards without solving additional problems.\n11\t\n12\tThis observation has immediate practical consequences for the compression pipeline.\n13\t\\citet{selfhealing2025} report that RLVR-based recovery restores pruned reasoning models to 95\\%+ of original performance at 25\\% compression, establishing RLVR as the preferred recovery paradigm.\n14\tHowever, their evaluation reports only final-checkpoint accuracy and does not document per-step training dynamics during GRPO.\n15\tIf GRPO reward gains fail to reflect genuine reasoning improvement even on unpruned models, the claim that RLVR ``recovers'' pruned models demands scrutiny.\n16\tThe problem becomes a\n…[truncated 4006 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T23:48:07.394227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+              "content": "\\section{Introduction}\n\\label{sec:intro}\n\nThe choice of which structures to prune from a reasoning LLM determines whether the model can sustain reinforcement learning alignment.\nCurrent compression pipelines treat this choice as independent of downstream training: structured pruning removes entire attention heads or MLP channels to reduce memory and latency~\\citep{llmpruner2023,graspprune2026}, Supervised Fine-Tuning (SFT) recovers task accuracy, and Reinforcement Learning with Verifiable Rewards (RLVR) restores reasoning quality~\\citep{deepseek2025r1,shao2024grpo}.\nEach stage is optimized in isolation.\nWe show that this separation fails: the pruning criterion fundamentally controls what we term \\textbf{recovery capacity}, the model's ability to recover from the instability that RL training introduces.\n\nTwo findings expose this failure.\nFirst, GRPO reward gains on GSM8K~\\citep{cobbe2021gsm8k} do not reflect genuine reasoning improvement.\nOn an unpruned DeepSeek-R1-Distill-Qwen-7B~\\citep{deepseek2025r1}, 100 steps of Group Relative Policy Optimization (GRPO;~\\citealp{shao2024grpo}) raise the reward from 0 to 0.661, yet accuracy remains exactly 81.27\\%, with 1,072 of 1,319 test problems producing identical correct answers before and after alignment.\nThe same pattern holds for pruned models: Standard-pruned accuracy is 58.91\\% after GRPO versus 59.29\\% after SFT.\nThis decoupling is an in-distribution saturation effect.\nGSM8K accuracy is near ceiling, so reward optimization reshapes output format without solving new problems.\nOn MATH-500, an unsaturated out-of-distribution benchmark, GRPO provides only marginal gains for pruned models (+2--3 percentage points), far below the unpruned baseline of 73.6\\%.\nSecond, GRPO training on pruned models can trigger complete collapse: gradient norms approach zero and the model stops producing diverse outputs.\n\\citet{selfhealing2025} claim that RLVR recovers pruned reasoning models to 95\\%+ of original performance, but their evaluation uses a single pruning method and reports only final-checkpoint accuracy without per-step training dynamics.\n\nExisting structured pruning methods for reasoning LLMs optimize for post-pruning quality without studying downstream alignment.\nGRASPrune~\\citep{graspprune2026} introduces global gating for budgeted compression.\nRESP~\\citep{resp2025} uses reasoning-trace calibration.\nLLM-Pruner~\\citep{llmpruner2023} and Bonsai~\\citep{bonsai2025} target general LLM compression.\nPASER~\\citep{paser2025} optimizes recovery data selection, and PAT~\\citep{pat2025} proposes pruning-aware tuning.\nNone compare multiple pruning criteria under RL alignment.\n\\citet{rlsqueezes2026} show that RL and SFT impose fundamentally different demands on model representations: RL compresses solution paths while SFT expands them.\nThis divergence suggests that pruning decisions could substantially affect RL trainability, yet no prior work has tested this hypothesis.\n\nWe present the first controlled comparison of four structural pruning criteria under identical GRPO training on DeepSeek-R1-Distill-Qwen-7B at 20\\% structured sparsity.\nThe four criteria span a spectrum of representational diversity preservation: CKA-only scoring removes only structures with high pairwise Centered Kernel Alignment (CKA;~\\citealp{kornblith2019cka}) overlap and preserves all representationally unique structures; Random scoring provides an unbiased baseline; Standard importance-only scoring removes structures with lowest gradient-based importance; and Recovery-Aware Structured Pruning (\\rasp{}) combines importance with CKA-based functional overlap in a composite score $S(h) = I(h) \\times (1 - F(h))^\\alpha$.\nThese four methods reveal a \\textbf{recovery capacity gradient} during GRPO.\nCKA-only pruning enables \\textbf{active super-recovery}: the fraction of zero-standard-deviation outputs drops from 0.35 to 0.125, \\emph{below} the initial baseline of 0.175, with reward reaching 0.308.\nRandom pruning stagnates after partial recovery (reward 0.190).\nStandard pruning exhibits borderline collapse with a transient dip at step 60 (reward 0.065).\nRASP collapses permanently at step 10 (reward 0.021).\nThe ordering (CKA-only $>$ Random $>$ Standard $>$ RASP) follows the degree of preserved representational diversity.\nGradient importance scoring, the industry standard, removes structures scored ``unimportant'' by gradient metrics that are in fact representationally unique, and thereby destroys the exploration diversity that RL training requires.\n\nOur contributions are:\n\\begin{enumerate}[nosep,leftmargin=*]\n    \\item We show that GRPO reward-accuracy decoupling on pruned and unpruned models is primarily an in-distribution saturation effect: reward rises while accuracy remains unchanged on GSM8K (near ceiling); on MATH-500 (unsaturated), GRPO provides only marginal out-of-distribution improvement for pruned models (\\S\\ref{sec:grpo_failure}).\n    \\item We discover a recovery capacity gradient across four pruning criteria under GRPO training: CKA-only enables active super-recovery (output diversity drops 29\\% below initial baseline), Random stagnates, Standard exhibits borderline collapse, and RASP collapses permanently. This gradient is predicted by preserved representational diversity and reveals that gradient importance scoring is actively harmful for post-pruning RL alignment (\\S\\ref{sec:collapse_analysis}).\n    \\item We observe that SFT partially equalizes all scoring methods (59--64\\%, $p>0.1$ for most pairs) and that a universal 30\\% sparsity cliff collapses all methods. The 20--25\\% sparsity range is therefore the operating regime where pruning criterion determines RL trainability (\\S\\ref{sec:tradeoff}).\n\\end{enumerate}\n"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T23:48:07.394619+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T23:48:07.394820+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"—\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+              "description": "Check for em-dash violations"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T23:48:07.394966+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T23:48:07.395095+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \" – \" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+              "description": "Check for explanatory en-dash violations"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T23:48:07.395221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "(Bash completed with no output)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T23:48:07.395389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "grep -n \"ing,\" /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper/introduction.tex",
+              "description": "Check for -ing participial phrase patterns"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T23:48:07.395515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "14:GSM8K accuracy is near ceiling, so reward optimization reshapes output format without solving new problems.\n36:Gradient importance scoring, the industry standard, removes structures scored ``unimportant'' by gradient metrics that are in fact representationally unique, and thereby destroys the exploration diversity that RL training requires."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T23:48:07.395713+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No violations. Both `ing,` hits are false positives (line 14 is `without + gerund`, line 36 is a noun appositive).\n\nIntroduction rewritten and saved. Key changes from D045:\n\n- **Hook**: opens with \"pruning criterion determines RL recovery capacity\" instead of generic LLM intro\n- **C1**: redefined from \"universal decoupling\" to **in-distribution saturation effect** (GSM8K ceiling + MATH-500 marginal gains)\n- **C2 (main)**: **Recovery Capacity Gradient** across 4 methods (CKA-only > Random > Standard > RASP), with CKA-only super-recovery as the headline result\n- **C3**: SFT equalization + 30% sparsity cliff as observation, establishing 20-25% operating regime\n- **Core mechanism**: gradient importance scoring destroys representationally unique structures needed for RL exploration\n- All existing citations preserved, no new ones fabricated, no AI style violations"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_intro-rewrite-d056_20260517T234428"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/paper-intro-rewrite-d056.md"
+}

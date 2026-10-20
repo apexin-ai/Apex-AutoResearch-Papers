@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8d7babf2146ee2ddde4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research paper related work",
+  "task_key": "worker_research_paper-related-work_20260515T024654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_paper-related-work_20260515T024654_result.json",
+    "occurrence": 1,
+    "bytes": 734,
+    "sha256": "5bd99e1e23c4e324ef473f8d1f266105af126e9ec9f75a1d87c65af3af4ca16e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文献调研完成。文件写入 `artifacts/literature_survey_related_work.md`。\n\n**核心成果**：\n\n- **27 篇引用**，覆盖 6 个子节：Structured Pruning Baselines、Function-Aware Pruning、Reasoning LLM Pruning、Post-Pruning Recovery/RLVR、Representation Similarity、Importance Estimation\n- **Dream 指出的 4 篇全部找到**：FANG (2512.23014)、FuncNet (2508.05239)、RestoreLCC (2510.21834, NeurIPS 2025)、PAT (2408.14721, AAAI 2025)\n- **CKA 选择论证**：含 CKA vs SVCCA/CCA/PWCCA/MI 的完整对比表 + 5 条论证要点，包括 Claim 2 循环性的回应策略\n- **Self-Healing 只有 OpenReview（Cy8Qa4gAst），未找到独立 arXiv ID**——建议引用时标注 OpenReview"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-paper-related-work.md"
+}

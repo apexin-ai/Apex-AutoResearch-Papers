@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d09a5ff0a73cb815b68d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify grpo standard 25 and submit evals",
+  "task_key": "worker_ssh_verify_grpo_standard_25_and_submit_evals_20260523T192034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_grpo_standard_25_and_submit_evals_20260523T192034_result.json",
+    "occurrence": 1,
+    "bytes": 1392,
+    "sha256": "f39312e9fa83bacf41886fc9ad5d0277ed92d03911439f8802b940f004a272ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "TRL GRPOConfig 默认 `beta=0.0`（无 KL 惩罚）。但 `grpo_standard_25` 是用旧版 `train_grpo.py` 训练的，该脚本没有显式传 beta，所以用了 TRL 默认值 **beta=0.0**。\n\n而 `train_grpo_v5.py`（新版）默认 `beta=0.01`，retrain 日志确认 beta=0.01。qwen_math 日志显示 beta=0.04（可能是显式传参）。\n\n## 产出\n\n```\ngrpo_standard_25 checkpoint 路径: /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25/model.safetensors\ngrpo_standard_25 模型大小: 11,582,559,224 bytes (~10.8GB)\nbeta 参数: 0.0 (来源: train_grpo.py 未传 beta → TRL GRPOConfig 默认 beta=0.0)\nsft_standard_25 checkpoint 路径: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/model.safetensors (10.8GB, May 24)\nwestd GPU 空闲: No — 全部 4 张 GPU 在使用中\n  - cuda:0: 55833 MiB used, 91% util\n  - cuda:1: 17541 MiB used, 98% util\n  - cuda:2: 19251 MiB used, 98% util\n  - cuda:3: 19251 MiB used, 98% util\neval_math500.py: 存在 (/root/recovery_aware_struct_prune/src/eval_math500.py, 8568 bytes)\n```\n\n**注意**：\n- 原始 `grpo_standard_25` 用的是旧版 `train_grpo.py`，beta=0.0（无 KL 惩罚，无 ref model）\n- `grpo_standard_25_retrain` 用新版 `train_grpo_v5.py`，beta=0.01\n- `grpo_standard_25_qwen_math` 用新版，beta=0.04\n- 4 张 GPU 目前全部占用，无法立即跑 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-grpo-standard-25-and-submit-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ef7cdbc79e87142788",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train sft unpruned baseline",
+  "task_key": "worker_train_sft_unpruned_baseline_20260515T222950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft_unpruned_baseline_20260515T222950_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "32c74f1c846649dd7de1ddd5068f9c04afa10ba2325ba2de2e7ba27175115915"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 RUNNING。\n\n总结：\n\n- **训练已在运行**：westd-11672 cuda:1，tmux session `sft_unpruned`，PID 66994\n- **进度**：61/1870 steps (~3%)，~2s/step，预计约 60 分钟后完成\n- **训练指标正常**：loss 0.92→0.72 下降中，token_accuracy 80→83%\n- **磁盘问题已解决**：清理了未注册的 `sft_ablation/alpha_0.5` (6.2GB)，数据盘从 11GB→52GB 可用\n- **模型来源**：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B`（未剪枝原始模型，本地缓存）\n- **输出目录**：`/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/`\n- **Registry**: `sft_unpruned_baseline` 状态 RUNNING，完整 spec 已记录"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-unpruned-baseline.md"
+}

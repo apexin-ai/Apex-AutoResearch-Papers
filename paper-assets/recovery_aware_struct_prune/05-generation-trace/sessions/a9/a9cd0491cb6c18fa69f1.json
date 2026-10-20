@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9cd0491cb6c18fa69f1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code multi seed rasp scripts",
+  "task_key": "worker_code_multi-seed-rasp-scripts_20260514T235913",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi-seed-rasp-scripts_20260514T235913_result.json",
+    "occurrence": 1,
+    "bytes": 883,
+    "sha256": "2bab848714f4ed07d56f1a732251190ee76810e122341d1c5760abca09f04b0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并通过语法检查。\n\n**产出**: `/root/recovery_aware_struct_prune/src/run_multi_seed_rasp.sh`\n\n**用法**（两个 seed 可分别跑在两张 GPU 上并行）:\n```bash\nbash src/run_multi_seed_rasp.sh 123 0   # seed=123 on cuda:0\nbash src/run_multi_seed_rasp.sh 7   1   # seed=7   on cuda:1\n```\n\n**每 seed 时间估算**（基于 7B 模型 + 单 A6000）:\n| 步骤 | 估算 |\n|------|------|\n| Importance scoring (512 samples) | ~10-15 min |\n| CKA overlap (512 samples) | ~10-15 min |\n| Pruning (计算+保存) | ~2-5 min |\n| GSM8K eval (N=100, max_tokens=4096) | ~30-60 min |\n| **合计** | **~55-95 min / seed** |\n\n两个 seed 并行跑（各占一张 GPU）约 1-1.5 小时全部完成。所有模型和结果写入 `/root/autodl-tmp/recovery_aware_struct_prune/`（遵守 C002 约束），GPU 限制 0/1（遵守 C001）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-multi-seed-rasp-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a0ae628e596d1e4f5e1d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 grpo cka only 20",
+  "task_key": "worker_analysis_eval_math500_grpo_cka_only_20_20260518T140731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_grpo_cka_only_20_20260518T140731_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "36986c9e45d3b17a0c40e4e7c8d602a99710ddd01a02840aeb2194a85f624667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| MATH-500 accuracy | **26.60%** (133/500) |\n| stderr | ±1.98% |\n| truncated | 108/500 (21.6%) |\n| avg response length | 1124.24 tokens |\n\n## 与基线对比\n\n| 模型 | GSM8K | MATH-500 |\n|------|-------|----------|\n| Dense unpruned | — | ~73.6% |\n| GRPO CKA-only 20% | 64.37% | **26.60%** |\n\nMATH-500 仅 26.60%，相对 dense 下降约 47 个百分点，极其严重。而同一模型 GSM8K 64.37% 相对保持较好，说明 **GRPO CKA-only 在 GSM8K 上的恢复没有迁移到更难的 MATH-500**。\n\n21.6% 的 truncation rate 也值得注意：模型在较难题目上倾向于生成长但不收敛的推理链，被截断后无法给出正确答案。\n\n## Hypothesis 判断\n\n**Negative**。SFT CKA-only MATH-500 数据尚缺（待确认），但 26.60% 已经非常低。即使 GRPO > SFT 在 MATH-500 上成立，绝对性能也说明 CKA-only 20% 剪枝对数学推理能力造成了不可逆的损伤，GRPO 无法有效恢复。这与 GSM8K 上的表现形成鲜明对比，进一步支持 C1 decoupling 假说（GRPO 提升 benchmark-specific，不提升 cross-benchmark generalization）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-grpo-cka-only-20.md"
+}

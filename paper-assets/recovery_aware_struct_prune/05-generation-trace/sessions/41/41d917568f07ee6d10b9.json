@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41d917568f07ee6d10b9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh collect sft cka only 20 result",
+  "task_key": "worker_ssh_collect_sft_cka_only_20_result_20260523T193953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_sft_cka_only_20_result_20260523T193953_result.json",
+    "occurrence": 1,
+    "bytes": 251,
+    "sha256": "bf0b8c80a1c6b9900ad657b1d929524604e3da7e5d2a4dec67515047e33967a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MATH-500 eval 结果（sft_cka_only_20）：**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **27.4%** (137 / 500) |\n| Stderr | ±1.99% |\n| Natural EOS | 384 |\n| Truncated | 116 (23.2%) |\n| Avg response length | 673.3 tokens |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-sft-cka-only-20-result.md"
+}

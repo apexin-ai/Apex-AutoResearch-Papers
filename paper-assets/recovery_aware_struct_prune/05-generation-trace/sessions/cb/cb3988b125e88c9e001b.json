@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb3988b125e88c9e001b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_3_1778788821.md",
+  "task_key": "loop_3_1778788821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778788821.md",
+    "occurrence": 1,
+    "bytes": 4374,
+    "sha256": "1383224224ac084e825d1884e8ac879c8304940bedf62a3979c189863fb79c8e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_wall_time\nupdated: '2026-05-14T19:46:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 cuda:0 和 cuda:1（westb-23072），不可用其他卡\n- 模型和 checkpoint 必须在 /root/autodl-tmp/ 下（根分区只有 ~30GB）\n- eval_gsm8k.py 参数名是 `--output_path`（不是 `--output_file`），`--max_samples` 不传 = 全部 1319 samples\n- GRPO 训练必须用 submit_training_job（不是 nohup），否则无监控无回调\n- RewardDesertCallback 在当前配置下不会触发（patience×logging_steps=500=total_steps），不要在结果报告中把\"Standard 未触发 RewardDesertCallback\"当作正面证据\n- MVP claim 限定为 model-level significance（RASP vs Standard at matched sparsity），per-group CKA correlation 是 Phase 2 P4 的事，不在 MVP scope\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072，account=root，2× RTX PRO 6000 Blackwell 94GB\n- 工作目录：/root/recovery_aware_struct_prune\n- Python：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，pip/python 在 /root/miniconda3/bin/\n- 模型路径：/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B（原始），pruned 在 /root/autodl-tmp/pruned_{rasp,standard}_{20,25}/\n- GRPO 输出：/root/autodl-tmp/recovered_{rasp,standard}_20/\n- W&B：project=recovery_aware_struct_prune，run_name=grpo_{rasp,standard}_20_fast\n- GSM8K：本地缓存可用（1319 test samples 确认）\n- 磁盘：autodl-tmp ~190GB 可用（Qwen3.5-9B 已删）\n- 活跃进程：grpo_rasp_20_fast (cuda:0, tmux=grpo_rasp_20_fast) + grpo_standard_20_fast (cuda:1, tmux=grpo_standard_20_fast)\n- Cron：两个实验均注册 120s 轮询\n\n### 3. 📊 当前状态\n刚完成 D007+D008 全部准备工作。两个 GRPO 快速配置训练在跑（~25s/step × 500 steps，~18:00 UTC 启动，预计 ~21:30 UTC 完成）。\n\nRegistry RUNNING：\n- grpo_rasp_20_fast (cuda:0)：RASP 20% pruned model GRPO recovery，post-prune 29%\n- grpo_standard_20_fast (cuda:1)：Standard 20% pruned model GRPO recovery，post-prune 1%\n\n已完成的准备脚本（在服务器 src/ 下）：\n- `run_full_eval_d008.sh` — 串行版 full eval (4 models × 1319 samples，~8h)\n- `run_full_eval_d008_parallel.sh` — 并行版 (~4h，推荐)\n- `run_post_recovery_eval.sh` — 单模型 post-recovery eval\n- `run_eval_25.sh` — 25% sparsity eval 补完\n- eval_gsm8k.py accuracy bug 已修复（n_correct 不再反算）\n\n等待中：GRPO cron 回调（~21:30 UTC）\n\n### 4. 📋 待办\n- GRPO cron 回调到达 → 读 W&B/日志获取 final metrics → update_registry\n- 两个 GRPO 都完成 → 立即 spawn Worker 跑 `bash src/run_full_eval_d008_parallel.sh`（并行双 GPU，~4h，4 个 eval：post-prune + post-recovery × RASP + Standard，全部 1319 samples）\n- Full eval 完成 → 按 ROADMAP 场景判定：\n  - 场景 A（RASP 50%+, Standard 不恢复）→ MVP PASS → Phase 2\n  - 场景 B（RASP 35%, Standard 不恢复）→ full test CI 判定；不够显著则追加 2-3 epochs + lr=5e-6\n  - 场景 C（RASP ≤30%, 两者都不恢复）→ 追加 epochs 或 SFT warmup\n- 25% eval 补完（~30min）穿插在 full eval 前或后\n- 汇报 Director 必须包含：4 个 accuracy + binomial 95% CI + McNemar test p-value\n\n### 5. 🎯 战略上下文\n- 决策链：D001(MLP-only) → D002(SFT warmup) → D003(审计优先) → D004(min_keep fix) → D005(35%→20%) → D006(Scenario B: 29% vs 1%) → D007(270h→3.5h fast config) → D008(model-level significance + full eval)\n- 核心发现：20% sparsity 下 RASP 29% vs Standard 1%，MLP 总参数量完全相同（395,232），差异纯粹来自 CKA-aware 的参数分布策略（Scenario B 确认）。这是论文最强的 pre-prune evidence\n- 易错点 1：不要把 N=100 的 eval 当最终结果引用——D008 要求 full 1319 samples eval\n- 易错点 2：Phase 2 P1 是多 seed 重复（seed=42,123,7），效应 <10pp 时必须 multi-seed。MVP 目前只有 seed=42\n- 易错点 3：Distilled 模型对剪枝更敏感——35% 完全崩溃，20% 是已验证的可行操作点，不要尝试更高 sparsity\n- 易错点 4：eval_gsm8k.py 需要 max_new_tokens=4096（DeepSeek-R1 的 chain-of-thought），512 会截断导致假低 accuracy\n- 项目时间：EMNLP ARR May 25，距今 11 天。GRPO ~21:30 完成 → full eval ~01:30 完成 → 明天上午可判定 MVP\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778788821.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d560a1c27fad5af669c0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd gpu2 reset and verify",
+  "task_key": "worker_ssh_westd_gpu2_reset_and_verify_20260523T152407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_gpu2_reset_and_verify_20260523T152407_result.json",
+    "occurrence": 1,
+    "bytes": 878,
+    "sha256": "08cd75dd54c19334d426e51e9814ad8320ffb15bc0cade4689b5cecf86509690"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇总：**\n\n### GPU 状态（全部正常，无需重置）\n\n| GPU | Util | Memory | 状态 |\n|-----|------|--------|------|\n| 0 | 99% | 29659/97887 MiB | floor_0p6 运行中 |\n| 1 | 0% | 0 MiB | 空闲 |\n| 2 | 97% | 16767/97887 MiB | grpo_standard_20_fixed 运行中 |\n| 3 | 97% | 16767/97887 MiB | sft_standard_20_fixed 运行中 |\n\n### 进程状态\n\n| 实验 | PID | 状态 |\n|------|-----|------|\n| grpo_standard_20_fixed | 142477 | **存活** |\n| sft_standard_20_fixed | 142638 | **存活** |\n| floor_0p6 | 132494 | **存活** |\n\n### grpo_standard_20_fixed 进度\n\n- 25/500 (5%)，启动于 23:04，平均 ~40-55s/it\n- 预计剩余 ~5-7 小时完成\n- 模型已正确加载，检测到 non-uniform MLP（intermediate_size range [8128, 18944]）\n\nGPU 2 状态完全正常，三个实验均正常运行，无需任何干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-gpu2-reset-and-verify.md"
+}

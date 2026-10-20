@@ -1,0 +1,36 @@
+{
+  "exp_id": "exp_001_grpo_baseline",
+  "project": "schema-conform-ie-training",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:05:25.079Z",
+    "updated_at": "2026-05-13T03:14:43.482Z",
+    "spec": {
+      "command": "WANDB_MODE=offline CUDA_VISIBLE_DEVICES=0 python -m src.train_grpo --config configs/grpo_baseline.yaml --data_dir /root/autodl-tmp/data/scierc --dataset scierc --output_dir /root/autodl-tmp/output/formal_A",
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": "cuda:0",
+      "pid": 26252,
+      "log_path": "/root/autodl-tmp/logs/train_A.log",
+      "checkpoint_path": "/root/autodl-tmp/output/formal_A",
+      "data_path": "/root/autodl-tmp/data/scierc/",
+      "data_count": 1861,
+      "model_name": "Qwen/Qwen3.5-9B",
+      "seed": 42,
+      "metrics": {
+        "training_steps_completed": 500,
+        "eval_ref": "eval_A_v2"
+      }
+    },
+    "conclusion": "success",
+    "metrics": {
+      "training_steps_completed": 500,
+      "eval_ref": "eval_A_v2"
+    },
+    "completed_at": "2026-05-13T03:14:43.482Z"
+  },
+  "timestamp": "2026-05-13T03:14:43.498185+00:00",
+  "trigger": "update_registry"
+}

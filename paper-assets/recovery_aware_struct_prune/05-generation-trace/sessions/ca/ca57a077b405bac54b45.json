@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "ca57a077b405bac54b45",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops diagnose grpo cka only 1p5b",
+  "task_key": "worker_ops_diagnose_grpo_cka_only_1p5b_20260518T160651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_grpo_cka_only_1p5b_20260518T160651.log",
+    "occurrence": 1,
+    "bytes": 636867,
+    "sha256": "12cf401820e71189ede376790e3e09afe6414ab51c5960962efb37e634bd6da1"
+  },
+  "statistics": {
+    "messages": 297,
+    "user_turns": 0,
+    "tool_calls": 102,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 90,
+      "tool_call": 102,
+      "tool_result": 102
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 297,
+      "chunks": [
+        {
+          "path": "ca57a077b405bac54b45-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ca57a077b405bac54b45-part-0002.json",
+          "message_count": 117
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-diagnose-grpo-cka-only-1p5b.md"
+}

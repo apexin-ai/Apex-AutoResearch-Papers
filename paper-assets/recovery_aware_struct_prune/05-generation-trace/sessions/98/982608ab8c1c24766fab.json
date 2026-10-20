@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "982608ab8c1c24766fab",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo rasp 25 qwen math",
+  "task_key": "worker_analysis_grpo_rasp_25_qwen_math_20260516T154226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_rasp_25_qwen_math_20260516T154226_result.json",
+    "occurrence": 1,
+    "bytes": 863,
+    "sha256": "592aca7a2df1649e611f9a8a45c4f6092af00b2cb42d3490e03e8775d17da3c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新完毕。\n\n## 实验结论：**success** — C2 hypothesis validated\n\n**grpo_rasp_25_qwen_math** (Qwen2.5-Math-7B, RASP 25%, GRPO 100 steps) 确认了跨模型×跨稀疏度的 RASP collapse pattern：\n\n| 指标 | 值 | 含义 |\n|------|-----|------|\n| collapse_onset | ≤ step 10 | frac_zero_std 初始即 0.575 |\n| collapse_type | immediate_chronic | 无急性下坠，从头到尾 stuck |\n| reward range | 0.111–0.225 | 无上升趋势，纯震荡 |\n| entropy | 0.117→0.090 | 持续下降，多样性丧失 |\n| 最终生成 | 纯重复循环 | \"Alwyn's distance...\" 无限重复 |\n\n**对比 DeepSeek RASP 20%**（onset ~step 10, permanent collapse）：Qwen RASP 25% 呈现更严重的立即性 collapse（初始 frac_zero_std 更高），符合\"更高稀疏度 → 更早/更严重 collapse\"的预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-rasp-25-qwen-math.md"
+}

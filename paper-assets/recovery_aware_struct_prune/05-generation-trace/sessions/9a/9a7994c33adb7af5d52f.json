@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7994c33adb7af5d52f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 sft cka only 25 v2",
+  "task_key": "worker_harvest_eval_math500_sft_cka_only_25_v2_20260521T172829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_sft_cka_only_25_v2_20260521T172829_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "9efd3287e39228a3eef2f3fdd766c67cdb0b4ab6148ee2848ad33e0c654e1bd4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_math500_sft_cka_only_25_v2 — 成功完成**\n\n| 指标 | 值 |\n|------|-----|\n| MATH-500 Accuracy | **19.20%** (96/500) |\n| Std Error | ±0.0176 |\n| n_total | 500 |\n\n**注意**: 结果 JSON 未保存（`output_path` 指向目录而非文件，触发 `IsADirectoryError`），metrics 从日志提取。\n\n- Registry: DONE / success，metrics 已写入\n- Cron: 已删除\n- westd-29022 cuda:2: 已释放，无进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-sft-cka-only-25-v2.md"
+}

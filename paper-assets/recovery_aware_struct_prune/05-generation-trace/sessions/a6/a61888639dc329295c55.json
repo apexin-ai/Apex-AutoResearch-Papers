@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "a61888639dc329295c55",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "research check grpo hyperparams",
+  "task_key": "worker_research_check_grpo_hyperparams_20260523T184142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_grpo_hyperparams_20260523T184142.log",
+    "occurrence": 1,
+    "bytes": 778151,
+    "sha256": "45e99e16f980d1185e7842ec9be200e5454acfc40c1f689771f144ae170ec7dc"
+  },
+  "statistics": {
+    "messages": 48,
+    "user_turns": 1,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 12,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 13,
+      "tool_result": 13,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 15,
+      "chunks": [
+        {
+          "path": "a61888639dc329295c55-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "a61888639dc329295c55-part-0002.json",
+          "message_count": 1
+        },
+        {
+          "path": "a61888639dc329295c55-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 33,
+      "chunks": [
+        {
+          "path": "a61888639dc329295c55-part-0003.json",
+          "message_count": 33
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-check-grpo-hyperparams.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f866766368abefe5a551",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westb disk cleanup and submit mbpp",
+  "task_key": "worker_fix_westb_disk_cleanup_and_submit_mbpp_20260519T185248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westb_disk_cleanup_and_submit_mbpp_20260519T185248_result.json",
+    "occurrence": 1,
+    "bytes": 1133,
+    "sha256": "7e62fd364b558ae60cdc57d113f334e5d9899d54591af0752a67c14c731412e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n## 磁盘清理报告\n\n| 项目 | 清理前 | 清理后 |\n|------|--------|--------|\n| 数据盘使用 | 250G / 250G (100%, 159MB free) | 224G / 250G (90%, **27G free**) |\n| 清理内容 | `grpo_cka_only_20_seed123/checkpoint-100/` (27G) — 中间训练 checkpoint，含 optimizer.pt 15G + 重复 model.safetensors 12G。最终模型在父目录保留完好 | |\n\n其他检查项：\n- `__pycache__` / `.pyc` / `.tmp`：无\n- `/root/.cache/huggingface/`：140MB（根分区，不占数据盘）\n- `/root/autodl-tmp/.hf_cache/`：46MB（可忽略）\n- `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`：15G（7B 基座模型，脚本引用中，未删）\n\n## 实验提交确认\n\n| 字段 | 值 |\n|------|---|\n| exp_id | `eval_mbpp_sft_standard_20_1p5b` |\n| server | westb-23072, GPU 0 |\n| tmux session | `eval_mbpp_sft_standard_20_1p5b` (**ALIVE**) |\n| PID | 917409 |\n| registry | RUNNING |\n\n当前 westb-23072 两个 eval 并行运行：\n- **GPU 0**: `eval_mbpp_sft_standard_20_1p5b` (PID 917409)\n- **GPU 1**: `eval_mbpp_sft_cka_only_20_1p5b` (PID 916225, 已运行 ~12min)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westb-disk-cleanup-and-submit-mbpp.md"
+}

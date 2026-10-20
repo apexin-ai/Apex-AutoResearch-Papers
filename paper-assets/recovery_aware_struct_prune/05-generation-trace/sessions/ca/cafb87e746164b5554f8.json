@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cafb87e746164b5554f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig1 framework",
+  "task_key": "worker_paper_figure_fig1_framework_20260516T080855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig1_framework_20260516T080855_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "a4aacf915de77209b24699b04796c8dba4247cc032b579f633d792acb79b531f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**输出文件**：\n- PDF: `figures/paper/fig1_framework.pdf` (56KB)\n- PNG: `figures/paper/fig1_framework.png` (391KB, 4099×2031px)\n- Artifact ID: `art_20260516_df529e`\n\n**图表内容**：上下两行对比布局——Standard Pipeline（蓝色）vs RASP Pipeline（橙色），展示三阶段流程（Prune → SFT → GRPO），包含 S(h) 公式、collapse 标注、数值结果（59.29→58.91% vs 61.49→61.87%），底部绿色高亮面板展示 Redundancy-Stability Tradeoff 核心发现，右侧标注 Bidirectional Decoupling。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig1-framework-copy-2.md"
+}

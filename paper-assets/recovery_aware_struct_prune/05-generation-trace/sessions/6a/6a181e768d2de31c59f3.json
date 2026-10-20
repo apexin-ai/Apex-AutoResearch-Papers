@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a181e768d2de31c59f3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval grpo rasp v9 step10",
+  "task_key": "worker_eval_eval_grpo_rasp_v9_step10_20260516T044330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_grpo_rasp_v9_step10_20260516T044330_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "3fb2b9640dbce1c159cd004b204bf3b164724d54ed08f9052f72868dd5b5b8be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: `eval_grpo_rasp_v9_step10` 已在 westb-23072 cuda:0 上启动\n- **tmux session**: `eval_grpo_rasp_v9_step10`\n- **Registry**: status=RUNNING，hypothesis/parent/spec 已更新\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_grpo_rasp_v9_step10.log`\n- **输出**: `results/eval_grpo_rasp_v9_step10.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-grpo-rasp-v9-step10.md"
+}

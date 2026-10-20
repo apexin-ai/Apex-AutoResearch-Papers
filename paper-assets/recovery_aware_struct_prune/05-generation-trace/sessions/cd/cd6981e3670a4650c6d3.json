@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cd6981e3670a4650c6d3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis collapse dynamics wandb",
+  "task_key": "worker_analysis_collapse_dynamics_wandb_20260516T014849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_collapse_dynamics_wandb_20260516T014849_result.json",
+    "occurrence": 1,
+    "bytes": 1202,
+    "sha256": "3fe7ced37e1bd520d64f6abc7123aa2708bc001ab94b9194aab61abe494ef2e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存。核心发现与之前的理解有重要修正：\n\n**Standard v8 的 step 60 \"collapse\" 是暂时的** — grad_norm 从 2.094 暴跌到 0.013，但到 step 90 完全恢复（grad_norm=2.14, reward=0.065, frac_zero_std=0.475）。这不是简单的\"更慢的 collapse\"，而是**质性不同的动态**：Standard 有自我修复能力，RASP 没有。\n\n**三种 collapse 模式各不相同**：\n\n| 模型 | 模式 | Onset | 可逆？ |\n|------|------|-------|--------|\n| RASP | 熵死亡 (entropy=0.054, grad=0.007) | ≤step 10 | 不可逆 |\n| Standard | 瞬态 grad cliff | step 60 | **step 90 恢复** |\n| Unpruned | reward-mode collapse (entropy=1.24 但 reward=0) | ~step 80 | 不可逆 |\n\n这实际上**加强了 Claim 2** — 不同剪枝方法产生的不仅是不同 collapse 速度（6x差异），而是完全不同的失败签名和恢复能力。\n\n**数据缺口**：\n- RASP v9 只有 step 10 数据（run 可能卡住），steps 20/30 未获取\n- Standard v8 缺 steps 70/80（step 60→90 之间的恢复轨迹）\n- 需要 SSH 到服务器读 trainer_state.json 补全\n\n报告路径：`artifacts/grpo_collapse_dynamics_analysis.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-collapse-dynamics-wandb.md"
+}

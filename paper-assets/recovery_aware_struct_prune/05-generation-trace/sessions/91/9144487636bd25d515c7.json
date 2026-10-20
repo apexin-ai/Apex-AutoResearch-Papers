@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9144487636bd25d515c7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd grasp baseline",
+  "task_key": "worker_code_westd-grasp-baseline_20260515T114735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-grasp-baseline_20260515T114735_result.json",
+    "occurrence": 1,
+    "bytes": 715,
+    "sha256": "0a91ed87c491236c740573611e5e41ad523cec00491dc533fb61c0d7de249b1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状况：\n\n- **cuda:0 被占用**：RASP re-eval 正在运行（PID 25036，`eval_gsm8k.py --model_path pruned_rasp_20 --max_samples 100`），结果文件尚未生成\n- **cuda:1 空闲**：0% util, 0 MiB\n- **GRASPrune 外部仓库不存在**，但有原生实现 `run_grasp_prune.sh` + `grasp_scoring.py`（GraSP scoring → prune.py --mode standard）\n- **模型路径需修正**：脚本写的 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`，实际是 `/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B`\n- **`run_grasp_prune.sh` 没有 eval 步骤**，prune 完需要手动跑 eval\n\n用 cuda:1 启动 GraSP（两个 GPU 都属于本项目，C003），还是等 cuda:0 空出来？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-grasp-baseline.md"
+}

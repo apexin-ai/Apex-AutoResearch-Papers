@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a2fb9b65a92ee3c41fb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code full gsm8k eval",
+  "task_key": "worker_code_full_gsm8k_eval_20260515T034742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full_gsm8k_eval_20260515T034742_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "6b35cdb7cfd5be5aa2015b07a76b9d1e098a2ea9e36b473aaa9c167813020e1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码和脚本都已验证通过。总结完成的工作：\n\n---\n\n### 已完成\n\n**`eval_gsm8k.py` 更新：**\n- 新增 `--voting` 参数：启用 majority voting (self-consistency)\n- 新增 `--num_samples_per_question`（默认 K=8）、`--voting_temperature`（默认 0.7）、`--voting_top_p`（默认 0.95）\n- 新增 `binomial_stderr(p, n)` 函数，所有模式输出 `stderr` 字段\n- 新增 `evaluate_majority_voting()` 函数：每题采样 K 次，用 Counter 取多数答案\n- 输出 JSON 统一包含 `accuracy`, `stderr`, `n_correct`, `n_total`, `mode`, `eos_stats`\n- 修复 greedy 模式下传 `temperature=0.0` 导致 transformers 警告的问题\n\n**`scripts/run_full_eval.sh` 更新：**\n- 新增 `voting` 子命令：对所有可用模型跑 majority voting K=8\n- 新增 `full` 子命令：greedy (phase1-3) + voting 一起跑\n- 添加 `source /etc/network_turbo` + `HF_HUB_DISABLE_XET=1`（AutoDL 必需）\n- Summary 输出包含 stderr（`accuracy ± stderr`）\n\n### 未完成\n\nDry-run 验证未能执行 — 两张 GPU 正在跑 GRPO v2 训练（PID 274156, 276978），无可用显存。GRPO 训练完成后即可执行 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-gsm8k-eval.md"
+}

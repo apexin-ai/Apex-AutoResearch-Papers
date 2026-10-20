@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47acef01fcf3236441d3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 sft",
+  "task_key": "worker_ssh_harvest_cka_only_15_sft_20260520T183302",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_sft_20260520T183302_result.json",
+    "occurrence": 1,
+    "bytes": 341,
+    "sha256": "1c8c162d7a230c5fd16f5c842ae6e0d0b9f5410b012d338bc0f8f89a8f19d6ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程已结束，eval 完成。\n\n## CKA-only 15% SFT — GSM8K 结果\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **72.18%** (952 / 1319) |\n| **95% CI** | ±1.23% → [70.95%, 73.41%] |\n| **EOS rate** | 99.01% (1306 natural / 13 truncated) |\n| **Avg response length** | 200.3 tokens |\n| **Mode** | greedy (T=0.0) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-sft.md"
+}

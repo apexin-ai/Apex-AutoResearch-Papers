@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "96dac4fb3d2d8d2ddf30",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix disk cleanup and v4 rerun",
+  "task_key": "worker_fix_disk_cleanup_and_v4_rerun_20260514T153536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk_cleanup_and_v4_rerun_20260514T153536_result.json",
+    "occurrence": 1,
+    "bytes": 2338315,
+    "sha256": "cb024e8fcfbc7575688e48cdbfe43c1c47158fcf3c049ac6dc86189385ae3bae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2338335,
+                "serialized_sha256": "5baf679ff410bc074a62aca90c8238b82eba58cc94b547e47fa2ccc2a93d53cd",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-disk-cleanup-and-v4-rerun.md"
+}

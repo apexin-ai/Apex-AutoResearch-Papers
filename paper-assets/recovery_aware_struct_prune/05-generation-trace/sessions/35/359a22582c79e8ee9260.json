@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "359a22582c79e8ee9260",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing related work",
+  "task_key": "worker_paper_writing_related_work_20260515T051223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_related_work_20260515T051223_result.json",
+    "occurrence": 1,
+    "bytes": 938,
+    "sha256": "b415664fd4d117927754480c08054c9289eb0c5fcbf7ad864fd53f64d6243c1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification complete:\n\n1. **All 27 citation keys exist in references.bib** -- no CITATION NEEDED placeholders required\n2. **5 clusters covered**: Structured Pruning (\\subsection), Pruning-Aware Recovery (\\subsection), RLVR Training Dynamics (\\subsection), CKA-based pruning (\\paragraph), Function-aware pruning (\\paragraph)\n3. **~700-800 rendered words** -- within the ~800 budget, well under 1000\n4. **Each cluster has a \\rasp{} positioning statement**\n5. **No 35% sparsity references**\n\nChanges from the previous version:\n- `RASP` → `\\rasp{}` for macro consistency with method.tex\n- Added GRPO and DeepSeek-R1 citations to Cluster 3 (was missing)\n- Removed `ssgr2025` citation (not in the required outline)\n- Tightened prose throughout (removed redundant detail like venue notes, specific numbers from cited papers)\n- Reorganized Function-Aware Pruning as a standalone `\\paragraph` per the outline"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-related-work-copy-2.md"
+}

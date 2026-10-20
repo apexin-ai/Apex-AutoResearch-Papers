@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d03391fda8a45262d88",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check baseline eval progress",
+  "task_key": "worker_check_baseline_eval_progress_20260514T151307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_baseline_eval_progress_20260514T151307_result.json",
+    "occurrence": 1,
+    "bytes": 651,
+    "sha256": "160eeba6d2ed67d9431915ebf64f0044814c9c558e4a0a3d174aec45d348fdbf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **Baseline eval 已完成**，进程 197442 已退出\n- **GSM8K Accuracy: 42.0%** (21/50)，模型 DeepSeek-R1-Distill-Qwen-7B，50 样本 quick2 评估\n- **GPU 空闲**：两张 NVIDIA RTX PRO 6000 Blackwell (各 ~96GB)，0% 利用率，无运行进程\n\n同目录下其他已完成的 eval 结果文件：\n| 文件 | 时间 |\n|------|------|\n| `eval_baseline_7b_quick.json` | 22:19 |\n| `eval_baseline_7b_quick2.json` | 22:48 |\n| `eval_pruned_rasp_35.json` | 18:54 |\n| `eval_pruned_standard_35.json` | 18:55 |\n| `eval_pruned_rasp_35_v3_quick.json` | 22:39 |\n| `eval_pruned_standard_35_v3_quick.json` | 22:24 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-baseline-eval-progress.md"
+}

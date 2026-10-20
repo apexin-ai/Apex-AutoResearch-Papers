@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4367c0cab495c422c1c4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "data group selection comparison",
+  "task_key": "worker_data_group_selection_comparison_20260516T105543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_group_selection_comparison_20260516T105543_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "b51d0fd84b22975b3f5af5576cb8c8356df3287d531403d31bf3687d0ae63b29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出完成。三种方法各剪 200/784 groups，总量一致，但 per-layer 分布差异明显：\n\n**关键发现：**\n\n| 特征 | 说明 |\n|------|------|\n| **Layer 0-5** | 三者一致，都最大幅剪枝（12/28 groups） |\n| **Layer 6** | RASP 也剪到 12，Standard/RLVR 保留全部 28 — RASP 对浅层更激进 |\n| **Layer 27 (最后层)** | RASP 剪到 12，Standard/RLVR 保留全部 28 — RASP 对首尾层均不保守 |\n| **Layer 16-22 (中后段)** | RASP 基本保留全部，Standard/RLVR 在此区间集中剪枝 |\n| **RLVR vs Standard** | 极其相似，仅 Layer 16/20/21 有微小差异（±1~2 groups） |\n| **RASP vs Standard** | 分布差异大 — RASP 把预算从浅层/末层转移到了中后段 |\n\n**产出文件：**\n- JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/group_selection_comparison.json`\n- CSV: `/root/autodl-tmp/recovery_aware_struct_prune/results/group_selection_comparison.csv`\n- 脚本: `/root/recovery_aware_struct_prune/src/extract_pruning_pattern.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-group-selection-comparison.md"
+}

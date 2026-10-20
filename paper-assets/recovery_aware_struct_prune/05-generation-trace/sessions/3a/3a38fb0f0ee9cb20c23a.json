@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a38fb0f0ee9cb20c23a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check eval and grpo speed",
+  "task_key": "worker_ops_check_eval_and_grpo_speed_20260516T124409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_and_grpo_speed_20260516T124409_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "f154618c10f466a11aca3c8d05fe1ded093bcee9cb6ef216ae5b4fb2b2c87fcf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 1. Eval 已完成\n\n| Model | Accuracy | Correct/Total | EOS Rate |\n|-------|----------|---------------|----------|\n| **RASP 25%** | **64.0%** | 128/200 | 99.5% |\n| **Standard 25%** | **63.0%** | 126/200 | 100% |\n\n两个 eval 文件分别在 20:20 和 20:16 写入完毕。EOS 问题已修复（Standard 100%, RASP 99.5%）。\n\n### 2. GRPO 仍在初始化，无法测步速\n\n两个 GRPO 进程都活着（PID 9291 RASP, PID 9375 Standard），但日志显示仍在加载模型/准备数据阶段：\n\n- **RASP log** (4行)：最后一行 `20:44:35 Preparing GSM8K training dataset...`\n- **Standard log** (2行)：最后一行 `20:43:11 Non-uniform MLP detected`\n\n尚未产出任何训练 step，无法测量步速。\n\n### 3. GPU 状态异常\n\n```\nGPU 0:   0% util,   3 MiB / 97887 MiB   ← RASP GRPO 分配但未加载到显存\nGPU 1: 100% util,   3 MiB / 97887 MiB   ← Standard GRPO，100% util 但 3 MiB 显存很奇怪\nGPU 2:   0% util,   0 MiB / 97887 MiB   ← 空闲\nGPU 3:   0% util,   0 MiB / 97887 MiB   ← 空闲\n```\n\nGPU 1 显示 100% utilization 但只有 3 MiB 显存，可能是初始化 CUDA context 的开销。模型尚未加载到 GPU。\n\n**建议**：等 3-5 分钟后再查一次日志，确认模型是否成功加载到 GPU 并开始出 step。如果 5 分钟后日志仍无训练输出，需要排查是否卡住。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-and-grpo-speed.md"
+}

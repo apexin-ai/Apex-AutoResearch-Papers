@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "664a26a355b13eb84a97",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_17_1779044650.md",
+  "task_key": "loop_17_1779044650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_17_1779044650.md",
+    "occurrence": 1,
+    "bytes": 4606,
+    "sha256": "f1b10d89c479d62ae7e4cfb849c482004bfa8536f1bd24ef3261e650d69eb921"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 17\nreason: idle_timeout\nupdated: '2026-05-17T18:00:24+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1/2/3（config 已扩到 4 卡）\n- submit_training_job command 必须 `bash -c \"source /root/miniconda3/bin/activate && ...\"`，tmux 用 sh 不是 bash\n- eval 脚本不走 W&B，cron 会误判 failed——收到 eval 类 failed 回调先查 registry 是否已有 metrics\n- westb↔westd 间 SCP 不通（无 SSH key 互信），模型传输需中转\n- 512-token HumanEval 结果全部 invalidated（truncation artifact），只用 2048-token 结果\n\n### 2. 🖥️ 基础设施快照\n- **westd-11672**: root@westd-11672, 工作目录 /root/recovery_aware_struct_prune, Python /root/miniconda3/bin/python\n  - 模型: /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B (unpruned), /root/autodl-tmp/recovery_aware_struct_prune/ 下各 checkpoint\n  - 活跃进程:\n    - eval_math500_grpo_standard_20 (PID 14556, tmux, cuda:1 推测)\n    - eval_math500_grpo_rasp_20_v2 (PID 11891, tmux, cuda:3)\n    - eval_humaneval_grpo_standard_20_2048 (PID 27194, tmux, cuda:2)\n    - eval_humaneval_grpo_rasp_20_2048 (Worker 正在提交, cuda:0) — Worker ID: worker_code_eval_humaneval_grpo_rasp_20_2048_submit_20260517T135658\n- **westb-23072**: root@westb-23072, 同结构工作目录\n  - 活跃进程:\n    - sft_cka_only_20 (PID 720955, tmux, cuda:0)\n    - grpo_random_20 (PID 719679, tmux, cuda:1)\n\n### 3. 📊 当前状态\n刚处理完 eval_humaneval_unpruned_2048 cron 回调：pass@1 = 45.12%（dense ceiling）。已向 Director 汇报，已更新 memory.md。\n\n**Registry RUNNING/ALLOCATED**:\n| exp_id | server | GPU | 摘要 |\n|--------|--------|-----|------|\n| eval_math500_grpo_standard_20 | westd | cuda:1? | MATH-500 GRPO Standard，C1 cross-benchmark |\n| eval_math500_grpo_rasp_20_v2 | westd | cuda:3 | MATH-500 GRPO RASP，C1 cross-benchmark |\n| eval_humaneval_grpo_standard_20_2048 | westd | cuda:2 | HumanEval GRPO Standard @2048 |\n| eval_humaneval_grpo_rasp_20_2048 | westd | cuda:0 | HumanEval GRPO RASP @2048（Worker 提交中） |\n| sft_cka_only_20 | westb | cuda:0 | CKA-only scoring SFT recovery |\n| grpo_random_20 | westb | cuda:1 | Random pruning GRPO collapse 行为 |\n\n**等待中**:\n- Worker worker_code_eval_humaneval_grpo_rasp_20_2048_submit_20260517T135658 完成回调（提交 eval job）\n- 6 个 cron 监控中的实验完成回调\n\n### 4. 📋 待办\n- Worker 提交回调到达 → 确认 eval_humaneval_grpo_rasp_20_2048 实际在跑\n- eval_humaneval_grpo_standard_20_2048 完成 → 与 unpruned 45.12% 对比，更新 4-way matrix\n- eval_humaneval_grpo_rasp_20_2048 完成 → 完整 4-way HumanEval@2048 matrix（unpruned / SFT RASP / GRPO Standard / GRPO RASP），汇报 Director\n- eval_math500_grpo_standard_20 + eval_math500_grpo_rasp_20_v2 完成 → C1 cross-benchmark validation（注意 D051：MATH-500 GRPO 对比不可用于 C3，配置不公平）\n- grpo_random_20 完成 → 关键三叉判断：collapse ≈ RASP → 所有结构剪枝伤 RL；≈ Standard → CKA-aware 特别伤 RL；stable → CKA narrative 需重构\n- sft_cka_only_20 完成 → 与 RASP/Standard/Random SFT 对比，scoring ablation 数据点\n- 上述 eval 全部完成后 → westd 4 卡空出，启动 25% GRPO（grpo_standard_25 + grpo_rasp_25）\n- 还缺 eval_humaneval_sft_standard_20_2048（未在 registry），需要创建并提交（GPU 空出后）\n\n### 5. 🎯 战略上下文\n- **DDL**: EMNLP 2026 ARR May 25（~8 天）\n- **核心叙事** (D044/D045 pivot): Redundancy-Stability Tradeoff — GRPO 在 pruned 模型上 reward 提升但 accuracy 永不跟随（universal decoupling），pruning 引入 collapse，severity 与结构损伤类型相关\n- **三大 Claims**: C1 universal decoupling, C2 collapse severity gradient, C3 RASP preserves transferable structures\n- **HumanEval 新发现**: code recovery rate (23%) 远低于 math recovery (75.7%)，这为论文增加了跨任务维度的证据\n- **D051 陷阱**: MATH-500 GRPO 对比不能用于 C3（配置不公平），只能用于 C1 验证\n- **D050**: RASP-RLVR 已降级为 ablation (negative result)\n- **Scope expansion 进度**: 20% core data 全部完成，25% SFT 完成待 eval，25% GRPO 待启动；Qwen2.5-Math-7B pruning 进行中\n- **Paper writing**: Step 2 Plot Generation 进行中，Paper Agent 先用 20% 数据写主体\n- **易错点**: eval_humaneval_grpo_rasp_20_2048 registry 状态被意外推进到 RUNNING（update_registry 设 spec 时自动转了），但 Worker 还在 SSH 提交中——如果 Worker 失败，需要手动处理状态\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-17-1779044650.md"
+}

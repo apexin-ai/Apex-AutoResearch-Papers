@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "391930fcae9a8f06e0f7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research dream action prep",
+  "task_key": "worker_research_dream-action-prep_20260515T031103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dream-action-prep_20260515T031103_result.json",
+    "occurrence": 1,
+    "bytes": 1463,
+    "sha256": "5d2418b5deb19361cc592b141845d008b34861a0e9e1a4b68151e15a14b16017"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部语法检查通过。\n\n---\n\n## 创建状态汇总\n\n| # | 脚本 | 路径 | 运行命令 | 预估 GPU 时间 |\n|---|------|------|----------|--------------|\n| **plan_015** | `run_alpha_ablation.sh` | `src/run_alpha_ablation.sh` | `CUDA_VISIBLE_DEVICES=0,1 bash src/run_alpha_ablation.sh` | ~3h（5次剪枝 ~15min/次 + 5次全量 GSM8K eval ~25min/次，双 GPU 并行） |\n| **plan_016** | `measure_inference_speed.py` | `src/measure_inference_speed.py` | `CUDA_VISIBLE_DEVICES=0 python src/measure_inference_speed.py` | ~20min（3 模型 × 50 prompts × 256 tokens） |\n| **plan_017** | `run_unstructured_baseline.py` | `src/run_unstructured_baseline.py` | `CUDA_VISIBLE_DEVICES=0 python src/run_unstructured_baseline.py` | ~40min（剪枝 5min + 全量 GSM8K eval 35min） |\n\n### 关键设计决策\n\n- **plan_015**: `--alpha` 已在 `prune.py:166` 支持，无需改代码。α=0.0 时 `(1-F(h))^0=1`，退化为纯 importance 排序。脚本按奇偶分配到 GPU0/GPU1 并行。剪枝后模型写 `/root/autodl-tmp/recovery_aware_struct_prune/alpha_ablation/`（遵守 C002 磁盘约束）。\n- **plan_016**: `max_new_tokens=256`（速度测试不需完整推理链）。支持 `--models name:path` 自定义模型列表。自动计算相对 original 的 speedup。\n- **plan_017**: 全局 magnitude pruning，跳过 embedding/lm_head/norm 层。直接在内存中 zero-out 不保存模型（省磁盘），就地 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dream-action-prep.md"
+}

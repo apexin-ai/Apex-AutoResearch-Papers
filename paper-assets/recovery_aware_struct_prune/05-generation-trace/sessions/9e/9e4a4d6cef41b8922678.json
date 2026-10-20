@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9e4a4d6cef41b8922678",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prepare 30pct pruning westd",
+  "task_key": "worker_ops_prepare_30pct_pruning_westd_20260517T173514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prepare_30pct_pruning_westd_20260517T173514_result.json",
+    "occurrence": 1,
+    "bytes": 1156,
+    "sha256": "4cd05003074fb881d91169735b2d12a012819ff7f8acab13e52442dda32c63b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 30% sparsity pruning 全部完成。\n\n## 产出报告\n\n| 项目 | 状态 |\n|------|------|\n| **脚本路径** | `/root/recovery_aware_struct_prune/src/prune.py` |\n| **Base model** | `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` |\n| **Importance scores** | `/root/autodl-tmp/recovery_aware_struct_prune/results/importance_scores_qwen_math.pt` |\n| **CKA scores** | `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_scores_qwen_math.pt` |\n\n**prune.py 实际参数格式：**\n```\n--model_path, --importance_path, --cka_path, --mode (standard/rasp/rasp-rlvr), \n--sparsity, --alpha, --output_path, --seed, --dtype\n```\n\n**Pruning 结果：**\n\n| 方法 | 输出目录 | 大小 | Actual Sparsity | MLP groups pruned |\n|------|----------|------|-----------------|-------------------|\n| RASP | `pruned_rasp_30/` | 11G | 28.63% | 300/784 |\n| Standard | `pruned_standard_30/` | 11G | 28.63% | 300/784 |\n\n两者均为纯 MLP 剪枝（0 attn GQA groups pruned），forward pass validation 通过。输出包含 `model.safetensors` + `config.json` + `pruning_metadata.pt` + tokenizer 文件，可直接加载 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prepare-30pct-pruning-westd.md"
+}

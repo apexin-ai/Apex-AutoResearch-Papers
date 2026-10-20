@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a515b1de126fe27d7ca3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose seed123 eval exit",
+  "task_key": "worker_ssh_diagnose_seed123_eval_exit_20260522T143716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_seed123_eval_exit_20260522T143716_result.json",
+    "occurrence": 1,
+    "bytes": 595,
+    "sha256": "4d587451e047e90e07e6a508cb3e72c159026d043b871dc867dc29809a86689e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n1. **进程状态**: PID 46229 已退出（ps 无输出，exit code 1）\n2. **结果 JSON**: 存在，eval 完整完成\n3. **结果**:\n   - **accuracy: 51.25%** (676/1319)\n   - stderr: 0.0138\n   - EOS rate: 99.2% (1309 natural / 10 truncated)\n   - avg response length: 184.2 tokens\n   - 模型路径: `grpo_random_20_seed123/checkpoint-100`\n\n注意：最终 accuracy 51.25% 比上次检查时的中间值 52.0% 略低。此结果已标记作废（v1 GRPO batch_size=1 错误）。\n\n磁盘: `/root/autodl-tmp/` 85% (551G/650G, 100G 可用)，正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-seed123-eval-exit.md"
+}

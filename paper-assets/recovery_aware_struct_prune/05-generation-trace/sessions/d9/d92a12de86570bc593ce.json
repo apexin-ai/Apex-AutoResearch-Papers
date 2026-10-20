@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d92a12de86570bc593ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_12_1778932890.md",
+  "task_key": "loop_12_1778932890",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12_1778932890.md",
+    "occurrence": 1,
+    "bytes": 5715,
+    "sha256": "62958e1c1a02dcf885024d8cdab489f4339ebba8498f4388cc48dbc5fad1baef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:17:11+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1 + westd-11672 cuda:0/1，**四张卡**，不得越界（C001+C003）\n- westd 大文件必须写 `/root/autodl-tmp/recovery_aware_struct_prune/`，根分区仅 30GB（C002）\n- westb 工作目录 `/root/recovery_aware_struct_prune`，westd 工作目录 `/root/autodl-tmp/recovery_aware_struct_prune`——两台服务器路径不同\n- westd SSH 需先 `source /etc/network_turbo` + 设 `HF_HUB_OFFLINE=1`（eval_grpo_rasp_v9_step10 因网络问题重试过）\n- conda 环境：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，**不要创建 venv**\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× GPU (~98GB) | `/root/recovery_aware_struct_prune` | Python `/root/miniconda3/bin/python`\n- **westd-11672**: 2× RTX PRO 6000 (~95GB) | `/root/autodl-tmp/recovery_aware_struct_prune` | 同 conda base\n- 模型基座：DeepSeek-R1-Distill-Qwen-7B\n- SFT checkpoints: westb `/root/recovery_aware_struct_prune/outputs/sft_*/`, westd 同结构在 autodl-tmp 下\n- GRPO checkpoints: v9 RASP 在 westb `outputs/grpo_rasp_v9/`（save_steps=5, 有 step-5/10/15/20/25/30）；v8 Standard 在 westb（仅 checkpoint-50）；unpruned v2 在 westd `outputs/grpo_unpruned_v2/`（save_steps=5）\n- 活跃进程：\n  - `eval_grpo_rasp_v9_step10` PID 585618 westb cuda:0\n  - `eval_grpo_unpruned_v2_step100` PID 83589 westd cuda:0\n  - `eval_grpo_unpruned_v2_step90` PID 83667 westd cuda:1\n  - `prune_standard_25` + `prune_rasp_25` westb（无 PID/tmux 记录，需 SSH 确认）\n- Worker 在跑：`worker_ops_verify-standard25-tokenizer_20260516T051503`\n- **无活跃 cron**——新 session 需要为 RUNNING 实验注册 cron 监控\n\n### 3. 📊 当前状态\n**核心数据已全部收集完成（D045）。** 论文 framing 已 pivot 到 Redundancy-Stability Tradeoff（D044）。\n\nRUNNING 实验 5 个：\n- `eval_grpo_rasp_v9_step10`：RASP GRPO step-10（collapse onset）的 GSM8K N=1319 eval，重试中（HF_HUB_OFFLINE=1 修复网络问题）。**这是主表最后一个缺失数据点**\n- `eval_grpo_unpruned_v2_step100`/`step90`：Unpruned GRPO 后期 checkpoint eval，验证性质（step-100 已知 = SFT 81.27%）\n- `prune_standard_25` + `prune_rasp_25`：25% sparsity 扩展实验（multi-sparsity 数据点）\n\nANALYZING：\n- `eval_grpo_rasp_v9_step5`：accuracy=60.65%（Δ=-0.84pp vs SFT 61.49%），等下一个\"你\"更新 registry 到 DONE\n\n**已完成的核心数据矩阵：**\n| 模型 | SFT (N=1319) | GRPO best (N=1319) | Δ | Collapse |\n|------|-------------|--------------------|----|----------|\n| Unpruned | 81.27% | 81.27% (step-100) | 0.00pp | Never |\n| Standard | 59.29% | 58.91% (step-50) | -0.38pp | Step ~60 transient |\n| RASP | 61.49% | 60.65% (step-5) | -0.84pp | Step ~10 permanent |\n\n**等待中：**\n- eval_grpo_rasp_v9_step10 回调 → 补全 collapse onset 时刻的精确 accuracy\n- prune_standard_25/rasp_25 完成 → 25% sparsity 对比数据\n- Worker `verify-standard25-tokenizer` 回调\n\n### 4. 📋 待办（条件触发式）\n- eval_grpo_rasp_v9_step10 完成 → 更新 registry metrics → **核心论文表格完整**，可全面启动论文写作\n- eval_grpo_unpruned_v2_step90/step100 完成 → 确认 unpruned GRPO 后期无 accuracy 变化 → 更新 registry\n- eval_grpo_rasp_v9_step5 仍在 ANALYZING → 推进到 DONE(success)，metrics 已有：accuracy=60.65%\n- prune_standard_25 + prune_rasp_25 完成 → post-prune eval (N=100) → 与 20% 对比 → 若显著差异则加入论文 multi-sparsity 分析\n- **ALL CORE DATA COMPLETE 后 → 立即启动论文写作 pipeline**：先 read paper_framing.md + writing_plan.yaml（若有），按 Claim 1→2→3 顺序派 Worker 写 Method/Experiments/Results\n- 25% sparsity 实验是 bonus（多数据点），**不阻塞论文写作**\n- PREPARING 里 grpo_standard_20_v8 / grpo_rasp_20_v8 / grpo_stage2_standard_20_v5 等已过时（v8/v9 已完成），可标 DONE(killed) 清理\n\n### 5. 🎯 战略上下文\n**项目核心结论（D044-D045）：** GRPO 在 GSM8K+greedy 下 reward 提升永远不转化为 accuracy gain（unpruned 完全一致 81.27%→81.27%，1072/1319 相同样本）。但剪枝引入 training collapse，严重程度 RASP > Standard > Unpruned，形成 Redundancy-Stability Tradeoff。\n\n**DDL：EMNLP 2026 ARR May 25（距今 9 天）。** 核心数据已齐，论文写作是唯一瓶颈。\n\n**最容易判断错的事：**\n1. **不要再跑 GRPO 调参实验**——已经跑了 v1-v9 共 9 个版本，结论稳定。更多 GRPO 不会改变 narrative\n2. **SFT gap (RASP 61.49% vs Standard 59.29%) 统计不显著 (p=0.25)**——论文不能基于 SFT 差异做 claim，只能作为 supplementary context\n3. **Standard GRPO v8 数据不完整**——只有 checkpoint-50（save_steps=50, step 90 silent stop），没有更细粒度 checkpoint。step-50 eval 58.91% 是唯一可用数据点\n4. **Unpruned GRPO 是关键对照**——它证明 collapse 是 pruning-specific（unpruned 100 步零 collapse），这个对照是整个 narrative 的地基\n5. **PREPARING 里大量过时实验**——grpo_standard_20_v8, grpo_rasp_20_v8, grpo_stage2_standard_20_v5 等是历史遗留，不要尝试启动它们\n\n**决策链关键节点：** D027（post-prune 差异仅 4pp 不显著）→ D029（SFT Standard>RASP 反转）→ D037-D038（Narrative A: Pruning for Plasticity）→ D039（Unpruned 也 collapse，pruning-specificity 被挑战）→ D041（Unpruned baseline 设计修复：加 SFT 步骤）→ D044（最终 pivot：reward-accuracy decoupling + collapse severity gradient）→ D045（Core data complete）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-1778932890.md"
+}

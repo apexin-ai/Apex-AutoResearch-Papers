@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a8514f3649d25f5a50c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops registry housekeeping",
+  "task_key": "worker_ops_registry-housekeeping_20260515T024745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry-housekeeping_20260515T024745_result.json",
+    "occurrence": 1,
+    "bytes": 1095,
+    "sha256": "12c82b7cf2353a2d1f7e52dcc0d9446f225a51f370a11743035249ac4e97305f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**任务 1 — experiment_plan.yaml 更新：**\n- `plan_002.registry_id`: `sft_rasp_20` → `[sft_rasp_20, sft_standard_20]`\n- `plan_003.registry_id`: `grpo_stage2_rasp_20` → `[grpo_stage2_rasp_20, grpo_stage2_standard_20]`\n\n**任务 2 — Registry metrics 更新：**\n\n两个 SFT 实验的 metrics 已从 eval JSON 补全（来源：`/root/recovery_aware_struct_prune/results/eval_sft_*_combined.json`，N=100 greedy）：\n\n| 指标 | sft_rasp_20 | sft_standard_20 |\n|------|-------------|-----------------|\n| greedy_accuracy | 57% (57/100) | 64% (64/100) |\n| eos_rate_greedy | 0.99 | 0.99 |\n| greedy_avg_len | 179.83 | 176.31 |\n| greedy_min_len | 59 | 43 |\n| greedy_max_len | 4096 | 4096 |\n\n新增字段：`greedy_correct`, `greedy_total`, `greedy_min_len`, `greedy_max_len`。原有 metrics 数值确认与 JSON 一致。\n\n注意：N=100 sampling eval（temperature=0.7）在两个模型上都被 kill 了（RASP 跑到 6%，Standard 跑到 18%），应该是 GRPO 训练抢了显存。`sampling_eos_rate_5` 仍是 5 样本快测数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-housekeeping.md"
+}

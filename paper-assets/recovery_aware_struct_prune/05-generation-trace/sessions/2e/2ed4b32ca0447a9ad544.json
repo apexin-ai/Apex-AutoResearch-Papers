@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "2ed4b32ca0447a9ad544",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix disk cleanup and reprune v4",
+  "task_key": "worker_fix_disk_cleanup_and_reprune_v4_20260514T153516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk_cleanup_and_reprune_v4_20260514T153516.log",
+    "occurrence": 1,
+    "bytes": 1098705,
+    "sha256": "afdbe455379e94860628ffc53d12ac531e195bc9cd7d51fad36dcaf6140520a1"
+  },
+  "statistics": {
+    "messages": 777,
+    "user_turns": 1,
+    "tool_calls": 319,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "assistant": 129,
+      "record": 3,
+      "tool_call": 319,
+      "tool_result": 319,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 739,
+      "chunks": [
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "2ed4b32ca0447a9ad544-part-0005.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-disk-cleanup-and-reprune-v4.md"
+}

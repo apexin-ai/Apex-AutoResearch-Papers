@@ -1,0 +1,457 @@
+{
+  "schema_version": "1.0",
+  "id": "57365a2ea46a2df12b66",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval humaneval sft rasp 20 2048 v3",
+  "task_key": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826.jsonl",
+    "occurrence": 1,
+    "bytes": 15181,
+    "sha256": "0914a0d8708316222c6c1e48fb2de69cb7cb6200d00def28f5fd961894f9b544"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:59:45.047797+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__submit_training_job,mcp__agent-ml-research__detect_image",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:59:45.048156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:59:45.048356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:59:45.048503+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/recovery_aware_struct_prune/src/ -name \"*humaneval*\" -o -name \"*eval*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:59:45.048633+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:59:45.048772+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.23}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:59:45.048910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\n/root/recovery_aware_struct_prune/src/eval_humaneval.py\\\\n/root/recovery_aware_struct_prune/src/eval_math500.py\\\\n/root/recovery_aware_struct_prune/src/run_eval_25.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_all.sh\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_d008.sh\\\\n/root/recovery_aware_struct_prune/src/eval_mbpp.py\\\\n/root/recovery_aware_struct_prune/src/run_full_eval_d008_parallel.sh\\\\n/root/recovery_aware_struct_prune/src/run_post_recovery_eval.sh\\\\n/root/recovery_aware_struct_prune/src/run_sft_eval.sh\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:59:45.049074+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Tue May 19 21:58:44 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:49:00.0 Off |                  Off |\\\\n| N/A   80C    P0            586W /  600W |   29619MiB /  97887MiB |     98%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:5A:00.0 Off |                  Off |\\\\n| N/A   55C    P0            311W /  600W |   12789MiB /  97887MiB |     86%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   2  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   57C    P0            343W /  600W |   17667MiB /  97887MiB |     91%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   3  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   31C    P8             \n…[truncated 1205 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:59:45.049300+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/recovery_aware_struct_prune/src/eval_humaneval.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:59:45.049452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps -p 107932 -o pid,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:59:45.049685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"HumanEval Evaluation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nfrom datetime import datetime\\\\nimport json\\\\nimport logging\\\\nimport math\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport subprocess\\\\nimport tempfile\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(level=logging.INFO, format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\")\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef extract_code_block(text):\\\\n    clean = re.sub(r\\\\\\\"<think>.*?</think>\\\\\\\", \\\\\\\"\\\\\\\", text, flags=re.DOTALL)\\\\n    if not clean.strip():\\\\n        clean = text\\\\n    code_blocks = re.findall(r\\\\\\\"```python\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    code_blocks = re.findall(r\\\\\\\"```\\\\\\\\s*\\\\\\\\n(.*?)```\\\\\\\", clean, re.DOTALL)\\\\n    if code_blocks:\\\\n        return code_blocks[0]\\\\n    return clean\\\\n\\\\n\\\\ndef run_test(code, test, entry_point, timeout=10):\\\\n    full_code = code + \\\\\\\"\\\\\\\\n\\\\\\\" + test + f\\\\\\\"\\\\\\\\ncheck({entry_point})\\\\\\\\n\\\\\\\"\\\\n    with tempfile.NamedTemporaryFile(mode=\\\\\\\"w\\\\\\\", suffix=\\\\\\\".py\\\\\\\", delete=False) as f:\\\\n        f.write(full_code)\\\\n        tmp_path = f.name\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [sys.executable, tmp_path],\\\\n            capture_output=True, text=True, timeout=timeout,\\\\n        )\\\\n        return result.returncode == 0, result.stderr[:500] if result.stderr else \\\\\\\"\\\\\\\"\\\\n    except subprocess.TimeoutExpired:\\\\n        return False, \\\\\\\"Timeout\\\\\\\"\\\\n    except Exception as e:\\\\n        return False, str(e)[:500]\\\\n    finally:\\\\n        try:\\\\n            os.unlink(tmp_path)\\\\n  \n…[truncated 5496 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:59:45.049907+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n107932 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:59:45.050092+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_rasp_20_2048_v3",
+              "field": "hypothesis",
+              "value": "SFT RASP 20% HumanEval pass@1 @2048 v3. 使用最新 eval 脚本确保公平对比。v1结果10.37%有truncation问题，v2被orphaned。Compare with SFT CKA-only 20.12% and SFT Standard v2 11.59%。parent: eval_humaneval_sft_rasp_20_2048",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:59:45.050235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_sft_rasp_20_2048_v3",
+              "field": "parent",
+              "value": "eval_humaneval_sft_rasp_20_2048",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:59:45.050402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_rasp_20_2048_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:59:19.821Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:59:19.821Z\\\", \\\"hypothesis\\\": \\\"SFT RASP 20% HumanEval pass@1 @2048 v3. 使用最新 eval 脚本确保公平对比。v1结果10.37%有truncation问题，v2被orphaned。Compare with SFT CKA-only 20.12% and SFT Standard v2 11.59%。parent: eval_humaneval_sft_rasp_20_2048\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0114}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T13:59:45.050548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_sft_rasp_20_2048_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T13:59:19.821Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:59:20.858Z\\\", \\\"hypothesis\\\": \\\"SFT RASP 20% HumanEval pass@1 @2048 v3. 使用最新 eval 脚本确保公平对比。v1结果10.37%有truncation问题，v2被orphaned。Compare with SFT CKA-only 20.12% and SFT Standard v2 11.59%。parent: eval_humaneval_sft_rasp_20_2048\\\", \\\"parent\\\": \\\"eval_humaneval_sft_rasp_20_2048\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9986}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T13:59:45.050704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westd-29022",
+              "gpu_ids": "['cuda:3']",
+              "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v3.json\"",
+              "exp_id": "eval_humaneval_sft_rasp_20_2048_v3",
+              "account": "root",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T13:59:45.050847+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"109506\\\", \\\"log_file\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048_v3.log\\\", \\\"gpu_ids\\\": [\\\"cuda:3\\\"], \\\"server\\\": \\\"westd-29022\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"3\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"eval_humaneval_sft_rasp_20_2048_v3\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T13:59:45.051000+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -20 /root/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048_v3.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T13:59:45.051131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 21:59:34,252 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd\\\\n2026-05-19 21:59:34,852 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T13:59:45.051304+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务启动成功，模型正在加载。\n\n总结：\n- **exp_id**: `eval_humaneval_sft_rasp_20_2048_v3`\n- **服务器**: westd-29022, **cuda:3**（cuda:1 被 v2 占用，改用 cuda:3）\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_humaneval_sft_rasp_20_2048_v3.log`\n- **发现**: v2 eval (PID 107932) 仍在 cuda:1 上运行，并非真正 orphaned——可能还会出结果"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_humaneval_sft_rasp_20_2048_v3_20260519T135826"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/eval-humaneval-sft-rasp-20-2048-v3.md"
+}

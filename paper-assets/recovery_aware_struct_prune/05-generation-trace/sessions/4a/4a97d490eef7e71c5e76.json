@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4a97d490eef7e71c5e76",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd kill orphans and fix registry",
+  "task_key": "worker_ops_westd-kill-orphans-and-fix-registry_20260515T195537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-kill-orphans-and-fix-registry_20260515T195537_result.json",
+    "occurrence": 1,
+    "bytes": 452,
+    "sha256": "670dd59feac8f08c7a8d8fd8abb70bd2a6909602ab483695ba9dab76bcba3ef7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n1. **Kill 孤儿进程** — PID 59601, 59675 已 kill，westd-11672 双 GPU 已释放 (0 MiB, 0%)\n2. **Registry 修复** — 两个 eval 实验已更新至 DONE + success：\n   - `eval_sft_rasp_20_westd_n100`: accuracy=0.67, n=100, eos_rate=0.99\n   - `eval_sft_standard_20_westd_n100`: accuracy=0.63, n=100, eos_rate=0.97\n   - 两者 notes 均记录了 v2 失败历史 (EXIT_CODE=127, python path 错误)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-kill-orphans-and-fix-registry.md"
+}

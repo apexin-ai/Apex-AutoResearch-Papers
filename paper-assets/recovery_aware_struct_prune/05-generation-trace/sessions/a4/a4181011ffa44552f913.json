@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4181011ffa44552f913",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval mbpp grpo standard 20 v4",
+  "task_key": "worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_mbpp_grpo_standard_20_v4_20260520T014516_result.json",
+    "occurrence": 1,
+    "bytes": 373,
+    "sha256": "0702c0101006822b3faf1cfb2482544246b55780b561f3fbc3b351bb118a821a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成：\n\n- **状态**: 正常完成（`.done` 标记存在，completed_at = 2026-05-20T09:41:44）\n- **pass@1 = 13.10%**（49/374），stderr = 1.75%\n- **与预期一致**：v1 partial result ~13.1% 在全量 374 tasks 上得到确认\n- avg response length = 1058.7 tokens，median = 726\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-mbpp-grpo-standard-20-v4.md"
+}

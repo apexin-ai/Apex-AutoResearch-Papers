@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77143e5e66552c3dcac2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh launch math500 alpha2p0 sft westd1",
+  "task_key": "worker_ssh_launch_math500_alpha2p0_sft_westd1_20260522T150608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_launch_math500_alpha2p0_sft_westd1_20260522T150608_result.json",
+    "occurrence": 1,
+    "bytes": 591,
+    "sha256": "13d4737147f07e89ef8d712df9f5711770ff8b5913b5ebeac4754cc961ef51fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n**汇报：**\n\n1. **模型**: SFT，路径 `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20`\n2. **PID**: 57202（Python 进程），父进程 57196\n3. **GPU:1 显存**: 12977 MiB，已确认加载到物理 GPU:1（进程内 cuda:0，CUDA_VISIBLE_DEVICES=1）\n4. **eval_math500.py 参数名**: `--model_path`, `--output_path`, `--max_new_tokens`, `--max_samples`, `--seed`, `--dtype`, `--device_map`\n5. **进度**: 500 题，~2.16s/it，预计 ~18 分钟完成\n6. **输出**: `results/eval_math500_sft_rasp_alpha2p0_20.json` + `.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-launch-math500-alpha2p0-sft-westd1.md"
+}

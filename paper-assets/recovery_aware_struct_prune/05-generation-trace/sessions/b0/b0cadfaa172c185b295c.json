@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0cadfaa172c185b295c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose pass k results final",
+  "task_key": "worker_diagnose_pass_k_results_final_20260516T175847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_pass_k_results_final_20260516T175847_result.json",
+    "occurrence": 1,
+    "bytes": 376,
+    "sha256": "54dfab366a567992651ee6f8bb3077279e503caa460cbec67d12a98b32fc4209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n\n| 实验 | 状态 | 进度 | 中期 pass@8 |\n|------|------|------|------------|\n| **Unpruned** | ✅ DONE | 200/200 | **0.965** |\n| **RASP-20 SFT** | 🔄 运行中 | 149/200 | 0.93 (at 100) |\n| **RASP-20 GRPO** | 🔄 运行中 | 187/200 | 0.9067 (at 150) |\n\nUnpruned registry 已更新。等两个剪枝模型完成后汇总对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-pass-k-results-final.md"
+}

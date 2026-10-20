@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a085c56f7b1039c609cb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd grpo restart save100",
+  "task_key": "worker_code_westd_grpo_restart_save100_20260516T144841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd_grpo_restart_save100_20260516T144841_result.json",
+    "occurrence": 1,
+    "bytes": 581,
+    "sha256": "7fa98a124a766f0cbd0f642049ec5b62cc714cfd73a90252cb0e006ebfb9f4f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个实验全部成功启动，确认运行中。\n\n**结果汇总：**\n\n| 实验 | GPU | PID | tmux session |\n|------|-----|-----|-------------|\n| grpo_rasp_qwen_math_v3 | cuda:0 | 16817 | grpo_rasp_qwen_math_v3 |\n| grpo_standard_qwen_math_v3 | cuda:1 | 16892 | grpo_standard_qwen_math_v3 |\n| grpo_rasp_25_qwen_math | cuda:2 | 16983 | grpo_rasp_25_qwen_math |\n| grpo_standard_25_qwen_math | cuda:3 | 17067 | grpo_standard_25_qwen_math |\n\n全部配置 `save_steps=100`，预计 ~45 分钟完成。wandb run ID 需等训练初始化后从日志中获取。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-grpo-restart-save100.md"
+}

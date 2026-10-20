@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3641db97754e496ee1d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd1 grpo random 20 v2 progress",
+  "task_key": "worker_check_westd1_grpo_random_20_v2_progress_20260521T233547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd1_grpo_random_20_v2_progress_20260521T233547_result.json",
+    "occurrence": 1,
+    "bytes": 353,
+    "sha256": "12e7bd17267990019c05f1e548f556e41199781778de6b5b2533a25db217a26f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_math500_grpo_random_20_v2 状态：**\n\n| 项目 | 值 |\n|------|-----|\n| 进度 | **484/500** (97%) |\n| 当前 Accuracy | **12.44%** (62/500, 截至 450 题时的报告) |\n| 已运行 | 9h38m |\n| 当前速度 | ~101s/it |\n| 预估剩余 | **~27 分钟**（16 题 × ~101s） |\n| 进程状态 | **运行中** (PID 382470) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd1-grpo-random-20-v2-progress.md"
+}

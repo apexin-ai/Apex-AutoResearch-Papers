@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "931768daa582f2dd2d51",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent full status check westb",
+  "task_key": "worker_ops_urgent_full_status_check_westb_20260517T225419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_full_status_check_westb_20260517T225419_result.json",
+    "occurrence": 1,
+    "bytes": 2435,
+    "sha256": "6f03eb37784cb3e00e72c5f0177be974e30fff47fe3f3a2c7e0db039d9a90dd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. PID 存活情况\n| 任务 | PID | 状态 |\n|------|-----|------|\n| grpo_cka_only_20 | 725232 (子进程，bash wrapper 725227) | **运行中** |\n| grpo_random_20 | 719684 | **运行中** |\n\n### 2. GPU 状态\n| GPU | 温度 | 功耗 | 显存占用 | 利用率 |\n|-----|------|------|----------|--------|\n| cuda:0 | 80°C | 604W/600W | 73549/97887 MiB | 100% |\n| cuda:1 | 81°C | 599W/600W | 73165/97887 MiB | 100% |\n\n**无空闲 GPU**，两张卡满载。\n\n### 3. 训练进度\n\n**grpo_cka_only_20** (cuda:0)\n- 当前 step: **70/100**\n- 已运行: ~7h54m\n- 预计剩余: ~3h18m（~395s/step × 30 steps）\n- 预计完成: ~2026-05-18 10:12 UTC\n\n**grpo_random_20** (cuda:1)\n- 当前 step: **75/100**\n- 已运行: ~9h04m\n- 预计剩余: ~2h59m（~430s/step × 25 steps）\n- 预计完成: ~2026-05-18 09:54 UTC\n\n### 4. 每 10 步指标趋势\n\n**grpo_cka_only_20:**\n\n| Step | Reward | frac_zero_std | grad_norm | KL | Entropy |\n|------|--------|---------------|-----------|------|---------|\n| 10 | 0.2531 | 0.175 | 1.891 | 0.00121 | 0.0830 |\n| 20 | 0.2181 | 0.200 | 1.250 | 0.00123 | 0.0749 |\n| 30 | 0.2500 | 0.200 | 1.102 | 0.00167 | — |\n| 50 | 0.3544 | 0.150 | 1.977 | 0.00157 | 0.0938 |\n| 60 | 0.2994 | 0.200 | 3.750 | 0.00158 | 0.0934 |\n| 70 | 0.3075 | 0.125 | 1.164 | 0.00156 | 0.0862 |\n\n趋势: reward 从 0.25→0.35 有上升，frac_zero_std 从 0.2 降到 0.125（好），KL 稳定在 0.0015 左右，entropy 低（0.08-0.09）。训练健康。\n\n**grpo_random_20:**\n\n| Step | Reward | frac_zero_std | grad_norm | KL | Entropy |\n|------|--------|---------------|-----------|------|---------|\n| 10 | 0.1606 | 0.300 | 3.750 | 0.00418 | 0.2313 |\n| 20 | 0.1419 | 0.325 | 8.625 | 0.00470 | 0.2282 |\n| 30 | 0.1663 | 0.325 | 3.672 | — | — |\n| 50 | 0.1750 | 0.300 | 4.750 | 0.00458 | 0.2140 |\n| 60 | 0.1844 | 0.350 | 3.594 | 0.00416 | 0.2005 |\n| 70 | 0.1900 | 0.300 | 7.094 | 0.00451 | 0.2246 |\n\n趋势: reward 从 0.16→0.19 缓慢上升，frac_zero_std 持续偏高（0.30-0.35），KL 约 0.0045（比 cka 高 3x），entropy 高（~0.22）。random 剪枝后的模型学习效率明显低于 CKA 剪枝。\n\n### 结论\n两个训练均在正常进行，random_20 预计约 3h 后完成，cka_only_20 约 3.3h 后完成。CKA 剪枝在 GRPO 恢复训练中表现明显优于 random 剪枝（reward 高 ~60%，zero-std 比例低）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-full-status-check-westb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a38eff128f4d1dc805a6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft cka only 20 fixed",
+  "task_key": "worker_diagnose_eval_math500_sft_cka_only_20_fixed_20260523T150554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_cka_only_20_fixed_20260523T150554_result.json",
+    "occurrence": 1,
+    "bytes": 1072,
+    "sha256": "6b32b6b03a46cc7cb1334ff0c49e734eff98663ee9ce792ffb18a583be14871a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**失败原因：模型目录不存在。**\n\n`/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20/` 在 westd-32935 上不存在。Tokenizer 加载时立即报 `OSError`，进程退出。\n\n日志中的关键错误：\n```\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': \n'/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20'\n```\n这是 transformers 在本地路径找不到 `config.json` 后、尝试当作 HF repo id 解析失败的报错（加上 `HF_HUB_OFFLINE=1` 禁止了远程下载）。\n\n**该服务器上存在的 `sft_cka_only_*` 模型：**\n- `sft_cka_only_15`\n- `sft_cka_only_20_floor_0.3`\n- `sft_cka_only_20_floor_0.5`\n- `sft_cka_only_20_floor_0.6`\n- `sft_cka_only_25`\n\n没有不带 floor 后缀的 `sft_cka_only_20`。\n\n**修复方案：**\n1. 如果目标是评估某个 floor 变体，改用已有路径，例如 `sft_cka_only_20_floor_0.5`\n2. 如果确实需要 `sft_cka_only_20`（无 floor），需先运行对应的 SFT 恢复训练生成该 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-cka-only-20-fixed.md"
+}

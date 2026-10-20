@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc021d64046444d3d743",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix westb ssh and read logs",
+  "task_key": "worker_ops_fix_westb_ssh_and_read_logs_20260518T013606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_westb_ssh_and_read_logs_20260518T013606_result.json",
+    "occurrence": 1,
+    "bytes": 735,
+    "sha256": "c1350f34112430653bc6a30ff568b51626c8dcdb681871eac34f563d55dfd57e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**SSH**: 免密登录正常，无需修复。\n\n**训练状态**: 两个实验仍在运行，接近完成：\n- `grpo_cka_only_20`: step 94/100\n- `grpo_random_20`: step 97/100\n\n**核心发现**:\n\n| | CKA-only 20% | Random 20% |\n|---|---|---|\n| Best Reward | 0.3544 (step 50) | 0.19 (step 70) |\n| Mean Reward | 0.2834 | 0.1653 |\n| Mean grad_norm | 1.78 | 5.23 |\n\nCKA 模型 GRPO 效果远优于 Random（reward +71%，训练更稳定）。\n\n**CKA step 70-90 下降确认**: reward 从 0.3419 (step 80) 降至 0.2419 (step 90)，frac_zero_std 从 0.125 (step 70) 升至 0.3 (step 90)，late-stage collapse 信号明确。\n\n产出已写入 `artifacts/westb_grpo_complete_metrics.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-westb-ssh-and-read-logs.md"
+}

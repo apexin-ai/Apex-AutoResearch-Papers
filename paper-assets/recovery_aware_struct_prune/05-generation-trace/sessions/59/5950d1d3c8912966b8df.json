@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5950d1d3c8912966b8df",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops retry sft standard 25",
+  "task_key": "worker_ops_retry-sft-standard-25_20260516T054019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_retry-sft-standard-25_20260516T054019_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "e07182771e6c03ffca81a1949dbdb67c38e3da0c5029008190906f8e0e811cf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练稳定运行中：\n\n- **GPU 1**: PID 593958, 47696MiB, 61% util, 284W\n- **GPU 0**: 未受影响（29644MiB，PID 585623 only）\n- **进度**: step 10/1870, ~1.16s/it, 预计 ~36 分钟完成\n- **tmux session**: `sft_standard_25`\n- **日志**: `/root/runs/recovery_aware_struct_prune/sft_standard_25_retry.log`\n\n现在需要更新 registry 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-retry-sft-standard-25.md"
+}

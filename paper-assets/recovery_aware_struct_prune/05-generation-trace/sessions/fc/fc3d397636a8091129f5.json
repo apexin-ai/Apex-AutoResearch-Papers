@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc3d397636a8091129f5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch eval gsm8k standard extended 300 cuda3",
+  "task_key": "worker_ops_launch_eval_gsm8k_standard_extended_300_cuda3_20260519T021753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_eval_gsm8k_standard_extended_300_cuda3_20260519T021753_result.json",
+    "occurrence": 1,
+    "bytes": 594,
+    "sha256": "e02ebfc7ce193e98f3f875548f0f1c534316cc2ec6022473ff527788a0526f74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动。\n\n- **PID**: 59413\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/`\n- **GPU**: westd-29022 cuda:3 (`CUDA_VISIBLE_DEVICES=3`)\n- **tmux session**: `eval_gsm8k_standard_300`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_extended_300.json`\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_standard_300.log`\n\n注：模型正在加载中（PID 59413 CPU 186%），GPU 占用会在加载完成后出现。实际路径无 `_v2` 后缀。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-eval-gsm8k-standard-extended-300-cuda3.md"
+}

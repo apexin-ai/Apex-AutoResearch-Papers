@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e477041ef8fe51623c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag sft alpha2 completion",
+  "task_key": "worker_diag_sft-alpha2-completion_20260515T153951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft-alpha2-completion_20260515T153951_result.json",
+    "occurrence": 1,
+    "bytes": 562,
+    "sha256": "352cf5e437ccf372cf6f05472dc1df902e9ba4b8cb85e4e722dee0cf543f1936"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不在当前 session，无需清除。\n\n**结果：α=2.0 SFT 成功完成。**\n\n| 指标 | 值 |\n|------|-----|\n| 总步数 | 1870/1870 (100%) |\n| train_loss (avg) | 0.7424 |\n| final loss | 0.6114 |\n| token_accuracy | 0.8354 |\n| 训练时间 | ~40min (2422s) |\n| model.safetensors | 11.5GB |\n| checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_2.0/` |\n\nRegistry 已更新为 DONE/success，metrics 已记录。下一步需要对 α=2.0 post-SFT 做 GSM8K eval (N=100) 以完成 α ablation 对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-alpha2-completion.md"
+}

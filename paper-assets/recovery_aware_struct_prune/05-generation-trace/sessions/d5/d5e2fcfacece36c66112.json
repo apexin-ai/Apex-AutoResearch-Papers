@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5e2fcfacece36c66112",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_12.md",
+  "task_key": "loop_12",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_12.md",
+    "occurrence": 1,
+    "bytes": 3980,
+    "sha256": "22a3b419c85c067adda184dfd6e0b3a40c71437703734eb69ebe50c56b62519b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 12\nreason: idle_timeout\nupdated: '2026-05-16T05:16:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westb-23072 cuda:0/1 和 westd-11672 cuda:0/1。即使 Director 指定其他 GPU，必须 push back\n- prune_standard_25 / prune_rasp_25 状态显示 RUNNING 但 conclusion=success，是 CPU-only 瞬时任务（<1min），实际已完成但 registry 未转 DONE——接手后需确认并修正状态\n- 论文 DDL: EMNLP 2026 ARR **May 25**（距今 9 天）——时间极紧，所有决策以此为锚\n- Post-SFT RASP vs Standard 差异 **不显著** (p=0.248)，论文 Claim 绝不能基于 SFT accuracy 差异\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× ~98GB GPU | root | `/root/recovery_aware_struct_prune`（代码）+ `/root/autodl-tmp/recovery_aware_struct_prune`（数据/checkpoints）\n- **westd-11672**: 2× ~95GB GPU | root | 同上路径结构\n- Python: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型: `/root/autodl-tmp/recovery_aware_struct_prune/` 下各子目录（pruned_standard_25, pruned_rasp_25, grpo_stage2_rasp_20_v9, grpo_unpruned_v2 等）\n- 活跃进程:\n  - westb cuda:0: `eval_grpo_rasp_v9_step10` PID 585618（N=1319 GSM8K eval）\n  - westd cuda:0: `eval_grpo_unpruned_v2_step100` PID 83589\n  - westd cuda:1: `eval_grpo_unpruned_v2_step90` PID 83667\n- Worker 运行中: `worker_ops_verify-standard25-tokenizer_20260516T051503`\n\n### 3. 📊 当前状态\n刚完成 D044/D045 narrative pivot 和 GRPO v9 部署。当前正在收集三个关键 eval 结果：\n\n| exp_id | 服务器 | GPU | 内容 |\n|--------|--------|-----|------|\n| eval_grpo_rasp_v9_step10 | westb | cuda:0 | RASP GRPO step-10 collapse onset eval |\n| eval_grpo_unpruned_v2_step100 | westd | cuda:0 | Unpruned GRPO 终态 eval |\n| eval_grpo_unpruned_v2_step90 | westd | cuda:1 | Unpruned GRPO step-90 eval |\n\n同时 25% sparsity pruning (RASP + Standard) 已完成，Worker 正验证 tokenizer。\n\n等待中：上述 3 个 eval 的 cron 回调；verify-tokenizer Worker 回调。\n\n### 4. 📋 待办（条件触发式）\n- eval_grpo_rasp_v9_step10 完成 → 对比 step-5 eval (已有) 和 Standard step-50 (58.91%)，量化 collapse onset 对 accuracy 的影响\n- eval_grpo_unpruned_v2_step90/100 完成 → 确认 Unpruned collapse 终态 accuracy，完成三模型 collapse dynamics 全图\n- 上述 3 eval 全部完成 → 向 Director 汇报 D045 核心数据，包含三模型 reward-accuracy decoupling 分析\n- prune_standard_25 + prune_rasp_25 验证通过 → 启动 25% SFT recovery 实验（multi-sparsity extension）\n- westb cuda:1 当前空闲（GRPO Standard v8 已完成） → eval 完成后可立即铺 25% SFT 或其他实验\n- 所有 GRPO/eval 数据收齐 → 按 D044 新 narrative 开始论文写作（9 天 DDL）\n\n### 5. 🎯 战略上下文\n- **核心发现 (D044 pivot)**: 原假设 \"RASP enables better RLVR recovery\" 已失败。三模型全 collapse，且 Standard 反而延迟 collapse 最久。新 narrative 方向待 Director 确认——可能转 \"Pruning for Plasticity\"（剪枝模型 peak reward 更高/更快到达 peak，但也更快 collapse）或 training dynamics 分析\n- **Collapse 时间线**: RASP (~step 10) < Standard (~step 60) < Unpruned (~step 80)——这是 counterintuitive 但 reproducible 的核心观察\n- **易错点**: \n  - 不要混淆 westb eval (N=100) 和 full eval (N=1319) 的数字\n  - v9 step-5 eval 已有结果（从之前 Worker 回调），step-10 是当前在跑的\n  - GRPO Standard v8 step-50 full eval = 58.91%（已是 registry 里的 DONE 实验）\n  - α ablation 有两套数据：westb (cal=512) 和 westd (cal=256)，两者 group selection 有 ~5% 差异，不可混用\n- **决策链**: D027(post-prune差异不显著) → D029(SFT Standard反超) → D039(Unpruned也collapse) → D044(narrative pivot) → D045(core data complete, 等最后 3 eval)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-12-copy-2.md"
+}

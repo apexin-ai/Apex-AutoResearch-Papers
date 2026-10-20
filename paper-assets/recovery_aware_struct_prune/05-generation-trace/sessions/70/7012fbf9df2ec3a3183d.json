@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7012fbf9df2ec3a3183d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch sft rasp humaneval v2 retry",
+  "task_key": "worker_ops_launch_sft_rasp_humaneval_v2_retry_20260519T131632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_sft_rasp_humaneval_v2_retry_20260519T131632_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "431d47b74a633267dc62df9239aa5b7a1a4b9ae4ed1997cb6e42fa353b0a020e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已注册（PREPARING），准备好的命令如下：\n\n```\nbash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_rasp_20_2048_v2.json'\n```\n\n等待 cuda:0 空闲后自动提交。3 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-sft-rasp-humaneval-v2-retry.md"
+}

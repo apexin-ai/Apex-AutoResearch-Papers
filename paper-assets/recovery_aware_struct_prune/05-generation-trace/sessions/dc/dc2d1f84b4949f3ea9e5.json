@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc2d1f84b4949f3ea9e5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk cleanup grpo",
+  "task_key": "worker_ops_westd-disk-cleanup-grpo_20260516T014658",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-disk-cleanup-grpo_20260516T014658_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "ebdbd26bc8ad3a936467cf9538e1bcd34d9f95674ddfc87dd5f91c1b8eab8b5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n| 操作 | 释放空间 |\n|------|---------|\n| 删除 alpha_ablation/ (5个alpha实验) | ~58G |\n| 删除 sft_ablation/ (4个alpha实验) | ~46G |\n| **总计释放** | **~103G** |\n\n**当前状态**: 110G used / 250G total，**141G 可用** (44%)。远超 50G 安全线，GRPO 训练可以放心启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-grpo.md"
+}

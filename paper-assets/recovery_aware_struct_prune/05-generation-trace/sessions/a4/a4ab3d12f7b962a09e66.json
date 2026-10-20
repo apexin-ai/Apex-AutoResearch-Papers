@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ab3d12f7b962a09e66",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose inference speedup plan016 v2",
+  "task_key": "worker_diagnose_inference_speedup_plan016_v2_20260516T222412",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_inference_speedup_plan016_v2_20260516T222412_result.json",
+    "occurrence": 1,
+    "bytes": 575,
+    "sha256": "e39772f70a853fc553060249a1f0842a90cc7e6fe9d5f97b0df3fc3ccedbab76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论：实验 v2 没有失败，是 cron 监控误判。**\n\n- 脚本 `benchmark_inference.py` 已正确使用 `load_pruned_model()` 加载非均匀剪枝模型，三个模型全部跑完\n- 结果已写入 `inference_benchmark.json`（rasp_20: 52.07 tok/s, 28.5% 内存节省）\n- 但脚本没有任何 W&B 集成，cron 检测不到 metrics 就判定 failed\n\n报告已写入两处：\n- 服务器：`/root/autodl-tmp/recovery_aware_struct_prune/artifacts/diagnosis_inference_v2.md`\n- 本地：`artifacts/diagnosis_inference_v2.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-inference-speedup-plan016-v2.md"
+}

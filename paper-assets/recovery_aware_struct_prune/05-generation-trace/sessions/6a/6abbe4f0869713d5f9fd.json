@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "6abbe4f0869713d5f9fd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval humaneval grpo rasp 20 fair 2048",
+  "task_key": "worker_diagnose_eval_humaneval_grpo_rasp_20_fair_2048_20260519T094259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_humaneval_grpo_rasp_20_fair_2048_20260519T094259_result.json",
+    "occurrence": 1,
+    "bytes": 1960,
+    "sha256": "27eebed6af5ba94282d9eeac5889b9097853118644eab03995f829effb3de8c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认无 wandb 引用。\n\n```json\n{\"root_cause\":\"实验实际已成功完成（pass@1=0.1098, 18/164, 耗时2h53m）。Cron 误报失败原因：eval_humaneval.py 不含任何 W&B logging 代码，进程正常退出后 Cron 框架检测不到 W&B metrics，将其判定为 'Process exited without valid W&B metrics'。结果已保存至 JSON 文件。\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"无需修复——实验已成功，结果在 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json\",\"如需 Cron 正确识别完成状态，在 eval_humaneval.py 末尾添加 wandb.log() 或调整 Cron 的成功判定逻辑（如检查 JSON 输出文件而非 W&B metrics）\"],\"can_auto_fix\":true,\"log_path\":\"/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.log\"}\n```\n\n附加发现：median_response_length=2048.0（即多数生成触达 max_new_tokens 上限），avg=1321 tokens。模型倾向于不终止生成，可能影响代码质量（大量 SyntaxError），pass@1 仅 10.98%。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "实验实际已成功完成（pass@1=0.1098, 18/164, 耗时2h53m）。Cron 误报失败原因：eval_humaneval.py 不含任何 W&B logging 代码，进程正常退出后 Cron 框架检测不到 W&B metrics，将其判定为 'Process exited without valid W&B metrics'。结果已保存至 JSON 文件。",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "无需修复——实验已成功，结果在 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json",
+                "如需 Cron 正确识别完成状态，在 eval_humaneval.py 末尾添加 wandb.log() 或调整 Cron 的成功判定逻辑（如检查 JSON 输出文件而非 W&B metrics）"
+              ],
+              "can_auto_fix": true,
+              "log_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.log"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-humaneval-grpo-rasp-20-fair-2048.md"
+}

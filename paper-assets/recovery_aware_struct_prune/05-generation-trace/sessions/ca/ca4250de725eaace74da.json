@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca4250de725eaace74da",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scoring ablation gradient",
+  "task_key": "worker_code_scoring_ablation_gradient_20260517T073242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_gradient_20260517T073242_result.json",
+    "occurrence": 1,
+    "bytes": 1261,
+    "sha256": "6e3886031dcfd8b2098850bc0e49232627a38d46b839e60f5cdca17d8dde4383"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在情况清楚了。\n\n## 当前状态\n\n**cuda:0 占用 (63GB/98GB, 99% util):**\n| Session | 进程 | 进度 | ETA |\n|---------|------|------|-----|\n| multiseed_serial | eval sft_standard_20 seed=456 [4/4] | 17% (34/200) | ~14 min |\n| scoring_ablation_v2 | magnitude SFT (149/1870 steps) | 8% | ~52 min |\n\n**cuda:1 占用 (18GB/98GB, 91% util):**\n| Session | 进程 | 备注 |\n|---------|------|------|\n| eval_unstructured_20 | eval unstructured (1319 samples) | 已跑 ~2h |\n\n**Gradient 前置条件:**\n- `importance_scores.pt` ✅ 存在 (18KB)\n- `pruned_gradient_20/` ❌ 不存在（需要先 prune）\n\n## 问题\n\n`scoring_ablation_v2` 正在跑完整的 4-method 循环 (magnitude → gradient → random → cka_only)，有 `set -e`。当前卡在 magnitude SFT 上：\n- 如果 magnitude SFT 成功：还需 ~52 min SFT + eval，然后才轮到 gradient（总计 ~1h+）\n- 如果 magnitude SFT 崩溃（如你所说\"已死\"）：`set -e` 会终止整个脚本，gradient 永远不会启动\n\n**要立即启动 gradient，需要 kill 掉 scoring_ablation_v2 中的 magnitude SFT（PID 689115）释放 cuda:0。**multiseed eval 14 min 后也会自行结束。\n\n是否 kill magnitude SFT 直接跳到 gradient？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scoring-ablation-gradient.md"
+}

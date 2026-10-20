@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7bfba986665b6f69fdee",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis gradient flow v3 wilcoxon",
+  "task_key": "worker_analysis_gradient_flow_v3_wilcoxon_20260519T162402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gradient_flow_v3_wilcoxon_20260519T162402_result.json",
+    "occurrence": 1,
+    "bytes": 940,
+    "sha256": "f33cbf8ea3d7685addecbf066266000feeb874ff78cfcd82a44f6599c6c51aa1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n### Part A: RASP vs Standard Wilcoxon 配对检验\n\n修改了 `gradient_flow_analysis.py` 的 `run_statistical_tests` 函数，从 ref-vs-others 改为全配对比较（`itertools.combinations`），并新增原始值保存。重跑完整分析（~6 分钟）。\n\n**结果：**\n\n| 比较 | 显著层 | 平均梯度 ratio |\n|------|--------|---------------|\n| CKA-only vs Standard | 55/56 | 2.89x |\n| CKA-only vs RASP | 56/56 | 2.26x |\n| **Standard vs RASP** | **45/56** | **1.28x (RASP > Standard)** |\n\nStandard vs RASP 的 11 个非显著层集中在 deep layers（18-22, 24, 27），这些层梯度 norm 本身较小，差异不显著。\n\n### Part B: Registry metrics 已更新\n\n`gradient_flow_v3` registry 写入了完整指标，artifact 已注册。原始 per-sample 数据（`raw_gradient_norms.json`, 707KB）已保存，未来可直接做 post-hoc 分析无需重跑 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gradient-flow-v3-wilcoxon.md"
+}

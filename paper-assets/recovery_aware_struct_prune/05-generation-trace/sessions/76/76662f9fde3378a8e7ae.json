@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76662f9fde3378a8e7ae",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "collect alpha2 eval result",
+  "task_key": "worker_collect_alpha2-eval-result_20260515T164045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_collect_alpha2-eval-result_20260515T164045_result.json",
+    "occurrence": 1,
+    "bytes": 303,
+    "sha256": "6fc0215de67ec08deda5d80305b8dc7414f27dea8c96c05cee631c8dd85c463e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新到 DONE。α ablation sweep 完整结果：\n\n| α | accuracy | eos_rate |\n|---|----------|----------|\n| 0.0 | 64% | — |\n| 1.0 | 57% | — |\n| **2.0** | **62%** | **0.97** |\n| 4.0 | 62% | — |\n\nα=2.0 与 α=4.0 持平（62%），α=0.0 仍最高（64%）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/collect-alpha2-eval-result.md"
+}

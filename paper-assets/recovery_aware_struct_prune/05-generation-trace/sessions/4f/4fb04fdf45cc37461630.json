@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fb04fdf45cc37461630",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research westb1 experiment proposal",
+  "task_key": "worker_research_westb1_experiment_proposal_20260519T182410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_westb1_experiment_proposal_20260519T182410_result.json",
+    "occurrence": 1,
+    "bytes": 3295,
+    "sha256": "6c41d5f6cb6612fb18e0af4a956d398629714f4d5e3a37f50f7e510acaf5eed9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## westb 当前状态\n\n| GPU | 占用 | 实验 |\n|-----|------|------|\n| westb:0 | 4323 MiB | `eval_humaneval_sft_rasp_20_1p5b_2048` (PID 909411) |\n| westb:1 | **0 MiB — 空闲** | — |\n\n## westb 上所有可用 checkpoint\n\n**1.5B 系列 (每个 ~2.8G):**\n| Checkpoint | 类型 |\n|---|---|\n| `pruned_cka_only_20_1p5b` | post-prune |\n| `pruned_rasp_20_1p5b` | post-prune |\n| `pruned_standard_20_1p5b` | post-prune |\n| `sft_cka_only_20_1p5b` | SFT recovery |\n| `sft_rasp_20_1p5b` | SFT recovery |\n| `sft_standard_20_1p5b` | SFT recovery |\n| `grpo_cka_only_20_1p5b` | GRPO recovery |\n| `grpo_rasp_20_1p5b` | GRPO recovery |\n| `grpo_standard_20_1p5b` | GRPO recovery |\n\n**7B 系列 (每个 ~11-12G):**\nsft/grpo/pruned × {cka_only_20, random_20, rasp_25, standard_25, rasp_rlvr_20, gradient_20} + `grpo_cka_only_20_seed123` (38G, 含多 checkpoint)\n\n## Registry 缺口分析\n\n**1.5B HumanEval 矩阵 — 差 1 个:**\n- ✅ sft_cka_only (0.61%), sft_standard (0.61%), grpo_cka_only (0%), grpo_standard (done)\n- 🔄 sft_rasp → westb:0 正在跑\n- ❌ **grpo_rasp** → 未跑，checkpoint 在 westb\n\n**MBPP 7B 矩阵 — 差 4 个:**\n- ✅ Dense (53.48%), GRPO CKA-only (14.17%)\n- 🔄 GRPO Standard → westd:2 正在跑\n- ❌ **SFT CKA-only, SFT Standard, SFT RASP, GRPO RASP** → 全未跑，7B checkpoint 都在 westb\n\n**CKA scoring stability (plan_014):** `run_cka_reliability.py` 代码存在，但 registry 中无 plan_014 实验记录。之前 `scoring_ablation_batch_v2` 失败（磁盘满）。代码 ready，需要 base model。\n\n---\n\n## 建议方案\n\n**方案 A（推荐）：先快后慢，两阶段**\n\n**阶段 1** — `eval_humaneval_grpo_rasp_20_1p5b_2048`（westb:1）\n- 1.5B 模型仅 2.8G，HumanEval 164 题，预计 ~20-30 min\n- 补全 1.5B HumanEval 矩阵最后一格\n- Hypothesis: GRPO RASP 1.5B HumanEval ≈ 0%（与其他 1.5B 方法一致，1.5B 模型容量不足以做 code gen）\n\n```bash\nCUDA_VISIBLE_DEVICES=1 python src/eval_humaneval.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b \\\n  --max_new_tokens 2048 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_rasp_20_1p5b_2048.json \\\n  --seed 42\n```\n\n**阶段 2** — `eval_mbpp_sft_cka_only_20`（westb:1，阶段1完成后）\n- MBPP P0 矩阵最关键的一格：CKA-only SFT\n- 7B 模型 12G，可放入 westb:1\n- Hypothesis: SFT CKA-only MBPP > SFT Standard/RASP（与 GSM8K/HumanEval 一致的 capability breadth 优势）\n\n```bash\nCUDA_VISIBLE_DEVICES=1 python src/eval_mbpp.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_mbpp_sft_cka_only_20.json \\\n  --max_new_tokens 2048 --seed 42\n```\n\n**方案 B（如果 Director 想优先 plan_014）：** CKA reliability ablation 代码 ready，但需要确认 base model（`models/` 目录 3.4G）和校准数据集是否完整。之前 `scoring_ablation_batch_v2` 因磁盘满失败，需确认 `/root/autodl-tmp/` 空间足够。\n\n**建议走方案 A** — 两个 eval 都是 ROADMAP P0 的 MBPP 矩阵和 1.5B cross-scale 补全，直接填论文表格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-westb1-experiment-proposal.md"
+}

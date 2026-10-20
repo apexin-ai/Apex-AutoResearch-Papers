@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "636e254d564f1c85c0cb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp eval grpo step50 full",
+  "task_key": "worker_exp_eval-grpo-step50-full_20260515T220822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_eval-grpo-step50-full_20260515T220822_result.json",
+    "occurrence": 1,
+    "bytes": 179,
+    "sha256": "918007708e8711b6eff42139455319d5ec5c5cfb9ff47a8733d87d5db7aa663f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 启动成功，正在 westd cuda:0 上推理中（PID 66075）。当前 10/1319 samples 完成，~2s/it，预计还需 ~45 分钟。15 分钟后再查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-eval-grpo-step50-full.md"
+}

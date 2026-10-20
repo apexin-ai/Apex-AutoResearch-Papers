@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb89b9024e5eb2fff721",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 grpo unpruned",
+  "task_key": "worker_analyze_eval_math500_grpo_unpruned_20260518T045742",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_grpo_unpruned_20260518T045742_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "3178b5c4ef5ec95c215ba1a78d9d2ce59216d2e3f69aec7b7abe98ed638da5a9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n**Unpruned post-GRPO MATH-500: 69.0% (345/500) ± 2.07%**\n\n| Model | MATH-500 | GSM8K |\n|---|---|---|\n| Unpruned pre-GRPO | **73.6%** (368/500) | — |\n| Unpruned post-GRPO | **69.0%** (345/500) | 81.27% |\n| SFT Standard 20% | 26.0% | — |\n| SFT RASP 20% | 24.2% | — |\n\n### Hypothesis 验证：**Negative**\n\nGRPO 在 unpruned 模型上造成了 MATH-500 的 **4.6pp 下降**（73.6% → 69.0%），差异为 23 题。这既不是\"保持不变\"也不是\"提升\"，而是第三种意外结果：\n\n1. **GRPO 在 GSM8K 上无变化**（81.27% → 81.27%），但在更难的 MATH-500 上造成退化\n2. 这说明 GRPO v2 (step-100) 的 GSM8K reward signal 可能过度特化于 GSM8K 难度级别的问题，导致在更复杂的数学推理上出现 **alignment tax**\n3. 17.2% 的回答被截断（86/500），平均回答长度 1768 tokens，说明模型在难题上倾向于生成冗长但未必正确的推理链\n\n对于 pruned 模型的解读：pruned post-GRPO MATH-500 的 baseline 应与 69.0% 而非 73.6% 对比，因为 GRPO 本身就会引入 MATH-500 退化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-grpo-unpruned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db80d8886cf524b62524",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops download qwen math westb",
+  "task_key": "worker_ops_download-qwen-math-westb_20260516T024845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download-qwen-math-westb_20260516T024845_result.json",
+    "occurrence": 1,
+    "bytes": 425,
+    "sha256": "ba11c88de26adf4e934e10b54600c72f1fcb59194aa7432c015f079d55bc7495"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **PID**: 575089，进程正常运行中\n- **下载状态**: 正在下载 safetensors 文件（model-00002, model-00003），速度 ~600KB/s - 1.17MB/s\n- **磁盘剩余**: /root/autodl-tmp/ 剩余 **73GB**（250G 总量，已用 178G，72%），足够放 7B 模型（~14-15GB）\n\n下载速度偏慢（ModelScope CDN 约 0.6-1.2 MB/s），预计需要 **1-2 小时**完成全部文件下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-qwen-math-westb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b683653ecbe65a2636d4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval rasp v9 step10 retry",
+  "task_key": "worker_ops_eval-rasp-v9-step10-retry_20260516T044338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-rasp-v9-step10-retry_20260516T044338_result.json",
+    "occurrence": 1,
+    "bytes": 667,
+    "sha256": "3e4f0a005a5c405e2d3be979941576ecc4ebabf8328ad277840db340d4161169"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正在运行：\n- 模型已加载到 GPU 0（12937 MiB）\n- GSM8K 本地 parquet 加载成功（1319 samples）\n- 推理进行中（3/1319，~4s/it）\n- `HF_HUB_OFFLINE=1` 生效，无网络请求\n- PID: 585618\n\n**汇报：**\n- 之前的 eval 已退出（网络不可达导致 GSM8K 数据集加载失败）\n- `HF_HUB_OFFLINE=1` 会同时阻止 datasets 库访问 Hub，所以改为从本地 parquet 缓存加载数据集（修改了 eval_gsm8k.py 第 346 行）\n- 重启成功，当前正在推理中，预估 ~1.5 小时完成（1319 samples × ~4s/it）\n- 服务器: westb-23072, GPU: cuda:0, tmux session: `eval_grpo_rasp_v9_step10`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-rasp-v9-step10-retry.md"
+}

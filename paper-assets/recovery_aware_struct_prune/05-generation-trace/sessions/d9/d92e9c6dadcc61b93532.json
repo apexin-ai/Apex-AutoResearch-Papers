@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d92e9c6dadcc61b93532",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp grpo unpruned v2 launch",
+  "task_key": "worker_exp_grpo-unpruned-v2-launch_20260516T014541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_grpo-unpruned-v2-launch_20260516T014541_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "7fd9e282933b9ecd6384f19d1e5f9883d5a3ac113a0112a290a078201df3091f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Unpruned GRPO v2 训练已成功启动：\n\n| 项目 | 值 |\n|------|-----|\n| PID | 75381 |\n| GPU | cuda:1, 44836 MiB |\n| wandb run | `nhsx0bt2` |\n| wandb URL | https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/nhsx0bt2 |\n| tmux session | `grpo_unpruned_v2` |\n| 输出目录 | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2` |\n| 配置 | beta=0.01, loss=dapo, lr=1e-6, temp=0.4, rep_pen=1.15, format_reward=0.1, 100 steps |\n\n首次启动时因缺少 wandb 凭据失败，已从 westb-23072 复制 `.netrc` 到 westd-11672 并加上 `source /etc/network_turbo` 后成功重启。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-grpo-unpruned-v2-launch.md"
+}

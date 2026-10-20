@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f5902c09f8c2cf9d8be",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_16_1779015941.md",
+  "task_key": "loop_16_1779015941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16_1779015941.md",
+    "occurrence": 1,
+    "bytes": 4261,
+    "sha256": "06ebd3d04200c9a65d75ad3d7f070abfaed36c8f70a4bfbf7bd6bafa8a3b9871"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: max_wall_time\nupdated: '2026-05-17T11:03:40+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb cuda:0/1, westd cuda:0/1/2/3。超出必须 push back Director\n- westb submit_training_job 必须 `bash -c \"...\"` 包裹（tmux 用 sh 不是 bash），否则 `python: command not found`。本轮 V2 eval 就因此失败\n- westd 需要 `HF_ENDPOINT=https://hf-mirror.com` 下载 HuggingFace 数据集\n- westd Python 路径：`/root/miniconda3/bin/python`（不能裸 `python`）\n- sft_gradient_20 的 model.safetensors 是唯一存活副本（checkpoint 已删），不可删除\n- HumanEval eval_humaneval.py 默认 max_new_tokens=512，对 DeepSeek-R1-Distill thinking model 严重截断，所有历史 HumanEval 数据无效，需 ≥2048 重跑\n\n### 2. 🖥️ 基础设施快照\n**westb-23072** (2× A800 ~98GB)\n- 工作目录：`/root/recovery_aware_struct_prune`（代码），`/root/autodl-tmp/recovery_aware_struct_prune`（模型/数据/结果）\n- 磁盘：162G/250G (65%), 89G free\n- 活跃进程：PID 696141 random eval (tmux=scoring_ablation_random, cuda:1, ~171/200)\n- 残留 tmux：scoring_ablation_v2（已完成，停在 shell 提示符）\n- cuda:0 **空闲**\n\n**westd-11672** (4× GPU ~98GB)\n- 工作目录同上结构，数据盘 /root/autodl-tmp 718G/750G (96%, 33G free ⚠️)\n- 活跃进程：\n  - cuda:0: eval_math500_unpruned (PID 3331, 400/500, acc=73.75%, ~36 min)\n  - cuda:1: eval_math500_grpo_standard_20 (PID 14556, 18/500, 极慢 ~6min/it, 20h+)\n  - cuda:2: eval_humaneval_grpo_standard_20 (PID 16488, 55/164, ~20 min)\n  - cuda:3: eval_math500_grpo_rasp_20_v2 (PID 11896, 64/500, acc@50=34%, 10h+)\n\n### 3. 📊 当前状态\n**刚完成**：\n- 磁盘清理 69G（gradient SFT checkpoints）\n- eval_gradient_postsft 收割：**acc=61.50%** (123/200) — 与 RASP 61.49% 几乎相同\n- eval_postprune_25 收割：RASP 25%=21%, Standard 25%=16% (+5pp gap)\n- eval_sft_rasp_rlvr_20_qwen_math 收割：Qwen-Math RASP-RLVR acc=73.0%\n- scoring_ablation_batch_v2 cron 清理（registry→DONE/killed）\n- HumanEval 截断问题诊断完成（max_new_tokens=512 根因）\n\n**Registry RUNNING**：eval_gradient_postsft_v2 标记 DONE 了但底层 V1 session 才是实际完成的\n\n**等待中**：\n- Director 回复：cuda:0 用途、HumanEval 重跑、GRPO MATH-500 是否减 N\n- random eval ~15 min 完成（PID 696141）→ 触发 random SFT\n- westd cuda:0/cuda:2 约 20-36 min 释放\n\n### 4. 📋 待办（条件触发式）\n- random eval N=200 完成 → **立即** random SFT on westb cuda:1 (`--save_strategy no`, 输出到 /root/autodl-tmp)\n- random SFT 完成 → random post-SFT eval → 然后 cka_only 全 pipeline (prune→eval→SFT→post-SFT eval)\n- westd cuda:0 释放 (eval_math500_unpruned 完成) → 收割 unpruned MATH-500 baseline → 如 Director 批准则启动 HumanEval 重跑 (max_new_tokens=2048)\n- westd cuda:2 释放 (humaneval_grpo_standard 完成) → 收割结果（但数据因截断无效）→ 可用于 HumanEval 重跑\n- Director 批准 HumanEval 重跑 → 修改 eval_humaneval.py default 或命令行传 --max_new_tokens 2048，5 个模型依次跑\n- GRPO MATH-500 evals (cuda:1, cuda:3) 极慢，20h+ → 如 Director 决定减 N，需 kill + 重跑\n\n### 5. 🎯 战略上下文\n**核心发现**：\n- C1 (Universal Decoupling): GRPO reward↑ but accuracy 不跟，benchmark-dependent (GSM8K 成立, MATH-500 上 GRPO 有 +10pp)\n- Scoring ablation 关键结果：post-prune 差异大（RASP 47% > gradient 25.5% > magnitude 0%），但 **post-SFT 差异消失**（gradient 61.5% ≈ RASP 61.49%）。这意味着 CKA 价值在\"保护 pruning 后的即时可用性\"而非\"提升最终 recovery\"\n- 25% sparsity: post-prune RASP 21% vs Standard 16% (+5pp)，gap 比 20% 时扩大\n- Random post-prune 中间指标：acc=34%, eos_rate=45%（比 gradient 25.5% 好但 eos_rate 差）\n\n**易错点**：\n- westb 的 submit_training_job 用 `bash -c` 包裹，否则 sh 环境找不到 python（本轮已踩坑）\n- 不要信 report.md 里的 GPU 状态（经常 stale），以 SSH nvidia-smi 为准\n- eval_postprune_25 之前错误录入两个都是 16%，实际 RASP=21%（已修正）\n- EMNLP ARR May 25 deadline ~8 天，25% GRPO + Qwen-Math + paper writing 必须并行\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16-1779015941.md"
+}

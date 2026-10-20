@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91608e5a5f6bdddf6b32",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo standard seed456 n200",
+  "task_key": "worker_eval_grpo_standard_seed456_n200_20260520T091434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_standard_seed456_n200_20260520T091434_result.json",
+    "occurrence": 1,
+    "bytes": 829,
+    "sha256": "4e3e1bbb7c4f54ca803bb259d374db3256d249a0c31a2e775ff4aa04e22978f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活，日志仅 2 行——模型 12.3GB 正在从磁盘加载到 CPU 内存（pruned model 的 non-uniform 架构加载较慢）。这是正常的，通常需要 5-10 分钟。\n\n**总结：**\n\n- **Registry**: `eval_gsm8k_grpo_standard_20_seed456` 已创建（PREPARING, parent=grpo_standard_20_seed456）\n- **Job**: 已提交到 westd-29022 cuda:3, tmux session `eval_gsm8k_grpo_standard_20_seed456`, PID 221008\n- **状态**: 模型加载中（12.3GB safetensors, non-uniform MLP），GPU 显存尚未占用\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_standard_20_seed456.log`\n- **预计**: 模型加载完成后 GPU 3 显存上升至 ~13GB，eval 约 2-3h 完成\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_standard_20_seed456_n200.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-standard-seed456-n200.md"
+}

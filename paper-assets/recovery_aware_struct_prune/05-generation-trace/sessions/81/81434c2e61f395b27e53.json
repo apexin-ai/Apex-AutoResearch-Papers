@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81434c2e61f395b27e53",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval sft rasp rlvr 20 qwen math",
+  "task_key": "worker_diagnose_eval_sft_rasp_rlvr_20_qwen_math_20260516T181852",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_rasp_rlvr_20_qwen_math_20260516T181852_result.json",
+    "occurrence": 1,
+    "bytes": 1258,
+    "sha256": "053d1326b29d339e910b89d32f4642600f410b6dbe87bb54d10fa3a9dd5c1636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验实际上**成功完成**了。日志显示评估跑完了 200/200 样本，结果已保存。问题出在 Cron 监控端没能正确读取 W&B metrics。\n\n关键信息：\n\n**实验结果**：\n- **GSM8K Accuracy: 73.00% ± 3.14% (146/200)**\n- EOS rate: 100%, avg response length: 127 tokens\n- 结果文件: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_rlvr_20_qwen_math.json` (已保存, 141KB)\n\n**失败原因**：实验本身成功完成，但脚本没有将结果上报 W&B（或上报时网络不可达）。日志中可见 `[Errno 101] Network is unreachable` 错误——HuggingFace Hub 网络不通（数据集加载时触发，虽然通过本地缓存 fallback 解决了数据加载问题，但 W&B 上报大概率也因同样的网络问题失败）。Cron 监控依赖 W&B metrics 判断完成状态，所以报了 \"exited without valid W&B metrics\"。\n\n**修复方案**：\n1. 无需重跑实验——结果已存在，accuracy 73.00%\n2. 如果需要 W&B 记录，可在网络恢复后手动补报（从 JSON 文件读取结果 post 到 W&B）\n3. 长期：eval 脚本应在 W&B 上报失败时 graceful fallback，Cron 监控应同时检查本地 JSON 文件是否生成作为成功判据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-sft-rasp-rlvr-20-qwen-math.md"
+}

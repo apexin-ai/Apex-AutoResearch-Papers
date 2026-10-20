@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d0336a1036f87030282",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill grpo v3 and diagnose math500",
+  "task_key": "worker_ssh_kill_grpo_v3_and_diagnose_math500_20260523T141226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_grpo_v3_and_diagnose_math500_20260523T141226_result.json",
+    "occurrence": 1,
+    "bytes": 4137,
+    "sha256": "ace087dedf6e1bf1aa5b17f4474514865d3d086601ac30649c50721d8872dcf6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both servers have identical scripts now — the OLD version is lost. Here's the complete report:\n\n---\n\n## 产出\n\n### 1. GRPO v3 Kill: **OK**\n- PID 136598 force-killed, child PID 136607 also killed\n- tmux session `eval_math500_grpo_standard_20_fair_2048_v3` killed\n- GPU 2: **0% util, 0 MiB** (已释放)\n- GPU 0 仍有进程 (PID 134268, 29650 MiB)；GPU 1/3 空闲\n\n### 2. 脚本差异\n\n**OLD 脚本已丢失**（westb-23072 和 westd-32935 上的 eval_math500.py 完全相同，都是 NEW 版本；git 只有一个 commit，无历史）。\n\n但通过结果文件可以确认：**v2 和 v3 是同一模型的相同输出**（500 个样本 response_length 完全一致，eos_stats 一致：267 natural_eos, 233 truncated, avg_len=1145.74）。差异全部来自脚本。\n\n**NEW (v3) 的 answer extraction/matching 有两类 bug：**\n\n**Bug A — `extract_model_answer` 退化到 last-number fallback（11 个样本）：**\n模型输出相同，但 NEW 版提取到了错误的单个数字，而 OLD 版能提取完整表达式。例如：\n- gold=`6+9i`, OLD提取`6 + 9i`, NEW提取`9`\n- gold=`(a+5)(b+2)`, OLD提取`(a + 5)(b + 2)`, NEW提取`2`\n- gold=`15x - 80`, OLD提取`15x - 80`, NEW提取`80`\n\n**Bug B — `answers_match` 归一化不够宽容（5 个样本）：**\n提取结果相同但 NEW 版判错：\n- `(15, -29)` vs `(15,-29)` — 逗号后空格差异未消除\n- `C` vs `\\text{(C)}` → normalize 后 `c` vs `(c)` — `\\text{}` 剥离后保留了括号\n- `(1, -16, -4, 43)` vs `(1,-16,-4,43)` — 同上空格问题\n- `(2, 12) \\cup (12, 102)` vs `(2,12) \\cup (12,102)` — 同上\n\n**净影响：** v2(OLD)=129/500=25.8%, v3(NEW)=117/500=23.4%。差 12 个正确（16 个 v2→v3 变错，4 个 v2→v3 变对）。\n\n### 3. 全部 MATH-500 eval 脚本版本清单\n\n| 文件 | 格式 | Accuracy | Correct/Total |\n|------|------|----------|---------------|\n| **autodl-tmp 目录** | | | |\n| eval_math500_unpruned.json | OLD | 73.6% | 368/500 |\n| math500_dense_unpruned.json | OLD | 73.6% | 368/500 |\n| math500_dense_2048.json | OLD | 53.0% | 265/500 |\n| math500_grpo_unpruned.json | OLD | 69.0% | 345/500 |\n| math500_grpo_cka_only_20_2048.json | OLD | 29.2% | 146/500 |\n| math500_sft_cka_only_20_v4.json | OLD | 29.0% | 145/500 |\n| eval_math500_sft_cka_only_20.json | NEW | 26.8% | 134/500 |\n| eval_math500_grpo_cka_only_20_2048_v2.json | NEW | 27.4% | 137/500 |\n| eval_math500_grpo_rasp_alpha2p0_20.json | NEW | 26.2% | 131/500 |\n| eval_math500_grpo_rasp_alpha4p0_20.json | NEW | 26.2% | 131/500 |\n| math500_grpo_standard_20_fair_v2.json | OLD | 26.4% | 132/500 |\n| eval_math500_sft_rasp_alpha4p0_20.json | NEW | 26.6% | 133/500 |\n| eval_math500_sft_standard_20.json | OLD | 26.0% | 130/500 |\n| math500_sft_standard_20_2048_v2.json | OLD | 25.8% | 129/500 |\n| eval_math500_sft_rasp_alpha0p5_20.json | NEW | 25.4% | 127/500 |\n| eval_math500_sft_rasp_20.json | OLD | 24.2% | 121/500 |\n| math500_grpo_rasp_20_fair.json | OLD | 24.0% | 120/500 |\n| eval_math500_sft_rasp_alpha2p0_20.json | NEW | 24.0% | 120/500 |\n| eval_math500_sft_standard_20_2048_v3.json | **NEW** | 23.4% | 117/500 |\n| eval_math500_sft_rasp_alpha3p0_20.json | NEW | 23.2% | 116/500 |\n| eval_math500_grpo_rasp_alpha3p0_20.json | NEW | 22.8% | 114/500 |\n| math500_sft_rasp_20_2048.json | OLD | 22.6% | 113/500 |\n| eval_math500_grpo_rasp_alpha1p0_20.json | NEW | 22.6% | 113/500 |\n| eval_math500_sft_rasp_alpha1p0_20_v2.json | NEW | 21.2% | 106/500 |\n| eval_math500_sft_random_20_v3.json | NEW | 14.4% | 72/500 |\n| eval_math500_grpo_random_20_v2.json | NEW | 13.4% | 67/500 |\n| **recovery_aware 目录** | | | |\n| eval_math500_grpo_standard_20_fair_2048_v2.json | OLD | 26.4% | 132/500 |\n| eval_math500_sft_random_20_v3.json | NEW | 14.4% | 72/500 |\n| eval_math500_sft_rasp_alpha2p0_20.json | NEW | 24.0% | 120/500 |\n\n**结论：** NEW 脚本系统性低估 ~2-3%。所有 NEW 格式结果与 OLD 格式结果不可直接对比。需要修复 `normalize_answer`（消除空格差异）和 `extract_model_answer`（改善表达式提取）后重跑 NEW 格式的评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-grpo-v3-and-diagnose-math500.md"
+}

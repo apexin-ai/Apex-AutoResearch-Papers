@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3b0cdfd03d4a0ec2905",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval unpruned 2048",
+  "task_key": "worker_analysis_eval_humaneval_unpruned_2048_20260517T135316",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_unpruned_2048_20260517T135316_result.json",
+    "occurrence": 1,
+    "bytes": 1093,
+    "sha256": "b4619b8f5a447f027e29daa5f3f20ab5abbdcec67874067104680f2c249dc6bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## eval_humaneval_unpruned_2048 结果\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | **0.4512 ± 0.0389** |\n| correct / total | 74 / 164 |\n| max_new_tokens | 2048 |\n| avg_response_length | 1771 tokens |\n| median_response_length | 2048 (仍在截断) |\n| wall_time | 67.6 min |\n\n## 关键发现\n\n1. **Dense ceiling 确立**: unpruned 模型在 2048 tokens 下 pass@1 = 0.4512，远高于 512-token 版本的 0.0183 (24.7x 提升)。证实 512 tokens 严重截断了 R1 的 chain-of-thought。\n\n2. **仍有截断**: median_response_length = 2048 表示超过一半的问题仍在 2048 被截断。失败案例中大量是 R1 的思维链 (chain-of-thought) 耗尽 token budget 后产生 SyntaxError (思考文本被当作代码执行)。真实 ceiling 可能更高 (需要 4096+ tokens)。\n\n3. **与 pruned 模型对比**:\n   - SFT RASP 20% (2048): 0.1037 → 保留了 dense 的 23% 能力\n   - GRPO RASP 20% (512): 0.1037 → 在 512 tokens 下已接近 SFT@2048\n   - Dense unpruned (2048): 0.4512 → 这是 ceiling"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-unpruned-2048.md"
+}

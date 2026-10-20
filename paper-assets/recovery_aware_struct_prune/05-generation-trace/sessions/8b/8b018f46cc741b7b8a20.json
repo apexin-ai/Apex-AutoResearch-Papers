@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b018f46cc741b7b8a20",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 grpo rasp alpha1p0 20 fixed",
+  "task_key": "worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_grpo_rasp_alpha1p0_20_fixed_20260523T212538_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "66fc27a2e471ac4612a497b5e81b7369e35fd6f70212002df53d8a611a92a85a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n## 结果汇总\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **23.0%** (115/500) ± 1.88% |\n| Natural EOS | 320 (64%) |\n| Truncated | 180 (36%) |\n| Avg response length | 903.5 tokens |\n| 运行时间 | 5h34m |\n| 异常 | 无 |\n\n### 与旧结果对比\n\n| 模型 | 旧 (buggy) | 新 (fixed) | 变化 |\n|------|-----------|-----------|------|\n| GRPO RASP α=1.0 20% | 22.6% | **23.0%** | +0.4pp |\n| SFT CKA-only 20% | 26.8% | 27.4% | +0.6pp |\n| SFT RASP α=1.0 20% | 21.2% | 21.6% | +0.4pp |\n\nFixed eval 脚本一致性地将所有模型的 accuracy 提升了 0.4-0.6pp，符合预期（expression extraction + space normalization bug 修复后匹配率提高）。GRPO RASP 的相对排序不变，仍然介于 SFT RASP (21.6%) 和 SFT CKA-only (27.4%) 之间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-grpo-rasp-alpha1p0-20-fixed.md"
+}

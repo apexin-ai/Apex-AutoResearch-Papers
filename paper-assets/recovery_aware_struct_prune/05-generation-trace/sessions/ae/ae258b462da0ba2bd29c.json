@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae258b462da0ba2bd29c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval gsm8k 1p5b standard",
+  "task_key": "worker_ops_eval_gsm8k_1p5b_standard_20260518T163831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval_gsm8k_1p5b_standard_20260518T163831_result.json",
+    "occurrence": 1,
+    "bytes": 482,
+    "sha256": "9b5b0b4392d8cd46ef0e791ec9c284086cd35b742c12ff874bb17055a20e3613"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已成功启动并正在运行：\n\n- **PID**: 823045\n- **GPU**: cuda:0，已占用 3665 MiB\n- **进度**: 正在评估 1319 样本，速度约 2.79s/it，预计约 61 分钟完成\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_standard_20_1p5b.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_1p5b.json`\n- **Registry**: `eval_gsm8k_grpo_standard_20_1p5b` 状态 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-gsm8k-1p5b-standard.md"
+}

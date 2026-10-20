@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6be3c5d5b3a55f3f240",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix revert wandb",
+  "task_key": "worker_fix_revert-wandb_20260514T032059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_revert-wandb_20260514T032059_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "4f522abf11c580d11732f45ccaedfbdc3c44cb31f9bccda5df0dd3be46201246"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成。汇报：\n\n| 行号 | 内容 | 状态 |\n|------|------|------|\n| 192 | `logging_steps=args.logging_steps` | 保持（默认值 10） |\n| 193 | `save_steps=args.save_steps` | 保持（默认值 200） |\n| 199 | `report_to=\"none\"` | ✅ 已从 `\"wandb\"` 改回 |\n| 200 | `logging_dir=\"/root/recovery_aware_struct_prune/logs/\"` | ✅ 新增 |\n| 201 | `save_strategy=\"steps\"` | ✅ 新增 |\n\n日志目录 `/root/recovery_aware_struct_prune/logs/` 已创建。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-revert-wandb.md"
+}

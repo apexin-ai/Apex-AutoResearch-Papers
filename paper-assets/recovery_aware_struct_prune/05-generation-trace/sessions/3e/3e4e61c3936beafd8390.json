@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e4e61c3936beafd8390",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check seed456 and launch eval westb0",
+  "task_key": "worker_ssh_check_seed456_and_launch_eval_westb0_20260522T162111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_seed456_and_launch_eval_westb0_20260522T162111_result.json",
+    "occurrence": 1,
+    "bytes": 1282,
+    "sha256": "499d09201da40b7b44f383e2f967ec09dcc83de87ff61a600f3dc25431c0db89"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 进程运行中（PID 224705, 533% CPU），正在从磁盘加载 12GB 模型权重到内存，GPU 尚未加载完成但进程状态正常。\n\n## 训练结果\n- **状态**: success（100/100 步完成，但最终 `save_model` 因磁盘满失败）\n- **checkpoint**: 存在，`checkpoint-100/model.safetensors` = 12GB ✓\n- **checkpoint 总大小**: 26G（已删除 15G optimizer.pt + 6.2G 损坏的 model.safetensors，释放 21G）\n- **日志关键信息**: `100%|██████████| 100/100 [3:02:44<00:00, 109.64s/it]`，最终 save 报 `safetensors_rust.SafetensorError: No space left on device (os error 28)`\n\n## eval 启动\n- **PID**: 224705（子进程），224700（bash wrapper）\n- **GPU**: cuda:0（CUDA_VISIBLE_DEVICES=0），模型加载中\n- **GPU:1**: 被另一个 eval 占用（`eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2`, PID 220343）\n- **命令**: `cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path .../grpo_random_20_seed456/checkpoint-100 --seed 456 --dtype bfloat16 --max_new_tokens 2048 --output_path .../results/eval_gsm8k_grpo_random_20_seed456.json`\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed456.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-seed456-and-launch-eval-westb0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "325bf9af55cb6530874e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf3 qwen grpo westb0",
+  "task_key": "worker_launch_mf3_qwen_grpo_westb0_20260522T070956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf3_qwen_grpo_westb0_20260522T070956_result.json",
+    "occurrence": 1,
+    "bytes": 577,
+    "sha256": "e3cb7c9b72b38c90ffa4bb41acc24d953740fc8cf5d556ea861c0a275ce6aa46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 1.5B Standard MATH-500 ==\nStatus: DONE\nAccuracy: 5.4% (27/500)\nTruncated: 335/500 (67%), avg response length: 1426\nRegistry: eval_math500_sft_standard_20_1p5b → DONE (success)\n\n(附：RASP 1.5B MATH-500 也完成了 — 6.2%, 31/500)\n\n== MF3 Qwen-Math GRPO ==\nPID: 164710 on GPU 1 (改 GPU 1，GPU 0 被 sft_rasp_alpha3p0_20 占用)\nGPU 1 mem: 58548 MiB / 97887 MiB\nProgress: step 2/100, ~59s/step\nETA: ~1.6h 后训练完成，之后自动跑 GSM8K eval\nwandb: https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/eushw8ks\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf3-qwen-grpo-westb0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e6cd9f188123ace9e6e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval grpo standard 25",
+  "task_key": "worker_diagnose_eval_grpo_standard_25_20260516T213003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_grpo_standard_25_20260516T213003_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "3bfc4e1cb109375a480040874ac69ce7321843982a5ce71703e2ab0305a7f85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根本原因**: GRPO checkpoint 的 `config.json` 设置了 `\"use_cache\": false`（训练残留），`eval_gsm8k.py` 未覆盖该设置。导致 generate 时每步重算全序列 attention，极慢且最终 CUDA OOM 崩溃。\n\n**修复**: 在 `eval_gsm8k.py` 的三处 `gen_kwargs` 中统一加入 `use_cache=True`。\n\n**inference_speedup_plan016**: 日志文件不存在，实验可能从未启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-grpo-standard-25-copy-2.md"
+}

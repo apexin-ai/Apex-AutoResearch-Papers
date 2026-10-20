@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cb3ad05877abb8705bc3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval westd cuda3 next",
+  "task_key": "worker_eval_westd_cuda3_next_20260516T235707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd_cuda3_next_20260516T235707_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "3a2385e57c6eb8a80b4bda7c69acb92b55cd9d7cb6cb82127f07b63c2013c148"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n- **westd-11672 cuda:3** — `eval_sft_standard_20_n1319` 已启动运行\n- PID: 60789, GPU 3 占用 12.8GB, 88% util\n- 速度: ~2.3s/sample, 1319 samples → ETA ~51 min（约 08:51 完成）\n- 输出: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json`\n- Registry 状态: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd-cuda3-next.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "d7370717e9ca424cbc47",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "fix grpo sigterm restart",
+  "task_key": "worker_fix_grpo_sigterm_restart_20260522T065328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_sigterm_restart_20260522T065328.log",
+    "occurrence": 1,
+    "bytes": 617853,
+    "sha256": "de09f5dc4ffe95702b55b24aa8d78b6c7de946e9a7b32238244aee37cb4a0547"
+  },
+  "statistics": {
+    "messages": 444,
+    "user_turns": 0,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 120,
+      "tool_call": 160,
+      "tool_result": 160,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 444,
+      "chunks": [
+        {
+          "path": "d7370717e9ca424cbc47-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7370717e9ca424cbc47-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7370717e9ca424cbc47-part-0003.json",
+          "message_count": 84
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-grpo-sigterm-restart.md"
+}

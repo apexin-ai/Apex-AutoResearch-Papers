@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d4d7bb5e0e96bce6f52",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb kill sft random submit grpo",
+  "task_key": "worker_ssh_westb_kill_sft_random_submit_grpo_20260523T214613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_kill_sft_random_submit_grpo_20260523T214613_result.json",
+    "occurrence": 1,
+    "bytes": 1159,
+    "sha256": "5b776615accabc183172dd0e7e5576fb8c3129cbd83ee06a12d1ea671d2585ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交成功，进程在加载模型中。汇报结果：\n\n---\n\n### 1. Kill 结果 & GPU 验证\n- PID 327972 (sft_random_20_fixed_v2) 已 kill，GPU 1 已释放（0MiB, 0%）\n- GPU 0 仍在跑 `eval_math500_grpo_cka_only_20_fixed`（PID 321428）\n\n### 2. grpo_random_20 checkpoint 状态\n- `grpo_random_20/` 和 `grpo_random_20/checkpoint-100/` **不存在**\n- `grpo_random_20_retrain/` 存在，根目录有 `model.safetensors`（12.2GB），已用此路径提交\n\n### 3. 提交结果\n- **tmux session**: `eval_math500_grpo_random_20_fixed`\n- **PID**: 330254（python eval_math500.py）\n- **model_path**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_retrain`\n- **GPU**: cuda:1\n- **output**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_fixed.json`\n\n### 4. sft_rasp_alpha0p5_20 搜索结果（westb）\n- `sft_rasp_alpha0p5_20/` **不存在**\n- `sft_alpha0p5_20/` **不存在**\n- 有 `grpo_rasp_alpha0p5_20/`（GRPO checkpoint，非 SFT）\n- 有 `sft_rasp_alpha3p0_20/`（alpha3.0，非 alpha0.5）\n- **结论**：westb 上没有 sft_rasp_alpha0p5_20 的 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-kill-sft-random-submit-grpo.md"
+}

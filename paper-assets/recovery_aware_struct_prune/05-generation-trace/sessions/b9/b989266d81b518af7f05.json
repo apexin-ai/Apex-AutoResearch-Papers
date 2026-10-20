@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b989266d81b518af7f05",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent cka25 grpo harvest",
+  "task_key": "worker_ssh_urgent_cka25_grpo_harvest_20260521T081501",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_cka25_grpo_harvest_20260521T081501_result.json",
+    "occurrence": 1,
+    "bytes": 640,
+    "sha256": "02c312084c3d81a49330ac00e66d35309abd4042dcb5d8c78992df0be3f5c421"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## CKA-only 25% GRPO GSM8K Eval\n\n| 项目 | 值 |\n|------|------|\n| **状态** | 已完成 (PID 322443 已退出) |\n| **Accuracy** | **0.5959 ± 0.0135** |\n| **Correct/Total** | **786 / 1319** |\n| **EOS rate** | 98.18% |\n| **Avg response length** | 237.1 tokens |\n| **耗时** | ~3h14m |\n| **结果文件** | `results/eval_grpo_cka_only_25_greedy.json` |\n\n## 其他两个 Eval 进度 (westd-29022)\n\n| Eval | 进度 | 当前 Acc | 备注 |\n|------|------|----------|------|\n| **SFT CKA-only 25%** | 405/1319 (30%) | 0.5750 @ 400 | 运行中 |\n| **SFT Random 20%** | 820/1319 (62%) | 0.5075 @ 800 | 运行中 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-cka25-grpo-harvest.md"
+}

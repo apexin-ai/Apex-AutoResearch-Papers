@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "f854d3fcf2c5af24dbb9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "exp 15pct sparsity pipeline",
+  "task_key": "worker_exp_15pct_sparsity_pipeline_20260520T040632",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_15pct_sparsity_pipeline_20260520T040632.log",
+    "occurrence": 1,
+    "bytes": 1062210,
+    "sha256": "41de91825c5928b2d0c61e95e29e44ffdf79e864a7621e3f452754bf47f3be0b"
+  },
+  "statistics": {
+    "messages": 445,
+    "user_turns": 1,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 111,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 390,
+      "chunks": [
+        {
+          "path": "f854d3fcf2c5af24dbb9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f854d3fcf2c5af24dbb9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f854d3fcf2c5af24dbb9-part-0003.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "f854d3fcf2c5af24dbb9-part-0003.json",
+          "message_count": 55
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-15pct-sparsity-pipeline.md"
+}

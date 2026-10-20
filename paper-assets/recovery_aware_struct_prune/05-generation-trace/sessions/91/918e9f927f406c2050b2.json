@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "918e9f927f406c2050b2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor full gpu status and alpha",
+  "task_key": "worker_monitor_full_gpu_status_and_alpha_20260516T200622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_full_gpu_status_and_alpha_20260516T200622_result.json",
+    "occurrence": 1,
+    "bytes": 1533,
+    "sha256": "6c41fcc8c2749a744c4f935e77deeee36e659e8532040c8aa6417cef22dd619c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 1. GPU 状态\n\n**westd-11672 (4× RTX PRO 6000, 98GB each)**\n\n| GPU | Util | VRAM | 任务 |\n|-----|------|------|------|\n| 0 | 95% | 25.5/98 GB | `eval_grpo_rasp_rlvr_20_qwen_math` (n=200, PID 42301) |\n| 1 | 97% | 42.5/98 GB | `eval_grpo_standard_25` (n=200, PID 42096) + `eval_grpo_standard_25_n1319` (tmux, PID 42590) |\n| 2 | 94% | 60.9/98 GB | `eval_pass_k8_standard_20_grpo_qwen_math` (pass@8, PID 33921) + `eval_grpo_rasp_25` (n=1319, PID 34234) |\n| 3 | 92% | 14.0/98 GB | Alpha ablation Phase B — 当前正在 SFT alpha=0.3 |\n\n**westb-23072 (2× RTX PRO 6000, 98GB each)**\n\n| GPU | Util | VRAM | 任务 |\n|-----|------|------|------|\n| 0 | 99% | 28.9/98 GB | `eval_grpo_rasp_25` (n=1319, tmux session) |\n| 1 | 100% | 71.7/98 GB | `train_grpo_v5.py` — GRPO training on `sft_rasp_rlvr_20/checkpoint-1870` (已跑 ~2h) |\n\n所有 6 张 GPU 均满载。\n\n---\n\n### 2. Alpha Ablation 进度\n\n| α | SFT | Eval | Accuracy |\n|---|-----|------|----------|\n| 0.0 | ✅ | ✅ | **0.70** (140/200) |\n| 0.3 | 🔄 进行中 (started 04:07) | ❌ | — |\n| 0.5 | ❌ | ❌ | — |\n| 0.7 | ❌ | ❌ | — |\n| 1.0 | ❌ | ❌ | — |\n| 2.0 | ❌ | ❌ | — |\n\n已完成 1/6。Phase B 脚本仍在跑（GPU 3），正在顺序处理 alpha=0.3 的 SFT 阶段。\n\n---\n\n### 3. eval_grpo_rasp_rlvr_20_qwen_math\n\n原始 PID 40541 已死。**已重新启动**为 PID 42301（04:00 启动，CUDA:0，运行约 7 分钟），结果文件尚未生成，eval 仍在进行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-full-gpu-status-and-alpha.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3928e79328e2eca7dc91",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westb mbpp dataset sync",
+  "task_key": "worker_fix_westb_mbpp_dataset_sync_20260519T185123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westb_mbpp_dataset_sync_20260519T185123_result.json",
+    "occurrence": 1,
+    "bytes": 629,
+    "sha256": "0bd5a498ce338a731b06544bfc4ffcaeb472bd3ffae29bfeff4ca9aaa671fbad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "一切正常：\n\n- **tmux session**: ALIVE\n- **MBPP 数据集**: 已缓存（`/root/.cache/huggingface/datasets/mbpp/` 下有 `full/` 和 `sanitized/` 两个子集）\n- **eval 脚本**: 存在，最新（May 20 02:14）\n- **实验进度**: 模型已加载，MBPP 数据集已成功下载（374 tasks），正在推理中 — 当前完成 11/374（约 3%），每个 task ~35s，预计总耗时约 3.6 小时\n- **Registry**: 该实验未在 registry 中注册（retry worker 直接用 tmux 重启的）\n\n`network_turbo` 方案已生效，数据集自动下载成功，实验正常运行中，无需干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westb-mbpp-dataset-sync.md"
+}

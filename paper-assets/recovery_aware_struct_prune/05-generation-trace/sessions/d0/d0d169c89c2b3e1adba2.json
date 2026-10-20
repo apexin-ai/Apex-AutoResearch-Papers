@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0d169c89c2b3e1adba2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo add wandb restart",
+  "task_key": "worker_fix_grpo_add_wandb_restart_20260514T175025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_add_wandb_restart_20260514T175025_result.json",
+    "occurrence": 1,
+    "bytes": 129,
+    "sha256": "ecda426fceec66135d16174e8c35aedaa78ed3fdbba8b349376f4259541d3e2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Monitor 超时已自动清理，无需处理。两个实验已在正常运行中，W&B 已确认初始化成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-add-wandb-restart.md"
+}

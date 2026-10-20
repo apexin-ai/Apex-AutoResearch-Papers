@@ -1,0 +1,1465 @@
+{
+  "schema_version": "1.0",
+  "id": "f62b8ae2110644ea3fc4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "diagnose eval gsm8k sft alpha3p0 20",
+  "task_key": "worker_diagnose_eval_gsm8k_sft_alpha3p0_20_20260522T123726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_sft_alpha3p0_20_20260522T123726.log",
+    "occurrence": 1,
+    "bytes": 176442,
+    "sha256": "1766d7a3d688442d9e9a883119d23e31c556f1b1ecaae63eba927bc79f6ea61c"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "08d5bc34-53a1-427a-ad2c-62c3869764b6",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779469200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "c960d47b-8ab4-4166-b25f-635ebb02fe04",
+                "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by checking the experiment logs and status on westd-32935.",
+              "signature": "EowCCmMIDRgCKkDofvSE8S461bdpKn63sT2ZdG/VKmKAsMFVz+0DR+11hNYefkmKwaEdeW3QR0bvhxKjAo+uEfq+abI5oApr7p2BMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDAWypwBo+zoLCp/NBRoMP99fbPKkU66xT02aIjCXs1hASb4tzvuYgFEnWIS1frVDGXuuYVDzX6DWBjUrMsrGS4tL525LEwnyQDCKvTEqVwVDCFlVDCGzMzP/SsConBT7fUvZFc1/QQ51z2teIuLPH2nzFcAqI+Q5DvFpSUwscYaS6SsElnKI3J5M9/BAQxFYaE8uuBL1qAZK22CFIIP9EY5WG4TloxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "9c29fc65-2088-4025-a2f1-812c803722a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014etVPd4TCcnrK2Fe65rVwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12719,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12719
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VaXn4khdHEpNkpLAdWm7hA",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "a202c981-796d-4dac-bb28-6c4ec8df1308",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014etVPd4TCcnrK2Fe65rVwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12719,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12719
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T12:37:36.767Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01VaXn4khdHEpNkpLAdWm7hA",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "02cd0982-3151-4bb7-8679-d63f62d13998",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__read_registry",
+                "mcp__agent-ml-research__update_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HYTbzy4U21bkTR9eq6fLyQ",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-32935",
+                "command": "tail -100 /tmp/eval_gsm8k_sft_alpha3p0.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "904d5969-4283-4969-8e7f-ef90ef02ba68",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DrRs9DkNfPqjxn5vDzaFou",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 24560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VbXpcFPgn2Fn9zPhJvY2NK",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-32935",
+                "command": "ps -p 37024 -o pid,stat,cmd",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "33a3878a-e37d-48d5-8c11-10af77cc0f1d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DrRs9DkNfPqjxn5vDzaFou",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 24560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T12:37:41.721Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HYTbzy4U21bkTR9eq6fLyQ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 18:30:46,523 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\\n2026-05-22 18:30:47,159 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-22 18:32:18,942 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\\\n2026-05-22 18:32:18,943 [INFO] Loading GSM8K test set...\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-22 18:32:18,944 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\\\n2026-05-22 18:32:18,944 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\\\n2026-05-22 18:32:18,963 [INFO] Evaluating on 1319 test samples\\\\n2026-05-22 18:32:18,964 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<59:22,  2.70s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:04<43:39,  1.99s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:07<58:45,  2.68s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:09<49:38,  2.27s/it]\\\\rEvaluating:   0%|          | 5/1319 [00:14<1:11:21,  3.26s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:16<1:04:17,  2.94s/it]\\\\rEvaluating:   1%|          | 7/1319 [02:25<16:02:22, 44.01s/it]\\\\rEvaluating:   1%|          | 8/1319 [02:34<12:00:54, 32.99s/it]\\\\rEvaluating:   1%|          | 9/1319 [02:42<9:07:25, 25.07s/it] \\\\rEvaluating:   1%|          | 10/1319 [02:48<7:00:12, 19.26s/it]\\\\rEvaluating:   1%|          | 11/1319 [02:52<5:18:13, 14.60s/it]\\\\rEvaluating:   1%|          | 12/1319 [03:01<4:39:52, 12.85s/it]\\\\rEvaluating:   1%|          | 13/1319 [03:08<4:00:08, 11.03s/it]\\\\rEvaluating:   1%|          | 14/1319 [03:14<3:30:48,  9.69s/it]\\\\rEvaluating:   1%|          | 15/1319 [03:24<3:32:55,  9.80s/it]\\\\rEvaluating:   1%|          | 16/1319 [03:29<2:55:46,  8.09s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [03:31<2:19:46,  6.44s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [03:40<2:33:43,  7.09s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [03:46<2:26:09,  6.75s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [03:51<2:17:16,  6.34s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [04:03<2:54:54,  8.09s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [04:06<2:20:45,  6.51s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [04:11<2:11:25,  6.08s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [04:13<1:41:29,  4.70s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [04:17<1:36:36,  4.48s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [04:25<1:59:05,  5.53s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [04:33<2:17:18,  6.38s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [04:38<2:10:58,  6.09s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [04:41<1:46:56,  4.97s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [07:52<21:48:25, 60.90s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [07:56<15:41:34, 43.86s/it]\\\\rEvaluating:   2%|▏         | 32/1319 [08:03<11:44:27, 32.84s/it]\\\\rEvaluating:   3%|▎         | 33/1319 [08:07<8:35:57, 24.07s/it] \\\\rEvaluating:   3%|▎         | 34/1319 [08:10<6:17:27, 17.62s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [08:13<4:47:04, 13.41s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [08:17<3:47:25, 10.64s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [08:22<3:06:32,  8.73s/it]\\\\rEvaluating:   3%|▎         | 38/1319 [08:29<2:58:30,  8.36s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [08:33<2:30:03,  7.03s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [08:40<2:32:53,  7.17s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [08:42<1:56:32,  5.47s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [08:46<1:49:27,  5.14s/it]\\\\rEvalua\\\\n\\\\n... [截断: 输出过长，省略 81787 字符] ...\\\\n\\\\n1319 [1:39:39<02:51,  3.64s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [1:39:42<02:29,  3.24s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [1:39:43<01:59,  2.65s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [1:39:46<02:01,  2.76s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [1:39:48<01:53,  2.64s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [1:39:51<01:50,  2.62s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [1:39:52<01:35,  2.32s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [1:39:55<01:29,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [1:39:59<01:51,  2.85s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [1:40:00<01:26,  2.28s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [1:40:03<01:39,  2.70s/it]\\\\rEvaluating:  97%|█████████▋| 1283/1319 [1:40:06<01:30,  2.50s/it]\\\\rEvaluating:  97%|█████████▋| 1284/1319 [1:40:10<01:46,  3.03s/it]\\\\rEvaluating:  97%|█████████▋| 1285/1319 [1:40:11<01:27,  2.58s/it]\\\\rEvaluating:  97%|█████████▋| 1286/1319 [1:40:13<01:21,  2.46s/it]\\\\rEvaluating:  98%|█████████▊| 1287/1319 [1:40:16<01:24,  2.63s/it]\\\\rEvaluating:  98%|█████████▊| 1288/1319 [1:40:18<01:14,  2.41s/it]\\\\rEvaluating:  98%|█████████▊| 1289/1319 [1:40:25<01:50,  3.68s/it]\\\\rEvaluating:  98%|█████████▊| 1290/1319 [1:40:29<01:50,  3.82s/it]\\\\rEvaluating:  98%|█████████▊| 1291/1319 [1:40:31<01:32,  3.29s/it]\\\\rEvaluating:  98%|█████████▊| 1292/1319 [1:40:33<01:13,  2.71s/it]\\\\rEvaluating:  98%|█████████▊| 1293/1319 [1:40:34<00:58,  2.24s/it]\\\\rEvaluating:  98%|█████████▊| 1294/1319 [1:40:37<01:01,  2.47s/it]\\\\rEvaluating:  98%|█████████▊| 1295/1319 [1:40:39<00:59,  2.49s/it]\\\\rEvaluating:  98%|█████████▊| 1296/1319 [1:40:42<01:01,  2.67s/it]\\\\rEvaluating:  98%|█████████▊| 1297/1319 [1:40:44<00:52,  2.39s/it]\\\\rEvaluating:  98%|█████████▊| 1298/1319 [1:40:49<01:03,  3.05s/it]\\\\rEvaluating:  98%|█��███████▊| 1299/1319 [1:40:53<01:09,  3.48s/it]2026-05-22 20:13:15,665 [INFO] Progress: 1300/1319, acc=0.6415, eos_rate=98.77%, avg_len=189\\\\n\\\\rEvaluating:  99%|█████████▊| 1300/1319 [1:40:56<01:03,  3.34s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [1:40:59<00:57,  3.22s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [1:41:04<01:04,  3.82s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [1:41:08<00:58,  3.63s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [1:41:13<01:02,  4.14s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [1:41:15<00:49,  3.55s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [1:41:17<00:39,  3.08s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [1:41:22<00:45,  3.76s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [1:41:24<00:34,  3.12s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [1:41:25<00:25,  2.51s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [1:41:27<00:21,  2.37s/it]\\\\rEvaluating:  99%|█████████▉| 1311/1319 [1:41:29<00:17,  2.20s/it]\\\\rEvaluating:  99%|█████████▉| 1312/1319 [1:41:32<00:16,  2.34s/it]\\\\rEvaluating: 100%|█████████▉| 1313/1319 [1:41:35<00:15,  2.66s/it]\\\\rEvaluating: 100%|█████████▉| 1314/1319 [1:41:37<00:11,  2.31s/it]\\\\rEvaluating: 100%|█████████▉| 1315/1319 [1:41:39<00:09,  2.48s/it]\\\\rEvaluating: 100%|█████████▉| 1316/1319 [1:41:43<00:08,  2.69s/it]\\\\rEvaluating: 100%|█████████▉| 1317/1319 [1:41:45<00:05,  2.53s/it]\\\\rEvaluating: 100%|█████████▉| 1318/1319 [1:41:50<00:03,  3.22s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  2.66s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  4.63s/it]\\\\n2026-05-22 20:14:10,352 [INFO] GSM8K Accuracy: 0.6414 ± 0.0132 (846/1319)\\\\n2026-05-22 20:14:10,352 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 1303,\\\\n  \\\\\\\"truncated\\\\\\\": 16,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.9878695981804397,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 188.63153904473086,\\\\n  \\\\\\\"max_response_length\\\\\\\": 2048,\\\\n  \\\\\\\"min_response_length\\\\\\\": 38\\\\n}\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 594, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 581, in main\\\\n    json.dump(output, f, indent=2, ensure_ascii=False)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\\\\\", line 180, in dump\\\\n    fp.write(chunk)\\\\nOSError: [Errno 28] No space left on device\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "abfe5c31-8bdb-4e16-822c-9842c9743c15",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-22 18:30:46,523 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\\n2026-05-22 18:30:47,159 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-22 18:32:18,942 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\\\n2026-05-22 18:32:18,943 [INFO] Loading GSM8K test set...\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-22 18:32:18,944 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\\\n2026-05-22 18:32:18,944 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\\\n2026-05-22 18:32:18,963 [INFO] Evaluating on 1319 test samples\\\\n2026-05-22 18:32:18,964 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/1319 [00:02<59:22,  2.70s/it]\\\\rEvaluating:   0%|          | 2/1319 [00:04<43:39,  1.99s/it]\\\\rEvaluating:   0%|          | 3/1319 [00:07<58:45,  2.68s/it]\\\\rEvaluating:   0%|          | 4/1319 [00:09<49:38,  2.27s/it]\\\\rEvaluating:   0%|          | 5/1319 [00:14<1:11:21,  3.26s/it]\\\\rEvaluating:   0%|          | 6/1319 [00:16<1:04:17,  2.94s/it]\\\\rEvaluating:   1%|          | 7/1319 [02:25<16:02:22, 44.01s/it]\\\\rEvaluating:   1%|          | 8/1319 [02:34<12:00:54, 32.99s/it]\\\\rEvaluating:   1%|          | 9/1319 [02:42<9:07:25, 25.07s/it] \\\\rEvaluating:   1%|          | 10/1319 [02:48<7:00:12, 19.26s/it]\\\\rEvaluating:   1%|          | 11/1319 [02:52<5:18:13, 14.60s/it]\\\\rEvaluating:   1%|          | 12/1319 [03:01<4:39:52, 12.85s/it]\\\\rEvaluating:   1%|          | 13/1319 [03:08<4:00:08, 11.03s/it]\\\\rEvaluating:   1%|          | 14/1319 [03:14<3:30:48,  9.69s/it]\\\\rEvaluating:   1%|          | 15/1319 [03:24<3:32:55,  9.80s/it]\\\\rEvaluating:   1%|          | 16/1319 [03:29<2:55:46,  8.09s/it]\\\\rEvaluating:   1%|▏         | 17/1319 [03:31<2:19:46,  6.44s/it]\\\\rEvaluating:   1%|▏         | 18/1319 [03:40<2:33:43,  7.09s/it]\\\\rEvaluating:   1%|▏         | 19/1319 [03:46<2:26:09,  6.75s/it]\\\\rEvaluating:   2%|▏         | 20/1319 [03:51<2:17:16,  6.34s/it]\\\\rEvaluating:   2%|▏         | 21/1319 [04:03<2:54:54,  8.09s/it]\\\\rEvaluating:   2%|▏         | 22/1319 [04:06<2:20:45,  6.51s/it]\\\\rEvaluating:   2%|▏         | 23/1319 [04:11<2:11:25,  6.08s/it]\\\\rEvaluating:   2%|▏         | 24/1319 [04:13<1:41:29,  4.70s/it]\\\\rEvaluating:   2%|▏         | 25/1319 [04:17<1:36:36,  4.48s/it]\\\\rEvaluating:   2%|▏         | 26/1319 [04:25<1:59:05,  5.53s/it]\\\\rEvaluating:   2%|▏         | 27/1319 [04:33<2:17:18,  6.38s/it]\\\\rEvaluating:   2%|▏         | 28/1319 [04:38<2:10:58,  6.09s/it]\\\\rEvaluating:   2%|▏         | 29/1319 [04:41<1:46:56,  4.97s/it]\\\\rEvaluating:   2%|▏         | 30/1319 [07:52<21:48:25, 60.90s/it]\\\\rEvaluating:   2%|▏         | 31/1319 [07:56<15:41:34, 43.86s/it]\\\\rEvaluating:   2%|▏         | 32/1319 [08:03<11:44:27, 32.84s/it]\\\\rEvaluating:   3%|▎         | 33/1319 [08:07<8:35:57, 24.07s/it] \\\\rEvaluating:   3%|▎         | 34/1319 [08:10<6:17:27, 17.62s/it]\\\\rEvaluating:   3%|▎         | 35/1319 [08:13<4:47:04, 13.41s/it]\\\\rEvaluating:   3%|▎         | 36/1319 [08:17<3:47:25, 10.64s/it]\\\\rEvaluating:   3%|▎         | 37/1319 [08:22<3:06:32,  8.73s/it]\\\\rEvaluating:   3%|▎         | 38/1319 [08:29<2:58:30,  8.36s/it]\\\\rEvaluating:   3%|▎         | 39/1319 [08:33<2:30:03,  7.03s/it]\\\\rEvaluating:   3%|▎         | 40/1319 [08:40<2:32:53,  7.17s/it]\\\\rEvaluating:   3%|▎         | 41/1319 [08:42<1:56:32,  5.47s/it]\\\\rEvaluating:   3%|▎         | 42/1319 [08:46<1:49:27,  5.14s/it]\\\\rEvalua\\\\n\\\\n... [截断: 输出过长，省略 81787 字符] ...\\\\n\\\\n1319 [1:39:39<02:51,  3.64s/it]\\\\rEvaluating:  97%|█████████▋| 1273/1319 [1:39:42<02:29,  3.24s/it]\\\\rEvaluating:  97%|█████████▋| 1274/1319 [1:39:43<01:59,  2.65s/it]\\\\rEvaluating:  97%|█████████▋| 1275/1319 [1:39:46<02:01,  2.76s/it]\\\\rEvaluating:  97%|█████████▋| 1276/1319 [1:39:48<01:53,  2.64s/it]\\\\rEvaluating:  97%|█████████▋| 1277/1319 [1:39:51<01:50,  2.62s/it]\\\\rEvaluating:  97%|█████████▋| 1278/1319 [1:39:52<01:35,  2.32s/it]\\\\rEvaluating:  97%|█████████▋| 1279/1319 [1:39:55<01:29,  2.24s/it]\\\\rEvaluating:  97%|█████████▋| 1280/1319 [1:39:59<01:51,  2.85s/it]\\\\rEvaluating:  97%|█████████▋| 1281/1319 [1:40:00<01:26,  2.28s/it]\\\\rEvaluating:  97%|█████████▋| 1282/1319 [1:40:03<01:39,  2.70s/it]\\\\rEvaluating:  97%|█████████▋| 1283/1319 [1:40:06<01:30,  2.50s/it]\\\\rEvaluating:  97%|█████████▋| 1284/1319 [1:40:10<01:46,  3.03s/it]\\\\rEvaluating:  97%|█████████▋| 1285/1319 [1:40:11<01:27,  2.58s/it]\\\\rEvaluating:  97%|█████████▋| 1286/1319 [1:40:13<01:21,  2.46s/it]\\\\rEvaluating:  98%|█████████▊| 1287/1319 [1:40:16<01:24,  2.63s/it]\\\\rEvaluating:  98%|█████████▊| 1288/1319 [1:40:18<01:14,  2.41s/it]\\\\rEvaluating:  98%|█████████▊| 1289/1319 [1:40:25<01:50,  3.68s/it]\\\\rEvaluating:  98%|█████████▊| 1290/1319 [1:40:29<01:50,  3.82s/it]\\\\rEvaluating:  98%|█████████▊| 1291/1319 [1:40:31<01:32,  3.29s/it]\\\\rEvaluating:  98%|█████████▊| 1292/1319 [1:40:33<01:13,  2.71s/it]\\\\rEvaluating:  98%|█████████▊| 1293/1319 [1:40:34<00:58,  2.24s/it]\\\\rEvaluating:  98%|█████████▊| 1294/1319 [1:40:37<01:01,  2.47s/it]\\\\rEvaluating:  98%|█████████▊| 1295/1319 [1:40:39<00:59,  2.49s/it]\\\\rEvaluating:  98%|█████████▊| 1296/1319 [1:40:42<01:01,  2.67s/it]\\\\rEvaluating:  98%|█████████▊| 1297/1319 [1:40:44<00:52,  2.39s/it]\\\\rEvaluating:  98%|█████████▊| 1298/1319 [1:40:49<01:03,  3.05s/it]\\\\rEvaluating:  98%|█��███████▊| 1299/1319 [1:40:53<01:09,  3.48s/it]2026-05-22 20:13:15,665 [INFO] Progress: 1300/1319, acc=0.6415, eos_rate=98.77%, avg_len=189\\\\n\\\\rEvaluating:  99%|█████████▊| 1300/1319 [1:40:56<01:03,  3.34s/it]\\\\rEvaluating:  99%|█████████▊| 1301/1319 [1:40:59<00:57,  3.22s/it]\\\\rEvaluating:  99%|█████████▊| 1302/1319 [1:41:04<01:04,  3.82s/it]\\\\rEvaluating:  99%|█████████▉| 1303/1319 [1:41:08<00:58,  3.63s/it]\\\\rEvaluating:  99%|█████████▉| 1304/1319 [1:41:13<01:02,  4.14s/it]\\\\rEvaluating:  99%|█████████▉| 1305/1319 [1:41:15<00:49,  3.55s/it]\\\\rEvaluating:  99%|█████████▉| 1306/1319 [1:41:17<00:39,  3.08s/it]\\\\rEvaluating:  99%|█████████▉| 1307/1319 [1:41:22<00:45,  3.76s/it]\\\\rEvaluating:  99%|█████████▉| 1308/1319 [1:41:24<00:34,  3.12s/it]\\\\rEvaluating:  99%|█████████▉| 1309/1319 [1:41:25<00:25,  2.51s/it]\\\\rEvaluating:  99%|█████████▉| 1310/1319 [1:41:27<00:21,  2.37s/it]\\\\rEvaluating:  99%|█████████▉| 1311/1319 [1:41:29<00:17,  2.20s/it]\\\\rEvaluating:  99%|█████████▉| 1312/1319 [1:41:32<00:16,  2.34s/it]\\\\rEvaluating: 100%|█████████▉| 1313/1319 [1:41:35<00:15,  2.66s/it]\\\\rEvaluating: 100%|█████████▉| 1314/1319 [1:41:37<00:11,  2.31s/it]\\\\rEvaluating: 100%|█████████▉| 1315/1319 [1:41:39<00:09,  2.48s/it]\\\\rEvaluating: 100%|█████████▉| 1316/1319 [1:41:43<00:08,  2.69s/it]\\\\rEvaluating: 100%|█████████▉| 1317/1319 [1:41:45<00:05,  2.53s/it]\\\\rEvaluating: 100%|█████████▉| 1318/1319 [1:41:50<00:03,  3.22s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  2.66s/it]\\\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  4.63s/it]\\\\n2026-05-22 20:14:10,352 [INFO] GSM8K Accuracy: 0.6414 ± 0.0132 (846/1319)\\\\n2026-05-22 20:14:10,352 [INFO] EOS Stats: {\\\\n  \\\\\\\"natural_eos\\\\\\\": 1303,\\\\n  \\\\\\\"truncated\\\\\\\": 16,\\\\n  \\\\\\\"eos_rate\\\\\\\": 0.9878695981804397,\\\\n  \\\\\\\"avg_response_length\\\\\\\": 188.63153904473086,\\\\n  \\\\\\\"max_response_length\\\\\\\": 2048,\\\\n  \\\\\\\"min_response_length\\\\\\\": 38\\\\n}\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 594, in <module>\\\\n    main()\\\\n  File \\\\\\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\\\\", line 581, in main\\\\n    json.dump(output, f, indent=2, ensure_ascii=False)\\\\n  File \\\\\\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\\\\\", line 180, in dump\\\\n    fp.write(chunk)\\\\nOSError: [Errno 28] No space left on device\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-22 18:30:46,523 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\n2026-05-22 18:30:47,159 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\n2026-05-22 18:32:18,942 [INFO] Model device after .cuda(): cuda:0 (CUDA_VISIBLE_DEVICES=2)\\n2026-05-22 18:32:18,943 [INFO] Loading GSM8K test set...\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\n2026-05-22 18:32:18,944 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\n2026-05-22 18:32:18,944 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Fri May 22 18:27:43 2026).\\n2026-05-22 18:32:18,963 [INFO] Evaluating on 1319 test samples\\n2026-05-22 18:32:18,964 [INFO] Generation config: do_sample=False, temperature=0.0\\n\\rEvaluating:   0%|          | 0/1319 [00:00<?, ?it/s]\\rEvaluating:   0%|          | 1/1319 [00:02<59:22,  2.70s/it]\\rEvaluating:   0%|          | 2/1319 [00:04<43:39,  1.99s/it]\\rEvaluating:   0%|          | 3/1319 [00:07<58:45,  2.68s/it]\\rEvaluating:   0%|          | 4/1319 [00:09<49:38,  2.27s/it]\\rEvaluating:   0%|          | 5/1319 [00:14<1:11:21,  3.26s/it]\\rEvaluating:   0%|          | 6/1319 [00:16<1:04:17,  2.94s/it]\\rEvaluating:   1%|          | 7/1319 [02:25<16:02:22, 44.01s/it]\\rEvaluating:   1%|          | 8/1319 [02:34<12:00:54, 32.99s/it]\\rEvaluating:   1%|          | 9/1319 [02:42<9:07:25, 25.07s/it] \\rEvaluating:   1%|          | 10/1319 [02:48<7:00:12, 19.26s/it]\\rEvaluating:   1%|          | 11/1319 [02:52<5:18:13, 14.60s/it]\\rEvaluating:   1%|          | 12/1319 [03:01<4:39:52, 12.85s/it]\\rEvaluating:   1%|          | 13/1319 [03:08<4:00:08, 11.03s/it]\\rEvaluating:   1%|          | 14/1319 [03:14<3:30:48,  9.69s/it]\\rEvaluating:   1%|          | 15/1319 [03:24<3:32:55,  9.80s/it]\\rEvaluating:   1%|          | 16/1319 [03:29<2:55:46,  8.09s/it]\\rEvaluating:   1%|▏         | 17/1319 [03:31<2:19:46,  6.44s/it]\\rEvaluating:   1%|▏         | 18/1319 [03:40<2:33:43,  7.09s/it]\\rEvaluating:   1%|▏         | 19/1319 [03:46<2:26:09,  6.75s/it]\\rEvaluating:   2%|▏         | 20/1319 [03:51<2:17:16,  6.34s/it]\\rEvaluating:   2%|▏         | 21/1319 [04:03<2:54:54,  8.09s/it]\\rEvaluating:   2%|▏         | 22/1319 [04:06<2:20:45,  6.51s/it]\\rEvaluating:   2%|▏         | 23/1319 [04:11<2:11:25,  6.08s/it]\\rEvaluating:   2%|▏         | 24/1319 [04:13<1:41:29,  4.70s/it]\\rEvaluating:   2%|▏         | 25/1319 [04:17<1:36:36,  4.48s/it]\\rEvaluating:   2%|▏         | 26/1319 [04:25<1:59:05,  5.53s/it]\\rEvaluating:   2%|▏         | 27/1319 [04:33<2:17:18,  6.38s/it]\\rEvaluating:   2%|▏         | 28/1319 [04:38<2:10:58,  6.09s/it]\\rEvaluating:   2%|▏         | 29/1319 [04:41<1:46:56,  4.97s/it]\\rEvaluating:   2%|▏         | 30/1319 [07:52<21:48:25, 60.90s/it]\\rEvaluating:   2%|▏         | 31/1319 [07:56<15:41:34, 43.86s/it]\\rEvaluating:   2%|▏         | 32/1319 [08:03<11:44:27, 32.84s/it]\\rEvaluating:   3%|▎         | 33/1319 [08:07<8:35:57, 24.07s/it] \\rEvaluating:   3%|▎         | 34/1319 [08:10<6:17:27, 17.62s/it]\\rEvaluating:   3%|▎         | 35/1319 [08:13<4:47:04, 13.41s/it]\\rEvaluating:   3%|▎         | 36/1319 [08:17<3:47:25, 10.64s/it]\\rEvaluating:   3%|▎         | 37/1319 [08:22<3:06:32,  8.73s/it]\\rEvaluating:   3%|▎         | 38/1319 [08:29<2:58:30,  8.36s/it]\\rEvaluating:   3%|▎         | 39/1319 [08:33<2:30:03,  7.03s/it]\\rEvaluating:   3%|▎         | 40/1319 [08:40<2:32:53,  7.17s/it]\\rEvaluating:   3%|▎         | 41/1319 [08:42<1:56:32,  5.47s/it]\\rEvaluating:   3%|▎         | 42/1319 [08:46<1:49:27,  5.14s/it]\\rEvalua\\n\\n... [截断: 输出过长，省略 81787 字符] ...\\n\\n1319 [1:39:39<02:51,  3.64s/it]\\rEvaluating:  97%|█████████▋| 1273/1319 [1:39:42<02:29,  3.24s/it]\\rEvaluating:  97%|█████████▋| 1274/1319 [1:39:43<01:59,  2.65s/it]\\rEvaluating:  97%|█████████▋| 1275/1319 [1:39:46<02:01,  2.76s/it]\\rEvaluating:  97%|█████████▋| 1276/1319 [1:39:48<01:53,  2.64s/it]\\rEvaluating:  97%|█████████▋| 1277/1319 [1:39:51<01:50,  2.62s/it]\\rEvaluating:  97%|█████████▋| 1278/1319 [1:39:52<01:35,  2.32s/it]\\rEvaluating:  97%|█████████▋| 1279/1319 [1:39:55<01:29,  2.24s/it]\\rEvaluating:  97%|█████████▋| 1280/1319 [1:39:59<01:51,  2.85s/it]\\rEvaluating:  97%|█████████▋| 1281/1319 [1:40:00<01:26,  2.28s/it]\\rEvaluating:  97%|█████████▋| 1282/1319 [1:40:03<01:39,  2.70s/it]\\rEvaluating:  97%|█████████▋| 1283/1319 [1:40:06<01:30,  2.50s/it]\\rEvaluating:  97%|█████████▋| 1284/1319 [1:40:10<01:46,  3.03s/it]\\rEvaluating:  97%|█████████▋| 1285/1319 [1:40:11<01:27,  2.58s/it]\\rEvaluating:  97%|█████████▋| 1286/1319 [1:40:13<01:21,  2.46s/it]\\rEvaluating:  98%|█████████▊| 1287/1319 [1:40:16<01:24,  2.63s/it]\\rEvaluating:  98%|█████████▊| 1288/1319 [1:40:18<01:14,  2.41s/it]\\rEvaluating:  98%|█████████▊| 1289/1319 [1:40:25<01:50,  3.68s/it]\\rEvaluating:  98%|█████████▊| 1290/1319 [1:40:29<01:50,  3.82s/it]\\rEvaluating:  98%|█████████▊| 1291/1319 [1:40:31<01:32,  3.29s/it]\\rEvaluating:  98%|█████████▊| 1292/1319 [1:40:33<01:13,  2.71s/it]\\rEvaluating:  98%|█████████▊| 1293/1319 [1:40:34<00:58,  2.24s/it]\\rEvaluating:  98%|█████████▊| 1294/1319 [1:40:37<01:01,  2.47s/it]\\rEvaluating:  98%|█████████▊| 1295/1319 [1:40:39<00:59,  2.49s/it]\\rEvaluating:  98%|█████████▊| 1296/1319 [1:40:42<01:01,  2.67s/it]\\rEvaluating:  98%|█████████▊| 1297/1319 [1:40:44<00:52,  2.39s/it]\\rEvaluating:  98%|█████████▊| 1298/1319 [1:40:49<01:03,  3.05s/it]\\rEvaluating:  98%|█��███████▊| 1299/1319 [1:40:53<01:09,  3.48s/it]2026-05-22 20:13:15,665 [INFO] Progress: 1300/1319, acc=0.6415, eos_rate=98.77%, avg_len=189\\n\\rEvaluating:  99%|█████████▊| 1300/1319 [1:40:56<01:03,  3.34s/it]\\rEvaluating:  99%|█████████▊| 1301/1319 [1:40:59<00:57,  3.22s/it]\\rEvaluating:  99%|█████████▊| 1302/1319 [1:41:04<01:04,  3.82s/it]\\rEvaluating:  99%|█████████▉| 1303/1319 [1:41:08<00:58,  3.63s/it]\\rEvaluating:  99%|█████████▉| 1304/1319 [1:41:13<01:02,  4.14s/it]\\rEvaluating:  99%|█████████▉| 1305/1319 [1:41:15<00:49,  3.55s/it]\\rEvaluating:  99%|█████████▉| 1306/1319 [1:41:17<00:39,  3.08s/it]\\rEvaluating:  99%|█████████▉| 1307/1319 [1:41:22<00:45,  3.76s/it]\\rEvaluating:  99%|█████████▉| 1308/1319 [1:41:24<00:34,  3.12s/it]\\rEvaluating:  99%|█████████▉| 1309/1319 [1:41:25<00:25,  2.51s/it]\\rEvaluating:  99%|█████████▉| 1310/1319 [1:41:27<00:21,  2.37s/it]\\rEvaluating:  99%|█████████▉| 1311/1319 [1:41:29<00:17,  2.20s/it]\\rEvaluating:  99%|█████████▉| 1312/1319 [1:41:32<00:16,  2.34s/it]\\rEvaluating: 100%|█████████▉| 1313/1319 [1:41:35<00:15,  2.66s/it]\\rEvaluating: 100%|█████████▉| 1314/1319 [1:41:37<00:11,  2.31s/it]\\rEvaluating: 100%|█████████▉| 1315/1319 [1:41:39<00:09,  2.48s/it]\\rEvaluating: 100%|█████████▉| 1316/1319 [1:41:43<00:08,  2.69s/it]\\rEvaluating: 100%|█████████▉| 1317/1319 [1:41:45<00:05,  2.53s/it]\\rEvaluating: 100%|█████████▉| 1318/1319 [1:41:50<00:03,  3.22s/it]\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  2.66s/it]\\rEvaluating: 100%|██████████| 1319/1319 [1:41:51<00:00,  4.63s/it]\\n2026-05-22 20:14:10,352 [INFO] GSM8K Accuracy: 0.6414 ± 0.0132 (846/1319)\\n2026-05-22 20:14:10,352 [INFO] EOS Stats: {\\n  \\\"natural_eos\\\": 1303,\\n  \\\"truncated\\\": 16,\\n  \\\"eos_rate\\\": 0.9878695981804397,\\n  \\\"avg_response_length\\\": 188.63153904473086,\\n  \\\"max_response_length\\\": 2048,\\n  \\\"min_response_length\\\": 38\\n}\\nTraceback (most recent call last):\\n  File \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\", line 594, in <module>\\n    main()\\n  File \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\", line 581, in main\\n    json.dump(output, f, indent=2, ensure_ascii=False)\\n  File \\\"/root/miniconda3/lib/python3.12/json/__init__.py\\\", line 180, in dump\\n    fp.write(chunk)\\nOSError: [Errno 28] No space left on device\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.52}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TFGTD8xTDoWz7WRYYwFyKd",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-32935",
+                "command": "find /root/recovery_aware_struct_prune/results/ -name \"*sft*alpha3*\" -type f",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "62457475-6ead-4110-b95d-74fe06d6ca4e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DrRs9DkNfPqjxn5vDzaFou",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 24560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T12:37:42.246Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VbXpcFPgn2Fn9zPhJvY2NK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "76852438-b0f5-4941-a5bd-93e9b6b37ce9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"   PID STAT CMD\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"   PID STAT CMD\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V3ri5LFDbsW47KfKbDPbrx",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "filters": {
+                  "exp_id": "eval_gsm8k_sft_alpha3p0_20"
+                },
+                "fields": [
+                  "*"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "15b967d9-5414-42a2-8b96-f81bfea28dd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DrRs9DkNfPqjxn5vDzaFou",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1297,
+                "cache_read_input_tokens": 24560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1297
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T12:37:42.770Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TFGTD8xTDoWz7WRYYwFyKd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "9d712aa2-2a7e-4570-b295-a7b32788e725",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T12:37:43.689Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V3ri5LFDbsW47KfKbDPbrx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9035}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "41f68a84-a332-4bec-9772-5abbca53b931",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9035}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9035}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Key findings:\n\n1. **Log analysis**: The evaluation completed all 1319 samples successfully. Final result: **GSM8K Accuracy: 0.6414 ± 0.0132 (846/1319)**. However, it crashed when trying to write the result JSON file with `OSError: [Errno 28] No space left on device`.\n\n2. **Process 37024**: Not running anymore (expected, it exited).\n\n3. **Result files**: No result JSON files found in `/root/recovery_aware_struct_prune/results/` matching the pattern. This confirms the JSON write failed due to disk space.\n   \n4. **Registry**: The registry query with the filter `{\"exp_id\": \"eval_gsm8k_sft_alpha3p0_20\"}` came back empty, so I need to try a different approach—either querying without filters or adjusting the filter format to see what's actually stored.\n\nThe core issue is clear: the evaluation ran to completion with a 64.14% accuracy rate across all 1319 samples, but the disk filled up before the results could be persisted. Since this is running on westd-32935 rather than the primary server, the disk space constraint is a known limitation I need to work around.\n\nLet me check what field name the registry actually uses for the experiment ID.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "ec150d45-ab0d-42a8-b80a-e8c4a7f917ab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B8dav6PiMztv8wCZMaag3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5559,
+                "cache_read_input_tokens": 25857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估本身完成了全部 1319 样本，但写结果 JSON 时因磁盘满崩溃。让我确认 registry 状态和磁盘情况。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "73f2baf5-16e4-4790-9c84-a6f261df55a9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B8dav6PiMztv8wCZMaag3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5559,
+                "cache_read_input_tokens": 25857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VTpTz9zsgtov8STBQkHhPA",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "filters": {
+                  "status": "DONE"
+                },
+                "fields": [
+                  "*"
+                ],
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "09eb05a7-92f2-45b8-a882-3867b782d124",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B8dav6PiMztv8wCZMaag3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5559,
+                "cache_read_input_tokens": 25857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FeR7nU511ZEfYWoXEqPEjo",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-32935",
+                "command": "df -h /root/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "360755a8-e33f-4894-a56c-af35f3dd729b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B8dav6PiMztv8wCZMaag3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5559,
+                "cache_read_input_tokens": 25857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A9dVpnnBVyrkPuymEiQvJE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-32935",
+                "command": "find /root/recovery_aware_struct_prune/results/ -type f -name \"*gsm8k*\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "70c64425-a705-485c-a862-35bae0f8e504",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B8dav6PiMztv8wCZMaag3i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5559,
+                "cache_read_input_tokens": 25857,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 5559
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-22T12:37:59.462Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VTpTz9zsgtov8STBQkHhPA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_gsm8k_sft_alpha3p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:36:14.879Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}}, \\\"eval_gsm8k_grpo_qwen_math_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:30:10.266Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:08:34.874Z\\\", \\\"hypothesis\\\": \\\"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO → GSM8K eval. Tests if CKA-guided pruning advantage transfers to Qwen-Math architecture.\\\", \\\"parent\\\": \\\"grpo_qwen_math_cka_only_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_qwen_math_cka_only_20 --max_new_tokens 2048 --output_path results/eval_gsm8k_grpo_qwen_math_cka_only_20.json\\\", \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_qwen_math_cka_only_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"179898\\\", \\\"checkpoint_path\\\": \\\"N/A - eval killed before completion\\\", \\\"log_path\\\": \\\"/tmp/eval_gsm8k_mf3.log\\\"}, \\\"notes\\\": \\\"KILLED: Director 批准 kill (78s/sample too slow, 26.5h ETA). 重启为 N=500 版本 (eval_gsm8k_grpo_qwen_math_cka_only_20_n500). 中间数据: 96/1319, acc=46.0%@50, EOS=14%, avg_len=1805.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-22T12:08:34.874Z\\\"}, \\\"grpo_rasp_alpha3p0_20_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:40:19.362Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:58:15.586Z\\\", \\\"hypothesis\\\": \\\"Re-run of grpo_rasp_alpha3p0_20 (checkpoint corrupted by disk-full). α=3.0 GRPO 100 steps on sft_rasp_alpha3p0_20/checkpoint-935. Critical for dose-response curve (α=3.0 between α=2.0 peak and α=4.0 decline).\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2 --max_steps 100 --save_total_limit 1\\\", \\\"pid\\\": \\\"42003\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (sft_rasp_alpha3p0_20)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"eval_data\\\": \\\"N/A - GRPO training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2\\\", \\\"log_path\\\": \\\"/tmp/grpo_alpha3p0_v2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:58:15.586Z\\\"}, \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:45.575Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:17:52.493Z\\\", \\\"hypothesis\\\": \\\"Standard 20% fair GRPO MATH-500 @2048. P0 data gap for cross-method MATH-500 table. Re-run on westd-32935 after westd-29022 outage.\\\", \\\"parent\\\": \\\"eval_math500_grpo_standard_20_fair_2048\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:12:19.798Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:12:27.767Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:12:38.330160+00:00\\\"}]}, \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.264, \\\"math500_correct\\\": 132, \\\"math500_total\\\": 500, \\\"math500_stderr\\\": 0.0197}, \\\"notes\\\": \\\"Cron 误判。实际正常完成。MATH-500 Accuracy = 0.2640 ± 0.0197 (132/500)。运行时长 ~7h11min。结果文件: /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\\\"}, \\\"grpo_random_20_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:34:12.100Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:17:21.388Z\\\", \\\"hypothesis\\\": \\\"MF2 multi-seed validation: Random pruning 20% GRPO with seed123. Tests if GRPO decoupling result (C1) is robust across random seeds. If variance across seeds is low (±2pp), C1 claim is strengthened.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123 --num_steps 100 --seed 123'\\\", \\\"pid\\\": \\\"36832\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (sft_random_20)\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"sft_random_20\\\", \\\"eval_data\\\": \\\"N/A - GRPO training, not eval\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123\\\", \\\"log_path\\\": \\\"/tmp/mf2_random_seed123_grpo.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:12:49.435Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:12:57.919Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:13:16.493425+00:00\\\"}]}, \\\"notes\\\": \\\"Cron 误判 (已知 pattern: process dead 5× with no sentinel/W&B)。实际 GRPO 训练正常完成 (19:02 CST)。模型保存: /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123。WandB run: grpo_sft_random_20 (ID: 1silchcm)。日志: /tmp/mf2_random_seed123_grpo.log\\\"}, \\\"pipeline_depth_first_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:31:01.602Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:04:44.496Z\\\", \\\"hypothesis\\\": \\\"MF5 Late-Layer-First baseline: synthetic importance scores (L0-9=1.0, L10-17=0.5, L18-27=0.001) → standard prune 20% → SFT → GRPO 100 steps → eval. Tests if CKA-only advantage is confounded by layer-depth bias. If depth-first ≈ CKA-only, the advantage is just removing deep layers, not CKA-guided selection.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"prune.py(standard, synthetic_depth_scores) → sft_recovery.py(2ep) → train_grpo_v5.py(100 steps) → eval_gsm8k.py(GRPO+SFT)\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"36167\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split for SFT/GRPO)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"synthetic_depth_scores.pt → pruned_depth_first_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:04:35.462Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T11:04:36.910Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:04:49.346957+00:00\\\"}]}}, \\\"grpo_rasp_alpha3p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:48:06.001Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:39:07.034Z\\\", \\\"hypothesis\\\": \\\"α=3.0 GRPO 100 steps on checkpoint-935 (1 epoch SFT). Dose-response data point between α=2.0 and α=4.0. If monotonic: higher α → higher GSM8K accuracy, confirming CKA overlap suppression causally harms recovery.\\\", \\\"parent\\\": \\\"grpo_alpha4_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"command\\\": \\\"train_grpo_v5.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --output_dir grpo_rasp_alpha3p0_20 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"170676\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"eval_data\\\": \\\"N/A - GRPO training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20/checkpoint-100\\\", \\\"log_path\\\": \\\"/tmp/alpha3p0_grpo.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:31:57.909Z\\\", \\\"notes\\\": \\\"GRPO 训练 100/100 steps 完成，但 checkpoint-100/model.safetensors 被截断（7.2GB vs 应有 11.5GB）。原因：westb 数据盘在保存时 100% 满。需要重跑 GRPO。SFT checkpoint-935 完好（11.5GB）。\\\"}, \\\"eval_gsm8k_sft_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:19:50.623Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:22:56.503Z\\\", \\\"hypothesis\\\": \\\"α=2.0 SFT GSM8K eval for C1 decoupling. Paired with α=2.0 GRPO (66.11%). Critical: if SFT ~61-62%, Δ ≈ +4-5pp would break C1 universal ±2pp claim. Reviewer-flagged risk.\\\", \\\"parent\\\": \\\"pipeline_alpha2p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha2p0_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha2p0_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:22:49.360Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6497, \\\"gsm8k_correct\\\": 857, \\\"gsm8k_total\\\": 1319}}, \\\"eval_gsm8k_sft_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:19:48.133Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:20:57.690Z\\\", \\\"hypothesis\\\": \\\"α=0.5 SFT GSM8K eval for C1 decoupling. Paired with α=0.5 GRPO (61.18%). Δ(GRPO-SFT) tests whether GRPO benefit is universal ±2pp across α values.\\\", \\\"parent\\\": \\\"pipeline_alpha0p5_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha0p5_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha0p5_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:20:50.793Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6073, \\\"gsm8k_correct\\\": 801, \\\"gsm8k_total\\\": 1319}}, \\\"grpo_qwen_math_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:50:34.293Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:54:05.974Z\\\", \\\"hypothesis\\\": \\\"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO 100 steps. Tests if CKA-guided pruning advantage transfers beyond DeepSeek-R1 to Qwen-Math family. P0 highest priority.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20_v2\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"command\\\": \\\"train_grpo_v5.py --model_path sft_qwen_math_cka_only_20_v2 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\\\", \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"164710\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"sft_qwen_math_cka_only_20_v2\\\", \\\"eval_data\\\": \\\"N/A - this is GRPO training, not eval\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20\\\", \\\"log_path\\\": \\\"/tmp/mf3_qwen_grpo.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:54:05.974Z\\\"}, \\\"eval_gsm8k_grpo_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:28:08.089Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:29:24.824Z\\\", \\\"hypothesis\\\": \\\"α=2.0 GRPO GSM8K eval. Dose-response data point: moderate overlap suppression (α=2.0) between α=1.0 (61.49%) and α=4.0 (62.77%). Tests monotonicity of dose-response curve.\\\", \\\"parent\\\": \\\"pipeline_alpha2p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_rasp_alpha2p0_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_rasp_alpha2p0_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:29:16.837Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6611, \\\"gsm8k_correct\\\": 872, \\\"gsm8k_total\\\": 1319}}, \\\"eval_gsm8k_grpo_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:28:05.478Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:29:23.350Z\\\", \\\"hypothesis\\\": \\\"α=0.5 GRPO GSM8K eval. Dose-response data point: low overlap suppression (α=0.5) should yield lower accuracy than α=1.0 (61.49%) if CKA overlap suppression causally harms recovery.\\\", \\\"parent\\\": \\\"pipeline_alpha0p5_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_rasp_alpha0p5_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_rasp_alpha0p5_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:29:13.196Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6118, \\\"gsm8k_correct\\\": 807, \\\"gsm8k_total\\\": 1319}}, \\\"eval_math500_sft_standard_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:31:30.202Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:27:40.167Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard 20% SFT MATH-500 @2048. Cross-scale comparison with CKA-only 1.5B (10.6%) to test if CKA-guided pruning advantage is scale-invariant.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.054, \\\"correct\\\": 27, \\\"total\\\": 500, \\\"truncated\\\": 335}, \\\"completed_at\\\": \\\"2026-05-22T07:50:22.759Z\\\"}, \\\"eval_math500_sft_rasp_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:31:31.934Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:06:21.924Z\\\", \\\"hypothesis\\\": \\\"1.5B RASP 20% SFT MATH-500 @2048. Cross-scale comparison: if ranking CKA-only > Standard > RASP holds at 1.5B, validates scale-invariant importance metric.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_rasp_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_rasp_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\"}, \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.062, \\\"correct\\\": 31, \\\"total\\\": 500}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T07:26:50.474Z\\\"}, \\\"eval_math500_sft_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T02:30:44.919Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:06:20.289Z\\\", \\\"hypothesis\\\": \\\"Cross-scale (1.5B) CKA-only 20% SFT MATH-500 @2048 provides cross-scale generalization evidence. If CKA-guided pruning maintains relative advantage at 1.5B, it validates importance metric transfers across model sizes.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_1p5b.json --max_new_tokens 2048 --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"140458\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_cka_only_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_cka_only_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_1p5b.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\", \\\"completed_at\\\": \\\"2026-05-22T04:24:53.356Z\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.106, \\\"correct\\\": 53, \\\"total\\\": 500}}, \\\"pipeline_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:48:26.680Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:54:20.035Z\\\", \\\"hypothesis\\\": \\\"α=2.0 (moderate overlap suppression) between α=1.0 (54.43% GRPO) and α=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic: CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling at this α.\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash pipeline (prune α=2.0 → SFT → GRPO → eval_gsm8k×2)\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 14133, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:48:39.452Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3755.3, \\\"gpu_hours\\\": 1.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:51:13.330Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T06:51:14.787Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:51:29.639325+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=1, 日志末尾有 \\\\\\\"Terminated\\\\\\\"。SFT 训练仅到 step 15/5604 被外部终止。与 pipeline_alpha0p5_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\\\"}, \\\"pipeline_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:47:08.448Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:54:10.737Z\\\", \\\"hypothesis\\\": \\\"α=0.5 (minimal overlap suppression) should produce pruning similar to standard importance-only, predicting GSM8K accuracy near standard 20% (~59.84% GRPO). Combined with α=4.0 (62.77%) and α=1.0 (54.43%), establishes dose-response curve for overlap suppression strength.\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash pipeline (prune α=0.5 → SFT → GRPO → eval_gsm8k×2)\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 13852, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/pipeline_alpha0p5_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:47:51.314Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3753.2, \\\"gpu_hours\\\": 1.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:50:19.536Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T06:50:24.504Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:50:31.052040+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=129 (SIGHUP), SFT 训练仅到 step 15/5604 被外部终止。日志无 Traceback/OOM。与 pipeline_alpha2p0_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\\\"}, \\\"eval_gsm8k_sft_alpha4_20_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:50.201Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:05:53.848Z\\\", \\\"hypothesis\\\": \\\"α=4.0 SFT GSM8K N=1319 full eval @2048. D100 critical for C1 decoupling universality. v4 lost to westd-29022 outage. Re-run on westd-32935.\\\", \\\"parent\\\": \\\"eval_gsm8k_sft_alpha4_20_v4\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_gsm8k_sft_alpha4_20_v5.log\\\", \\\"result_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T05:47:27.370Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T05:47:34.101Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T05:47:41.693855+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6194, \\\"correct\\\": 817, \\\"total\\\": 1319, \\\"stderr\\\": 0.0134, \\\"eos_rate\\\": 0.981, \\\"avg_response_length\\\": 197.85}}, \\\"eval_gsm8k_grpo_alpha4_20_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:52.414Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:33:39.349Z\\\", \\\"hypothesis\\\": \\\"α=4.0 GRPO GSM8K N=1319 full eval @2048. v1 timed out at 774/1319 (62.93% interim). v2 ALLOCATED but westd-29022 died. Re-run on westd-32935 with --max_new_tokens 2048.\\\", \\\"parent\\\": \\\"eval_gsm8k_grpo_alpha4_20_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"grpo_alpha4_20/checkpoint-100\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"grpo_alpha4_20/checkpoint-100\\\", \\\"eval_data\\\": \\\"GSM8K\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T05:30:52.773Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T05:30:50.611Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T05:31:04.453494+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6277, \\\"gsm8k_accuracy_ci\\\": 0.0133, \\\"gsm8k_correct\\\": 828, \\\"gsm8k_total\\\": 1319, \\\"eos_rate\\\": 0.9856, \\\"avg_response_length\\\": 188.16, \\\"natural_eos\\\": 1300, \\\"truncated\\\": 19}, \\\"notes\\\": \\\"Cron 误判为 failed（进程正常退出但 cron 未检测到 sentinel）。实际完成 1319/1319，accuracy=62.77%。α=4.0 GRPO > Standard GRPO (59.84%) > RASP α=1.0 GRPO (54.43%)。确认 α tuning 有效缓解 RASP collapse。checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100, log_path: /root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log, results_path: /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\"}, \\\"eval_math500_sft_cka_only_20_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T00:40:59.108Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:20.089Z\\\", \\\"hypothesis\\\": \\\"CKA-only 20% SFT MATH-500 @2048 re-run on dedicated westb:0 GPU. v6 killed at 317/500 to split GPU workload. Expected ~29% based on prior @4096 results.\\\", \\\"parent\\\": \\\"eval_math500_sft_cka_only_20_v6\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_v7.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"133850\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_cka_only_20\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_cka_only_20\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.268, \\\"correct\\\": 134, \\\"n_total\\\": 500, \\\"natural_eos\\\": 384, \\\"truncated\\\": 116, \\\"avg_response_length\\\": 673.278}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\", \\\"completed_at\\\": \\\"2026-05-22T04:25:20.089Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 351, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7378}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "e0e8257d-5ee0-43b7-bcbf-dc1a1697f033",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_gsm8k_sft_alpha3p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:36:14.879Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}}, \\\"eval_gsm8k_grpo_qwen_math_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:30:10.266Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:08:34.874Z\\\", \\\"hypothesis\\\": \\\"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO → GSM8K eval. Tests if CKA-guided pruning advantage transfers to Qwen-Math architecture.\\\", \\\"parent\\\": \\\"grpo_qwen_math_cka_only_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_qwen_math_cka_only_20 --max_new_tokens 2048 --output_path results/eval_gsm8k_grpo_qwen_math_cka_only_20.json\\\", \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_qwen_math_cka_only_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"179898\\\", \\\"checkpoint_path\\\": \\\"N/A - eval killed before completion\\\", \\\"log_path\\\": \\\"/tmp/eval_gsm8k_mf3.log\\\"}, \\\"notes\\\": \\\"KILLED: Director 批准 kill (78s/sample too slow, 26.5h ETA). 重启为 N=500 版本 (eval_gsm8k_grpo_qwen_math_cka_only_20_n500). 中间数据: 96/1319, acc=46.0%@50, EOS=14%, avg_len=1805.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-22T12:08:34.874Z\\\"}, \\\"grpo_rasp_alpha3p0_20_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:40:19.362Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:58:15.586Z\\\", \\\"hypothesis\\\": \\\"Re-run of grpo_rasp_alpha3p0_20 (checkpoint corrupted by disk-full). α=3.0 GRPO 100 steps on sft_rasp_alpha3p0_20/checkpoint-935. Critical for dose-response curve (α=3.0 between α=2.0 peak and α=4.0 decline).\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2 --max_steps 100 --save_total_limit 1\\\", \\\"pid\\\": \\\"42003\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (sft_rasp_alpha3p0_20)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"eval_data\\\": \\\"N/A - GRPO training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2\\\", \\\"log_path\\\": \\\"/tmp/grpo_alpha3p0_v2.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:58:15.586Z\\\"}, \\\"eval_math500_grpo_standard_20_fair_2048_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:45.575Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:17:52.493Z\\\", \\\"hypothesis\\\": \\\"Standard 20% fair GRPO MATH-500 @2048. P0 data gap for cross-method MATH-500 table. Re-run on westd-32935 after westd-29022 outage.\\\", \\\"parent\\\": \\\"eval_math500_grpo_standard_20_fair_2048\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log\\\", \\\"checkpoint_path\\\": \\\"N/A (eval)\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:12:19.798Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:12:27.767Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:12:38.330160+00:00\\\"}]}, \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.264, \\\"math500_correct\\\": 132, \\\"math500_total\\\": 500, \\\"math500_stderr\\\": 0.0197}, \\\"notes\\\": \\\"Cron 误判。实际正常完成。MATH-500 Accuracy = 0.2640 ± 0.0197 (132/500)。运行时长 ~7h11min。结果文件: /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\\\"}, \\\"grpo_random_20_seed123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:34:12.100Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:17:21.388Z\\\", \\\"hypothesis\\\": \\\"MF2 multi-seed validation: Random pruning 20% GRPO with seed123. Tests if GRPO decoupling result (C1) is robust across random seeds. If variance across seeds is low (±2pp), C1 claim is strengthened.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123 --num_steps 100 --seed 123'\\\", \\\"pid\\\": \\\"36832\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (sft_random_20)\\\", \\\"seed\\\": 123, \\\"checkpoint_source\\\": \\\"sft_random_20\\\", \\\"eval_data\\\": \\\"N/A - GRPO training, not eval\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123\\\", \\\"log_path\\\": \\\"/tmp/mf2_random_seed123_grpo.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:12:49.435Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T11:12:57.919Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:13:16.493425+00:00\\\"}]}, \\\"notes\\\": \\\"Cron 误判 (已知 pattern: process dead 5× with no sentinel/W&B)。实际 GRPO 训练正常完成 (19:02 CST)。模型保存: /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123。WandB run: grpo_sft_random_20 (ID: 1silchcm)。日志: /tmp/mf2_random_seed123_grpo.log\\\"}, \\\"pipeline_depth_first_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:31:01.602Z\\\", \\\"updated_at\\\": \\\"2026-05-22T11:04:44.496Z\\\", \\\"hypothesis\\\": \\\"MF5 Late-Layer-First baseline: synthetic importance scores (L0-9=1.0, L10-17=0.5, L18-27=0.001) → standard prune 20% → SFT → GRPO 100 steps → eval. Tests if CKA-only advantage is confounded by layer-depth bias. If depth-first ≈ CKA-only, the advantage is just removing deep layers, not CKA-guided selection.\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"prune.py(standard, synthetic_depth_scores) → sft_recovery.py(2ep) → train_grpo_v5.py(100 steps) → eval_gsm8k.py(GRPO+SFT)\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"36167\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split for SFT/GRPO)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"synthetic_depth_scores.pt → pruned_depth_first_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T11:04:35.462Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T11:04:36.910Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T11:04:49.346957+00:00\\\"}]}}, \\\"grpo_rasp_alpha3p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:48:06.001Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:39:07.034Z\\\", \\\"hypothesis\\\": \\\"α=3.0 GRPO 100 steps on checkpoint-935 (1 epoch SFT). Dose-response data point between α=2.0 and α=4.0. If monotonic: higher α → higher GSM8K accuracy, confirming CKA overlap suppression causally harms recovery.\\\", \\\"parent\\\": \\\"grpo_alpha4_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"command\\\": \\\"train_grpo_v5.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --output_dir grpo_rasp_alpha3p0_20 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"170676\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"eval_data\\\": \\\"N/A - GRPO training\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20/checkpoint-100\\\", \\\"log_path\\\": \\\"/tmp/alpha3p0_grpo.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:31:57.909Z\\\", \\\"notes\\\": \\\"GRPO 训练 100/100 steps 完成，但 checkpoint-100/model.safetensors 被截断（7.2GB vs 应有 11.5GB）。原因：westb 数据盘在保存时 100% 满。需要重跑 GRPO。SFT checkpoint-935 完好（11.5GB）。\\\"}, \\\"eval_gsm8k_sft_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:19:50.623Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:22:56.503Z\\\", \\\"hypothesis\\\": \\\"α=2.0 SFT GSM8K eval for C1 decoupling. Paired with α=2.0 GRPO (66.11%). Critical: if SFT ~61-62%, Δ ≈ +4-5pp would break C1 universal ±2pp claim. Reviewer-flagged risk.\\\", \\\"parent\\\": \\\"pipeline_alpha2p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha2p0_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha2p0_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:22:49.360Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6497, \\\"gsm8k_correct\\\": 857, \\\"gsm8k_total\\\": 1319}}, \\\"eval_gsm8k_sft_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:19:48.133Z\\\", \\\"updated_at\\\": \\\"2026-05-22T10:20:57.690Z\\\", \\\"hypothesis\\\": \\\"α=0.5 SFT GSM8K eval for C1 decoupling. Paired with α=0.5 GRPO (61.18%). Δ(GRPO-SFT) tests whether GRPO benefit is universal ±2pp across α values.\\\", \\\"parent\\\": \\\"pipeline_alpha0p5_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha0p5_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha0p5_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T10:20:50.793Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6073, \\\"gsm8k_correct\\\": 801, \\\"gsm8k_total\\\": 1319}}, \\\"grpo_qwen_math_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T08:50:34.293Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:54:05.974Z\\\", \\\"hypothesis\\\": \\\"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO 100 steps. Tests if CKA-guided pruning advantage transfers beyond DeepSeek-R1 to Qwen-Math family. P0 highest priority.\\\", \\\"parent\\\": \\\"sft_qwen_math_cka_only_20_v2\\\", \\\"spec\\\": {\\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"command\\\": \\\"train_grpo_v5.py --model_path sft_qwen_math_cka_only_20_v2 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\\\", \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"pid\\\": \\\"164710\\\", \\\"data_path\\\": \\\"openai/gsm8k (train split)\\\", \\\"data_count\\\": 7473, \\\"checkpoint_source\\\": \\\"sft_qwen_math_cka_only_20_v2\\\", \\\"eval_data\\\": \\\"N/A - this is GRPO training, not eval\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20\\\", \\\"log_path\\\": \\\"/tmp/mf3_qwen_grpo.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:54:05.974Z\\\"}, \\\"eval_gsm8k_grpo_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:28:08.089Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:29:24.824Z\\\", \\\"hypothesis\\\": \\\"α=2.0 GRPO GSM8K eval. Dose-response data point: moderate overlap suppression (α=2.0) between α=1.0 (61.49%) and α=4.0 (62.77%). Tests monotonicity of dose-response curve.\\\", \\\"parent\\\": \\\"pipeline_alpha2p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_rasp_alpha2p0_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_rasp_alpha2p0_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:29:16.837Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6611, \\\"gsm8k_correct\\\": 872, \\\"gsm8k_total\\\": 1319}}, \\\"eval_gsm8k_grpo_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T09:28:05.478Z\\\", \\\"updated_at\\\": \\\"2026-05-22T09:29:23.350Z\\\", \\\"hypothesis\\\": \\\"α=0.5 GRPO GSM8K eval. Dose-response data point: low overlap suppression (α=0.5) should yield lower accuracy than α=1.0 (61.49%) if CKA overlap suppression causally harms recovery.\\\", \\\"parent\\\": \\\"pipeline_alpha0p5_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path grpo_rasp_alpha0p5_20 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"grpo_rasp_alpha0p5_20\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T09:29:13.196Z\\\", \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6118, \\\"gsm8k_correct\\\": 807, \\\"gsm8k_total\\\": 1319}}, \\\"eval_math500_sft_standard_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:31:30.202Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:27:40.167Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard 20% SFT MATH-500 @2048. Cross-scale comparison with CKA-only 1.5B (10.6%) to test if CKA-guided pruning advantage is scale-invariant.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_standard_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.054, \\\"correct\\\": 27, \\\"total\\\": 500, \\\"truncated\\\": 335}, \\\"completed_at\\\": \\\"2026-05-22T07:50:22.759Z\\\"}, \\\"eval_math500_sft_rasp_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:31:31.934Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:06:21.924Z\\\", \\\"hypothesis\\\": \\\"1.5B RASP 20% SFT MATH-500 @2048. Cross-scale comparison: if ranking CKA-only > Standard > RASP holds at 1.5B, validates scale-invariant importance metric.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20_1p5b.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_rasp_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_rasp_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\"}, \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.062, \\\"correct\\\": 31, \\\"total\\\": 500}, \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-22T07:26:50.474Z\\\"}, \\\"eval_math500_sft_cka_only_20_1p5b\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T02:30:44.919Z\\\", \\\"updated_at\\\": \\\"2026-05-22T08:06:20.289Z\\\", \\\"hypothesis\\\": \\\"Cross-scale (1.5B) CKA-only 20% SFT MATH-500 @2048 provides cross-scale generalization evidence. If CKA-guided pruning maintains relative advantage at 1.5B, it validates importance metric transfers across model sizes.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_1p5b.json --max_new_tokens 2048 --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"140458\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_cka_only_20_1p5b\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_cka_only_20_1p5b\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_1p5b.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\\\", \\\"completed_at\\\": \\\"2026-05-22T04:24:53.356Z\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.106, \\\"correct\\\": 53, \\\"total\\\": 500}}, \\\"pipeline_alpha2p0_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:48:26.680Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:54:20.035Z\\\", \\\"hypothesis\\\": \\\"α=2.0 (moderate overlap suppression) between α=1.0 (54.43% GRPO) and α=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic: CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling at this α.\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash pipeline (prune α=2.0 → SFT → GRPO → eval_gsm8k×2)\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"pid\\\": 14133, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:48:39.452Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3755.3, \\\"gpu_hours\\\": 1.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:51:13.330Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T06:51:14.787Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:51:29.639325+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=1, 日志末尾有 \\\\\\\"Terminated\\\\\\\"。SFT 训练仅到 step 15/5604 被外部终止。与 pipeline_alpha0p5_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\\\"}, \\\"pipeline_alpha0p5_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T05:47:08.448Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:54:10.737Z\\\", \\\"hypothesis\\\": \\\"α=0.5 (minimal overlap suppression) should produce pruning similar to standard importance-only, predicting GSM8K accuracy near standard 20% (~59.84% GRPO). Combined with α=4.0 (62.77%) and α=1.0 (54.43%), establishes dose-response curve for overlap suppression strength.\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup bash pipeline (prune α=0.5 → SFT → GRPO → eval_gsm8k×2)\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"pid\\\": 13852, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/pipeline_alpha0p5_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T05:47:51.314Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3753.2, \\\"gpu_hours\\\": 1.04}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T06:50:19.536Z\\\"}, \\\"failure_reason\\\": \\\"EXIT_CODE=129 (non-zero)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T06:50:24.504Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T06:50:31.052040+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: EXIT_CODE=129 (SIGHUP), SFT 训练仅到 step 15/5604 被外部终止。日志无 Traceback/OOM。与 pipeline_alpha2p0_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\\\"}, \\\"eval_gsm8k_sft_alpha4_20_v5\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:50.201Z\\\", \\\"updated_at\\\": \\\"2026-05-22T06:05:53.848Z\\\", \\\"hypothesis\\\": \\\"α=4.0 SFT GSM8K N=1319 full eval @2048. D100 critical for C1 decoupling universality. v4 lost to westd-29022 outage. Re-run on westd-32935.\\\", \\\"parent\\\": \\\"eval_gsm8k_sft_alpha4_20_v4\\\", \\\"spec\\\": {\\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_gsm8k_sft_alpha4_20_v5.log\\\", \\\"result_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T05:47:27.370Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T05:47:34.101Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T05:47:41.693855+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6194, \\\"correct\\\": 817, \\\"total\\\": 1319, \\\"stderr\\\": 0.0134, \\\"eos_rate\\\": 0.981, \\\"avg_response_length\\\": 197.85}}, \\\"eval_gsm8k_grpo_alpha4_20_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T03:49:52.414Z\\\", \\\"updated_at\\\": \\\"2026-05-22T05:33:39.349Z\\\", \\\"hypothesis\\\": \\\"α=4.0 GRPO GSM8K N=1319 full eval @2048. v1 timed out at 774/1319 (62.93% interim). v2 ALLOCATED but westd-29022 died. Re-run on westd-32935 with --max_new_tokens 2048.\\\", \\\"parent\\\": \\\"eval_gsm8k_grpo_alpha4_20_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\", \\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"grpo_alpha4_20/checkpoint-100\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"grpo_alpha4_20/checkpoint-100\\\", \\\"eval_data\\\": \\\"GSM8K\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T05:30:52.773Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T05:30:50.611Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T05:31:04.453494+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6277, \\\"gsm8k_accuracy_ci\\\": 0.0133, \\\"gsm8k_correct\\\": 828, \\\"gsm8k_total\\\": 1319, \\\"eos_rate\\\": 0.9856, \\\"avg_response_length\\\": 188.16, \\\"natural_eos\\\": 1300, \\\"truncated\\\": 19}, \\\"notes\\\": \\\"Cron 误判为 failed（进程正常退出但 cron 未检测到 sentinel）。实际完成 1319/1319，accuracy=62.77%。α=4.0 GRPO > Standard GRPO (59.84%) > RASP α=1.0 GRPO (54.43%)。确认 α tuning 有效缓解 RASP collapse。checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100, log_path: /root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log, results_path: /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\"}, \\\"eval_math500_sft_cka_only_20_v7\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T00:40:59.108Z\\\", \\\"updated_at\\\": \\\"2026-05-22T04:25:20.089Z\\\", \\\"hypothesis\\\": \\\"CKA-only 20% SFT MATH-500 @2048 re-run on dedicated westb:0 GPU. v6 killed at 317/500 to split GPU workload. Expected ~29% based on prior @4096 results.\\\", \\\"parent\\\": \\\"eval_math500_sft_cka_only_20_v6\\\", \\\"spec\\\": {\\\"command\\\": \\\"nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_v7.json\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"133850\\\", \\\"data_path\\\": \\\"MATH-500\\\", \\\"data_count\\\": 500, \\\"model_name\\\": \\\"sft_cka_only_20\\\", \\\"model_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_cka_only_20\\\", \\\"eval_data\\\": \\\"MATH-500\\\", \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\\\"}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"math500_accuracy\\\": 0.268, \\\"correct\\\": 134, \\\"n_total\\\": 500, \\\"natural_eos\\\": 384, \\\"truncated\\\": 116, \\\"avg_response_length\\\": 673.278}, \\\"log_path\\\": \\\"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\\\", \\\"completed_at\\\": \\\"2026-05-22T04:25:20.089Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 351, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.7378}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_gsm8k_sft_alpha3p0_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:24:58.696Z\", \"updated_at\": \"2026-05-22T12:36:14.879Z\", \"hypothesis\": \"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"37024\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T12:34:57.027Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:35:05.634Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:35:15.663664+00:00\"}]}, \"metrics\": {\"accuracy\": 0.6414, \"correct\": 846, \"total\": 1319}}, \"eval_gsm8k_grpo_qwen_math_cka_only_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:30:10.266Z\", \"updated_at\": \"2026-05-22T12:08:34.874Z\", \"hypothesis\": \"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO → GSM8K eval. Tests if CKA-guided pruning advantage transfers to Qwen-Math architecture.\", \"parent\": \"grpo_qwen_math_cka_only_20\", \"spec\": {\"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"command\": \"eval_gsm8k.py --model_path grpo_qwen_math_cka_only_20 --max_new_tokens 2048 --output_path results/eval_gsm8k_grpo_qwen_math_cka_only_20.json\", \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"grpo_qwen_math_cka_only_20\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"179898\", \"checkpoint_path\": \"N/A - eval killed before completion\", \"log_path\": \"/tmp/eval_gsm8k_mf3.log\"}, \"notes\": \"KILLED: Director 批准 kill (78s/sample too slow, 26.5h ETA). 重启为 N=500 版本 (eval_gsm8k_grpo_qwen_math_cka_only_20_n500). 中间数据: 96/1319, acc=46.0%@50, EOS=14%, avg_len=1805.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-22T12:08:34.874Z\"}, \"grpo_rasp_alpha3p0_20_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:40:19.362Z\", \"updated_at\": \"2026-05-22T11:58:15.586Z\", \"hypothesis\": \"Re-run of grpo_rasp_alpha3p0_20 (checkpoint corrupted by disk-full). α=3.0 GRPO 100 steps on sft_rasp_alpha3p0_20/checkpoint-935. Critical for dose-response curve (α=3.0 between α=2.0 peak and α=4.0 decline).\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:0\", \"command\": \"CUDA_VISIBLE_DEVICES=0 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 nohup python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2 --max_steps 100 --save_total_limit 1\", \"pid\": \"42003\", \"data_path\": \"openai/gsm8k (train split)\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (sft_rasp_alpha3p0_20)\", \"seed\": 42, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935\", \"eval_data\": \"N/A - GRPO training\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2\", \"log_path\": \"/tmp/grpo_alpha3p0_v2.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T11:58:15.586Z\"}, \"eval_math500_grpo_standard_20_fair_2048_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T03:49:45.575Z\", \"updated_at\": \"2026-05-22T11:17:52.493Z\", \"hypothesis\": \"Standard 20% fair GRPO MATH-500 @2048. P0 data gap for cross-method MATH-500 table. Re-run on westd-32935 after westd-29022 outage.\", \"parent\": \"eval_math500_grpo_standard_20_fair_2048\", \"spec\": {\"command\": \"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\", \"server\": \"westd-32935\", \"gpu\": [\"cuda:0\"], \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"grpo_stage2_standard_20_fair\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\", \"seed\": 42, \"checkpoint_source\": \"grpo_stage2_standard_20_fair\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048_v2.log\", \"checkpoint_path\": \"N/A (eval)\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T11:12:19.798Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T11:12:27.767Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T11:12:38.330160+00:00\"}]}, \"metrics\": {\"math500_accuracy\": 0.264, \"math500_correct\": 132, \"math500_total\": 500, \"math500_stderr\": 0.0197}, \"notes\": \"Cron 误判。实际正常完成。MATH-500 Accuracy = 0.2640 ± 0.0197 (132/500)。运行时长 ~7h11min。结果文件: /root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048_v2.json\"}, \"grpo_random_20_seed123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:34:12.100Z\", \"updated_at\": \"2026-05-22T11:17:21.388Z\", \"hypothesis\": \"MF2 multi-seed validation: Random pruning 20% GRPO with seed123. Tests if GRPO decoupling result (C1) is robust across random seeds. If variance across seeds is low (±2pp), C1 claim is strengthened.\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_random_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123 --num_steps 100 --seed 123'\", \"pid\": \"36832\", \"data_path\": \"openai/gsm8k (train split)\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (sft_random_20)\", \"seed\": 123, \"checkpoint_source\": \"sft_random_20\", \"eval_data\": \"N/A - GRPO training, not eval\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123\", \"log_path\": \"/tmp/mf2_random_seed123_grpo.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T11:12:49.435Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T11:12:57.919Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T11:13:16.493425+00:00\"}]}, \"notes\": \"Cron 误判 (已知 pattern: process dead 5× with no sentinel/W&B)。实际 GRPO 训练正常完成 (19:02 CST)。模型保存: /root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_seed123。WandB run: grpo_sft_random_20 (ID: 1silchcm)。日志: /tmp/mf2_random_seed123_grpo.log\"}, \"pipeline_depth_first_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:31:01.602Z\", \"updated_at\": \"2026-05-22T11:04:44.496Z\", \"hypothesis\": \"MF5 Late-Layer-First baseline: synthetic importance scores (L0-9=1.0, L10-17=0.5, L18-27=0.001) → standard prune 20% → SFT → GRPO 100 steps → eval. Tests if CKA-only advantage is confounded by layer-depth bias. If depth-first ≈ CKA-only, the advantage is just removing deep layers, not CKA-guided selection.\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:3\", \"command\": \"prune.py(standard, synthetic_depth_scores) → sft_recovery.py(2ep) → train_grpo_v5.py(100 steps) → eval_gsm8k.py(GRPO+SFT)\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": \"36167\", \"data_path\": \"openai/gsm8k (train split for SFT/GRPO)\", \"data_count\": 7473, \"checkpoint_source\": \"synthetic_depth_scores.pt → pruned_depth_first_20\", \"eval_data\": \"gsm8k test 1319\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T11:04:35.462Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T11:04:36.910Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T11:04:49.346957+00:00\"}]}}, \"grpo_rasp_alpha3p0_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:48:06.001Z\", \"updated_at\": \"2026-05-22T10:39:07.034Z\", \"hypothesis\": \"α=3.0 GRPO 100 steps on checkpoint-935 (1 epoch SFT). Dose-response data point between α=2.0 and α=4.0. If monotonic: higher α → higher GSM8K accuracy, confirming CKA overlap suppression causally harms recovery.\", \"parent\": \"grpo_alpha4_20\", \"spec\": {\"server\": \"westb-23072\", \"gpu\": \"cuda:0\", \"command\": \"train_grpo_v5.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --output_dir grpo_rasp_alpha3p0_20 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"pid\": \"170676\", \"data_path\": \"openai/gsm8k (train split)\", \"data_count\": 7473, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935\", \"eval_data\": \"N/A - GRPO training\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20/checkpoint-100\", \"log_path\": \"/tmp/alpha3p0_grpo.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:31:57.909Z\", \"notes\": \"GRPO 训练 100/100 steps 完成，但 checkpoint-100/model.safetensors 被截断（7.2GB vs 应有 11.5GB）。原因：westb 数据盘在保存时 100% 满。需要重跑 GRPO。SFT checkpoint-935 完好（11.5GB）。\"}, \"eval_gsm8k_sft_alpha2p0_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:19:50.623Z\", \"updated_at\": \"2026-05-22T10:22:56.503Z\", \"hypothesis\": \"α=2.0 SFT GSM8K eval for C1 decoupling. Paired with α=2.0 GRPO (66.11%). Critical: if SFT ~61-62%, Δ ≈ +4-5pp would break C1 universal ±2pp claim. Reviewer-flagged risk.\", \"parent\": \"pipeline_alpha2p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha2p0_20 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha2p0_20\", \"eval_data\": \"gsm8k test 1319\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:22:49.360Z\", \"metrics\": {\"gsm8k_accuracy\": 0.6497, \"gsm8k_correct\": 857, \"gsm8k_total\": 1319}}, \"eval_gsm8k_sft_alpha0p5_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:19:48.133Z\", \"updated_at\": \"2026-05-22T10:20:57.690Z\", \"hypothesis\": \"α=0.5 SFT GSM8K eval for C1 decoupling. Paired with α=0.5 GRPO (61.18%). Δ(GRPO-SFT) tests whether GRPO benefit is universal ±2pp across α values.\", \"parent\": \"pipeline_alpha0p5_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:3\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha0p5_20 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha0p5_20\", \"eval_data\": \"gsm8k test 1319\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha0p5_20.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T10:20:50.793Z\", \"metrics\": {\"gsm8k_accuracy\": 0.6073, \"gsm8k_correct\": 801, \"gsm8k_total\": 1319}}, \"grpo_qwen_math_cka_only_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:50:34.293Z\", \"updated_at\": \"2026-05-22T09:54:05.974Z\", \"hypothesis\": \"MF3 cross-architecture validation: Qwen2.5-Math-7B CKA-only 20% pruned → SFT → GRPO 100 steps. Tests if CKA-guided pruning advantage transfers beyond DeepSeek-R1 to Qwen-Math family. P0 highest priority.\", \"parent\": \"sft_qwen_math_cka_only_20_v2\", \"spec\": {\"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"command\": \"train_grpo_v5.py --model_path sft_qwen_math_cka_only_20_v2 --max_steps 100 --learning_rate 1e-6 --per_device_train_batch_size 1 --gradient_accumulation_steps 8 --max_completion_length 512 --temperature 0.4 --beta 0.01 --loss_type dapo --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_8bit\", \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"pid\": \"164710\", \"data_path\": \"openai/gsm8k (train split)\", \"data_count\": 7473, \"checkpoint_source\": \"sft_qwen_math_cka_only_20_v2\", \"eval_data\": \"N/A - this is GRPO training, not eval\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20\", \"log_path\": \"/tmp/mf3_qwen_grpo.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:54:05.974Z\"}, \"eval_gsm8k_grpo_alpha2p0_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:28:08.089Z\", \"updated_at\": \"2026-05-22T09:29:24.824Z\", \"hypothesis\": \"α=2.0 GRPO GSM8K eval. Dose-response data point: moderate overlap suppression (α=2.0) between α=1.0 (61.49%) and α=4.0 (62.77%). Tests monotonicity of dose-response curve.\", \"parent\": \"pipeline_alpha2p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path grpo_rasp_alpha2p0_20 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"grpo_rasp_alpha2p0_20\", \"eval_data\": \"gsm8k test 1319\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha2p0_20\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:29:16.837Z\", \"metrics\": {\"gsm8k_accuracy\": 0.6611, \"gsm8k_correct\": 872, \"gsm8k_total\": 1319}}, \"eval_gsm8k_grpo_alpha0p5_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T09:28:05.478Z\", \"updated_at\": \"2026-05-22T09:29:23.350Z\", \"hypothesis\": \"α=0.5 GRPO GSM8K eval. Dose-response data point: low overlap suppression (α=0.5) should yield lower accuracy than α=1.0 (61.49%) if CKA overlap suppression causally harms recovery.\", \"parent\": \"pipeline_alpha0p5_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:3\", \"command\": \"eval_gsm8k.py --model_path grpo_rasp_alpha0p5_20 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"grpo_rasp_alpha0p5_20\", \"eval_data\": \"gsm8k test 1319\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha0p5_20\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha0p5_20.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T09:29:13.196Z\", \"metrics\": {\"gsm8k_accuracy\": 0.6118, \"gsm8k_correct\": 807, \"gsm8k_total\": 1319}}, \"eval_math500_sft_standard_20_1p5b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:31:30.202Z\", \"updated_at\": \"2026-05-22T08:27:40.167Z\", \"hypothesis\": \"1.5B Standard 20% SFT MATH-500 @2048. Cross-scale comparison with CKA-only 1.5B (10.6%) to test if CKA-guided pruning advantage is scale-invariant.\", \"spec\": {\"command\": \"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_standard_20_1p5b.json\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"sft_standard_20_1p5b\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\", \"seed\": 42, \"checkpoint_source\": \"sft_standard_20_1p5b\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_standard_20_1p5b.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\"}, \"conclusion\": \"success\", \"metrics\": {\"math500_accuracy\": 0.054, \"correct\": 27, \"total\": 500, \"truncated\": 335}, \"completed_at\": \"2026-05-22T07:50:22.759Z\"}, \"eval_math500_sft_rasp_20_1p5b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:31:31.934Z\", \"updated_at\": \"2026-05-22T08:06:21.924Z\", \"hypothesis\": \"1.5B RASP 20% SFT MATH-500 @2048. Cross-scale comparison: if ranking CKA-only > Standard > RASP holds at 1.5B, validates scale-invariant importance metric.\", \"spec\": {\"command\": \"python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_20_1p5b.json\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"sft_rasp_20_1p5b\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\", \"seed\": 42, \"checkpoint_source\": \"sft_rasp_20_1p5b\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_rasp_20_1p5b.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\"}, \"metrics\": {\"math500_accuracy\": 0.062, \"correct\": 31, \"total\": 500}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-22T07:26:50.474Z\"}, \"eval_math500_sft_cka_only_20_1p5b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T02:30:44.919Z\", \"updated_at\": \"2026-05-22T08:06:20.289Z\", \"hypothesis\": \"Cross-scale (1.5B) CKA-only 20% SFT MATH-500 @2048 provides cross-scale generalization evidence. If CKA-guided pruning maintains relative advantage at 1.5B, it validates importance metric transfers across model sizes.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_1p5b.json --max_new_tokens 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"140458\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"sft_cka_only_20_1p5b\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\", \"seed\": 42, \"checkpoint_source\": \"sft_cka_only_20_1p5b\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_1p5b.log\"}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20_1p5b\", \"completed_at\": \"2026-05-22T04:24:53.356Z\", \"metrics\": {\"math500_accuracy\": 0.106, \"correct\": 53, \"total\": 500}}, \"pipeline_alpha2p0_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:48:26.680Z\", \"updated_at\": \"2026-05-22T06:54:20.035Z\", \"hypothesis\": \"α=2.0 (moderate overlap suppression) between α=1.0 (54.43% GRPO) and α=4.0 (62.77%). Tests monotonicity of dose-response curve. If monotonic: CKA overlap suppression causally harms recovery. Includes SFT eval for C1 decoupling at this α.\", \"spec\": {\"command\": \"nohup bash pipeline (prune α=2.0 → SFT → GRPO → eval_gsm8k×2)\", \"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"pid\": 14133, \"log_path\": \"~/runs/recovery_aware_struct_prune/pipeline_alpha2p0_20.log\", \"submitted_at\": \"2026-05-22T05:48:39.452Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"seed\": 42, \"wall_clock_seconds\": 3755.3, \"gpu_hours\": 1.04}, \"reproduce\": {\"finished_at\": \"2026-05-22T06:51:13.330Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T06:51:14.787Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:51:29.639325+00:00\"}]}, \"notes\": \"失败原因: EXIT_CODE=1, 日志末尾有 \\\"Terminated\\\"。SFT 训练仅到 step 15/5604 被外部终止。与 pipeline_alpha0p5_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\"}, \"pipeline_alpha0p5_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:47:08.448Z\", \"updated_at\": \"2026-05-22T06:54:10.737Z\", \"hypothesis\": \"α=0.5 (minimal overlap suppression) should produce pruning similar to standard importance-only, predicting GSM8K accuracy near standard 20% (~59.84% GRPO). Combined with α=4.0 (62.77%) and α=1.0 (54.43%), establishes dose-response curve for overlap suppression strength.\", \"spec\": {\"command\": \"nohup bash pipeline (prune α=0.5 → SFT → GRPO → eval_gsm8k×2)\", \"server\": \"westd-32935\", \"gpu\": \"cuda:3\", \"pid\": 13852, \"log_path\": \"~/runs/recovery_aware_struct_prune/pipeline_alpha0p5_20.log\", \"submitted_at\": \"2026-05-22T05:47:51.314Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"data_path\": \"gsm8k\", \"data_count\": 1319, \"seed\": 42, \"wall_clock_seconds\": 3753.2, \"gpu_hours\": 1.04}, \"reproduce\": {\"finished_at\": \"2026-05-22T06:50:19.536Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T06:50:24.504Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:50:31.052040+00:00\"}]}, \"notes\": \"失败原因: EXIT_CODE=129 (SIGHUP), SFT 训练仅到 step 15/5604 被外部终止。日志无 Traceback/OOM。与 pipeline_alpha2p0_20 同时死亡——疑似共同外因。诊断 Worker worker_diagnose_pipeline_alpha_failures_20260522T065330 分析中。\"}, \"eval_gsm8k_sft_alpha4_20_v5\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T03:49:50.201Z\", \"updated_at\": \"2026-05-22T06:05:53.848Z\", \"hypothesis\": \"α=4.0 SFT GSM8K N=1319 full eval @2048. D100 critical for C1 decoupling universality. v4 lost to westd-29022 outage. Re-run on westd-32935.\", \"parent\": \"eval_gsm8k_sft_alpha4_20_v4\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_gsm8k_sft_alpha4_20_v5.log\", \"result_path\": \"/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T05:47:27.370Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T05:47:34.101Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T05:47:41.693855+00:00\"}]}, \"metrics\": {\"gsm8k_accuracy\": 0.6194, \"correct\": 817, \"total\": 1319, \"stderr\": 0.0134, \"eos_rate\": 0.981, \"avg_response_length\": 197.85}}, \"eval_gsm8k_grpo_alpha4_20_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T03:49:52.414Z\", \"updated_at\": \"2026-05-22T05:33:39.349Z\", \"hypothesis\": \"α=4.0 GRPO GSM8K N=1319 full eval @2048. v1 timed out at 774/1319 (62.93% interim). v2 ALLOCATED but westd-29022 died. Re-run on westd-32935 with --max_new_tokens 2048.\", \"parent\": \"eval_gsm8k_grpo_alpha4_20_v2\", \"spec\": {\"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\", \"server\": \"westd-32935\", \"gpu\": [\"cuda:3\"], \"data_path\": \"GSM8K\", \"data_count\": 1319, \"model_name\": \"grpo_alpha4_20/checkpoint-100\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100\", \"seed\": 42, \"checkpoint_source\": \"grpo_alpha4_20/checkpoint-100\", \"eval_data\": \"GSM8K\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T05:30:52.773Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T05:30:50.611Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T05:31:04.453494+00:00\"}]}, \"metrics\": {\"gsm8k_accuracy\": 0.6277, \"gsm8k_accuracy_ci\": 0.0133, \"gsm8k_correct\": 828, \"gsm8k_total\": 1319, \"eos_rate\": 0.9856, \"avg_response_length\": 188.16, \"natural_eos\": 1300, \"truncated\": 19}, \"notes\": \"Cron 误判为 failed（进程正常退出但 cron 未检测到 sentinel）。实际完成 1319/1319，accuracy=62.77%。α=4.0 GRPO > Standard GRPO (59.84%) > RASP α=1.0 GRPO (54.43%)。确认 α tuning 有效缓解 RASP collapse。checkpoint_path: /root/autodl-tmp/recovery_aware_struct_prune/grpo_alpha4_20/checkpoint-100, log_path: /root/recovery_aware_struct_prune/logs/eval_gsm8k_grpo_alpha4_20_v3.log, results_path: /root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\"}, \"eval_math500_sft_cka_only_20_v7\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T00:40:59.108Z\", \"updated_at\": \"2026-05-22T04:25:20.089Z\", \"hypothesis\": \"CKA-only 20% SFT MATH-500 @2048 re-run on dedicated westb:0 GPU. v6 killed at 317/500 to split GPU workload. Expected ~29% based on prior @4096 results.\", \"parent\": \"eval_math500_sft_cka_only_20_v6\", \"spec\": {\"command\": \"nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_v7.json\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:0\"], \"pid\": \"133850\", \"data_path\": \"MATH-500\", \"data_count\": 500, \"model_name\": \"sft_cka_only_20\", \"model_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\", \"seed\": 42, \"checkpoint_source\": \"sft_cka_only_20\", \"eval_data\": \"MATH-500\", \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\"}, \"conclusion\": \"negative\", \"metrics\": {\"math500_accuracy\": 0.268, \"correct\": 134, \"n_total\": 500, \"natural_eos\": 384, \"truncated\": 116, \"avg_response_length\": 673.278}, \"log_path\": \"/root/recovery_aware_struct_prune/logs/eval_math500_sft_cka_only_20_v7.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20\", \"completed_at\": \"2026-05-22T04:25:20.089Z\"}}, \"count\": 20, \"total\": 351, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7378}}"
+              }
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-22T12:37:59.925Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FeR7nU511ZEfYWoXEqPEjo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G  5.2G   25G  18% /\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "db474a2f-6f92-41a5-af7b-0c5e0c374976",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\noverlay          30G  5.2G   25G  18% /\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Filesystem      Size  Used Avail Use% Mounted on\\noverlay          30G  5.2G   25G  18% /\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-22T12:38:00.450Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A9dVpnnBVyrkPuymEiQvJE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json.done\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json.done\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.log\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_alpha3p0_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "6f60cf62-3aae-499a-897b-9497af0fa438",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json.done\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json.done\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.log\\\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_alpha3p0_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_alpha4_20_v3.json.done\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_sft_alpha4_20_v5.json.done\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_random_20_seed123.log\\n/root/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_alpha3p0_20.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture:\n\n1. **Log analysis**: The evaluation completed all 1319/1319 samples. Final accuracy: **0.6414 ± 0.0132 (846/1319)**. But then it crashed with `OSError: [Errno 28] No space left on device` when trying to write the result JSON file.\n\n2. **Process 37024**: Dead (expected).\n\n3. **Result files**: No result JSON file for this experiment. The `find` command found other gsm8k files but nothing for `sft_alpha3p0`. The eval_gsm8k.py likely tried to write to a default path in the results directory but failed due to disk space.\n   \n4. **Registry**: The experiment `eval_gsm8k_sft_alpha3p0_20` already has the correct metrics stored—accuracy of 0.6414 with 846 correct out of 1319 total—and is marked as DONE with success status, which is accurate since the evaluation fully completed despite the file write failure. The disk space issue that caused the crash has since been resolved, with only 18% usage now.\n\n5. Now I need to fill in the missing registry fields like log_path and checkpoint_path, add notes about the JSON write failure, and include additional metrics like stderr and eos statistics to give a complete picture of the run.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "2c6e9e06-70e5-4180-9f29-81156ea3c0f6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。情况清晰：\n\n**评估本身成功完成**：1319/1319 样本，accuracy = **0.6414 ± 0.0132 (846/1319)**。但写结果 JSON 时磁盘满 (`OSError: [Errno 28] No space left on device`)，导致进程以非零退出码结束，cron 误判为失败。\n\nRegistry 已有正确的 metrics (`accuracy: 0.6414, correct: 846, total: 1319`)，conclusion 已是 `success`。需要补充 log_path、checkpoint_path 和 notes。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "27123314-c487-40ab-8f1b-a0db2552a450",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ut2RdvTsbufFnXPStnmBPj",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_gsm8k_sft_alpha3p0_20",
+                "field": "log_path",
+                "value": "/tmp/eval_gsm8k_sft_alpha3p0.log",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "37a0c1c8-8c37-48d0-9dc3-8cb3b91f1de0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MeL8casfoXUmQuJiVabAzn",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_gsm8k_sft_alpha3p0_20",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "99593af6-c63a-42ce-9175-b01e802849fa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-22T12:38:18.829Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ut2RdvTsbufFnXPStnmBPj",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:18.158Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6569}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "d8378c67-6e31-4cb1-aed6-b58b8445f2ff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:18.158Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6569}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_alpha3p0_20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:24:58.696Z\", \"updated_at\": \"2026-05-22T12:38:18.158Z\", \"hypothesis\": \"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"37024\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T12:34:57.027Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:35:05.634Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:35:15.663664+00:00\"}]}, \"metrics\": {\"accuracy\": 0.6414, \"correct\": 846, \"total\": 1319}, \"log_path\": \"/tmp/eval_gsm8k_sft_alpha3p0.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6569}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QZ46vkRisRtLLXkrn93fSp",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_gsm8k_sft_alpha3p0_20",
+                "field": "metrics",
+                "value": {
+                  "gsm8k_accuracy": 0.6414,
+                  "gsm8k_correct": 846,
+                  "gsm8k_total": 1319,
+                  "gsm8k_stderr": 0.0132,
+                  "eos_rate": 0.9879,
+                  "avg_response_length": 188.63,
+                  "natural_eos": 1303,
+                  "truncated": 16
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "44ca2c29-d0ee-46d6-8b27-0a2b6708f843",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-22T12:38:21.171Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MeL8casfoXUmQuJiVabAzn",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:20.309Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.331}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "50158471-2922-44f0-bb0c-55aae0f06373",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:20.309Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.6414, \\\"correct\\\": 846, \\\"total\\\": 1319}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.331}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_alpha3p0_20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:24:58.696Z\", \"updated_at\": \"2026-05-22T12:38:20.309Z\", \"hypothesis\": \"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"37024\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T12:34:57.027Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:35:05.634Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:35:15.663664+00:00\"}]}, \"metrics\": {\"accuracy\": 0.6414, \"correct\": 846, \"total\": 1319}, \"log_path\": \"/tmp/eval_gsm8k_sft_alpha3p0.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.331}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01B6qAnxjS6ZVoY1kqTRxY2h",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_gsm8k_sft_alpha3p0_20",
+                "field": "notes",
+                "value": "Cron 误判。评估 1319/1319 全部完成，accuracy=64.14%。进程因写结果 JSON 时磁盘满 (OSError: No space left on device) 以非零码退出，但所有推理已完成、accuracy 已计算。结果 JSON 未写入磁盘，数据从日志提取。中间进度 ~64.15%@1300 与最终 64.14% 一致。",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "df2a7363-63b5-4cb6-b695-777696888f95",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JPrrgt2ygL275iKfGMihKZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 13356,
+                "cache_read_input_tokens": 31416,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13356
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-22T12:38:24.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QZ46vkRisRtLLXkrn93fSp",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:22.160Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6414, \\\"gsm8k_correct\\\": 846, \\\"gsm8k_total\\\": 1319, \\\"gsm8k_stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9879, \\\"avg_response_length\\\": 188.63, \\\"natural_eos\\\": 1303, \\\"truncated\\\": 16}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8868}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "bffa4364-1f3e-468f-8dbc-ea2cb8d6e778",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:22.160Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6414, \\\"gsm8k_correct\\\": 846, \\\"gsm8k_total\\\": 1319, \\\"gsm8k_stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9879, \\\"avg_response_length\\\": 188.63, \\\"natural_eos\\\": 1303, \\\"truncated\\\": 16}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.8868}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_alpha3p0_20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:24:58.696Z\", \"updated_at\": \"2026-05-22T12:38:22.160Z\", \"hypothesis\": \"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"37024\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T12:34:57.027Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:35:05.634Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:35:15.663664+00:00\"}]}, \"metrics\": {\"gsm8k_accuracy\": 0.6414, \"gsm8k_correct\": 846, \"gsm8k_total\": 1319, \"gsm8k_stderr\": 0.0132, \"eos_rate\": 0.9879, \"avg_response_length\": 188.63, \"natural_eos\": 1303, \"truncated\": 16}, \"log_path\": \"/tmp/eval_gsm8k_sft_alpha3p0.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.8868}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-22T12:38:26.643Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01B6qAnxjS6ZVoY1kqTRxY2h",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:25.600Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6414, \\\"gsm8k_correct\\\": 846, \\\"gsm8k_total\\\": 1319, \\\"gsm8k_stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9879, \\\"avg_response_length\\\": 188.63, \\\"natural_eos\\\": 1303, \\\"truncated\\\": 16}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"notes\\\": \\\"Cron 误判。评估 1319/1319 全部完成，accuracy=64.14%。进程因写结果 JSON 时磁盘满 (OSError: No space left on device) 以非零码退出，但所有推理已完成、accuracy 已计算。结果 JSON 未写入磁盘，数据从日志提取。中间进度 ~64.15%@1300 与最终 64.14% 一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5581}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "bd9c19f6-f2d5-4368-9b07-1ee6dfea9ce7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_alpha3p0_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T10:24:58.696Z\\\", \\\"updated_at\\\": \\\"2026-05-22T12:38:25.600Z\\\", \\\"hypothesis\\\": \\\"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\\\", \\\"parent\\\": \\\"grpo_rasp_alpha3p0_20\\\", \\\"spec\\\": {\\\"server\\\": \\\"westd-32935\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"command\\\": \\\"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\\\", \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"openai/gsm8k (test split)\\\", \\\"data_count\\\": 1319, \\\"checkpoint_source\\\": \\\"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\\\", \\\"eval_data\\\": \\\"gsm8k test 1319\\\", \\\"pid\\\": \\\"37024\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T12:34:57.027Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T12:35:05.634Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T12:35:15.663664+00:00\\\"}]}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.6414, \\\"gsm8k_correct\\\": 846, \\\"gsm8k_total\\\": 1319, \\\"gsm8k_stderr\\\": 0.0132, \\\"eos_rate\\\": 0.9879, \\\"avg_response_length\\\": 188.63, \\\"natural_eos\\\": 1303, \\\"truncated\\\": 16}, \\\"log_path\\\": \\\"/tmp/eval_gsm8k_sft_alpha3p0.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\\\", \\\"notes\\\": \\\"Cron 误判。评估 1319/1319 全部完成，accuracy=64.14%。进程因写结果 JSON 时磁盘满 (OSError: No space left on device) 以非零码退出，但所有推理已完成、accuracy 已计算。结果 JSON 未写入磁盘，数据从日志提取。中间进度 ~64.15%@1300 与最终 64.14% 一致。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.5581}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_gsm8k_sft_alpha3p0_20\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:24:58.696Z\", \"updated_at\": \"2026-05-22T12:38:25.600Z\", \"hypothesis\": \"α=3.0 SFT GSM8K eval (checkpoint-935, 1 epoch). Dose-response 5th SFT data point for C1 decoupling. Paired with α=3.0 GRPO (pending). Completes the 5-point dose-response SFT column.\", \"parent\": \"grpo_rasp_alpha3p0_20\", \"spec\": {\"server\": \"westd-32935\", \"gpu\": \"cuda:2\", \"command\": \"eval_gsm8k.py --model_path sft_rasp_alpha3p0_20/checkpoint-935 --max_new_tokens 2048\", \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B\", \"seed\": 42, \"data_path\": \"openai/gsm8k (test split)\", \"data_count\": 1319, \"checkpoint_source\": \"sft_rasp_alpha3p0_20/checkpoint-935 (SCP from westb)\", \"eval_data\": \"gsm8k test 1319\", \"pid\": \"37024\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T12:34:57.027Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T12:35:05.634Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:35:15.663664+00:00\"}]}, \"metrics\": {\"gsm8k_accuracy\": 0.6414, \"gsm8k_correct\": 846, \"gsm8k_total\": 1319, \"gsm8k_stderr\": 0.0132, \"eos_rate\": 0.9879, \"avg_response_length\": 188.63, \"natural_eos\": 1303, \"truncated\": 16}, \"log_path\": \"/tmp/eval_gsm8k_sft_alpha3p0.log\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935\", \"notes\": \"Cron 误判。评估 1319/1319 全部完成，accuracy=64.14%。进程因写结果 JSON 时磁盘满 (OSError: No space left on device) 以非零码退出，但所有推理已完成、accuracy 已计算。结果 JSON 未写入磁盘，数据从日志提取。中间进度 ~64.15%@1300 与最终 64.14% 一致。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.5581}}"
+              }
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**实验成功完成。** Cron 误判。\n\n| 项目 | 值 |\n|------|-----|\n| GSM8K Accuracy | **64.14% ± 1.32%** (846/1319) |\n| EOS Rate | 98.79% (1303 natural, 16 truncated) |\n| Avg Response Length | 188.63 tokens |\n| 失败原因 | 无——评估全部完成，仅写结果 JSON 时磁盘满导致非零退出码 |\n\n中间进度 (~64.15%@1300) 与最终结果一致，数据可靠。\n\nRegistry 已更新：补充了 metrics（含 stderr/eos_rate）、log_path、checkpoint_path、notes。conclusion 维持 `success`。\n\n**Dose-response SFT 列现有数据**：α=0.5 → 60.73% | α=2.0 → 64.97% | α=3.0 → **64.14%** | α=4.0 → 61.94%。α=3.0 SFT 位于 α=2.0 和 α=4.0 之间，符合预期的非单调趋势。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "uuid": "a30abb3a-e791-4a25-ad70-c0798a6be049",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WEqqMC6FirPww89QHnp7rD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4480,
+                "cache_read_input_tokens": 44772,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4480
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**实验成功完成。** Cron 误判。\n\n| 项目 | 值 |\n|------|-----|\n| GSM8K Accuracy | **64.14% ± 1.32%** (846/1319) |\n| EOS Rate | 98.79% (1303 natural, 16 truncated) |\n| Avg Response Length | 188.63 tokens |\n| 失败原因 | 无——评估全部完成，仅写结果 JSON 时磁盘满导致非零退出码 |\n\n中间进度 (~64.15%@1300) 与最终结果一致，数据可靠。\n\nRegistry 已更新：补充了 metrics（含 stderr/eos_rate）、log_path、checkpoint_path、notes。conclusion 维持 `success`。\n\n**Dose-response SFT 列现有数据**：α=0.5 → 60.73% | α=2.0 → 64.97% | α=3.0 → **64.14%** | α=4.0 → 61.94%。α=3.0 SFT 位于 α=2.0 和 α=4.0 之间，符合预期的非单调趋势。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61638,
+            "duration_api_ms": 57684,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "833fa359-76ca-4b7e-9c45-315cc12a4671",
+            "total_cost_usd": 0.38011274999999994,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 37411,
+              "cache_read_input_tokens": 138446,
+              "output_tokens": 2997,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 37411,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 334,
+                  "cache_read_input_tokens": 44772,
+                  "cache_creation_input_tokens": 4480,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 4480
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1951,
+                "outputTokens": 30,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002101,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 2997,
+                "cacheReadInputTokens": 138446,
+                "cacheCreationInputTokens": 37411,
+                "webSearchRequests": 0,
+                "costUSD": 0.37801175,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "3ea21cd6-a79b-4bc3-8492-7025364b357b"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-eval-gsm8k-sft-alpha3p0-20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94a4d06dcedb1bac7e6f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb 1p5b progress check",
+  "task_key": "worker_ops_westb_1p5b_progress_check_20260519T014121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_1p5b_progress_check_20260519T014121_result.json",
+    "occurrence": 1,
+    "bytes": 636,
+    "sha256": "d282b4f18e331e7d4c5a8794f959a976a8a828156e4700d959888b0ae4c895d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n| Eval | 进度 | Interim Acc | EOS Rate |\n|------|------|-------------|----------|\n| **Standard 1.5B SFT** (cuda:1, PID 842784) | **~708/1319 (54%)** | **0.2386** (@ 700) | 91.57% |\n| **RASP 1.5B SFT** (cuda:0, PID 845212) | **~854/1319 (65%)** | **0.2800** (@ 850) | 93.88% |\n\nGPU 状态：cuda:0 68% util / 6.6GB, cuda:1 71% util / 6.5GB — 都在正常跑。\n\n结果文件尚未写出（eval 脚本应在全部完成后才写 JSON）。按当前速度估算，RASP 约还需 ~1h，Standard 约还需 ~1.5-2h。\n\nRASP interim acc (28.0%) > Standard interim acc (23.9%)，差距约 4.1pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-1p5b-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31d1c7bc578080449db9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 grpo cka only 25 v2",
+  "task_key": "worker_harvest_eval_math500_grpo_cka_only_25_v2_20260521T173249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_grpo_cka_only_25_v2_20260521T173249_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "4d5046db5d62bd6ad6dfb5bc112f25767bba480086c5702c9381f56ef44d60b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_math500_grpo_cka_only_25_v2 — 完成**\n\n| 指标 | 值 |\n|------|-----|\n| MATH-500 Accuracy | **18.40% ± 1.73%** |\n| Correct / Total | 92 / 500 |\n| 结论 | success（评估完成，结果 JSON 未保存因 `--output_path` 指向目录而非文件，metrics 从日志提取） |\n\n**westd-29022 GPU 状态：**\n- cuda:0 — **已释放**（0 MiB, 0% util）\n- cuda:1 — 占用中（17369 MiB, 98%）\n- cuda:2 — 空闲（0 MiB, 0%）\n- cuda:3 — 占用中（16049 MiB, 98%）\n\nRegistry 已更新为 DONE/success，cron 已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-grpo-cka-only-25-v2.md"
+}

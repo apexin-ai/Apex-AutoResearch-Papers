@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bbaaa740c4fa20413e76",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh seed123v2 result and math500 alpha1p0 westd0",
+  "task_key": "worker_ssh_seed123v2_result_and_math500_alpha1p0_westd0_20260522T163407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_seed123v2_result_and_math500_alpha1p0_westd0_20260522T163407_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "c79318ace05fef321cd0f660a04d74f6de638fd2ba3eff1f610849db7948f03c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MATH-500 eval is running successfully — model loaded, evaluating 500 problems, GPU:0 at 12633 MiB / 86%.\n\n## seed123 v2 eval 结果\n- 状态: **completed**\n- accuracy: **50.72%** (669/1319)\n- eos_rate: **99.39%**\n- stderr: 0.01377\n- avg_response_length: 177.9\n\n## MATH-500 α=1.0 SFT 启动\n- PID: 63603 (parent 63598)\n- 模型路径: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd`\n- 输出路径: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha1p0_20.json`\n- GPU:0 显存: 12633 MiB, 86% util\n- 进度: 已开始推理 (1/500)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-seed123v2-result-and-math500-alpha1p0-westd0.md"
+}

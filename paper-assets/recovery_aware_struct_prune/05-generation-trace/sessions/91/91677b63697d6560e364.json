@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91677b63697d6560e364",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb grpo standard 25 checkpoint",
+  "task_key": "worker_ssh_check_westb_grpo_standard_25_checkpoint_20260523T194111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb_grpo_standard_25_checkpoint_20260523T194111_result.json",
+    "occurrence": 1,
+    "bytes": 496,
+    "sha256": "65358e6e24b84a79b3469c82b49f77d0853f04bf3825b30af1a8125bbac55038"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**grpo_standard_25 checkpoint：不存在。** 服务器上没有 `grpo_standard_25` 目录或模型文件（无 .safetensors / .bin）。只有：\n- `grpo_standard_25.log` — 训练日志\n- `grpo_standard_25_westb.log` — 训练日志\n- `grpo_standard_20_1p5b/` — 这是 20% 的 checkpoint（含完整模型文件）\n\n**sft_cka_only_20_fixed eval 结果：**\n- MATH-500 accuracy = **27.4%**（137/500）\n- truncated 样本 116/500，avg response length 673"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb-grpo-standard-25-checkpoint.md"
+}

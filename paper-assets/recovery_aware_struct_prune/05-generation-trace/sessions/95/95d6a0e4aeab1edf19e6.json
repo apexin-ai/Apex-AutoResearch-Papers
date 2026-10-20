@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "95d6a0e4aeab1edf19e6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code grpo v7 emergency",
+  "task_key": "worker_code_grpo_v7_emergency_20260515T140620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_v7_emergency_20260515T140620.log",
+    "occurrence": 1,
+    "bytes": 1358941,
+    "sha256": "186f1d1fbfb197d4fd839a3075089f54e0f57800de331e50b3179e659fd0f182"
+  },
+  "statistics": {
+    "messages": 697,
+    "user_turns": 1,
+    "tool_calls": 280,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 129,
+      "tool_call": 280,
+      "tool_result": 280,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 673,
+      "chunks": [
+        {
+          "path": "95d6a0e4aeab1edf19e6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "95d6a0e4aeab1edf19e6-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "95d6a0e4aeab1edf19e6-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "95d6a0e4aeab1edf19e6-part-0004.json",
+          "message_count": 133
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "95d6a0e4aeab1edf19e6-part-0004.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-grpo-v7-emergency.md"
+}

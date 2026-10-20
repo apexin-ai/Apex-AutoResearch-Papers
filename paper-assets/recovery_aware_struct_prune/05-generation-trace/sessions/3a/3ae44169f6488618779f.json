@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae44169f6488618779f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose gpu idle westd 29022",
+  "task_key": "worker_diagnose_gpu_idle_westd_29022_20260519T100359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu_idle_westd_29022_20260519T100359_result.json",
+    "occurrence": 1,
+    "bytes": 1298,
+    "sha256": "22467094c2bdf0a003f635c8c17239505e83a7c43f39a7633c37d3600140c87c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。诊断报告：\n\n---\n\n```\nGPU 实际状态:\n- cuda:0: eval_gsm8k_grpo_standard_20_fair_v2 (pid=83299), 367/1319 (28%), acc=0.5943\n- cuda:1: eval_humaneval_sft_cka_only_20_2048_v2 (pid=78740), 122/164 (74%), Pass@1=0.2417\n- cuda:2: eval_humaneval_grpo_standard_20_fair_2048_v3 (pid=76392), 122/164 (74%), Pass@1=0.1000\n- cuda:3: eval_humaneval_sft_standard_20_2048_v3 (pid=86171), 18/164 (11%), 未注册\n\neval_humaneval_grpo_standard_20_fair_2048_v3: 活跃运行中，cuda:2，74%完成。Registry 已有记录，非 ghost。\neval_humaneval_sft_standard_20_2048_v3: 活跃运行中，cuda:3，11%完成。未在 registry 中，是未注册实验。\n\n可用 GPU: 无（4/4 全部占用）\n```\n\n---\n\n**结论：**\n- 无 ghost 进程，4 张 GPU 全在跑合法实验\n- `eval_humaneval_grpo_standard_20_fair_2048_v3` 之前被怀疑为 ghost，实际是 cuda:2 上的活跃进程，registry 记录完整\n- `eval_humaneval_sft_standard_20_2048_v3` (cuda:3, pid=86171) 是唯一问题：运行中但未注册到 registry。模型为 `sft_standard_20`，评估 HumanEval，max_new_tokens=2048，输出到 `results/humaneval_sft_standard_20_2048_v3.json`\n\n需要我把 `eval_humaneval_sft_standard_20_2048_v3` 补注册到 registry 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu-idle-westd-29022.md"
+}

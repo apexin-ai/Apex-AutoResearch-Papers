@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f15f95bc96c66b70d099",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval sft standard 20 full",
+  "task_key": "worker_eval_sft_standard_20_full_20260516T051922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_standard_20_full_20260516T051922_result.json",
+    "occurrence": 1,
+    "bytes": 393,
+    "sha256": "2b27227003d635909c773ce3e0d890dc764fdc05c4cfbe7c5a3bed64c86c2104"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成提交。\n\n**状态汇总：**\n- tmux session `eval_sft_standard_20_full` 已在 westb cuda:1 上运行\n- 模型加载成功，GSM8K 1319 samples 评估已开始（greedy, seed=42）\n- 速度 ~3.02s/it，预计 ~66 分钟完成\n- 输出路径：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full.json`\n- Registry 已更新为 RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sft-standard-20-full.md"
+}

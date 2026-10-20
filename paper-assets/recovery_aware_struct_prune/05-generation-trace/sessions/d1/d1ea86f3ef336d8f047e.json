@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1ea86f3ef336d8f047e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval sft cka only 20 n1319",
+  "task_key": "worker_analysis_eval_sft_cka_only_20_n1319_20260517T234622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_sft_cka_only_20_n1319_20260517T234622_result.json",
+    "occurrence": 1,
+    "bytes": 1208,
+    "sha256": "9cdd3b7fdc116ef94e3bb82311e640c0ddf14179faec57e91711e03afba5c7b8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验结果: eval_sft_cka_only_20_n1319\n\n| 指标 | 值 |\n|------|-----|\n| **GSM8K Accuracy** | **63.91% (843/1319)** |\n| Standard Error | ±1.32% |\n| EOS Rate | 99.01% (1306 natural / 13 truncated) |\n| Avg Response Length | 198.1 tokens |\n| Evaluation Time | ~4h 22min |\n\n**关键路径:**\n- Log: `/root/runs/recovery_aware_struct_prune/eval_sft_cka_only_20_n1319.log`\n- Results JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_cka_only_20_n1319.json`\n- Checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20`\n\n**对比分析:**\n\n| Method | Post-Prune | Post-SFT (N=1319) |\n|--------|-----------|-------------------|\n| Standard 20% | ~30% | ~59% |\n| RASP 20% | ~35% | ~61% |\n| CKA-only 20% | 38.5% | **63.9%** |\n| Unpruned | — | ~73.6% |\n\nCKA-only 20% post-SFT 达到 63.9%，高于 RASP (~61%) 和 Standard (~59%)。N=200 pilot 显示 64.0%，与 N=1319 完全吻合。结论：CKA-only 不仅 post-prune accuracy 最高，post-SFT 恢复后仍保持优势（+2.9% over RASP, +4.9% over Standard），SFT 没有完全均衡化不同 scoring method 的差异。\n\n未发现 W&B run_id（log 中无 wandb 相关输出）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-sft-cka-only-20-n1319-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f3d2d40b3f0170a5f113",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb 25pct eval",
+  "task_key": "worker_ssh_westb_25pct_eval_20260521T020403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_25pct_eval_20260521T020403_result.json",
+    "occurrence": 1,
+    "bytes": 610,
+    "sha256": "5c24ec13289fd708b4889418f002c9c11ccab9b5097e8c24f1d7f9137008ede8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均已启动并在加载模型：\n\n| Eval | GPU | PID | 输出路径 |\n|------|-----|-----|---------|\n| MATH-500 on sft_standard_25 | cuda:0 | 59502 | `results/eval_math500_sft_standard_25.json` |\n| HumanEval on sft_standard_25 | cuda:1 | 59663 | `results/eval_humaneval_sft_standard_25.json` |\n\n日志：`/tmp/eval_math500_sft_standard_25.log`、`/tmp/eval_humaneval_sft_standard_25.log`\n\n**GRPO 25% checkpoint 不在 westb 上**（在 westd-29022）。如果需要跑 GRPO 25% 的 eval，需先 `rsync` 过来（每个 checkpoint ~3-5GB，磁盘 24GB 偏紧但可行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-25pct-eval.md"
+}

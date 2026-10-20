@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58af6937ce4b124612e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh resubmit floor 0p3 westd0",
+  "task_key": "worker_ssh_resubmit_floor_0p3_westd0_20260523T092224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_resubmit_floor_0p3_westd0_20260523T092224_result.json",
+    "occurrence": 1,
+    "bytes": 506,
+    "sha256": "260c3bd8292e024991bba0830a2f15db5dbb4ae46da67e345f4ce90851100db3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 已成功恢复运行。\n\n**汇报**：\n- **清理**: 删除了不完整的 `grpo_cka_only_20_floor_0.3/` (4.8GB 截断的 model.safetensors)\n- **SKIP**: Prune 和 SFT 自动跳过（产出完好）\n- **当前步骤**: Step 3/4 GRPO 训练已启动 (PID 120758, `train_grpo_v5.py`)，GPU 0 上运行\n- **PID**: tmux session PID 120742, 训练进程 PID 120758\n- **exp_id**: `floor_ablation_0p3_cka_only_20_v2`\n\nGRPO 100 steps 完成后会自动进入 Step 4/4 GSM8K eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-resubmit-floor-0p3-westd0.md"
+}

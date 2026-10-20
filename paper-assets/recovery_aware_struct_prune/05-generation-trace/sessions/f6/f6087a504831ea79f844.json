@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f6087a504831ea79f844",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval sft unpruned full check",
+  "task_key": "worker_ops_eval-sft-unpruned-full-check_20260516T024504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-sft-unpruned-full-check_20260516T024504_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "b39eb5f68ab69d41ccc88987b83a31ddce45ebd1c86a6cf51e0e18333656a475"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**eval_sft_unpruned_full 结果：**\n- **Accuracy: 81.27% ± 1.07% (1072/1319)**\n- EOS rate: 99.70% (仅 4 条 truncated)\n- 平均 response 长度: 207.18 tokens\n- 结果文件: `/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json`\n\n**三方对比（GSM8K full N=1319）：**\n| 模型 | Accuracy |\n|------|----------|\n| Unpruned SFT | **81.27%** |\n| RASP 20% pruned + SFT | 61.49% |\n| Standard 20% pruned + SFT | 59.29% |\n\nRegistry 已更新为 DONE/success，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-sft-unpruned-full-check.md"
+}

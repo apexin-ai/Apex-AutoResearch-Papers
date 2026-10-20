@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58d2a4f180ef9c067d22",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch grpo unstructured 20 westb cuda0",
+  "task_key": "worker_ops_launch_grpo_unstructured_20_westb_cuda0_20260519T033310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_grpo_unstructured_20_westb_cuda0_20260519T033310_result.json",
+    "occurrence": 1,
+    "bytes": 769,
+    "sha256": "58aa01cd71f87c809530a800dad9edb81c581be5c33e49023a3cce385aae680d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO 训练确认运行中：\n\n- **PID**: 860053\n- **GPU 0**: 69.3GB VRAM, 527W, **GPU-Util 100%**, 59°C\n- **W&B**: `grpo_unstructured_20` — run `xj46p92t`\n- **Config**: beta=0.01, temp=0.4, maxlen=1024, DAPO, lr=1e-6, 100 steps, adamw_8bit\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20`（从 7B 基模型重建的 20% unstructured magnitude pruning，非 SFT）\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20`\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_unstructured_20.log`\n\n注意：eval 记录确认原始 `pruned_unstructured_20` 的 87.87% accuracy 是 pruned-only 模型（从未 SFT），本次 GRPO 直接在 pruned model 上训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-grpo-unstructured-20-westb-cuda0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d122196626fb6ba10a6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops status check westd29022",
+  "task_key": "worker_ops_status_check_westd29022_20260518T172903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_status_check_westd29022_20260518T172903_result.json",
+    "occurrence": 1,
+    "bytes": 1460,
+    "sha256": "a8a3919e671158fb9949a8d434083b46cd087080ed4c0331c613214088c602d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 状态汇报\n\n| GPU | 任务 | 进度 | 关键指标 | 预估完成 |\n|-----|------|------|----------|----------|\n| **cuda:0** | GRPO训练 `grpo_cka_only_20_extended_300` | **170/300** (57%) | loss=0.138, reward=0.267, ~117s/step | ~05:40 UTC |\n| **cuda:1** | eval `math500_grpo_standard_20_fair` | **110/500** (22%) | Acc@100=0.3600, ~150s/sample | ~17:30 UTC (很慢) |\n| **cuda:2** | eval `math500_sft_cka_only_20_v4` | **25/500** (5%) | 刚启动20min, ~43s/sample | ~07:30 UTC |\n| **cuda:3** | eval `math500_dense_unpruned` | **428/500** (86%) | **Acc@400=0.7375**, ~35s/sample | **~02:10 UTC** (最快完成) |\n\n### 详情\n\n- **cuda:0**: 82°C/604W, 90.6GB VRAM。从 checkpoint-100 续训, 已到 step 170, 剩 130 步约 4.2h。\n- **cuda:1**: 83°C/603W, 31.5GB VRAM。这个 eval 极慢，部分样本生成耗时 3-5 分钟（疑似模型生成超长序列）。110/500 已花 4.3h，剩余约 16h。\n- **cuda:2**: 79°C/561W, 16.8GB VRAM。01:07 启动, 进度正常。\n- **cuda:3**: 58°C/341W, 17.7GB VRAM。接近完成，约 40 分钟内出结果。Dense unpruned Acc@400 = 73.75%。\n\n### 已完成结果文件\n- `math500_grpo_unpruned.json` (May 18 12:54) — 仅此一个。\n\n### 注意\ncuda:1 的 `grpo_standard_20_fair` eval 速度异常慢（VRAM 占 31.5GB，远高于其他 eval 的 ~17GB），可能模型较大或生成长度未受限。按当前速度要到明天中午才能跑完。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-status-check-westd29022.md"
+}

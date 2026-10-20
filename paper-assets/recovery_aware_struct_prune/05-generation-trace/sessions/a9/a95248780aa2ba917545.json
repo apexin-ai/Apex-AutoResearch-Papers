@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a95248780aa2ba917545",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check humaneval standard",
+  "task_key": "worker_code_check_humaneval_standard_20260517T083038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_humaneval_standard_20260517T083038_result.json",
+    "occurrence": 1,
+    "bytes": 541,
+    "sha256": "d6adbd8c4411bc6c6e8c133fd007ab26792fba2f2d9f3ad538b65b82d77ddf63"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_humaneval_sft_standard_20 状态：已完成**\n\n| 项目 | 结果 |\n|------|------|\n| PID 9605 | 已退出 |\n| tmux session | 已销毁 |\n| 退出码 | 0 (正常) |\n| **pass@1** | **0.0305 ± 0.0134 (5/164)** |\n| 耗时 | ~17 分钟 |\n\n模型几乎全部生成了 chain-of-thought 式的自然语言文本而非代码，所有 response 都截断在 max_tokens=512，导致 pass@1 极低（3.05%）。\n\n**cuda:3 当前状态：空闲**（0MiB / 0% utilization）。cuda:0/1/2 被其他 python 进程占用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-humaneval-standard.md"
+}

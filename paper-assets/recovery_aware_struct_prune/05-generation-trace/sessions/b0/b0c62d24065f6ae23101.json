@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0c62d24065f6ae23101",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd gpu3 process",
+  "task_key": "worker_diagnose_westd_gpu3_process_20260521T221510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_gpu3_process_20260521T221510_result.json",
+    "occurrence": 1,
+    "bytes": 401,
+    "sha256": "000b6edacc385ef67550e45dc9401196cff794bc0118f5a1c5e181b2d5dc16b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU 3 @ westd-29022 进程报告：**\n\n| 项目 | 值 |\n|------|-----|\n| PID | 385685 |\n| 进程 | `python src/eval_math500.py` |\n| 模型 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20` |\n| 显存占用 | 17642 MiB |\n| 已运行 | 7h 30m |\n| 进度 | **379/500** (75.8%) |\n| 当前 Acc | **0.1086** (截至 350/500) |\n| 预估剩余 | ~3h（按 ~90s/it） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-gpu3-process.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "923e07764958fd3aa579",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh random 20 pipeline",
+  "task_key": "worker_ssh_random_20_pipeline_20260521T025836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_random_20_pipeline_20260521T025836_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "9f9d00aee62d51d90fae17d0a996b8ac698e9cbf2ff81e0d83e567bc91bde7cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 正常训练中，约 1 it/s，1870 steps 预计 ~31 分钟。\n\n汇报：\n\n**已完成：**\n- `pruned_random_20/` — 在 westd-29022 上 prune 完成（6.09B params, 20.07% sparsity, seed=42）\n- 修复了 `model_utils.py` 中两个 bug：\n  1. 字段名不匹配：`per_layer_num_heads` → `per_layer_num_attention_heads`\n  2. `head_dim` 计算时序错误：移到 `config.num_attention_heads` 更新之后\n\n**正在运行：**\n- SFT 训练（westd-29022 GPU 0, PID 314466）：1870 steps, ~1 it/s, 预计 ~30 分钟后完成\n- 日志：`/root/autodl-tmp/recovery_aware_struct_prune/sft_random_20.log`\n\n**下一步：** SFT 完成后提交 GRPO（`train_grpo_v5.py`, 100 steps），然后 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-random-20-pipeline.md"
+}

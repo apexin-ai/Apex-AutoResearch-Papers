@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "668e5fa2770aafea8d34",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval gsm8k sft standard 25 westd",
+  "task_key": "worker_ssh_eval_gsm8k_sft_standard_25_westd_20260521T075323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_gsm8k_sft_standard_25_westd_20260521T075323_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "95382a6774963d5bcc282160013df112314424fd7e0a247cb8816ce443262bc2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "源文件 11.58GB，目前已传输 ~3.7GB (~32%)，速率 ~11MB/s，预计还需 **~12 分钟**完成传输。\n\n**报告：**\n\n1. **SFT Standard 25% eval** — 启动失败。checkpoint-1870 的 model.safetensors 正在从 westb-23072 SCP 传输中（PID 333837），当前 3.7G/11.6G，预计 ~12 分钟后完成。传输完成后需重新启动 eval。\n\n2. **GRPO CKA-only 25% v3** (PID 322443) — 仍在运行，进度 95% (1253/1319)，当前 acc=**0.5960** (sample 1250)，预计几分钟内完成。\n\n需要我在 SCP 完成后自动重新启动 SFT eval 吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-gsm8k-sft-standard-25-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc0080a10806e2604839",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code update math500 table script",
+  "task_key": "worker_code_update_math500_table_script_20260523T204459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_math500_table_script_20260523T204459_result.json",
+    "occurrence": 1,
+    "bytes": 552,
+    "sha256": "d95867651b2d30c54c49f1410d969d56ddc18c2ead79aefc7306810079cc05e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已创建并注册。\n\n**用法**：\n- `python artifacts/update_math500_table.py --source registry` — 从 registry.yaml 读指标，生成表格\n- `python artifacts/update_math500_table.py --source json --json-dir <path>` — 从本地 JSON 文件读\n- 加 `--cross-validate --json-dir <path>` 可交叉核验 registry vs JSON\n\n**当前状态**：20 个实验中 4 个有结果（dense_unpruned, grpo_unpruned, sft_cka_only_20_fixed_v2, sft_rasp_alpha1p0_20_fixed），其余 16 个还在 RUNNING/PREPARING 或未注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-math500-table-script.md"
+}

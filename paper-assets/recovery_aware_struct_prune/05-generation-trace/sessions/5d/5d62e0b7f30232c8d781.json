@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d62e0b7f30232c8d781",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh disk cleanup and floor06 retry",
+  "task_key": "worker_ssh_disk_cleanup_and_floor06_retry_20260523T120835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_disk_cleanup_and_floor06_retry_20260523T120835_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "a39265f3166b62a6c18f598a6abd015f4a026c4fe6bbf5e54571aef1a8c47d0f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pipeline 正在运行，正确跳过了 Pruning 和 SFT，直接开始 GRPO 训练（Step 3/4）。模型正在加载中，GPU 0 还未完全占用，等模型上 GPU 后会显示显存。\n\n### 报告\n\n1. **磁盘清理**：释放 ~168G（100% → 75%，169G 可用）\n   - 删除 `grpo_cka_only_20_floor_0.6` 整个目录（36G，含崩溃的 GRPO 产物）\n   - 删除 6 个 GRPO `checkpoint-100` 目录（floor 0.5/0.3、seed456、random_20、rasp_20_seed456、rasp_alpha3p0_20_v2，共 ~100G）\n   - 删除 3 个 SFT `checkpoint-1870` 目录（floor 0.6/0.5、standard_25，共 ~35G）\n\n2. **floor=0.6 v2 已成功提交**：`exp_id=floor_ablation_0p6_cka_only_20_v2`，westd-32935 cuda:0，Pruning/SFT 已 SKIP，GRPO 正在加载模型\n\n3. **当前磁盘**：482G/650G（75%），169G 可用，GRPO + eval 所需空间充足"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-disk-cleanup-and-floor06-retry.md"
+}

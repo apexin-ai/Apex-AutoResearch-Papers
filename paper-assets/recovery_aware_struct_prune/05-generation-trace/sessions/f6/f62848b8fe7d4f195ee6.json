@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f62848b8fe7d4f195ee6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops humaneval relay cuda3 sft standard",
+  "task_key": "worker_ops_humaneval_relay_cuda3_sft_standard_20260519T090821",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_humaneval_relay_cuda3_sft_standard_20260519T090821_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "b923c890153df175479b624ec58057d216ecc0ff1671bb14811ecc92974164ba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **Checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/model.safetensors` (12.3GB) ✓\n- **RASP fair 进度**: 138/164, pass@1=0.125 interim, ~40min 剩余\n- **Registry**: `eval_humaneval_sft_standard_20_2048_v3` 已创建 (PREPARING)\n- **下次检查**: ~30 分钟后，RASP fair 应已完成，届时收割结果并启动 SFT Standard HumanEval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-humaneval-relay-cuda3-sft-standard.md"
+}

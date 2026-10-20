@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "280ca90dcba702596d6d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix disk cleanup and reprune v4",
+  "task_key": "worker_fix_disk_cleanup_and_reprune_v4_20260514T153516",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_disk_cleanup_and_reprune_v4_20260514T153516_result.json",
+    "occurrence": 1,
+    "bytes": 273,
+    "sha256": "57c94a3832cc8db57a062e59d91f6eeb795ade24b51677d74c391f323659b4a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results so far:\n- **rasp_20**: 29% (28/100) — complete\n- **standard_25**: just started at 00:18, ~20 min to go\n- **standard_20**: at 53/100 on GPU0, ~42 min remaining\n- **rasp_25**: queued after standard_25\n\nChecking back in ~4 min to track progress."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-disk-cleanup-and-reprune-v4.md"
+}

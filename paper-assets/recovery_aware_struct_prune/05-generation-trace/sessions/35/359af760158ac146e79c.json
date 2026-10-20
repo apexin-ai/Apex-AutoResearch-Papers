@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "359af760158ac146e79c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westb sft rasp rlvr 20",
+  "task_key": "worker_monitor_westb_sft_rasp_rlvr_20_20260516T140554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westb_sft_rasp_rlvr_20_20260516T140554_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "d38f8683deed3a8609ec3189674ae252c593d3389e22a6ebc2ca3b751e9d0b34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态：正在运行**\n\n| 指标 | 值 |\n|------|-----|\n| PID | 620651 |\n| Elapsed | 25:56 |\n| 进度 | 1180/1870 steps (63%), epoch ~0.96/2.0 |\n| 速度 | ~1.12 s/it |\n| 预计剩余 | ~13 min |\n| Loss | ~0.80 (稳定下降中) |\n| Token Accuracy | ~0.79 |\n| GPU | cuda:1 |\n\n训练正常推进，loss 从 0.85 下降到 0.80 附近，token accuracy 稳定在 0.79。预计再 ~13 分钟完成全部 2 个 epoch。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westb-sft-rasp-rlvr-20.md"
+}

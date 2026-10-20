@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5b1ce1f2a9b25c493c91",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo paths and dryrun",
+  "task_key": "worker_fix_grpo_paths_and_dryrun_20260514T170646",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_paths_and_dryrun_20260514T170646_result.json",
+    "occurrence": 1,
+    "bytes": 891,
+    "sha256": "d3f8f12047e1ef6e51369511a9c0f91624fccfe5d83f483d61c599dff2a7d37f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。\n\n**修复内容：**\n\n| 文件 | 修复前 | 修复后 |\n|------|--------|--------|\n| `run_grpo_v4.sh:15` MODEL_PATH | `/root/autodl-tmp/recovery_aware_struct_prune/models/pruned_*` | `/root/autodl-tmp/pruned_*` |\n| `run_grpo_v4.sh:16` OUTPUT_DIR | `/root/autodl-tmp/recovery_aware_struct_prune/models/recovered_*` | `/root/autodl-tmp/recovered_*` |\n| `train_grpo.py:199` 默认 output_dir | 同上 | `/root/autodl-tmp/recovered_{model_name}` |\n\n**Dry-run 结果 (`bash -x src/run_grpo_v4.sh rasp 20 0`)：**\n- `MODEL_PATH=/root/autodl-tmp/pruned_rasp_20` — 路径存在，通过检查\n- `OUTPUT_DIR=/root/autodl-tmp/recovered_rasp_20`\n- 脚本正常解析参数并通过路径验证\n\n`train_grpo.py:205` 的 log_dir (`/root/autodl-tmp/recovery_aware_struct_prune/logs/`) 保持不变——日志文件很小，不受根分区约束影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-paths-and-dryrun.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea8ae84796b2349f379d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check e2 lr decay",
+  "task_key": "worker_ops_check_e2_lr_decay_20260518T134057",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_e2_lr_decay_20260518T134057_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "4736e1f389ab52daf751d808934da6055e0e4354e710dedd2caee179451b9c2b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nLR 状态: 无法判断（运行已崩溃）\n当前 LR: 无数据\n当前 step: 无训练步数据（W&B 内部 _step=563 但无 metrics 记录）\nreward/mean 趋势: 无数据\n运行状态: **failed**，仅运行 307 秒（~5 分钟）即崩溃\n```\n\n**关键发现**:\n\nrun `k5ex8kfs` (`grpo_standard_20_extended_300`) 状态为 **failed**，运行仅 307 秒后崩溃。learning_rate、reward/mean、loss 三个指标均无数据（未记录任何训练步），说明训练在开始实际 step 之前就失败了。\n\n从 config 看：\n- `lr_scheduler_type`: **linear**（不是 cosine）\n- `learning_rate`: 1e-06\n- `warmup_steps`: 0\n\n**建议**: LR 衰减问题暂时无法评估，优先排查崩溃原因。需要检查服务器上的训练日志（`/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_20_extended_300/` 或 stdout/stderr）确认失败原因。是否需要我去服务器查日志？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-e2-lr-decay.md"
+}

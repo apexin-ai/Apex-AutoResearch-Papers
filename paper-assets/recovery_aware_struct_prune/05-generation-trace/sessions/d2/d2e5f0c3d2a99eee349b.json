@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2e5f0c3d2a99eee349b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "reviewer / loop_15.md",
+  "task_key": "loop_15",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_15.md",
+    "occurrence": 1,
+    "bytes": 4345,
+    "sha256": "6d94bee8051f97f5552dc0bfe8fe251a18842e4c668f4505af3c91a91ec3ac32"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: max_wall_time\nupdated: '2026-05-19T08:59:03+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 C005：westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3。越界即 CRITICAL\n- westb-23072 磁盘 250GB，当前 24GB free（已清理 unstructured checkpoint）。seed123 训练完成时需 ~12GB 存 checkpoint，余量够但紧张\n- `eval_humaneval.py` 第 51 行已修复为 `sys.executable`（原 `[\"python\", ...]` 导致 SFT CKA-only 假 0%）。所有新 HumanEval eval 必须用修复后的脚本\n- Standard GRPO v5 fair checkpoint 路径是 `grpo_stage2_standard_20_fair`（不是 `grpo_standard_20_fair`），RASP 同理 `grpo_stage2_rasp_20_fair`\n\n### 2. 🖥️ 基础设施快照\n- **westd-29022**：`/root/autodl-tmp/recovery_aware_struct_prune/`，Python `/root/miniconda3/bin/python`\n  - cuda:0 **空闲**（MATH-500 SFT Standard 已完成）\n  - cuda:1 PID 78740：HumanEval SFT CKA-only v2 re-run（76/164, 46%）\n  - cuda:2 PID 76392：HumanEval GRPO Standard fair v3（~30/164）\n  - cuda:3 PID 74303：HumanEval GRPO RASP fair（~100/164）\n- **westb-23072**：同路径\n  - cuda:0 **空闲**（unstructured GSM8K eval 已完成）\n  - cuda:1 PID unknown：grpo_cka_only_20_seed123 训练（~35/100, ~7h remaining）\n- W&B entity/project 未配置，不可用。验证指标直接读 log/result JSON\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/`\n\n### 3. 📊 当前状态\n刚完成的审查：\n- E2 Standard Extended 300步 GSM8K = 59.29%（Worker 错误声称 baseline 52-53%，实际 baseline 58.91%，已 CRITICAL 纠正）\n- Unstructured GRPO GSM8K = 87.64%（PASS，完美支持 C1 decoupling + collapse=structural damage）\n- GRPO CKA-only HumanEval final = **20.12%** (33/164)（interim 27.5% 过度乐观）\n- MATH-500 SFT Standard = 25.8% (129/500)（PASS，完成 MATH-500 全表）\n- **SFT CKA-only HumanEval 0% 是 PATH bug 假结果**（CRITICAL 已报 Director）→ v2 re-run 进行中\n\n等待中的 eval（预计 1-3h）：\n- `eval_humaneval_sft_cka_only_20_2048_v2`：re-run，确认 0% 是否真实（D070 基石）\n- `eval_humaneval_grpo_standard_20_fair_2048_v3`：v5 fair 模型，interim ~5%\n- `eval_humaneval_grpo_rasp_20_fair_2048`：v5 fair 模型，interim ~15%\n\nDirector 待办请求：\n- \"unstructured GRPO 结果出来后重新审查叙事一致性\" → unstructured 已出，但需等 HumanEval re-run 后做完整 narrative review\n- D070 C1 reframing 已审查（WARNING），等 re-run 数据确认后可能需要更新\n\n### 4. 📋 待办（条件触发式）\n- SFT CKA-only HumanEval v2 完成 → 如果仍 0%：D070 confirmed，发 PASS 报告；如果 >0%：D070 叙事需重大修改，发 CRITICAL\n- GRPO Standard fair HumanEval 完成 → 对比 GRPO CKA-only 20.12%，评估 \"CKA-only specific\" claim 强度\n- GRPO RASP fair HumanEval 完成 → 同上，组合三方法做完整 HumanEval narrative review\n- 三个 HumanEval 全完成 → 执行 Director 要求的完整叙事一致性审查（D070 + unstructured + HumanEval 数据整合）\n- seed123 训练完成（~7h后）→ 审查多 seed 验证结果，检查 CKA-only reward gradient 可复现性\n\n### 5. 🎯 战略上下文\n- **核心贡献**：C2 = Recovery Capacity Gradient（CKA-only >> importance-based），由 representational diversity 驱动。C1 = GRPO-accuracy decoupling（降级为 supporting analysis，D065）\n- **D070/D071 reframing**：C1 从 \"universal decoupling\" 改为 \"task-dependent\"（SFT-recovered tasks decoupling，SFT-failed tasks GRPO recovery）。我已审查为 WARNING——\"SFT 0% = strong task adaptation\" 的 spin 不诚实，应改为 \"catastrophic forgetting + GRPO partial recovery\"\n- **最容易判断错的事**：\n  1. paper_framing.md 中 58.91%（Standard GRPO 100步 GSM8K）无 backing result file，可能来自 pre-fair 模型。只有 300步 59.29% 是完整可溯源的\n  2. GRPO Standard/RASP HumanEval 有新旧模型两套数据——old (v8/v9) 和 fair (v5)。论文引用时必须区分\n  3. SFT CKA-only HumanEval 0% 第一次是假结果（PATH bug）。v2 re-run 才是真数据，等它出来才能定论\n  4. HumanEval interim 数字容易过度乐观（27.5% → 20.12%），不要在 final 出来前锁定 framing\n- **Target venue**：EMNLP 2026 Main (ARR May 25)，~6 天\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-copy-3.md"
+}

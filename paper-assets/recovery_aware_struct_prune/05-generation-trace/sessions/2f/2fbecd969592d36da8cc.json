@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2fbecd969592d36da8cc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 sft standard 20 fixed v4",
+  "task_key": "worker_analysis_eval_math500_sft_standard_20_fixed_v4_20260524T091308",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_sft_standard_20_fixed_v4_20260524T091308_result.json",
+    "occurrence": 1,
+    "bytes": 427,
+    "sha256": "44adb213172812b28448f9366c5ad7da1283627896e1f9394c46cd6875826106"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**总结**：\n\n- **SFT Standard 20% → MATH-500 accuracy = 25.6%** (128/500, ±1.95%)\n- 日志无异常，EXIT_CODE=0，运行 7h15m（7.35 GPU-hours）\n- 46.6% 截断率较高（233/500 达到 2048 token 上限），说明剪枝后模型推理链偏长且不收敛，这本身就是 standard SFT 恢复能力有限的一个信号\n- Registry 状态：DONE (success)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-sft-standard-20-fixed-v4.md"
+}

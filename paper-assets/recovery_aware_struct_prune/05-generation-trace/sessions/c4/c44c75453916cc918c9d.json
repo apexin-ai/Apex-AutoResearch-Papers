@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c44c75453916cc918c9d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779391149.md",
+  "task_key": "loop_20_1779391149",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779391149.md",
+    "occurrence": 1,
+    "bytes": 4750,
+    "sha256": "58425716958049d926543bbdec880fa2ae4757c9c9688fef54b572207505fbc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-21T17:24:54+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-29022 cuda:0/1/2/3, westb-23072 cuda:0/1。超出范围必须 push back Director\n- CUDA_VISIBLE_DEVICES 禁止在 command 中设置，框架从 registry GPU 字段自动注入\n- eval_math500.py 参数是 `--output_path`（非 --output_dir），没有 `--n_samples` 和 `--temperature`\n- MATH-500 eval 全部必须 `--max_new_tokens 2048`（D097 决策：@4096 数据不可用）\n- submit_training_job 的 command 必须 `bash -c` 包裹，模型路径用绝对路径\n- output_dir 必须在 `/root/autodl-tmp/` 数据盘，不能用相对路径（根分区只 30GB）\n- 基础模型是 DeepSeek-R1-Distill-Qwen-7B（不是 Qwen2.5-7B-Instruct），所有实验包括 alpha ablation 都用这个\n\n### 2. 🖥️ 基础设施快照\n- **westd-29022**: 4×GPU, `/root/recovery_aware_struct_prune/`（代码）, `/root/autodl-tmp/recovery_aware_struct_prune/`（模型+数据）\n- **westb-23072**: 2×GPU, 同上路径结构\n- Python: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（conda 环境，非 venv）\n- 基础模型: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- 日志目录: `/root/runs/recovery_aware_struct_prune/`\n- α=4.0 pipeline 脚本: `westd:/root/recovery_aware_struct_prune/scripts/run_alpha4_pipeline.sh`\n- 活跃进程:\n  - westd cuda:0: eval_math500_grpo_cka_only_25_v2 (PID 379999, ~49%, ~2h remaining)\n  - westd cuda:1: eval_math500_grpo_random_20_v2 (PID 382470, ~15%, ~9h)\n  - westd cuda:2: eval_math500_sft_cka_only_25_v2 (PID 380074, ~56%, ~1.5h) ← 最先完成\n  - westd cuda:3: eval_math500_sft_random_20 (PID 385685, ~8%, ~9h)\n  - westb cuda:0: eval_math500_grpo_standard_25_v2 (PID 99426, ~21%, ~6.5h)\n  - westb cuda:1: eval_math500_sft_standard_25_v2 (PID 104592, ~2%, ~9h)\n- 5 个 cron 活跃（eval_math500_grpo_cka_only_25_v2, eval_math500_sft_cka_only_25_v2, eval_math500_grpo_random_20_v2, eval_math500_grpo_standard_25_v2）。eval_math500_sft_random_20 和 eval_math500_sft_standard_25_v2 的 cron 需确认是否已注册\n\n### 3. 📊 当前状态\n刚完成：\n- eval_gsm8k_sft_standard_25 收割完毕（50.87%, 671/1319），registry DONE/success\n- 完整 cross-sparsity GSM8K 表已汇报 Director（15%/20%/25% × 4 methods）\n- Q4 结构重叠分析完成，artifact 已注册 (art_20260521_bc2152)\n- α=4.0 pipeline 脚本已写好，等 GPU 释放\n\nRegistry RUNNING: 6 个 MATH-500 @2048 eval（见上方进程列表）\nRegistry PREPARING: eval_math500_sft_random_20 已转 RUNNING\n\n无活跃 Worker。等 cron 回调。\n\n### 4. 📋 待办（条件触发式）\n- westd cuda:2 (sft_cka_only_25_v2) cron 回调完成 → harvest metrics + complete_experiment + **立即在 cuda:2 启动 α=4.0 pipeline** (`bash scripts/run_alpha4_pipeline.sh 2`)，注册为新实验 (prune→SFT→GRPO→eval 共 ~4h)\n- westd cuda:0 (grpo_cka_only_25_v2) cron 回调完成 → harvest + complete_experiment，释放的 GPU 待 Director 分配\n- 任何 MATH-500 eval 完成 → harvest accuracy/stderr/truncation_rate + update_registry DONE + 报 Director\n- 全部 25% MATH-500 数据到手 (CKA-only SFT/GRPO + Standard SFT/GRPO) → 汇总完整 25% cross-method MATH-500 表报 Director，他会派 Paper Agent patch\n- α=4.0 GRPO 完成 → 报告 reward trajectory + GSM8K accuracy，回答 reviewer \"RASP collapse 是否仅是超参问题\"\n- Dense baseline 澄清待 Director 确认：paper 中用 90.83%（原始模型）还是 81.27%（Dense+SFT）\n\n### 5. 🎯 战略上下文\n- **DDL: EMNLP 2026 ARR, 还剩 ~3 天 (May 25)**\n- Round 5 审稿评分 3.0，正在做 rebuttal 所需的补充实验\n- 核心结论：CKA-only 在所有 sparsity 上持续优于 Standard，25% 差距最大（GSM8K +9.25pp SFT, +7.73pp GRPO）\n- GRPO recovery delta 总体很小（-0.93 ~ +0.99 pp），不是 magic bullet\n- D097 决策：所有 MATH-500 eval 必须 @2048（之前误用 @4096 的数据全部作废重跑）\n- 已有 MATH-500 @2048 20% 数据：CKA-only SFT 29.0%/GRPO 29.2%, Standard SFT 25.8%/GRPO 26.4%, RASP SFT 22.6%/GRPO 24.0%。缺 25% 和 Random 20%\n- 25% Standard SFT MATH-500 v1 = 13.0%（已采用，v2 在 westb cuda:1 重跑中）\n- 易错点：eval_math500_sft_standard_25 的 v1 结果（13.0%）已被 Director 采用并写入 registry，westb cuda:1 上跑的是 v2 重跑验证。不要覆盖 v1 数据\n- 易错点：Random 20% SFT 模型只在 westd 上，westb 没有。SCP 太慢不值得\n- α=4.0 实验目的：Table 6 显示 α=4.0 post-prune accuracy 最高（40%），reviewer 质疑 RASP collapse 可能仅是超参问题。如果 α=4.0 GRPO 也 collapse → 证明不是超参问题；如果改善 → 需要更新 narrative\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779391149.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3e6b15a598bc18ff7dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cuda1 e2 extended gsm8k eval",
+  "task_key": "worker_ops_cuda1_e2_extended_gsm8k_eval_20260519T014155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda1_e2_extended_gsm8k_eval_20260519T014155_result.json",
+    "occurrence": 1,
+    "bytes": 456,
+    "sha256": "f514de679e0c21d8cb1cecebe0b231b4f4568c95c2bdbcd53b49c652cac73a85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。\n\n- **exp_id**: `eval_gsm8k_grpo_cka_only_20_extended_300`\n- **PID**: 56977\n- **GPU**: westd-29022 cuda:1，占用 12497MiB\n- **Checkpoint 路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20_extended_300`（根目录最终模型，12.3GB model.safetensors）\n- **状态**: 模型已加载，正在加载 GSM8K 数据集，即将开始推理\n- **Registry**: RUNNING，hypothesis 和 parent 已设置"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda1-e2-extended-gsm8k-eval.md"
+}

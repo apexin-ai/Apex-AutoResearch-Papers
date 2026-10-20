@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "4cb6ec64f7a6e7a81fe3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code westd grasp gpu0 urgent",
+  "task_key": "worker_code_westd-grasp-gpu0-urgent_20260515T120657",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-grasp-gpu0-urgent_20260515T120657_result.json",
+    "occurrence": 1,
+    "bytes": 2259336,
+    "sha256": "65f4c664688e8c2f4c1044bcb1f287169a32532b55adc27a1cc002d129af8a9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2259356,
+                "serialized_sha256": "d6555678d19bd42f72488ded1875250b58ce5f83a26fb66a9e962d365344347b",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-westd-grasp-gpu0-urgent.md"
+}

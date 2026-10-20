@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "274d24396b86b160af40",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh scp sft std25 and eval cuda3",
+  "task_key": "worker_ssh_scp_sft_std25_and_eval_cuda3_20260521T074832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_scp_sft_std25_and_eval_cuda3_20260521T074832.log",
+    "occurrence": 1,
+    "bytes": 791588,
+    "sha256": "2e6ec0fbebe2635ca52e27d5d248c37e6d86ed3451c670153e99b803546e5268"
+  },
+  "statistics": {
+    "messages": 853,
+    "user_turns": 0,
+    "tool_calls": 341,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 163,
+      "tool_call": 341,
+      "tool_result": 341,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 853,
+      "chunks": [
+        {
+          "path": "274d24396b86b160af40-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "274d24396b86b160af40-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "274d24396b86b160af40-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "274d24396b86b160af40-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "274d24396b86b160af40-part-0005.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-scp-sft-std25-and-eval-cuda3.md"
+}

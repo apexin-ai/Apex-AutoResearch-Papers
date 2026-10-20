@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f91f0f5799ab1df2dd1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd full status check",
+  "task_key": "worker_ssh_westd_full_status_check_20260522T162154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_full_status_check_20260522T162154_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "d71bde03afa2ac46a3b47456d051c8ce6854abd6275f5a69f9d362bd224181a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-32935 GPU 状态\n\n| GPU | 实验 | PID | VRAM | GPU% | 进度 | 预计剩余 |\n|-----|------|-----|------|------|------|---------|\n| 0 | GSM8K seed123 v2 | 56283 | 26.2GB | 98% | **1030/1319 (78%)** | ~16min |\n| 1 | MATH-500 α=2.0 | 57202 | 16.8GB | 99% | **110/500 (22%)** | ~5-7h |\n| 2 | MATH-500 α=0.5 | 58276 | 16.7GB | 97% | **89/500 (18%)** | ~5-6h |\n| 3 | MATH-500 α=4.0 | 58435 | 17.5GB | 99% | **85/500 (17%)** | ~5-8h |\n\n全部 running，无结果文件。\n\n**关键中间指标：**\n- GSM8K seed123 v2: acc=52.40% @ 1000/1319 样本，eos_rate=99.40%，即将完成\n- MATH-500 三组 α ablation 刚开始不久（17-22%），速度约 40-70s/it，预计还需 5-8 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-full-status-check.md"
+}

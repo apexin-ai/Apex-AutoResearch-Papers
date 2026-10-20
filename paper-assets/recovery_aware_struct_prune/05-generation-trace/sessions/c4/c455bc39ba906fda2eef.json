@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c455bc39ba906fda2eef",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd model inventory",
+  "task_key": "worker_ops_westd_model_inventory_20260518T145038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_model_inventory_20260518T145038_result.json",
+    "occurrence": 1,
+    "bytes": 1908,
+    "sha256": "17b15752acf71aadd78b60ad8549ae40fe89c2bd856e13231559e4564100c6be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整模型（有 model weights + config + tokenizer）\n\n**GRPO 模型：**\n| 目录 | 大小 | Checkpoints |\n|---|---|---|\n| `grpo_stage2_rasp_20_fair` | 46G | final + ckpt-80, 90, 100 |\n| `grpo_stage2_standard_20_fair` | 61G | final + ckpt-80, 90, 100 |\n| `grpo_standard_20_extended_300` | 91G | final + ckpt-280, 290, 300 |\n| `grpo_cka_only_20` | 23G | final + ckpt-100 |\n| `grpo_rasp_25` | 22G | final + ckpt-100 |\n| `grpo_standard_25` | 22G | final + ckpt-100 |\n| `grpo_unpruned_v2` | 29G | final + ckpt-100 |\n\n**SFT 模型：**\n| 目录 | 大小 |\n|---|---|\n| `sft_cka_only_20` | 12G |\n| `sft_rasp_20_westd` | 12G |\n| `sft_qwen_math_rasp_20` | 12G |\n| `sft_qwen_math_standard_20` | 12G |\n| `sft_rasp_25` | 11G |\n| `sft_qwen_math_rasp_25` | 11G |\n| `sft_qwen_math_standard_25` | 11G |\n| `sft_rasp_rlvr_20_qwen_math` | 12G |\n\n**Pruned 模型（含 pruning_metadata.pt）：**\n| 目录 | 大小 |\n|---|---|\n| `pruned_rasp_20` | 12G |\n| `pruned_standard_20` | 12G |\n| `pruned_qwen_math_rasp_20` | 12G |\n| `pruned_qwen_math_standard_20` | 12G |\n| `pruned_rasp_25` | 11G |\n| `pruned_standard_25` | 11G |\n| `pruned_rasp_25_qwen_math` | 11G |\n| `pruned_standard_25_qwen_math` | 11G |\n| `pruned_rasp_rlvr_20_qwen_math` | 12G |\n\n## 不完整/空目录\n\n| 目录 | 问题 |\n|---|---|\n| `sft_standard_20_westd` (12K) | 只有 config.json, generation_config.json, chat_template.jinja，**缺 model.safetensors** |\n| `sft_standard_25` (0) | 空目录 |\n| `sft_unpruned_baseline` (0) | 空目录 |\n| `pruned_rasp_rlvr_20` (0) | 空目录 |\n| `grpo_rasp_25_transfer_log` (0) | 空目录（日志目录） |\n\n## /root/autodl-tmp/ 顶层\n\n| 目录 | 大小 |\n|---|---|\n| `recovery_aware_struct_prune/` | 482G |\n| `models/` | 0 (空) |\n| `models_ms/` | 0 (空) |\n\n## 磁盘\n\n```\n总量: 619G | 已用: 482G | 可用: 138G | 使用率: 78%\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-model-inventory.md"
+}

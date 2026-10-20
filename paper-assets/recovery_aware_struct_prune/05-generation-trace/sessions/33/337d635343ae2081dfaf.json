@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "337d635343ae2081dfaf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix grpo sigterm restart",
+  "task_key": "worker_fix_grpo_sigterm_restart_20260522T065328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_grpo_sigterm_restart_20260522T065328_result.json",
+    "occurrence": 1,
+    "bytes": 1108,
+    "sha256": "82caff3d94871b0239c70c3dca3811c691e55766c15829caecb305fac9e391a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 诊断 ==\nSIGTERM 来源: 无法确定（dmesg 无权限，无 crontab，无可疑进程/脚本，无旧 tmux session）\n可疑进程/脚本: 无\n\n== 重启 ==\nα=2.0 PID: 20308 on GPU 2\nα=0.5 PID: 20449 on GPU 3\n\n关键修复:\n- 加 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`（首次 `python: command not found`）\n- 加 `--gradient_checkpointing true`（不是 bare flag）\n- 加 `HF_DATASETS_OFFLINE=1 + HF_HUB_OFFLINE=1`（网络不通导致 load_dataset 卡死）\n- 加 `source /etc/network_turbo`（AutoDL 代理）\n\n== 30s 验证 ==\nGPU 2: PID 20308, 54313 MiB, 86% util\nGPU 3: PID 20449, 54275 MiB, 85% util\n\n== 3min 验证 ==\nα=2.0: step 16/100, loss=0.030, reward=0.034\nα=0.5: step 15/100, loss=-0.011, reward=0.020\n超过 step 15: **YES** ✓\n\n== W&B ==\nα=2.0: https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/2b2x9kmb\nα=0.5: https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/0fh1firj\n\n预计 ~17 min 完成 100 steps（~10.2s/step），之后自动进入 eval_gsm8k 阶段。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-grpo-sigterm-restart.md"
+}

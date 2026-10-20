@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b76e19edb3fead746f50",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prune rasp 20 qwen math",
+  "task_key": "worker_code_prune_rasp_20_qwen_math_20260516T080223",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prune_rasp_20_qwen_math_20260516T080223_result.json",
+    "occurrence": 1,
+    "bytes": 791,
+    "sha256": "f868db29ba73a080af041102a95b82555071023d11cfd258165f3dbca3b3d38b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen2.5-Math-7B 剪枝已完成，两个实验均已在 registry 标记为 DONE。\n\n**结果汇总：**\n\n| | RASP (α=1.0) | Standard |\n|---|---|---|\n| 实际 sparsity | 18.99% | 19.28% |\n| 参数 7.62B → | 6.17B | 6.15B |\n| MLP groups pruned | 199 | 202 |\n| Attn groups pruned | 0 | 0 |\n| 输出路径 | `pruned_qwen_math_rasp_20/` | `pruned_qwen_math_standard_20/` |\n| 服务器 | westd-11672 | westd-11672 |\n\n注意：与 DeepSeek 模型类似，两种方法都只剪 MLP 通道，不剪 attention heads（Qwen2.5-Math-7B 只有 4 个 KV heads，GQA group 粒度较粗）。RASP 的非均匀 MLP 剪枝清晰可见——`per_layer_intermediate_size` 范围从 8128 到 18944（原始 18944），早期和最后层剪得最多，中间层保留更多通道。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prune-rasp-20-qwen-math.md"
+}

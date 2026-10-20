@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc8f7b2b4eedf9eb05f2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grasp sft full n1319",
+  "task_key": "worker_eval_grasp_sft_full_n1319_20260516T014656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grasp_sft_full_n1319_20260516T014656_result.json",
+    "occurrence": 1,
+    "bytes": 503,
+    "sha256": "8dbdbb3daa74ee0c5c0ccf620f1785398c3b9d4687ec5cdc1f446984e670f97a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:1 **不空闲**。PID 74579 正在 cuda:1 上运行 `train_grpo_v5.py`（GRPO unpruned v2 训练），已运行 1 小时 10 分钟，占用 17.6GB 显存。\n\nGPU 状态：\n- **cuda:0**: PID 74134 — eval_sft_unpruned_full（不碰）\n- **cuda:1**: PID 74579 — grpo_unpruned_v2 训练（`--gpu 0` + `CUDA_VISIBLE_DEVICES=1`）\n\n两块 GPU 都被占满，无法在 cuda:1 上启动 GSM8K eval。需要等 grpo_unpruned_v2 完成或者你决定是否终止它。怎么处理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grasp-sft-full-n1319.md"
+}

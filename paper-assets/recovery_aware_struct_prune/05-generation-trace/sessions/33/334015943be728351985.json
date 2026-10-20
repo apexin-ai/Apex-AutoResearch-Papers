@@ -1,0 +1,1617 @@
+{
+  "schema_version": "1.0",
+  "id": "334015943be728351985",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "diagnose grpo rasp 25 completion",
+  "task_key": "worker_diagnose_grpo_rasp_25_completion_20260516T170406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_rasp_25_completion_20260516T170406.log",
+    "occurrence": 1,
+    "bytes": 106753,
+    "sha256": "35fe72a33916909e66a5634c6bd10f56608e8613565bfe91033bec68a517defa"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 0,
+    "tool_calls": 13,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 13,
+      "tool_result": 13,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "d87b2935-2d77-4fdf-93c9-f54aa70a7055",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778967600,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "2260f830-5d0a-455a-8168-2c19a76978cf",
+                "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me diagnose the grpo_rasp_25 experiment. I'll start by reading the log file on westd-11672.",
+              "signature": "EpoCClkIDRgCKkBKHt3eNG5DKP74CC0pgvJ9vh2hCgJoy/lnLYSRcvGy6Z/B/XJBB5fslFZrIpnbl6KENxlHj4NKJBEL1DgR2s9MMg9jbGF1ZGUtb3B1cy00LTY4ABIM/P4nOTdaU07SfdgzGgy5EMmqawP8HikhTRIiMNQv2pw7SmIAXc/3TGSfI2YHe7FjLYaFd5Dy9agX9HHMAXxzUkk2ZhnDy5OH8T2rvypvWCy3Ze/rS5zhsmlAzxN0Cs3Hdkol2MkFGTszh3cMVY4gLJSSGoIVsF9QXcXb1o/wSI2Rk4LWxF62ZzJ7EoswCU9RBTnOTXNxa8xZswV17rdXRv2Qm0RMK0JRHliRAAmBUkz5eTmwMSLcbpaF/JePGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "e28433ea-b8ab-4aee-9bdc-0ed824b1823a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TuZYwaMAZMHkgmNWMHgGY9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11772,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11772
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JFuxzVUzLoXfd3LuRZcTmt",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "57cfd324-9bab-44ec-bb12-5bfb8d2405a7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TuZYwaMAZMHkgmNWMHgGY9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11772,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11772
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T17:04:19.347Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01JFuxzVUzLoXfd3LuRZcTmt",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "b4689311-05f3-455d-a461-fd50c6227718",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_read_only",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the log file and checking the checkpoint directory on westd-11672.",
+              "signature": "EpUCClkIDRgCKkAmksSoqkzxNqGcKjSDxnBzW3G7xA8sHhWxoK4q3n3FaMN+rG5CyMUvilM9VtH+0DDNb+BFvTyqjqS7cJpXt/CpMg9jbGF1ZGUtb3B1cy00LTY4ABIMcDbTOpbAWxRkTl+/Ggz1BR70ubNAEENanjgiMDmUNVl1B+q5Ix+6H27++eRRcSl+zG0C80B8HQuc0ofoOFCP+gk/gPNYrGr7gHdl6ypq7pXowZZvDOM5vz+5AK7FW+krpsOtCPWVoKMibvUCoyxopR5JNL2yuLTET093BYnL+OpXITO/ovcfOXtpQ4Qyil/n9IywRDD9JLyuapraEDfy9DTplZBOnp371DQ1ik+Os6Wu3X0apULFnRgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "c73f2bf4-aacf-432a-8fd9-c342c4a3ca5b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgaYxq9BkgowPE9o2oiTgf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1226,
+                "cache_read_input_tokens": 23613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1226
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MSTYqfbCxwtPQNhZaf5vgY",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "tail -50 ~/runs/recovery_aware_struct_prune/grpo_rasp_25.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "4a7d2d37-5468-41fc-aabf-c8b535393420",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgaYxq9BkgowPE9o2oiTgf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1226,
+                "cache_read_input_tokens": 23613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1226
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UauoPkf9sVYL7bQbSpsAja",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25/",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "2e5bc942-4aba-4a06-b3a9-14b5a8172b2d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgaYxq9BkgowPE9o2oiTgf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1226,
+                "cache_read_input_tokens": 23613,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1226
+                },
+                "output_tokens": 30,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T17:04:27.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MSTYqfbCxwtPQNhZaf5vgY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ ���                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step         │           │           │ │\\\\n│ └─────────────────────────┴────────────────────────┴───────────┴─���─────────┘ │\\\\n╰──────────────────────────────────────────────────────────────────────────────╯\\\\n\\\\r100%|██████████| 100/100 [57:57<00:00, 34.77s/it]\\\\n2026-05-17 00:55:19,920 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]wandb: WARNING Artifact \\\\\\\"run-bc4ojqie-completions\\\\\\\" already exists with the same content. No new version will be created.\\\\n\\\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\\\n2026-05-17 00:55:33,873 [INFO] GRPO v4 recovery training complete.\\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: \\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: 🚀 View run \\\\u001b[33mgrpo_rasp_25\\\\u001b[0m at: \\\\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/bc4ojqie\\\\u001b[0m\\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: Find logs at: \\\\u001b[1;35mwandb/run-20260516_235715-bc4ojqie/logs\\\\u001b[0m\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "652c0417-52c1-48ce-aaa7-c324591ef40d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ ���                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step step    │           │           │ │\\\\n│ │                         │ Step step step         │           │           │ │\\\\n│ └─────────────────────────┴────────────────────────┴───────────┴─���─────────┘ │\\\\n╰──────────────────────────────────────────────────────────────────────────────╯\\\\n\\\\r100%|██████████| 100/100 [57:57<00:00, 34.77s/it]\\\\n2026-05-17 00:55:19,920 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]wandb: WARNING Artifact \\\\\\\"run-bc4ojqie-completions\\\\\\\" already exists with the same content. No new version will be created.\\\\n\\\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\\\n2026-05-17 00:55:33,873 [INFO] GRPO v4 recovery training complete.\\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: \\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: 🚀 View run \\\\u001b[33mgrpo_rasp_25\\\\u001b[0m at: \\\\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/bc4ojqie\\\\u001b[0m\\\\n\\\\u001b[1;34mwandb\\\\u001b[0m: Find logs at: \\\\u001b[1;35mwandb/run-20260516_235715-bc4ojqie/logs\\\\u001b[0m\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.02}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ ���                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step step    │           │           │ │\\n│ │                         │ Step step step         │           │           │ │\\n│ └─────────────────────────┴────────────────────────┴───────────┴─���─────────┘ │\\n╰──────────────────────────────────────────────────────────────────────────────╯\\n\\r100%|██████████| 100/100 [57:57<00:00, 34.77s/it]\\n2026-05-17 00:55:19,920 [INFO] Saving recovered model to /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\n\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]wandb: WARNING Artifact \\\"run-bc4ojqie-completions\\\" already exists with the same content. No new version will be created.\\n\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\rWriting model shards: 100%|██████████| 1/1 [00:13<00:00, 13.64s/it]\\n2026-05-17 00:55:33,873 [INFO] GRPO v4 recovery training complete.\\n\\u001b[1;34mwandb\\u001b[0m: \\n\\u001b[1;34mwandb\\u001b[0m: 🚀 View run \\u001b[33mgrpo_rasp_25\\u001b[0m at: \\u001b[34mhttps://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/bc4ojqie\\u001b[0m\\n\\u001b[1;34mwandb\\u001b[0m: Find logs at: \\u001b[1;35mwandb/run-20260516_235715-bc4ojqie/logs\\u001b[0m\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.02}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T17:04:28.529Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UauoPkf9sVYL7bQbSpsAja",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11308100\\\\ndrwxr-xr-x  4 root root        4096 May 17 00:55 .\\\\ndrwxr-xr-x 31 root root        4096 May 16 23:52 ..\\\\n-rw-r--r--  1 root root        2084 May 17 00:54 README.md\\\\n-rw-r--r--  1 root root        2246 May 17 00:55 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 17 00:55 checkpoint-100\\\\ndrwxr-xr-x  2 root root        4096 May 17 00:54 completions\\\\n-rw-r--r--  1 root root        1731 May 17 00:55 config.json\\\\n-rw-r--r--  1 root root         240 May 17 00:55 generation_config.json\\\\n-rw-r--r--  1 root root 11568022544 May 17 00:55 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 17 00:55 tokenizer.json\\\\n-rw-r--r--  1 root root         420 May 17 00:55 tokenizer_config.json\\\\n-rw-r--r--  1 root root        7313 May 17 00:55 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "be44b675-b614-41ba-93c4-141f75dc67af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 11308100\\\\ndrwxr-xr-x  4 root root        4096 May 17 00:55 .\\\\ndrwxr-xr-x 31 root root        4096 May 16 23:52 ..\\\\n-rw-r--r--  1 root root        2084 May 17 00:54 README.md\\\\n-rw-r--r--  1 root root        2246 May 17 00:55 chat_template.jinja\\\\ndrwxr-xr-x  2 root root        4096 May 17 00:55 checkpoint-100\\\\ndrwxr-xr-x  2 root root        4096 May 17 00:54 completions\\\\n-rw-r--r--  1 root root        1731 May 17 00:55 config.json\\\\n-rw-r--r--  1 root root         240 May 17 00:55 generation_config.json\\\\n-rw-r--r--  1 root root 11568022544 May 17 00:55 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 17 00:55 tokenizer.json\\\\n-rw-r--r--  1 root root         420 May 17 00:55 tokenizer_config.json\\\\n-rw-r--r--  1 root root        7313 May 17 00:55 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"total 11308100\\ndrwxr-xr-x  4 root root        4096 May 17 00:55 .\\ndrwxr-xr-x 31 root root        4096 May 16 23:52 ..\\n-rw-r--r--  1 root root        2084 May 17 00:54 README.md\\n-rw-r--r--  1 root root        2246 May 17 00:55 chat_template.jinja\\ndrwxr-xr-x  2 root root        4096 May 17 00:55 checkpoint-100\\ndrwxr-xr-x  2 root root        4096 May 17 00:54 completions\\n-rw-r--r--  1 root root        1731 May 17 00:55 config.json\\n-rw-r--r--  1 root root         240 May 17 00:55 generation_config.json\\n-rw-r--r--  1 root root 11568022544 May 17 00:55 model.safetensors\\n-rw-r--r--  1 root root    11421907 May 17 00:55 tokenizer.json\\n-rw-r--r--  1 root root         420 May 17 00:55 tokenizer_config.json\\n-rw-r--r--  1 root root        7313 May 17 00:55 training_args.bin\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功完成：100/100 steps，耗时 57:57，checkpoint 和最终模型都已保存。提取 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "a2948978-a2f8-44dd-af93-ca02179f29bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018zJyjiojjg4gafvHzBkHAE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2209,
+                "cache_read_input_tokens": 24839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2209
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DwPciEeANezgNnXsKnYBvm",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "grep -E \"step.*100|reward|frac_zero|kl|loss\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "6d22b4ed-0f07-482a-be2a-cd6cc071ffab",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018zJyjiojjg4gafvHzBkHAE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2209,
+                "cache_read_input_tokens": 24839,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2209
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T17:04:32.965Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DwPciEeANezgNnXsKnYBvm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "2a18c4c3-f5bf-4ca5-9ed4-62a063ac2121",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012vBhE3Nz5WB8xFXappf6eN",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "grep -iE \"reward|frac_zero|kl_div|loss\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "a9f45925-9e3e-439e-9bfd-4a0d9784beee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014CwDCCDc3PYs8hPJ9jrX4S",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 274,
+                "cache_read_input_tokens": 27048,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 274
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T17:04:39.227Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012vBhE3Nz5WB8xFXappf6eN",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "4aa5dc3e-659e-4dc2-b9bd-4b0c6848b1cc",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RLcjbDYM54csMbeRtKNmLF",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-11672",
+                "command": "grep -i \"reward\" ~/runs/recovery_aware_struct_prune/grpo_rasp_25.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "b906d9bc-360b-4d70-b886-95e94eea8af7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DMiLTpRykcaVeQeh82cPaJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 234,
+                "cache_read_input_tokens": 27322,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 234
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T17:04:42.641Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RLcjbDYM54csMbeRtKNmLF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:11,433 [INFO] beta=0.04, loss_type=dapo, format_reward=0.1\\\\n2026-05-16 23:57:11,433 [INFO] Reward desert patience: 50 log events\\\\n\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<44:25, 26.93s/it]\\\\r  2%|▏         | 2/100 [00:52<43:00, 26.33s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:53, 26.18s/it]\\\\r  5%|▌         | 5/100 [02:10<41:16, 26.07s/it]\\\\r  6%|▌         | 6/100 [02:37<40:57, 26.14s/it]\\\\r  7%|▋         | 7/100 [03:03<40:26, 26.09s/it]\\\\r  8%|▊         | 8/100 [03:28<39:53, 26.01s/it]\\\\r  9%|▉         | 9/100 [03:54<39:22, 25.96s/it]\\\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]{'loss': '0.01304', 'grad_norm': '1.258', 'learning_rate': '4.55e-07', 'num_tokens': '1.704e+05', 'completions/mean_length': '984.7', 'completions/min_length': '524', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '257.1', 'completions/min_terminated_length': '216.8', 'completions/max_terminated_length': '297.3', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0009339', 'entropy': '0.05765', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.51', 'epoch': '0.005353'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 11%|█         | 11/100 [04:54<41:59, 28.31s/it]\\\\r 12%|█▏        | 12/100 [05:20<40:29, 27.61s/it]\\\\r 13%|█▎        | 13/100 [05:46<39:20, 27.13s/it]\\\\r 14%|█▍        | 14/100 [06:15<39:51, 27.81s/it]\\\\r 15%|█▌        | 15/100 [07:09<50:31, 35.67s/it]\\\\r 16%|█▌        | 16/100 [08:05<58:18, 41.65s/it]\\\\r 17%|█▋        | 17/100 [08:59<1:02:55, 45.49s/it]\\\\r 18%|█▊        | 18/100 [09:53<1:05:40, 48.05s/it]\\\\r 19%|█▉        | 19/100 [10:49<1:08:00, 50.38s/it]\\\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]\\\\r                                                  \\\\r\\\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]{'loss': '0.005435', 'grad_norm': '0.03174', 'learning_rate': '4.05e-07', 'num_tokens': '3.414e+05', 'completions/mean_length': '985.6', 'completions/min_length': '608.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9437', 'completions/mean_terminated_length': '202.9', 'completions/min_terminated_length': '198.7', 'completions/max_terminated_length': '207.1', 'rewards/reward_fn/mean': '0.0075', 'rewards/reward_fn/std': '0.02842', 'reward': '0.0075', 'reward_std': '0.02842', 'frac_reward_zero_std': '0.925', 'kl': '0.0008425', 'entropy': '0.05131', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '42.6', 'epoch': '0.01071'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 21%|██        | 21/100 [12:47<1:12:15, 54.88s/it]\\\\r 22%|██▏       | 22/100 [13:45<1:12:38, 55.88s/it]\\\\r 23%|██▎       | 23/100 [14:44<1:12:45, 56.69s/it]\\\\r 24%|██▍       | 24/100 [15:44<1:13:05, 57.70s/it]\\\\r 25%|██▌       | 25/100 [16:42<1:12:20, 57.88s/it]\\\\r 26%|██▌       | 26/100 [17:43<1:12:22, 58.68s/it]\\\\r 27%|██▋       | 27/100 [18:41<1:11:27, 58.74s/it]\\\\r 28%|██▊       | 28/100 [19:41<1:10:50, 59.03s/it]\\\\r 29%|██▉       | 29/100 [20:40<1:09:58, 59.13s/it]\\\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]\\\\r                                                  \\\\r\\\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]{'loss': '-0.001534', 'grad_norm': '0.9375', 'learning_rate': '3.55e-07', 'num_tokens': '5.181e+05', 'completions/mean_length': '1016', 'completions/min_length': '896.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9875', 'completions/mean_terminated_length': '77.1', 'completions/min_terminated_length': '77.1', 'comple\\\\n\\\\n... [截断: 输出过长，省略 6575 字符] ...\\\\n\\\\n0 [47:51<09:44, 26.55s/it]\\\\r 79%|███████▉  | 79/100 [48:18<09:19, 26.64s/it]\\\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]\\\\r                                                \\\\r\\\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]{'loss': '0.003532', 'grad_norm': '0.05249', 'learning_rate': '1.05e-07', 'num_tokens': '1.374e+06', 'completions/mean_length': '994.6', 'completions/min_length': '691', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9625', 'completions/mean_terminated_length': '83.4', 'completions/min_terminated_length': '76.6', 'completions/max_terminated_length': '90.2', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0006458', 'entropy': '0.03895', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.88', 'epoch': '0.04283'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 81%|████████  | 81/100 [49:14<08:37, 27.22s/it]\\\\r 82%|████████▏ | 82/100 [49:40<08:04, 26.90s/it]\\\\r 83%|████████▎ | 83/100 [50:06<07:34, 26.71s/it]\\\\r 84%|████████▍ | 84/100 [50:33<07:05, 26.57s/it]\\\\r 85%|████████▌ | 85/100 [50:58<06:35, 26.37s/it]\\\\r 86%|████████▌ | 86/100 [51:24<06:06, 26.17s/it]\\\\r 87%|████████▋ | 87/100 [51:50<05:40, 26.18s/it]\\\\r 88%|████████▊ | 88/100 [52:17<05:15, 26.29s/it]\\\\r 89%|████████▉ | 89/100 [52:43<04:48, 26.22s/it]\\\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]\\\\r                                                \\\\r\\\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]{'loss': '0.02251', 'grad_norm': '1.633', 'learning_rate': '5.5e-08', 'num_tokens': '1.544e+06', 'completions/mean_length': '976.2', 'completions/min_length': '598.9', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '129.2', 'completions/min_terminated_length': '86.9', 'completions/max_terminated_length': '166.8', 'rewards/reward_fn/mean': '0.01063', 'rewards/reward_fn/std': '0.03836', 'reward': '0.01063', 'reward_std': '0.03836', 'frac_reward_zero_std': '0.85', 'kl': '0.0007043', 'entropy': '0.04443', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.66', 'epoch': '0.04818'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 91%|█████████ | 91/100 [53:36<03:57, 26.35s/it]\\\\r 92%|█████████▏| 92/100 [54:02<03:29, 26.15s/it]\\\\r 93%|█████████▎| 93/100 [54:28<03:03, 26.18s/it]\\\\r 94%|█████████▍| 94/100 [54:54<02:37, 26.18s/it]\\\\r 95%|█████████▌| 95/100 [55:20<02:10, 26.00s/it]\\\\r 96%|█████████▌| 96/100 [55:45<01:43, 25.94s/it]\\\\r 97%|█████████▋| 97/100 [56:12<01:18, 26.01s/it]\\\\r 98%|█████████▊| 98/100 [56:38<00:52, 26.19s/it]\\\\r 99%|█████████▉| 99/100 [57:05<00:26, 26.25s/it]\\\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]\\\\r                                                 \\\\r\\\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]{'loss': '0.01275', 'grad_norm': '0.05371', 'learning_rate': '5e-09', 'num_tokens': '1.71e+06', 'completions/mean_length': '956.2', 'completions/min_length': '545.4', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9062', 'completions/mean_terminated_length': '168.2', 'completions/min_terminated_length': '135.8', 'completions/max_terminated_length': '216.6', 'rewards/reward_fn/mean': '0.009375', 'rewards/reward_fn/std': '0.03149', 'reward': '0.009375', 'reward_std': '0.03149', 'frac_reward_zero_std': '0.875', 'kl': '0.0007035', 'entropy': '0.04262', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.49', 'epoch': '0.05353'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "218e4d94-e272-4a39-9ece-386b9633a7d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-16 23:57:11,433 [INFO] beta=0.04, loss_type=dapo, format_reward=0.1\\\\n2026-05-16 23:57:11,433 [INFO] Reward desert patience: 50 log events\\\\n\\\\r  0%|          | 0/100 [00:00<?, ?it/s]\\\\r  1%|          | 1/100 [00:26<44:25, 26.93s/it]\\\\r  2%|▏         | 2/100 [00:52<43:00, 26.33s/it]\\\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\\\r  4%|▍         | 4/100 [01:44<41:53, 26.18s/it]\\\\r  5%|▌         | 5/100 [02:10<41:16, 26.07s/it]\\\\r  6%|▌         | 6/100 [02:37<40:57, 26.14s/it]\\\\r  7%|▋         | 7/100 [03:03<40:26, 26.09s/it]\\\\r  8%|▊         | 8/100 [03:28<39:53, 26.01s/it]\\\\r  9%|▉         | 9/100 [03:54<39:22, 25.96s/it]\\\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]\\\\r                                                \\\\r\\\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]{'loss': '0.01304', 'grad_norm': '1.258', 'learning_rate': '4.55e-07', 'num_tokens': '1.704e+05', 'completions/mean_length': '984.7', 'completions/min_length': '524', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '257.1', 'completions/min_terminated_length': '216.8', 'completions/max_terminated_length': '297.3', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0009339', 'entropy': '0.05765', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.51', 'epoch': '0.005353'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 11%|█         | 11/100 [04:54<41:59, 28.31s/it]\\\\r 12%|█▏        | 12/100 [05:20<40:29, 27.61s/it]\\\\r 13%|█▎        | 13/100 [05:46<39:20, 27.13s/it]\\\\r 14%|█▍        | 14/100 [06:15<39:51, 27.81s/it]\\\\r 15%|█▌        | 15/100 [07:09<50:31, 35.67s/it]\\\\r 16%|█▌        | 16/100 [08:05<58:18, 41.65s/it]\\\\r 17%|█▋        | 17/100 [08:59<1:02:55, 45.49s/it]\\\\r 18%|█▊        | 18/100 [09:53<1:05:40, 48.05s/it]\\\\r 19%|█▉        | 19/100 [10:49<1:08:00, 50.38s/it]\\\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]\\\\r                                                  \\\\r\\\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]{'loss': '0.005435', 'grad_norm': '0.03174', 'learning_rate': '4.05e-07', 'num_tokens': '3.414e+05', 'completions/mean_length': '985.6', 'completions/min_length': '608.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9437', 'completions/mean_terminated_length': '202.9', 'completions/min_terminated_length': '198.7', 'completions/max_terminated_length': '207.1', 'rewards/reward_fn/mean': '0.0075', 'rewards/reward_fn/std': '0.02842', 'reward': '0.0075', 'reward_std': '0.02842', 'frac_reward_zero_std': '0.925', 'kl': '0.0008425', 'entropy': '0.05131', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '42.6', 'epoch': '0.01071'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 21%|██        | 21/100 [12:47<1:12:15, 54.88s/it]\\\\r 22%|██▏       | 22/100 [13:45<1:12:38, 55.88s/it]\\\\r 23%|██▎       | 23/100 [14:44<1:12:45, 56.69s/it]\\\\r 24%|██▍       | 24/100 [15:44<1:13:05, 57.70s/it]\\\\r 25%|██▌       | 25/100 [16:42<1:12:20, 57.88s/it]\\\\r 26%|██▌       | 26/100 [17:43<1:12:22, 58.68s/it]\\\\r 27%|██▋       | 27/100 [18:41<1:11:27, 58.74s/it]\\\\r 28%|██▊       | 28/100 [19:41<1:10:50, 59.03s/it]\\\\r 29%|██▉       | 29/100 [20:40<1:09:58, 59.13s/it]\\\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]\\\\r                                                  \\\\r\\\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]{'loss': '-0.001534', 'grad_norm': '0.9375', 'learning_rate': '3.55e-07', 'num_tokens': '5.181e+05', 'completions/mean_length': '1016', 'completions/min_length': '896.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9875', 'completions/mean_terminated_length': '77.1', 'completions/min_terminated_length': '77.1', 'comple\\\\n\\\\n... [截断: 输出过长，省略 6575 字符] ...\\\\n\\\\n0 [47:51<09:44, 26.55s/it]\\\\r 79%|███████▉  | 79/100 [48:18<09:19, 26.64s/it]\\\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]\\\\r                                                \\\\r\\\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]{'loss': '0.003532', 'grad_norm': '0.05249', 'learning_rate': '1.05e-07', 'num_tokens': '1.374e+06', 'completions/mean_length': '994.6', 'completions/min_length': '691', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9625', 'completions/mean_terminated_length': '83.4', 'completions/min_terminated_length': '76.6', 'completions/max_terminated_length': '90.2', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0006458', 'entropy': '0.03895', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.88', 'epoch': '0.04283'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 81%|████████  | 81/100 [49:14<08:37, 27.22s/it]\\\\r 82%|████████▏ | 82/100 [49:40<08:04, 26.90s/it]\\\\r 83%|████████▎ | 83/100 [50:06<07:34, 26.71s/it]\\\\r 84%|████████▍ | 84/100 [50:33<07:05, 26.57s/it]\\\\r 85%|████████▌ | 85/100 [50:58<06:35, 26.37s/it]\\\\r 86%|████████▌ | 86/100 [51:24<06:06, 26.17s/it]\\\\r 87%|████████▋ | 87/100 [51:50<05:40, 26.18s/it]\\\\r 88%|████████▊ | 88/100 [52:17<05:15, 26.29s/it]\\\\r 89%|████████▉ | 89/100 [52:43<04:48, 26.22s/it]\\\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]\\\\r                                                \\\\r\\\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]{'loss': '0.02251', 'grad_norm': '1.633', 'learning_rate': '5.5e-08', 'num_tokens': '1.544e+06', 'completions/mean_length': '976.2', 'completions/min_length': '598.9', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '129.2', 'completions/min_terminated_length': '86.9', 'completions/max_terminated_length': '166.8', 'rewards/reward_fn/mean': '0.01063', 'rewards/reward_fn/std': '0.03836', 'reward': '0.01063', 'reward_std': '0.03836', 'frac_reward_zero_std': '0.85', 'kl': '0.0007043', 'entropy': '0.04443', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.66', 'epoch': '0.04818'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\\r 91%|█████████ | 91/100 [53:36<03:57, 26.35s/it]\\\\r 92%|█████████▏| 92/100 [54:02<03:29, 26.15s/it]\\\\r 93%|█████████▎| 93/100 [54:28<03:03, 26.18s/it]\\\\r 94%|█████████▍| 94/100 [54:54<02:37, 26.18s/it]\\\\r 95%|█████████▌| 95/100 [55:20<02:10, 26.00s/it]\\\\r 96%|█████████▌| 96/100 [55:45<01:43, 25.94s/it]\\\\r 97%|█████████▋| 97/100 [56:12<01:18, 26.01s/it]\\\\r 98%|█████████▊| 98/100 [56:38<00:52, 26.19s/it]\\\\r 99%|█████████▉| 99/100 [57:05<00:26, 26.25s/it]\\\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]\\\\r                                                 \\\\r\\\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]{'loss': '0.01275', 'grad_norm': '0.05371', 'learning_rate': '5e-09', 'num_tokens': '1.71e+06', 'completions/mean_length': '956.2', 'completions/min_length': '545.4', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9062', 'completions/mean_terminated_length': '168.2', 'completions/min_terminated_length': '135.8', 'completions/max_terminated_length': '216.6', 'rewards/reward_fn/mean': '0.009375', 'rewards/reward_fn/std': '0.03149', 'reward': '0.009375', 'reward_std': '0.03149', 'frac_reward_zero_std': '0.875', 'kl': '0.0007035', 'entropy': '0.04262', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.49', 'epoch': '0.05353'}\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"2026-05-16 23:57:11,433 [INFO] beta=0.04, loss_type=dapo, format_reward=0.1\\n2026-05-16 23:57:11,433 [INFO] Reward desert patience: 50 log events\\n\\r  0%|          | 0/100 [00:00<?, ?it/s]\\r  1%|          | 1/100 [00:26<44:25, 26.93s/it]\\r  2%|▏         | 2/100 [00:52<43:00, 26.33s/it]\\r  3%|▎         | 3/100 [01:18<42:08, 26.07s/it]\\r  4%|▍         | 4/100 [01:44<41:53, 26.18s/it]\\r  5%|▌         | 5/100 [02:10<41:16, 26.07s/it]\\r  6%|▌         | 6/100 [02:37<40:57, 26.14s/it]\\r  7%|▋         | 7/100 [03:03<40:26, 26.09s/it]\\r  8%|▊         | 8/100 [03:28<39:53, 26.01s/it]\\r  9%|▉         | 9/100 [03:54<39:22, 25.96s/it]\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]\\r                                                \\r\\r 10%|█         | 10/100 [04:21<39:10, 26.11s/it]{'loss': '0.01304', 'grad_norm': '1.258', 'learning_rate': '4.55e-07', 'num_tokens': '1.704e+05', 'completions/mean_length': '984.7', 'completions/min_length': '524', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '257.1', 'completions/min_terminated_length': '216.8', 'completions/max_terminated_length': '297.3', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0009339', 'entropy': '0.05765', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.51', 'epoch': '0.005353'}\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n\\r 11%|█         | 11/100 [04:54<41:59, 28.31s/it]\\r 12%|█▏        | 12/100 [05:20<40:29, 27.61s/it]\\r 13%|█▎        | 13/100 [05:46<39:20, 27.13s/it]\\r 14%|█▍        | 14/100 [06:15<39:51, 27.81s/it]\\r 15%|█▌        | 15/100 [07:09<50:31, 35.67s/it]\\r 16%|█▌        | 16/100 [08:05<58:18, 41.65s/it]\\r 17%|█▋        | 17/100 [08:59<1:02:55, 45.49s/it]\\r 18%|█▊        | 18/100 [09:53<1:05:40, 48.05s/it]\\r 19%|█▉        | 19/100 [10:49<1:08:00, 50.38s/it]\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]\\r                                                  \\r\\r 20%|██        | 20/100 [11:46<1:09:48, 52.36s/it]{'loss': '0.005435', 'grad_norm': '0.03174', 'learning_rate': '4.05e-07', 'num_tokens': '3.414e+05', 'completions/mean_length': '985.6', 'completions/min_length': '608.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9437', 'completions/mean_terminated_length': '202.9', 'completions/min_terminated_length': '198.7', 'completions/max_terminated_length': '207.1', 'rewards/reward_fn/mean': '0.0075', 'rewards/reward_fn/std': '0.02842', 'reward': '0.0075', 'reward_std': '0.02842', 'frac_reward_zero_std': '0.925', 'kl': '0.0008425', 'entropy': '0.05131', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '42.6', 'epoch': '0.01071'}\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n\\r 21%|██        | 21/100 [12:47<1:12:15, 54.88s/it]\\r 22%|██▏       | 22/100 [13:45<1:12:38, 55.88s/it]\\r 23%|██▎       | 23/100 [14:44<1:12:45, 56.69s/it]\\r 24%|██▍       | 24/100 [15:44<1:13:05, 57.70s/it]\\r 25%|██▌       | 25/100 [16:42<1:12:20, 57.88s/it]\\r 26%|██▌       | 26/100 [17:43<1:12:22, 58.68s/it]\\r 27%|██▋       | 27/100 [18:41<1:11:27, 58.74s/it]\\r 28%|██▊       | 28/100 [19:41<1:10:50, 59.03s/it]\\r 29%|██▉       | 29/100 [20:40<1:09:58, 59.13s/it]\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]\\r                                                  \\r\\r 30%|███       | 30/100 [21:41<1:09:29, 59.56s/it]{'loss': '-0.001534', 'grad_norm': '0.9375', 'learning_rate': '3.55e-07', 'num_tokens': '5.181e+05', 'completions/mean_length': '1016', 'completions/min_length': '896.3', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9875', 'completions/mean_terminated_length': '77.1', 'completions/min_terminated_length': '77.1', 'comple\\n\\n... [截断: 输出过长，省略 6575 字符] ...\\n\\n0 [47:51<09:44, 26.55s/it]\\r 79%|███████▉  | 79/100 [48:18<09:19, 26.64s/it]\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]\\r                                                \\r\\r 80%|████████  | 80/100 [48:46<09:00, 27.01s/it]{'loss': '0.003532', 'grad_norm': '0.05249', 'learning_rate': '1.05e-07', 'num_tokens': '1.374e+06', 'completions/mean_length': '994.6', 'completions/min_length': '691', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9625', 'completions/mean_terminated_length': '83.4', 'completions/min_terminated_length': '76.6', 'completions/max_terminated_length': '90.2', 'rewards/reward_fn/mean': '0.001875', 'rewards/reward_fn/std': '0.0075', 'reward': '0.001875', 'reward_std': '0.0075', 'frac_reward_zero_std': '0.925', 'kl': '0.0006458', 'entropy': '0.03895', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.88', 'epoch': '0.04283'}\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n\\r 81%|████████  | 81/100 [49:14<08:37, 27.22s/it]\\r 82%|████████▏ | 82/100 [49:40<08:04, 26.90s/it]\\r 83%|████████▎ | 83/100 [50:06<07:34, 26.71s/it]\\r 84%|████████▍ | 84/100 [50:33<07:05, 26.57s/it]\\r 85%|████████▌ | 85/100 [50:58<06:35, 26.37s/it]\\r 86%|████████▌ | 86/100 [51:24<06:06, 26.17s/it]\\r 87%|████████▋ | 87/100 [51:50<05:40, 26.18s/it]\\r 88%|████████▊ | 88/100 [52:17<05:15, 26.29s/it]\\r 89%|████████▉ | 89/100 [52:43<04:48, 26.22s/it]\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]\\r                                                \\r\\r 90%|█████████ | 90/100 [53:10<04:23, 26.34s/it]{'loss': '0.02251', 'grad_norm': '1.633', 'learning_rate': '5.5e-08', 'num_tokens': '1.544e+06', 'completions/mean_length': '976.2', 'completions/min_length': '598.9', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9375', 'completions/mean_terminated_length': '129.2', 'completions/min_terminated_length': '86.9', 'completions/max_terminated_length': '166.8', 'rewards/reward_fn/mean': '0.01063', 'rewards/reward_fn/std': '0.03836', 'reward': '0.01063', 'reward_std': '0.03836', 'frac_reward_zero_std': '0.85', 'kl': '0.0007043', 'entropy': '0.04443', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.66', 'epoch': '0.04818'}\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n\\r 91%|█████████ | 91/100 [53:36<03:57, 26.35s/it]\\r 92%|█████████▏| 92/100 [54:02<03:29, 26.15s/it]\\r 93%|█████████▎| 93/100 [54:28<03:03, 26.18s/it]\\r 94%|█████████▍| 94/100 [54:54<02:37, 26.18s/it]\\r 95%|█████████▌| 95/100 [55:20<02:10, 26.00s/it]\\r 96%|█████████▌| 96/100 [55:45<01:43, 25.94s/it]\\r 97%|█████████▋| 97/100 [56:12<01:18, 26.01s/it]\\r 98%|█████████▊| 98/100 [56:38<00:52, 26.19s/it]\\r 99%|█████████▉| 99/100 [57:05<00:26, 26.25s/it]\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]\\r                                                 \\r\\r100%|██████████| 100/100 [57:31<00:00, 26.33s/it]{'loss': '0.01275', 'grad_norm': '0.05371', 'learning_rate': '5e-09', 'num_tokens': '1.71e+06', 'completions/mean_length': '956.2', 'completions/min_length': '545.4', 'completions/max_length': '1024', 'completions/clipped_ratio': '0.9062', 'completions/mean_terminated_length': '168.2', 'completions/min_terminated_length': '135.8', 'completions/max_terminated_length': '216.6', 'rewards/reward_fn/mean': '0.009375', 'rewards/reward_fn/std': '0.03149', 'reward': '0.009375', 'reward_std': '0.03149', 'frac_reward_zero_std': '0.875', 'kl': '0.0007035', 'entropy': '0.04262', 'clip_ratio/low_mean': '0', 'clip_ratio/low_min': '0', 'clip_ratio/high_mean': '0', 'clip_ratio/high_max': '0', 'clip_ratio/region_mean': '0', 'step_time': '25.49', 'epoch': '0.05353'}\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n│ ┃ Prompt                  ┃ Completion             ┃ reward_fn ┃ Advantage ┃ │\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功完成。最终 step 100 metrics：\n- reward: 0.009375\n- reward_std: 0.03149\n- frac_reward_zero_std: 0.875\n- kl: 0.0007035\n- loss: 0.01275\n- entropy: 0.04262\n\n更新 registry 并删除 cron。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "fa18c04f-d985-4436-9ee3-5f54f5a6d419",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015DfZZCSN3o98skk9N2vvdR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4348,
+                "cache_read_input_tokens": 27556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4348
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Emevng3NyVgf3Lp89RpTQ",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:CronDelete",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "24b7d11a-20b5-49f3-8704-e8cb98262d5e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015DfZZCSN3o98skk9N2vvdR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4348,
+                "cache_read_input_tokens": 27556,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4348
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T17:04:47.560Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_013Emevng3NyVgf3Lp89RpTQ",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronDelete"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "eebd93cf-3d98-4e14-b2b3-284767217daa",
+            "tool_use_result": {
+              "matches": [
+                "CronDelete"
+              ],
+              "query": "select:CronDelete",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me update the registry with success status and metrics, and delete the cron job.",
+              "signature": "Eo8CClkIDRgCKkDMzmRethR86OSNIuofk+uyhi8ChpjjoAtke/gVN6QnUwS4bn41rNcdK6NbttxuzcrRqiGYVw3Z1arJ2CTJ5klcMg9jbGF1ZGUtb3B1cy00LTY4ABIMHsWSBbvoCX2QQRd4Ggxtxp6rtqCvAXTWoWMiMBl+GEPA+w+b5z53nG9YiMZ9ohb0WAeEos2UOA7aj6MX64kEZQtNZJvM45BYb4Wfyipk3LGEbjOiu3tTza1fp85KkkDj7NWaQlPmOrBHMl4kknAJUHBOMbuOtawEkndy0WAzX+w/vmbl3RBPzxGV44GzQw0h3xOCnLSuvFnOanwblQzq0ukf4nAjFB2I5/s+hjwOdQ/rPhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "2e13bfd9-7d20-49f6-9e8c-cc4cf625dabf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018AEgZLg5XQ6P9ZxJPXg3Us",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 31904,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JWvnJhmJmGjCznuVAuc1eE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25",
+                "field": "conclusion",
+                "value": "success",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "dc3817cb-956b-4410-80c2-5bc863826520",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018AEgZLg5XQ6P9ZxJPXg3Us",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 31904,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018ya4RBuyXo1YKXdAUxvVdH",
+              "name": "CronDelete",
+              "input": {
+                "id": "grpo_rasp_25"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "99850896-9a4c-4633-ac2f-8f1062de04cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018AEgZLg5XQ6P9ZxJPXg3Us",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 308,
+                "cache_read_input_tokens": 31904,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 308
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T17:04:53.313Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JWvnJhmJmGjCznuVAuc1eE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:04:53.004Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5468}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "e1b066af-e1ca-4936-8aed-3e3451dbdfb0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:04:53.004Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5468}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:40.256Z\", \"updated_at\": \"2026-05-16T17:04:53.004Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"21408\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\", \"submitted_at\": \"2026-05-16T15:52:28.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\", \"seed\": 42, \"wall_clock_seconds\": 4223.8, \"gpu_hours\": 1.17}, \"reproduce\": {\"finished_at\": \"2026-05-16T17:02:50.600Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T17:02:51.984Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T17:02:53.863552+00:00\"}]}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5468}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T17:04:53.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>No scheduled job with id 'grpo_rasp_25'</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_018ya4RBuyXo1YKXdAUxvVdH"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "ce84654f-47f0-41fc-8e72-d5861b0cf9ee",
+            "tool_use_result": "Error: No scheduled job with id 'grpo_rasp_25'"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不存在（可能之前已删除）。现在更新 status 为 DONE 并记录 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "1265ab93-8522-4459-babe-50f592bca13d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFftKgJHzHuJxEKrngnQxq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1225,
+                "cache_read_input_tokens": 32212,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1225
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D1NLy44ocMMwEw4ZnDFAo5",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25",
+                "field": "status",
+                "value": "DONE",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "3c285066-c00e-4742-a3b0-47c1b2897b19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01MFftKgJHzHuJxEKrngnQxq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1225,
+                "cache_read_input_tokens": 32212,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1225
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T17:04:57.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D1NLy44ocMMwEw4ZnDFAo5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2735}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "9c982048-f2d1-43b5-891d-11de1ae018f3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2735}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\", \"metadata\": {\"elapsed_seconds\": 0.2735}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LAgxt1hFZZTFpw7MEUngeo",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "b2448c64-136d-4685-8c00-8f94cb36076c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Mq4rh4AHTcai7esygnS2yy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 243,
+                "cache_read_input_tokens": 33437,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 243
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T17:05:01.276Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LAgxt1hFZZTFpw7MEUngeo",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:01.092Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4285}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "e1af05ef-ddf3-4024-8b43-12b24a2fac55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:01.092Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4285}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:40.256Z\", \"updated_at\": \"2026-05-16T17:05:01.092Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"21408\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\", \"submitted_at\": \"2026-05-16T15:52:28.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\", \"seed\": 42, \"wall_clock_seconds\": 4223.8, \"gpu_hours\": 1.17}, \"reproduce\": {\"finished_at\": \"2026-05-16T17:02:50.600Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T17:02:51.984Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T17:02:53.863552+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4285}}"
+              }
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01EDZshLdH3LFNVfN7U7BDkG",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25",
+                "field": "metrics",
+                "value": {
+                  "step_100": {
+                    "reward": 0.009375,
+                    "reward_std": 0.03149,
+                    "frac_reward_zero_std": 0.875,
+                    "kl": 0.0007035,
+                    "loss": 0.01275,
+                    "entropy": 0.04262,
+                    "grad_norm": 0.05371
+                  },
+                  "wandb_run_id": "bc4ojqie",
+                  "wall_clock_min": 57.95
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "1a859702-8296-44dc-9d91-270ec338c39e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017JKaUAfYTJCLZbve3XTc4s",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1015,
+                "cache_read_input_tokens": 33680,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1015
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T17:05:06.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01EDZshLdH3LFNVfN7U7BDkG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:05.970Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\", \\\"metrics\\\": {\\\"step_100\\\": {\\\"reward\\\": 0.009375, \\\"reward_std\\\": 0.03149, \\\"frac_reward_zero_std\\\": 0.875, \\\"kl\\\": 0.0007035, \\\"loss\\\": 0.01275, \\\"entropy\\\": 0.04262, \\\"grad_norm\\\": 0.05371}, \\\"wandb_run_id\\\": \\\"bc4ojqie\\\", \\\"wall_clock_min\\\": 57.95}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4674}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "92868263-96b6-4f65-99c1-735fe8303d73",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:05.970Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"process dead 5× with no sentinel/W&B — auto-resolved as failed\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\", \\\"metrics\\\": {\\\"step_100\\\": {\\\"reward\\\": 0.009375, \\\"reward_std\\\": 0.03149, \\\"frac_reward_zero_std\\\": 0.875, \\\"kl\\\": 0.0007035, \\\"loss\\\": 0.01275, \\\"entropy\\\": 0.04262, \\\"grad_norm\\\": 0.05371}, \\\"wandb_run_id\\\": \\\"bc4ojqie\\\", \\\"wall_clock_min\\\": 57.95}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4674}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:40.256Z\", \"updated_at\": \"2026-05-16T17:05:05.970Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"21408\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\", \"submitted_at\": \"2026-05-16T15:52:28.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\", \"seed\": 42, \"wall_clock_seconds\": 4223.8, \"gpu_hours\": 1.17}, \"reproduce\": {\"finished_at\": \"2026-05-16T17:02:50.600Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T17:02:51.984Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T17:02:53.863552+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\", \"metrics\": {\"step_100\": {\"reward\": 0.009375, \"reward_std\": 0.03149, \"frac_reward_zero_std\": 0.875, \"kl\": 0.0007035, \"loss\": 0.01275, \"entropy\": 0.04262, \"grad_norm\": 0.05371}, \"wandb_run_id\": \"bc4ojqie\", \"wall_clock_min\": 57.95}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4674}}"
+              }
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "清除之前错误的 failure_reason。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "22ec9f7d-2407-465b-9df9-bf791fd96a8c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016D4BRc2ZLJxbZGfpQTzeMq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 34695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qd3GoFKWeu36EfFrnp8xth",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25",
+                "field": "failure_reason",
+                "value": "",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "8dfe2dae-9baa-413d-9f1b-aa3c558788ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016D4BRc2ZLJxbZGfpQTzeMq",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 34695,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T17:05:09.987Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qd3GoFKWeu36EfFrnp8xth",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:09.810Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\", \\\"metrics\\\": {\\\"step_100\\\": {\\\"reward\\\": 0.009375, \\\"reward_std\\\": 0.03149, \\\"frac_reward_zero_std\\\": 0.875, \\\"kl\\\": 0.0007035, \\\"loss\\\": 0.01275, \\\"entropy\\\": 0.04262, \\\"grad_norm\\\": 0.05371}, \\\"wandb_run_id\\\": \\\"bc4ojqie\\\", \\\"wall_clock_min\\\": 57.95}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4158}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "4bb0875e-4038-49a9-87a0-c375cce01e86",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T17:05:09.810Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21408\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 4223.8, \\\"gpu_hours\\\": 1.17}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T17:02:50.600Z\\\"}, \\\"failure_reason\\\": \\\"\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T17:02:51.984Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T17:02:53.863552+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\", \\\"metrics\\\": {\\\"step_100\\\": {\\\"reward\\\": 0.009375, \\\"reward_std\\\": 0.03149, \\\"frac_reward_zero_std\\\": 0.875, \\\"kl\\\": 0.0007035, \\\"loss\\\": 0.01275, \\\"entropy\\\": 0.04262, \\\"grad_norm\\\": 0.05371}, \\\"wandb_run_id\\\": \\\"bc4ojqie\\\", \\\"wall_clock_min\\\": 57.95}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4158}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:40.256Z\", \"updated_at\": \"2026-05-16T17:05:09.810Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"21408\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\", \"submitted_at\": \"2026-05-16T15:52:28.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"DeepSeek-R1-Distill-Qwen-7B (RASP 25% SFT recovered)\", \"seed\": 42, \"wall_clock_seconds\": 4223.8, \"gpu_hours\": 1.17}, \"reproduce\": {\"finished_at\": \"2026-05-16T17:02:50.600Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T17:02:51.984Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T17:02:53.863552+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\", \"metrics\": {\"step_100\": {\"reward\": 0.009375, \"reward_std\": 0.03149, \"frac_reward_zero_std\": 0.875, \"kl\": 0.0007035, \"loss\": 0.01275, \"entropy\": 0.04262, \"grad_norm\": 0.05371}, \"wandb_run_id\": \"bc4ojqie\", \"wall_clock_min\": 57.95}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4158}}"
+              }
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**grpo_rasp_25 诊断结果：训练成功完成。**\n\n| 指标 | Step 100 (最终) |\n|------|----------------|\n| reward | 0.009375 |\n| reward_std | 0.03149 |\n| frac_reward_zero_std | 0.875 |\n| KL | 0.0007035 |\n| loss | 0.01275 |\n| entropy | 0.04262 |\n| 耗时 | 57.95 min |\n| W&B run | bc4ojqie |\n\n注意：frac_reward_zero_std 从 step 10 的 0.925 略降到 0.875，但整体 reward 仍极低（0.009375），表明 RASP 25% 模型在 GRPO 100 steps 内几乎无法获得有效 reward 信号——符合假设中\"collapse 比 20% 更严重\"的预期。\n\nRegistry 已更新为 DONE/success，cron 无需删除（已不存在）。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "uuid": "cc7fc364-f044-47a9-ba42-6c63b299f236",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Njvs4vLTZj3LitHrKa6KWK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1109,
+                "cache_read_input_tokens": 35914,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1109
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**grpo_rasp_25 诊断结果：训练成功完成。**\n\n| 指标 | Step 100 (最终) |\n|------|----------------|\n| reward | 0.009375 |\n| reward_std | 0.03149 |\n| frac_reward_zero_std | 0.875 |\n| KL | 0.0007035 |\n| loss | 0.01275 |\n| entropy | 0.04262 |\n| 耗时 | 57.95 min |\n| W&B run | bc4ojqie |\n\n注意：frac_reward_zero_std 从 step 10 的 0.925 略降到 0.875，但整体 reward 仍极低（0.009375），表明 RASP 25% 模型在 GRPO 100 steps 内几乎无法获得有效 reward 信号——符合假设中\"collapse 比 20% 更严重\"的预期。\n\nRegistry 已更新为 DONE/success，cron 无需删除（已不存在）。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 61681,
+            "duration_api_ms": 59731,
+            "num_turns": 14,
+            "stop_reason": "end_turn",
+            "session_id": "554e65d8-75d4-40d8-a70e-5552b32ef69d",
+            "total_cost_usd": 0.387068,
+            "usage": {
+              "input_tokens": 18,
+              "cache_creation_input_tokens": 25182,
+              "cache_read_input_tokens": 344061,
+              "output_tokens": 2235,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 25182,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 287,
+                  "cache_read_input_tokens": 35914,
+                  "cache_creation_input_tokens": 1109,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 1109
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1575,
+                "outputTokens": 22,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001685,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 18,
+                "outputTokens": 2235,
+                "cacheReadInputTokens": 344061,
+                "cacheCreationInputTokens": 25182,
+                "webSearchRequests": 0,
+                "costUSD": 0.38538300000000003,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "c9896b6f-2340-46d0-9e2d-f6a79aae226b"
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-grpo-rasp-25-completion.md"
+}

@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "33ae9136d1cdefca546e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code e1c fix and continue sft pipeline",
+  "task_key": "worker_code_e1c_fix_and_continue_sft_pipeline_20260518T120306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1c_fix_and_continue_sft_pipeline_20260518T120306.log",
+    "occurrence": 1,
+    "bytes": 1563950,
+    "sha256": "5d470ba0871ace1c73a7951de3fcd91532151ed4c62ec4ca5a09cb6aac62a662"
+  },
+  "statistics": {
+    "messages": 689,
+    "user_turns": 1,
+    "tool_calls": 283,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 116,
+      "tool_call": 283,
+      "tool_result": 283,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 534,
+      "chunks": [
+        {
+          "path": "33ae9136d1cdefca546e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "33ae9136d1cdefca546e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "33ae9136d1cdefca546e-part-0003.json",
+          "message_count": 174
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 155,
+      "chunks": [
+        {
+          "path": "33ae9136d1cdefca546e-part-0003.json",
+          "message_count": 6
+        },
+        {
+          "path": "33ae9136d1cdefca546e-part-0004.json",
+          "message_count": 149
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-e1c-fix-and-continue-sft-pipeline.md"
+}

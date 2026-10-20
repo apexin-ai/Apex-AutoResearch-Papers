@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "868cc1f721336a71d51d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "verify pre mvp relaunch",
+  "task_key": "worker_verify_pre-mvp-relaunch_20260514T054825",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_pre-mvp-relaunch_20260514T054825_result.json",
+    "occurrence": 1,
+    "bytes": 2629,
+    "sha256": "b657a00a7c020e8d176b03013a0daabbf4d8abc316ac84abc52ca68ee31d2b43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "dry-run 全部通过。汇报如下：\n\n---\n\n## 汇报\n\n### 1. 代码一致性检查 — 全部通过\n\n| 文件 | GQA group | MLP group | 状态 |\n|------|-----------|-----------|------|\n| cka_overlap.py | attn_cka_matrix [4 groups/layer] | mlp_cka_matrix [28 groups/layer] | ✅ |\n| importance_score.py | attn_importance [4 groups/layer] | mlp_importance [28 groups/layer] | ✅ |\n| prune.py | attn_keep_masks + GQA group pruning + forward validation | mlp_keep_masks + MLP channel pruning | ✅ |\n| correlation_analysis.py | compute_attn_recoverability + n_gqa_groups | compute_mlp_recoverability + n_mlp_groups + combined | ✅ |\n| rasp_scoring.py | attn_scores + attn_ranking | mlp_scores + mlp_ranking | ✅ |\n\n无覆盖冲突，两个 Worker 的改动完整共存。\n\n### 2. run_mvp.sh 修复内容\n\n- **Step 1+2 改为并行**：CKA→cuda:0, Importance→cuda:1\n- **所有 `wait` 改为逐个检查**：每个 PID 独立 wait + exit code 检测\n- **新增 Step 3.5**：Post-prune eval（pruned_standard 和 pruned_rasp 的 GSM8K 评测）\n- **correlation_analysis.py 加上** `--n_gqa_groups 4 --n_mlp_groups 28`\n- **结果汇总更新**：新增 pruned eval 输出路径\n\n### 3. 旧产出清理 — 完成\n\n`models/pruned_standard_35`, `models/pruned_rasp_35`, `results/` 已删除。`models/DeepSeek-R1-Distill-Qwen-7B` (symlink) 保留。\n\n### 4. Dry-run 验证结果\n\n| 步骤 | 结果 |\n|------|------|\n| CKA (n=4) | ✅ 28 layers × 4 GQA groups + 28 MLP groups |\n| Importance (n=4) | ✅ 28 layers × 4 GQA groups + 28 MLP groups |\n| Standard prune | ✅ forward pass OK, sparsity=35.03% |\n| RASP prune | ✅ forward pass OK, sparsity=35.03% |\n\n**剪枝统计**：\n- Standard: **0 attn GQA groups pruned**, 367/784 MLP groups pruned\n- RASP: **0 attn GQA groups pruned**, 367/784 MLP groups pruned\n\n### 5. 注意事项\n\n**N_pruned_attn = 0**：两种模式在 35% sparsity 下均未剪任何 attention GQA group。全局排序下 GQA group 的 importance 分数普遍高于 MLP group，所以 367 个最低分结构全部落在 MLP 侧。这不是 bug，是全局排序在当前 sparsity 下的自然结果（4 GQA groups/layer × 28 layers = 112 vs 784 MLP groups，112 个 attn 结构全排在前面）。如果需要强制剪 attention，需要改为分组配额（如 attn 和 MLP 各自独立分配 sparsity）。\n\n### 结论\n\n**READY TO LAUNCH** — pipeline 端到端通过，代码一致，run_mvp.sh 已修复。唯一需决策：是否接受 35% sparsity 下 attn groups 不被剪的结果，还是需要改为 attn/MLP 分组配额剪枝。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-pre-mvp-relaunch.md"
+}

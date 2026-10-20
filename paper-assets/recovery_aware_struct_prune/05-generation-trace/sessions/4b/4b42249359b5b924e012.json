@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b42249359b5b924e012",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix graspune env and calibration",
+  "task_key": "worker_fix_graspune-env-and-calibration_20260514T091406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_graspune-env-and-calibration_20260514T091406_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "872f63037d0ab8de33d4c3fbb21e90ac1dfb8cf1c54cbb251c87173ccdd28d33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。结果汇总：\n\n## 任务 1: 依赖安全\n\n**依赖状态**（全部已安装，无需额外操作）：\n\n| 包 | requirements.txt | 已安装版本 | 动作 |\n|---|---|---|---|\n| torch | ==2.7.0 | 2.10.0+cu128 | **跳过**（不能降级） |\n| transformers | ==4.51.0 | 5.8.0 | 已有（向后兼容） |\n| datasets | ==2.16.1 | 4.8.4 | 已有 |\n| accelerate | 无版本 | 1.13.0 | 已有 |\n| sentencepiece | 无版本 | 0.2.1 | 已有 |\n| tqdm | 无版本 | 4.67.3 | 已有 |\n| safetensors | 无版本 | 0.7.0 | 已有 |\n| numpy | 无版本 | 1.26.4 | 已有 |\n| lm-eval | ==0.4.1 | 0.4.11 | 已有 |\n| protobuf | 无版本 | 6.33.6 | 已有 |\n\n**Import 验证**：所有 GRASPrune 核心模块（config, data, gates, pipeline, rebuild, evals）在 torch 2.10.0+cu128 下导入成功。\n\n**警告注释**：已添加到 `run_graspune.sh` 第 2-3 行。\n\n## 任务 2: 校准数据对齐\n\n**前一个 Worker 已完成适配**：\n- `data.py` 已有 `load_gsm8k_as_text()` 函数，将 GSM8K 的 question+answer 拼接为文本格式\n- `load_text_dataset()` 已注册 `gsm8k` 分支\n- `run_graspune.sh` 已配置 `--train-dataset gsm8k --num-samples 512 --max-len 512`\n\n**Dry-run 验证结果**：\n- GSM8K train split 前 512 样本加载成功（从 HF cache 读取）\n- TokenBlockDataset 生成 **190 个 block**，block_size=512\n- 输入格式正确：`Question: ... Answer: ...`\n- tensor shape 正确：`input_ids=torch.Size([512])`, `attention_mask=torch.Size([512])`\n\n两个任务均已完成，无需额外代码修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-graspune-env-and-calibration.md"
+}

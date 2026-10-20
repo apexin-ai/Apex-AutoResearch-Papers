@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ed8c30c292b9f0a28ff",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code phase2 prep",
+  "task_key": "worker_code_phase2-prep_20260514T194829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_phase2-prep_20260514T194829_result.json",
+    "occurrence": 1,
+    "bytes": 1014,
+    "sha256": "4ccc8c4b5ea5efd2fa55825de436f216961d6317086598e65308d3534b85afbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。创建了 3 个文件并部署到 westb-23072，全部验证通过（语法检查、import、--help）：\n\n**任务 1 — 多 seed GRPO**\n- `src/run_grpo_multiseed.sh`：接受 `<method> <sparsity> <gpu_id> <seed>` 四个参数\n- Fast config：`max_completion_length=1024, epochs=1, max_samples=2000`\n- 输出到 `/root/autodl-tmp/recovered_{method}_{sparsity}_seed{seed}/`\n- W&B run name: `grpo_{method}_{sparsity}_seed{seed}`\n- `train_grpo.py` 已有 `--seed` 参数，无需改动\n\n**任务 2 — GraSP baseline**\n- `src/grasp_scoring.py`：独立模块，用 Hessian-gradient product（`Hg = ∂/∂θ[g^T · stop_grad(g)]`）计算 `-θ⊙Hg` 分数\n- 按 GQA group / MLP group 粒度聚合（sum），与 `importance_score.py` 输出格式完全兼容\n- 使用方式：`grasp_scoring.py` 生成 scores → `prune.py --mode standard --importance_path` 执行剪枝\n- `src/run_grasp_prune.sh`：一键跑完 scoring + pruning\n\n已在服务器 git commit（`e6ce5f7`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-phase2-prep.md"
+}

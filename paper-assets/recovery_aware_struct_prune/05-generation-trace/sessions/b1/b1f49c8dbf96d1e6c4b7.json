@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b1f49c8dbf96d1e6c4b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code update paper math500 numbers",
+  "task_key": "worker_code_update_paper_math500_numbers_20260524T023010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_update_paper_math500_numbers_20260524T023010_result.json",
+    "occurrence": 1,
+    "bytes": 1378,
+    "sha256": "f6afefc9866dec769689e097bb5e46b3170ef5e62f15880f512cbf2b2105f830"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有修改汇总：\n\n### experiments.tex (line 85)\n\n| 位置 | 原始值 | 新值 | 来源 |\n|------|--------|------|------|\n| CKA-only SFT | 26.8% | 27.4% | fixed eval |\n| RASP SFT | 21.2% | 21.6% | fixed eval |\n| CKA-Standard SFT gap | 3.4pp | 4.0pp | 27.4 - 23.4 |\n\n### appendix.tex (line 110-111)\n\n| 位置 | 原始值 | 新值 | 来源 |\n|------|--------|------|------|\n| CKA-only SFT | 26.8% | 27.4% | fixed eval |\n| RASP SFT | 21.2% | 21.6% | fixed eval |\n| CKA-only GRPO | 27.4% | 27.6% | fixed eval |\n| RASP GRPO | 22.6% | 23.0% | fixed eval |\n| MATH-500 SFT gap | 3.4pp | 4.0pp | 27.4 - 23.4 |\n| MATH-500 GRPO gap | 0.4pp | 0.6pp | 27.6 - 27.0 |\n\n### 未修改但需注意\n\n1. **Standard SFT (23.4%)、Random SFT (14.4%)、Random GRPO (13.4%)** — 新数据中无对应 fixed eval 结果，保持原值。Standard SFT 的 23.4% 是旧 eval 值，与新 CKA-only SFT (27.4%) 混用计算 gap=4.0pp，待 Standard SFT fixed eval 完成后需复核。\n\n2. **截断率 (22%/44%) 和平均 token 数 (655/1128)** — experiments.tex:121 和 appendix.tex:114 中引用。新数据提供 CKA-only SFT Trunc=23.2%，但无法确认原文 22% 对应 SFT 还是 GRPO 阶段，且 Standard 截断率和 mean token 数无新数据，未修改。\n\n3. **conclusion.tex、introduction.tex** — 无 MATH-500 具体数值，无需修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-update-paper-math500-numbers.md"
+}

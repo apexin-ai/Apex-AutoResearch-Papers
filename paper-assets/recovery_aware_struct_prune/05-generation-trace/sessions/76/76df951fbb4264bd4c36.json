@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76df951fbb4264bd4c36",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose e2v2 exit",
+  "task_key": "worker_ops_diagnose_e2v2_exit_20260518T144201",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_e2v2_exit_20260518T144201_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "de4890f06388162dcf06046ebc3da5266278dd12d5ca2b6dccb00d20b586e801"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n## 结果\n\n**退出原因**: 正常完成，step 300/300，EXIT_CODE=0\n\n**关键 metrics (step 300)**:\n| 指标 | 值 |\n|---|---|\n| reward/mean | 0.0562 |\n| loss | 0.0367 |\n| frac_reward_zero_std | 0.525 |\n| kl | 0.00306 |\n| entropy | 0.157 |\n| learning_rate | 3.33e-9 (cosine 尾部) |\n| runtime | 48min (resume 部分) |\n\n**Checkpoints**: checkpoint-280, 290, 300 (save_total_limit=3 生效)\n\n**磁盘**: 482G/619G (78%)，138GB 可用，健康\n\n**已完成操作**:\n- Registry `grpo_standard_20_extended_300` → DONE/success，更新了 checkpoint_path、log_path、metrics\n- Cron `grpo_standard_20_extended_300_v2` 已删除\n\n**注意**: reward/mean 在 step 260→300 区间持续下降 (0.102→0.056)，frac_reward_zero_std 升至 0.525，表明 standard pruned 模型在延长训练中进入 reward desert。无需 resume。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-e2v2-exit.md"
+}

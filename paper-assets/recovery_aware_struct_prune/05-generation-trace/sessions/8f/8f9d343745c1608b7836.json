@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f9d343745c1608b7836",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "scout westb 1p5b models",
+  "task_key": "worker_scout_westb_1p5b_models_20260519T185019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_scout_westb_1p5b_models_20260519T185019_result.json",
+    "occurrence": 1,
+    "bytes": 1400,
+    "sha256": "c3d56c8cabfda0108ea0ab972ae83f43268743a508f751567c794261e5af776c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 GRPO checkpoint 的模型文件在 `checkpoint-100/` 子目录中。汇总如下：\n\n## westb-23072 1.5B Checkpoint 清单\n\n### 完整可用（根目录有 config.json + model.safetensors）\n\n| # | 路径 | 剪枝方法 | 阶段 |\n|---|------|----------|------|\n| 1 | `models/DeepSeek-R1-Distill-Qwen-1.5B` | — | Dense 原模型 |\n| 2 | `pruned_standard_20_1p5b` | Standard 20% | 剪枝后 |\n| 3 | `pruned_cka_only_20_1p5b` | CKA-only 20% | 剪枝后 |\n| 4 | `pruned_rasp_20_1p5b` | RASP 20% | 剪枝后 |\n| 5 | `sft_standard_20_1p5b` | Standard 20% | SFT 恢复 |\n| 6 | `sft_cka_only_20_1p5b` | CKA-only 20% | SFT 恢复 |\n| 7 | `sft_rasp_20_1p5b` | RASP 20% | SFT 恢复 |\n| 8 | `grpo_standard_20_1p5b` | Standard 20% | GRPO 恢复 |\n\n所有路径前缀: `/root/autodl-tmp/recovery_aware_struct_prune/`\n\n### 需用子目录路径（模型在 checkpoint-100/ 下）\n\n| # | 路径 | 剪枝方法 | 阶段 |\n|---|------|----------|------|\n| 9 | `grpo_cka_only_20_1p5b/checkpoint-100` | CKA-only 20% | GRPO 恢复 |\n| 10 | `grpo_rasp_20_1p5b/checkpoint-100` | RASP 20% | GRPO 恢复 |\n\n### eval_mbpp.py\n**已就绪** — `/root/recovery_aware_struct_prune/src/eval_mbpp.py` 存在。\n\n### 磁盘警告\n**数据盘 100% 满**（250G/250G，仅剩 159MB）。MBPP eval 如果需要写临时文件或缓存，可能会失败。建议先清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/scout-westb-1p5b-models.md"
+}

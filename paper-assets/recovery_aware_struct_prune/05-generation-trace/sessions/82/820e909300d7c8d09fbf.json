@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "820e909300d7c8d09fbf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval baseline gsm8k",
+  "task_key": "worker_eval_baseline_gsm8k_20260514T135509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_gsm8k_20260514T135509_result.json",
+    "occurrence": 1,
+    "bytes": 997,
+    "sha256": "5622c64f1eed0ad3fcc4cb828d110c5f93253ec1abad901d578bc9d66013aa5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件在增长（5317→5378），进程活跃。50 样本大约还要 40 分钟。这个需要等比较久，我总结当前状态：\n\n---\n\n**当前状态：**\n\n1. **第一次快速 eval (max_new_tokens=512, 100 样本)** — 已完成\n   - Accuracy: **30%** (30/100)\n   - **但结果不可靠**：所有 100 个样本的输出都被截断在 ~500 字符，R1 模型的思维链没有足够 token 完成推理\n\n2. **第二次 eval (max_new_tokens=4096, 50 样本)** — **正在运行**\n   - PID 197442，在 GPU 1 上\n   - 约 30-57s/样本，预计总耗时 ~45 分钟\n   - 这次应该能给出准确的 baseline accuracy\n\n3. GPU 0 上有个不属于我们的进程 (PID 196400, 10656 MiB)\n\n**后续：** 等 quick2 eval 完成后汇报准确的 baseline accuracy。如果需要完整 1319 样本的结果，可以在此之后启动全量 eval（预计需要约 15-20 小时，需要用 nohup 后台跑）。\n\n要继续等待结果还是先做其他事情？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-baseline-gsm8k.md"
+}

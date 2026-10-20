@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fcf02069712bd44c601",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check grpo random math500 result",
+  "task_key": "worker_ssh_check_grpo_random_math500_result_20260523T110059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_grpo_random_math500_result_20260523T110059_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "6c384c0ae424f781e954c11b03e53e5aa9f95373871380ef5f3d573e53097324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。Cron ID 不存在（可能已被删除或名称不同）。\n\n**结果汇报**：\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **13.4%** |\n| **Correct/Total** | 67 / 500 |\n| SE | ±0.0152 |\n| Natural EOS | 167 (33.4%) |\n| Truncated | 333 (66.6%) |\n| Avg response length | 1479.2 tokens |\n\n**GPU 状态**（westd-32935）：\n\n| GPU | Utilization | Memory |\n|-----|------------|--------|\n| 0 | 99% | 29593 MiB |\n| 1 | 91% | 19251 MiB |\n| **2** | **0%** | **0 MiB** ← 已释放 |\n| 3 | 99% | 29173 MiB |\n\nGPU 2 已完全释放，eval 进程已退出。66.6% 的样本被截断（达到 2048 max tokens），truncation 严重影响了准确率。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-grpo-random-math500-result.md"
+}

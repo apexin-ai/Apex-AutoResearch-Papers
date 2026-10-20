@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "91aff7c14b9c4fd1c7ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb status check",
+  "task_key": "worker_ops_westb-status-check_20260516T014303",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-status-check_20260516T014303_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "b5bfe070f1dd7d449e3573f75e7bee2c1f370c8e6ce541bc1007bd2412e5ff77"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 训练状态汇总\n\n### GPU 状态\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell | 71.7/97.9 GB | 100% |\n| cuda:1 | RTX PRO 6000 Blackwell | 71.7/97.9 GB | 100% |\n\n### RASP GRPO v9 (PID 566666, cuda:0)\n- **状态**: 运行中，已运行 1h39m\n- **当前 step**: 10 / 30 (33%)\n- **每 step 耗时**: ~401 秒 (~6.7 分钟)\n- **预计剩余**: ~20 steps × 6.7 min ≈ **2h14m**\n- **已保存 checkpoints**: checkpoint-5, checkpoint-10\n- **关键指标** (step 10):\n  - reward: 0.015, reward_std: 0.057\n  - KL: 0.00074\n  - loss: 0.0069\n  - clipped_ratio: 95.6% (生成大量被截断)\n  - frac_reward_zero_std: 87.5%\n  - mean_length: 991 / max 1024\n\n### Standard v8 (PID 534667, cuda:1)\n- **状态**: 运行中，已运行 11h00m\n\n### 磁盘\n- /root/autodl-tmp: 126G/250G 已用，剩余 125G (51%)，充足\n\n### 注意\n- v9 的 `completions/clipped_ratio` 高达 95.6%，绝大多数生成都撞到 max_length=1024 被截断，mean_terminated_length 仅 131 token。reward 极低 (0.015)，frac_reward_zero_std=87.5% 表明大部分 batch 内 reward 无方差。这可能导致 GRPO 学习信号不足。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-status-check.md"
+}

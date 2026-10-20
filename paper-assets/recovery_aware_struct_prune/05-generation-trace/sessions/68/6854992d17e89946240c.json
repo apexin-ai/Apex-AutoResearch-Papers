@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "6854992d17e89946240c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "eval baseline gsm8k",
+  "task_key": "worker_eval_baseline_gsm8k_20260514T135509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_baseline_gsm8k_20260514T135509.log",
+    "occurrence": 1,
+    "bytes": 903101,
+    "sha256": "b3dda7ecce3175dc24b941713d01025ca44e57c61762d6cc3de578f68a32b54a"
+  },
+  "statistics": {
+    "messages": 725,
+    "user_turns": 0,
+    "tool_calls": 317,
+    "roles": {
+      "log": 1,
+      "system": 2,
+      "record": 1,
+      "assistant": 86,
+      "tool_call": 317,
+      "tool_result": 317,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 725,
+      "chunks": [
+        {
+          "path": "6854992d17e89946240c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "6854992d17e89946240c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "6854992d17e89946240c-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "6854992d17e89946240c-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "6854992d17e89946240c-part-0005.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-baseline-gsm8k.md"
+}

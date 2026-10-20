@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2857204fb920d399701b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval pass k8 rasp 20 grpo deepseek",
+  "task_key": "worker_diagnose_eval_pass_k8_rasp_20_grpo_deepseek_20260517T002124",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pass_k8_rasp_20_grpo_deepseek_20260517T002124_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "8971675508a078ef5bcfbb3c56f2eb0e2a6e866f4c6c61ac96fcaedb992b792f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**结论: 进程未失败，仍在正常运行。** Cron 是误报。\n\n- PID 61473 活跃在 GPU 0（99% 利用率，26GB VRAM）\n- 日志看似停滞是因为 tqdm 的 `\\r` 输出在重定向到文件时被缓冲，不会实时刷新\n- 无 OOM、无 error、无 traceback\n- 预计 ~35 分钟后完成，结果写入 `eval_pass_k8_rasp_20_grpo_deepseek.json`\n\n建议后续启动时加 `PYTHONUNBUFFERED=1` 避免日志缓冲导致监控误判。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pass-k8-rasp-20-grpo-deepseek.md"
+}

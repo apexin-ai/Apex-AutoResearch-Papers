@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d718563b11964348e817",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh checkpoint mapping both servers",
+  "task_key": "worker_ssh_checkpoint_mapping_both_servers_20260523T152215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_checkpoint_mapping_both_servers_20260523T152215_result.json",
+    "occurrence": 1,
+    "bytes": 5004,
+    "sha256": "d07b1e5308c96118232825e84f90d067e43ff5b9a3d352185d07bf944a86d26d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已收集完毕。\n\n## Checkpoint 完整映射表\n\n| checkpoint | westd-32935 | westb-23072 | model size |\n|---|---|---|---|\n| **grpo_alpha4_20** | ✓ | ✗ | 11.5G |\n| **grpo_alpha4_20_eval** | ✗ | ✓ | 2.8G |\n| **grpo_cka_only_15_seed123** | ✓ | ✗ | 1.5G |\n| grpo_cka_only_15_seed456 | ✗ (dir only) | ✗ | — |\n| **grpo_cka_only_20** | ✗ | ✓ (ckpt-100) | 11.5G |\n| **grpo_cka_only_20_1p5b** | ✗ | ✓ (ckpt-100) | 2.7G |\n| **grpo_cka_only_20_floor_0.3** | ✓ | ✗ | 11.5G |\n| **grpo_cka_only_20_floor_0.5** | ✓ | ✗ | 11.5G |\n| **grpo_cka_only_20_floor_0.6** | ✓ (+ckpt-100) | ✗ | 11.5G |\n| **grpo_cka_only_20_seed123** | ✗ | ✓ | 11.5G |\n| **grpo_cka_only_20_seed456** | ✓ | ✗ | 11.5G |\n| **grpo_cka_only_25** | ✓ | ✗ | 10.8G |\n| **grpo_depth_first_20** | ✓ | ✗ | 11.5G |\n| **grpo_qwen_math_cka_only_20** | ✗ | ✓ | 11.5G |\n| grpo_random_20 | ✗ (dir only) | ✗ | — |\n| **grpo_random_20_seed123_v2** | ✓ | ✗ | 11.3G |\n| **grpo_rasp_20_1p5b** | ✗ | ✓ (ckpt-100) | 2.7G |\n| grpo_rasp_20_seed456 | ✗ (dir only) | ✗ | — |\n| **grpo_rasp_25** | ✓ | ✗ | 10.8G |\n| grpo_rasp_25_transfer_log | ✗ (dir only) | ✗ | — |\n| **grpo_rasp_alpha0p5_20** | ✗ | ✓ | 11.5G |\n| **grpo_rasp_alpha2p0_20** | ✓ | ✗ | 11.5G |\n| grpo_rasp_alpha3p0_20_v2 | ✗ (dir only) | ✗ | — |\n| **grpo_stage2_rasp_20_fair** | ✓ | ✗ | 11.5G |\n| **grpo_stage2_standard_20_fair** | ✓ | ✗ | 11.5G |\n| **grpo_standard_20_1p5b** | ✗ | ✓ | 2.7G |\n| **grpo_standard_20_seed123** | ✓ | ✗ | 11.5G |\n| **grpo_standard_20_seed456** | ✓ | ✗ | 11.5G |\n| **grpo_standard_25** | ✓ | ✗ | 10.8G |\n| **pruned_alpha4_20** | ✓ | ✗ | 11.5G |\n| **pruned_cka_only_15** | ✓ | ✗ | 12.2G |\n| **pruned_cka_only_20_1p5b** | ✗ | ✓ | 2.7G |\n| **pruned_cka_only_20_floor_0.3** | ✓ | ✗ | 11.5G |\n| **pruned_cka_only_20_floor_0.5** | ✓ | ✗ | 11.5G |\n| **pruned_cka_only_20_floor_0.6** | ✓ | ✗ | 11.5G |\n| **pruned_cka_only_20_qwen_math** | ✗ | ✓ | 11.5G |\n| **pruned_cka_only_25** | ✓ | ✗ | 10.8G |\n| **pruned_cka_only_30** | ✓ | ✗ | 10.1G |\n| **pruned_depth_first_20** | ✓ | ✗ | 11.5G |\n| **pruned_rasp_20_1p5b** | ✗ | ✓ | 2.7G |\n| **pruned_rasp_25** | ✓ | ✗ | 10.8G |\n| **pruned_rasp_alpha0p5_20** | ✓ | ✗ | 11.5G |\n| **pruned_rasp_alpha2p0_20** | ✓ | ✗ | 11.5G |\n| **pruned_rasp_alpha3p0_20** | ✗ | ✓ | 11.5G |\n| **pruned_rasp_rlvr_20** | ✗ | ✓ | 11.5G |\n| **pruned_standard_15** | ✓ | ✗ | 12.1G |\n| **pruned_standard_20_1p5b** | ✗ | ✓ | 2.7G |\n| **pruned_standard_20_qwen_math** | ✗ | ✓ | 11.5G |\n| **pruned_standard_25** | ✓ | ✗ | 10.8G |\n| **pruned_standard_30** | ✓ | ✗ | 10.1G |\n| **sft_alpha4_20** | ✓ | ✗ | 11.5G |\n| **sft_cka_only_15** | ✓ | ✗ | 12.2G |\n| **sft_cka_only_20** | ✗ | ✓ | 11.5G |\n| **sft_cka_only_20_1p5b** | ✗ | ✓ | 2.7G |\n| **sft_cka_only_20_floor_0.3** | ✓ | ✗ | 11.5G |\n| **sft_cka_only_20_floor_0.5** | ✓ | ✗ | 11.5G |\n| **sft_cka_only_20_floor_0.6** | ✓ | ✗ | 11.5G |\n| **sft_cka_only_25** | ✓ | ✗ | 10.8G |\n| **sft_depth_first_20** | ✓ | ✗ | 11.5G |\n| **sft_qwen_math_cka_only_20_final** | ✗ | ✓ | 11.5G |\n| **sft_random_20** | ✗ | ✓ | 11.3G |\n| **sft_rasp_20_1p5b** | ✗ | ✓ | 2.7G |\n| **sft_rasp_20_westd** | ✓ (11.5G) | ⚠️ (0.1G) | 见备注 |\n| **sft_rasp_25** | ✓ | ✗ | 10.8G |\n| **sft_rasp_alpha0p5_20** | ✓ | ✗ | 11.5G |\n| **sft_rasp_alpha2p0_20** | ✓ | ✗ | 11.5G |\n| **sft_rasp_alpha3p0_20** | ✗ | ✓ (ckpt-935) | 11.5G |\n| **sft_rasp_rlvr_20** | ✗ | ✓ (ckpt-1870) | 11.5G |\n| **sft_standard_15** | ✓ | ✗ | 12.1G |\n| **sft_standard_20** | ✓ | ✗ | 11.5G |\n| **sft_standard_20_1p5b** | ✗ | ✓ | 2.7G |\n| **sft_standard_20_qwen_math_final** | ✗ | ✓ | 11.5G |\n| sft_standard_25 | ✗ (dir only) | ✗ | — |\n\n**统计**: westd 有 44 个有效 checkpoint，westb 有 25 个有效 checkpoint，6 个空目录（无 model.safetensors）。\n\n### 备注\n\n- **sft_rasp_20_westd@westb**: 仅 114MB，疑似损坏或未完成写入（westd 上同名为正常的 11.5G）\n- **westb 的 1.5B 系列**（`*_1p5b`）为 DeepSeek-R1-Distill-Qwen-1.5B 实验，模型约 2.7G\n- westb 还存有基础模型 `models/DeepSeek-R1-Distill-Qwen-1.5B`（3.3G）\n\n---\n\n## GPU 占用状态\n\n### westd-32935 (4×RTX PRO 6000, 96GB each)\n| GPU | 利用率 | 显存占用 |\n|---|---|---|\n| cuda:0 | 99% | 29659 / 97887 MiB |\n| cuda:1 | 0% | 0 / 97887 MiB |\n| cuda:2 | 97% | 16767 / 97887 MiB |\n| cuda:3 | 97% | 16767 / 97887 MiB |\n\n### westb-23072 (2×RTX PRO 6000, 96GB each)\n| GPU | 利用率 | 显存占用 |\n|---|---|---|\n| cuda:0 | 90% | 29639 / 97887 MiB |\n| cuda:1 | 0% | 0 / 97887 MiB |\n\nwestd cuda:0 和 westb cuda:0 正在运行任务（~30GB 显存），westd cuda:2/3 也在运行（~16GB 显存各）。westd cuda:1 和 westb cuda:1 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-checkpoint-mapping-both-servers.md"
+}

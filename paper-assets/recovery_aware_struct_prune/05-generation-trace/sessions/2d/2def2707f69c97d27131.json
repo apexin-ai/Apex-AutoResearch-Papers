@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2def2707f69c97d27131",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_13_1778948813.md",
+  "task_key": "loop_13_1778948813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13_1778948813.md",
+    "occurrence": 1,
+    "bytes": 5250,
+    "sha256": "ce44cbcba16ca67afeccd201ce0781bebb11c086fe0cd71438ce97ef08debcb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_messages\nupdated: '2026-05-16T14:02:45+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- westd-11672 GPU 白名单：cuda:0, cuda:1, cuda:2, cuda:3（全部本项目）\n- westd wandb ��须写数据盘：`/root/recovery_aware_struct_prune/wandb` → symlink 到 `/root/autodl-tmp/recovery_aware_struct_prune/wandb`（刚修复，根分区只 30G 会爆）\n- sft_recovery.py 参数名：`--learning_rate`（非 --lr）、`--num_train_epochs`（非 --epochs）、`--gradient_accumulation_steps`（非 --grad_accum）\n- eval_gsm8k.py 不支持 --gpu 参数，必须用 CUDA_VISIBLE_DEVICES 环境变量\n- train_grpo_v5.py 的 `--gpu 0` = 分配到的第一块卡（框架自动注入 CUDA_VISIBLE_DEVICES）\n- Qwen2.5 系列 EOS bug 已修复：train_grpo_v5.py 中 `model.generation_config = GenerationConfig.from_pretrained(args.model_path)`；generation_config.json 中 eos_token_id=[151643, 151645]\n\n### 2. 🖥️ 基础设施快照\n**westd-11672** (4× RTX PRO 6000 Blackwell 96GB)\n- 工作目录：`/root/recovery_aware_struct_prune`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- 模型盘：`/root/autodl-tmp/recovery_aware_struct_prune/`（sft_qwen_math_rasp_20, sft_qwen_math_standard_20, sft_qwen_math_rasp_25, sft_qwen_math_standard_25）\n- wandb symlink：`/root/recovery_aware_struct_prune/wandb → /root/autodl-tmp/recovery_aware_struct_prune/wandb`\n- 活跃：**全部 4 卡空闲**，等待磁盘清理完成后重启 GRPO\n- Worker `worker_fix_westd_disk_and_restart_prep_20260516T140141` 正在执行清理\n\n**westb-23072** (2× RTX PRO 6000 Blackwell 96GB)\n- 工作目录：`/root/recovery_aware_struct_prune`\n- Python：`/root/miniconda3/bin/python`（conda base）\n- cuda:0: eval_sft_rasp_25 (PID 602990, DeepSeek RASP 25% N=1319 eval, ~39% 进度, 预计 6-7h)\n- cuda:1: sft_rasp_rlvr_20 (PID 620651, tmux=sft_rasp_rlvr_20, RASP-RLVR SFT recovery)\n- Cron: eval_sft_rasp_25 活���\n\n### 3. 📊 当前状态\n**刚做完**：westd 4 个 GRPO 在 step 20-40 因磁盘满崩溃（wandb 写根分��）。Director 下达清理+重启指令，已派 Worker 执行清理（删 wandb + 旧 GRPO 输出 + 建 symlink）。\n\n**等待中**：\n- Worker `worker_fix_westd_disk_and_restart_prep_20260516T140141`：磁盘清理确认 → 然后需 submit_training_job × 4 重启 GRPO\n- Worker `worker_fix_westd_disk_cleanup_20260516T134144`：先前的清理 worker，可能已完成或冗余\n- westb eval_sft_rasp_25 cron 回调（~6h 后）\n- westb sft_rasp_rlvr_20 cron 回调（~30min SFT 训练）\n\n**Registry RUNNING**：\n- grpo_rasp_qwen_math（实际已崩溃，需重置）\n- grpo_standard_qwen_math（实际已崩溃，需重置）\n- grpo_rasp_25_qwen_math（实际已崩溃，需重置）\n- grpo_standard_25_qwen_math（实际已崩溃，需重置）\n- sft_rasp_rlvr_20 (westb cuda:1, PID 620651)\n- eval_sft_rasp_25 (westb cuda:0, PID 602990)\n\n### 4. 📋 待办（条件触发式）\n- 磁盘清理 Worker 完成 → submit_training_job × 4 ���启全部 GRPO（从头跑，命令模板见下方）→ 5min 后 spawn worker 验�� step 进度\n- GRPO 重启命令（每个都需要完整参数）：`bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path <MODEL> --output_dir <OUTPUT> --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name <NAME> --seed 42\"`\n- sft_rasp_rlvr_20 cron 回调 → update_registry DONE + 启动 eval\n- eval_sft_rasp_25 完成 → update_registry DONE（预期 acc ~53-54%）\n- 全部 GRPO 完成 → on-experiment-done 流程：分析 collapse pattern（RASP vs Standard × 20% vs 25%），汇报 Director\n\n### 5. 🎯 战略上下文\n**核心论文 narrative**：结构化剪枝影响 GRPO 稳定性。RASP（惩罚冗余）比 Standard（纯 importance）在 GRPO 训练中更抗 collapse。\n\n**关键已证实结论**：\n- SFT 阶段 RASP vs Standard 无显著差异（p=0.248），论文不能基于 SFT 差异建 claim\n- Unpruned GRPO v2 无 collapse 但 reward-accuracy decoupled（reward↑ accuracy 不变 = reward hacking）\n- Pruned GRPO 有 collapse 问题（RASP onset ��晚/更轻 vs Standard 更早/更重）— 这是核心 claim\n- 崩溃前 GRPO 数据：RASP 20% step 40 仍健康(frac_zero_std=0.65)，Standard 20% step 20 已 collapse(frac_zero_std=0.975)\n\n**易错点**：\n- westd 根分区只 30G，wandb/HF cache/tmp 都可能撑爆 → symlink 到数据盘是长期方案\n- submit_training_job 用 bash -c 包裹（tmux 用 sh 不认 source）\n- registry update_registry 必须传 `project=\"recovery_aware_struct_prune\"`，不传会写到 global registry\n- GRPO 参数不能省略（Director 命令里省了 beta/lr/temperature 等，但这些有 default 值需要核实 train_grpo_v5.py 的默��值是否匹配——上次用的完整参数已验证 work）\n- DeepSeek 25% eval (westb): RASP 暂时领先 Standard +3pp (53.8% vs 50.7% @39%)，但最终结果待定\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-1778948813.md"
+}

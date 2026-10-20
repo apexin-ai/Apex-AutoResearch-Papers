@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f848425c0b3bac8bd9b2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval mbpp sft standard 20 1p5b exit",
+  "task_key": "worker_diag_eval_mbpp_sft_standard_20_1p5b_exit_20260519T215615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_mbpp_sft_standard_20_1p5b_exit_20260519T215615_result.json",
+    "occurrence": 1,
+    "bytes": 526,
+    "sha256": "dc402807b6f8049c27861cdda7cb853d7a3c81e91668774c5e31a53c7a9201cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_mbpp_sft_standard_20_1p5b — 完成，已关闭。**\n\n| 指标 | 值 |\n|------|-----|\n| pass@1 | **0.80%** (3/374) |\n| stderr | 0.0046 |\n| median response length | 2048 (撞顶) |\n\n模型大量输出 `</think>` 标签和自然语言推理而非代码，绝大多数样本 SyntaxError。这是 1.5B SFT Standard 20% 剪枝模型在 MBPP 上的 baseline，等 CKA-only 对应 eval 出来后可直接对比。\n\nRegistry 已更新为 DONE/success，cron 已删除。westb-23072 cuda:0 已释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-mbpp-sft-standard-20-1p5b-exit.md"
+}

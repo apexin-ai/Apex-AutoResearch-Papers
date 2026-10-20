@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e0425f5fe76eab52e4e9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westd alpha eval collect",
+  "task_key": "worker_monitor_westd-alpha-eval-collect_20260515T150453",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westd-alpha-eval-collect_20260515T150453_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "e7fd14be8127992a58ddcc2a08983b033202553788733d1a7c919b6928f98eff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### 三个进程全部在运行\n\n| 任务 | PID | GPU | 进度 | ETA |\n|------|-----|-----|------|-----|\n| GraSP N=100 eval | 38120 | cuda:0 (90%, 13GB) | **48/100** samples, ~51s/sample | ~44 min |\n| α=1.0 SFT eval | 42535 | cuda:1 (29GB) | **34/100** samples, 速度不均(3s~8min/sample) | 不确定 |\n| α=2.0 SFT | 43065 | cuda:1 (51GB) | **240/1870** steps (12.8%), ~1.7s/step, loss=0.871 | ~47 min |\n\n### α=2.0 SFT 训练趋势\nLoss 稳步下降: 1.113 → 1.056 → 1.039 → 1.029 → 0.963 → 0.871，token accuracy 从 0.743 升至 0.785。\n\n### α=0.5 SFT — 无需启动\n`/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.5/` 已有完整模型（model.safetensors + config），SFT 已完成。\n\n### 结论\n三个任务都在正常推进，无异常。cuda:0 上 GraSP eval 完成后会释放 GPU，但 α=0.5 SFT 已经做过了，不需要再启动。等 GraSP eval 和 α=1.0 eval 完成后可收集结果 JSON。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westd-alpha-eval-collect.md"
+}

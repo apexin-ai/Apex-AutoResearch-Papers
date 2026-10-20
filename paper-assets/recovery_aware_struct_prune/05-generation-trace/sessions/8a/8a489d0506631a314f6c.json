@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a489d0506631a314f6c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest westd2 alpha2 pipeline",
+  "task_key": "worker_harvest_westd2_alpha2_pipeline_20260522T054730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_westd2_alpha2_pipeline_20260522T054730_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "dd666d757dcf6c6e912a3a8bcac94b21056639e9a778da1566330201a2bf2dd8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "30s 等待已完成，验证已在上条消息中执行过——pipeline 正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-westd2-alpha2-pipeline.md"
+}

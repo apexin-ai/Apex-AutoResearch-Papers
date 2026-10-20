@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71715046ca03fc517ef0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix output path and check alpha4",
+  "task_key": "worker_fix_output_path_and_check_alpha4_20260521T173538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_output_path_and_check_alpha4_20260521T173538_result.json",
+    "occurrence": 1,
+    "bytes": 1589,
+    "sha256": "cf26941402547f03333fe9e01495cab083bfaea71c986dd03db5562855927584"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复已生效。汇报结果：\n\n---\n\n## 1. α=4.0 pipeline 状态：已死\n\n- **PID 396205 已不存在**\n- **死因**：`No space left on device (os error 28)` — 数据盘 `/root/autodl-tmp` 已 100% 满（619G/619G，仅剩 212K）\n- 剪枝本身成功完成（actual sparsity 19.09%，target 20%，200 MLP groups pruned），但在保存模型到 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20` 时 safetensors 写入失败\n- **需要清理数据盘腾出空间后重启 pipeline**\n\nGPU 当前状态：\n| GPU | 状态 | 占用进程 |\n|-----|------|---------|\n| 0 | 空闲 (0MiB) | - |\n| 1 | 97% util, 17369MiB | PID 382472 (eval grpo_random_20_v2) |\n| 2 | 空闲 (0MiB) | - |\n| 3 | 98% util, 16049MiB | PID 385685 (eval sft_random_20) |\n\n## 2. output_path bug 修复\n\n**根因**：脚本 `open(args.output_path, \"w\")` 直接用传入的路径写文件，但调用方传了目录路径（如 `eval_math500_grpo_random_20_v2`）而非文件路径，触发 `IsADirectoryError`。\n\n**当前在跑的 eval**：\n- PID 382472：`--output_path .../eval_math500_grpo_random_20_v2` — **是目录，会踩 bug**（但已在内存中运行，本次修复不影响它）\n- PID 385685：`--output_path .../eval_math500_sft_random_20/results.json` — 文件路径，没问题\n\n**修复内容**（第 218-220 行）：在 `os.makedirs` 前加了 defensive check——如果 `output_path` 是已存在的目录或以 `/` 结尾，自动追加 `eval_math500_{model_name}.json` 文件名。未来的 eval 调用不会再踩这个 bug。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-output-path-and-check-alpha4.md"
+}

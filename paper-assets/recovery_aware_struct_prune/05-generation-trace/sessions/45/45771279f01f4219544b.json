@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45771279f01f4219544b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose and submit westd1",
+  "task_key": "worker_ssh_diagnose_and_submit_westd1_20260524T023507",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_and_submit_westd1_20260524T023507_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "efe066712852714ad1ab80ae14759ce068327e213de46473752f586893afabbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。验证通过：\n\n**Part 1 — eval_math500_grpo_rasp_alpha2p0_20_fixed**\n| 指标 | 值 |\n|---|---|\n| accuracy | 0.274 (137/500) |\n| stderr | 0.01995 |\n| truncated_pct | 0.302 (151/500) |\n| avg_response_length | 785.3 |\n\nRegistry → DONE/success，cron 已删除。\n\n**Part 2 — eval_math500_sft_rasp_alpha0p5_20_fixed**\n- PID 184372 (子进程 184381) 在 GPU 1 上运行中\n- GPU 1 显存 12637MiB/97887MiB，GPU-Util 94%\n- CUDA_VISIBLE_DEVICES=1，模型已加载，推理进行中\n- Registry 状态 RUNNING，retry_count=1"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-and-submit-westd1.md"
+}

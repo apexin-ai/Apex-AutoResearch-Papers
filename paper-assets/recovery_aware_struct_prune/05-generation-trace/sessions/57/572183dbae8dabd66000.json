@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "572183dbae8dabd66000",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh full status check all evals",
+  "task_key": "worker_ssh_full_status_check_all_evals_20260523T041928",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_full_status_check_all_evals_20260523T041928_result.json",
+    "occurrence": 1,
+    "bytes": 2644,
+    "sha256": "7614edd37f4a406ac640c9d234524558c6bc6210c8963575fad09b7a25b5ef97"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 全面状态报告\n\n---\n\n### westd-32935 — GPU 状态\n\n| GPU | 显存 | 利用率 | PID | 任务 | 进度 | 预估 ETA | 状态 |\n|-----|------|--------|------|------|------|----------|------|\n| 0 | 16747 MiB | 99% | 100223 | grpo_rasp_alpha3p0_20 | 102/500 (20%) | ~17:50 | RUNNING |\n| 1 | 19855 MiB | 99% | 89536 | grpo_rasp_alpha4p0_20 | 373/500 (75%) | ~13:20 | RUNNING |\n| 2 | 16049 MiB | 98% | 83161 | grpo_random_20_v2 | 156/500 (31%) | ~21:30 | RUNNING |\n| 3 | 17541 MiB | 93% | 86243 | grpo_rasp_alpha1p0_20 | **482/500 (96%)** | ~12:45 | RUNNING, 即将完成 |\n\n---\n\n### westb-23072 — GPU 状态\n\n| GPU | 显存 | 利用率 | PID | 任务 | 进度 | 预估 ETA | 状态 |\n|-----|------|--------|------|------|------|----------|------|\n| 0 | 19277 MiB | 98% | 250771 | sft_qwen_math_cka_only_20 | 223/500 (45%) | ~18:50 | RUNNING |\n| 1 | 17551 MiB | 99% | 262771 | grpo_rasp_alpha0p5_20 | 100/500 (20%) | ~20:30 | RUNNING |\n\n---\n\n### 已完成实验结果（近 3 天）\n\n**westd-32935:**\n\n| 模型 | Accuracy | 完成时间 | 脚本版本 |\n|------|----------|----------|----------|\n| sft_rasp_alpha4p0_20 | **26.6%** | 05-23 05:15 | UNK |\n| sft_rasp_alpha3p0_20 | 23.2% | 05-23 06:10 | UNK |\n| sft_rasp_alpha0p5_20 | 25.4% | 05-23 06:15 | UNK |\n| sft_rasp_alpha1p0_20_v2 | 21.2% | 05-23 06:57 | UNK |\n| sft_cka_only_20 | **26.8%** | 05-23 07:57 | UNK |\n| grpo_rasp_alpha2p0_20 | **26.2%** | 05-23 11:12 | UNK |\n| sft_rasp_alpha2p0_20 | 24.0% | 05-23 04:03 | UNK |\n| grpo_standard_20_fair_2048_v2 | 26.4% | 05-22 19:01 | UNK |\n| sft_random_20_v3 | **14.4%** | 05-22 22:08 | UNK |\n\n**westb-23072:** 近期无新完成的 MATH-500 评估（sft_standard_25 于 05-21 完成，acc=13.0%）\n\n---\n\n### 异常情况\n\n1. **所有结果 ver=UNK** — 结果 JSON 中 results 条目既无 `pred_answer` 也无 `pred` 字段，可能是新脚本使用了不同的字段名\n2. **westb-23072 僵尸 tmux** — PID 680597 (`eval_unstructured_20`) 自 5月17日起一直挂着，应已完成\n3. **westd-32935 残留 tmux** — PID 79020 (`eval_math500_sft_rasp_alpha1p0_20_v2`) 任务已完成但 tmux session 未清理\n4. **sft_rasp_alpha1p0_20_v2 异常低** — 21.2% 显著低于其他 alpha 变体（23-27%），需确认模型路径是否正确（用的是 `sft_rasp_20_westd`）\n5. **sft_random_20_v3 极低** — 14.4%，random pruning 基线符合预期但值得关注\n6. **westb sft_qwen_math_cka_only_20 日志分裂** — 最初的 tee 日志停在 06:47（15/500），实际进程通过 nohup 重启，当前输出在 `/tmp/eval_math500_sft_qwen_cka_only_20.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-status-check-all-evals.md"
+}

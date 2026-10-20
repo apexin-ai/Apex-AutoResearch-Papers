@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74e636d48f28776e866c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check sft qwen rasp 25 exit",
+  "task_key": "worker_ops_check_sft_qwen_rasp_25_exit_20260516T120219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_sft_qwen_rasp_25_exit_20260516T120219_result.json",
+    "occurrence": 1,
+    "bytes": 682,
+    "sha256": "8d99b5e83e7240e02684658053df831ab8bf0e05b09cc6fff686b6bbfb342b0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**训练成功完成。**\n\n### 结果摘要\n\n| 指标 | 值 |\n|------|-----|\n| 状态 | ✅ 正常完成（\"SFT recovery complete.\"） |\n| final train_loss | **0.6062** |\n| final mean_token_accuracy | **0.8673**（最后一步）|\n| epoch | **2.0**（完整 2 epochs，1870/1870 steps） |\n| train_runtime | **1652s**（~27.5 分钟） |\n| throughput | 9.046 samples/s, 1.132 steps/s |\n| 模型输出路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25/` |\n\n模型文件完整：`model.safetensors`（10.8GB）+ config.json + tokenizer + generation_config。无 checkpoint 子目录（训练结束后仅保存最终模型）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-sft-qwen-rasp-25-exit.md"
+}

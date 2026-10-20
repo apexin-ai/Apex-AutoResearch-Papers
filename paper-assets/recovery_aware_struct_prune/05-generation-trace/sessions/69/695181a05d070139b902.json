@@ -1,0 +1,478 @@
+{
+  "schema_version": "1.0",
+  "id": "695181a05d070139b902",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "paper research",
+  "task_key": "worker_paper_research_20260518T031456",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_20260518T031456.jsonl",
+    "occurrence": 1,
+    "bytes": 27842,
+    "sha256": "6a6d93ba1a797aebd1d1d22092a816af77e80adaef8e5d15409d5315393e5d9b"
+  },
+  "statistics": {
+    "messages": 23,
+    "user_turns": 0,
+    "tool_calls": 11,
+    "roles": {
+      "tool_call": 11,
+      "tool_result": 11,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T03:16:48.001099+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T03:16:48.001590+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T03:16:48.001869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T03:16:48.002587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tpapers:\n2\t  # === Direct Competitors ===\n3\t  - id: self_healing_2025\n4\t    title: \"Self-Healing: Recovering Pruned Large Reasoning Models via Reinforcement Learning\"\n5\t    authors: \"Yixin Ji, Zhimin Lin, Juntao Li, Kaixin Wu, Kai Yao, Xu Jia, Linjian Mo, Min Zhang\"\n6\t    year: 2025\n7\t    venue: \"ICLR 2026 submission (OpenReview #12375, submitted Sep 2025)\"\n8\t    category: direct-competitor\n9\t    role: \"RLVR recovery baseline\"\n10\t    relevance: 9\n11\t    key_finding: \"RLVR recovers 95%+ at 25% compression; SFT only reaches ~80%. Tested on 5 LRMs across 6 math benchmarks.\"\n12\t    our_relation: \"We extend beyond single sparsity ratio and add CKA-guided pruning selection\"\n13\t    citation_priority: must-cite\n14\t    arxiv_id: \"\"\n15\t\n16\t  - id: resp_2025\n17\t    title: \"RESP: Self-Reflective Structured Pruning for Reasoning LLMs\"\n18\t    authors: \"\"\n19\t    year: 2025\n20\t    venue: \"arXiv Dec 2025\"\n21\t    category: direct-competitor\n22\t    role: \"Structured pruning for reasoning without recovery\"\n23\t    relevance: 8\n24\t    key_finding: \"GSM8K 81.3% at 40% sparsity via self-reflective importance\"\n25\t    our_relation: \"No RLVR recovery; we show recovery-aware pruning outperforms at same sparsity\"\n26\t    citation_priority: must-cite\n27\t    arxiv_id: \"2512.02185\"\n28\t\n29\t  - id: grasprune_2026\n30\t    title: \"GRASPrune: Global Gating-based Structural Pruning for LLMs\"\n31\t    authors: \"\"\n32\t    year: 2026\n33\t    venue: \"ACL 2026 Main\"\n34\t    category: direct-competitor\n35\t    role: \"SOTA budgeted structural pruning\"\n36\t    relevance: 8\n37\t    key_finding: \"Global gating achieves best structured pruning under budget constraints\"\n38\t    our_relation: \"GRASPrune as pruning backbone; we add CKA overlap + RLVR recovery on top\"\n39\t    citation_priority: must-cite\n40\t    arxiv_id: \"2604.19398\"\n41\t\n42\t  - id: opsd_2026\n43\t    title: \"OPSD: One-shot Post-RL Structured Distillation\"\n44\t    authors: \"\"\n45\t    year: 2026\n46\t    venue: \"arXiv May 2026\"\n47\t    category: direct-competitor\n48\t    \n…[truncated 31271 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Read",
+            "elapsed_ms": 1
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T03:16:48.002920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "reward hacking RLHF language models 2024 2025"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T03:16:48.003128+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "policy collapse reinforcement learning LLM fine-tuning 2024 2025"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T03:16:48.003346+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "reward overoptimization RLHF scaling 2023 2024"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T03:16:48.003602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "RL training instability language model alignment KL divergence 2024 2025"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T03:16:48.003879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"policy collapse reinforcement learning LLM fine-tuning 2024 2025\"\n\nLinks: [{\"title\":\"The State of Reinforcement Learning for LLM Reasoning\",\"url\":\"https://magazine.sebastianraschka.com/p/the-state-of-llm-reasoning-model-training\"},{\"title\":\"RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization\",\"url\":\"https://arxiv.org/html/2508.00222v1\"},{\"title\":\"Prosperity before Collapse: How Far Can Off-Policy RL Reach with Stale Data on LLMs?\",\"url\":\"https://arxiv.org/html/2510.01161\"},{\"title\":\"Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle\",\"url\":\"https://arxiv.org/html/2509.16679v1\"},{\"title\":\"NeurIPS Poster Coevolving with the Other You: Fine-Tuning LLM with Sequential Cooperative Multi-Agent Reinforcement Learning\",\"url\":\"https://neurips.cc/virtual/2024/poster/95347\"},{\"title\":\"Fine-tuning LLMs with Reinforcement Learning | by Mehul Jain | Data Science + AI at Microsoft | Medium\",\"url\":\"https://medium.com/data-science-at-microsoft/fine-tuning-llms-with-reinforcement-learning-ef84fe42d6a6\"},{\"title\":\"Prosperity before Collapse: How Far Can Off-Policy RL\",\"url\":\"https://arxiv.org/pdf/2510.01161\"},{\"title\":\"Preprint, 2025 CAN LARGE REASONING MODELS SELF-TRAIN? Sheikh Shafayat1∗\",\"url\":\"https://arxiv.org/pdf/2505.21444\"},{\"title\":\"Fine-tuning LLMs using Reinforcement Learning\",\"url\":\"https://januverma.substack.com/p/fine-tuning-llms-using-reinforcement\"},{\"title\":\"Scaling LLM Reinforcement Learning with Prolonged Training Using ProRL v2 | NVIDIA Technical Blog\",\"url\":\"https://developer.nvidia.com/blog/scaling-llm-reinforcement-learning-with-prolonged-training-using-prorl-v2/\"}]\n\nI found several relevant sources on policy collapse in reinforcement learning fine-tuning of LLMs. Here's a summary of the key findings:\n\n## Policy Collapse in LLM RL Fine-Tuning (2024-2025)\n\n**Policy Entropy Collapse:**\nPolicy entropy coll\n…[truncated 1353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T03:16:48.004206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"reward hacking RLHF language models 2024 2025\"\n\nLinks: [{\"title\":\"Reward Hacking in Reinforcement Learning | Lil'Log\",\"url\":\"https://lilianweng.github.io/posts/2024-11-28-reward-hacking/\"},{\"title\":\"Reward Shaping to Mitigate Reward Hacking in RLHF\",\"url\":\"https://arxiv.org/html/2502.18770v3\"},{\"title\":\"ICML Poster The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking\",\"url\":\"https://icml.cc/virtual/2025/poster/46294\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models | OpenReview\",\"url\":\"https://openreview.net/forum?id=hSX7Dd8dxy\"},{\"title\":\"Reward Hacking in RLHF - Rohan's Bytes\",\"url\":\"https://www.rohan-paul.com/p/reward-hacking-in-rlhf\"},{\"title\":\"NATURAL EMERGENT MISALIGNMENT FROM REWARD HACKING IN PRODUCTION RL\",\"url\":\"https://assets.anthropic.com/m/74342f2c96095771/original/Natural-emergent-misalignment-from-reward-hacking-paper.pdf\"},{\"title\":\"NeurIPS Poster InfoRM: Mitigating Reward Hacking in RLHF via Information-Theoretic Reward Modeling\",\"url\":\"https://neurips.cc/virtual/2024/poster/96739\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models Hadi Khalaf\",\"url\":\"https://openreview.net/pdf?id=hSX7Dd8dxy\"},{\"title\":\"Inference-Time Reward Hacking in Large Language Models\",\"url\":\"https://openreview.net/pdf?id=vRfDOhiJAR\"},{\"title\":\"REWARD MODEL BOOSTING FOR RLHF\",\"url\":\"https://openreview.net/pdf/2fd4b1609b392151e6692f73c18ac0a8fe54ae94.pdf\"}]\n\nI've found comprehensive information about reward hacking in RLHF for language models from recent 2024-2025 research. Here are the key findings:\n\n## Definition and Core Problem\n\nReward hacking occurs when a reinforcement learning (RL) agent exploits flaws or ambiguities in the reward function to achieve high rewards, without genuinely learning or completing the intended task. With the rise of language models generalizing to a broad spectrum of tasks and RLHF becomes a de facto method for alignment training, reward hacking in RL trai\n…[truncated 1656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T03:16:48.004552+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"reward overoptimization RLHF scaling 2023 2024\"\n\nLinks: [{\"title\":\"[2406.02900] Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://arxiv.org/abs/2406.02900\"},{\"title\":\"Reward Model Overoptimization: Root Causes and Mitigations\",\"url\":\"https://www.reinforced.info/p/reward-model-overoptimization\"},{\"title\":\"NeurIPS Poster Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://neurips.cc/virtual/2024/poster/93540\"},{\"title\":\"Reward Model Overoptimisation in Iterated RLHF\",\"url\":\"https://arxiv.org/html/2505.18126v1\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h/gao23h.pdf\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization in Direct Alignment Algorithms\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/e45caa3d5273d105b8d045e748636957-Paper-Conference.pdf\"},{\"title\":\"Reward Model Overoptimisation in Iterated RLHF | OpenReview\",\"url\":\"https://openreview.net/forum?id=efoe5VJfKz\"},{\"title\":\"Mitigating Reward Hacking in RLHF via Information- ...\",\"url\":\"https://proceedings.neurips.cc/paper_files/paper/2024/file/f25d75fc760aec0a6174f9f5d9da59b8-Paper-Conference.pdf\"},{\"title\":\"Over-Optimization | RLHF Book by Nathan Lambert\",\"url\":\"https://rlhfbook.com/c/14-over-optimization\"},{\"title\":\"[2210.10760] Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://arxiv.org/abs/2210.10760\"}]\n\nI've completed a web search for \"reward overoptimization RLHF scaling 2023 2024\". Here are the key findings:\n\n## Core Concept\n\nReward over-optimization or reward hacking is where performance as measured by the learned proxy reward model increases, but true quality plateaus or even deteriorates.\n\n## Key Research Papers\n\n**2023 Paper:**\nThe foundational work \"Scaling Laws for Reward Model Overoptimization\" was published in the International Conference on Machine Learning in 2023. This paper studi\n…[truncated 1161 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T03:16:48.004841+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"RL training instability language model alignment KL divergence 2024 2025\"\n\nLinks: [{\"title\":\"Large Language Models Alignment via Comparative RL - EECS\",\"url\":\"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2024/EECS-2024-21.pdf\"},{\"title\":\"Reinforcement Learning Journal 2025 Cover Page\",\"url\":\"https://rlj.cs.umass.edu/2025/papers/RLJ_RLC_2025_298.pdf\"},{\"title\":\"Preprint. A COMEDY OF ESTIMATORS: ON KL REGULARIZATION IN RL TRAINING OF LLMS\",\"url\":\"https://www.arxiv.org/pdf/2512.21852\"},{\"title\":\"A Comedy of Estimators: On KL Regularization in RL Training of LLMs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2512.21852\"},{\"title\":\"A Technical Survey of Reinforcement Learning Techniques for Large Language Models\",\"url\":\"https://arxiv.org/html/2507.04136v1\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2025/file/a548ef984f30bca3abdc09f43743827f-Paper-Conference.pdf\"},{\"title\":\"Published as a conference paper at ICLR 2024 BEYOND REVERSE KL: GENERALIZING\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/2b1d1e5affe5fdb70372cd90dd8afd49-Paper-Conference.pdf\"},{\"title\":\"Reinforcement Learning for Large Language Models via ...\",\"url\":\"https://aclanthology.org/2025.emnlp-main.1085.pdf\"},{\"title\":\"[2512.21852] A Comedy of Estimators: On KL Regularization in RL Training of LLMs\",\"url\":\"https://arxiv.org/abs/2512.21852\"},{\"title\":\"Reinforcement Learning with Supervised Alignment\",\"url\":\"https://aclanthology.org/2025.findings-emnlp.378.pdf\"}]\n\nI've completed the web search for your query on RL training instability in language model alignment with KL divergence. Here are the key findings from recent 2024-2025 research:\n\n## Key Research Findings\n\n**Training Instability Issues:**\nRLHF faces challenges such as reward model misgeneralization and training instability. Recent work has identified that common implementation choices lead to biased gradient estimates, resulting \n…[truncated 1569 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T03:16:48.005131+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2210.10760 \"Scaling Laws for Reward Model Overoptimization\" Gao 2023 ICML"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T03:16:48.005354+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "arxiv 2512.21852 \"A Comedy of Estimators\" KL regularization RL training LLMs authors"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T03:16:48.005653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"capability boundary collapse\" RLVR arxiv 2508.00222 RL-PLUS authors 2025"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T03:16:48.005929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2210.10760 \"Scaling Laws for Reward Model Overoptimization\" Gao 2023 ICML\"\n\nLinks: [{\"title\":\"[2210.10760] Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://arxiv.org/abs/2210.10760\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization Leo Gao OpenAI John Schulman\",\"url\":\"https://arxiv.org/pdf/2210.10760\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://www.researchgate.net/publication/364436070_Scaling_Laws_for_Reward_Model_Overoptimization\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2022arXiv221010760G/abstract\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://proceedings.mlr.press/v202/gao23h.html\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://www.summarizepaper.com/en/arxiv-id/2210.10760v1/\"},{\"title\":\"Scaling Laws For Reward Model Overoptimization\",\"url\":\"https://www.scribd.com/document/668584786/2210-10760\"},{\"title\":\"[PDF] Scaling Laws for Reward Model Overoptimization | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Scaling-Laws-for-Reward-Model-Overoptimization-Gao-Schulman/fb3dc5e20e0a71134ca916f0d6d8d41f01225b4b\"},{\"title\":\"Paper page - Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://huggingface.co/papers/2210.10760\"},{\"title\":\"Scaling Laws for Reward Model Overoptimization\",\"url\":\"https://www.alignmentforum.org/posts/shcSdHGPhnLQkpSbX/scaling-laws-for-reward-model-overoptimization\"}]\n\nI found the paper successfully. Here's what I can tell you about it:\n\n## Paper Summary\n\nThe paper \"Scaling Laws for Reward Model Overoptimization\" was authored by Leo Gao and 2 other authors (John Schulman and Jacob Hilton).\n\n**Key Content:**\n\nIn reinforcement learning from human feedback, it is common to optimize against a reward model trained to predict human preferences. Because the reward model is an imperfect proxy, optimizing its value too much \n…[truncated 958 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T03:16:48.006227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"arxiv 2512.21852 \"A Comedy of Estimators\" KL regularization RL training LLMs authors\"\n\nLinks: [{\"title\":\"[2512.21852] A Comedy of Estimators: On KL Regularization in RL Training of LLMs\",\"url\":\"https://arxiv.org/abs/2512.21852\"},{\"title\":\"Preprint. A COMEDY OF ESTIMATORS: ON KL REGULARIZATION IN RL TRAINING OF LLMS\",\"url\":\"https://www.arxiv.org/pdf/2512.21852\"},{\"title\":\"A Comedy of Estimators: On KL Regularization in RL Training of LLMs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/overview/2512.21852v2\"},{\"title\":\"A Comedy of Estimators: On KL Regularization in RL Training of LLMs - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2025arXiv251221852S/abstract\"},{\"title\":\"A Comedy of Estimators: On KL Regularization in RL Training of LLMs | OpenReview\",\"url\":\"https://openreview.net/forum?id=MkLHbwSMP3\"},{\"title\":\"AI Papers on X: \\\"A Comedy of Estimators: On KL Regularization in RL Training of LLMs Vedant Shah, Johan Obando-Ceron, Vineet Jain, Brian Bartoldson, Bhavya Kailkhura, Sarthak Mittal, Glen Berseth, Pablo Samuel Castro, Yoshua Bengio, Nikolay Malkin, … (arXiv:2512.21852) https://t.co/JtsAUWzB2n\\\" / X\",\"url\":\"https://x.com/SciFi/status/2007460236672565250\"},{\"title\":\"A Comedy of Estimators: On KL Regularization in RL ...\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/comedy-estimators-kl-regularization-rl-training-llms\"},{\"title\":\"Choosing KL Estimators in RL: From Value Unbiasedness to Gradient Correctness | Xihuai Wang's Page\",\"url\":\"https://xihuai18.github.io/reinforcement-learning/2025/12/01/kl-estimators-en.html\"},{\"title\":\"On KL Regularization in RL Training of LLMs\",\"url\":\"https://www.researchgate.net/publication/399134876_A_Comedy_of_Estimators_On_KL_Regularization_in_RL_Training_of_LLMs\"},{\"title\":\"Diffusion Alignment Beyond KL: Variance Minimisation as Effective Policy Optimiser\",\"url\":\"https://arxiv.org/html/2602.12229\"}]\n\nBased on the search results, I found the paper you're looking for. Here's the information about arxiv\n…[truncated 1180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T03:16:48.006543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"capability boundary collapse\" RLVR arxiv 2508.00222 RL-PLUS authors 2025\"\n\nLinks: [{\"title\":\"RL-PLUS: Countering Capability Boundary Collapse of LLMs in...\",\"url\":\"https://arxiv.org/abs/2508.00222\"},{\"title\":\"Preprint, July 2025 RL-PLUS: Countering Capability Boundary Collapse of LLMs\",\"url\":\"https://arxiv.org/pdf/2508.00222\"},{\"title\":\"RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization\",\"url\":\"https://arxiv.org/html/2508.00222\"},{\"title\":\"Paper page - RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization\",\"url\":\"https://huggingface.co/papers/2508.00222\"},{\"title\":\"The Debate on RLVR Reasoning Capability Boundary:\",\"url\":\"https://arxiv.org/pdf/2510.04028\"},{\"title\":\"The Debate on RLVR Reasoning Capability Boundary: Shrinkage, Expansion, or Both? A Two-Stage Dynamic View\",\"url\":\"https://arxiv.org/html/2510.04028v1\"},{\"title\":\"RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization | Request PDF\",\"url\":\"https://www.researchgate.net/publication/394263125_RL-PLUS_Countering_Capability_Boundary_Collapse_of_LLMs_in_Reinforcement_Learning_with_Hybrid-policy_Optimization\"},{\"title\":\"(PDF) The Debate on RLVR Reasoning Capability Boundary: Shrinkage, Expansion, or Both? A Two-Stage Dynamic View\",\"url\":\"https://www.researchgate.net/publication/396249087_The_Debate_on_RLVR_Reasoning_Capability_Boundary_Shrinkage_Expansion_or_Both_A_Two-Stage_Dynamic_View\"},{\"title\":\"BoundRL: Efficient Token-level Structured Text Segmentation through Reinforced Boundary Generation\",\"url\":\"https://arxiv.org/html/2510.20151\"},{\"title\":\"Unlocking Exploration in RLVR: Uncertainty-aware Advantage Shaping for Deeper Reasoning\",\"url\":\"https://arxiv.org/html/2510.10649v1\"}]\n\nI've found comprehensive information about the paper you're looking for. Here are the key findings:\n\n## RL-PLUS: Count\n…[truncated 1592 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T03:16:48.006923+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml",
+              "old_string": "  - id: deepseekmath_grpo_2024\n    title: \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\"\n    authors: \"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, Daya Guo\"\n    year: 2024\n    venue: \"arXiv Feb 2024\"\n    category: background\n    role: \"GRPO algorithm origin — Group Relative Policy Optimization for math reasoning\"\n    relevance: 9\n    key_finding: \"Introduces GRPO: group-level reward normalization without critic model; DeepSeekMath-7B achieves 51.7% on MATH competition via GRPO + code-math corpus\"\n    our_relation: \"Our RLVR recovery phase uses GRPO as the alignment algorithm; this is the foundational reference\"\n    citation_priority: must-cite\n    arxiv_id: \"2402.03300\"\n    verified: true\n\n# === Update Log ===",
+              "new_string": "  - id: deepseekmath_grpo_2024\n    title: \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models\"\n    authors: \"Zhihong Shao, Peiyi Wang, Qihao Zhu, Runxin Xu, Junxiao Song, Mingchuan Zhang, Y.K. Li, Y. Wu, Daya Guo\"\n    year: 2024\n    venue: \"arXiv Feb 2024\"\n    category: background\n    role: \"GRPO algorithm origin — Group Relative Policy Optimization for math reasoning\"\n    relevance: 9\n    key_finding: \"Introduces GRPO: group-level reward normalization without critic model; DeepSeekMath-7B achieves 51.7% on MATH competition via GRPO + code-math corpus\"\n    our_relation: \"Our RLVR recovery phase uses GRPO as the alignment algorithm; this is the foundational reference\"\n    citation_priority: must-cite\n    arxiv_id: \"2402.03300\"\n    verified: true\n\n  # === RL Training Instability (added 2026-05-18) ===\n  - id: gao_reward_overoptimization_2023\n    title: \"Scaling Laws for Reward Model Overoptimization\"\n    authors: \"Leo Gao, John Schulman, Jacob Hilton\"\n    year: 2023\n    venue: \"ICML 2023\"\n    category: background\n    role: \"RL training instability — reward overoptimization scaling laws\"\n    relevance: 6\n    key_finding: \"Proxy reward optimization degrades gold reward following predictable scaling laws; overoptimization worsens with more RL compute and smaller reward models\"\n    our_relation: \"Pruning-induced collapse can be viewed as amplified reward overoptimization where reduced model capacity widens the proxy-gold reward gap\"\n    citation_priority: should-cite\n    arxiv_id: \"2210.10760\"\n    verified: true\n\n  - id: rl_plus_collapse_2025\n    title: \"RL-PLUS: Countering Capability Boundary Collapse of LLMs in Reinforcement Learning with Hybrid-policy Optimization\"\n    authors: \"Yihong Dong, Xue Jiang, Yongding Tao, Huanyu Liu, Kechi Zhang, Lili Mou, Rongyu Cao, Yingwei Ma, Jue Chen, Binhua Li, Zhi Jin, Fei Huang, Yongbin Li, Ge Li\"\n    year: 2025\n    venue: \"arXiv Jul 2025\"\n    category: background\n    role: \"RL training instability — capability boundary collapse in RLVR\"\n    relevance: 7\n    key_finding: \"RLVR causes capability boundary collapse: pass@1 improves but pass@k degrades, narrowing the model's problem-solving scope due to on-policy training with sparse reward\"\n    our_relation: \"Pruning-induced collapse is a structural variant of capability boundary collapse; pruning removes capacity that exacerbates the on-policy sparse-reward instability they identify\"\n    citation_priority: should-cite\n    arxiv_id: \"2508.00222\"\n    verified: true\n\n  - id: comedy_of_estimators_2025\n    title: \"A Comedy of Estimators: On KL Regularization in RL Training of LLMs\"\n    authors: \"Vedant Shah, Johan Obando-Ceron, Vineet Jain, Brian Bartoldson, Bhavya Kailkhura, Sarthak Mittal, Glen Berseth, Pablo Samuel Castro, Yoshua Bengio, Nikolay Malkin, Moksh Jain, Siddarth Venkatraman, Aaron Courville\"\n    year: 2025\n    venue: \"arXiv Dec 2025\"\n    category: background\n    role: \"RL training instability — KL regularization implementation pitfalls\"\n    relevance: 5\n    key_finding: \"Prevailing KL regularization implementations in RLHF/RLVR provide incorrect gradients for stated objectives, causing training instability and suboptimal performance\"\n    our_relation: \"Informs our GRPO recovery design: incorrect KL estimation can destabilize RLVR recovery of pruned models, especially when pruning shifts the policy distribution\"\n    citation_priority: should-cite\n    arxiv_id: \"2512.21852\"\n    verified: true\n\n# === Update Log ==="
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T03:16:48.007470+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T03:16:48.007728+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml",
+              "old_string": "# === Update Log ===\n# 2026-05-15: Literature survey targeting 4 reviewer-flagged gaps",
+              "new_string": "# === Update Log ===\n# 2026-05-18: Added 3 RL training instability papers (background for pruning-induced collapse positioning)\n#   - gao_reward_overoptimization_2023: Reward overoptimization scaling laws (ICML 2023)\n#   - rl_plus_collapse_2025: Capability boundary collapse in RLVR (arXiv 2508.00222)\n#   - comedy_of_estimators_2025: KL regularization pitfalls in RL training (arXiv 2512.21852)\n# 2026-05-15: Literature survey targeting 4 reviewer-flagged gaps"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T03:16:48.008128+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T03:16:48.008419+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加 3 篇 RL 训练不稳定性论文：\n\n1. **gao_reward_overoptimization_2023** — Gao, Schulman, Hilton (ICML 2023, `2210.10760`). Reward overoptimization 的 scaling laws，奠基性工作。与我们的关系：pruning 降低模型容量可放大 proxy-gold reward gap。\n\n2. **rl_plus_collapse_2025** — Dong et al. (arXiv `2508.00222`). RLVR 导致 capability boundary collapse（pass@1 升但 pass@k 降）。与我们的关系：pruning-induced collapse 是其结构性变体，剪枝移除的容量加剧了 on-policy sparse-reward 不稳定性。\n\n3. **comedy_of_estimators_2025** — Shah, Bengio, Courville et al. (arXiv `2512.21852`). KL regularization 实现中梯度计算错误导致训练不稳定。与我们的关系：剪枝后 policy distribution 偏移时，KL 估计误差对 RLVR recovery 稳定性的影响。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_20260518T031456"
+          },
+          "id": "event-000023"
+        }
+      ],
+      "message_count": 23
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research.md"
+}

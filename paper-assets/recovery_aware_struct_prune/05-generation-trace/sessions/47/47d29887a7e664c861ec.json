@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47d29887a7e664c861ec",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha4 grpo preparation",
+  "task_key": "worker_code_alpha4_grpo_preparation_20260521T155844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha4_grpo_preparation_20260521T155844_result.json",
+    "occurrence": 1,
+    "bytes": 1467,
+    "sha256": "41a7552300e38c8a4c6dfdc8d314ec4dfd2c9567c4dafa9c54815029e1361602"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有输入文件确认存在。总结如下：\n\n---\n\n**⚠️ 模型修正**: 服务器上没有 Qwen2.5-7B-Instruct，实际模型是 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`。脚本已用正确路径。\n\n**Pipeline 脚本**: `westd-29022:/root/recovery_aware_struct_prune/scripts/run_alpha4_pipeline.sh`\n\n**启动命令**:\n```bash\nbash scripts/run_alpha4_pipeline.sh 0   # 在 GPU 0 上运行\n```\n\n**4 步流水线**:\n\n| Step | 操作 | 预估时间 | GPU |\n|------|------|---------|-----|\n| 1 | Prune (α=4.0, 20%) | ~5-10 min | 1×GPU |\n| 2 | SFT warmup (2 epochs, lr=2e-5, bs=1, grad_accum=8) | ~30-45 min | 1×GPU |\n| 3 | GRPO 100 steps (v5: dapo, β=0.01, temp=0.4, adamw_8bit) | ~2-3 hrs | 1×GPU |\n| 4 | GSM8K eval (N=1319, greedy) | ~20-30 min | 1×GPU |\n\n**总预估时间**: ~3.5-4.5 小时，1 张 GPU\n\n**无需修改现有代码** — α 参数已在 `prune.py` 中支持，GRPO v5 的 `--max_steps` 参数也已就绪。\n\n**所有输入路径已验证存在**:\n- 模型: `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` ✓\n- Importance scores: `results/importance_scores.pt` ✓\n- CKA scores: `results/cka_scores.pt` ✓\n\n**输出路径** (均在数据盘 `/root/autodl-tmp/`):\n- Pruned: `pruned_alpha4_20/`\n- SFT: `sft_alpha4_20/`\n- GRPO: `grpo_alpha4_20/`\n- Eval: `results/eval_grpo_alpha4_20.json`\n\n脚本内置了每步的 skip 逻辑（检测已有输出），可安全中断后重跑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha4-grpo-preparation.md"
+}

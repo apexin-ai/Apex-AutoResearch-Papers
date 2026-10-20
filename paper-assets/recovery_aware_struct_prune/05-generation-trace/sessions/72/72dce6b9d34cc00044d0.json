@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72dce6b9d34cc00044d0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval humaneval grpo cka only 20 2048",
+  "task_key": "worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_humaneval_grpo_cka_only_20_2048_20260519T073506_result.json",
+    "occurrence": 1,
+    "bytes": 1318,
+    "sha256": "1cfbf783c2d3cfb38c73628692fcb0915db15e10c5fa9396ab456e612ea3a9d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n## 结果报告\n\n### GRPO CKA-only 20% HumanEval @2048\n\n| 指标 | 值 |\n|------|-----|\n| **pass@1** | **20.12% ± 3.13%** |\n| n_correct / n_total | 33 / 164 |\n| avg_response_length | 1523.31 |\n| median_response_length | 2048 (频繁 truncation) |\n| wall_time | ~3h19m |\n\n### 基准对比\n\n| 方法 | pass@1 | n_correct |\n|------|--------|-----------|\n| Unpruned GRPO | 45.12% | 74/164 |\n| **GRPO CKA-only 20%** | **20.12%** | **33/164** |\n| GRPO RASP 20% | 14.63% | 24/164 |\n| GRPO Standard 20% | 10.37% | 17/164 |\n| SFT CKA-only 20% | 0% | 0/164 |\n\n### 结论：**success**\n\n1. **GRPO 完全恢复了 SFT 丧失的能力**：SFT CKA-only 在 HumanEval 上 pass@1 = 0%，GRPO 将其恢复到 20.12%，从零到有。\n2. **CKA-only 是三种剪枝方法中 GRPO 恢复效果最好的**：20.12% > RASP 14.63% > Standard 10.37%。这与 hypothesis 一致——CKA 保留的结构相似性确实有利于 GRPO 的跨任务恢复。\n3. **与 unpruned 仍有显著差距**：20.12% vs 45.12%，恢复率约 44.6%。\n4. **failure mode**：大量样本 hit 2048 token 上限后被截断，输出中混杂 chain-of-thought 自然语言文本（而非纯代码），导致 SyntaxError。median_response_length = 2048 表明超过一半的样本被截断。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-humaneval-grpo-cka-only-20-2048.md"
+}

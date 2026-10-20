@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "928ae856beab203d6a29",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 seed123 final",
+  "task_key": "worker_ssh_harvest_cka_only_15_seed123_final_20260520T230609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_seed123_final_20260520T230609_result.json",
+    "occurrence": 1,
+    "bytes": 884,
+    "sha256": "508b414b9d6a36206dc6e855cac0d322ab77678f922947d3a3544bcd6745603e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**结果汇总：**\n\n**CKA-only 15% seed123 GSM8K eval 失败。** 进程退出码 1，未生成结果 JSON。\n\n**失败原因链：**\n1. GRPO 训练（同一 nohup 脚本）在保存最终模型时因 **磁盘满（No space left on device）** 崩溃\n2. Eval 从 `checkpoint-100` 加载模型后开始评估，进度到 ~796/1319（60%）时中断\n3. 日志最后一条 Progress 报告：**750/1319, acc=73.20%**（中间值，非最终结果）\n4. 之后进度条显示评估速度骤降（从 ~3s/it 到 109-183s/it），最终被杀\n\n**当前磁盘：** 数据盘 63GB 可用（已恢复），根分区 26GB 可用。磁盘满问题已解除，可以重跑。\n\n**需要重跑此 eval。** Checkpoint-100 模型文件存在于 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_15_seed123/checkpoint-100`，可直接用它重新跑 GSM8K eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-seed123-final.md"
+}

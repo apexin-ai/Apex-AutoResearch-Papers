@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "96adabb244bc7495dc9d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "figure paperbanana fig1 framework",
+  "task_key": "worker_figure_paperbanana_fig1_framework_20260524T125606",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_paperbanana_fig1_framework_20260524T125606_result.json",
+    "occurrence": 1,
+    "bytes": 1443,
+    "sha256": "c80feaf844c7c3275aae8d2022046fefa24a2de78020f41882df5efa8f83cc4a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有 register_artifact 工具可用。汇报结果。\n\n**完成汇报：**\n\n- **PNG**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/figures/fig1_framework_v2.png` (2752×1536, 300 DPI, 2.1MB)\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/figures/fig1_framework_v2.pdf` (372KB)\n- **迭代轮数**: 3 轮外部迭代（PaperBanana 内部分别 1/3/1 轮）\n\n**视觉检查结果：**\n- **布局**: 5 层从上到下流程清晰，Pretrained LLM → Structural Analysis → 4 Pruning Criteria → Identical Recovery → 4 Outcomes → Gradient Bar\n- **配色**: 语义一致——teal(CKA-only/好) → blue(Random/中性) → amber(Standard/警告) → coral(RASP/差)\n- **可读性**: 2752px 宽，缩到 column width (~6.5 inches) 后文字仍可读\n- **整体质感**: 干净专业，无 matplotlib 默认样式，无多余标注\n\n**已知局限（Imagen 固有）：**\n- Tier 4 outcome 框未实现卡片式色块头部（header bar），改为带颜色边框\n- \"⇊\" 图标渲染为 \"‡\"\n- 无精确的 drop shadow 和 separator line 控制\n\n**Intent 修改记录：**\n- 第 3 轮添加了 `CRITICAL: Do NOT add any \"TIER 1\", \"TIER 2\" labels` 指令，成功去除了前两轮的左侧 TIER 标注\n- 将 \"TIER\" 术语改为 \"SECTION\" 避免 Imagen 将其渲染为视觉标签"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-paperbanana-fig1-framework.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f4df4f9e7113a314fc3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops scp dense and launch eval",
+  "task_key": "worker_ops_scp_dense_and_launch_eval_20260518T220721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_dense_and_launch_eval_20260518T220721_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "f4982ce1556857e6906b25628c520718264669c89505c4d371835a34eba482db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **模型大小**: 15GB（westb-23072 和 westd-29022 一致）\n- **传输**: 模型已存在于 westd-29022（之前有断链符号链接，已修复为实体目录）\n- **Eval 状态**: 已在 westd-29022 GPU 0 上启动，tmux session `eval_math500_dense_2048`\n  - GPU 0 占用 17585MiB，模型加载完成，正在加载 MATH 数据集\n  - GPU 1 被其他任务占用（97% util）\n- **Registry**: `eval_math500_dense_2048` → RUNNING\n- **日志**: `/tmp/eval_math500_dense_2048.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/math500_dense_2048.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-dense-and-launch-eval.md"
+}

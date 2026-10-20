@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2885f81964e83cf3e022",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis update report and timeline",
+  "task_key": "worker_analysis_update-report-and-timeline_20260515T172557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_update-report-and-timeline_20260515T172557_result.json",
+    "occurrence": 1,
+    "bytes": 74,
+    "sha256": "aff0c4bfced5ba641b6b75e70e97075668bc5e5b24005d6616ae9b86d8cce83c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "report.md 已更新，反映 2026-05-15 17:25 UTC 状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-update-report-and-timeline.md"
+}

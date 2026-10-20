@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b70a8d204a92ae378784",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval grpo standard seed123 n200",
+  "task_key": "worker_eval_grpo_standard_seed123_n200_20260520T091427",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_grpo_standard_seed123_n200_20260520T091427_result.json",
+    "occurrence": 1,
+    "bytes": 569,
+    "sha256": "1d3d876ea97d24fc53f38ef90dc2329edad7656f91af22073bae9eb2542c9210"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程存活（运行 36 秒），CUDA_VISIBLE_DEVICES=2 正确。模型 12GB，从磁盘加载到 GPU 需要 1-2 分钟。\n\nJob 已成功提交并运行中：\n- **exp_id**: `eval_gsm8k_grpo_standard_20_seed123`\n- **服务器**: westd-29022, cuda:2\n- **PID**: 221158, tmux session: `eval_gsm8k_grpo_standard_20_seed123`\n- **日志**: `~/runs/recovery_aware_struct_prune/eval_gsm8k_grpo_standard_20_seed123.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_standard_20_seed123_n200.json`\n- **预计耗时**: ~2-3h"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-grpo-standard-seed123-n200.md"
+}

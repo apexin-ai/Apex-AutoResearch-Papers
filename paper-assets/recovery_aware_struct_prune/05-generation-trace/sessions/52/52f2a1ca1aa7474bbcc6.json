@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52f2a1ca1aa7474bbcc6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k sft alpha3p0 20",
+  "task_key": "worker_diagnose_eval_gsm8k_sft_alpha3p0_20_20260522T123726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_sft_alpha3p0_20_20260522T123726_result.json",
+    "occurrence": 1,
+    "bytes": 766,
+    "sha256": "279f6699f0622ebaa4d0c5af9f13b5f6b1d31dde6e9edb9b9470c3e1b9a1ad5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**实验成功完成。** Cron 误判。\n\n| 项目 | 值 |\n|------|-----|\n| GSM8K Accuracy | **64.14% ± 1.32%** (846/1319) |\n| EOS Rate | 98.79% (1303 natural, 16 truncated) |\n| Avg Response Length | 188.63 tokens |\n| 失败原因 | 无——评估全部完成，仅写结果 JSON 时磁盘满导致非零退出码 |\n\n中间进度 (~64.15%@1300) 与最终结果一致，数据可靠。\n\nRegistry 已更新：补充了 metrics（含 stderr/eos_rate）、log_path、checkpoint_path、notes。conclusion 维持 `success`。\n\n**Dose-response SFT 列现有数据**：α=0.5 → 60.73% | α=2.0 → 64.97% | α=3.0 → **64.14%** | α=4.0 → 61.94%。α=3.0 SFT 位于 α=2.0 和 α=4.0 之间，符合预期的非单调趋势。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-sft-alpha3p0-20.md"
+}

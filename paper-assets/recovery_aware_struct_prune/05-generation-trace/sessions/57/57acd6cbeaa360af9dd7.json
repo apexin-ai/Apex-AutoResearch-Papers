@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57acd6cbeaa360af9dd7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_14_1778965493.md",
+  "task_key": "loop_14_1778965493",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778965493.md",
+    "occurrence": 1,
+    "bytes": 5354,
+    "sha256": "e5900fc3ad5364745530a346a866e1a70a7b72f9f5a04c1e561213c06a22787e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T20:06:48+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单（C004）：westb-23072 cuda:0/1 + westd-11672 cuda:0/1/2/3，共 6 张。**不得在白名单外的 GPU 启动实验**\n- 所有模型/checkpoint/大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`（C002），根分区仅 30GB\n- westb↔westd 之间 SCP 不通（无 SSH key 互信），模型跨服务器需中转\n- Qwen Math 系列模型必须在 eval/GRPO 时手动加 `eos_token_id=[151643, 151645]`，否则每 sample 生成满 4096 tokens（已修复在 eval_gsm8k.py 和 train_grpo_v5.py 中，但新脚本需注意）\n- eval 类实验不走 W&B → cron 监控会误判 failed。收到 eval failed 回调时先检查 registry 是否已有 metrics\n- RASP-RLVR 已被 D050 降级为 ablation（negative result），论文主线只用 RASP vs Standard vs Unpruned\n- DDL：EMNLP 2026 ARR **May 25**（距今 ~9 天），25% GRPO + Qwen Math + Paper 必须并行\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**（2× ~98GB GPU）：代码 `/root/recovery_aware_struct_prune`，数据 `/root/autodl-tmp/recovery_aware_struct_prune`\n- **westd-11672**（4× ~95GB GPU）：代码+数据 `/root/autodl-tmp/recovery_aware_struct_prune`\n- Python：两台均 `/root/miniconda3/bin/python`（conda base），激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- W&B project: recovery_aware_struct_prune（训练实验自动 log，eval 不 log）\n- 活跃进程：\n  - grpo_rasp_rlvr_20: westb cuda:1（DeepSeek RASP-RLVR GRPO 100 steps）\n  - eval_grpo_rasp_rlvr_20_qwen_math: westd cuda:0（Qwen Math eval N=200）\n  - eval_grpo_standard_25: westd cuda:1（Standard 25% post-GRPO eval N=200）\n  - eval_pass_k8_standard_20_grpo_qwen_math: westd cuda:2（pass@8 eval N=200）\n- Cron：reconcile 返回 0（本 session 无活跃 cron，上一 session 的 cron 可能已随 session 销毁）\n- Worker：worker_check_westb_status_loop15（running，检查 westb 状态）\n\n### 3. 📊 当前状态\n上一轮完成了大量实验提交和分析：grpo_standard_25（near-collapse, reward=0.0075）、grpo_rasp_rlvr_20_qwen_math（reward=0.090，最高）、eval_sft_rasp_25（52.99% N=1319）都已 DONE。eval_grpo_rasp_25 已 ALLOCATED 待提交（N=1319 greedy，C1 25% 关键验证）。\n\n**Registry 摘要：**\n- RUNNING (4): eval_grpo_standard_25, eval_grpo_rasp_rlvr_20_qwen_math, eval_pass_k8_standard_20_grpo_qwen_math, grpo_rasp_rlvr_20\n- ALLOCATED (1): eval_grpo_rasp_25（待用 submit_on_allocated 提交，westd 有空卡即可）\n- PREPARING (11): 多数是历史遗留或已完成但未更新状态的（eval_sft_grasp_20 实际 success 41%，alpha_ablation 实际 success，eval_sft_alpha_0p5 killed）\n- DONE: 103 个实验，success 67 / negative 14 / failed 12\n\n**等待中：**\n- 4 个 RUNNING 实验的 cron 回调（需要注册新 cron 来监控）\n- eval_grpo_rasp_25 需要 submit_on_allocated\n- westb cuda:0 当前空闲——可以跑新实验\n- westd cuda:3 当前空闲——可以跑新实验\n\n### 4. 📋 待办（条件触发式）\n- **立即**：为 4 个 RUNNING 实验注册 cron 监控（上 session cron 已失效）\n- **立即**：submit_on_allocated eval_grpo_rasp_25（westd 有空 cuda:3 可用）\n- eval_grpo_standard_25 完成 → 记录 accuracy，与 sft_standard_25 (51.25%) 对比，更新 paper_framing\n- eval_grpo_rasp_rlvr_20_qwen_math 完成 → 若 accuracy ≈ pre-GRPO 73% = 又一个 C1 decoupling 证据；若 < 73% 则 RLVR 也无法免疫 collapse\n- eval_pass_k8_standard_20_grpo_qwen_math 完成 → 与 RASP pass@8 (91.5%) 和 Unpruned (96.5%) 对比，补全 diversity 表格\n- grpo_rasp_rlvr_20 (DeepSeek) 完成 → eval → 与 grpo_rasp_20_v9 对比 collapse 是否改善（D050 ablation）\n- **空闲 GPU 利用**：westb cuda:0 和 westd cuda:3 闲置 → 应启动 eval_sft_standard_20_n1319 / eval_sft_rasp_20_full / eval_postprune_25 等排队任务\n- Paper Agent Step 2 (Plot Generation) 完成 → 审查 plots，推进 Step 3 (Draft)\n- 25% GRPO 全部完成 → 更新 paper Table 1 的 25% 行\n\n### 5. 🎯 战略上下文\n**核心结论链：** D044 pivot 后论文三大 claim：(1) GRPO reward-accuracy decoupling 是 universal 的，pruning 额外引入 collapse；(2) collapse 严重程度诊断结构损伤类型（RASP>Standard>Unpruned）；(3) SFT 最优剪枝 ≠ RLVR 最优剪枝（Redundancy-Stability Tradeoff）。20% 数据全部 complete，25% 和 Qwen Math 是 scope expansion。\n\n**易错点：**\n- PREPARING 状态的 grpo_standard_20_v8 / grpo_rasp_20_v8 是历史遗留（05-15 创建），notes 里有磁盘 89% 满警告——已被 v9 系列取代，**不要当成活跃实验处理**\n- eval_sft_grasp_20 状态仍是 PREPARING 但 conclusion=success (41%)——需要 update_registry status=DONE\n- eval_sft_rasp_rlvr_20_qwen_math 状态 PREPARING 但 conclusion=success (73%)——同上\n- RASP-RLVR 在 DeepSeek 上是 negative (D050)，但在 Qwen Math 上 reward 最高 (0.090)——**两个模型结论不同**，论文降级为 ablation 而非主线\n- SFT 下 RASP vs Standard 差距不显著 (p=0.25)——论文坦诚报告，不 claim significance\n- α ablation 两个 calibration 设置 (westb cal=512, westd cal=256) 结果趋势一致但数值不同——论文加 footnote (D046)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778965493.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdf11334df2b28c11c1a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "pipeline alpha ablation qwen math",
+  "task_key": "worker_pipeline_alpha_ablation_qwen_math_20260516T191349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_alpha_ablation_qwen_math_20260516T191349_result.json",
+    "occurrence": 1,
+    "bytes": 824,
+    "sha256": "45623ccb608e708455ee9f1a8c5b5c17f171b4a3ea29bd85807fc1c625429748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Phase B 正在 GPU 3 上正常运行。状态总结：\n\n**Phase A**: 完成。6 个 pruned 模型：\n- `/root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_{0.0,0.3,0.5,0.7,1.0,2.0}`\n\n**Phase B**: 运行中（PID 39816, GPU 3, 12458 MiB）\n- 当前：SFT alpha=0.0\n- 速度：~1.1 it/s, 1870 steps/alpha\n- 预计每个 alpha: SFT ~28min + eval ~10min ≈ 38min\n- 6 个 alpha 总计：~3.8h\n- 预计完成：约 07:00 CST\n\n**监控命令**：\n```bash\n# 查看当前进度\ntail -5 /tmp/alpha_ablation_phaseB.log\n\n# 检查是否完成\ngrep \"PHASE_B_COMPLETE\" /tmp/alpha_ablation_phaseB.log\n\n# 查看最终结果\nfor alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do cat /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json; done\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-alpha-ablation-qwen-math.md"
+}

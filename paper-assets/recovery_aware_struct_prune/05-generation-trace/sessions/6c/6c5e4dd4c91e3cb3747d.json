@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6c5e4dd4c91e3cb3747d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval grpo standard 25 v2",
+  "task_key": "worker_fix_eval_grpo_standard_25_v2_20260516T211019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_grpo_standard_25_v2_20260516T211019_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "d3d7f1ec29af0c38627ee2507acb5589706239e208fbcf659c6c54a2f2f7bea8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval 已在正确运行中：\n- **PID**: 47509（活跃，179% CPU）\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25`（正确）\n- **样本数**: 1319（完整 GSM8K test set）\n- **GPU**: cuda:1\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json`\n- **启动时间**: 05:05，正在推理中（~3s/sample，预计总时长 ~1.1 小时）\n\n之前的\"wrong model\"问题已确认：旧结果文件用了 `grpo_standard_25_qwen_math` 路径而非 `grpo_standard_25`。fix worker 已用正确路径重启，无需额外操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-grpo-standard-25-v2.md"
+}

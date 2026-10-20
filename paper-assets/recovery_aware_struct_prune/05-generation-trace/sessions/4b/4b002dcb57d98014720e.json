@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b002dcb57d98014720e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch gsm8k standard fair baseline eval",
+  "task_key": "worker_ops_launch_gsm8k_standard_fair_baseline_eval_20260519T085730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch_gsm8k_standard_fair_baseline_eval_20260519T085730_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "eafcf52ed388e8f05ce53d16bdee89c966c47cca266d25aaa618060bf7401f1c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，状态摘要：\n\n- **exp_id**: `eval_gsm8k_grpo_standard_20_fair_v2`\n- **服务器**: westd-29022 cuda:0\n- **tmux session**: `eval_gsm8k_std_fair_v2`\n- **状态**: RUNNING，模型加载中（12GB safetensors → CPU → GPU）\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_standard_20_fair_v2.json`\n\n注意：原始命令 `--n_samples` 参数不存在，已修正为 `--max_samples 1319`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-gsm8k-standard-fair-baseline-eval.md"
+}

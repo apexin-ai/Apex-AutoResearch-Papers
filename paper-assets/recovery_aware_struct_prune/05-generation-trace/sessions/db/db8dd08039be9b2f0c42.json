@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "db8dd08039be9b2f0c42",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis floor ablation 0p6 v2",
+  "task_key": "worker_analysis_floor_ablation_0p6_v2_20260523T163319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_floor_ablation_0p6_v2_20260523T163319_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "ca6c0ee7e56bb926229dc197a821ef6c80b508806cb5778aa0d5ec5e7072a1c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE。结果汇总：\n\n## GSM8K Accuracy\n\n**floor=0.6: 62.02%** (818/1319, ±1.34%)\n\n## Floor Ablation 完整趋势\n\n| Floor | GSM8K Acc | 趋势 |\n|-------|-----------|------|\n| 0.3   | 65.05%    | 最高 |\n| 0.4   | 64.37%    | baseline |\n| 0.5   | 61.71%    | ↓ |\n| **0.6** | **62.02%** | ≈ 0.5 |\n\n趋势：floor 从 0.3→0.4 轻微下降，0.5 和 0.6 显著下降但彼此持平（差异在 CI 内）。floor 越高（保留越多原始权重），恢复效果反而越差，说明更激进的重初始化（低 floor）有利于 GRPO 阶段的恢复训练。\n\n## 异常检查\n\n无异常。GRPO 100 步正常完成（train_loss=0.0065），EOS rate 98%，checkpoint 完整保存（~12GB model.safetensors）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-floor-ablation-0p6-v2-copy-2.md"
+}

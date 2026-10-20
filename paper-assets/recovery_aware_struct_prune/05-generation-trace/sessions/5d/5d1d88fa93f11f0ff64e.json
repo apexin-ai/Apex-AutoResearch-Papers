@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d1d88fa93f11f0ff64e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval sft rasp 25 westb v2",
+  "task_key": "worker_eval_eval_sft_rasp_25_westb_v2_20260516T082208",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_sft_rasp_25_westb_v2_20260516T082208_result.json",
+    "occurrence": 1,
+    "bytes": 257,
+    "sha256": "45b6c21867d0c2babf49bf86f32ec840cea94f87895e1f0623c52085c404bd73"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "eval_sft_rasp_25 已成功启动并在推理中：\n\n- 模型加载完成，已上 GPU\n- GSM8K 1319 samples 评估进行中\n- 速度 ~2.70s/it，预计总耗时 ~60 min\n- 在 tmux session `eval_sft_rasp_25` 中运行，PID 602990，cuda:0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-sft-rasp-25-westb-v2.md"
+}

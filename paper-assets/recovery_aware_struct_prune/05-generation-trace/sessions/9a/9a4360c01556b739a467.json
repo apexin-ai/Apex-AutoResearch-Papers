@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a4360c01556b739a467",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval humaneval sft rasp 20 1p5b 2048 exit",
+  "task_key": "worker_diagnose_eval_humaneval_sft_rasp_20_1p5b_2048_exit_20260519T184050",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_humaneval_sft_rasp_20_1p5b_2048_exit_20260519T184050_result.json",
+    "occurrence": 1,
+    "bytes": 255,
+    "sha256": "78cb16b76d81b14eaf3a8c1f123ab3eaa7d5af37ab850b7db1d502deec50bf62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: eval_humaneval_sft_rasp_20_1p5b_2048\n- **状态**: DONE / success\n- **结果**: pass@1 = 0.0%（0/164），符合预期——1.5B 模型在 HumanEval 上无区分度\n- **Cron**: 不在本 session，无需删除"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-humaneval-sft-rasp-20-1p5b-2048-exit.md"
+}

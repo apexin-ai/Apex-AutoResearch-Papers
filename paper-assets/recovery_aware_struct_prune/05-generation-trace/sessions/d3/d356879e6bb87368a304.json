@@ -1,0 +1,378 @@
+{
+  "schema_version": "1.0",
+  "id": "d356879e6bb87368a304",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "analysis eval humaneval grpo standard 20 2048",
+  "task_key": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519.jsonl",
+    "occurrence": 1,
+    "bytes": 17796,
+    "sha256": "91eac0dc61ddacab9948d530c676ee50dcb902bf973f77afd03e604a4e732bc5"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 8,
+    "roles": {
+      "tool_call": 8,
+      "tool_result": 8,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:16:18.741250+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:16:18.741609+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:16:18.741850+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:16:18.742171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50\\\\\\\",\\\\n  \\\\\\\"benchmark\\\\\\\": \\\\\\\"HumanEval\\\\\\\",\\\\n  \\\\\\\"pass_at_1\\\\\\\": 0.10365853658536585,\\\\n  \\\\\\\"stderr\\\\\\\": 0.02380221402623906,\\\\n  \\\\\\\"n_correct\\\\\\\": 17,\\\\n  \\\\\\\"n_total\\\\\\\": 164,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"avg_response_length\\\\\\\": 1843.030487804878,\\\\n    \\\\\\\"median_response_length\\\\\\\": 2048.0\\\\n  },\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/0\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpkfab9yoh.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    def has_close_elements(numbers: List[float, threshold: float) -> bool:\\\\\\\\n                                                                ^\\\\\\\\nSyntaxError: closing parenthesis ')' does not match opening parenthesis '['\\\\\\\\n\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 1427\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/1\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpnu3w4iwo.py\\\\\\\\\\\\\\\", line 14\\\\\\\\n    First, I think about the process of parsing the string. I need to find all the groups of parentheses that are balanced and not nested. So, each group starts with an open parenthesis and ends with a corresponding closed parenthesis, and they don't have any other groups inside them. So, the first thing is to find all the groups that are not nested within each other.\\\\\\\\n                                                                                           \\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 2048\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/2\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": true,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 936\\\\n    },\\\\n    {\\\\n      \\\\\\\"task_id\\\\\\\": \\\\\\\"HumanEval/3\\\\\\\",\\\\n      \\\\\\\"passed\\\\\\\": false,\\\\n      \\\\\\\"error\\\\\\\": \\\\\\\"  File \\\\\\\\\\\\\\\"/tmp/tmpdaptyekb.py\\\\\\\\\\\\\\\", line 3\\\\\\\\n    Let's think about \n…[truncated 7365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:16:18.742423+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "metrics",
+              "value": "{'pass_at_1': 0.1037, 'correct': 17, 'total': 164, 'stderr': 0.0238, 'max_new_tokens': 2048, 'avg_response_length': 1843.03, 'median_response_length': 2048}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:16:18.742617+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:41:03.761Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:15:46.591Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.\\\", \\\"parent\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"27194\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:41:38.223Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:53:32.827Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:53:39.102917+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"correct\\\": 17, \\\"total\\\": 164, \\\"stderr\\\": 0.0238, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1843.03, \\\"median_response_length\\\": 2048}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7062}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:16:18.742767+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "conclusion",
+              "value": "negative — GRPO Standard pass@1=10.37% 低于 GRPO RASP 的 14.63%，说明 RASP 在代码生成上也优于 Standard pruning。GRPO Standard 甚至与 SFT RASP (10.37%) 持平，表明 Standard pruning 后 GRPO 在 code 任务上的提升被完全抵消。4-way @2048 对比：unpruned 45.12% >> GRPO RASP 14.63% > SFT Standard 11.59% ≈ GRPO Standard 10.37% ≈ SFT RASP 10.37%。",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:16:18.742950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'negative — GRPO Standard pass@1=10.37% 低于 GRPO RASP 的 14.63%，说明 RASP 在代码生成上也优于 Standard pruning。GRPO Standard 甚至与 SFT RASP (10.37%) 持平，表明 Standard pruning 后 GRPO 在 code 任务上的提升被完全抵消。4-way @2048 对比：unpruned 45.12% >> GRPO RASP 14.63% > SFT Standard 11.59% ≈ GRPO Standard 10.37% ≈ SFT RASP 10.37%。'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3959}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:16:18.743098+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "conclusion",
+              "value": "negative",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:16:18.743279+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:41:03.761Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:16:01.063Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.\\\", \\\"parent\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"27194\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:41:38.223Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:53:32.827Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:53:39.102917+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"correct\\\": 17, \\\"total\\\": 164, \\\"stderr\\\": 0.0238, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1843.03, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6843}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:16:18.743440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:16:18.743570+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without output fields: ['checkpoint_path']. Set these fields first or pass them in spec.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.3739}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:16:18.743693+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:16:18.743840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:41:03.761Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:16:08.033Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.\\\", \\\"parent\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"27194\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:41:38.223Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:53:32.827Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:53:39.102917+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"correct\\\": 17, \\\"total\\\": 164, \\\"stderr\\\": 0.0238, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1843.03, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6382}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:16:18.743981+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_2048",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:16:18.744163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_2048\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-17T13:41:03.761Z\\\", \\\"updated_at\\\": \\\"2026-05-17T18:16:11.481Z\\\", \\\"hypothesis\\\": \\\"HumanEval pass@1 for GRPO Standard 20% with max_new_tokens=2048. 512-token results invalidated due to truncation artifact (RASP shorter outputs biased). Part of complete 4-way HumanEval@2048 comparison: unpruned / SFT RASP / GRPO Standard / GRPO RASP.\\\", \\\"parent\\\": \\\"eval_humaneval_grpo_standard_20\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"27194\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_humaneval_grpo_standard_20_2048.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T13:41:38.223Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 16473.3, \\\"gpu_hours\\\": 4.58}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-17T17:53:32.827Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-17T17:53:39.102917+00:00\\\"}]}, \\\"metrics\\\": {\\\"pass_at_1\\\": 0.1037, \\\"correct\\\": 17, \\\"total\\\": 164, \\\"stderr\\\": 0.0238, \\\"max_new_tokens\\\": 2048, \\\"avg_response_length\\\": 1843.03, \\\"median_response_length\\\": 2048}, \\\"conclusion\\\": \\\"negative\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_2048.json\\\", \\\"completed_at\\\": \\\"2026-05-17T18:16:11.481Z\\\"}, \\\"hint\\\": \\\"💡 建议将本次教训写入 memory.md（什么不 work、为什么）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.\n…[truncated 8 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:16:18.744388+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)。\n\n**结果摘要：**\n\n| 模型 | HumanEval pass@1 |\n|---|---|\n| Unpruned | 45.12% |\n| GRPO RASP | **14.63%** |\n| SFT Standard | 11.59% |\n| GRPO Standard | 10.37% |\n| SFT RASP | 10.37% |\n\nGRPO Standard (10.37%) 低于 GRPO RASP (14.63%)，结论 negative。RASP 在代码生成任务上也优于 Standard pruning。值得注意的是 GRPO Standard 甚至没能超过 SFT Standard (11.59%)，且 median response length = 2048 说明大量样本被截断，模型倾向于生成冗长的思考过程而非直接输出代码。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_eval_humaneval_grpo_standard_20_2048_20260517T181519"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-eval-humaneval-grpo-standard-20-2048.md"
+}

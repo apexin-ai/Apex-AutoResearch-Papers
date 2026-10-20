@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aef8501ade8c7a2dcc59",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest grpo standard v2 and westb progress",
+  "task_key": "worker_ops_harvest_grpo_standard_v2_and_westb_progress_20260519T013822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_grpo_standard_v2_and_westb_progress_20260519T013822_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "6ac34a1ff0bd6cd575f3fc22c07ce2a6c86e19f00d271110737b40331e740b67"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: westd-29022 — eval_math500_grpo_standard_20_fair_v2 ✅ 完成\n\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **26.4%** (132/500) |\n| stderr | ±1.97% |\n| natural_eos_pct | 55.6% |\n| truncated | 222/500 |\n| avg_response_length | 1127.8 tokens |\n\nRegistry 已更新为 DONE/success。westd cuda:1 已释放（0% util, 0 MiB）。\n\n### Part 2: westb-23072 — 1.5B eval 进度\n\n| 实验 | GPU | 进度 | 当前 acc |\n|---|---|---|---|\n| eval_gsm8k_sft_standard_20_1p5b | cuda:1 | **650/1319 (49%)** | 23.38% |\n| eval_gsm8k_sft_rasp_20_1p5b | cuda:0 | **839/1319 (64%)** | 28.88% (@ 800) |\n\n两个 eval 都在正常跑，GPU 利用率 98%。按当前速度预计还需 ~1.5-2 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-grpo-standard-v2-and-westb-progress.md"
+}

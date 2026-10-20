@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "333b98dac701a807e0e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing experiments",
+  "task_key": "worker_paper_writing_experiments_20260518T032841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments_20260518T032841_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "571a549383fb178ba5cbbf852e3a1679cac5decdda6fb11a157352d6408ae191"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Complete. Here's a summary of what was written:\n\n**experiments.tex** (full rewrite, 8 subsections):\n- **§4.1 Setup**: Base model, 4 pruning methods (CKA-only/Random/Standard/RASP), GRPO v5 config (beta=0.01, temp=0.4), hardware\n- **§4.2 Recovery Capacity Gradient**: Central finding with Table 1 + Figure 2 + Figure 3. CKA-only >> Random >> Standard > RASP, 5.8x peak reward gap\n- **§4.3 Reward-Accuracy Decoupling**: Table 2, GRPO reward ≠ accuracy across all configs\n- **§4.4 SFT Gradient**: CKA-only 63.91% > RASP 61.49% > Standard 59.29%\n- **§4.5 Sparsity Cliff**: Table 4, universal collapse at 30%\n- **§4.6 Inference**: Table 5, RASP 37.8% vs Standard 7.7% speedup\n- **§4.7 Ablation**: Table 3 updated with new alpha values (0.0/0.25/0.5/1.0/2.0)\n- **§4.8 Discussion**: Gradient importance as harmful signal for RLVR recovery\n\n**5 table files** created/updated:\n- `tab1_recovery_gradient.tex` (new)\n- `tab2_decoupling.tex` (new)\n- `table3_alpha.tex` (updated with new data)\n- `table4_sparsity_cliff.tex` (updated formatting)\n- `table5_inference.tex` (updated formatting)\n\n**Figures directory** created at `figures/paper/` (PDFs not yet generated).\n\nOld table files (`table1_postprune.tex`, `table2_recovery.tex`) are no longer referenced but remain on disk."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "d993a40246586a6f0265",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops humaneval registry audit and harvest",
+  "task_key": "worker_ops_humaneval_registry_audit_and_harvest_20260519T051210",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_humaneval_registry_audit_and_harvest_20260519T051210.log",
+    "occurrence": 1,
+    "bytes": 857703,
+    "sha256": "d586a473e3970fecac24472d63b025b12f1f54e8a2bf4be5e01714c92f8e613c"
+  },
+  "statistics": {
+    "messages": 181,
+    "user_turns": 0,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 19,
+      "tool_call": 79,
+      "tool_result": 79,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 181,
+      "chunks": [
+        {
+          "path": "d993a40246586a6f0265-part-0001.json",
+          "message_count": 80
+        },
+        {
+          "path": "d993a40246586a6f0265-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-humaneval-registry-audit-and-harvest.md"
+}

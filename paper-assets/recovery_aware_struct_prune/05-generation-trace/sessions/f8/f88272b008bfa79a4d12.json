@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f88272b008bfa79a4d12",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check mvp v2 status",
+  "task_key": "worker_check_mvp_v2_status_20260514T081457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_mvp_v2_status_20260514T081457_result.json",
+    "occurrence": 1,
+    "bytes": 1387,
+    "sha256": "6b7b27555a1b3b30cccf35c5edb510c7c94663262c691a0ed03263aa0c937697"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n**1. 进程状态：Running**\n- PID 170770 存活，运行约 3 分钟\n- 3 个 GPU 进程活跃：\n  - PID 170786 — `eval_gsm8k.py` on `pruned_standard_35` (cuda:0, ~10GB)\n  - PID 170787 — `eval_gsm8k.py` on `pruned_rasp_35` (cuda:1, ~10GB)\n  - PID 171091 — test eval on `pruned_standard_35` (cuda:0, ~10GB, 20 samples)\n\n**2. 当前 Step：3.5 (Post-prune evaluation)**\n- 正在对两个剪枝模型并行跑 GSM8K 评估（1319 test samples）\n- HF Hub 网络不可达，已 fallback 到本地缓存的 GSM8K 数据集\n\n**3. 最新日志摘要**\n- 加载了 `pruned_standard_35` 和 `pruned_rasp_35` 模型\n- 检测到非均匀 MLP（intermediate_size range [2720, 18944]）\n- GSM8K 评估已开始，进度 0%（刚启动）\n\n**4. 已有产出文件**\n| 文件 | 说明 |\n|------|------|\n| `results/cka_scores.pt` | Step 2 CKA 分数 |\n| `results/importance_scores.pt` | Step 2 重要性分数 |\n| `models/pruned_standard_35/` | Step 3 标准剪枝模型 |\n| `models/pruned_rasp_35/` | Step 3 RASP 剪枝模型 |\n\n**5. 进度总结**\n- Step 1 ✅ baseline eval（前序运行完成）\n- Step 2 ✅ CKA + importance\n- Step 3 ✅ Pruning\n- Step 3.5 🔄 Post-prune eval（进行中）\n- Step 4-6 ⏳ 未开始\n\nGSM8K 评估 1319 samples 预计需要一段时间，之后进入 Step 4 (GRPO RLVR recovery, 预估 12-15h)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-mvp-v2-status.md"
+}

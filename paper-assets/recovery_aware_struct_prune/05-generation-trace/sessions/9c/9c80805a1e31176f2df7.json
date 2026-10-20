@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9c80805a1e31176f2df7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh dual eval v3 v2 submit",
+  "task_key": "worker_ssh_dual_eval_v3_v2_submit_20260521T045331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_dual_eval_v3_v2_submit_20260521T045331_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "d77c812b17aafd3dd3bf235ecc3a9ca0f3136403aab3fb995599c8010d0e3685"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n- **命令 1** PID=322438 (CKA-only 25% eval, cuda:0)\n- **命令 2** PID=322606 (Random 20% eval, cuda:1)\n\n**验证输出：**\n\nCKA-only 25% log 尾部：\n```\n2026-05-21 12:53:53,278 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25\n2026-05-21 12:53:53,876 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\n```\n\nRandom 20% log 尾部：\n```\n2026-05-21 12:54:24,716 [INFO] Non-uniform MLP detected: intermediate_size range [11508, 17592]\n2026-05-21 12:54:24,716 [INFO] Non-uniform attention detected: heads range [7, 28], kv_heads range [1, 4]\n```\n\nnvidia-smi：\n```\n0, 88 %, 12519 MiB   ← cuda:0 已在工作\n1, 0 %, 0 MiB        ← cuda:1 模型尚在加载中\n2, 0 %, 0 MiB\n3, 0 %, 0 MiB\n```\n\n两个 eval 均已启动。cuda:0 上 CKA-only 25% 已加载模型开始推理；cuda:1 上 Random 20% 模型加载稍慢，尚未占用显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-dual-eval-v3-v2-submit.md"
+}

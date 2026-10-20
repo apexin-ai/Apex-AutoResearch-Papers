@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6ea5f8c29383aa3ef60",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval mbpp sft shortgpt 20 v2",
+  "task_key": "worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_mbpp_sft_shortgpt_20_v2_20260519T223631_result.json",
+    "occurrence": 1,
+    "bytes": 259,
+    "sha256": "5c454eb6f45859caa4319c150aafba8993824a02c2bb0fad99045ccf96c4b650"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- 旧 `eval_mbpp_sft_shortgpt_20_v2` session 已清理并重建\n- 实验已在 tmux session `eval_mbpp_sft_shortgpt_20_v2` 中启动，使用 `cuda:1`\n- GPU 1 当前占用 15435/97887 MiB（90% utilization），实验正在运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-mbpp-sft-shortgpt-20-v2.md"
+}

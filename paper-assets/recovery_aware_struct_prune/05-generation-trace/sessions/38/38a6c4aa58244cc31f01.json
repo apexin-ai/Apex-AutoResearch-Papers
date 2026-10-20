@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "38a6c4aa58244cc31f01",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd cuda1 cka",
+  "task_key": "worker_check_westd_cuda1_cka_20260516T062049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_cuda1_cka_20260516T062049_result.json",
+    "occurrence": 1,
+    "bytes": 722,
+    "sha256": "489c4e292fbab72221a5420ef78c99ee7170067716737c4d80b92ddd1d13c97f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况 B: cuda:1 仍在使用。**\n\n两张卡都在跑 GSM8K 评估，不是 importance_score.py：\n\n| GPU | PID | 进程 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| cuda:0 | 92690 | `eval_gsm8k.py` — sft_rasp_25 (1319 samples) | 12976MiB | 98% |\n| cuda:1 | 92781 | `eval_gsm8k.py` — pruned_rasp_25 (100 samples) | 12059MiB | 87% |\n\nimportance_score.py 已完成，但 cuda:1 当前被 GSM8K 评估占用（pruned_rasp_25, 100 samples，应该很快结束）。cuda:0 的评估（1319 samples）会更久。\n\n**下一步**：等 cuda:1 的 eval_gsm8k.py (100 samples) 完成后再启动 CKA 计算。以当前 87% 利用率和仅 100 samples 来看，预计很快完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-cuda1-cka.md"
+}

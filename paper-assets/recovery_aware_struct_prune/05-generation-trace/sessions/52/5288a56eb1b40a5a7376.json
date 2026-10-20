@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5288a56eb1b40a5a7376",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval pass k batch westd",
+  "task_key": "worker_eval_pass_k_batch_westd_20260516T164155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_pass_k_batch_westd_20260516T164155_result.json",
+    "occurrence": 1,
+    "bytes": 543,
+    "sha256": "0a0938cb6ef19a8dd8b5062e9af3b35958f3cb5dcaa5e30dedffe62e27f51ec3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验均已成功启动：\n\n| exp_id | GPU | 模型 | 状态 |\n|--------|-----|------|------|\n| `eval_pass_k8_unpruned_qwen_math` | cuda:1 | grpo_unpruned_v2 | 已开始生成 (Pass@8 eval: 0/200) |\n| `eval_pass_k8_rasp_20_sft_qwen_math` | cuda:2 | sft_qwen_math_rasp_20 | 模型加载中 (pruned MLP) |\n| `eval_pass_k8_rasp_20_grpo_qwen_math` | cuda:3 | grpo_rasp_qwen_math | 模型加载中 (pruned MLP) |\n\nPID: 25336 / 25437 / 25531。预计 ~30min 完成（200 prompts × 8 samples = 1600 generations/GPU）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-pass-k-batch-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "525d4e521649350d8a08",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup",
+  "task_key": "worker_ops_westb_disk_cleanup_20260520T092509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_20260520T092509_result.json",
+    "occurrence": 1,
+    "bytes": 2776,
+    "sha256": "2b1658c37e49fd012fe56214f5c9ab215d294150ba548ba62e5f24f276644ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "探查完毕。情况比预期复杂——没有 optimizer 文件可清，也没有损坏的 checkpoint。\n\n## 磁盘现状\n\n| 区域 | 大小 |\n|------|------|\n| 总计已用 | 218G / 250G |\n| 当前可用 | **33G** |\n| 需释放 | **≥67G** |\n\n## 预期的\"快速清理\"不可用\n\n- **optimizer.pt**：所有 checkpoint 都没有 optimizer 文件，已是最精简状态\n- **损坏的 checkpoint-1870**：不存在。`sft_qwen_math_cka_only_20` 只有 `checkpoint-935`（12G，model.safetensors 正常）\n\n## 空间分布\n\n**项目外** (30G)：\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `DeepSeek-R1-Distill-Qwen-7B/` | 15G | base 7B 模型，可重新下载 |\n| `models/Qwen2.5-Math-7B/` | 15G | base Qwen-Math 模型，可重新下载 |\n\n**项目内 7B 实验** (每个 ~12G，共 14 个 ≈ 160G)：\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `pruned_standard_25` | 11G | 25% Standard 剪枝 |\n| `sft_standard_25` | 11G | ↑ 的 SFT (完成) |\n| `pruned_rasp_rlvr_20` | 12G | 20% RASP-RLVR 剪枝 |\n| `sft_rasp_rlvr_20` | 12G | ↑ 的 SFT (完成) |\n| `pruned_cka_only_20` | 12G | 20% CKA 剪枝 |\n| `sft_cka_only_20` | 12G | ↑ 的 SFT (完成) |\n| `grpo_cka_only_20` | 12G | ↑ 的 GRPO (完成) |\n| `pruned_standard_20` | 12G | 20% Standard 剪枝 |\n| `pruned_rasp_20` | 12G | 20% RASP 剪枝 |\n| `grpo_cka_only_20_seed123` | 12G | CKA GRPO seed=123 |\n| `pruned_cka_only_20_qwen_math` | 12G | CKA Qwen-Math 剪枝 |\n| `pruned_standard_20_qwen_math` | 12G | Standard Qwen-Math 剪枝 |\n| `sft_qwen_math_cka_only_20` | 12G | CKA Qwen-Math SFT (**半途崩溃**, checkpoint-935/1870) |\n| `sft_standard_20_qwen_math` | 12G | Standard Qwen-Math SFT (**半途崩溃**, checkpoint-935/1870) |\n\n**项目内 1.5B 实验** (每个 ~2.8G，共 9 个 ≈ 25G)：\npruned/sft/grpo × standard/cka/rasp 各一个\n\n## 需要你决定\n\n仅靠删 base 模型（可重新下载）能回收 **30G**，达到 63G 可用，仍不够 100G。\n\n请告知以下哪些可以删除：\n1. **`DeepSeek-R1-Distill-Qwen-7B/`** (15G) — base 7B 模型\n2. **`models/Qwen2.5-Math-7B/`** (15G) — base Qwen-Math 模型\n3. **两个崩溃的 SFT checkpoint** (`sft_qwen_math_cka_only_20` + `sft_standard_20_qwen_math`, 各 12G = 24G) — 删除意味着 SFT 需从 step 0 重新跑，不能从 935 恢复\n4. **25% 剪枝实验** (`pruned_standard_25` + `sft_standard_25`, 22G) — 如果不再需要 25% 剪枝率的结果\n5. **旧 DeepSeek 实验中的冗余目录** — 如 `pruned_standard_20`/`pruned_rasp_20`（没有对应的 SFT/GRPO，各 12G = 24G）\n6. **`grpo_cka_only_20_seed123`** (12G) — seed 实验\n\n删 1+2+3 可达 **~96G 可用**，接近目标。再加任意一个就超过 100G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-copy-4.md"
+}

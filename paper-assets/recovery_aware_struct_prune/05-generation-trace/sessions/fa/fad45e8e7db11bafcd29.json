@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fad45e8e7db11bafcd29",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval math500 sft cka only 20 fixed v2",
+  "task_key": "worker_analyze_eval_math500_sft_cka_only_20_fixed_v2_20260523T193615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_math500_sft_cka_only_20_fixed_v2_20260523T193615_result.json",
+    "occurrence": 1,
+    "bytes": 794,
+    "sha256": "ebb8332f23d2b2396c5f160f3f6eb674829cd96f92af9ed27820d8539cdf551f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_math500_sft_cka_only_20_fixed_v2 结果\n\n| 指标 | 值 |\n|------|-----|\n| **MATH-500 Accuracy** | **27.4%** (137/500) |\n| stderr | ±1.99% |\n| 总样本数 | 500 |\n| 正确数 | 137 |\n| natural_eos | 384 (76.8%) |\n| truncated | 116 (23.2%) |\n| avg_response_length | 673.3 tokens |\n| 运行耗时 | ~3h45m |\n| 退出码 | 0，无 error/exception |\n\n**运行正常完成。** 日志最后一行 `EXIT_CODE=0`，无报错。HF 数据集网络不可达但自动回退到缓存版本，不影响结果。\n\n**与旧结果对比：** 修复后 27.4% vs 旧脚本 26.8%，差异仅 0.6 个百分点，在 stderr (±2%) 范围内。说明旧脚本的 bug 对这个模型的影响不大，结果基本一致。27.4% 为修正后的可信值，应替换旧数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-math500-sft-cka-only-20-fixed-v2.md"
+}

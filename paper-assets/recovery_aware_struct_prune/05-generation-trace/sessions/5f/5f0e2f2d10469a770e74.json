@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5f0e2f2d10469a770e74",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh alpha2p0 result migrate cka westd1",
+  "task_key": "worker_ssh_alpha2p0_result_migrate_cka_westd1_20260522T200435",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_alpha2p0_result_migrate_cka_westd1_20260522T200435_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "2b3c9a3643dc60af8a7d2d1967a8bc78dc3a34b2d5bfb0c05cfa0f6c60b50c93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "CKA-only eval 正在加载模型（PID 75284, 14.9GB RSS，CPU 阶段）。确认即将移到 GPU:1。\n\n## α=2.0 MATH-500 SFT 结果\n- **不存在** — `sft_rasp_alpha2p0_20` 模型目录存在，但从未启动过 MATH-500 eval（无结果文件、无日志）\n- 已有 MATH-500 alpha eval: α=0.5 (GPU:2), α=1.0 (已完成), α=3.0 (GPU:0), α=4.0 (GPU:3)\n\n## CKA-only MATH-500 迁移到 westd:1\n- 新 PID: **75284**（父进程 75279）\n- 状态: 模型加载中（CPU 14.9GB RSS，275% CPU），尚未移入 GPU\n- GPU:1 显存: 0 MiB（模型加载后将占用）\n\n## westb:0 CKA-only kill\n- PID 234500: **killed**\n- Standard Qwen-Math 模型: **not found**（grpo/sft 均不存在）\n\n## westb GPU 状态\n```\nindex, memory.used, utilization.gpu\n0, 0 MiB, 100 %     ← 刚 kill，瞬态残留\n1, 16547 MiB, 99 %  ← 有其他任务在跑\n```\n\n⚠️ α=2.0 MATH-500 eval 需要单独启动，但 westd 4 张卡目前全部占用（GPU:0/1/2/3 分别跑 α=3.0 / CKA-only / α=0.5 / α=4.0）。westb:0 现在空闲，可以考虑在 westb:0 上跑 α=2.0。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-alpha2p0-result-migrate-cka-westd1.md"
+}

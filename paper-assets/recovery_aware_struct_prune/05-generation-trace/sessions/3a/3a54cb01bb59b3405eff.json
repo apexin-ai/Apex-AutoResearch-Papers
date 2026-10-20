@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a54cb01bb59b3405eff",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval postprune 25",
+  "task_key": "worker_eval_eval_postprune_25_20260516T061823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_postprune_25_20260516T061823_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "f8d9dc600814f3310cc5fccf43bd705ef888875597db3cb2cb4545bcba7f5774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**已提交 eval_postprune_25：**\n- westd-11672 cuda:1，tmux session `eval_postprune_25`\n- 串行评估 pruned_rasp_25 → pruned_standard_25，各 N=100 GSM8K greedy, seed=42\n- 结果输出到 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_{rasp,standard}_25.json`\n- 日志：`/tmp/eval_postprune_25.log`\n- Registry 已更新为 RUNNING\n- 预估 ~8 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-postprune-25-copy-2.md"
+}

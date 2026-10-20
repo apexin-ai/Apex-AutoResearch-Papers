@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44515c8cb967bff71efd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix cuda2 wrong model urgent",
+  "task_key": "worker_ops_fix_cuda2_wrong_model_urgent_20260518T223758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_cuda2_wrong_model_urgent_20260518T223758_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "590cf4e24f149cb164f0eead0bb093089c4453be73400c43351ed684c415fbc7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常进行：cuda:2 使用 50492MiB（包含模型+优化器+梯度），173 线程，R 状态。日志未更新是 Python stdout 缓冲问题，训练实际在跑。\n\n---\n\n## 状态报告\n\n| 项目 | 状态 |\n|------|------|\n| **1) Kill PID 33033** | 成功，cuda:2 已释放 |\n| **2) sft_standard_20 模型** | **权重已丢失**（westb 和 westd 都没有）。训练日志确认曾存在但被删除 |\n| **3) 重训 SFT** | 已在 westd cuda:2 提交重训（PID 34346），从 `pruned_standard_20` 训练，预计 ~36 分钟完成。训练已正常启动（50GB VRAM 占用）|\n| **4) Math500 eval 重启** | 等 SFT 重训完成后启动 |\n| **5) cuda:1 进度** | `eval_math500_grpo_standard_20_fair_v2`: **304/500, acc=0.27**，预计还需 ~3-4 小时 |\n\n**后续**：SFT 重训完成后（~07:15-07:20），我会启动 Math500 eval。需要我继续监控还是你手动跟进？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda2-wrong-model-urgent.md"
+}

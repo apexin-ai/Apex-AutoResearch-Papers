@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56f4911ba71ce0e40040",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit sft rasp 20 eval",
+  "task_key": "worker_ssh_submit_sft_rasp_20_eval_20260520T170526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_sft_rasp_20_eval_20260520T170526_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "dbc11caa746373b571684e8153212a9d4e190d7a1c5a5956a38585bef76b1f1d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n## eval_gsm8k_sft_rasp_20 提交结果\n- 模型类型：**RASP**\n- 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd`\n- PID: **267009**（父 bash 267004）\n- 验证：进程存活 ✓ | GPU memory 12598MiB ✓ | 日志输出 ✓（Evaluating 0/1319 已开始）\n- 状态：**RUNNING**\n\n服务器 westd-29022 cuda:3，greedy decoding，N=1319，seed=42。结果写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_rasp_20_n1319.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-sft-rasp-20-eval.md"
+}

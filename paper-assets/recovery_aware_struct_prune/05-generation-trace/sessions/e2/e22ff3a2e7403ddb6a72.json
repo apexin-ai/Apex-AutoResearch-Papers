@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e22ff3a2e7403ddb6a72",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westd idle gpus",
+  "task_key": "worker_ssh_check_westd_idle_gpus_20260524T015238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_idle_gpus_20260524T015238_result.json",
+    "occurrence": 1,
+    "bytes": 812,
+    "sha256": "50fd7172d93cf89e5bbbb76d1802f284d69edce61c4a99228af8b33bb0e64fbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## GPU 状态汇总 (westd-32935)\n\n| GPU | 显存占用 | GPU利用率 | 状态 | 任务 | 已运行 |\n|-----|---------|-----------|------|------|--------|\n| 0 | 18543/97887 MiB | 97% | **BUSY** | eval_math500_sft_standard_25_fixed_v2 (PID 166245) | 4h42m |\n| 1 | 19225/97887 MiB | 98% | **BUSY** | eval_math500_grpo_rasp_alpha2p0_20_fixed (PID 168524) | 4h23m |\n| 2 | 16993/97887 MiB | 97% | **BUSY** | eval_math500_sft_rasp_alpha2p0_20_fixed (PID 171964) | 3h40m |\n| 3 | 0/97887 MiB | 0% | **IDLE** | — | — |\n\n**结论：**\n- **GPU 3 空闲**，确认 grpo_cka_only_25_fixed 已完成。\n- GPU 1 仍在跑 grpo_rasp_alpha2p0_20_fixed（已运行 4h23m，尚未完成）。\n- GPU 0-2 三张卡都在满负荷跑 eval_math500，暂无空闲。\n\n当前可调度：仅 **GPU 3**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-idle-gpus.md"
+}

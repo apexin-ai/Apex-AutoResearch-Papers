@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b96b9e1d92a383dec73",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops d017 restart v2 standard",
+  "task_key": "worker_ops_d017-restart-v2-standard_20260515T034219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_d017-restart-v2-standard_20260515T034219_result.json",
+    "occurrence": 1,
+    "bytes": 488,
+    "sha256": "817b7ac64abf433ea0d75001d0744319f0eecefc9171c8a5f55418b024ffb11f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。最终状态汇总：\n\n| 实验 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| grpo_stage2_rasp_20_v2 | cuda:0 | 274156 (未中断) | RUNNING |\n| grpo_stage2_standard_20_v2 | cuda:1 | 276501 (重启) | RUNNING |\n\n- v2 rasp 未被误杀，一直在 GPU 0 正常运行（84908MiB 显存，100% 利用率）\n- v2 standard 已在 GPU 1 重启，旧输出目录已清除，模型正在加载中\n- Registry 两个实验均为 RUNNING 状态"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-d017-restart-v2-standard.md"
+}

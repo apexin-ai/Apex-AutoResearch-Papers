@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76e6347e481e691afd2b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo standard 20 1p5b",
+  "task_key": "worker_code_grpo_standard_20_1p5b_20260518T141109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_standard_20_1p5b_20260518T141109_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "ef55c22d41db6f23283e26d242e1a27667296cab8465eb1ad1af8c2b8232a04b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，GPU:1 显存 10.6GB，利用率 98%。\n\n**汇报**:\n- **PID**: 811558（Python 进程），811553（tmux wrapper）\n- **W&B run_id**: `mm31apn0`，run name: `grpo_standard_1p5b_100steps`\n- **W&B URL**: `https://wandb.ai/xiaoyucorynne-/recovery_aware_struct_prune/runs/mm31apn0`\n- **GPU:1 显存**: 10.6GB / 利用率 98%\n- **磁盘**: /root/autodl-tmp 剩余 18GB，足够\n- **模型加载**: 正常（non-uniform MLP 检测通过，ref_model 加载完成）\n- **数据集**: 7473 samples（GSM8K，本地缓存）\n- **进度**: 0/100 steps，正在生成第一批 completions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-standard-20-1p5b.md"
+}

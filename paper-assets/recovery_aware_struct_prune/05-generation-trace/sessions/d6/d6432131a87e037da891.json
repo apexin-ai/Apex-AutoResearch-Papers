@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6432131a87e037da891",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1d grpo 1p5b pipeline",
+  "task_key": "worker_code_e1d_grpo_1p5b_pipeline_20260518T123722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1d_grpo_1p5b_pipeline_20260518T123722_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "c008158dce1eb4176374b5b018c38b8a9d7f2c611a38e1d3ae22442568b8030e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 SFT 目录都没有 optimizer states 可清理。\n\n**磁盘严重不足**：5.8GB free，需要约 9GB（3 x 3GB）来跑 3 个 1.5B GRPO。必须先清理空间。\n\n可安全删除的候选：\n1. **grpo_cka_only_20/model.safetensors (12GB)** — checkpoint-100 里已有相同模型权重，顶层的是冗余副本\n2. **grpo_rasp_25 (11GB)** — 已完成的 7B GRPO，如果不再需要\n\n不能删：grpo_cka_only_20/checkpoint-100（E2 需要）\n\n**建议**：删除 grpo_cka_only_20 顶层的 model.safetensors 即可释放 12GB，足够跑完全部 3 个 1.5B GRPO。是否执行？\n\n另外 cuda:0 正在跑 gsm8k eval（~100 samples），需等它完成后才能启动 GRPO。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1d-grpo-1p5b-pipeline.md"
+}

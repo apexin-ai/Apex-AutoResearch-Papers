@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ada96723f56d199749e8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_14_1778961799.md",
+  "task_key": "loop_14_1778961799",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_14_1778961799.md",
+    "occurrence": 1,
+    "bytes": 3662,
+    "sha256": "4ff4e7b1caae6f7b7e170c2fecb9d8f7453747fca33b1b85ffaaaf90c86e7c3e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 14\nreason: idle_timeout\nupdated: '2026-05-16T19:50:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1, westd-11672 cuda:0/1（共 4 张）\n- westd-11672 使用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不是 venv\n- Qwen Math calibration=256（与 Llama westb 的 512 不同），论文加 footnote 不重跑（D046）\n- save_steps=100（v3 修复），不要再用 save_steps=5（磁盘膨胀问题）\n- DDL: EMNLP 2026 ARR May 25（距今 ~9 天），不允许 fallback 思维\n\n### 2. 🖥️ 基础设施快照\n- **westd-11672**: 工作目录 `/root/recovery_aware_struct_prune`，Python `/root/miniconda3/bin/python`，conda base\n  - 模型：`/root/autodl-tmp/recovery_aware_struct_prune/` 下 sft_qwen_math_standard_20, sft_qwen_math_rasp_20, grpo_standard_qwen_math, grpo_rasp_qwen_math\n  - 训练脚本：`src/train_grpo_v5.py`\n  - Logs：`~/runs/recovery_aware_struct_prune/`\n- **westb-23072**: 同结构，Llama-3.2-3B 实验主服务器\n  - 模型：`/root/autodl-tmp/recovery_aware_struct_prune/` 下各 checkpoint\n- W&B：项目配置中获取 entity/project（load_project_config）\n- 活跃 cron：eval_sft_rasp_25 (pid=602990, westd), eval_sft_rasp_rlvr_20 (pid=625453, westd)\n\n### 3. 📊 当前状态\n刚收到 `grpo_standard_qwen_math_v3` 完成回调（同时 `grpo_rasp_qwen_math_v3` 也完成了）。已派 Worker `worker_analysis_grpo_qwen_math_v3_pair_20260516T154824` 分析这对实验，等待回调。\n\nRegistry 关键状态：\n- ANALYZING: grpo_standard_qwen_math_v3, grpo_rasp_qwen_math_v3（Worker 正在分析）\n- RUNNING: eval_sft_rasp_25 (westd), eval_sft_rasp_rlvr_20 (westd)\n- 待启动: grpo_standard_25, grpo_rasp_25, eval_postprune_25, grpo_standard_20_v8, grpo_rasp_20_v8\n\n尚未向 Director 汇报本轮结果（等 Worker 回调后汇报）。\n\n### 4. 📋 待办\n- Worker `analysis_grpo_qwen_math_v3_pair` 回调 → 读分析结论 → update registry → 向 Director 汇报（带 [资源] 行）→ 更新 report.md\n- eval_sft_rasp_25 cron 回调 → 分析 25% RASP SFT accuracy → 与 standard 25% 对比\n- eval_sft_rasp_rlvr_20 cron 回调 → 分析 RLVR 恢复效果 → 与 RASP SFT (61.49%) 和 Standard SFT (59.29%) 对比\n- 上述 eval 完成后 → 启动 grpo_standard_25 + grpo_rasp_25（westd 4 卡全投入 25% GRPO）\n- Qwen Math v3 若 success → C2 跨模型验证完成，更新 paper_framing.md，通知 Paper Agent 补数据\n\n### 5. 🎯 战略上下文\n- **核心叙事 (D044 pivot 后)**：GRPO alignment fundamentally fails on pruned reasoning models — reward improves but accuracy decouples (universal). Pruning introduces collapse whose severity diagnoses structural damage type.\n- **三个 Claims**：C1=Universal decoupling（reward↑ accuracy→），C2=Collapse gradient（RASP permanent vs Standard transient），C3=Recovery method conditions pruning order\n- **20% Llama 数据全部完成**，正在做 25% sparsity expansion + Qwen Math 跨模型验证\n- **易错点**：Qwen Math v3 是 20% sparsity（不是 25%）；之前 grpo_standard_25_qwen_math / grpo_rasp_25_qwen_math 是 25% 的（已完成，wandb: 3vjjzi13 等）。不要混淆 sparsity level。\n- **Qwen Math 预期**：Standard 出现 transient collapse + RASP permanent collapse = 跨模型一致 = success。如果 pattern 不同则 negative，需要 Framing 提案。\n- **GPU 利用**：westd 4 卡目前被 eval 占用（轻量任务，即将完成）。完成后应立即投入 25% GRPO。westb 2 卡当前空闲 ⚠️ — 应尽快安排任务（grpo_standard_20_v8 / grpo_rasp_20_v8 或 Llama 25% GRPO）。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-14-1778961799.md"
+}

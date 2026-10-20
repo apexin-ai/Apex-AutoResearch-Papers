@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "35e8208654e16b2fd231",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec eval gsm8k sft alpha4 20 v3",
+  "task_key": "worker_exec_eval_gsm8k_sft_alpha4_20_v3_20260521T222555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_eval_gsm8k_sft_alpha4_20_v3_20260521T222555_result.json",
+    "occurrence": 1,
+    "bytes": 1031,
+    "sha256": "bbb36fda1f4ede517727c19f38c482dfef4f10e66af5ef7e615664e074a7d1d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功，eval 正在运行。\n\n## 汇总\n\n### 1. 新 PID\n- **Python 进程 PID: 425497**（bash wrapper PID: 425492）\n\n### 2. 启动验证\n- 进程存活，GPU 0 占用 **12620 MiB**\n- 正在评估 1319 个 GSM8K 样本，速度 ~2.61s/it\n- 预估总时间：~57 分钟\n\n### 3. VRAM 排查\n当前 VRAM **12620 MiB**（约 12.3GB），远低于之前报告的 29GB。之前 29GB 可能是因为：\n- 前两次跑的脚本参数不同（之前用 `--max_samples` 且 output_path 在 autodl-tmp 下）\n- 可能当时有其他进程共用 GPU 0\n- 或者之前是 float32 加载（当前正确以 bf16 加载）\n\n模型配置对比（**sft_alpha4_20** vs **sft_cka_only_20**）：\n- 架构完全相同：Qwen2ForCausalLM, hidden=3584, heads=28, layers=28, kv_heads=4\n- 两者都是非均匀剪枝模型，`per_layer_intermediate_size` 分布略有不同但范围一致 [8128, 18944]\n- 模型文件大小 12GB（bf16），VRAM 占用 12.6GB 正常\n\n**当前运行正常，无 VRAM 异常。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-eval-gsm8k-sft-alpha4-20-v3.md"
+}

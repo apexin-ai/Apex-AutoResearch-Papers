@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec73df52d6d13e4fb019",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest sft standard 20 eval",
+  "task_key": "worker_ssh_harvest_sft_standard_20_eval_20260520T195733",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_sft_standard_20_eval_20260520T195733_result.json",
+    "occurrence": 1,
+    "bytes": 253,
+    "sha256": "505fc11716949643454c0ea5a76eac579fa50c18adb29f9f80b2032d8524889e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果：Standard 20% SFT baseline GSM8K accuracy = 59.21% (781/1319)**\n\n- stderr: ±1.35%\n- eos_rate: 98.48%\n- avg_response_length: 206.68 tokens\n\nTable 2 最后一个缺失值已补齐。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-sft-standard-20-eval.md"
+}

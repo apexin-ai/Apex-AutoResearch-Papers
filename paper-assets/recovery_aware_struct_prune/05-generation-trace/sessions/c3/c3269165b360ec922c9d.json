@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3269165b360ec922c9d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh quick floor05 v3 final check",
+  "task_key": "worker_ssh_quick_floor05_v3_final_check_20260523T124544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_quick_floor05_v3_final_check_20260523T124544_result.json",
+    "occurrence": 1,
+    "bytes": 501,
+    "sha256": "4674c11470669cd07adfa7d006067e4d1ee156196fdf683777298afd6386c9d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nFloor 0.5:  完成, accuracy=61.71% (814/1319), EOS rate=99.2%\nv3 MATH-500: 完成, accuracy=26.0% (130/500), truncated=42.2% (211/500)\nFloor 0.6 v2: GRPO 已完成, GSM8K eval 进行中 ~135/1319 (~10%), 前100样本 acc=66.0%\n```\n\nv3 MATH-500 结果很差（26.0%），主要原因是 42.2% 的样本被截断（hit max 4096 tokens），说明 sft_standard_20 模型在 MATH-500 上生成过长、无法收敛到答案。进程 108574 仍存活，可能在跑后续评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-quick-floor05-v3-final-check.md"
+}

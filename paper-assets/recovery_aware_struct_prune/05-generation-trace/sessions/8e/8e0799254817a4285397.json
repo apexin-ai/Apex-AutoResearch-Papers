@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8e0799254817a4285397",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag grasp eval command verify",
+  "task_key": "worker_diag_grasp-eval-command-verify_20260515T152338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_grasp-eval-command-verify_20260515T152338_result.json",
+    "occurrence": 1,
+    "bytes": 1626,
+    "sha256": "d3433c58b7c08d8cd62653c4d9e10a9973edce577bc3c3df312f92da93834b44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 验证结果\n\n### 1. 实际运行命令\n```\npython src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_graspune_20 --max_samples 100 --max_new_tokens 4096\n```\n- **未传 `--output_path`**\n- **未传 `--seed`**\n\n### 2. eval_gsm8k.py 源码分析\n\n**`--output_path`**: default=None，但有自动生成逻辑：\n```python\nif args.output_path is None:\n    model_name = os.path.basename(args.model_path.rstrip(\"/\"))\n    args.output_path = f\"results/eval_{model_name}_{mode}.json\"\n```\n→ 会自动保存到 **`/root/recovery_aware_struct_prune/results/eval_pruned_graspune_20_greedy.json`**\n\n**`--seed`**: default=**42** → 即使没传，seed 42 已生效。\n\n### 3. 日志捕获状态\n\nPID 38120 的 fd/1 和 fd/2 都重定向到：\n**`/root/recovery_aware_struct_prune/results/eval_grasp_n100.log`**\n\nstdout 正在录。当前进度 **95/100**，~51s/sample，约 **4 分钟后完成**。\n\n注意：`/root/runs/recovery_aware_struct_prune/grasp_baseline_westd.log` 是另一个旧 run（1319 samples），与当前 PID 无关。\n\n### 4. 结论：结果安全\n\n| 项目 | 状态 |\n|------|------|\n| `--output_path` | 未传但有默认值，JSON 会自动写到 `results/eval_pruned_graspune_20_greedy.json` |\n| `--seed 42` | 未传但 default=42，已生效 |\n| stdout 日志 | 已重定向到 `results/eval_grasp_n100.log`，不会丢失 |\n| 进度 | 95/100，约 4 分钟完成 |\n| 50-sample 中间指标 | acc=0.0600, eos_rate=2.00%, avg_len=4018 |\n\n**不需要干预。** 结果会自动保存为 JSON 文件，日志也在录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-grasp-eval-command-verify.md"
+}

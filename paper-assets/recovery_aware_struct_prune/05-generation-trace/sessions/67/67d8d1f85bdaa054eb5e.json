@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67d8d1f85bdaa054eb5e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westb eval status",
+  "task_key": "worker_monitor_westb_eval_status_20260516T125314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westb_eval_status_20260516T125314_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "e22953868a00a5c624af5fb41f2ecd10b4cf526c1d52168265e6a2e08fc858f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### eval_sft_standard_25 (PID 598084, cuda:1)\n- **进度：1204/1319 (91.3%)** — 即将完成\n- 运行时间：5h47m\n- 最近 checkpoint (1200): **acc=0.5067**, eos_rate=95.42%, avg_len=327\n- **预估剩余：~15-30 分钟**（剩 115 样本，平均 ~2-3s/it，偶有长 generation spike）\n\n### eval_sft_rasp_25 (PID 602990, cuda:0)\n- **进度：520/1319 (39.4%)**\n- 运行时间：4h30m\n- 最近 checkpoint (500): **acc=0.5380**, eos_rate=91.20%, avg_len=490\n- **预估剩余：~6-7 小时**（avg_len 更长导致速度约为 standard 的一半）\n\n### GPU 利用率\n| GPU | Utilization | VRAM |\n|-----|------------|------|\n| 0 | 100% | 28.9 / 97.9 GB |\n| 1 | 100% | 28.9 / 97.9 GB |\n\n### 初步对比\n- RASP 25% SFT 暂时领先：**53.8%** vs Standard 25% SFT **50.7%**（+3.1pp）\n- 但 RASP 的 eos_rate 更低 (91.2% vs 95.4%)，avg_len 更长 (490 vs 327)，说明 RASP 模型生成更冗长、部分样本未正常终止\n- Standard eval 即将完成，RASP 还需到凌晨~3-4 点"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westb-eval-status.md"
+}

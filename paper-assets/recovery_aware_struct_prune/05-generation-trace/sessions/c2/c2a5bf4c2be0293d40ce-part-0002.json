@@ -1,0 +1,543 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c2a5bf4c2be0293d40ce",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-17T03:29:35.274Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TK4XY5MhTCxGBW8BeHSyie",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.174Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:35.056Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_full_1319\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"hypothesis\\\": \\\"Unpruned SFT baseline full GSM8K eval for three-way comparison\\\", \\\"pid\\\": 74129, \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_full.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json\\\"}, \\\"notes\\\": \\\"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T02:45:56.559Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 81.27, \\\"accuracy_ci\\\": 1.07, \\\"correct\\\": 1072, \\\"total\\\": 1319, \\\"eos_rate\\\": 99.7, \\\"avg_response_length\\\": 207.18, \\\"truncated\\\": 4}, \\\"hypothesis\\\": \\\"Unpruned post-SFT achieves >80% GSM8K on full test set (N=1319), establishing accuracy ceiling for pruned model SFT recovery comparison and confirming SFT effectiveness intact (C1/C3 control)\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5291}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "35833783-74b1-49c4-ae27-13d3f9fa36ba",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.174Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:35.056Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_full_1319\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"hypothesis\\\": \\\"Unpruned SFT baseline full GSM8K eval for three-way comparison\\\", \\\"pid\\\": 74129, \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_full.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json\\\"}, \\\"notes\\\": \\\"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T02:45:56.559Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 81.27, \\\"accuracy_ci\\\": 1.07, \\\"correct\\\": 1072, \\\"total\\\": 1319, \\\"eos_rate\\\": 99.7, \\\"avg_response_length\\\": 207.18, \\\"truncated\\\": 4}, \\\"hypothesis\\\": \\\"Unpruned post-SFT achieves >80% GSM8K on full test set (N=1319), establishing accuracy ceiling for pruned model SFT recovery comparison and confirming SFT effectiveness intact (C1/C3 control)\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5291}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_unpruned_full\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:40:17.174Z\", \"updated_at\": \"2026-05-17T03:29:35.056Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-7B (unpruned, SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"eval_data\": \"gsm8k_test_full_1319\", \"parent\": \"sft_unpruned_baseline\", \"hypothesis\": \"Unpruned SFT baseline full GSM8K eval for three-way comparison\", \"pid\": 74129, \"gpu\": \"cuda:0\", \"log_path\": \"/tmp/eval_unpruned_full.log\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json\"}, \"notes\": \"Unpruned SFT N=1319 full eval on westd cuda:0. PID 74129, ~2.5s/it. Started 09:39 UTC. Progress at 09:46 UTC: 155/1319 (12%), acc=86.67% (at 150), eos_rate=100%, avg_len=188. ETA ~10:35 UTC. Model: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline. N=100 checkpoint: 84% (84/100). Three-way comparison pending: Standard 59.29%, RASP 61.49%, Unpruned ?%.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T02:45:56.559Z\", \"metrics\": {\"accuracy\": 81.27, \"accuracy_ci\": 1.07, \"correct\": 1072, \"total\": 1319, \"eos_rate\": 99.7, \"avg_response_length\": 207.18, \"truncated\": 4}, \"hypothesis\": \"Unpruned post-SFT achieves >80% GSM8K on full test set (N=1319), establishing accuracy ceiling for pruned model SFT recovery comparison and confirming SFT effectiveness intact (C1/C3 control)\", \"parent\": \"sft_unpruned_baseline\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5291}}"
+              }
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01K5pxH7nrGXB8eRpv6S9hfy",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_unpruned_n100",
+                "field": "parent",
+                "value": "sft_unpruned_baseline",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "095cfa4b-9934-4857-8e45-db9768e934bd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RSBEfvFNrXXzuW59kBher",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9631,
+                "cache_read_input_tokens": 68207,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9631
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-17T03:29:36.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01K5pxH7nrGXB8eRpv6S9hfy",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:35.970Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T01:40:33.108Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.84, \\\"n_correct\\\": 84, \\\"n_total\\\": 100, \\\"eos_rate\\\": 1, \\\"avg_response_length\\\": 187.22, \\\"stderr\\\": 0.0367}, \\\"hypothesis\\\": \\\"Unpruned post-SFT achieves ~84% GSM8K on N=100 subset, providing quick baseline confirmation consistent with full eval for three-way pruning method comparison\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5012}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "24313e49-6c24-418f-9a13-ebd41e2215ab",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:35.970Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T01:40:33.108Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.84, \\\"n_correct\\\": 84, \\\"n_total\\\": 100, \\\"eos_rate\\\": 1, \\\"avg_response_length\\\": 187.22, \\\"stderr\\\": 0.0367}, \\\"hypothesis\\\": \\\"Unpruned post-SFT achieves ~84% GSM8K on N=100 subset, providing quick baseline confirmation consistent with full eval for three-way pruning method comparison\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5012}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_unpruned_n100\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:40:17.686Z\", \"updated_at\": \"2026-05-17T03:29:35.970Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\", \"server\": \"westd-11672\", \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B (unpruned, SFT)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\", \"eval_data\": \"gsm8k_test_n100\", \"parent\": \"sft_unpruned_baseline\", \"checkpoint_path\": \"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\", \"log_path\": \"/tmp/eval_unpruned_n100.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T01:40:33.108Z\", \"metrics\": {\"accuracy\": 0.84, \"n_correct\": 84, \"n_total\": 100, \"eos_rate\": 1, \"avg_response_length\": 187.22, \"stderr\": 0.0367}, \"hypothesis\": \"Unpruned post-SFT achieves ~84% GSM8K on N=100 subset, providing quick baseline confirmation consistent with full eval for three-way pruning method comparison\", \"parent\": \"sft_unpruned_baseline\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5012}}"
+              }
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LHw1Xvq46ts8j1kASFZP33",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-sft-alpha-1p0",
+                "field": "parent",
+                "value": "sft-alpha-1p0",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "333d614f-79e0-47d0-a942-4e35499f280e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RSBEfvFNrXXzuW59kBher",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9631,
+                "cache_read_input_tokens": 68207,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9631
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-17T03:29:37.124Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LHw1Xvq46ts8j1kASFZP33",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-sft-alpha-1p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T14:51:22.694Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:36.910Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"42530\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:51:22.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B pruned alpha=1.0 post-SFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\\\", \\\"wall_clock_seconds\\\": 2013.4, \\\"gpu_hours\\\": 0.56}, \\\"notes\\\": \\\"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:22:49.510Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T15:24:56.027Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.57, \\\"stderr\\\": 0.0495, \\\"n_correct\\\": 57, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.98, \\\"avg_len\\\": 224.18, \\\"natural_eos\\\": 98, \\\"truncated\\\": 2}, \\\"hypothesis\\\": \\\"Alpha=1.0 (full CKA weight) post-SFT accuracy matches RASP default (~57%), confirming alpha=1.0 produces identical pruning structure to standard RASP (C2 ablation endpoint)\\\", \\\"parent\\\": \\\"sft-alpha-1p0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5006}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "0e5007ac-3b0d-480d-89c6-4ce47e367751",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-sft-alpha-1p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T14:51:22.694Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:36.910Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"42530\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:51:22.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B pruned alpha=1.0 post-SFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\\\", \\\"wall_clock_seconds\\\": 2013.4, \\\"gpu_hours\\\": 0.56}, \\\"notes\\\": \\\"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T15:22:49.510Z\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T15:24:56.027Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.57, \\\"stderr\\\": 0.0495, \\\"n_correct\\\": 57, \\\"n_total\\\": 100, \\\"eos_rate\\\": 0.98, \\\"avg_len\\\": 224.18, \\\"natural_eos\\\": 98, \\\"truncated\\\": 2}, \\\"hypothesis\\\": \\\"Alpha=1.0 (full CKA weight) post-SFT accuracy matches RASP default (~57%), confirming alpha=1.0 produces identical pruning structure to standard RASP (C2 ablation endpoint)\\\", \\\"parent\\\": \\\"sft-alpha-1p0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5006}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-sft-alpha-1p0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:51:22.694Z\", \"updated_at\": \"2026-05-17T03:29:36.910Z\", \"spec\": {\"command\": \"python eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0 --n_samples 100\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"42530\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval-sft-alpha-1p0.log\", \"submitted_at\": \"2026-05-15T14:51:22.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B pruned alpha=1.0 post-SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\", \"eval_data\": \"gsm8k_test_n100\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_1.0\", \"wall_clock_seconds\": 2013.4, \"gpu_hours\": 0.56}, \"notes\": \"α=1.0 SFT eval (N=100, greedy) 运行中。PID 42535 on GPU 1 (westd). 33/100 samples at 15:05 UTC, ~4-5s/sample, 预计 5-6 min 完成。Cron 已注册。\", \"reproduce\": {\"finished_at\": \"2026-05-15T15:22:49.510Z\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T15:24:56.027Z\", \"metrics\": {\"accuracy\": 0.57, \"stderr\": 0.0495, \"n_correct\": 57, \"n_total\": 100, \"eos_rate\": 0.98, \"avg_len\": 224.18, \"natural_eos\": 98, \"truncated\": 2}, \"hypothesis\": \"Alpha=1.0 (full CKA weight) post-SFT accuracy matches RASP default (~57%), confirming alpha=1.0 produces identical pruning structure to standard RASP (C2 ablation endpoint)\", \"parent\": \"sft-alpha-1p0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5006}}"
+              }
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013tiACsh1cPQpz3CZZy8meq",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval-sft-alpha-0p0",
+                "field": "parent",
+                "value": "sft-alpha-0p0",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "41273f54-d7e5-4517-834b-38c4040c0a12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RSBEfvFNrXXzuW59kBher",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9631,
+                "cache_read_input_tokens": 68207,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9631
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-17T03:29:38.170Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013tiACsh1cPQpz3CZZy8meq",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-sft-alpha-0p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T14:26:31.883Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:37.940Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0 --max_samples 100 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"40489\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval-sft-alpha-0p0.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:26:31.816Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B pruned alpha=0.0 post-SFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\\\", \\\"wall_clock_seconds\\\": 1529.3, \\\"gpu_hours\\\": 0.42}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:52:01.132Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.64, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 257.9, \\\"n_correct\\\": 64, \\\"n_total\\\": 100}, \\\"hypothesis\\\": \\\"Alpha=0.0 (no CKA, pure magnitude) post-SFT matches Standard pruning recovery (~64%), establishing that removing CKA collapses RASP to standard behavior (C2 ablation endpoint)\\\", \\\"parent\\\": \\\"sft-alpha-0p0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5336}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "445508e5-b957-4b6b-b568-644501b628b8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval-sft-alpha-0p0\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T14:26:31.883Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:37.940Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0 --max_samples 100 --max_new_tokens 4096\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"40489\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval-sft-alpha-0p0.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T14:26:31.816Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B pruned alpha=0.0 post-SFT\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\\\", \\\"wall_clock_seconds\\\": 1529.3, \\\"gpu_hours\\\": 0.42}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T14:52:01.132Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.64, \\\"eos_rate\\\": 0.97, \\\"avg_len\\\": 257.9, \\\"n_correct\\\": 64, \\\"n_total\\\": 100}, \\\"hypothesis\\\": \\\"Alpha=0.0 (no CKA, pure magnitude) post-SFT matches Standard pruning recovery (~64%), establishing that removing CKA collapses RASP to standard behavior (C2 ablation endpoint)\\\", \\\"parent\\\": \\\"sft-alpha-0p0\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5336}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval-sft-alpha-0p0\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:26:31.883Z\", \"updated_at\": \"2026-05-17T03:29:37.940Z\", \"spec\": {\"command\": \"python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0 --max_samples 100 --max_new_tokens 4096\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"40489\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval-sft-alpha-0p0.log\", \"submitted_at\": \"2026-05-15T14:26:31.816Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 100, \"model_name\": \"Qwen2.5-7B pruned alpha=0.0 post-SFT\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\", \"eval_data\": \"gsm8k_test_n100\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_ablation/alpha_0.0\", \"wall_clock_seconds\": 1529.3, \"gpu_hours\": 0.42}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T14:52:01.132Z\", \"metrics\": {\"accuracy\": 0.64, \"eos_rate\": 0.97, \"avg_len\": 257.9, \"n_correct\": 64, \"n_total\": 100}, \"hypothesis\": \"Alpha=0.0 (no CKA, pure magnitude) post-SFT matches Standard pruning recovery (~64%), establishing that removing CKA collapses RASP to standard behavior (C2 ablation endpoint)\", \"parent\": \"sft-alpha-0p0\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5336}}"
+              }
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AYohJCxxkRRFfhxyDrWYt5",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_grasp_20",
+                "field": "parent",
+                "value": "sft_grasp_20_westd",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "18e116f7-27a7-42e4-81de-a26cd46846b9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RSBEfvFNrXXzuW59kBher",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9631,
+                "cache_read_input_tokens": 68207,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9631
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-17T03:29:39.099Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AYohJCxxkRRFfhxyDrWYt5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:45:15.051Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:38.882Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"GraSP post-SFT GSM8K eval (N=100, greedy). GraSP post-prune ~6%, post-SFT loss=0.59, token_acc=0.84. Three-way comparison: Standard 64% vs RASP 57% vs GraSP ?%. Parent: sft_grasp_20_westd.\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"command\\\": \\\"python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-GraSP-20%-SFT\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"accuracy\\\": 0.41, \\\"n_total\\\": 100, \\\"p_value_vs_standard\\\": 0.001, \\\"standard_ref\\\": 0.64, \\\"rasp_ref\\\": 0.57, \\\"note\\\": \\\"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\\\"}, \\\"notes\\\": \\\"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"GraSP 20% post-SFT achieves significantly lower accuracy than Standard and RASP, showing gradient-signal pruning damages SFT-recovery capacity more than magnitude-based methods\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5238}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "237f61d6-598f-4917-a0de-3d828452139b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_grasp_20\\\", \\\"experiment\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T15:45:15.051Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:38.882Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"GraSP post-SFT GSM8K eval (N=100, greedy). GraSP post-prune ~6%, post-SFT loss=0.59, token_acc=0.84. Three-way comparison: Standard 64% vs RASP 57% vs GraSP ?%. Parent: sft_grasp_20_westd.\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\", \\\"command\\\": \\\"python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path results/eval_sft_grasp_20_n100.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-GraSP-20%-SFT\\\", \\\"seed\\\": 42}, \\\"metrics\\\": {\\\"accuracy\\\": 0.41, \\\"n_total\\\": 100, \\\"p_value_vs_standard\\\": 0.001, \\\"standard_ref\\\": 0.64, \\\"rasp_ref\\\": 0.57, \\\"note\\\": \\\"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\\\"}, \\\"notes\\\": \\\"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\\\", \\\"conclusion\\\": \\\"success\\\", \\\"hypothesis\\\": \\\"GraSP 20% post-SFT achieves significantly lower accuracy than Standard and RASP, showing gradient-signal pruning damages SFT-recovery capacity more than magnitude-based methods\\\", \\\"parent\\\": \\\"sft_grasp_20_westd\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5238}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_grasp_20\", \"experiment\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T15:45:15.051Z\", \"updated_at\": \"2026-05-17T03:29:38.882Z\", \"spec\": {\"hypothesis\": \"GraSP post-SFT GSM8K eval (N=100, greedy). GraSP post-prune ~6%, post-SFT loss=0.59, token_acc=0.84. Three-way comparison: Standard 64% vs RASP 57% vs GraSP ?%. Parent: sft_grasp_20_westd.\", \"parent\": \"sft_grasp_20_westd\", \"command\": \"python -u src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_graspune_20 --max_samples 100 --max_new_tokens 4096 --seed 42 --output_path results/eval_sft_grasp_20_n100.json\", \"server\": \"westd-11672\", \"model_name\": \"Qwen2.5-1.5B-GraSP-20%-SFT\", \"seed\": 42}, \"metrics\": {\"accuracy\": 0.41, \"n_total\": 100, \"p_value_vs_standard\": 0.001, \"standard_ref\": 0.64, \"rasp_ref\": 0.57, \"note\": \"论文核心数据点: GraSP post-SFT 41% vs Standard 64% (p=0.001) vs RASP 57%\"}, \"notes\": \"GraSP post-SFT eval 完成: 41% accuracy (N=100, greedy, seed=42). 论文核心数据点。三方对比: Standard 64% > RASP 57% > GraSP 41% (p=0.001 vs Standard). GraSP post-prune ~6% → post-SFT 41% (+35pp recovery), 但仍远低于 RASP/Standard. JSON: results/eval_sft_grasp_20_n100.json\", \"conclusion\": \"success\", \"hypothesis\": \"GraSP 20% post-SFT achieves significantly lower accuracy than Standard and RASP, showing gradient-signal pruning damages SFT-recovery capacity more than magnitude-based methods\", \"parent\": \"sft_grasp_20_westd\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5238}}"
+              }
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XJ4893zDcdevz4edoDhYNu",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "sft_standard_20_retrain",
+                "field": "parent",
+                "value": "prune_standard_20",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "3b37983b-a6fb-43e1-b3a4-1182939da7d9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011RSBEfvFNrXXzuW59kBher",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9631,
+                "cache_read_input_tokens": 68207,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9631
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-17T03:29:39.828Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XJ4893zDcdevz4edoDhYNu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_standard_20_retrain\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:00:22.779Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:39.616Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"515168\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_20_retrain.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:47:22.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pruned_standard_20\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"wall_clock_seconds\\\": 2914.0, \\\"gpu_hours\\\": 0.81}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:30:33.744Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:30:34.816944+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"token_accuracy\\\": 0.83, \\\"conclusion\\\": \\\"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\\\"}, \\\"completed_at\\\": \\\"2026-05-15T12:35:56.639Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"hypothesis\\\": \\\"Standard 20% SFT retrain with identical hyperparameters reproduces original loss/accuracy, confirming SFT recovery is deterministic and prior result was not anomalous\\\", \\\"parent\\\": \\\"prune_standard_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6188}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "3b974514-626c-4acf-abe6-59ff27aa1f43",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_standard_20_retrain\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:00:22.779Z\\\", \\\"updated_at\\\": \\\"2026-05-17T03:29:39.616Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"515168\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_20_retrain.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:47:22.611Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"pruned_standard_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/pruned_standard_20\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"wall_clock_seconds\\\": 2914.0, \\\"gpu_hours\\\": 0.81}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T12:30:33.744Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:30:34.816944+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"notes\\\": \\\"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\\\", \\\"metrics\\\": {\\\"train_loss_final\\\": 0.64, \\\"token_accuracy\\\": 0.83, \\\"conclusion\\\": \\\"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\\\"}, \\\"completed_at\\\": \\\"2026-05-15T12:35:56.639Z\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\\\", \\\"hypothesis\\\": \\\"Standard 20% SFT retrain with identical hyperparameters reproduces original loss/accuracy, confirming SFT recovery is deterministic and prior result was not anomalous\\\", \\\"parent\\\": \\\"prune_standard_20\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6188}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_standard_20_retrain\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:00:22.779Z\", \"updated_at\": \"2026-05-17T03:29:39.616Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/pruned_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20 --gpu 1 --num_train_epochs 2 --learning_rate 2e-5 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --logging_steps 10 --seed 42\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"515168\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_standard_20_retrain.log\", \"submitted_at\": \"2026-05-15T11:47:22.611Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"pruned_standard_20\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/pruned_standard_20\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\", \"wall_clock_seconds\": 2914.0, \"gpu_hours\": 0.81}, \"reproduce\": {\"finished_at\": \"2026-05-15T12:30:33.744Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:30:34.816944+00:00\"}]}, \"conclusion\": \"success\", \"notes\": \"SFT Standard retrain 完成. loss 0.64, token_accuracy 83%, 与原始 sft_standard_20 完全一致. Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/. 用于 Standard GRPO v5 对照实验.\", \"metrics\": {\"train_loss_final\": 0.64, \"token_accuracy\": 0.83, \"conclusion\": \"Matches original sft_standard_20 (loss 0.64, token_accuracy 83%). Retrain successful.\"}, \"completed_at\": \"2026-05-15T12:35:56.639Z\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20/\", \"hypothesis\": \"Standard 20% SFT retrain with identical hyperparameters reproduces original loss/accuracy, confirming SFT recovery is deterministic and prior result was not anomalous\", \"parent\": \"prune_standard_20\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6188}}"
+              }
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- 检查 25 个实验\n- 修改 25 个 hypothesis（全部新写入顶层字段）\n- 新增 19 条 parent（5 个 pruning root 实验无 parent，`sft-alpha-1p0` 因 alpha ablation 的 pruning 步骤未独立注册故暂不设 parent）\n\nParent 推导链逻辑：\n- pruning 实验 → 无 parent（root）\n- SFT 实验 → parent 指向对应 prune 实验\n- eval 实验 → parent 指向对应 training（SFT/GRPO）实验\n- pass@k eval → parent 指向产出 checkpoint 的 GRPO/SFT 训练实验"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "uuid": "2c37e044-970b-4feb-99e3-0f764a6fda52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BzgAiCD39DZaM2BHwJ4ozm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8318,
+                "cache_read_input_tokens": 77838,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8318
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- 检查 25 个实验\n- 修改 25 个 hypothesis（全部新写入顶层字段）\n- 新增 19 条 parent（5 个 pruning root 实验无 parent，`sft-alpha-1p0` 因 alpha ablation 的 pruning 步骤未独立注册故暂不设 parent）\n\nParent 推导链逻辑：\n- pruning 实验 → 无 parent（root）\n- SFT 实验 → parent 指向对应 prune 实验\n- eval 实验 → parent 指向对应 training（SFT/GRPO）实验\n- pass@k eval → parent 指向产出 checkpoint 的 GRPO/SFT 训练实验"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 405421,
+            "duration_api_ms": 403125,
+            "num_turns": 48,
+            "stop_reason": "end_turn",
+            "session_id": "4c77ad5c-8edc-435c-896e-b2aec707bdd2",
+            "total_cost_usd": 1.618571,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 74315,
+              "cache_read_input_tokens": 394537,
+              "output_tokens": 18539,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 74315,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 219,
+                  "cache_read_input_tokens": 77838,
+                  "cache_creation_input_tokens": 8318,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 8318
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2852,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002937,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 19,
+                "outputTokens": 28148,
+                "cacheReadInputTokens": 447703,
+                "cacheCreationInputTokens": 110078,
+                "webSearchRequests": 0,
+                "costUSD": 1.6156339999999998,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "8e7f0c25-856b-4469-a99b-1b00382cd030"
+          },
+          "id": "event-000125"
+        }
+      ]
+    }
+  ]
+}

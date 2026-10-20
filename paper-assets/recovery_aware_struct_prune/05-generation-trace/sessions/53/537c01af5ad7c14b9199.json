@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "537c01af5ad7c14b9199",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 sft standard 25 cron",
+  "task_key": "worker_harvest_eval_math500_sft_standard_25_cron_20260522T023010",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_sft_standard_25_cron_20260522T023010_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "a704fa0131204c6cc79ca76d8ebf40f8d8c89185854b4af4009980cbf41c5825"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 结果 ==\naccuracy: 14.0% (70/500)\n与 v1 (13.0%, 65/500) 对比: 一致（+1pp，在 stderr ±1.55% 范围内）\n\n== Registry ==\n已更新: DONE(success), metrics={accuracy: 0.14, correct: 70, n_total: 500}\n\n== Cron ==\n已删除\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-sft-standard-25-cron.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e5bf7b7f4e4f4ef20e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix fig4 cka real data",
+  "task_key": "worker_fix_fig4_cka_real_data_20260524T050827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig4_cka_real_data_20260524T050827_result.json",
+    "occurrence": 1,
+    "bytes": 286,
+    "sha256": "94d5831b59cdb9c1e6f7b994fffdf62c89800b2cc64c6828fc1c79046cb321c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。脚本中的 `gen_layers()` 合成数据已替换为从 westb-23072 提取的真实 28-layer diagonal CKA 值。Summary stats 完全匹配（CKA-only μ=0.62, Standard μ=0.90, Random μ=0.92, RASP μ=0.88）。PDF/PNG 已同步到 `docs/paper/figures/paper/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig4-cka-real-data.md"
+}

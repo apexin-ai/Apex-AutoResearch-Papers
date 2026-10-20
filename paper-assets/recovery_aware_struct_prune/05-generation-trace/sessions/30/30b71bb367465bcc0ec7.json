@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30b71bb367465bcc0ec7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd disk cleanup",
+  "task_key": "worker_ssh_westd_disk_cleanup_20260522T160111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_disk_cleanup_20260522T160111_result.json",
+    "occurrence": 1,
+    "bytes": 899,
+    "sha256": "7d66afa9e3a338409f9336adda8ded47cbe2bff56581c9d56d7b07248a0cd7b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No pycache or temp files. Cleanup complete.\n\n---\n\n## 磁盘清理结果\n- 清理前: 91% (588 GB used / 650 GB total)\n- 清理后: 89% (574 GB used / 650 GB total)\n- 释放空间: ~14 GB\n\n## 删除明细\n- `grpo_random_20_seed123_v2/checkpoint-100/optimizer.pt`: 15 GB（训练已完成 100/100 steps，无需 resume）\n\n---\n\n## MATH-500 α=2.0 SFT eval 状态\n- 进程状态: **running** (PID 57202, elapsed 1h14m)\n- 进度: 109/500 (22%)\n- 预估剩余: ~5h（平均 ~45s/it，波动大）\n- 日志路径: `/root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20.log`\n\n**补充说明**: 如果需要进一步释放空间，还可删除 5 个 23G GRPO 目录和 1 个 23G SFT 目录中 checkpoint 子目录里重复的 `model.safetensors`（与根目录的最终模型相同），每个约 12G，合计可再释放 ~60G。需要的话告知。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-disk-cleanup.md"
+}

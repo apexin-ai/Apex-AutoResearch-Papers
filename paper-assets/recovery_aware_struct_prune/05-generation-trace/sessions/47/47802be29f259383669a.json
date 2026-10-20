@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47802be29f259383669a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops alpha sweep monitor collect",
+  "task_key": "worker_ops_alpha-sweep-monitor-collect_20260515T205546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_alpha-sweep-monitor-collect_20260515T205546_result.json",
+    "occurrence": 1,
+    "bytes": 189,
+    "sha256": "f072182056fa704f1e9f052e2a37a4c09321adac4e2d29771173e5f95b55d460"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "α=0.0 eval 已在 westb-23072 cuda:0 后台运行（PID 555009）。剩余 4 个 alpha 的 sweep 脚本已准备好，等 α=0.0 完成后启动。2 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-alpha-sweep-monitor-collect.md"
+}

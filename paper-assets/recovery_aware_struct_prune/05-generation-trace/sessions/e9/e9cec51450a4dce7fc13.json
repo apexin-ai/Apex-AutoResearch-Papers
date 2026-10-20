@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9cec51450a4dce7fc13",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnosis eval humaneval sft standard 20 2048 v3",
+  "task_key": "worker_diagnosis_eval_humaneval_sft_standard_20_2048_v3_20260519T135424",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_eval_humaneval_sft_standard_20_2048_v3_20260519T135424_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "994cd5d243d15320f484d3f42e43181184390e68ec23fd483b91a7980251833c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。诊断摘要：\n\n**实验并未失败，实际已完成。** 进程正常跑完 164 题（耗时 ~4h），结果已写入 JSON 文件，但 eval 脚本没有写 sentinel 文件，导致 cron 监控 5 次检测不到存活信号后误判为 failed。\n\n**结果：pass@1 = 13.41%** (22/164)\n- 对比同模型上一轮 v2（不同 checkpoint `sft_standard_20_westd`）：11.59% → 13.41%，略有提升\n- median response length = 2048，大量回答撞到 token 上限——模型倾向于输出自然语言推理（\"Okay, I need to...\"）而非直接写代码，截断后产生 SyntaxError\n\n**根因**：监控误报，非实验本身失败。eval 脚本缺少 sentinel/heartbeat 机制是监控盲区。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-eval-humaneval-sft-standard-20-2048-v3.md"
+}

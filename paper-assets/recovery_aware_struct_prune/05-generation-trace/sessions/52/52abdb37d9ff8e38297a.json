@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52abdb37d9ff8e38297a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "restart grpo fast config",
+  "task_key": "worker_restart_grpo_fast_config_20260514T173835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_restart_grpo_fast_config_20260514T173835_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "a7450751aa1790690c16113e5b8fd7676b5cbc3bdf377786fc6a7a71c36acf0b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个训练都在正常运行：\n\n| 实验 | GPU | 显存 | Step 速度 | Total Steps | 预计时间 |\n|------|-----|------|-----------|-------------|----------|\n| `grpo_rasp_20_fast` | cuda:0 | 55161 MiB, 97% | ~25s/step | 500 | ~3.5h |\n| `grpo_standard_20_fast` | cuda:1 | 55077 MiB, 96% | ~25s/step | 500 | ~3.5h |\n\n**确认：**\n- 训练数据 2000 samples ✓\n- Total steps = 500（2000 / batch_size=2 / grad_accum=8 × 1 epoch × num_generations 调整 → 500）\n- Step 时间 ~25s（远优于之前的 173s，满足 <50s 目标）✓\n- RewardDesertCallback patience=50 ✓\n- GSM8K 用了本地缓存（网络不通但不影响）✓\n\n从 173s/step × 5604 steps ≈ 270h 降到 25s/step × 500 steps ≈ 3.5h，加速 ~77x。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/restart-grpo-fast-config.md"
+}

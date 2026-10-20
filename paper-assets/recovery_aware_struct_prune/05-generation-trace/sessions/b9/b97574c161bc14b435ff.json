@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b97574c161bc14b435ff",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha sft sweep westd gpu1",
+  "task_key": "worker_code_alpha-sft-sweep-westd-gpu1_20260515T135109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha-sft-sweep-westd-gpu1_20260515T135109_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "9879423deb85d1fbf017ae59293754ec193fce70782d0606d8075e32324db35f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交 α=1.0 SFT 到 westd-11672 cuda:1。\n\n- **exp_id**: `sft-alpha-1p0`\n- **日志**: `~/runs/recovery_aware_struct_prune/sft-alpha-1p0.log`\n- **预计耗时**: ~30 分钟\n\n剩余待执行（按优先级）：\n1. α=0.0 eval（SFT 已完成）\n2. α=2.0 SFT → eval\n3. α=0.5 SFT → eval\n4. α=1.0 eval（等当前 SFT 完成后）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-sft-sweep-westd-gpu1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d03d42e353d62149676e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd status check",
+  "task_key": "worker_ops_westd-status-check_20260516T014255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-status-check_20260516T014255_result.json",
+    "occurrence": 1,
+    "bytes": 1070,
+    "sha256": "236a7143250d2caf5d79a88e6bf3777b405648938fdb81fe4db34d212a62c039"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672 状态汇报\n\n### GPU 利用率\n\n| GPU | 型号 | 显存占用 | 利用率 |\n|-----|------|---------|--------|\n| cuda:0 | RTX PRO 6000 Blackwell (96GB) | 17,661 / 97,887 MiB (18%) | **91%** |\n| cuda:1 | RTX PRO 6000 Blackwell (96GB) | 0 / 97,887 MiB | **0% — 完全空闲** |\n\n### eval_sft_unpruned_full (N=1319) 进度\n\n- **PID 74134** — `eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319`\n- 当前进度: **97/1319 (7.4%)**，已运行 ~4min15s\n- 速度: ~3.0-3.7 s/it\n- 50 样本时 acc = **0.8200**, eos_rate = 100%\n- 预计剩余: **~60-75 min**（总计约 1h20min）\n- 输出文件 `eval_sft_unpruned_baseline_full.json` 尚未写入（完成后一次性写入）\n\n### 已完成的 eval\n\n- `eval_grpo_standard_step50_full.json` — 1319 样本，**已完成** (999KB, 09:34)\n- `eval_sft_rasp_20_westd_full.json` — **已完成** (1MB, 05:38)\n- `eval_sft_standard_20_westd_full.json` — **已完成** (1MB, 05:41)\n\n### 磁盘\n\n`/root/autodl-tmp`: **213G / 250G (86%)**，剩余 38G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-status-check-copy-2.md"
+}

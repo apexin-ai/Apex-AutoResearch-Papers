@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "860f7479254ac84fefab",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops training status check",
+  "task_key": "worker_ops_training-status-check_20260514T232430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_training-status-check_20260514T232430_result.json",
+    "occurrence": 1,
+    "bytes": 502,
+    "sha256": "fd5fb49cde055a390cf9498008e6d4e1c76f449e3e1d70414824f6f2755ca703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/grpo_rasp_20_4096_status.md`。\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | ✅ PID 244606 存活，运行 27min |\n| 进度 | 8/500 步 (1.6%)，~173s/步 |\n| 指标 | 未到首个 logging 阈值，暂无 |\n| wandb | `ccx0jr0z` (grpo_pruned_rasp_20) |\n| GPU 1 | 98% 利用率，74.7G/97.9G 显存，64°C |\n| 预计完成 | ~23.6h 后，5月16日 07:00 服务器时间 |\n| 异常 | 无。HF 网络不可达但用了本地缓存 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-training-status-check.md"
+}

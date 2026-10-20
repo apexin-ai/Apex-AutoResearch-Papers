@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dffbd407c0b68eff88c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops start math500 sft cka only v4",
+  "task_key": "worker_ops_start_math500_sft_cka_only_v4_20260518T170634",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_start_math500_sft_cka_only_v4_20260518T170634_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "098702a9334465f46b0650d08e6646b35231fdad2724e01e90456ee166b9619c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，汇总：\n\n- **任务**: `eval_math500_sft_cka_only_20_v4`\n- **服务器**: westd-29022, cuda:2 (12.5 GB 已占用，模型加载中)\n- **tmux session**: `eval_math500_v4`\n- **命令**: `CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py --model_path .../sft_cka_only_20 --output_path .../math500_sft_cka_only_20_v4.json --max_new_tokens 2048`\n- **无 timeout 包装**\n- **不支持 resume**，从头跑全部 500 题\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_v4.log`\n- **Registry 状态**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-start-math500-sft-cka-only-v4.md"
+}

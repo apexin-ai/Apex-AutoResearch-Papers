@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28f1a18bb8c411b2a350",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops rasp v9 status and eval",
+  "task_key": "worker_ops_rasp-v9-status-and-eval_20260516T024248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rasp-v9-status-and-eval_20260516T024248_result.json",
+    "occurrence": 1,
+    "bytes": 968,
+    "sha256": "dc9ef0188f6b8044f212881bd1ef824fa6ceb89b80b4314a243cc2a8d1cfcc39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## RASP v9 状态汇报\n\n**训练仍在运行中**，不启动 eval。\n\n| 项目 | 值 |\n|------|-----|\n| PID | 566666 (alive, elapsed 2h39m) |\n| 当前 step | 20 / 30 |\n| 剩余 steps | 10 |\n| step 耗时 | ~405-410s/step (~6.8 min) |\n| 预计完成 | **~68 min 后**（约 11:33） |\n\n**Checkpoint 列表**：\n\n| Checkpoint | 状态 | 保存时间 |\n|-----------|------|---------|\n| checkpoint-5 | ✓ | 08:41 |\n| checkpoint-10 | ✓ | 09:15 |\n| checkpoint-15 | ✓ | 09:49 |\n| checkpoint-20 | ✓ | 10:25 |\n| checkpoint-25 | 待生成 | ETA ~10:59 |\n| checkpoint-30 | 待生成 | ETA ~11:33 |\n\n**GPU 状态**：\n- cuda:0: 71683/97887 MiB, 100% util → v9 训练中\n- cuda:1: 29653/97887 MiB, 97% util → eval_step5 运行中\n\n**训练指标 (step 20)**：reward=0.039, loss=-0.003, kl=0.001, clipped_ratio=98%。reward 从 step-10 的 0.015 上升到 0.039，有正向趋势。\n\n训练完成后再启动 step-10 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-rasp-v9-status-and-eval.md"
+}

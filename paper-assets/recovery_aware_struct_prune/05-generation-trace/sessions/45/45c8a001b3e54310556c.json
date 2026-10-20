@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "45c8a001b3e54310556c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest rasp 20 eval",
+  "task_key": "worker_ssh_harvest_rasp_20_eval_20260520T180905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_rasp_20_eval_20260520T180905_result.json",
+    "occurrence": 1,
+    "bytes": 1127,
+    "sha256": "d6467e6e10e9a425c77b32be07fe2ccaae1a929f038588d764c016db30ad31dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 状态汇总\n\n| Eval | GPU | PID | 状态 | 进度 | 当前 Accuracy |\n|------|-----|-----|------|------|---------------|\n| **sft_rasp_20** | cuda:3 (已释放) | 267009 | **完成** | 1319/1319 | **0.6149 ± 0.0134** (811/1319) |\n| **sft_cka_only_15** | cuda:1 | 262728 | 运行中 | ~1180/1319 (87%) | 0.7252 |\n| **sft_cka_only_20** | cuda:2 | 264522 | 运行中 | ~878/1319 (66%) | 0.6318 |\n| **sft_standard_20** | cuda:0 | 266847 | 运行中 | ~420/1319 (32%) | 0.6150 |\n\n### sft_rasp_20 详细结果\n- Accuracy: **61.49%** (811/1319)\n- EOS rate: 98.26%, avg response length: 216.5 tokens\n- 结果已写入 `eval_gsm8k_sft_rasp_20_n1319.json` + `.done` sentinel\n\n### 预计剩余时间\n- **cka_only_15**: ~139 samples remaining, ~3s/it → **~7 min**\n- **cka_only_20**: ~441 samples remaining, ~3s/it → **~22 min**\n- **sft_standard_20**: ~899 samples remaining, 有间歇性卡顿（偶发 100s+/it spikes），正常速度 ~2.5s/it → **~40-60 min**（含卡顿可能更长）\n\n### GPU 状态\n4× RTX PRO 6000。cuda:0/1/2 满载 (91-99%, 84°C/78°C/68°C)，cuda:3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-rasp-20-eval.md"
+}

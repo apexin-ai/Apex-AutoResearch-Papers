@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9ac7e32afadd37b8a6f7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check and complete base model download",
+  "task_key": "worker_ops_check-and-complete-base-model-download_20260515T182554",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-and-complete-base-model-download_20260515T182554_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "ba849046e9c663caecf4fb5b891925284e0c6deb28f674e8d30890ec4d6c7dc8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 模型下载状态\n- **model-00002-of-000002.safetensors** (6.2G): 已完成 ✓\n- **model-00001-of-000002.safetensors** (8.0G): 下载中，453MiB/8.0GiB (5%)，速度 **8.9MiB/s**，**ETA ~14分钟**\n- 之前有 6 个冲突下载进程互相覆盖，已全部杀掉并用单个 aria2c (16连接) 重新下载\n\n### 脚本状态\n`run_grpo_unpruned.sh` 的 `--model_path` 已指向 `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`，**无需更新**。脚本使用 `CUDA_VISIBLE_DEVICES=0`，与当前 cuda:1 上运行的 v8 训练不冲突。\n\n### GPU 占用\n- **cuda:0**: 空闲，等模型就绪即可启动 unpruned GRPO\n- **cuda:1**: 正在运行 `grpo_stage2_standard_20_v8` (PID 534667)\n\n### 下一步\n模型预计 **~14分钟后就绪**（约 02:42 UTC）。下载完成后需要验证 model-00001 完整性，然后即可执行 `bash /root/recovery_aware_struct_prune/run_grpo_unpruned.sh` 启动训练。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-and-complete-base-model-download.md"
+}

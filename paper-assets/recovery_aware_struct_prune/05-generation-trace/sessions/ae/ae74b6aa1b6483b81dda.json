@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ae74b6aa1b6483b81dda",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "verify wandb step metrics two runs",
+  "task_key": "worker_verify_wandb_step_metrics_two_runs_20260518T035600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_wandb_step_metrics_two_runs_20260518T035600_result.json",
+    "occurrence": 1,
+    "bytes": 2929,
+    "sha256": "96ccfdfc69821a5c199cfba24d1bc7410193847ee50a7863fc003ad6c7e47ee4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data retrieved. The W&B metric is `train/frac_reward_zero_std`. Here are the complete results.\n\n---\n\n## Run tyv20u2k (grpo_standard_20_fair)\n\n| Step | train/grad_norm | train/frac_reward_zero_std | train/reward | train/loss |\n|------|----------------|---------------------------|-------------|------------|\n| 10   | 6.6250         | 0.500                     | 0.05125     | 0.08650    |\n| 20   | 2.9531         | 0.625                     | 0.05563     | 0.10029    |\n| 30   | 2.1250         | 0.500                     | 0.06688     | 0.06140    |\n| 40   | 0.7969         | 0.500                     | 0.08125     | 0.06564    |\n| 50   | 1.8594         | 0.575                     | 0.01875     | 0.09103    |\n| 60   | 2.1875         | 0.550                     | 0.04313     | 0.12414    |\n| 70   | 2.2969         | 0.575                     | 0.04688     | 0.06855    |\n| 80   | 1.6953         | 0.550                     | 0.04563     | 0.06845    |\n| **90**   | **0.0173**     | 0.550                     | 0.03063     | 0.10009    |\n| 100  | 2.4063         | 0.550                     | 0.05375     | 0.07660    |\n\n**Paper claim: \"grad_norm drops to 0.017\"** → **VERIFIED**. grad_norm = 0.017334 at **step 90**. This is a single-step anomaly; it recovers to 2.41 at step 100.\n\n---\n\n## Run li451oi4 (grpo_cka_only_20)\n\n| Step | train/frac_reward_zero_std | train/grad_norm | train/reward | train/loss |\n|------|---------------------------|----------------|-------------|------------|\n| 10   | 0.175                     | 1.8906         | 0.25313     | 0.03907    |\n| 20   | 0.200                     | 1.2500         | 0.21813     | 0.15016    |\n| 30   | 0.200                     | 1.1016         | 0.25000     | -0.02080   |\n| 40   | 0.350                     | 0.9844         | 0.23438     | 0.01860    |\n| 50   | 0.150                     | 1.9766         | 0.35438     | 0.14885    |\n| 60   | 0.200                     | 3.7500         | 0.29938     | 0.14619    |\n| **70**   | **0.125**                 | 1.1641         | 0.30750     | 0.11588    |\n| 80   | 0.250                     | 2.6719         | 0.34188     | 0.13204    |\n| 90   | 0.300                     | 1.2188         | 0.24188     | 0.10321    |\n| 100  | 0.200                     | 1.4141         | 0.34438     | 0.22997    |\n\n**Paper claim: \"frac_zero_std 0.125 at step 70\"** → **VERIFIED**. frac_reward_zero_std = 0.125 at **step 70** (exact match).\n\n---\n\n## Summary\n\n| Claim | Source Run | Verified Value | Step | Status |\n|-------|-----------|---------------|------|--------|\n| grad_norm drops to 0.017 | tyv20u2k | 0.01733 | 90 | **VERIFIED** |\n| frac_zero_std 0.125 at step 70 | li451oi4 | 0.12500 | 70 | **VERIFIED** |\n\nNote: The W&B metric key is `train/frac_reward_zero_std` (not `frac_zero_std`). Both claims are confirmed directly from W&B step-level history data."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-wandb-step-metrics-two-runs.md"
+}

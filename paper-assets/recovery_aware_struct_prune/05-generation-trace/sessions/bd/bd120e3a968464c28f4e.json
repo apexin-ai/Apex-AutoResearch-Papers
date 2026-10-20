@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd120e3a968464c28f4e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo qwen math prep",
+  "task_key": "worker_code_grpo_qwen_math_prep_20260516T113804",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_qwen_math_prep_20260516T113804_result.json",
+    "occurrence": 1,
+    "bytes": 3949,
+    "sha256": "fe726d1cce1c5361a4248012b6d0bc66aa2bb8dd0683e622bd982ba1b56c4ea6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部信息收集完毕。汇报如下：\n\n---\n\n## 兼容性分析结果\n\n### 1. EOS 问题：**需要修复**\n\n两个 SFT 模型的 `generation_config.json` 都只有：\n```json\n\"eos_token_id\": [151643]\n```\n缺少 `151645` (`<|im_end|>`)。\n\n`config.json` 中 `eos_token_id` 也只是 `151643`（标量）。\n\n**GRPO 脚本（`train_grpo.py` 和 `train_grpo_v5.py`）都没有显式设置 `eos_token_id`**——只有一处 `tokenizer.pad_token = tokenizer.eos_token`，没有任何 `generation_config` 或 `eos_token_id` 的覆盖。TRL 的 `GRPOTrainer` 内部调用 `model.generate()` 时会使用 `model.generation_config`，因此生成时**不会在 `<|im_end|>` 处停止**。\n\n`max_completion_length` 会截断（v5 脚本支持此参数），所以不会真正无限生成，但会浪费大量计算在无意义 token 上，且奖励信号质量下降（答案可能被噪声淹没）。\n\n### 2. 模型路径：**存在，但目录名与预期不同**\n\n实际路径：\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20/` ✅ 存在（12.3GB）\n- `/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20/` — 需确认\n\n（你任务描述中写的是 `sft_rasp_20_qwen_math`，但实际是 `sft_qwen_math_rasp_20`）\n\n### 3. v5 vs v1 脚本选择\n\n应该用 **`train_grpo_v5.py`**，因为它有：\n- `beta` 参数（v1 没有）\n- `loss_type` 参数（支持 dapo）\n- `format_reward_weight` 参数\n- `repetition_penalty` 参数\n- `gradient_checkpointing` 参数\n- `optim` 参数（支持 adamw_8bit）\n- monkey-patch 让 ref_model 正确加载剪枝模型\n\n### 4. 推荐修复方案（最小侵入）\n\n**方案 A**（推荐）：修改两个 SFT 模型的 `generation_config.json`，将 `eos_token_id` 改为 `[151643, 151645]`。一次修改，所有下游脚本（GRPO + eval）都受益。\n\n**方案 B**：在 `train_grpo_v5.py` 中加载模型后覆盖 `model.generation_config.eos_token_id`。侵入代码，但不改模型文件。\n\n### 5. 启动命令\n\n修复 EOS 后，Qwen Math GRPO 启动命令（参照 DeepSeek 版本参数，`beta` 调为 0.04, `lr` 调为 5e-7）：\n\n```bash\n# RASP on GPU 2\ncd /root/recovery_aware_struct_prune\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nexport HF_HOME=/root/autodl-tmp/.hf_cache\n\nCUDA_VISIBLE_DEVICES=2 nohup python3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_rasp_20 \\\n  --gpu 2 \\\n  --max_completion_length 1024 \\\n  --beta 0.04 \\\n  --temperature 0.4 \\\n  --repetition_penalty 1.15 \\\n  --format_reward_weight 0.1 \\\n  --gradient_checkpointing true \\\n  --optim adamw_bnb_8bit \\\n  --loss_type dapo \\\n  --learning_rate 5e-7 \\\n  --max_steps 100 \\\n  --save_total_limit 2 \\\n  --save_steps 5 \\\n  --reward_desert_patience 50 \\\n  --run_name grpo_qwen_math_rasp_20 \\\n  > /root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_qwen_math_rasp_20.log 2>&1 &\n\n# Standard on GPU 3\nCUDA_VISIBLE_DEVICES=3 nohup python3 src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_standard_20 \\\n  --gpu 3 \\\n  --max_completion_length 1024 \\\n  --beta 0.04 \\\n  --temperature 0.4 \\\n  --repetition_penalty 1.15 \\\n  --format_reward_weight 0.1 \\\n  --gradient_checkpointing true \\\n  --optim adamw_bnb_8bit \\\n  --loss_type dapo \\\n  --learning_rate 5e-7 \\\n  --max_steps 100 \\\n  --save_total_limit 2 \\\n  --save_steps 5 \\\n  --reward_desert_patience 50 \\\n  --run_name grpo_qwen_math_standard_20 \\\n  > /root/autodl-tmp/recovery_aware_struct_prune/logs/grpo_qwen_math_standard_20.log 2>&1 &\n```\n\n等你确认选方案 A 还是 B 来修复 EOS。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-qwen-math-prep.md"
+}

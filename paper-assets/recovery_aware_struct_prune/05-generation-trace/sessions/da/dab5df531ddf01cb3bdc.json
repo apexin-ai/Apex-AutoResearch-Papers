@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "dab5df531ddf01cb3bdc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis sft d013",
+  "task_key": "worker_analysis_sft_d013_20260515T003006",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_d013_20260515T003006.log",
+    "occurrence": 1,
+    "bytes": 874812,
+    "sha256": "c21847f5985e584952ec8db30f4463d8540b6e7313f360db5ecffdd90cc984d0"
+  },
+  "statistics": {
+    "messages": 577,
+    "user_turns": 0,
+    "tool_calls": 227,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 119,
+      "tool_call": 227,
+      "tool_result": 227,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 577,
+      "chunks": [
+        {
+          "path": "dab5df531ddf01cb3bdc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "dab5df531ddf01cb3bdc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "dab5df531ddf01cb3bdc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "dab5df531ddf01cb3bdc-part-0004.json",
+          "message_count": 37
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sft-d013.md"
+}

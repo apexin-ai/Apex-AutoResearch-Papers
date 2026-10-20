@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "53758af8e331aa20c602",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1c kill eval and sft 1p5b",
+  "task_key": "worker_code_e1c_kill_eval_and_sft_1p5b_20260518T112451",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1c_kill_eval_and_sft_1p5b_20260518T112451_result.json",
+    "occurrence": 1,
+    "bytes": 467,
+    "sha256": "b0ca79bee266b3d0e682c320c2eb6a798602931be1b888e88ea737620b28b903"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成：\n\n- **Killed**: PID 796502 (1.5B post-prune eval on cuda:0)\n- **Launched**: `sft_cka_only_20_1p5b` — PID 797860, tmux session `sft_cka_only_20_1p5b`\n  - 服务器: westb-23072 cuda:0, 显存 28524 MiB\n  - 配置: 2 epochs, lr=2e-5, batch_size=4, grad_accum=2 (effective batch 8), GSM8K 7473 samples, 1870 total steps\n  - 速度: ~3.5 it/s\n  - **预计 ~9 分钟完成** (~19:37 UTC)\n- **Registry**: `sft_cka_only_20_1p5b` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1c-kill-eval-and-sft-1p5b.md"
+}

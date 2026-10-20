@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92335c5d66eb458e1ad3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779376553.md",
+  "task_key": "loop_20_1779376553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779376553.md",
+    "occurrence": 1,
+    "bytes": 5107,
+    "sha256": "c03e4ef591d2d4f65e3ad577ef3ee0244ed1f341eb1a0d8fd29c899fef8f9667"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T08:01:25+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：cuda:0/1/2/3，服务器 westb-23072 和 westd-29022。不得用白名单外 GPU\n- westd-29022 **网络离线**：所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF 库 HEAD 请求直接崩溃（已踩坑 5+ 次）\n- westb 模型路径注意：RASP 20% SFT 模型是 `sft_rasp_20_1p5b`（不是 `sft_rasp_20`），之前因路径错误 failed 过\n- 投稿 deadline：**EMNLP 2026 ARR May 25 ≈ 还剩 ~4 天**，所有实验围绕补强 25% cross-sparsity 数据点\n- Round 3 审稿已 resolve 全部 34 issues，主文本 ≤8 页编译通过。**不要动论文结构，只补数据**\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, 数据/模型 `/root/autodl-tmp/recovery_aware_struct_prune/`, Python `/root/miniconda3/bin/python`, conda base 环境, ~23GB free\n- **westd-29022**: 4× RTX PRO 6000, 同上路径结构, conda base 环境, ~21GB free（需清理到 ≥48GB，计划删 dense model 15G + old ckpt 12G）\n- W&B: 项目内实验用 W&B 追踪（GRPO 训练），eval 类实验无 W&B\n- 活跃进程:\n  - westb cuda:0: eval_math500_sft_standard_25_v2 (PID 62714) — MATH-500 eval, ETA ~11h\n  - westb cuda:1: eval_gsm8k_grpo_standard_25 (PID 75282) — GSM8K eval Standard 25% GRPO\n  - westd cuda:0: eval_gsm8k_grpo_cka_only_25_v3 (PID 322443) — **#1 优先级** GSM8K eval CKA-only 25% GRPO\n  - westd cuda:1: eval_gsm8k_sft_cka_only_25 (PID 329698) — GSM8K eval CKA-only 25% SFT\n  - westd cuda:2: eval_gsm8k_sft_random_20 (PID 329770) — GSM8K eval Random 20% SFT\n- 活跃 cron: 5 个，分别监控上述 5 个 RUNNING 实验\n- 活跃 Worker: `worker_ssh_scp_sft_std25_and_eval_cuda3` (running) — 在 westd cuda:3 做 SFT Standard 25% 相关操作\n\n### 3. 📊 当前状态\n上一轮完成了：Round 3 全部 34 review issues resolved + 定义一致性修复 + grpo_standard_25_westb 和 grpo_cka_only_25 训练完成 + SFT Random 20% 训练完成。\n\n当前 5 个 eval 实验全部在跑，目标是补齐 25% sparsity 的 cross-method 对比数据（Table 2 扩展行）：\n- **eval_gsm8k_grpo_cka_only_25_v3**: 最关键——CKA-only 25% GRPO 后 GSM8K accuracy。前两版因路径错误 failed，v3 已修正用根目录模型。对比锚：Standard 25% GRPO reward 近乎 collapse (0.00813)\n- **eval_gsm8k_grpo_standard_25**: Standard 25% GRPO GSM8K，预期极低（reward stagnation at 0.0125@step10）\n- **eval_gsm8k_sft_cka_only_25** / **eval_gsm8k_sft_random_20**: SFT baseline floor\n- **eval_math500_sft_standard_25_v2**: MATH-500 cross-benchmark, 非关键路径\n\n等待中：\n- 1 个 running Worker 做 westd cuda:3 的 SFT Standard 25% 拷贝+eval\n- westd 磁盘清理还未完成（需从 21GB 清到 ≥48GB）\n- westd cuda:3 空闲，Worker 正在处理\n\n### 4. 📋 待办（条件触发式）\n- eval_gsm8k_grpo_cka_only_25_v3 完成 → **立即更新 registry + 写入 Table 2 25% 行 CKA-only GRPO 格 → 汇报 Director**（这是 cross-sparsity 最后关键数据点）\n- eval_gsm8k_grpo_standard_25 完成 → 更新 registry，预期 accuracy 极低（确认 stagnation），写入 Table 2 25% Standard GRPO 格\n- eval_gsm8k_sft_cka_only_25 + eval_gsm8k_sft_random_20 完成 → 更新 registry，补齐 SFT floor\n- eval_math500_sft_standard_25_v2 完成 → 更新 MATH-500 cross-benchmark 表\n- Worker cuda:3 完成 → 检查产出，如果 SFT Standard 25% eval 已起 → 注册 cron 监控\n- westd 磁盘清理完成（≥48GB）→ 可启动 GRPO Random 20% 等 Tier 4 实验\n- 所有 25% eval 完成 → **汇总 25% cross-method 对比（CKA-only vs Standard vs RASP vs Random），更新论文 Table 2，通知 Director 投稿准备就绪**\n\n### 5. 🎯 战略上下文\n**核心发现**：CKA-only pruning criterion 在 GRPO recovery 上显著优于 importance-based (Standard)。20% 三种子: +4.55pp (p=0.0009)；15% 三种子: +7.20pp (p<0.001)。25% 更极端——Standard GRPO reward 几乎 collapse (0.0125@step10)，CKA-only reward=0.2875，差距 20x+。\n\n**论文定位**: Analysis paper，不是方法论文。核心 claim: pruning criterion shapes post-RLVR recovery capacity。已有 15%/20% 三种子统计显著数据入论文。25% 是补强数据，reviewer 评估加入 25% 后天花板 3.5→有望 4.0。\n\n**易错点**:\n- eval_gsm8k_grpo_cka_only_25 前两版因模型路径错误 failed（v1 用了 checkpoint-100 子目录，v2 也路径错误）。v3 修正用 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_25`（根目录即完整模型）。**不要再改路径**\n- Standard 25% GRPO reward 几乎为零不代表 bug——这是真实结果（Standard pruning 在高稀疏度下 GRPO 无法恢复），是论文核心 evidence\n- westd 网络离线是永久约束，不是临时故障，每条命令都要加 offline flag\n- PREPARING 队列里有 30 个实验，大部分是历史遗留/低优先级，**不要盲目全部启动**。当前优先级只有 25% eval 补齐 + 投稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779376553.md"
+}

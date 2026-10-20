@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77e662a424b320001f10",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops diagnose eval math500 sft alpha3p0 v2",
+  "task_key": "worker_ops_diagnose_eval_math500_sft_alpha3p0_v2_20260524T132743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose_eval_math500_sft_alpha3p0_v2_20260524T132743_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "814c0b105bff4500f124b71511598db6a9da3311759ef3d2af377586355111f5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success，cron 已无活跃任务（已被之前的触发自动清除）。\n\n**结果**: `eval_math500_sft_rasp_alpha3p0_20_fixed_v2` 成功完成。\n- **MATH-500 Accuracy: 23.60% (118/500)**, 95% CI ±1.90%\n- EOS: 356 natural, 144 truncated, avg response length 744.4 tokens\n- 耗时 ~4h17m"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-eval-math500-sft-alpha3p0-v2.md"
+}

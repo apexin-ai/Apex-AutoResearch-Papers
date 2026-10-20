@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f367de7eb1995f30c22b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose inference speedup plan016",
+  "task_key": "worker_diagnose_inference_speedup_plan016_20260516T213037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_inference_speedup_plan016_20260516T213037_result.json",
+    "occurrence": 1,
+    "bytes": 2340,
+    "sha256": "3a4329943c428129a4f2ec7d11b0cf307bf9b2d206275d44f45755c545f383c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 失败根因：模型权重 shape mismatch（代码 bug）\n\n`sft_rasp_20` 的剪枝后 checkpoint 权重维度与 `AutoModelForCausalLM.from_pretrained` 默认初始化的全尺寸模型不匹配，且未设置 `ignore_mismatched_sizes=True`。\n\n### 关键错误信息\n\n```\nQwen2ForCausalLM LOAD REPORT from: /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20\nmodel.layers.{0...27}.mlp.up_proj.weight   | MISMATCH | ckpt: torch.Size([8128, 3584]) vs model:torch.Size([18944, 3584])\nmodel.layers.{0...27}.mlp.down_proj.weight | MISMATCH | ckpt: torch.Size([3584, 9480]) vs model:torch.Size([3584, 18944])\nmodel.layers.{0...27}.mlp.gate_proj.weight | MISMATCH | ckpt: torch.Size([11508, 3584]) vs model:torch.Size([18944, 3584])\n\nRuntimeError: You set `ignore_mismatched_sizes` to `False`, thus raising an error.\n```\n\n崩溃位置：`benchmark_inference.py:18` 的 `AutoModelForCausalLM.from_pretrained()`\n\n### 已完成部分\n\n- Dense 模型 (`DeepSeek-R1-Distill-Qwen-7B`) benchmark **已完成**（50 prompts 全部跑完）\n- 崩溃发生在加载第二个模型 `rasp_20` 时\n\n### 环境状态\n\n- tmux session 已不存在（进程已退出）\n- 无 OOM kill 记录\n- GPU cuda:1 空闲（0MiB），cuda:0 被其他进程占用\n\n### 修复方案\n\n`sft_rasp_20` 是结构剪枝后的模型，MLP 层维度已缩小。不能用原始 `config.json`（对应全尺寸模型）直接 `from_pretrained`。需要修改 `benchmark_inference.py` 的加载逻辑：\n\n**方案 A**（推荐）：确保 `sft_rasp_20/config.json` 中的 `intermediate_size` 已更新为剪枝后的实际尺寸。如果该 checkpoint 是用自定义加载逻辑保存的，需要同步更新 config。\n\n**方案 B**：在 `from_pretrained` 中加 `ignore_mismatched_sizes=True`，但这会导致不匹配的层被随机初始化，推理结果无意义。**不推荐。**\n\n**方案 C**：使用项目自身的剪枝模型加载函数（可能在 `src/` 中已有），替代直接调用 `AutoModelForCausalLM.from_pretrained`。\n\n需要确认：`sft_rasp_20` 的保存方式是怎样的？如果每层剪枝比例不同（从 log 看 up_proj=8128, gate_proj=11508, down_proj 输入=9480），则 config.json 无法用单一 `intermediate_size` 描述，必须用自定义加载逻辑。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-inference-speedup-plan016-copy-2.md"
+}

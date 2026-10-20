@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "669984ed9fdbcb3100d8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check eval grpo standard 25",
+  "task_key": "worker_ops_check_eval_grpo_standard_25_20260516T212851",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_grpo_standard_25_20260516T212851_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "908dce85b834dbc5acf9d953ee5c6b65827ff5c17ea3569246c7441294eba703"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**进程状态：ALIVE，正在运行中**\n\n- **PID 48540** (bash wrapper) 存活，实际 Python 进程 **PID 48541**，CPU 152%，正常运行\n- 模型路径正确：`grpo_standard_25`（不是 qwen_math 版本）\n- 参数：`--max_samples 1319 --seed 42`，输出到 `eval_grpo_standard_25_n1319.json`\n\n**进度：16/1319，约 1%**\n\n- 启动时间：05:19，当前约 ~4s/sample\n- 预估剩余时间：约 80-90 分钟\n- 输出文件 `eval_grpo_standard_25_n1319.json` 尚未生成（评估未完成）\n\n**已有结果文件（旧的，非本次运行）：**\n- `eval_grpo_standard_25.json` (03:56) — 来自之前 tmux session，使用了错误的 qwen_math 模型，不可用\n- `eval_grpo_standard_25_qwen_math.json` (00:31) — qwen_math 模型的结果\n\n**结论：** 新的正确评估正在正常运行，需要再等约 80 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-grpo-standard-25.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6331853ad33595e11ee7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose grpo random 20 retrain",
+  "task_key": "worker_ssh_diagnose_grpo_random_20_retrain_20260523T161729",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_grpo_random_20_retrain_20260523T161729_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "c9f3249547f166b2912a6715e12850da733f8d01b0b581a8e553cd834e235fd3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**失败原因**：提交命令中 `--save_only_model True` 不是 `train_grpo_v5.py` 支持的参数，argparse 直接拒绝，EXIT_CODE=2。\n\n**修复**：去掉该参数重跑即可，其他条件（checkpoint、磁盘、依赖）均正常。已追加至 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-grpo-random-20-retrain.md"
+}

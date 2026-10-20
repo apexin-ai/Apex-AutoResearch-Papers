@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ede20b0dd8af45ccb655",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix gpu0 collision",
+  "task_key": "worker_fix_gpu0_collision_20260521T223650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gpu0_collision_20260521T223650_result.json",
+    "occurrence": 1,
+    "bytes": 1232,
+    "sha256": "d23a4665213b74de26caf29e906edfe11be298757d5d401ea85f31daed919618"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. GPU 0 碰撞 — 已解决\n- 杀掉 eval_math500 子进程 PID 426650（父进程 426645 的 SIGTERM 未传播到子进程，需额外杀子进程）\n- GPU 0 现在只有 eval_gsm8k_sft_alpha4_20_v4 (PID 426311, 12712 MiB)\n\n### 2. westb-23072 磁盘状况\n- **250G 总量，237G 已用，14G 可用 (95%)**\n- 大量 12G 级模型 checkpoint（约 17 个 × 12G = 204G），另有 9 个 1.5B 模型（各 2.8G ≈ 25G）\n- 可用空间不足以复制一个完整的 7B 模型（~12G）\n\n### 3. westd-29022 GPU 全览\n| GPU | 进程 | 显存占用 |\n|-----|------|---------|\n| 0 | eval_gsm8k (426311) | 12712 MiB |\n| 1 | python (382472) | 17930 MiB |\n| 2 | python (412822) | 17518 MiB |\n| 3 | python (385685) | 17642 MiB |\n\n### 4. 建议：eval_math500_grpo_standard_20_fair_2048 在哪跑\n- **westd-29022 GPU 0**：等 eval_gsm8k 完成后立即重新提交。模型已在 westd 本地（`/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair/`），无需跨机复制。\n- westb 14G 剩余空间装不下 12G 模型，不建议往 westb 复制。\n- 如果 GPU 1/2/3 有任务先结束，也可以用，但 GPU 0 的 eval 是轻量评测应该很快完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gpu0-collision.md"
+}

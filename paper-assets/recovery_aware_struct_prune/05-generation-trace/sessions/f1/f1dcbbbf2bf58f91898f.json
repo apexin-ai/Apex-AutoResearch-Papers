@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1dcbbbf2bf58f91898f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research graspune code prep",
+  "task_key": "worker_research_graspune-code-prep_20260514T082040",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_graspune-code-prep_20260514T082040_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "26ddf0b0714f2fc5a0ff9e7459e5b32bd0de84c3312fe779628dc59d03250b12"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已保存到项目 `memory.md`。\n\n总结：\n\n**GRASPrune (ACL 2026)** 是一个现成可用的 structured pruning baseline。核心发现：\n\n1. **直接兼容**: 原生支持 Qwen 架构，attention pruning 天然在 KV group 粒度（`gate_score_kv` shape = `(num_key_value_heads,)`），完美满足 GQA group 硬约束。\n\n2. **输出格式兼容**: 产出 `pruned_state_dict.safetensors` + `meta.json`，可直接被我们的 `rebuild.py:load_pruned_model()` 加载，无需修改现有代码。\n\n3. **推荐方案**: 在服务器 clone 官方 repo，跑 `python train.py --model-family qwen --keep-ratio 0.65`，然后接入我们的 GRPO recovery pipeline。不需要重新实现。\n\n4. **公平性注意点**: GRASPrune 有 rescale compensation（Standard/RASP 没有），校准数据默认用 WikiText2（我们用 GSM8K），论文中需讨论这些差异。\n\nSources:\n- [GRASPrune paper](https://arxiv.org/abs/2604.19398)\n- [GRASPrune GitHub](https://github.com/ZiY-Wang/GRASPrune)\n- [Original GraSP (2020)](https://arxiv.org/abs/2002.07376)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-graspune-code-prep.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e6a1ad15b9963a34ad7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix alpha ablation script",
+  "task_key": "worker_code_fix-alpha-ablation-script_20260515T044743",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix-alpha-ablation-script_20260515T044743_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "4e23a506f43ef94e42212394b6c9316238b7d1e48256df85ab83552912f8866f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个脚本全部验证通过，α值均为 `{0.0, 0.25, 0.5, 1.0, 2.0}`。\n\n修改前后对比：\n\n| 脚本 | 修改前 | 修改后 |\n|------|--------|--------|\n| `run_alpha_ablation.sh` (v1) | `0.0 0.5 1.0 2.0 4.0` | `0.0 0.25 0.5 1.0 2.0` |\n| `run_alpha_ablation_v2.sh` | `0.0 0.25 0.5 0.75 1.0` | `0.0 0.25 0.5 1.0 2.0` |\n| `run_alpha_ablation_v3.sh` | `0.0 0.25 0.5 1.0 2.0` | 无需修改（已正确） |\n\nv1同步更新了 `ALPHA_TAGS`：`alpha00 alpha05 alpha10 alpha20 alpha40` → `alpha00 alpha025 alpha05 alpha10 alpha20`。v2的内嵌Python汇总脚本中的 `alphas` 列表也已同步修正。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-alpha-ablation-script.md"
+}

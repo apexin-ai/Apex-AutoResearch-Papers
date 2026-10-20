@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b828dde3cc13da1b30c6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd all status check",
+  "task_key": "worker_diagnose_westd_all_status_check_20260522T141111",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_all_status_check_20260522T141111_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "bf9253f654862e0bfa56702c8ecde9fc61d9d2477984b0fee159ea6d870fcd49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== P0: MF5 depth-first eval 结果 ===\nNO_RESULT_FILES (results/eval_gsm8k*depth_first*.json 不存在)\nNO_RESULT_ALT (/root/autodl-tmp/ 路径也不存在)\nNO_SFT_RESULT\nNO_GRPO_RESULT\nNO_SFT_LOG\nNO_GRPO_LOG\n\n=== P1: seed123 eval 进度 (westd:2) ===\nEvaluating: 79% | 1041/1319 [1:33:40]\nProgress @ 1000/1319: acc=0.5300, eos_rate=99.30%, avg_len=180\nProgress @  950/1319: acc=0.5347, eos_rate=99.37%, avg_len=178\n\n=== P2: α=3.0 GRPO eval 进度 (westd:0) ===\nEvaluating: 81% | 1067/1319 [2:10:03]\nProgress @ 1050/1319: acc=0.6343, eos_rate=98.67%, avg_len=218\nProgress @ 1000/1319: acc=0.6300, eos_rate=98.60%, avg_len=221\nNO_ALPHA3_V2_LOG\n\n=== GPU 总览 ===\nGPU  | mem_used   | mem_total  | util\n  0  | 29599 MiB  | 97887 MiB  | 99%   ← PID 43755 (α=3.0 GRPO eval)\n  1  |     0 MiB  | 97887 MiB  |  0%   ← idle\n  2  | 26219 MiB  | 97887 MiB  | 90%   ← PID 46229 (seed123 eval)\n  3  |     0 MiB  | 97887 MiB  |  0%   ← idle\n```\n\n**小结**：P0 depth-first 的 eval 结果文件和日志均不存在（未启动或路径不对）。P1 seed123 和 P2 α=3.0 两个 eval 都在跑，分别在 cuda:2 (79%, acc≈53%) 和 cuda:0 (81%, acc≈63.4%)，预计各剩 ~10-15 分钟。cuda:1 和 cuda:3 空闲。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-all-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4485351728f213d6f3db",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill duplicates westd",
+  "task_key": "worker_ssh_kill_duplicates_westd_20260521T045859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_duplicates_westd_20260521T045859_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "6d1ff859a6aa88d651551bd1c5f69b3006440e21f8f20642c438c00af9c97389"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | Utilization | Memory Used |\n|-----|------------|-------------|\n| 0 | 98% | 14281 MiB |\n| 1 | 91% | 12593 MiB |\n| 2 | 0% | 0 MiB |\n| 3 | 0% | 0 MiB |\n\nGPU 0/1 仍有负载（应为保留的 322443 和 322611），GPU 2/3 已完全释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-duplicates-westd.md"
+}

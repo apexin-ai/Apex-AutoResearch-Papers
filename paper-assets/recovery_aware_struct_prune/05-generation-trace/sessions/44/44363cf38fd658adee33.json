@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "44363cf38fd658adee33",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "eval sft grasp 20 westd retry",
+  "task_key": "worker_eval_sft_grasp_20_westd_retry_20260516T030437",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sft_grasp_20_westd_retry_20260516T030437.log",
+    "occurrence": 1,
+    "bytes": 1277457,
+    "sha256": "7e395247b90b2db505851074704c75853a329eff7fcc13d88ceb1934b028392c"
+  },
+  "statistics": {
+    "messages": 1087,
+    "user_turns": 1,
+    "tool_calls": 458,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 136,
+      "tool_call": 458,
+      "tool_result": 458,
+      "user": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 1028,
+      "chunks": [
+        {
+          "path": "44363cf38fd658adee33-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0006.json",
+          "message_count": 128
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 59,
+      "chunks": [
+        {
+          "path": "44363cf38fd658adee33-part-0006.json",
+          "message_count": 52
+        },
+        {
+          "path": "44363cf38fd658adee33-part-0007.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-sft-grasp-20-westd-retry.md"
+}

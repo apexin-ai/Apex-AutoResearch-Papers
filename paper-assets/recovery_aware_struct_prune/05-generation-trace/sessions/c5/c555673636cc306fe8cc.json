@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c555673636cc306fe8cc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh cka heatmap 15pct",
+  "task_key": "worker_ssh_cka_heatmap_15pct_20260521T013817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cka_heatmap_15pct_20260521T013817.log",
+    "occurrence": 1,
+    "bytes": 559784,
+    "sha256": "0c0f5263cad6a3463693b222a29f045e6350ed472cc46309b332439efac6e9a3"
+  },
+  "statistics": {
+    "messages": 216,
+    "user_turns": 0,
+    "tool_calls": 72,
+    "roles": {
+      "log": 1,
+      "system": 11,
+      "record": 3,
+      "assistant": 56,
+      "tool_call": 72,
+      "tool_result": 72,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "c555673636cc306fe8cc-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c555673636cc306fe8cc-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-cka-heatmap-15pct.md"
+}

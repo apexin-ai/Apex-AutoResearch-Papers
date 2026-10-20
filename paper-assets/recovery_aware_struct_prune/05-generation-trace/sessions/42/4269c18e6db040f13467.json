@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4269c18e6db040f13467",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb checkpoint scan",
+  "task_key": "worker_ssh_westb_checkpoint_scan_20260520T223907",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_checkpoint_scan_20260520T223907_result.json",
+    "occurrence": 1,
+    "bytes": 1892,
+    "sha256": "9d1cac9dbf9eb68117eddf16334d6f0b06c42638d2bcf34ace47f7ae89599ac5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 扫描结果\n\n### 磁盘\n`/root/autodl-tmp`: 227G/250G used, **24G 可用**\n\n### Eval 脚本\n| 脚本 | 状态 |\n|------|------|\n| eval_gsm8k.py | ✓ |\n| eval_mbpp.py | ✓ |\n| eval_humaneval.py | ✓ |\n\n### 数据集缓存\n| 数据集 | 状态 |\n|--------|------|\n| GSM8K | ✓ 已缓存 |\n| MBPP | ✗ 未缓存 |\n| HumanEval | ✗ 未缓存 |\n\n### 可用 Checkpoint（30 个目录）\n\n**Pruned 模型（10）：**\n`pruned_cka_only_20`, `pruned_cka_only_20_1p5b`, `pruned_cka_only_20_qwen_math`, `pruned_rasp_20`, `pruned_rasp_20_1p5b`, `pruned_rasp_rlvr_20`, `pruned_standard_20`, `pruned_standard_20_1p5b`, `pruned_standard_20_qwen_math`, `pruned_standard_25`\n\n**SFT 模型（10）：**\n`sft_cka_only_20`, `sft_cka_only_20_1p5b`, `sft_qwen_math_cka_only_20`(+final), `sft_rasp_20_1p5b`, `sft_rasp_rlvr_20`, `sft_standard_20_1p5b`, `sft_standard_20_qwen_math`(+final), `sft_standard_25`\n\n**GRPO 模型（5）：**\n`grpo_cka_only_20`, `grpo_cka_only_20_1p5b`, `grpo_cka_only_20_seed123`, `grpo_random_20`, `grpo_rasp_20_1p5b`\n\n### 已有 Eval 结果 vs 缺口\n\n**GSM8K（覆盖最全）：** 绝大部分模型已评估，缺口：\n- `grpo_random_20` — 无 GSM8K 结果\n\n**MBPP（仅 2 个）：**\n- ✓ sft_cka_only_20_1p5b, sft_standard_20_1p5b\n- ✗ 其余所有模型均未评估 MBPP\n\n**HumanEval（仅 3 个）：**\n- ✓ grpo_standard_20_1p5b, sft_rasp_20_1p5b, sft_standard_20_1p5b（均为 1.5B）\n- ✗ 其余所有模型均未评估 HumanEval\n\n### 立即可跑 vs 需额外准备\n\n| 类别 | 条件 |\n|------|------|\n| **GSM8K eval — 立即可跑** | 脚本 ✓ + 数据集缓存 ✓，可离线跑 |\n| **MBPP eval — 需下载数据集** | 脚本 ✓ 但无 `.arrow` 缓存，需联网下载 |\n| **HumanEval eval — 需下载数据集** | 脚本 ✓ 但无 `.arrow` 缓存，需联网下载 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-checkpoint-scan-copy-2.md"
+}

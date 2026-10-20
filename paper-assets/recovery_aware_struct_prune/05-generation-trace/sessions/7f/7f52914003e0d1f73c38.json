@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7f52914003e0d1f73c38",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh gpu check both servers",
+  "task_key": "worker_ssh_gpu_check_both_servers_20260522T230647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu_check_both_servers_20260522T230647_result.json",
+    "occurrence": 1,
+    "bytes": 1441,
+    "sha256": "825e3c8e948e05e2701d976e40fd5a2c7bfe6ae0410ce607189f4b224aa09970"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n## westd-32935 GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| 0 | 16.7/97.9 GB | 98% | **占用** | `eval_math500_grpo_rasp_alpha2p0_20` (PID 83718) |\n| 1 | 17.0/97.9 GB | 98% | **占用** | `eval_math500_sft_cka_only_20` (PID 75284) |\n| 2 | 30.4/97.9 GB | 96% | **占用** | `eval_math500_grpo_random_20_v2` (PID 83161) + 另一进程 (PID 83554) |\n| 3 | 12.7/97.9 GB | 94% | **占用** | `eval_math500_grpo_rasp_alpha1p0_20` (PID 86243) — 新任务，评估 `grpo_stage2_rasp_20_fair` |\n\n**GPU 3 不空闲**——之前的 `eval_math500_sft_rasp_alpha1p0_20_v2` 已完成，但新任务 `eval_math500_grpo_rasp_alpha1p0_20` 已在其上启动。\n\n**eval_math500_sft_rasp_alpha1p0_20_v2 结果**：`accuracy = 0.212` (MATH-500, α=1.0 SFT RASP)\n\n## westb-23072 GPU 状态\n\n| GPU | 显存占用 | 利用率 | 状态 | 进程 |\n|-----|---------|--------|------|------|\n| 0 | 0/97.9 GB | 0% | **空闲** | 无进程 |\n| 1 | 16.5/97.9 GB | 99% | **占用** | `eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2` (PID 220343) |\n\n**E_MATH500_SFT_QWEN_CKA 失败分析**：结果文件不存在，且模型目录 `sft_qwen_math_cka_only_20` 也不存在。存在的是 `sft_qwen_math_cka_only_20_final`——可能是路径名不匹配导致失败。\n\n## 空闲 GPU 汇总\n\n仅 **westb-23072 cuda:0** 空闲，可调度新任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu-check-both-servers.md"
+}

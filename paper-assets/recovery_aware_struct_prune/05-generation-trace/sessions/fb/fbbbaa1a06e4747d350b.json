@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbbbaa1a06e4747d350b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh full status westb check",
+  "task_key": "worker_ssh_full_status_westb_check_20260522T150432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_full_status_westb_check_20260522T150432_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "7824bd5a27427f62f8aafdc04d97f6d9f824b1ba4fcc0833fad0bfffd6b7c659"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态汇报\n\n### GPU:0 — seed456 GRPO v5 (PID 209508)\n- **状态: Running** ✓\n- **PID 209508** 确认存活，已运行 ~2h，CPU 118%，显存 55718/97887 MiB\n- **进度**: completions 已到 `completions_00060.parquet`（共 60 steps），目标 100 steps → **约 60% 完成**\n- **checkpoint-100 尚未生成**，训练仍在进行中\n- 输出目录目前只有 `completions/` 子目录\n\n### GPU:1 — MF3 v2 N=500 eval (PID 217798)\n- **状态: 已崩溃（进程残留）** ✗\n- PID 217798 仍占用 GPU 显存 16538 MiB，但 **eval 脚本已报错退出**\n- **错误原因**: `OSError: Can't load the configuration of 'grpo_qwen_math_cka_only_20'` — model_path 传入的是相对名称而非完整路径，找不到 config.json\n- 日志中仅匹配到 2 行 \"correct\"，基本没有产出有效结果\n- 进程可能是 vLLM/模型加载残留，需 kill 释放显存\n\n### 磁盘\n- `/root/autodl-tmp/`: 218G/250G used (88%)，剩余 33G\n\n### 需要处理\n1. **GPU:1**: kill PID 217798 释放显存，修复 model_path 后重跑 MF3 v2 eval\n2. **GPU:0**: 正常运行，预计再 ~1.3h 完成剩余 40 steps"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-full-status-westb-check.md"
+}

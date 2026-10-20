@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "79af03fa1722ce1b4064",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure plan",
+  "task_key": "worker_paper_figure-plan_20260515T044008",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure-plan_20260515T044008_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "0ae486dfc617e7e34ff86831aa18df5f32142b973b004130d85cd4ea8b9c7ced"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/figure_plan.md`。\n\n6 张图的设计方案：3 张必需（Pipeline 概览、CKA-Recovery 散点图、Recovery 轨迹折线图）+ 3 张可选（α ablation、per-layer 分布、CKA 热力图）。数据状态方面，Fig 5/6 的数据已有，Fig 2/3 待 correlation analysis 运行和 wandb 提取，Fig 4 待 ablation 实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-plan.md"
+}

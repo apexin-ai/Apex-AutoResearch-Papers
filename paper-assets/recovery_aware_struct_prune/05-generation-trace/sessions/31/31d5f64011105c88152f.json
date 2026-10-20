@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "31d5f64011105c88152f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix westd eval rerun",
+  "task_key": "worker_ops_fix-westd-eval-rerun_20260515T190254",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix-westd-eval-rerun_20260515T190254_result.json",
+    "occurrence": 1,
+    "bytes": 710,
+    "sha256": "8f31dbd91a5f7fa5f34221f5853f8bbd2607f5c6bc8e74ef3985a3c6bd399a0c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行摘要：\n\n1. **Kill 旧进程** — PID 55353/55286 已终止\n2. **eval 脚本修复** — westd `/root/autodl-tmp/` 下的旧版 eval_gsm8k.py（6450B，无 chat template）已用 westb 正确版本（14595B，有 `apply_chat_template`）覆盖\n3. **双卡 eval 已启动**：\n   - `eval_sft_rasp_20_westd_n100` — PID 58234, cuda:0, 显存 12.5GB/98GB\n   - `eval_sft_standard_20_westd_n100` — PID 58356, cuda:1, 显存 8.2GB/98GB\n4. **Registry** — 两个实验状态已更新为 RUNNING（retry_count=1），notes 标注\"重跑：修复 chat template 不匹配\"\n\n模型正在加载中，GPU 利用率会随推理开始上升。预期 N=100 eval 约 1-1.5 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-westd-eval-rerun.md"
+}

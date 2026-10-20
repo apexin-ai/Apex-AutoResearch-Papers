@@ -1,0 +1,1145 @@
+{
+  "schema_version": "1.0",
+  "id": "d500b882fdf1d4f044c9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval pass k batch westd",
+  "task_key": "worker_eval_pass_k_batch_westd_20260516T164155",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_pass_k_batch_westd_20260516T164155.jsonl",
+    "occurrence": 1,
+    "bytes": 35670,
+    "sha256": "9f51c61d058a6b3406304ef9d3fac928c0602065b9aa4746ae34d69b83563fc8"
+  },
+  "statistics": {
+    "messages": 55,
+    "user_turns": 0,
+    "tool_calls": 27,
+    "roles": {
+      "tool_call": 27,
+      "tool_result": 27,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T16:45:34.051808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T16:45:34.052140+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T16:45:34.052337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T16:45:34.052478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T16:45:34.052615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 54749 MiB, 97887 MiB, 90 %\\\\n1, 0 MiB, 97887 MiB, 0 %\\\\n2, 0 MiB, 97887 MiB, 0 %\\\\n3, 0 MiB, 97887 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T16:45:34.052756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_quick_rasp.log\\\\neval_rasp_n200.log\\\\neval_sft_rasp_qwen_math_n200.log\\\\neval_sft_standard_qwen_math_n200.log\\\\neval_standard_n200.log\\\\ngrpo_rasp_25\\\\ngrpo_rasp_25_qwen_math\\\\ngrpo_rasp_qwen_math\\\\ngrpo_standard_25_qwen_math\\\\ngrpo_standard_qwen_math\\\\ngrpo_standard_v8_step50\\\\ngrpo_unpruned_v2\\\\nlogs\\\\npruned_qwen_math_rasp_20\\\\npruned_qwen_math_standard_20\\\\npruned_rasp_20\\\\npruned_rasp_25\\\\npruned_rasp_25_qwen_math\\\\npruned_rasp_rlvr_20\\\\npruned_standard_20\\\\npruned_standard_25\\\\npruned_standard_25_qwen_math\\\\nresults\\\\nrun_grpo_unpruned.sh\\\\nsft_qwen_math_rasp_20\\\\nsft_qwen_math_rasp_25\\\\nsft_qwen_math_standard_20\\\\nsft_qwen_math_standard_25\\\\nsft_rasp_20_westd\\\\nsft_rasp_20_westd.log\\\\nsft_rasp_25\\\\nsft_rasp_25.log\\\\nsft_standard_20_westd\\\\nsft_standard_25\\\\nsft_standard_25.log\\\\nsft_unpruned_baseline\\\\nsft_unpruned_baseline.log\\\\nsrc\\\\nwandb\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T16:45:34.052920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T16:45:34.053051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nchat_template.jinja\\\\ncheckpoint-100\\\\ncompletions\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T16:45:34.053190+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T16:45:34.053333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20/",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T16:45:34.053462+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nchat_template.jinja\\\\ncheckpoint-100\\\\ncompletions\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T16:45:34.053586+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chat_template.jinja\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T16:45:34.053764+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "head -20 /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T16:45:34.053925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"architectures\\\\\\\": [\\\\n    \\\\\\\"Qwen2ForCausalLM\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"attention_dropout\\\\\\\": 0.0,\\\\n  \\\\\\\"bos_token_id\\\\\\\": 151646,\\\\n  \\\\\\\"dtype\\\\\\\": \\\\\\\"bfloat16\\\\\\\",\\\\n  \\\\\\\"eos_token_id\\\\\\\": 151643,\\\\n  \\\\\\\"hidden_act\\\\\\\": \\\\\\\"silu\\\\\\\",\\\\n  \\\\\\\"hidden_size\\\\\\\": 3584,\\\\n  \\\\\\\"initializer_range\\\\\\\": 0.02,\\\\n  \\\\\\\"intermediate_size\\\\\\\": 18944,\\\\n  \\\\\\\"layer_types\\\\\\\": [\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n    \\\\\\\"full_attention\\\\\\\",\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T16:45:34.054053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T16:45:34.054190+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"cka_scores_qwen_math.pt\\\\neval_grpo_rasp_20_qwen_math.json\\\\neval_grpo_rasp_20_qwen_math.log\\\\neval_grpo_rasp_25_qwen_math.json\\\\neval_grpo_rasp_25_qwen_math.log\\\\neval_grpo_standard_20_qwen_math.json\\\\neval_grpo_standard_20_qwen_math.log\\\\neval_grpo_standard_25_qwen_math.json\\\\neval_grpo_standard_25_qwen_math.log\\\\neval_grpo_unpruned_v2_step100.json\\\\neval_grpo_unpruned_v2_step90.json\\\\neval_postprune_rasp_25.json\\\\neval_postprune_standard_25.json\\\\neval_sft_grasp_20_greedy.json\\\\neval_sft_qwen_math_rasp_25.json\\\\neval_sft_qwen_math_standard_25.json\\\\neval_sft_rasp_25.log\\\\neval_sft_rasp_qwen_math.json\\\\neval_sft_rasp_qwen_math.log\\\\neval_sft_standard_qwen_math.json\\\\neval_sft_standard_qwen_math.log\\\\nimportance_scores_qwen_math.pt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T16:45:34.054390+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T16:45:34.054563+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T16:45:34.054706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T16:45:34.054824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T16:45:34.054973+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_unpruned_qwen_math",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8', 'server': 'westd-11672', 'gpu': 'cuda:1', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'grpo_unpruned_v2 (Qwen Math unpruned post-GRPO)', 'seed': 42, 'hypothesis': 'Unpruned Qwen Math post-GRPO pass@8 eval (N=200, T=0.7). Baseline pass@8 for diversity comparison. 验证 GRPO 是否改善 sampling diversity.'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T16:45:34.055119+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → ALLOCATED. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2366}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T16:45:34.055248+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_sft_qwen_math",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8', 'server': 'westd-11672', 'gpu': 'cuda:2', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'sft_qwen_math_rasp_20 (RASP 20% Qwen Math post-SFT)', 'seed': 42, 'hypothesis': 'RASP 20% Qwen Math post-SFT pass@8 eval (N=200, T=0.7). 对比 post-GRPO 的 pass@8，验证 GRPO 是否增加 sampling diversity.'}"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T16:45:34.055601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → ALLOCATED. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2458}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T16:45:34.056044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_grpo_qwen_math",
+              "field": "status",
+              "value": "ALLOCATED",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8', 'server': 'westd-11672', 'gpu': 'cuda:3', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'grpo_rasp_qwen_math (RASP 20% Qwen Math post-GRPO)', 'seed': 42, 'hypothesis': 'RASP 20% Qwen Math post-GRPO pass@8 eval (N=200, T=0.7). 核心验证：GRPO 是否在 pass@8 维度有效（即使 greedy 没提升）.'}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T16:45:34.056224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → ALLOCATED. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2512}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T16:45:34.056559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_unpruned_qwen_math",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T16:45:34.056721+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_unpruned_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:10.425Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:10.425Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.778}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T16:45:34.056849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_sft_qwen_math",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T16:45:34.056972+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_grpo_qwen_math",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T16:45:34.057096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_rasp_20_sft_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:11.344Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:11.344Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7369}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T16:45:34.057221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_rasp_20_grpo_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:12.096Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:12.096Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7317}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T16:45:34.057408+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_unpruned_qwen_math",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json', 'server': 'westd-11672', 'gpu': 'cuda:1', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'grpo_unpruned_v2', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2', 'eval_data': 'GSM8K (N=200, pass@8, T=0.7)'}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T16:45:34.057564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_unpruned_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:10.425Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:19.924Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"grpo_unpruned_v2\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2\\\", \\\"eval_data\\\": \\\"GSM8K (N=200, pass@8, T=0.7)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.787}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T16:45:34.057744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_sft_qwen_math",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json', 'server': 'westd-11672', 'gpu': 'cuda:2', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'sft_qwen_math_rasp_20', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20', 'eval_data': 'GSM8K (N=200, pass@8, T=0.7)'}"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T16:45:34.057929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_rasp_20_sft_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:11.344Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:22.753Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": \\\"cuda:2\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"sft_qwen_math_rasp_20\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20\\\", \\\"eval_data\\\": \\\"GSM8K (N=200, pass@8, T=0.7)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.744}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T16:45:34.058071+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_pass_k8_rasp_20_grpo_qwen_math",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json', 'server': 'westd-11672', 'gpu': 'cuda:3', 'data_path': 'GSM8K', 'data_count': 200, 'model_name': 'grpo_rasp_qwen_math', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math', 'eval_data': 'GSM8K (N=200, pass@8, T=0.7)'}"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T16:45:34.058221+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_pass_k8_rasp_20_grpo_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T16:43:12.096Z\\\", \\\"updated_at\\\": \\\"2026-05-16T16:43:25.528Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": \\\"cuda:3\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 200, \\\"model_name\\\": \\\"grpo_rasp_qwen_math\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\\\", \\\"eval_data\\\": \\\"GSM8K (N=200, pass@8, T=0.7)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7863}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T16:45:34.058394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_unpruned_qwen_math.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T16:45:34.058531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_sft_qwen_math.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T16:45:34.058657+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_grpo_qwen_math.log 2>&1 &\necho \"PID=$!\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T16:45:34.058786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_unpruned_qwen_math.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=25336\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T16:45:34.058915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_sft_qwen_math.log 2>&1 &\\\\\\\\necho \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=25437\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T16:45:34.059039+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"PID=25531\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.29}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T16:45:34.059193+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T16:45:34.059341+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 54749 MiB, 99 %\\\\n1, 17585 MiB, 0 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T16:45:34.059494+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ps -p 25336,25437,25531 -o pid,stat,etime,cmd --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T16:45:34.059631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\" 25336 S          01:46 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_unpruned_qwen_math.json\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_unpruned_qwen_math.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n 25437 S          01:15 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_sft_qwen_math.json\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_sft_qwen_math.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n 25531 S          00:43 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c \\\\\\\"CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_qwen_math.json\\\\\\\" > /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_grpo_qwen_math.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T16:45:34.059860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -5 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_unpruned_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T16:45:34.060011+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 00:45:13,983 [WARNING] Found the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sat May 16 20:02:06 2026).\\\\n2026-05-17 00:45:13,995 [INFO] Evaluating on 200 test samples\\\\n2026-05-17 00:45:13,996 [INFO] Mode: pass@8 (n=8, temperature=0.7)\\\\n2026-05-17 00:45:13,996 [INFO] Pass@8 eval: n=8 samples/prompt, temperature=0.7, top_p=0.95\\\\n\\\\rPass@8 eval:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T16:45:34.060136+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -3 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_sft_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T16:45:34.060280+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 00:44:07,024 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20\\\\n2026-05-17 00:44:07,729 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T16:45:34.060426+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -3 /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp_20_grpo_qwen_math.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T16:45:34.060550+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-17 00:44:38,077 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math\\\\n2026-05-17 00:44:38,669 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T16:45:34.060703+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个实验均已成功启动：\n\n| exp_id | GPU | 模型 | 状态 |\n|--------|-----|------|------|\n| `eval_pass_k8_unpruned_qwen_math` | cuda:1 | grpo_unpruned_v2 | 已开始生成 (Pass@8 eval: 0/200) |\n| `eval_pass_k8_rasp_20_sft_qwen_math` | cuda:2 | sft_qwen_math_rasp_20 | 模型加载中 (pruned MLP) |\n| `eval_pass_k8_rasp_20_grpo_qwen_math` | cuda:3 | grpo_rasp_qwen_math | 模型加载中 (pruned MLP) |\n\nPID: 25336 / 25437 / 25531。预计 ~30min 完成（200 prompts × 8 samples = 1600 generations/GPU）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_pass_k_batch_westd_20260516T164155"
+          },
+          "id": "event-000055"
+        }
+      ],
+      "message_count": 55
+    }
+  ],
+  "readable_path": "readable/conversations/eval-pass-k-batch-westd.md"
+}

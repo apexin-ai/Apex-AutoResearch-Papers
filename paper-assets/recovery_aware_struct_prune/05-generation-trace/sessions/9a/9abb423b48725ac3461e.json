@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9abb423b48725ac3461e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_18_1779061169.md",
+  "task_key": "loop_18_1779061169",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_18_1779061169.md",
+    "occurrence": 1,
+    "bytes": 5244,
+    "sha256": "cb8a0a06134214a62483221849ebadf9148f27b7b572bae6a22f6757cf62c550"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 18\nreason: idle_timeout\nupdated: '2026-05-17T23:38:46+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单: westb cuda:0,1 + westd cuda:0,1,2,3。不得使用其他设备\n- **westb-23072 SSH 当前不可达**——禁止向 westb 提交任何新任务直到 SSH 恢复（等用户添加公钥）\n- D051 裁定: MATH-500 上 GRPO vs SFT 对比不可用于 C3 论证（max_new_tokens 配置不公平），仅作 supplementary\n- CKA-only pruning 实现方式: prune.py 用 `--mode rasp --alpha 1` + dummy importance (全1)，不是独立 mode\n- grpo_cka_only_20 和 grpo_random_20 的 step-100 final data 在 westb 上，SSH 修复前无法读取\n- ARR May 25 deadline（8天），不可 fallback 降级会议\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: root@westb-23072, /root/recovery_aware_struct_prune, 2×GPU — **SSH 阻塞中**\n- **westd-11672**: root@westd-11672, /root/recovery_aware_struct_prune, 4×GPU (cuda:0-3)\n- Python: /root/miniconda3/bin/python（两台均为 miniconda，不要假设 .venv）\n- 预置镜像: aml-train（连接后 detect_image 确认）\n- W&B: 有配置（project 内各 GRPO 实验有 wandb logging）\n- 磁盘: westd 上次清理后 ~312GB 可用\n- 活跃 cron 监控 9 个进程:\n  - westd: eval_math500_grpo_standard_20 (PID 14556), eval_math500_grpo_rasp_20_v3 (PID 31706), eval_sft_cka_only_20_n1319 (PID 49475), eval_postprune_cka_only_30 (PID 59403), eval_postprune_standard_30 (PID 47667), eval_math500_grpo_unpruned (PID 64467), eval_math500_sft_cka_only_20 (PID 65395)\n  - westb: grpo_random_20 (PID 719679), grpo_cka_only_20 (PID 725227)\n\n### 3. 📊 当前状态\n上一轮完成了 D056 framing 全面改写（Recovery Capacity Gradient 为主贡献）+ Paper Agent intro rewrite worker。当前 0 个 active worker，9 个实验在跑（全部 eval 或 GRPO training 的尾声）。\n\n**RUNNING 实验摘要:**\n| exp_id | 说明 | 服务器 |\n|--------|------|--------|\n| grpo_cka_only_20 | CKA-only GRPO 100-step（step 70 已确认 super-recovery） | westb |\n| grpo_random_20 | Random GRPO 100-step（step 70 stagnation） | westb |\n| eval_math500_grpo_standard_20 | Standard GRPO MATH-500 (interim 32.7%@309/500) | westd |\n| eval_math500_grpo_rasp_20_v3 | RASP GRPO MATH-500 v3 (无 timeout) | westd |\n| eval_math500_grpo_unpruned | Unpruned GRPO MATH-500 baseline | westd |\n| eval_math500_sft_cka_only_20 | CKA-only SFT MATH-500 | westd |\n| eval_sft_cka_only_20_n1319 | CKA-only SFT GSM8K full (interim 63%@1037) | westd |\n| eval_postprune_standard_30 | Standard 30% post-prune GSM8K | westd |\n| eval_postprune_cka_only_30 | CKA-only 30% post-prune (重试) | westd |\n\n**等待中:**\n- westb SSH 恢复（用户操作）\n- 9 个 cron 回调（实验完成时自动触发）\n- Paper Agent intro rewrite worker 已无活跃 worker（可能已完成或被清理，下一轮需确认产出）\n\n### 4. 📋 待办（条件触发式）\n- westb SSH 恢复 → 立即读 grpo_cka_only_20 + grpo_random_20 step-100 final metrics → 更新 C2 表格 → 启动 fair GRPO retrain (grpo_rasp_20_fair + grpo_standard_20_fair, D051 fix)\n- eval_math500_grpo_standard_20 完成 → 确认 final accuracy（interim 32.7%）→ 对比 SFT Standard 26% → 计算 C1 MATH-500 improvement (+Xpp)\n- eval_math500_grpo_unpruned 完成 → 确认 unpruned GRPO MATH-500 baseline → 若 > 73.6%(pre-GRPO) 则 GRPO genuinely helps OOD\n- eval_sft_cka_only_20_n1319 完成 → 确认 CKA-only SFT 最终值（pilot 64%）→ 完善 SFT equalization claim\n- eval_math500_sft_cka_only_20 完成 → CKA-only SFT MATH-500 baseline → 未来对比 GRPO CKA-only MATH-500\n- eval_postprune_cka_only_30 完成 → 若 0%，30% cliff 是 universal；若 >0%，CKA-only 在高 sparsity 更 robust（更新 paper observation）\n- 所有 MATH-500 + GSM8K final 到齐 → Paper Agent Full Draft → scoring_ablation_batch 等补充实验\n- Paper intro rewrite 产出需确认（check artifacts/ 或 paper/ 目录）\n\n### 5. 🎯 战略上下文\n**核心结论链:**\n- D044: pivot 到 universal decoupling → D049: 维持双现象 → D053: CKA-only GRPO 最稳定（逆转 hypothesis）→ D054: C2 升级为 recovery capacity hierarchy → D055: C1 收窄为 in-distribution → D056: framing 全面改写，Recovery Capacity Gradient 为主贡献\n\n**最容易判断错的事:**\n1. **不要把 MATH-500 GRPO 结果用于方法间 C3 对比**——D051 已裁定配置不公平（GRPO 模型的 max_new_tokens 配置与 SFT 不一致）。只能用于同方法 GRPO vs SFT 对比（C1 证据）\n2. **grpo_cka_only_20 的 hypothesis 被逆转**——原始预测是\"CKA-only collapse 最快\"，实际是\"super-recovery 最强\"。这个逆转是 D053 的核心发现，paper framing 已据此重写\n3. **SFT equalization 意味着 C2 只在 GRPO 阶段有意义**——post-SFT 所有方法收敛 59-64%，pruning criterion 的影响只在 GRPO recovery capacity 上体现\n4. **westb 上的两个 GRPO 实验是论文核心数据**——step-100 final numbers 决定 C2 表格最终值。SSH 修复后第一件事就是读这些数据\n5. **fair retrain (D051) 是审稿人可能问的重要补充**——当前 RASP v9 只跑了 30 steps vs 其他 100 steps，需要统一配置重跑才能公平对比\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-18-1779061169.md"
+}

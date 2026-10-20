@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c02b50b46f821ddf9ea2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo qwen math 25",
+  "task_key": "worker_analysis_grpo_qwen_math_25_20260516T154652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_qwen_math_25_20260516T154652_result.json",
+    "occurrence": 1,
+    "bytes": 1151,
+    "sha256": "8b97103dec3c3074dbb643e307bece9b44ac4741a6e5c2d7d1e45819576b86c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 分析结论：两个实验均为 NEGATIVE\n\n### 核心发现：25% 反而比 20% 好（反直觉）\n\n| 指标 | RASP 20% → 25% | Standard 20% → 25% |\n|------|----------------|---------------------|\n| reward | 0.061 → **0.206** (3.4x) | 0.044 → **0.182** (4.1x) |\n| frac_zero_std | 0.675 → **0.350** | 0.850 → **0.325** |\n| collapse | permanent → **no collapse** | permanent → **KL explosions but no reward collapse** |\n\n### 为什么判 NEGATIVE\n\n1. **C3 被推翻**：25% sparsity 的 collapse 比 20% 更轻而非更重\n2. **RASP vs Standard 方向跨模型不一致**：DeepSeek 上 RASP 更差，Qwen Math 上 Standard 更差\n3. **Standard 25% 出现新失败模式**：3 次灾难性 KL 爆炸（peak 7.9e15），但 DAPO clipping 保护了 reward 不崩溃\n\n### Registry 更新\n\n- `grpo_rasp_25_qwen_math`: conclusion 从 success → **negative**，补充完整 10 步 metrics 和跨稀疏度对比\n- `grpo_standard_25_qwen_math`: conclusion 保持 **negative**，更新完整 metrics 和 notes\n\n分析报告已注册为 artifact: `analysis_grpo_qwen_math_25.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-qwen-math-25.md"
+}

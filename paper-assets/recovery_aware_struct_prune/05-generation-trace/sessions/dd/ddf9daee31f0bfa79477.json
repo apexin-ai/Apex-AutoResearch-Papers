@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "ddf9daee31f0bfa79477",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "harvest westb1 next eval 20260522",
+  "task_key": "worker_harvest_westb1_next_eval_20260522_20260522T021406",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_westb1_next_eval_20260522_20260522T021406.log",
+    "occurrence": 1,
+    "bytes": 688299,
+    "sha256": "2180c567a7194c7977413f9f1e70891dd00eaf42b79277f914292e4d84904ef5"
+  },
+  "statistics": {
+    "messages": 494,
+    "user_turns": 0,
+    "tool_calls": 180,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "assistant": 109,
+      "tool_call": 180,
+      "tool_result": 180,
+      "record": 1,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 494,
+      "chunks": [
+        {
+          "path": "ddf9daee31f0bfa79477-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "ddf9daee31f0bfa79477-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "ddf9daee31f0bfa79477-part-0003.json",
+          "message_count": 134
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/harvest-westb1-next-eval-20260522.md"
+}

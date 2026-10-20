@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f45d7a758d387b4e120",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze grpo cka only 20 v2",
+  "task_key": "worker_analyze_grpo_cka_only_20_v2_20260518T021755",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grpo_cka_only_20_v2_20260518T021755_result.json",
+    "occurrence": 1,
+    "bytes": 797,
+    "sha256": "6063a70103b366b58db5a93edc223da5a3eb5124572eb07db97152478c1de6cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已关闭。汇总：\n\n**grpo_cka_only_20 最终结果**\n\n| 指标 | 值 |\n|---|---|\n| Final step | 100/100 |\n| Final reward | 0.3444 |\n| Peak reward | 0.3544 (step 50) |\n| Final frac_zero_std | 0.2 |\n| Final loss | 0.23 |\n| Final KL | 0.001609 |\n| 训练时长 | 11h 18m (40710s) |\n| Checkpoint | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/` (38GB) |\n| W&B run | `li451oi4` |\n| Status | **DONE (success)** |\n\n**Reward 轨迹**: 0.253 → 0.218 → 0.25 → 0.234 → **0.354** → 0.299 → 0.308 → 0.342 → 0.242 → 0.344\n\n逆转原 hypothesis（预测最快 collapse），CKA-only 实际展示 active learning pattern，reward 在波动中持续维持高位，final 接近 peak，frac_zero_std 保持低位（0.2）。无异常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grpo-cka-only-20-v2.md"
+}

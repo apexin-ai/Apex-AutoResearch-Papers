@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "649122f7ae73aa576baf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill westb0 unauthorized",
+  "task_key": "worker_ssh_kill_westb0_unauthorized_20260522T224842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_westb0_unauthorized_20260522T224842_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "f4c44cacae514ac38cb180a5fe1f5fad67b0b3ebe1aa3d888f123a3a5500158b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 上仅剩 PID 220343（MF3 v3，GPU:1），GPU:0 已清空。未授权进程已全部清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-westb0-unauthorized.md"
+}

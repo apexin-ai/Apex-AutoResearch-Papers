@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea37021eba555c9afe7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup",
+  "task_key": "worker_ops_westb-disk-cleanup_20260515T150841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-disk-cleanup_20260515T150841_result.json",
+    "occurrence": 1,
+    "bytes": 707,
+    "sha256": "02636afb87f90051be25724ecb0dd64a8ff5715b00d4b0f4c6761dd41e8bd3ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成。\n\n**结果：**\n- 释放：59G（222G → 163G）\n- 使用率：89% → **65%**\n- 可用空间：29G → **88G**\n\n已删除：\n- `pruned_rasp_25/` (11G)、`pruned_standard_25/` (11G) — 25% 剪枝变体\n- `pruned_rasp_20/` (12G)、`pruned_standard_20/` (12G) — 20% 剪枝中间产物\n- `DeepSeek-R1-Distill-Qwen-7B/` (15G) — 原始 base model\n\n88G 可用空间足够 step 50 的双 checkpoint 保存（每个 18-24GB，两个实验共 ~48GB）。\n\n**额外发现：** SFT 目录内有 4 个中间 checkpoint（每个 35G，共 140G），GRPO 进程不引用它们。如需进一步释放可删除，但因在标记为 protected 的父目录内，暂不动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup.md"
+}

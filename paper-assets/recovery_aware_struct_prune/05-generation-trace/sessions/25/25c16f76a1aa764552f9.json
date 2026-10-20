@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "25c16f76a1aa764552f9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval gsm8k grpo shortgpt cuda0",
+  "task_key": "worker_eval_gsm8k_grpo_shortgpt_cuda0_20260519T171815",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_gsm8k_grpo_shortgpt_cuda0_20260519T171815_result.json",
+    "occurrence": 1,
+    "bytes": 383,
+    "sha256": "a5096979fdb740fa4cea64a7d852016b877da342faec1ae8ce72494d3d3a7d5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并注册。\n\n**汇总：**\n- **实验**: `eval_gsm8k_grpo_shortgpt_20`\n- **服务器**: westd-29022, cuda:0\n- **PID**: 122867\n- **状态**: RUNNING\n- **日志**: `/tmp/eval_gsm8k_grpo_shortgpt_20.log`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_shortgpt_20.json`\n- **Registry**: 已注册，parent=grpo_shortgpt_20"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-gsm8k-grpo-shortgpt-cuda0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba08d43883c500ef9263",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval unpruned grpo step100 v2",
+  "task_key": "worker_ops_eval-unpruned-grpo-step100-v2_20260516T030645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-unpruned-grpo-step100-v2_20260516T030645_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "e6b5ee7d94644690c3405471ac97a69b13d7c5e06c77f3c86d453fc135380777"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 正在运行另一个 eval（sft_grasp_20 的 greedy eval，已跑 2 分钟）。不能同时在 cuda:0 上启动第二个 eval。\n\n两个选项：\n1. **等 cuda:0 上的 eval 完成后再启动**（max_samples=100，应该不会太久）\n2. **改用 cuda:1 启动**（当前空闲）\n\n建议用 cuda:1 启动，不用等。要这样做吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-unpruned-grpo-step100-v2.md"
+}

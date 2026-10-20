@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f08e1fa7d2d1ac11d74b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh collect fixed eval results and schedule",
+  "task_key": "worker_ssh_collect_fixed_eval_results_and_schedule_20260523T173116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_collect_fixed_eval_results_and_schedule_20260523T173116_result.json",
+    "occurrence": 1,
+    "bytes": 2302,
+    "sha256": "e48ce321119c9825227c56bf0e2851d528dfc8051482fc8bcb1babd850787fd5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整状态报告\n\n### 1. GPU 状态\n\n| 服务器 | GPU | 利用率 | 显存 | 任务 |\n|--------|-----|--------|------|------|\n| westd-32935 | 0 | 87% | 12.6G | eval sft_rasp_alpha1p0_20_fixed |\n| westd-32935 | 1 | 99% | 17.1G | eval grpo_rasp_alpha1p0_20_fixed |\n| westd-32935 | 2 | 98% | 18.8G | eval grpo_standard_20_fixed |\n| westd-32935 | 3 | 91% | 17.1G | eval sft_standard_20_fixed |\n| westb-23072 | 0 | 100% | 54.2G | grpo_random_20_retrain_v2 |\n| westb-23072 | 1 | 98% | 16.6G | eval sft_cka_only_20_fixed_v2 |\n\n全部 6 张 GPU 满载运行。\n\n### 2. 已完成的 Fixed Eval 结果\n\n**无。** 所有 fixed eval 仍在运行中，尚无 `_fixed.json` 结果文件产出。\n\n### 3. 运行中的实验及进度\n\n| 任务 | 服务器 | GPU | 进度 | 已用时间 | 预估剩余 |\n|------|--------|-----|------|----------|----------|\n| sft_rasp_alpha1p0_20_fixed | westd | 0 | **197/500 (39%)** | ~1h | ~1.5h |\n| grpo_rasp_alpha1p0_20_fixed | westd | 1 | **159/500 (32%)** | ~1h45m | ~4h |\n| grpo_standard_20_fixed | westd | 2 | **177/500 (35%)** | ~2h27m | ~5h |\n| sft_standard_20_fixed | westd | 3 | **168/500 (34%)** | ~2h26m | ~5h |\n| sft_cka_only_20_fixed_v2 | westb | 1 | **224/500 (45%)** | ~1h43m | ~2h |\n| grpo_random_20_retrain_v2 | westb | 0 | **36/100 steps (36%)** | ~1h08m | ~2h09m |\n\n最先完成的预计是 **sft_rasp_alpha1p0_20_fixed**（~1.5h 后）和 **sft_cka_only_20_fixed_v2**（~2h 后）。\n\n### 4. 可用 Checkpoint 列表\n\n**Dose-response (20% pruning, varying α):**\n| Checkpoint | 大小 | 状态 |\n|-----------|------|------|\n| sft_rasp_alpha0p5_20 | 12G | ✓ |\n| grpo_rasp_alpha0p5_20 | — | NOT_FOUND |\n| sft_rasp_alpha2p0_20 | 12G | ✓ |\n| grpo_rasp_alpha2p0_20 | 12G | ✓ |\n| sft_rasp_alpha3p0_20 | — | NOT_FOUND |\n| grpo_rasp_alpha3p0_20_v2 | — | NOT_FOUND |\n| sft_alpha4_20 | 12G | ✓ |\n| grpo_alpha4_20 | 12G | ✓ |\n\n**25% pruning:**\n| Checkpoint | 大小 | 状态 |\n|-----------|------|------|\n| sft_cka_only_25 | 11G | ✓ |\n| grpo_cka_only_25 | 11G | ✓ |\n| sft_standard_25 | 11G | ✓ |\n| grpo_standard_25 | 11G | ✓ |\n\n3 个 dose-response checkpoint 缺失（grpo_rasp_alpha0p5_20, sft_rasp_alpha3p0_20, grpo_rasp_alpha3p0_20_v2），25% checkpoint 全部就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-collect-fixed-eval-results-and-schedule.md"
+}

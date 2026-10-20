@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3e150a8b2d6541623b0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "infra westb disk cleanup",
+  "task_key": "worker_infra_westb-disk-cleanup_20260517T094801",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westb-disk-cleanup_20260517T094801_result.json",
+    "occurrence": 1,
+    "bytes": 587,
+    "sha256": "2d0c5ba60eca5710a5d3e4b957e09356a18c93594c3da34d2eb79ab76cb6d9f3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**磁盘**：数据盘已扩至 14T（50% 使用，7.2T 可用），原 250GB 满盘问题已不存在。清理释放 ~34G（189G → 155G），删除了 grpo_stage2_standard_20_v8、pruned_rasp_alpha_0.0/1.0 等废弃模型。待训练结束后可再删 checkpoint-935 回收 35G。\n\n**实验**：\n- **gradient_sft_v3**: step 1141/1870 (61%), loss 0.63, 预计 ~13 分钟完成\n- **random postprune eval**: 89/200 (44%), acc=30.0%, 预计 ~86 分钟完成\n- 两张 GPU 均在正常工作\n\n报告已写入服务器和本地 artifacts 目录。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westb-disk-cleanup.md"
+}

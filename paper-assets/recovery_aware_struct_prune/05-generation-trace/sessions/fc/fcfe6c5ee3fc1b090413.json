@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcfe6c5ee3fc1b090413",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 eval",
+  "task_key": "worker_ssh_harvest_cka_only_15_eval_20260520T221857",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_eval_20260520T221857_result.json",
+    "occurrence": 1,
+    "bytes": 508,
+    "sha256": "de256e49186bea1f62d4665bb333546f57c15772ccf04c2f165044bd7439941d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 均在运行中：\n\n| Job | 进度 | 当前 Accuracy | EOS Rate | Avg Len | 预计剩余 |\n|-----|------|---------------|----------|---------|----------|\n| **seed123** (GPU 0) | 507/1319 (38%) | 73.8% (@500) | 99.40% | 179 | ~35-40 min |\n| **seed456** (GPU 1) | 386/1319 (29%) | 76.29% (@350) | 98.86% | 202 | ~50-55 min |\n\nseed456 进度落后（中间有几次长暂停，可能是 GPU 争抢导致的 ETA 飙升后恢复）。两个都还需要较长时间才能完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-eval.md"
+}

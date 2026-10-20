@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b8f863a5f2258988bb80",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd emergency disk cleanup",
+  "task_key": "worker_ssh_westd_emergency_disk_cleanup_20260521T031817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_emergency_disk_cleanup_20260521T031817_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "1980129393be0481e66b31436a97b22665c34ca52662f2d97190fed770fac395"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 清理结果\n\n**清理前**: 619G/619G used, **1.4MB** 可用 (100%)\n**清理后**: 599G/619G used, **21GB** 可用 (97%)\n\n**已删除**:\n| 文件 | 大小 |\n|------|------|\n| `grpo_cka_only_25/checkpoint-100/optimizer.pt` | 15GB |\n| `grpo_rasp_20_seed456/checkpoint-100/optimizer.pt` | 6.8GB |\n| **合计释放** | **~21.8GB** |\n\n**未达 40GB 目标**。磁盘上没有更多 optimizer.pt 可删。以下是可进一步释放空间的候选项（需要你确认）：\n\n| 候选 | 大小 | 说明 |\n|------|------|------|\n| `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/` | 15GB | 基础模型，pruned 模型已独立保存 |\n| `grpo_cka_only_20_seed456/checkpoint-100/` | 12GB | 父目录已有 final model，checkpoint 冗余 |\n| 其他 7 个 checkpoint-100 目录 | 各 ~5-12GB | 同上，训练完成后的中间 checkpoint |\n\n21GB 可用应足够保存一次 RASP checkpoint（model.safetensors ~11GB），但如果训练也保存 optimizer state 则可能不够。是否需要删除上述候选项？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-emergency-disk-cleanup.md"
+}

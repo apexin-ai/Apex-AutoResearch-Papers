@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "5cdd7aeb8e5aa5a75c7b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval grpo standard 25",
+  "task_key": "worker_diagnose_eval_grpo_standard_25_20260516T212557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_grpo_standard_25_20260516T212557_result.json",
+    "occurrence": 1,
+    "bytes": 1765,
+    "sha256": "c790758643e9093fd12f7fb7f171c1a5f35543221bfeba18d6a3250e50f1354a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```json\n{\n  \"root_cause\": \"进程正常运行中。PID 48540/48541 存活，GPU:1 利用率 99%，显存 22.6GB。Cron 误报原因：任务通过 nohup 启动而非 tmux，tmux session 'eval_grpo_standard_25' 不存在，Cron 可能依赖 tmux session 检测存活性。日志显示已完成 1/1319 samples（~4.61s/it），预计总耗时约 101 分钟，当前已运行 6.5 分钟。\",\n  \"error_type\": \"none\",\n  \"metrics\": null,\n  \"status\": \"running\",\n  \"progress\": \"1/1319 (~0.08%), ETA ~95min remaining\",\n  \"fix_steps\": [\"无需修复，进程正常运行\", \"Cron 检测逻辑需修正：改用 ps -p 48540 检测而非 tmux session\"],\n  \"can_auto_fix\": false\n}\n```\n\n**关键事实：**\n- PID 48540 (bash wrapper) → 48541 (python) 均存活，运行 6m38s\n- GPU 1: 99% 利用率, 22.6GB/97.9GB 显存\n- 日志最后写入 05:22:39（tqdm 用 `\\r` 覆盖行，文件 flush 不频繁属正常）\n- 结果文件尚未生成（评估进行中）\n- 预计完成时间：约 05:22 + 101min ≈ 07:03 (UTC+8)"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "进程正常运行中。PID 48540/48541 存活，GPU:1 利用率 99%，显存 22.6GB。Cron 误报原因：任务通过 nohup 启动而非 tmux，tmux session 'eval_grpo_standard_25' 不存在，Cron 可能依赖 tmux session 检测存活性。日志显示已完成 1/1319 samples（~4.61s/it），预计总耗时约 101 分钟，当前已运行 6.5 分钟。",
+              "error_type": "none",
+              "metrics": null,
+              "status": "running",
+              "progress": "1/1319 (~0.08%), ETA ~95min remaining",
+              "fix_steps": [
+                "无需修复，进程正常运行",
+                "Cron 检测逻辑需修正：改用 ps -p 48540 检测而非 tmux session"
+              ],
+              "can_auto_fix": false
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-grpo-standard-25.md"
+}

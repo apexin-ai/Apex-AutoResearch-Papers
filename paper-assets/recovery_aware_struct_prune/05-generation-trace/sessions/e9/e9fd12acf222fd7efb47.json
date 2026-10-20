@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e9fd12acf222fd7efb47",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval grpo rasp v9 step10",
+  "task_key": "worker_analyze_eval_grpo_rasp_v9_step10_20260516T075918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_grpo_rasp_v9_step10_20260516T075918_result.json",
+    "occurrence": 1,
+    "bytes": 638,
+    "sha256": "d3efe6f908a1f7d7efd183affcf9d49af6ea14bccaa3db26e22f9c263b234e87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## eval_grpo_rasp_v9_step10 最终结果\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **61.87%** (816/1319) |\n| Stderr | ±1.34% |\n| EOS rate | 98.33% (1297 natural / 22 truncated) |\n| Avg response length | 213.6 tokens |\n| Min/Max length | 42 / 4096 |\n| Temperature | 0.0 (greedy) |\n| Model | checkpoint-10 (grpo_stage2_rasp_20_v9) |\n\n对比中间检查点 (前200样本 acc=0.68)，最终全量 acc 降至 0.6187，说明后续样本难度略高或模型在部分题型上表现不稳定。EOS rate 从 0.995 降至 0.983，有 22 条 truncated（达到 4096 上限），这些多为重复退化输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-grpo-rasp-v9-step10.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c7ac8ac59e74f1439369",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix westd0 and collect results",
+  "task_key": "worker_ssh_fix_westd0_and_collect_results_20260523T192652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_westd0_and_collect_results_20260523T192652_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "1e9cf99e69d32df49362242c7182c8a2eda00b5a484313876cece989c062694b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd:0 异常\n原因: **不是 zombie**。PID 157383 已死，但 cuda:0 被 **PID 156633** 占用 — 这是一个**新启动的** `grpo_standard_25_retrain_v2` 训练进程（`train_grpo_v5.py`），已运行 22 分钟，进度 **41/100 steps (41%)**，91% GPU util。\n处理: **未 kill** — 这是活跃训练进程，不是残留。需要你确认是否要保留。\ncuda:0 现在: 占用 55833MiB / 97887MiB\n\n## westd eval 状态\n| 任务 | GPU | PID | 进度 | 状态 |\n|------|-----|-----|------|------|\n| grpo_standard_20_fixed | cuda:2 | 142486 | **316/500 (63%)** | 运行中 4h23m |\n| sft_standard_20_fixed | cuda:3 | 142647 | **304/500 (61%)** | 运行中 4h23m |\n| grpo_rasp_alpha1p0_20_fixed | cuda:1 | 145176 | **333/500 (67%)** | 运行中 3h41m |\n\n结果文件均未生成，预计还需 ~2-3 小时。\n\n## westb 状态\n- sft_cka_only_20_fixed_v2: PID 306963，**492/500 (98%)**，即将完成（~10 分钟内）\n- GPU 0: **空闲** (0 MiB, 0%)\n- GPU 1: 17039 MiB, 99% (eval 占用)\n\n---\n\n**需确认**: westd cuda:0 上的 PID 156633 (grpo_standard_25_retrain_v2) 是谁启动的？要保留还是 kill？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-westd0-and-collect-results.md"
+}

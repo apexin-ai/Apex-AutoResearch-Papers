@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "330de04d1e2af854c983",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh eval math500 grpo random 20 westd2",
+  "task_key": "worker_ssh_eval_math500_grpo_random_20_westd2_20260522T222229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_eval_math500_grpo_random_20_westd2_20260522T222229_result.json",
+    "occurrence": 1,
+    "bytes": 634,
+    "sha256": "965a5438ea76e4cb8ebd084e54e25fa92f9f1373527d83f843c2e565d62fd443"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成：\n\n- **tmux session**: `eval_math500_grpo_random` on westd-32935 cuda:2\n- **模型**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20/checkpoint-100`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_random_20_v2.json`\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_random_20_v2.log`\n- **Registry**: `eval_math500_grpo_random_20_v3` → RUNNING\n\n注意：`eval_math500_grpo_random_20_v2` 这个 ID 在 registry 中已被占用（DONE 状态），所以 registry 用了 v3 ID，但输出文件名仍是 `_v2.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-eval-math500-grpo-random-20-westd2.md"
+}

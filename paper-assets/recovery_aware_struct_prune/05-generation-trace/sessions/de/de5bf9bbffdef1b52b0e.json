@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de5bf9bbffdef1b52b0e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops registry cleanup running audit",
+  "task_key": "worker_ops_registry_cleanup_running_audit_20260519T105257",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_registry_cleanup_running_audit_20260519T105257_result.json",
+    "occurrence": 1,
+    "bytes": 1096,
+    "sha256": "c5a1b5b495a332409b030ad534de72ebfcbcdba944813b45da381d304a4bde75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 审计结果\n\n### RUNNING 条目状态（共 5 个）\n\n| 实验 | 服务器/GPU | PID | 运行时间 | 状态 |\n|---|---|---|---|---|\n| grpo_cka_only_20_seed123 | westb cuda:1 | 857962 | 7h18m | ALIVE |\n| eval_humaneval_grpo_standard_20_fair_2048_v3 | westd cuda:2 | 76392 | 3h50m | ALIVE |\n| eval_humaneval_sft_cka_only_20_2048_v2 | westd cuda:1 | 78740 | 3h15m | ALIVE |\n| eval_gsm8k_grpo_standard_20_fair_v2 | westd cuda:0 | 83299 | 1h54m | ALIVE |\n| eval_humaneval_sft_standard_20_2048_v3 | westd cuda:3 | 86171 | 1h15m | ALIVE |\n\n**全部 5 个 PID 存活，无需清理。**\n\n### 已知 DEAD 条目\n\n4 个均已不在 RUNNING 状态，registry 已正确更新：\n- `eval_humaneval_grpo_standard_20_fair_2048` → DONE/failed\n- `eval_humaneval_sft_cka_only_20_2048` → DONE/failed\n- `eval_humaneval_grpo_cka_only_20_2048` → DONE/success (pass@1=20.12%)\n- `eval_math500_sft_standard_20_2048_v2` → 未在 registry 中找到（RUNNING/DONE 均无此条目）\n\n### Cron 监控\n\n**当前无任何 cron job。** 5 个活跃实验均无 cron 监控。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-registry-cleanup-running-audit.md"
+}

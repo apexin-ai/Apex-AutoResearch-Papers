@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59a0ac892844aa69f729",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check 25pct pipeline",
+  "task_key": "worker_ssh_check_25pct_pipeline_20260521T013830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_25pct_pipeline_20260521T013830_result.json",
+    "occurrence": 1,
+    "bytes": 2044,
+    "sha256": "b60bade743c670d19c32d3c0e9f8a4acfb40217f1b6038fa79bca33f89392fb6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调研结果\n\n### 1. 25% Pruned Model — 已存在\n\n两种模式的 pruned model 均完整：\n\n| 路径 | 文件 |\n|------|------|\n| `/root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25/` | config.json, model.safetensors, pruning_metadata.pt, tokenizer files |\n| `/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25/` | 同上 |\n\nQwen-Math 变体也存在：`pruned_standard_25_qwen_math/`, `pruned_rasp_25_qwen_math/`\n\n### 2. 25% SFT & GRPO — 也已完成\n\n完整 pipeline（prune → SFT → GRPO）已跑完：\n- `sft_standard_25/`, `sft_rasp_25/`\n- `grpo_standard_25/`, `grpo_rasp_25/`\n- Qwen-Math 变体：`sft_qwen_math_standard_25/`, `sft_qwen_math_rasp_25/`, `grpo_standard_25_qwen_math/` (目录名 `grpo_rasp_25_qwen_math` 未在列表中，但 `grpo_rasp_25` 本体存在)\n\n### 3. 脚本路径 & 参数\n\n**Pruning**: `/root/recovery_aware_struct_prune/src/prune.py`\n```\n--model_path (dense模型路径)\n--mode {standard, rasp, rasp-rlvr, cka_only, random}\n--sparsity 0.25\n--alpha 1.0\n--output_path (输出路径)\n--importance_path / --cka_path (可选)\n--seed 42 --dtype bfloat16\n```\n\n**SFT**: `/root/recovery_aware_struct_prune/src/sft_recovery.py`\n```\n--model_path (pruned模型路径)\n--output_dir (输出路径)\n--gpu 0\n--num_train_epochs 2 --learning_rate 2e-5\n--batch_size 1 --gradient_accumulation_steps 8\n--max_seq_length 2048 --seed 42\n```\n\n**GRPO**: `/root/recovery_aware_struct_prune/src/train_grpo_v5.py`\n```\n--model_path sft_standard_25 --output_dir grpo_standard_25\n--max_steps 100 --seed 42\n```\n\n### 4. Dense Base Model\n\n`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n\n### 5. 磁盘空间\n\n```\n/dev/md0  619G  557G  63G  90%  /root/autodl-tmp\n```\n\n63GB 可用，足够跑新实验（单个 SFT/GRPO checkpoint ~15GB）。\n\n### 结论\n\n25% pipeline 已完整存在，无需重新跑 pruning 或 SFT。如果要启动新的 25% 实验（如不同 seed、不同超参），可直接基于现有 pruned model 开始。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-25pct-pipeline.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "88692f88ed4188854b75",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp unpruned full eval n1319",
+  "task_key": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_unpruned-full-eval-n1319_20260516T013836_result.json",
+    "occurrence": 1,
+    "bytes": 513,
+    "sha256": "3c161ecdc8ce123d114a4e198a5576d9c2622c7cb1a921a31569979763646e53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 摘要\n\n**Unpruned N=1319 full eval**: PID 74129, westd cuda:0, ~2.5s/it → ETA ~55min\n\n**Unpruned N=100 eval**: 完成\n| 指标 | 值 |\n|------|-----|\n| accuracy | **84.00%** |\n| n_correct | 84/100 |\n| eos_rate | 1.0 |\n| avg_len | 187.22 |\n| stderr | 0.0367 |\n\nN=100 快速对比（参考）：\n- Standard SFT: 59% (N=100 时未记录)\n- RASP SFT: 61% (N=100 时未记录)\n- **Unpruned SFT: 84%** (N=100)\n\nN=100 的 84% 非常高，full 1319 的结果将确认是否稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-unpruned-full-eval-n1319.md"
+}

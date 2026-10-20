@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e1f3c44a51d5fffcfae",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh audit remaining checkpoints",
+  "task_key": "worker_ssh_audit_remaining_checkpoints_20260524T011651",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_audit_remaining_checkpoints_20260524T011651_result.json",
+    "occurrence": 1,
+    "bytes": 1693,
+    "sha256": "43ab68cc29b56c696d09ba369a81b8c6ffd53e165c261ce6693f02369eab5e44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。汇总如下：\n\n## Checkpoint 审计结果\n\n| # | Checkpoint | 服务器 | 实际路径 | model.safetensors | 大小 | 可用 |\n|---|-----------|--------|---------|-------------------|------|------|\n| 1 | `sft_standard_20` | westd-32935 | `.../sft_standard_20/` | ✓ | 12G | ✓ |\n| 2 | `sft_rasp_alpha0p5_20` | westd-32935 | `.../sft_rasp_alpha0p5_20/` | ✓ | 12G | ✓ |\n| 3 | `sft_rasp_alpha3p0_20` | **westb-23072** | `.../sft_rasp_alpha3p0_20/checkpoint-935/` | ✓ | 12G | ✓ (注意子目录) |\n| 4 | `sft_rasp_alpha4p0_20` | westd-32935 | `.../sft_alpha4_20/` | ✓ | 12G | ✓ (目录名无 rasp_ 前缀) |\n| 5 | `grpo_rasp_alpha0p5_20` | **westb-23072** | `.../grpo_rasp_alpha0p5_20/` | ✓ | 12G | ✓ |\n| 6 | `grpo_rasp_alpha3p0_20` | — | **不存在** | ✗ | — | **✗ 缺失** |\n| 7 | `grpo_rasp_alpha4p0_20` | westd-32935 | `.../grpo_alpha4_20/` | ✓ | 12G | ✓ (目录名无 rasp_ 前缀) |\n| 8 | `sft_cka_only_25` | westd-32935 | `.../sft_cka_only_25/` | ✓ | 11G | ✓ |\n\n## 结论\n\n**7/8 可直接提交 eval**，需要注意：\n- `sft_rasp_alpha3p0_20` 和 `grpo_rasp_alpha0p5_20` 在 westb-23072 上，eval 脚本需指向该服务器或先 SCP 到 westd-32935\n- `sft_rasp_alpha3p0_20` 的模型在 `checkpoint-935/` 子目录下，路径需包含该子目录\n- `sft_alpha4_20` 和 `grpo_alpha4_20` 目录名无 `rasp_` 前缀，eval 配置需对应调整\n\n**1 个缺失：`grpo_rasp_alpha3p0_20`** — westd-32935 上的 `grpo_rasp_alpha3p0_20_v2` 只有 README.md 和 completions/，无模型权重；westb-23072 上完全没有该目录。需要重新训练或确认该 checkpoint 是否在其他位置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-audit-remaining-checkpoints.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5d6146b0c8145df24fa3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup",
+  "task_key": "worker_ops_westb-disk-cleanup_20260515T220616",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-disk-cleanup_20260515T220616_result.json",
+    "occurrence": 1,
+    "bytes": 462,
+    "sha256": "27d94e31944b9634269bd667ac2530e44d0668860a354b8c0b20aaa88e49afb2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总**:\n- **释放 114G**：删除 SFT 中间 checkpoint 4 个（sft_standard_20 和 sft_rasp_20 各 2 个）\n- **磁盘**: 76% → **30%** (177G 可用)，checkpoint 保存空间充裕\n- **GRPO v8**: PID 534667 存活，运行 7h24m，cuda:1 100% 利用率，checkpoint-50 已保存\n- **最终模型完整**: 两个 SFT 目录的 model.safetensors 均保留\n- 日志已写入 `artifacts/westb_disk_cleanup_20260515.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-copy-2.md"
+}

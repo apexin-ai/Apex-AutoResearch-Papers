@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43c2374c57351676ea34",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper method relwork",
+  "task_key": "worker_paper_method-relwork_20260514T050745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_method-relwork_20260514T050745_result.json",
+    "occurrence": 1,
+    "bytes": 1547,
+    "sha256": "21020244e4e6f1db8263e3694db0b9be3f9f12f87b0286bad4fdb77c6be86b01"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 产出汇报\n\n### 1. method.tex\n- **字数**: 978 词（含 LaTeX 命令），约 1.2 页 EMNLP 格式\n- **段落结构**: 1 section + 4 subsections (Preliminaries, Stage 1, Stage 2, Stage 3) + 6 paragraphs + Algorithm 1\n- **公式**: 4 个编号公式（importance, CKA, overlap, score）\n\n### 2. related_work.tex\n- **字数**: 678 词，约 1 页 EMNLP 格式\n- **段落结构**: 1 section + 3 subsections (Structured Pruning, Recovery & Re-training, RLVR Dynamics) + 1 paragraph (CKA-based pruning)\n\n### 3. 引用列表（22 个唯一 cite key）\n\n**method.tex** (8 keys):\n`rlsqueezes2026`, `ainslie2023gqa`, `shao2024grpo`, `selfhealing2025`, `resp2025`, `kornblith2019cka`, `mpruner2024`, `lachance2024cka`\n\n**related_work.tex** (20 keys, 含重叠):\n`llmpruner2023`, `bonsai2025`, `graspprune2026`, `shortgpt2024`, `slicegpt2024`, `wanda2024`, `resp2025`, `llms2lrms2026`, `rac2025`, `doingmore2026`, `selfhealing2025`, `p2law2025`, `paser2025`, `pat2025`, `frankle2019lth`, `rlsqueezes2026`, `opsd2026`, `kornblith2019cka`, `mpruner2024`, `lachance2024cka`\n\n### 4. 需注意事项\n\n- **需要 `algorithm2e` 包**: 主文件 preamble 需 `\\usepackage[ruled,linesnumbered]{algorithm2e}`\n- **需要 `enumitem` 包**: method.tex 使用了 `\\begin{itemize}[nosep,leftmargin=*]`\n- **需要 `natbib`**: 使用了 `\\citep`/`\\citet`/`\\citealp` 引用格式\n- **无实验数据占位符**: 纯方法描述，不含未验证数字\n- **bib 文件待创建**: 22 个 cite key 需要对应的 `.bib` 条目"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-method-relwork.md"
+}

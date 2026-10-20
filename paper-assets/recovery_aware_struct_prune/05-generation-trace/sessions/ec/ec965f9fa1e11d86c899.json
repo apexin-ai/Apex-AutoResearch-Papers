@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec965f9fa1e11d86c899",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779377478.md",
+  "task_key": "loop_20_1779377478",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779377478.md",
+    "occurrence": 1,
+    "bytes": 4825,
+    "sha256": "bad62e142e662302fbdcdcbe97f787b25a486798946a02eff605f06b6b34048e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T15:15:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- **westd-29022 网络离线**：所有 westd 命令必须加 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF 库发 HEAD 请求会直接崩溃（已因此失败 5+ 次）\n- **GPU 白名单 cuda:0-3**（project config）。westb 只有 2 GPU（cuda:0, cuda:1），westd 有 4 GPU（cuda:0-3）\n- **westd 数据盘曾 99% 满（仅剩 9.7G）**：提交新实验前必须先检查磁盘，可能需要清理旧 checkpoint\n- **MATH-500 eval 统一用 `--max_new_tokens 2048`**（D097），不用 4096——之前 @4096 导致单题 300s+ 超时\n- **25% 数据定位是补强，不升级 claim**（D096）——不要因为 25% 结果好就改 paper 核心 claim 强度\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`, conda base 环境, 23GB free\n- **westd-29022**: 4× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, Python `/root/miniconda3/bin/python`, conda base 环境, 磁盘紧张（上次仅 9.7G free，可能已清理部分）\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/` 下，例如 `grpo_cka_only_25`, `sft_cka_only_25`, `grpo_random_20/checkpoint-100`, `sft_random_20`, `grpo_standard_25_westb/checkpoint-100`\n- **结果路径**: `/root/runs/recovery_aware_struct_prune/`\n- **活跃进程**:\n  - westb cuda:0 — eval_math500_grpo_standard_25_v2 (PID 99426)\n  - westd cuda:0 — eval_math500_grpo_cka_only_25_v2 (PID 379999)\n  - westd cuda:1 — eval_math500_grpo_random_20_v2 (PID 382470)\n  - westd cuda:2 — eval_math500_sft_cka_only_25_v2 (PID 380074)\n  - westd cuda:3 — eval_math500_sft_random_20 (PID 385685)\n- **Cron**: 5 个 cron 监控上述 5 个实验，reconcile 确认全部 still running\n\n### 3. 📊 当前状态\n5 个 MATH-500 @2048 eval 全部在跑（上面列出），这是 D097 kill @4096 后重提交的 v2 批次。0 个 Worker 在运行。\n\n**Registry 总览**: 312 实验，206 success / 18 negative / 62 failed。核心数据已入论文（15%/20% 三种子），当前 25% eval 是补强。\n\n**Round 3 审稿**: 全部 34 issue resolved，编译通过，主文本 ≤8 页。\n\n**等待中**:\n- 5 个 MATH-500 eval 的 cron 完成回调\n- westb cuda:1 空闲（Standard 25% GRPO 占 cuda:0），但无紧急任务需要它\n- 待处理队列有 ~30 项 PREPARING 实验（eval_math500_sft_standard_25, eval_mbpp 系列, grpo_unstructured_20 等），优先级低于当前 5 个 running\n\n### 4. 📋 待办（条件触发式）\n- **5 个 MATH-500 eval 任一完成** → 更新 registry metrics + report.md → 汇报 Director（附 [资源] 行）→ 对比已有 GSM8K 数据看 cross-benchmark 一致性\n- **全部 5 个 MATH-500 eval 完成** → 汇总 25% cross-sparsity 表格（CKA-only 25% vs Standard 25% MATH-500 差距应类似 GSM8K 的巨大差距）→ 更新论文 Table → Director 最终审批入稿\n- **eval_math500_grpo_standard_25_v2 结果出来** → 预期 near-zero（reward collapse 0.0125），确认 Standard 25% 在 MATH-500 上也崩溃\n- **westd 磁盘仍 <20GB** → 清理前先 `list_large_dirs`，只删本项目 failed 实验的 checkpoint（不删 success 的）\n- **westb cuda:1 空闲且有需求** → 可跑 eval_mbpp_grpo_standard_20_v2（上次 89.6% 超时）或 eval_math500_sft_standard_25\n- **所有 25% 数据就绪** → 论文补强段落写入 → 提交前最终 review\n\n### 5. 🎯 战略上下文\n- **核心结论**: CKA-only（纯表征多样性保留）是唯一能实现有意义 RL recovery 的剪枝方法。importance-based 方法（Standard/RASP/Random）全部失败或严重退化。这个 gradient 在 7B/1.5B、15%/20%/25%、GSM8K/MATH-500/HumanEval/MBPP 上一致成立。\n- **投稿目标**: EMNLP 2026 Main，ARR May 25 deadline（**还剩 ~4 天**）。论文主体已完成，当前 25% 数据只是锦上添花。\n- **Reviewer 评估**: 当前 3.0/5，加入 25% 数据后预期 3.5，有望 4.0。\n- **决策链关键节点**: D096（25% 不升级 claim）、D097（@2048 不 @4096）、D075（GRPO 零 accuracy 提升是 universal finding）、D065（C1/C2 贡献重构）\n- **易踩的坑**:\n  1. westd 模型路径不统一——有的在 `/root/autodl-tmp/recovery_aware_struct_prune/` 下，有的在 `/root/autodl-tmp/recovery_aware_struct_prune/xxx_westb/` 下，提交前必须 SSH 确认路径存在\n  2. RASP 20% SFT 模型在 westb 叫 `sft_rasp_20_1p5b`（不是 `sft_rasp_20`），已因此失败过\n  3. MBPP eval 极慢（Standard SFT ~40s/题，需 4.5h），之前多次因超时/被 kill 失败\n  4. 不要把 GRPO accuracy delta 说成\"GRPO improves accuracy\"——D075 已确认 universal decoupling（所有方法 GRPO Δ ≈ 0）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779377478.md"
+}

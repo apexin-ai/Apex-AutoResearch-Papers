@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7e17d98920cdf2395aa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops e2 cka extended results",
+  "task_key": "worker_ops_e2_cka_extended_results_20260518T153548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_e2_cka_extended_results_20260518T153548_result.json",
+    "occurrence": 1,
+    "bytes": 1265,
+    "sha256": "0c6dfff7f226cf5d8d639a7a3d89d6629f8a12277dd265ddf241e08a47b297ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态\n**仍在运行** — step 112/300，尚未完成。\n\n关键细节：\n\n**速度**：tqdm 显示 72.67s/it 是误导的（resume 导致 EMA 偏移）。实际每步 ~115s（`step_time: 114.1`），因为每步包含 generation（4 completions × max 512 tokens）。188 步剩余 ≈ **~6 小时**，预计 ~05:30 May 19 完成。\n\n**W&B 无数据**：服务器网络不通（`[Errno 101] Network is unreachable`），metrics 只在本地，无法 sync。\n\n**唯一 log point — step 110**：\n\n| Metric | Value |\n|--------|-------|\n| reward | 0.3206 |\n| frac_reward_zero_std | 0.175 (17.5%) |\n| loss | 0.0246 |\n| kl | 0.001129 |\n| entropy | 0.09788 |\n| completions/clipped_ratio | 0.4 |\n\n## 与 Standard Extended 初步对比\n\n| | CKA-only (step 110) | Standard (step 110 区间) |\n|--|--|--|\n| reward | 0.3206 | ~0.10 (已在下降) |\n| frac_zero_std | 17.5% | 高得多 |\n\nCKA-only 在 step 110 的 reward (0.3206) 虽略低于 step 100 peak (0.354)，但仍在健康区间，远高于 Standard extended 同期。需要等到 step 150+ 才能判断趋势。\n\n**Checkpoint**：尚无（save_steps=50，首个 checkpoint 在 step 150）。\n\n## 建议\n等 ~6 小时后再查。不更新 registry/不删 cron。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-e2-cka-extended-results.md"
+}

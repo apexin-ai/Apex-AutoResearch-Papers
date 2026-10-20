@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9634c6a67df146fed4d0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d025 alpha verification prep",
+  "task_key": "worker_code_d025-alpha-verification-prep_20260515T092405",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d025-alpha-verification-prep_20260515T092405_result.json",
+    "occurrence": 1,
+    "bytes": 2046,
+    "sha256": "fea9eacdcd58b80d56bc307aa5bf4476c8d528a9cc1fcaa498fddc2af3178922"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 1. Phase A 结果：Post-Prune Accuracy（calibration=256, eval N=100）\n\n| α | Accuracy | Correct | EOS Rate | Avg Resp Len |\n|---:|----------:|--------:|---------:|-------------:|\n| 0.0 | **0.3000** | 30/100 | 79% | 1266 |\n| 0.5 | 0.2500 | 25/100 | 70% | 1559 |\n| 1.0 | 0.2700 | 27/100 | 90% | 817 |\n| 2.0 | 0.2900 | 29/100 | 64% | 1958 |\n| **4.0** | **0.4000** | 40/100 | 67% | 1979 |\n\nα=4.0 明显最优，比 α=0.0（无恢复惩罚的标准剪枝）高 10 个百分点。非单调趋势：α=0.5/1.0/2.0 反而比 α=0.0 更差。\n\n### 2. Pipeline 状态\n\n- **PID 7186** 仍在运行（已运行 ~1h48m）\n- **Phase A**（prune + eval）：✅ 全部完成\n- **Phase B**（SFT warmup）：🔄 进行中\n  - GPU0: α=0.0 SFT，step ~300/1870（~16%）\n  - GPU1: α=0.5 SFT，step ~313/1870（~17%）\n  - GPU0 队列：α=0.0 → α=1.0 → α=4.0（3 个 SFT）\n  - GPU1 队列：α=0.5 → α=2.0（2 个 SFT）\n- **Phase B eval** 尚未开始\n- **预计完成时间**：SFT ~84 min + Post-SFT eval ~135 min ≈ **~3.5 小时后**（约 21:00 CST）\n\n### 3. n_samples=512 验证脚本\n\n已上传到 `westd-11672:/root/recovery_aware_struct_prune/scripts/run_alpha_verify_512.sh`\n\n流程：\n- Phase 0: 重新计算 importance_scores_512.pt + cka_scores_512.pt（n_samples=512）\n- Phase 1: 双 GPU 并行剪枝 α=0.0 和 α=4.0\n- Phase 2: 双 GPU 并行 GSM8K eval（N=500）\n\n参数已根据实际代码校准：\n- `importance_score.py --n_samples 512`\n- `cka_overlap.py --n_samples 512`\n- `prune.py --importance_path --cka_path --mode rasp --sparsity 0.20 --alpha --output_path`\n- `eval_gsm8k.py --max_samples 500 --max_new_tokens 4096`\n- 模型路径：`/root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B`\n\n### 4. 下一步\n\n**未启动验证脚本**——双 GPU 均被 Phase B SFT 占用（81% 利用率）。需等 pipeline 完成后再提交。预估验证脚本运行时间 ~3.5h（importance/CKA 计算 ~30min + prune ~5min + eval N=500 ~3h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d025-alpha-verification-prep.md"
+}

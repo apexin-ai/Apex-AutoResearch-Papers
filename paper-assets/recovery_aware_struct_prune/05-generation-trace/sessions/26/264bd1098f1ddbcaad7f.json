@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "264bd1098f1ddbcaad7f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest cka only 15 seed456 final",
+  "task_key": "worker_ssh_harvest_cka_only_15_seed456_final_20260520T231054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_cka_only_15_seed456_final_20260520T231054_result.json",
+    "occurrence": 1,
+    "bytes": 490,
+    "sha256": "30a252afbbbf6ea22380de51e1f1a04f486d6d65b8d22548d4bc209faa32264f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 有效，文件已创建。\n\n**提取结果汇总**：\n\n| 字段 | 值 |\n|------|-----|\n| samples_evaluated | 750 / 1319 (56.9%) |\n| accuracy | 72.53% |\n| correct | 544 |\n| eos_rate | 99.07% |\n| avg_response_length | 193 |\n\n日志中共 3 条 Progress 记录：50 (76.00%)→700 (72.71%)→750 (72.53%)，acc 随样本增加略微下降。文件写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_cka_only_15_seed456_partial.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-cka-only-15-seed456-final.md"
+}

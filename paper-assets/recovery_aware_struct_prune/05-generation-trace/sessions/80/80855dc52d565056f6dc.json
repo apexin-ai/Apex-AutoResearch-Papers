@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80855dc52d565056f6dc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze eval sft rasp rlvr 20",
+  "task_key": "worker_analyze_eval_sft_rasp_rlvr_20_20260516T181903",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_eval_sft_rasp_rlvr_20_20260516T181903_result.json",
+    "occurrence": 1,
+    "bytes": 950,
+    "sha256": "5f796fd164519667d288327fc946e28c7001eff69b6bc1612df88ce80f853842"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE (negative)，artifact 已注册。\n\n## 实验结果总结\n\n| 模型 | GSM8K Accuracy | N |\n|------|---------------|---|\n| Standard SFT (baseline) | 59.29% | 1319 |\n| **RASP-RLVR 20% post-SFT** | **58.30% ± 1.36%** | **1319** |\n| RASP SFT (standard CKA) | 61.49% | 1319 |\n\n**结论：Negative。**\n\nRASP-RLVR 20% 经过 SFT 恢复后 GSM8K 准确率为 58.30%（769/1319），不仅低于 RASP SFT 的 61.49%（-3.19pp），甚至低于 Standard SFT 的 59.29%（-0.99pp）。\n\nRLVR 恢复策略在反向 CKA scoring 剪枝模型上**未能产生正面效果**——性能反而退化。可能原因：\n1. 反向 CKA scoring 保留的结构与 RLVR 训练信号不兼容\n2. RLVR 数据的 reward signal 在剪枝后的稀疏结构上产生了有害的梯度更新\n3. checkpoint-1870 可能过拟合了 RLVR 数据（avg response length 227 较短，EOS rate 98%，生成倾向截断推理）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-eval-sft-rasp-rlvr-20.md"
+}

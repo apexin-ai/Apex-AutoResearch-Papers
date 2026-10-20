@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "id": "a324cd36ff7893080d51",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft rasp alpha0p5 20 fixed",
+  "task_key": "worker_diagnose_eval_math500_sft_rasp_alpha0p5_20_fixed_20260523T224722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_rasp_alpha0p5_20_fixed_20260523T224722_result.json",
+    "occurrence": 1,
+    "bytes": 2881,
+    "sha256": "e75aea70f497f3bc9ce86ffa9b451cf9d9209d526db820a0dd483361d4edafa5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n```json\n{\n  \"result_file_exists\": false,\n  \"accuracy\": null,\n  \"root_cause\": \"批量 SIGTERM 杀进程。同批至少 4 个 _fixed eval 在 21:15-22:24 UTC 被外部 SIGTERM/SIGHUP 终止（sft_standard_20_fixed @ 21:15:04 exit=143, sft_standard_25_fixed @ 21:15:03 exit=129, sft_standard_20_fixed_v3 @ 22:18:51 exit=143, sft_rasp_alpha0p5_20 @ 22:24:26 exit=143）。两个 job 在同一秒被杀证明是 scheduler/batch kill 操作，非 OOM（OOM 是 SIGKILL=137）。\",\n  \"model_path_exists\": true,\n  \"gpu_status\": \"cuda:3 被 PID 168451 占用 (eval_math500_grpo_cka_only_25_fixed, 已跑 1h18m, 16846MiB/97887MiB, 94% util)\",\n  \"old_eval_exists\": true,\n  \"old_eval_accuracy\": \"25.4% (127/500, non-fixed eval script)\",\n  \"fix_steps\": [\n    \"等 cuda:3 当前 job (grpo_cka_only_25_fixed) 完成\",\n    \"重跑: CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha0p5_20_fixed.json\",\n    \"同样需要重跑的被杀 jobs: sft_standard_20_fixed, sft_standard_25_fixed\"\n  ],\n  \"can_auto_fix\": true\n}\n```\n\n**关键发现**：不是单个 job 的问题，而是 5月23日 21:15-22:24 UTC 时段内发生了一次批量进程清理，至少 4 个 _fixed eval 被 SIGTERM。已完成的 _fixed eval（如 sft_rasp_alpha1p0、grpo_rasp_alpha1p0、grpo_standard_20）都正常生成了结果文件，被杀的都没有结果文件。cuda:3 当前有任务在跑，完成后可以重跑。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "result_file_exists": false,
+              "accuracy": null,
+              "root_cause": "批量 SIGTERM 杀进程。同批至少 4 个 _fixed eval 在 21:15-22:24 UTC 被外部 SIGTERM/SIGHUP 终止（sft_standard_20_fixed @ 21:15:04 exit=143, sft_standard_25_fixed @ 21:15:03 exit=129, sft_standard_20_fixed_v3 @ 22:18:51 exit=143, sft_rasp_alpha0p5_20 @ 22:24:26 exit=143）。两个 job 在同一秒被杀证明是 scheduler/batch kill 操作，非 OOM（OOM 是 SIGKILL=137）。",
+              "model_path_exists": true,
+              "gpu_status": "cuda:3 被 PID 168451 占用 (eval_math500_grpo_cka_only_25_fixed, 已跑 1h18m, 16846MiB/97887MiB, 94% util)",
+              "old_eval_exists": true,
+              "old_eval_accuracy": "25.4% (127/500, non-fixed eval script)",
+              "fix_steps": [
+                "等 cuda:3 当前 job (grpo_cka_only_25_fixed) 完成",
+                "重跑: CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha0p5_20_fixed.json",
+                "同样需要重跑的被杀 jobs: sft_standard_20_fixed, sft_standard_25_fixed"
+              ],
+              "can_auto_fix": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-rasp-alpha0p5-20-fixed.md"
+}

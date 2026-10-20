@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f1ab6afdcc18f8c5cc9a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd disk phase1",
+  "task_key": "worker_diagnose_westd_disk_phase1_20260521T182334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_disk_phase1_20260521T182334_result.json",
+    "occurrence": 1,
+    "bytes": 4609,
+    "sha256": "d638609f1c604891c2833b097701f946253e98aec015f35c7f33ae16f66adae4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据收集完毕。以下是完整诊断报告。\n\n---\n\n## 磁盘总况\n\n| 指标 | 值 |\n|------|-----|\n| 总容量 | 619G |\n| 已用 | 619G (**100%**) |\n| 可用 | 4.0M |\n| 项目目录占用 | 605G |\n| DeepSeek 基础模型 | 15G |\n\n## sft_warmup.py 保存参数\n\n`save_strategy=\"epoch\"`，最终 `trainer.save_model()` + `tokenizer.save_pretrained()`。**未使用 `save_only_model` 或 `save_total_limit`**，所以 sft_alpha4_20/ 内含 checkpoint-468 子目录（optimizer state 等冗余文件，导致 27G 而非 ~12G）。\n\n## 正在被 eval 使用的模型（不可删）\n\n| 模型路径 | PID | GPU |\n|----------|-----|-----|\n| `grpo_stage2_standard_20_fair` | tmux session (May19) | cuda:1 |\n| `grpo_random_20/checkpoint-100` | 382472 | cuda:1 |\n| `sft_random_20` | 385685 | cuda:3 |\n\n---\n\n## 目录分类清单\n\n### 预批准删除\n\n#### [ShortGPT] — 39G\n| 目录 | 大小 |\n|------|------|\n| shortgpt_20/ | 13G |\n| sft_shortgpt_20/ | 13G |\n| grpo_shortgpt_20/ | 13G |\n\n#### [1.5B] — 16.8G\n| 目录 | 大小 |\n|------|------|\n| grpo_cka_only_20_1p5b/ | 2.8G |\n| grpo_rasp_20_1p5b/ | 2.8G |\n| grpo_standard_20_1p5b/ | 2.8G |\n| sft_cka_only_20_1p5b/ | 2.8G |\n| sft_rasp_20_1p5b/ | 2.8G |\n| sft_standard_20_1p5b/ | 2.8G |\n\n#### [α=4.0 残留] — 27G\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| sft_alpha4_20/ | 27G | 含 checkpoint-468 子目录（无 save_only_model，含 optimizer state） |\n\n#### [Qwen-Math] — 116G\n| 目录 | 大小 |\n|------|------|\n| pruned_qwen_math_rasp_20/ | 12G |\n| pruned_qwen_math_standard_20/ | 12G |\n| pruned_rasp_25_qwen_math/ | 11G |\n| pruned_standard_25_qwen_math/ | 11G |\n| pruned_rasp_rlvr_20_qwen_math/ | 12G |\n| sft_qwen_math_rasp_20/ | 12G |\n| sft_qwen_math_rasp_25/ | 11G |\n| sft_qwen_math_standard_20/ | 12G |\n| sft_qwen_math_standard_25/ | 11G |\n| sft_rasp_rlvr_20_qwen_math/ | 12G |\n\n#### [旧版被取代] — 53G\n| 目录 | 大小 | 原因 |\n|------|------|------|\n| grpo_cka_only_20/ | 12G | 被 seed456 版取代 |\n| grpo_standard_15_seed123_v3/ | 13G | _v3 旧版 |\n| grpo_standard_15_seed456_v3/ | 13G | _v3 旧版 |\n| grpo_unpruned_v2/ | 15G | _v2 旧版 |\n\n#### [pruned 中间产物] — 36G\n| 目录 | 大小 |\n|------|------|\n| pruned_standard_20/ | 12G |\n| pruned_rasp_20/ | 12G |\n| pruned_random_20/ | 12G |\n\n### **预批准删除合计：~288G**\n\n---\n\n### 保留\n\n| 目录 | 大小 | 原因 |\n|------|------|------|\n| /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/ | 15G | 基础模型 |\n| pruned_alpha4_20/ | 12G | 明确保留 |\n| grpo_random_20/ | 12G | eval 进行中 (PID 382472) |\n| sft_random_20/ | 12G | eval 进行中 (PID 385685) |\n| grpo_stage2_standard_20_fair/ | 12G | eval 进行中 (tmux) |\n\n---\n\n### 未分类（需 Director 决策）\n\n#### 可能是最终版 SFT+GRPO checkpoint（15%/20%/25%/30%）\n\n| 目录 | 大小 | 推测类别 |\n|------|------|----------|\n| grpo_cka_only_15_seed123/ | 14G | 15% GRPO seed |\n| grpo_cka_only_15_seed456/ | 13G | 15% GRPO seed |\n| grpo_cka_only_20_seed456/ | 12G | 20% GRPO seed |\n| grpo_cka_only_25/ | 11G | 25% GRPO |\n| grpo_rasp_20_seed456/ | 12G | 20% GRPO seed |\n| grpo_rasp_25/ | 11G | 25% GRPO |\n| grpo_stage2_rasp_20_fair/ | 12G | 20% fair GRPO |\n| grpo_standard_20_seed123/ | 12G | 20% GRPO seed |\n| grpo_standard_20_seed456/ | 12G | 20% GRPO seed |\n| grpo_standard_25/ | 11G | 25% GRPO |\n| pruned_cka_only_15/ | 13G | 15% pruned |\n| pruned_cka_only_25/ | 11G | 25% pruned |\n| pruned_cka_only_30/ | 11G | 30% pruned |\n| pruned_rasp_25/ | 11G | 25% pruned |\n| pruned_standard_15/ | 13G | 15% pruned |\n| pruned_standard_25/ | 11G | 25% pruned |\n| pruned_standard_30/ | 11G | 30% pruned |\n| sft_cka_only_15/ | 13G | 15% SFT |\n| sft_cka_only_20/ | 12G | 20% SFT |\n| sft_cka_only_25/ | 11G | 25% SFT |\n| sft_rasp_20_westd/ | 12G | 20% SFT |\n| sft_rasp_25/ | 11G | 25% SFT |\n| sft_standard_15/ | 13G | 15% SFT |\n| sft_standard_20/ | 12G | 20% SFT |\n| sft_standard_25/ | 11G | 25% SFT |\n\n#### 小目录（可忽略）\n| 目录 | 大小 |\n|------|------|\n| artifacts/ | 4.0K |\n| logs/ | 2.4M |\n| results/ | 55M |\n| wandb/ | 78M |\n| grpo_rasp_25_transfer_log/ | 0 |\n\n**未分类合计：~295G**（其中 25 个目录，多数疑似论文最终实验所需）\n\n---\n\n## 小结\n\n- 预批准可删：**~288G**（30 个目录），删除后磁盘使用率降至约 53%\n- 保留：63G（5 个目录）\n- 未分类：~295G（25 个模型目录 + 5 个小目录），需 Director 判断哪些是论文最终版"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-disk-phase1.md"
+}

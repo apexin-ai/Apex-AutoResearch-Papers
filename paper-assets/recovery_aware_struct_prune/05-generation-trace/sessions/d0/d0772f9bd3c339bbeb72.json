@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0772f9bd3c339bbeb72",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "train sft alpha 2p0 and evals",
+  "task_key": "worker_train_sft-alpha-2p0-and-evals_20260515T142831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_sft-alpha-2p0-and-evals_20260515T142831_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "59f464ddf8ff3187b5817c33f4ea9887cdf22f2e6868fb8579bc73777a306b9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 结果\n\n**α=2.0 SFT**\n- PID: 41045（python 进程），父进程 41040\n- GPU 1 显存 12.8GB / 97.9GB，利用率 92%\n- 日志：`/tmp/sft_alpha2_0.log`，模型已加载，正在数据准备阶段\n- 参数：去掉了 `--save_strategy no`（该脚本不支持此参数）\n\n**α=0.5 模型修复**\n- 原缺 tokenizer.json、tokenizer_config.json、chat_template.jinja\n- 已从 α=0.0 SFT 输出复制，现在完整\n\n**nvidia-smi 两卡状态**\n| GPU | 显存占用 | 利用率 | 任务 |\n|-----|---------|--------|------|\n| cuda:0 | 65.6GB / 97.9GB | 95% | GraSP SFT + eval（未碰） |\n| cuda:1 | 12.8GB / 97.9GB | 92% | α=2.0 SFT（刚启动） |\n\n另外注意到 cuda:1 上还有一个 α=0.0 eval (PID 40494) 在跑，会和 α=2.0 SFT 共享 cuda:1。如果显存不够可能需要处理，但目前 97.9GB 总显存应该够。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-sft-alpha-2p0-and-evals.md"
+}

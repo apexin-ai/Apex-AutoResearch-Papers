@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3fc83783267102294eef",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check math500 progress v2",
+  "task_key": "worker_check_math500_progress_v2_20260518T031350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_math500_progress_v2_20260518T031350_result.json",
+    "occurrence": 1,
+    "bytes": 1432,
+    "sha256": "aed009a985dbe161b9c8994901debed11ee0b99547fb12c35ec2568e245e3ca7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n| exp_id | server:gpu | pid alive | progress | accuracy (if done) | est_completion |\n|--------|-----------|-----------|----------|-------------------|----------------|\n| eval_math500_grpo_standard_20 | westd:cuda1 | Yes (17h48m) | **unknown** (no log file, stdout→pipe) | — | unknown* |\n| eval_math500_grpo_rasp_20_v3 | westd:cuda3 | Yes (12h28m) | **371/500** (74%) | 0.2486 @350 | ~4h (~15:15 UTC) |\n| eval_math500_grpo_unpruned | westd:cuda2 | Yes (4h05m) | **251/500** (50%) | 0.7040 @250 | ~4h (~15:15 UTC) |\n| eval_math500_sft_cka_only_20_v2 | westd:cuda0 | Yes (34min) | **17/500** (3.4%) | — | ~15h (~02:00 UTC May 19) |\n| eval_math500_grpo_cka_only_20 | westb:cuda1 | Yes (33min) | **10/500** (2%) | — | ~20-24h (very early, pace uncertain) |\n\n**关键发现：**\n\n1. **grpo_standard_20** — 进程活了 17h48m 但无可访问的日志（stdout 输出到 pipe，可能在 tmux 里）。按 rasp 的速度推算它应该早完成了，但结果文件不存在，进程仍在运行（状态 Rl）。**建议 attach tmux 查看实际进度，可能有问题。**\n\n2. **grpo_rasp_20_v3** — acc@350 = **24.86%**，异常偏低。正常运行中，还剩约 129 个样本。\n\n3. **grpo_unpruned** — acc@250 = **70.40%**，进度正常。\n\n4. **sft_cka_only_20_v2** 和 **grpo_cka_only_20** — 刚启动约 30 分钟，进度极早期，预计 15-24 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-math500-progress-v2.md"
+}

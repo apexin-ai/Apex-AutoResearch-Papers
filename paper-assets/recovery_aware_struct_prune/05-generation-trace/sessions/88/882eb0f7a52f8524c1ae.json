@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "882eb0f7a52f8524c1ae",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft standard 25 fixed v2",
+  "task_key": "worker_diagnose_eval_math500_sft_standard_25_fixed_v2_20260524T055418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_standard_25_fixed_v2_20260524T055418_result.json",
+    "occurrence": 1,
+    "bytes": 497,
+    "sha256": "cb1650442847c2480b20d4c0e48d08a35c3696e4aeadbf3813816c2e0c65d885"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**核心发现：v2 并未真正失败。** 500/500 题全部跑完，结果文件已保存（154KB），EXIT_CODE=129 是 SSH 断开导致的 SIGHUP，发生在结果保存之后，属于误报。\n\n关键数据：\n- MATH-500 准确率：**15.4%** (77/500)\n- 63.4% 回复被截断，可能拉低了准确率\n- v1 才是真正的失败——在 20% 进度时被 SIGHUP 杀掉\n\n报告已写入 `artifacts/diagnose_eval_math500_sft_standard_25_fixed_v2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-standard-25-fixed-v2.md"
+}

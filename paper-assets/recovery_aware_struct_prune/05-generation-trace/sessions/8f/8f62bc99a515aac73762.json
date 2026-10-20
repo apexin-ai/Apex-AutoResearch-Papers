@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f62bc99a515aac73762",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis bootstrap ci gsm8k",
+  "task_key": "worker_analysis_bootstrap_ci_gsm8k_20260520T055637",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_gsm8k_20260520T055637_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "4f17d416c07a00577b60fdbad7f589db0e1abb4570f6f38741755ae00dfd1b76"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered (`art_20260520_5e4fb8`). 结果汇总：\n\n### Bootstrap 95% CI（18 个模型）\n\n**7B @20%** — CKA-only GRPO 最高：64.37% [61.71, 66.94]，两个 seed 一致（s123=64.22%）。Standard GRPO 59.44%，RASP GRPO 60.88%，ShortGPT GRPO 43.37%。\n\n**7B @25%** — Standard GRPO 51.10%，RASP GRPO 53.15%。CKA-only GRPO 25% 文件缺失。\n\n**1.5B @20%** — CKA-only 远超其他：SFT 35.63% vs Standard 22.90% / RASP 26.91%。\n\n### McNemar's Test（10 对比较）\n\n| 比较 | p-value | 显著性 |\n|------|---------|--------|\n| CKA-only vs Standard GRPO 7B@20% | 0.0009 | *** |\n| CKA-only vs RASP GRPO 7B@20% | 0.0200 | * |\n| CKA-only vs ShortGPT GRPO 7B@20% | <0.001 | *** |\n| CKA-only vs Standard SFT 7B@20% | 0.0022 | ** |\n| RASP vs Standard GRPO 7B@20% | 0.3487 | n.s. |\n| Dense vs CKA-only GRPO 7B@20% | <0.001 | *** |\n| 1.5B 全部 4 组 CKA-only vs others | <0.001 | *** |\n\n关键发现：CKA-only 在所有比较中显著优于 Standard/RASP/ShortGPT（p<0.05）。RASP vs Standard 差异不显著（p=0.35）。缺失 CKA-only GRPO 7B@25% 文件，无法完成该组对比。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-gsm8k.md"
+}

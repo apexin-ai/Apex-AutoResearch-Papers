@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "785f9b94ec02e8bd51ca",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3438,
+    "sha256": "18591d130fad3ce7cc9ab80614a27036758056277774794f18ebba0eec2a72f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-14T17:33:53+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-23072 的 cuda:0 和 cuda:1（2× RTX PRO 6000 96G），约束 C001\n- 模型/数据/checkpoint 必须放 `/root/autodl-tmp/`，根分区只有 ~30G\n- grpo_standard_20 不能手动杀——让 RewardDesertCallback 自然触发是实验证据（D006 决策）\n- MLP 总参数量相等（395,232）已被 Reviewer 逐层验证，不要质疑这个结论\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072 (connect.westb.seetacloud.com)，用户 root\n- 工作目录：`/root/recovery_aware_struct_prune`\n- 模型路径：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`（base）\n- 剪枝模型：`/root/autodl-tmp/pruned_{rasp,standard}_{20,25}/`（4 个）\n- GRPO 输出：`/root/autodl-tmp/recovered_{rasp,standard}_20/`\n- 活跃进程：\n  - GPU 0: grpo_rasp_20 (PID 221271), 62.9GB VRAM, 95% util\n  - GPU 1: grpo_standard_20 (PID 221911), 13.3GB VRAM, 94% util\n- Cron 监控：120s 轮询，进程退出自动回调 Agent\n- 磁盘：autodl-tmp 剩余 ~190GB（Qwen3.5-9B 已删）\n- W&B / Git：未配置\n\n### 3. 📊 当前状态\nGRPO 双 GPU 恢复对比正在运行（MVP 关键路径）：\n- mvp_rasp_pipeline_v4 (PREPARING in registry)：20% sparsity，RASP 29% vs Standard 1% post-prune accuracy\n- grpo_rasp_20 on cuda:0：29% 起点，GRPO 学习信号充足，预计 6-9h（~明早凌晨）\n- grpo_standard_20 on cuda:1：1% 起点，RewardDesertCallback 预计 1-2h 内触发\n\n等待中：\n- Cron 回调：grpo_standard_20 RewardDesertCallback 触发 → Agent 自动派 Worker 跑 25% eval 串行链\n- Cron 回调：grpo_rasp_20 完成 → Agent 回调，MVP 判定\n\n25% eval 缺失：standard_25 在 72/100 处死亡，rasp_25 从未启动。等 GPU 1 释放后补跑。\n\n### 4. 📋 待办\n- grpo_standard_20 RewardDesertCallback 触发 → 记录触发 step/reward/loss → GPU 1 跑 standard_25 + rasp_25 eval 串行链（~30min）→ 收集 threshold effect 数据\n- grpo_rasp_20 完成 → 读 post-recovery accuracy → 与 post-prune 29% 对比 → MVP pass/fail 判定\n- MVP pass（recovery 显著提升）→ complete_mvp() → 进入 research 阶段 → 写 paper_framing.md + experiment_plan.yaml → dream_simulate\n- MVP fail（recovery 无显著提升）→ 评估 Contingency（pivot 到 benchmark 交互研究）\n- 25% eval 完成 → 与 20% 数据对比，分析 sparsity threshold effect\n\n### 5. 🎯 战略上下文\n- 项目核心：RASP 用 CKA functional overlap 指导结构化剪枝，保护 RLVR 可恢复性\n- 决策链：D001(MLP-only ok) → D002(GRPO 无信号，需 SFT warmup) → D003(暂缓 SFT，先审计代码) → D004(min_keep_mlp=4 bug 修复) → D005(35% 太激进，降到 20%/25%) → D006(20% Scenario B 确认，GRPO 双 GPU 启动)\n- **Scenario B 是最强叙事**：RASP 不仅预测 recoverability，pruning 本身就保护推理能力（29% vs 1%，同等参数量）。如果 GRPO 进一步拉大差距，paper 更强；如果 Standard GRPO 完全失败（RewardDesertCallback），这本身就是最强证据\n- 易错点：v3 被标记为 negative 但假设未被 falsify——35% 对蒸馏模型太激进，不是方法问题。不要因为 v1-v3 失败而对 RASP 假设失去信心\n- 目标会议：EMNLP 2026 ARR May 25（距今 11 天）\n- 新颖性已验证：无竞品做 pruning×RLVR recovery 交互研究，核心 gap 成立\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

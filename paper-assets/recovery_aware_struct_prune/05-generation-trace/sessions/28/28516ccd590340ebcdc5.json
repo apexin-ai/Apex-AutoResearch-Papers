@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "28516ccd590340ebcdc5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops register westb crons",
+  "task_key": "worker_ops_register_westb_crons_20260518T182313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_register_westb_crons_20260518T182313_result.json",
+    "occurrence": 1,
+    "bytes": 424,
+    "sha256": "b4fdb81f1ff899a589ede5480a10d777945367892e95c12e2cbcc615c320154b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 实验 | GPU | PID | 运行时间 | 状态 | Cron ID |\n|---|---|---|---|---|---|\n| eval_gsm8k_grpo_standard_20_1p5b | cuda:0 | 823050 | ~112 min | 运行中 (99% GPU) | `991bf561` |\n| eval_gsm8k_grpo_cka_only_20_1p5b | cuda:1 | 822503 | ~112 min | 运行中 (98% GPU) | `4ee7cea1` |\n\n两个 cron 已注册，每 5 分钟检查一次。进程结束后会自动读取结果文件并汇报。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-register-westb-crons.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eb8f596d62773d4643b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit dense baseline eval",
+  "task_key": "worker_ssh_submit_dense_baseline_eval_20260520T162523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_dense_baseline_eval_20260520T162523_result.json",
+    "occurrence": 1,
+    "bytes": 611,
+    "sha256": "fac8d897d997db6e2e00d51a7cf9c9cbd46e2727d7aa8c4a954059dc3498243e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dense 模型路径\n- 找到的路径：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- 模型类型：DeepSeek-R1-Distill-Qwen-7B\n\n## eval_gsm8k_dense_unpruned 提交结果\n- PID: 32154（子进程 python PID: 32159）\n- 验证：进程存活 ✓ | GPU memory 17672MiB ✓ | 日志输出 ✓（已开始推理，~7.7s/it）\n- 状态：**RUNNING**\n- 预估时间：1319 × 7.7s ≈ 2.8 小时\n- 输出路径：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_dense_unpruned_n1319.json`\n- 日志：`/root/runs/recovery_aware_struct_prune/eval_gsm8k_dense_unpruned.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-dense-baseline-eval.md"
+}

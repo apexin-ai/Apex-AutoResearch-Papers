@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc982d29dd18afc34fb7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup and launch eval",
+  "task_key": "worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_and_launch_eval_20260519T044409_result.json",
+    "occurrence": 1,
+    "bytes": 474,
+    "sha256": "e5ce809ba58b930fcc79db846e2e5a9355c98b640074a41671a1e2c685362d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n**汇总：**\n- 清理了 `optimizer.pt` (9.5G) + `training_args.bin`，数据盘从 100% 降至 97% (9.5G 可用)\n- GSM8K eval 已在 westb-23072 cuda:0 上运行 (PID 865250)，~11s/样本，预计约 4 小时完成\n- Registry 条目 `eval_gsm8k_grpo_unstructured_20` 已创建，状态 RUNNING，parent=grpo_unstructured_20\n- GPU 1 上还有一个之前的 eval_unstructured_20 在运行（PID 857962, 67.9G 显存, 100% 利用率）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-and-launch-eval.md"
+}

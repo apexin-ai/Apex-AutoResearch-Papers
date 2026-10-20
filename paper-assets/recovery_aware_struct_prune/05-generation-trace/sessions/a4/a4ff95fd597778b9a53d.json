@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "a4ff95fd597778b9a53d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops westd full eval collect",
+  "task_key": "worker_ops_westd-full-eval-collect_20260515T213655",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-full-eval-collect_20260515T213655.log",
+    "occurrence": 1,
+    "bytes": 690943,
+    "sha256": "c16bc11414b6a8d45faa0f22ed9b29a9786d7fefba3a944131c08fd4bf7b84be"
+  },
+  "statistics": {
+    "messages": 218,
+    "user_turns": 0,
+    "tool_calls": 84,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 84,
+      "tool_result": 84,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 218,
+      "chunks": [
+        {
+          "path": "a4ff95fd597778b9a53d-part-0001.json",
+          "message_count": 165
+        },
+        {
+          "path": "a4ff95fd597778b9a53d-part-0002.json",
+          "message_count": 53
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westd-full-eval-collect.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98f3da024590667dfbe2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check qwen eval results",
+  "task_key": "worker_ops_check_qwen_eval_results_20260516T113115",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_qwen_eval_results_20260516T113115_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "8661d93cfd5c2c0a6d28086b5375bab81297dc9cbce9e2f36b18e89b0d48cb86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Eval 结果（已完成）\n\n| 模型 | GSM8K Accuracy | 正确/总数 | stderr | avg_len |\n|------|---------------|-----------|--------|---------|\n| **RASP (20% prune)** | **72.50%** | 145/200 | ±3.16% | 121.8 |\n| **Standard (20% prune)** | **71.00%** | 142/200 | ±3.21% | 127.7 |\n\nRASP 比 Standard 高 1.5pp，但在 stderr 范围内，差异不显著。两者 eos_rate 均为 100%，无截断。\n\n## SFT 25% 进度\n\n| 任务 | GPU | 进度 | 速度 | 预计剩余 |\n|------|-----|------|------|---------|\n| **sft_rasp_25** | cuda:2 | 502/1870 (27%) | ~1.12 it/s | ~20min |\n| **sft_standard_25** | cuda:3 | 465/1870 (25%) | ~1.13 it/s | ~21min |\n\n两个 25% SFT 任务均在正常训练中，loss ~0.70，epoch ~0.5，预计约 20 分钟后完成第一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-qwen-eval-results.md"
+}

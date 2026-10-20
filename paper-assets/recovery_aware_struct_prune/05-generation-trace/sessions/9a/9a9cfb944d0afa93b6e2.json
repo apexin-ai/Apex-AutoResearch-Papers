@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a9cfb944d0afa93b6e2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest random20 eval v2",
+  "task_key": "worker_ssh_harvest_random20_eval_v2_20260521T063508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_random20_eval_v2_20260521T063508_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "ca1e08676f70ce701fcce67fd30f160ca993739c8993bdef22d42924eb7384c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### eval_gsm8k_grpo_random_20_v2 (PID 322611) — **已完成**\n\n| 指标 | 值 |\n|------|-----|\n| **GSM8K Accuracy** | **50.57% ± 1.38% (667/1319)** |\n| EOS rate | 99.54% |\n| Avg response length | 173 tokens |\n| Model | `grpo_random_20/checkpoint-100` |\n| Mode | greedy (temperature=0) |\n| 结果文件 | `results/eval_checkpoint-100_greedy.json` |\n\n### eval_gsm8k_grpo_random_20_v3 — **进程已死**\n\n日志停在 539/1319（~41%），ps aux 中无对应进程。临近 525 样本时出现严重减速（99s/it），之后进程消失。GPU 1 内存 0 MiB 确认进程已退出。需要排查原因并重启。\n\n### CKA-only 25 v3 (PID 322443) — **运行中**\n\n- 进度：~500/1319（~38%），interim acc = **60.0%**\n- GPU 0: 93% 利用率, 28933 MiB\n- 预计还需 ~55 分钟完成\n\n### GPU 状态 (westd-29022)\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 93% | 28933 MiB (CKA eval) |\n| 1 | 0% | 0 MiB (空闲) |\n| 2 | 0% | 0 MiB |\n| 3 | 0% | 0 MiB |\n\nv3 random_20 挂了，要查日志排查原因并重启吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-random20-eval-v2.md"
+}

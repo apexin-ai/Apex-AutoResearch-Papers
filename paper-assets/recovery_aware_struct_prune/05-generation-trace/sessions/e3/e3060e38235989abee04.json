@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "e3060e38235989abee04",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval pass k8 standard 20 grpo qwen math",
+  "task_key": "worker_diagnose_eval_pass_k8_standard_20_grpo_qwen_math_20260516T202148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_pass_k8_standard_20_grpo_qwen_math_20260516T202148_result.json",
+    "occurrence": 1,
+    "bytes": 1296,
+    "sha256": "30d5f709122de613dd67dbbcdd435a9b2fe2293e8ec7f8df919c38276b14fba5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 **仍在正常运行**，cron 是误报。\n\n```json\n{\n  \"status\": \"still_running\",\n  \"metrics\": {\"pass_k_at_50\": 0.9000, \"progress\": \"90/200 (~45%)\"},\n  \"log_snippet\": \"Pass@8 eval: 45%|████▌ | 90/200 [1:30:05<2:31:26, 82.60s/it]\",\n  \"root_cause\": \"误报。eval_gsm8k.py 不注册 W&B，cron 靠 W&B heartbeat 检测进程活跃性，检测不到就判定 failed。实际进程 PID 33921/34032 仍在跑，CPU 104%，已完成 90/200 prompts，中间 checkpoint pass@8=0.90。预计还需 ~2.5h 完成。\"\n}\n```\n\n补充观察：该命令产生了 **两个** python 进程（PID 33921 和 34032），可能是 nohup 触发了重复启动，但只要输出文件路径相同，后写入的会覆盖前者，不影响最终结果。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "still_running",
+              "metrics": {
+                "pass_k_at_50": 0.9,
+                "progress": "90/200 (~45%)"
+              },
+              "log_snippet": "Pass@8 eval: 45%|████▌ | 90/200 [1:30:05<2:31:26, 82.60s/it]",
+              "root_cause": "误报。eval_gsm8k.py 不注册 W&B，cron 靠 W&B heartbeat 检测进程活跃性，检测不到就判定 failed。实际进程 PID 33921/34032 仍在跑，CPU 104%，已完成 90/200 prompts，中间 checkpoint pass@8=0.90。预计还需 ~2.5h 完成。"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-pass-k8-standard-20-grpo-qwen-math.md"
+}

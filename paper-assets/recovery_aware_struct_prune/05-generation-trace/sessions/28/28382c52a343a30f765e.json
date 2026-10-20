@@ -1,0 +1,628 @@
+{
+  "schema_version": "1.0",
+  "id": "28382c52a343a30f765e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ssh westd 11672 urgent check",
+  "task_key": "worker_ssh_westd_11672_urgent_check_20260516T210747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_11672_urgent_check_20260516T210747.log",
+    "occurrence": 1,
+    "bytes": 52531,
+    "sha256": "b737b7ec967d6883db50f852dbe976eb7e9384d998604fd575195e76235f1c86"
+  },
+  "statistics": {
+    "messages": 14,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0dd331e3-c0a0-4679-9bd3-0e95e96bbac7",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778978400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "a7409ee8-4b54-4c10-801e-c9958dd2af8d",
+                "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to SSH into westd-11672 and perform two tasks:\n1. Check eval_grpo_standard_25 model path\n2. Check alpha ablation status\n\nLet me load the necessary MCP tools first.",
+              "signature": "EvECClkIDRgCKkAZ08ZivCCxq4kX0+uN6xOsRS58Hh5TkvX6QJUqMszAy/F44IfQo3TF4Spb7vQ7rXfgGE5bfR/zIoRngReYIgjrMg9jbGF1ZGUtb3B1cy00LTY4ABIMDviWhUhMcuq/93UTGgzD8bEU7wECc4e/AHYiMNNpy1FL1UmRHqkHR8GaLLxORohbKRH3fSuMZnygYI5X7fkSSa6HbzckNBBIO9r3ECrFAVY3ZOmO5b4+s5mar2wQzbp4he0mQDT15BGT2kqLx23f1KQHf61UqOpdrTzK03xqvJu5UsUrAgOSN8EpL0DeobxHfTW4Lf4HbKjPA5AgEoNWMgVX5qzDJOQVAn2Znt0BC0EfWnm80u7f+5JFX55KLG4ic5KZ8Pw9fQ6O4fZlsXte5pARRQLuKWRHNhbVTld56nGMmxdl7CqGXM7M1SC+witNJi+5xDcytby6eVgR/VwMyfAjzAJgSYiOxaFdABP3h1esBxPOGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "9e4b8ffd-5e38-4580-8f34-2e5a5133b0c9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpfDTWonFxURZB2RVsVHAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13209,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13209
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015oWQzVpb6mvXchQD6Eajow",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "01da23ea-d293-4581-8847-d0d1c926e299",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FpfDTWonFxURZB2RVsVHAM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 13209,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 13209
+                },
+                "output_tokens": 47,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T21:08:02.839Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_015oWQzVpb6mvXchQD6Eajow",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "5d2091db-ae3f-42d2-ad70-2d8e35cc9472",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now let me execute the SSH commands. I'll run both tasks in parallel.",
+              "signature": "EoACClkIDRgCKkAvnhcGSgMrZu3+3BUvq6o7GwarR9WCBvqExw48U1DNb2gApNS3/JwevU2HsXiVUgXmTifQoPk//BLeM0+nfh1RMg9jbGF1ZGUtb3B1cy00LTY4ABIMm3+upjZth5ZPIFoFGgzQhyHd8ATuJdgsdhYiMORR9aQxwECT7hR6kV3EVBWVntjwSiCJpCyBwIzCwBNeXXCPWm6O66bvxkaXaJ9YvCpVDe3e+Fvi1+luX3nkDUVffjUIqJBkXgsDFcBmwRzWtsWsB0nRAG2BK48avM83eByeprUBd0AEYriMcFGEa5XjcJmJooeLQjCc3hIAoUPsUa14isMz5BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "58846bc1-14e9-41bc-8889-34f9b90a07fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Xz8gMiyhgds4ktjbYXLRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 25050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "执行 SSH 检查。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "703b68d7-45d2-45cc-8db4-868767717fbd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Xz8gMiyhgds4ktjbYXLRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 25050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RjS2YoFqomdfyfmhyvS99u",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ps aux | grep -E \"eval_gsm8k|python\" | grep -v grep",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "0e826371-709e-47f3-a8db-86e889219c4a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Xz8gMiyhgds4ktjbYXLRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 25050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T21:08:10.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RjS2YoFqomdfyfmhyvS99u",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        938  0.0  0.0 4147720 75944 ?       Sl   May16   0:31 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        942  0.0  0.0 187572 98204 ?        S    May16   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1047  0.1  0.0 28341192 9164 ?       Sl   May16   0:37 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3y8kw9mr/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3y8kw9mr/startup_error\\\\nroot      33914  0.0  0.0   4364  2088 ?        S    02:49   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json' > /root/runs/recovery_aware_struct_prune/eval_pass_k8_standard_20_grpo_qwen_math.log 2>&1 & echo \\\\nroot      33921  103  0.1 68867180 2046092 ?    Rl   02:49 143:24 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\\\nroot      34032  103  0.1 65946564 2044012 ?    Rl   02:49 142:34 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accum\\\\n\\\\n... [截断: 输出过长，省略 320 字符] ...\\\\n\\\\n-model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log\\\\nroot      42585  0.0  0.0   6336  4136 ?        Ss   04:01   0:00 tmux new-session -d -s eval_grpo_std25_full source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_grpo_standard_25.log\\\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\\\nroot      46232  124  0.1 92685568 1951468 ?    Rl   04:49  23:44 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\nroot      46908  160  0.1 67620232 1807672 pts/1 Rl+ 05:00  12:50 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\\\nroot      47505  0.0  0.0   4364  3256 pts/0    Ss+  05:05   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_grpo_standard_25_fix.log\\\\nroot      47509  278  0.0 42841268 980136 pts/0 Sl+  05:05   7:03 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "5c2bcd45-6794-48f2-9350-a0eba2344d1d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        938  0.0  0.0 4147720 75944 ?       Sl   May16   0:31 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot        942  0.0  0.0 187572 98204 ?        S    May16   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot       1047  0.1  0.0 28341192 9164 ?       Sl   May16   0:37 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3y8kw9mr/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3y8kw9mr/startup_error\\\\nroot      33914  0.0  0.0   4364  2088 ?        S    02:49   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json' > /root/runs/recovery_aware_struct_prune/eval_pass_k8_standard_20_grpo_qwen_math.log 2>&1 & echo \\\\nroot      33921  103  0.1 68867180 2046092 ?    Rl   02:49 143:24 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\\\nroot      34032  103  0.1 65946564 2044012 ?    Rl   02:49 142:34 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accum\\\\n\\\\n... [截断: 输出过长，省略 320 字符] ...\\\\n\\\\n-model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log\\\\nroot      42585  0.0  0.0   6336  4136 ?        Ss   04:01   0:00 tmux new-session -d -s eval_grpo_std25_full source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_grpo_standard_25.log\\\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\\\nroot      46232  124  0.1 92685568 1951468 ?    Rl   04:49  23:44 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\nroot      46908  160  0.1 67620232 1807672 pts/1 Rl+ 05:00  12:50 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\\\nroot      47505  0.0  0.0   4364  3256 pts/0    Ss+  05:05   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_grpo_standard_25_fix.log\\\\nroot      47509  278  0.0 42841268 980136 pts/0 Sl+  05:05   7:03 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root        938  0.0  0.0 4147720 75944 ?       Sl   May16   0:31 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        942  0.0  0.0 187572 98204 ?        S    May16   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1047  0.1  0.0 28341192 9164 ?       Sl   May16   0:37 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_3y8kw9mr/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_3y8kw9mr/startup_error\\nroot      33914  0.0  0.0   4364  2088 ?        S    02:49   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'CUDA_VISIBLE_DEVICES=2 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json' > /root/runs/recovery_aware_struct_prune/eval_pass_k8_standard_20_grpo_qwen_math.log 2>&1 & echo \\nroot      33921  103  0.1 68867180 2046092 ?    Rl   02:49 143:24 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\nroot      34032  103  0.1 65946564 2044012 ?    Rl   02:49 142:34 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --max_samples 200 --seed 42 --pass_k 8 --temperature 0.7 --num_samples_per_prompt 8 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_standard_20_grpo_qwen_math.json\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\"=== SFT alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"SFT FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\"=== Eval alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"EVAL FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\"PHASE_B_COMPLETE $(date)\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\"=== SFT alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accum\\n\\n... [截断: 输出过长，省略 320 字符] ...\\n\\n-model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"EVAL FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\"PHASE_B_COMPLETE $(date)\\\" >> /tmp/alpha_ablation_phaseB.log\\nroot      42585  0.0  0.0   6336  4136 ?        Ss   04:01   0:00 tmux new-session -d -s eval_grpo_std25_full source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_grpo_standard_25.log\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\nroot      46232  124  0.1 92685568 1951468 ?    Rl   04:49  23:44 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\nroot      46908  160  0.1 67620232 1807672 pts/1 Rl+ 05:00  12:50 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\nroot      47505  0.0  0.0   4364  3256 pts/0    Ss+  05:05   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_grpo_standard_25_fix.log\\nroot      47509  278  0.0 42841268 980136 pts/0 Sl+  05:05   7:03 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_grpo_standard_25_n1319.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"
+              }
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E82FCUvHrLdPkzZTG5pUjV",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/eval_results/eval_grpo_standard_25*/ 2>/dev/null; echo \"---RESULTS---\"; cat /root/autodl-tmp/recovery_aware_struct_prune/eval_results/eval_grpo_standard_25*/results.json 2>/dev/null || echo \"NO_RESULTS\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "be9fbf8d-efc7-496d-b317-25b581ea4336",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Xz8gMiyhgds4ktjbYXLRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 25050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T21:08:11.361Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E82FCUvHrLdPkzZTG5pUjV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---RESULTS---\\\\nNO_RESULTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "9a0e5f0a-67a5-4664-bbc3-646b3fc119ad",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---RESULTS---\\\\nNO_RESULTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"---RESULTS---\\nNO_RESULTS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KzksGDMQ5eQPanjaNEJox5",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_alpha_*/ 2>/dev/null; echo \"---PS---\"; ps aux | grep sft | grep -v grep; echo \"---EVAL---\"; ls /root/autodl-tmp/recovery_aware_struct_prune/eval_results/eval_sft_alpha_*/ 2>/dev/null || echo \"NO_EVAL_RESULTS\"",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "cff163ac-8134-4b98-a394-db037d131d7d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015Xz8gMiyhgds4ktjbYXLRZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 677,
+                "cache_read_input_tokens": 25050,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 677
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T21:08:12.627Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KzksGDMQ5eQPanjaNEJox5",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---PS---\\\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log\\\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\\\nroot      46232  124  0.1 92685568 1951468 ?    Sl   04:49  23:46 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\nroot      46908  160  0.1 68111752 1807672 pts/1 Rl+ 05:00  12:53 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\\\n---EVAL---\\\\nNO_EVAL_RESULTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "b6a35172-441e-4b2c-8cea-4a1b598e7499",
+            "uuid": "b21a1633-20dd-498f-8df7-e67bb1139fe3",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---PS---\\\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\\\\\"=== SFT alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"SFT FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\\\\\"=== Eval alpha=$alpha === $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\\\\\"EVAL FAILED alpha=$alpha\\\\\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\\\\\"PHASE_B_COMPLETE $(date)\\\\\\\" >> /tmp/alpha_ablation_phaseB.log\\\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\\\nroot      46232  124  0.1 92685568 1951468 ?    Sl   04:49  23:46 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\nroot      46908  160  0.1 68111752 1807672 pts/1 Rl+ 05:00  12:53 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\\\n---EVAL---\\\\nNO_EVAL_RESULTS\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"---PS---\\nroot      39809  0.0  0.0   4488  2140 ?        S    03:24   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && nohup bash -c 'for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\"=== SFT alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"SFT FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\"=== Eval alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"EVAL FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\"PHASE_B_COMPLETE $(date)\\\" >> /tmp/alpha_ablation_phaseB.log' > /dev/null 2>&1 & echo $!\\nroot      39814  0.0  0.0   4364  3180 ?        S    03:24   0:00 bash -c for alpha in 0.0 0.3 0.5 0.7 1.0 2.0; do echo \\\"=== SFT alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_${alpha} --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42 >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"SFT FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; continue; fi; echo \\\"=== Eval alpha=$alpha === $(date)\\\" >> /tmp/alpha_ablation_phaseB.log 2>&1; CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_${alpha} --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_${alpha}.json >> /tmp/alpha_ablation_phaseB.log 2>&1; if [ $? -ne 0 ]; then echo \\\"EVAL FAILED alpha=$alpha\\\" >> /tmp/alpha_ablation_phaseB.log; fi; done; echo \\\"PHASE_B_COMPLETE $(date)\\\" >> /tmp/alpha_ablation_phaseB.log\\nroot      44893  0.0  0.0   4496  3592 pts/1    Ss+  04:28   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_2.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json && CUDA_VISIBLE_DEVICES=0 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_1.0 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_1.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_1.0.json\\nroot      46232  124  0.1 92685568 1951468 ?    Sl   04:49  23:46 python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/pruned_alpha_0.5 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_0.5 --gpu 3 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\nroot      46908  160  0.1 68111752 1807672 pts/1 Rl+ 05:00  12:53 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/sft_alpha_2.0 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/outputs/alpha_ablation/eval_alpha_2.0.json\\n---EVAL---\\nNO_EVAL_RESULTS\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000014"
+        }
+      ],
+      "message_count": 14
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-westd-11672-urgent-check.md"
+}

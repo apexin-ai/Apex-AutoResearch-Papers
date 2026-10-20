@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a271c472e2ba27fbca95",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "gpu westd fill idle",
+  "task_key": "worker_gpu_westd_fill_idle_20260516T184831",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_gpu_westd_fill_idle_20260516T184831_result.json",
+    "occurrence": 1,
+    "bytes": 2174,
+    "sha256": "3c55987b780e548d002b1fe162f79f82c0509935617f0f7c838980d989ad96ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 都在加载数据集，即将开始推理。\n\n## 汇报\n\n### westd-11672 GPU 分配状态（全满）\n\n| GPU | 显存占用 | 任务 | 备注 |\n|-----|---------|------|------|\n| cuda:0 | 58.7GB/97.9GB | `grpo_rasp_rlvr_20_qwen_math` (训练) | PID 32087，已有 |\n| cuda:1 | 55.8GB/97.9GB | `grpo_standard_25` (训练) | PID 32427，已有 |\n| cuda:2 | 36.9GB/97.9GB | `eval_pass_k8_standard_20_grpo_qwen_math` (已有) + **eval_grpo_rasp_25** (新启) | 共存无冲突 |\n| cuda:3 | 11.8GB/97.9GB | **eval_sft_rasp_25** (新启) | N=1319 full eval |\n\n### 新启动实验\n\n1. **cuda:2 — eval_grpo_rasp_25** (N=1319, full GSM8K, greedy)\n   - 模型: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25`\n   - 输出: `results/eval_grpo_rasp_25.json`\n   - 意义: 论文核心数据——验证 25% RASP 剪枝后 GRPO 恢复的 accuracy\n\n2. **cuda:3 — eval_sft_rasp_25** (N=1319, full GSM8K, greedy)\n   - 模型: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25`\n   - 输出: `results/eval_sft_rasp_25.json`\n   - 意义: SFT recovery baseline，之前的 run 在 163/1319 中断\n\n### 可用模型 checkpoint 全列表\n\n**GRPO 输出:**\n- `grpo_rasp_25`, `grpo_rasp_25_qwen_math`, `grpo_rasp_qwen_math`, `grpo_rasp_rlvr_20_qwen_math`\n- `grpo_standard_25`, `grpo_standard_25_qwen_math`, `grpo_standard_qwen_math`\n- `grpo_standard_v8_step50`, `grpo_unpruned_v2`\n\n**Pruned 模型:**\n- `pruned_rasp_25`, `pruned_rasp_25_qwen_math`, `pruned_rasp_20`\n- `pruned_standard_25`, `pruned_standard_25_qwen_math`, `pruned_standard_20`\n- `pruned_qwen_math_rasp_20`, `pruned_qwen_math_standard_20`\n- `pruned_rasp_rlvr_20`, `pruned_rasp_rlvr_20_qwen_math`\n\n**SFT 模型:**\n- `sft_rasp_25`, `sft_rasp_25.log`, `sft_rasp_20_westd`\n- `sft_standard_25`, `sft_standard_20_westd`\n- `sft_qwen_math_rasp_20/25`, `sft_qwen_math_standard_20/25`\n- `sft_rasp_rlvr_20_qwen_math`, `sft_unpruned_baseline`\n\n### 未启动原因\n\n- **cuda:0**: 被 `grpo_rasp_rlvr_20_qwen_math` 训练占满，无法另行分配\n- 原计划的 eval_grpo_rasp_25 改在 cuda:2 上跑（与已有 pass@8 eval 共存，显存充足）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/gpu-westd-fill-idle.md"
+}

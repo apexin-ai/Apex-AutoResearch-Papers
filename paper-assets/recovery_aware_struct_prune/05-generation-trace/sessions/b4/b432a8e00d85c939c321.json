@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b432a8e00d85c939c321",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval rasp pass k8 deepseek restart",
+  "task_key": "worker_eval_rasp_pass_k8_deepseek_restart_20260517T020027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_rasp_pass_k8_deepseek_restart_20260517T020027_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "eafc52b52373627f28d3f1a6fb26cb2c18bf83447e8c1ee836d3737cbafd88fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "启动成功。汇报：\n\n## GPU 状态\n\n| 服务器 | GPU | 状态 | 显存占用 |\n|--------|-----|------|----------|\n| **westd-11672** | cuda:0 | ~~空闲~~ → 已启动 eval_pass_k8 | 0→加载中 |\n| westd-11672 | cuda:1 | 占用 (PID 48541) | 28902/97887 MiB |\n| westd-11672 | cuda:2 | 空闲 | 0 MiB |\n| westd-11672 | cuda:3 | 占用 (PID 64889) | 29586/97887 MiB |\n| **westb-23072** | cuda:0 | 占用 (PID 639423) | 28922/97887 MiB |\n| westb-23072 | cuda:1 | 空闲 | 0 MiB |\n\n## eval_pass_k8_rasp_20_grpo_deepseek\n\n- **已成功启动** — PID 67876，westd-11672 cuda:0\n- tmux session: `eval_pass_k8_rasp20`\n- 日志: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_pass_k8_rasp20.log`\n- 参数: k=8, temperature=0.7, max_samples=200, max_new_tokens=4096\n- 预估时间: 200 samples × 8 generations × 4096 tokens，约 2-4 小时\n\n## eval_grpo_rasp_25 (PID 639423)\n\n仍在运行，westb-23072 cuda:0，已跑约 6.5 小时（386 min），命令为 `eval_gsm8k.py --max_samples 1319`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-rasp-pass-k8-deepseek-restart.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9b273ebbcc966ca804f5",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "deploy push eval updates",
+  "task_key": "worker_deploy_push-eval-updates_20260512T110542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_push-eval-updates_20260512T110542_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "23cf7ea2743f7112139546d86490ae712c6c20ed771a61c7294f0727fffc03f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已更新并验证通过。\n\n| 文件 | 状态 |\n|------|------|\n| `src/evaluate.py` | 已更新：+CONFORMANCE_METRICS, +predictions_path, +model_label, +parse_model_output import, +conformance metrics 收集, print_summary 包含 conformance |\n| `src/inference_base.py` | 已更新：+CONFORMANCE_METRICS import, +prediction saving (label \"base\"), +conformance metrics printing |\n\n验证结果：`CONFORMANCE_METRICS = ['valid_json_rate', 'conformance_type', 'conformance_relational', 'conformance_completeness']`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-push-eval-updates.md"
+}

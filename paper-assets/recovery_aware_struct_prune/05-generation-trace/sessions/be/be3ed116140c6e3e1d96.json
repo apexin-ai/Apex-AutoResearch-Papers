@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "be3ed116140c6e3e1d96",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose sft rasp alpha3p0 westb0 status",
+  "task_key": "worker_diagnose_sft_rasp_alpha3p0_westb0_status_20260524T094358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_rasp_alpha3p0_westb0_status_20260524T094358_result.json",
+    "occurrence": 1,
+    "bytes": 413,
+    "sha256": "03fd476edfbb2f00e63e83bf6124430e1a2921859c93b91d8f22f2f70cb119ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**正常运行。**\n\n- PID 370519 存活，cuda:0 显存 16.7GB，GPU利用率 99%\n- 进度：63/500（12.6%），启动于 17:08，当前约 33 分钟跑了 63 题\n- 平均速度约 ~57s/题（波动大，部分题需要长推理），预计剩余 ~7 小时完成\n- 结果文件尚未生成（正常，应该是跑完全部 500 题后一次性写入）\n\n无需干预，继续等待即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-rasp-alpha3p0-westb0-status.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6ee0c01f5b1aa1da6062",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "cleanup westb disk",
+  "task_key": "worker_cleanup_westb_disk_20260522T113449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westb_disk_20260522T113449_result.json",
+    "occurrence": 1,
+    "bytes": 821,
+    "sha256": "50da1d172bb3c661cd054739f9c0af75aee2a9b4fc88bb8dccacbb6607027a61"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 清理前 ===\n磁盘使用: 250G / 250G (100%)\n\n=== 清理后 ===\n磁盘使用: 222G / 250G (89%)\n释放空间: ~28G\n\n=== 剩余大目录 (top 20) ===\n38G   grpo_qwen_math_cka_only_20\n12G   grpo_cka_only_20\n12G   grpo_cka_only_20_seed123\n12G   pruned_cka_only_20_qwen_math\n12G   pruned_rasp_alpha3p0_20\n12G   pruned_rasp_rlvr_20\n12G   pruned_standard_20_qwen_math\n12G   sft_cka_only_20\n12G   sft_qwen_math_cka_only_20_final\n12G   sft_rasp_alpha3p0_20\n12G   sft_rasp_rlvr_20\n12G   sft_standard_20_qwen_math_final\n11G   pruned_standard_25\n3.4G  models\n2.9G  grpo_alpha4_20_eval\n2.8G  grpo_cka_only_20_1p5b\n2.8G  grpo_rasp_20_1p5b\n2.8G  grpo_standard_20_1p5b\n2.8G  pruned_cka_only_20_1p5b\n2.8G  pruned_rasp_20_1p5b\n```\n\n释放 28G，可用空间从 3.3M 恢复到 29G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westb-disk-copy-2.md"
+}

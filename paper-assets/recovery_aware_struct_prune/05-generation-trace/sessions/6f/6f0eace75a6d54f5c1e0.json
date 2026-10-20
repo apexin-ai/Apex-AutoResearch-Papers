@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "6f0eace75a6d54f5c1e0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp grpo rasp 20",
+  "task_key": "worker_diagnose_eval_mbpp_grpo_rasp_20_20260519T182716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_grpo_rasp_20_20260519T182716_result.json",
+    "occurrence": 1,
+    "bytes": 2617,
+    "sha256": "15b8b3ee5b316036b91765b072d8abb4aff3b64a4ab4a434661e138a18e7c2cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**证据链**：\n- 日志：模型加载成功（02:21→02:22，~1.5min），开始加载 MBPP dataset 后立即 \"Terminated\"，EXIT_CODE=129\n- EXIT_CODE=129 = 128+1 = **SIGHUP**（信号1），即控制终端断开\n- 无 OOM 证据：服务器无 kern.log/syslog，且进程死于 CPU 操作（加载 dataset），非 GPU 操作\n- 其他 eval 正常运行：grpo_standard_20（44% 进度）、sft_standard_20（7% 进度）均健康\n- 4 张 GPU 全部占满（94-98% util，每张 13-17GB）\n- 模型目录 grpo_stage2_rasp_20_fair/ 完整（12.3GB model.safetensors）\n- `eval_mbpp_sft_rasp_20` 尚未运行（无对应日志文件）\n\n**根因**：进程通过 `ssh_execute` 启动但未用 nohup/tmux 保护，SSH 会话超时后发送 SIGHUP 导致进程终止。模型加载耗时 ~1.5 分钟已接近 ssh_execute 超时窗口，进入 dataset 加载阶段时连接断开。\n\n```json\n{\"root_cause\":\"EXIT_CODE=129(SIGHUP): 进程在ssh_execute中启动但未用nohup/tmux保护，SSH会话超时(模型加载~1.5min)后终端断开导致SIGHUP杀死进程。非OOM——进程死于CPU端dataset加载，4张GPU上其他eval均正常运行\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"等待当前4个GPU任务中至少1个完成释放GPU\",\"用tmux或nohup重新启动eval_mbpp_grpo_rasp_20，例如: nohup python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --gpu 0 > ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_rasp_20.log 2>&1 &\",\"同时安排eval_mbpp_sft_rasp_20（SFT RASP 20%模型尚未评估MBPP）\"],\"can_auto_fix\":true,\"sft_rasp_model_path\":\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "EXIT_CODE=129(SIGHUP): 进程在ssh_execute中启动但未用nohup/tmux保护，SSH会话超时(模型加载~1.5min)后终端断开导致SIGHUP杀死进程。非OOM——进程死于CPU端dataset加载，4张GPU上其他eval均正常运行",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "等待当前4个GPU任务中至少1个完成释放GPU",
+                "用tmux或nohup重新启动eval_mbpp_grpo_rasp_20，例如: nohup python src/eval_mbpp.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --gpu 0 > ~/runs/recovery_aware_struct_prune/eval_mbpp_grpo_rasp_20.log 2>&1 &",
+                "同时安排eval_mbpp_sft_rasp_20（SFT RASP 20%模型尚未评估MBPP）"
+              ],
+              "can_auto_fix": true,
+              "sft_rasp_model_path": "/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-grpo-rasp-20.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c5f42df699a8581faed",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_11_1778897947.md",
+  "task_key": "loop_11_1778897947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_11_1778897947.md",
+    "occurrence": 1,
+    "bytes": 5905,
+    "sha256": "fe902a250b0808b9d46c8aedd69b24591bdbbf944d601650d388cbddefe64814"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 11\nreason: idle_timeout\nupdated: '2026-05-16T01:44:21+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 cuda:0/1 + westd-11672 cuda:0/1，四张卡，其他一律不碰（C001/C003）\n- 大文件只写 `/root/autodl-tmp/recovery_aware_struct_prune/`，根分区 30GB 已多次爆盘（C002）\n- EMNLP ARR May 25 = **还剩 9 天**\n- Unpruned GRPO baseline（D039/D040/D041）**设计无效**——上次跳过了 SFT 步骤，KL=47.57 全乱码。不要引用其 collapse timeline (step 80) 作为论文证据，除非用 SFT→GRPO 流程重跑\n- Standard GRPO v8 step-50 checkpoint 在 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50`，**唯一可用的 Standard GRPO checkpoint**，不要删\n- RASP GRPO v2/v5/v8 全版本**零 checkpoint**（save_steps 大于 collapse 步数），v9 (save_steps=5) 是唯一能拿到 RASP GRPO checkpoint 的版本\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**：2×~98GB GPU，工作目录 `/root/recovery_aware_struct_prune`，数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n  - Python：`/root/miniconda3/bin/python`（conda base，不用 venv）\n  - 活跃进程：\n    - `grpo_stage2_rasp_20_v9` PID 566666, cuda:0, wandb `mrikafz3`, max_steps=30, save_steps=5\n    - `grpo_stage2_standard_20_v8` PID 534667, cuda:1, wandb `q34vz8j2`, max_steps=100（step 60 已 collapse，跑到 100 收集完整曲线）\n  - Cron 监控 2 个：grpo_stage2_standard_20_v8, grpo_stage2_rasp_20_v9\n- **westd-11672**：2×~95GB GPU，同目录结构\n  - 活跃进程：`eval_sft_unpruned_full` PID 74129, cuda:0（N=1319 GSM8K eval）\n  - cuda:1 空闲\n- HF cache：`/root/autodl-tmp/.hf_cache`（两台都是）\n- 模型路径约定：`/root/autodl-tmp/recovery_aware_struct_prune/{sft_rasp_20, sft_standard_20, sft_unpruned_baseline, grpo_stage2_*}`\n- W&B 项目：搜 run id `mrikafz3`(RASP v9) / `q34vz8j2`(Standard v8)\n\n### 3. 📊 当前状态\n**刚完成 D044 重大 narrative pivot**：原假设 \"RASP enables better RLVR recovery\" 被 falsify。新 story 是 \"GRPO fails on ALL pruned models; collapse dynamics as diagnostic\"。paper_framing.md 已按新 narrative 重写。\n\n**RUNNING 实验 (3)**：\n| exp_id | 服务器/GPU | 摘要 | 预计完成 |\n|--------|-----------|------|---------|\n| grpo_stage2_rasp_20_v9 | westb:0 | save_steps=5 捕获 collapse 前 peak checkpoint | 不确定，max_steps=30 |\n| grpo_stage2_standard_20_v8 | westb:1 | 已 collapse step 60，跑到 step 100 收集曲线 | 数小时内 |\n| eval_sft_unpruned_full | westd:0 | Unpruned SFT N=1319 eval | 应该很快（N=100 已出 84%） |\n\n**关键已完成数据点**：\n- Standard GRPO step-50 eval (N=1319): **58.91%** vs SFT 59.29% = 零 accuracy gain（reward hacking 确认）\n- SFT: RASP 61.49% vs Standard 59.29%, Δ=2.2pp, **p=0.248 不显著**\n- GraSP post-SFT: **41%**，vs Standard p=0.001（唯一显著对比）\n- Unpruned SFT N=100: **84%**（full eval 运行中）\n- α ablation westb (cal=512): U 形，α=1.0→31%, α=2.0→36%\n- Collapse timeline: RASP(~10) < Standard(~60) < Unpruned(~80, 但 baseline 无效)\n\n**Worker 池**：0 running。**PREPARING 队列 10 个实验**（多数是旧设计，需评估哪些在新 narrative 下仍有价值）。\n\n### 4. 📋 待办（条件触发式）\n- `grpo_stage2_rasp_20_v9` cron 回调 → spawn worker eval step 5/10 checkpoints (N=1319, greedy) → 这是新 narrative 的**关键缺失数据**（RASP collapse 前 peak accuracy 是多少？与 Standard step-50 的 58.91% 对比）\n- `grpo_stage2_standard_20_v8` cron 回调 → 确认 step 100 完全 collapse，更新 registry，无需额外 eval（step-50 eval 已完成）\n- `eval_sft_unpruned_full` cron 回调 → 记录 unpruned SFT accuracy（预期 ~84%），建立三层 baseline：Unpruned SFT ~84% >> Standard SFT 59% ≈ RASP SFT 61%\n- Unpruned SFT 完成 + westd GPU 空闲 → 考虑是否启动 **Unpruned SFT→GRPO** 重做（D040/D041 指出原 baseline 无效）。这是论文 \"pruning causes collapse\" claim 的必需对照，但 9 天 DDL 下需 Director 决策优先级\n- RASP v9 eval 结果出来 → 如果 RASP peak accuracy 也无 gain over SFT → 确认 Claim 1 (GRPO fails on all pruned models)；如果有 gain → 需要 re-evaluate narrative\n- 所有核心数据就绪 → 派 Writer worker 按 paper_framing.md 开始写论文\n\n### 5. 🎯 战略上下文\n**决策链核心转折**：D006 \"RASP 29x advantage\" → D024/D025 发现是 eval bug → D027 definitive re-eval 仅 4pp(p=0.54) → D029 SFT Standard>RASP → D035/D037 RASP GRPO 3x collapse → D043 Standard 也 collapse → **D044 全面 pivot 到 failure analysis narrative**。\n\n**当前论文 story**（paper_framing.md）：\n- Claim 1: GRPO alignment fails on pruned models（reward hacking：reward ↑ but accuracy = 0 gain）\n- Claim 2: Collapse speed diagnoses structural damage type（RASP ~10 < Standard ~60）\n- Claim 3: Recovery method conditions optimal pruning（SFT 下 RASP≈Standard，GRPO 下 RASP 6x faster collapse）\n\n**最容易判断错的事**：\n1. **不要引用 Unpruned collapse timeline (step 80)**——那个实验跳过了 SFT，设计无效（D040/D041）。论文中只能用 RASP vs Standard 的 collapse 对比，除非重做 Unpruned SFT→GRPO\n2. **不要把 post-prune accuracy 差异当 story**——RASP 31% vs Standard 27% 不显著(p=0.54)，原始 \"29% vs 1%\" 是 eval bug（max_new_tokens=10 截断，D024/D025）\n3. **PREPARING 队列里的 10 个实验大多基于旧 narrative 设计**（如 grpo_stage2_standard_20_v5、mvp_rasp_pipeline_v4），需要重新评估哪些在新 narrative 下仍有价值，不要盲目推进\n4. **α ablation SFT 侧无趋势**（D034 确认），不要尝试在 SFT 上做 α 相关 claim\n5. **westd cuda:1 空闲**——这是失职状态，应立即利用（α=2.0 SFT eval、或其他补充实验）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-11-1778897947.md"
+}

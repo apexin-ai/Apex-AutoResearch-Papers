@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bb185fdfd73efcc625e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec disk cleanup westb",
+  "task_key": "worker_exec_disk_cleanup_westb_20260517T045152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_disk_cleanup_westb_20260517T045152_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "006d92dfdc7bc34343dfa0c8ab5768f70dc59f1fe2a4da93f10df6493b08f3ea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已重启并在运行中。\n\n## 汇报\n\n| 项目 | 结果 |\n|------|------|\n| **checkpoint 删除** | `/grpo_stage2_rasp_20_v9/checkpoint-10` 已删除 |\n| **可用空间** | `/root/autodl-tmp` 43G 可用（250G 总，83% 使用） |\n| **scoring_ablation_batch 状态** | 已重启，PID 676366 |\n| **失败原因** | 非磁盘问题。`model_utils.py:load_pruned_model()` 读取属性名 `per_layer_num_heads` / `per_layer_num_kv_heads`，但 config.json 保存的是 `per_layer_num_attention_heads` / `per_layer_num_key_value_heads`，导致 per-layer attention 调整被跳过，模型维度不匹配 |\n| **修复** | 已将 `model_utils.py` 第 31-32 行属性名修正为 `per_layer_num_attention_heads` / `per_layer_num_key_value_heads` |\n| **tmux session** | `scoring_ablation`，当前正在执行 magnitude Step 1/4 (Pruning) |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-disk-cleanup-westb.md"
+}

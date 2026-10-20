@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f64d7dfa1b72d960de26",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 batch failure",
+  "task_key": "worker_diagnose_eval_math500_batch_failure_20260521T134102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_batch_failure_20260521T134102_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "a43c11110f0af8f52d42656064037b4a136c037cafc99fb09a041b6be07badd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断报告已写入 memory.md。\n\n**总结**：3 个 MATH-500 eval 被外部 SIGTERM 主动终止，不是 OOM/磁盘/脚本问题。grpo_cka_only_25 和 sft_cka_only_25 已被重启为 _v2（加了 `--max_new_tokens 2048`），正在 GPU 0/2 上运行。**grpo_random_20 未被重启，GPU 1 空闲**，需手动处理。数据盘 99% 满需关注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-batch-failure.md"
+}

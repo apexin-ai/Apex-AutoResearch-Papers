@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "956f77784d361d9a5ea7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260515T045157",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260515T045157_result.json",
+    "occurrence": 1,
+    "bytes": 1294,
+    "sha256": "8ec5d8d723729c7bc10612b0cfabebea971259ed25e98186e501054f53e2729d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verification complete. All 5 checks pass:\n\n1. **Section hierarchy**: `\\section` → 4 `\\subsection`s (Preliminaries, Stage 1, Stage 2, Stage 3)\n2. **Equation labels**: `eq:importance`, `eq:cka`, `eq:overlap`, `eq:score` — all present\n3. **Algorithm syntax**: Uses `\\State`, `\\For`, `\\If`, `\\Require`, `\\Ensure` (algpseudocode) — no algorithm2e commands\n4. **Citation keys**: All 8 keys (`rlsqueezes2026`, `ainslie2023gqa`, `shao2024grpo`, `selfhealing2025`, `resp2025`, `kornblith2019cka`, `mpruner2024`, `lachance2024cka`) verified in `references.bib`\n5. **No 35% sparsity**: Only \"20\\% sparsity\" appears (line 86, capacity floor context)\n\nThree key changes from the existing draft:\n- **Per-layer capacity floor** (lines 81–86): ≥40% MLP groups retained per layer (≥12/28), prevents representational collapse from unconstrained global ranking\n- **Two-stage recovery** (lines 91–111): SFT warmup (restore EOS & format) → GRPO (restore reasoning), motivated by EOS collapse in direct GRPO on pruned models\n- **Algorithm 1** (lines 113–151): Converted from broken algorithm2e syntax to proper algpseudocode; added capacity floor constraint loop and two-stage recovery steps with `$\\mathcal{D}_\\text{sft}$`/`$\\mathcal{D}_\\text{rlvr}$` inputs"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method-copy-2.md"
+}

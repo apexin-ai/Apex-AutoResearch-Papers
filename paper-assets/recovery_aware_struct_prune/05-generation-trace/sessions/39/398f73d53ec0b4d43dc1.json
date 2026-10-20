@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "398f73d53ec0b4d43dc1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research dose response hyperparams",
+  "task_key": "worker_research_dose_response_hyperparams_20260523T184941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dose_response_hyperparams_20260523T184941_result.json",
+    "occurrence": 1,
+    "bytes": 2302,
+    "sha256": "fdc3a515708536e1286f7b682f70f97a5ba8794a8cb0ae1cea2693a5dfac37aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dose-response GRPO 超参审计\n\n| α值 | exp_id | max_completion_length | temperature | rep_penalty | format_reward | optimizer | 备注 |\n|-----|--------|----------------------|-------------|-------------|---------------|-----------|------|\n| 0.5 | `pipeline_alpha0p5_20` (内嵌) | 512 (默认) | 0.4 (默认) | 1.15 (默认) | 0.1 (默认) | adamw_8bit (默认) | pipeline 无独立 GRPO 记录，参数推断自脚本默认值 |\n| 1.0 | `grpo_rasp_20_fair` | **1024** | 0.4 | 1.15 | 0.1 | adamw_bnb_8bit | registry hyperparams 明确记录 max_completion_length=1024 |\n| 2.0 | `pipeline_alpha2p0_20` (内嵌) | 512 (默认) | 0.4 (默认) | 1.15 (默认) | 0.1 (默认) | adamw_8bit (默认) | 同 α=0.5，参数推断 |\n| 3.0 | `grpo_rasp_alpha3p0_20_v2` | 512 (默认) | 0.4 (默认) | 1.15 (默认) | 0.1 (默认) | adamw_8bit (默认) | v1 checkpoint 磁盘满损坏，v2 仅指定 --max_steps 100 --save_total_limit 1 |\n| 4.0 | `grpo_alpha4_20` | 512 (默认) | 0.4 (默认) | 1.15 (默认) | 0.1 (默认) | adamw_8bit (默认) | 命令仅指定 --alpha 4.0 --max_steps 100 |\n\n### `train_grpo_v5.py` 默认值确认\n\n从 `src/train_grpo_v5.py` line 199-217 的 argparse 定义：\n- `--max_completion_length`: 512\n- `--temperature`: 0.4\n- `--repetition_penalty`: 1.15\n- `--format_reward_weight`: 0.1\n- `--optim`: adamw_8bit\n\n### 内部一致性: **No**\n\n**关键问题：α=1.0 的 max_completion_length=1024，其余四个为 512。**\n\nα=1.0 (`grpo_rasp_20_fair`) 的 registry hyperparams 字段明确记录了 `\"max_completion_length\": 1024`，同时 optimizer 名也略有不同（`adamw_bnb_8bit` vs `adamw_8bit`，实际是同一个 optimizer 的不同写法）。\n\n其余四个 α 值均未在命令中显式指定 `--max_completion_length`，使用脚本默认值 512。α=0.5 和 α=2.0 的参数是推断值（pipeline 内嵌运行，registry 无独立 GRPO 命令记录），置信度略低但大概率也是默认 512。\n\n### 影响\n\nmax_completion_length 1024 vs 512 意味着 α=1.0 的 GRPO 训练允许生成更长的推理链，这可能系统性地影响 reward signal 和最终性能。如果用于论文 dose-response 曲线，需要用统一的 max_completion_length 重跑 α=1.0，或者将其余四个对齐到 1024。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dose-response-hyperparams.md"
+}

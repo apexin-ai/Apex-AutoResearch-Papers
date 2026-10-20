@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34aec3d8b03f95b00751",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd gpu check",
+  "task_key": "worker_diagnose_westd_gpu_check_20260517T191058",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_gpu_check_20260517T191058_result.json",
+    "occurrence": 1,
+    "bytes": 1050,
+    "sha256": "e06a1d1fd2993fa8f8256443560eedb196275cce19eb47bdcc1b6d17d8b1ed5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: [BUSY] - 11111MiB / 97887MiB, PID 47672 (eval_gsm8k pruned_standard_30, 运行 1分36秒)\nGPU 1: [BUSY] - 34569MiB / 97887MiB, PID 14556 (eval_math500 grpo_standard_20, 运行 9小时44分)\nGPU 2: [BUSY] - 23150MiB / 97887MiB, PID 43911+44270 (eval_gsm8k pruned_rasp_30, 运行 50分48秒)\nGPU 3: [BUSY] - 31527MiB / 97887MiB, PID 31706 (eval_math500 grpo_rasp_20_v3, 运行 4小时25分)\n---\n可用于新实验的 GPU: []（全部占用）\n```\n\n**已知 PID 状态：**\n- PID 14556 (eval_math500_grpo_standard_20) — **仍在运行**，GPU 1，已跑 9h45m，显存 34560MiB\n- PID 44265 (eval_postprune_rasp_30) — **仍在运行**，是 GPU 2 上 PID 43911/44270 的 wrapper 进程\n- PID 31706 (eval_math500_grpo_rasp_20_v3) — **仍在运行**，GPU 3，已跑 4h26m，显存 31518MiB\n\n**额外发现：**\n- GPU 0 有一个新进程 PID 47672：`eval_gsm8k.py --model_path pruned_standard_30`，刚启动 1 分 36 秒\n\n**结论：4 张 GPU 全部被占用，当前无空闲 GPU 可用于新实验。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-gpu-check.md"
+}

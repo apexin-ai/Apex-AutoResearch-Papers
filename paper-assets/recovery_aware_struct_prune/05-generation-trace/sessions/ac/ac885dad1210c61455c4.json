@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "ac885dad1210c61455c4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft cka only 20 westb",
+  "task_key": "worker_diagnose_eval_math500_sft_cka_only_20_westb_20260522T202951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_cka_only_20_westb_20260522T202951_result.json",
+    "occurrence": 1,
+    "bytes": 2169,
+    "sha256": "457ee888407c0f1b6e04e8f4f0a9224013d071f86a14a5253aaf230ae6ce1ca4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。\n\n**根因：GPU 0 硬件挂起（GPU hang）**\n\n证据：\n- 进程 234500 已死亡，无 Traceback、无 OOM、无 kernel kill 记录\n- GPU 0 当前状态异常：**0 MiB 显存占用 + 100% utilization + 无任何进程**——这是 GPU hang 的典型表现（Xid fatal error 后 GPU 卡在计算循环中）\n- 日志在 255/500 处突然中止，无错误输出\n- 无系统重启、磁盘空间充足（33GB 剩余）\n\nGPU 0 需要 reset 才能恢复正常。\n\n```json\n{\"root_cause\":\"GPU 0 hung state (0 MiB memory, 100% utilization, no process) — silent CUDA fatal error killed process at 255/500 without traceback\",\"error_type\":\"infrastructure\",\"fix_steps\":[\"nvidia-smi --gpu-reset -i 0\",\"验证 GPU 0 恢复正常: nvidia-smi (应显示 0% util, 0 MiB)\",\"重新提交实验\"],\"can_auto_fix\":true,\"resubmit_command\":\"cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.json --seed 42 --dtype bfloat16 --max_new_tokens 2048 > /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.log 2>&1 &\"}\n```"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "root_cause": "GPU 0 hung state (0 MiB memory, 100% utilization, no process) — silent CUDA fatal error killed process at 255/500 without traceback",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "nvidia-smi --gpu-reset -i 0",
+                "验证 GPU 0 恢复正常: nvidia-smi (应显示 0% util, 0 MiB)",
+                "重新提交实验"
+              ],
+              "can_auto_fix": true,
+              "resubmit_command": "cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 nohup python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.json --seed 42 --dtype bfloat16 --max_new_tokens 2048 > /root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_sft_cka_only_20_westb.log 2>&1 &"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-cka-only-20-westb.md"
+}

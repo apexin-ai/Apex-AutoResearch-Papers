@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a67ceff417fd1b4823b5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval grpo rasp v9 step5",
+  "task_key": "worker_analysis_eval_grpo_rasp_v9_step5_20260516T044244",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_grpo_rasp_v9_step5_20260516T044244_result.json",
+    "occurrence": 1,
+    "bytes": 1903,
+    "sha256": "ad067658c5647e66e8ca15ebcc8b62f3a7c8d44b1607fc579b6f4f39b624efa0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Got all the data. Here's the full analysis:\n\n---\n\n## eval_grpo_rasp_v9_step5 结果报告\n\n### 原始指标\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | **60.65% (800/1319)** |\n| Stderr | ±1.35pp |\n| EOS rate | 98.56% (1300/1319 natural) |\n| Truncated | 19 |\n| Avg response length | 205.3 tokens |\n| Min response length | 42 tokens |\n| Max response length | 4096 tokens |\n| Mode | greedy (T=0.0, do_sample=false) |\n| Model path | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-5` |\n\n### 基准对比\n\n| 对比基准 | 基准 acc | v9-step5 acc | Δpp |\n|----------|---------|-------------|-----|\n| Standard GRPO v8 step-50 | 58.91% | 60.65% | **+1.74** |\n| RASP SFT baseline | 61.49% | 60.65% | **−0.84** |\n| Standard SFT baseline | 59.29% | 60.65% | **+1.36** |\n| Unpruned SFT baseline | 81.27% | 60.65% | **−20.62** |\n\n### 分析\n\n1. **Step 5 是 v9 最好的 checkpoint。** 60.65% 超过了 Standard GRPO v8 经过 50 步训练的最终结果（+1.74pp），说明 RASP 剪枝模型在 GRPO 初期恢复能力更强。\n\n2. **略低于 RASP SFT baseline（−0.84pp）。** 在 stderr 范围内（±1.35pp），差异不显著。说明 step-5 时 GRPO 尚未对 RASP SFT 起点产生明显增益，但也没有损害。\n\n3. **Collapse 时间线验证。** v9 训练 metrics 显示 step 10 已经 reward=0.015, frac_zero_std=0.875，step 30 彻底 collapse。Step 5 的 60.65% 与 RASP SFT baseline 接近，表明此时模型还基本保持了 SFT 阶段的能力，collapse 尚未开始。\n\n4. **EOS 健康。** 98.56% 的 natural EOS rate，仅 19 条 truncated，生成行为正常。\n\n5. **核心结论：RASP GRPO v9 的 peak performance 在 collapse 前约 60.65%，与 RASP SFT 持平，未能通过 GRPO 进一步提升。collapse 发生在 step 5-10 之间，导致后续步骤全部退化。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-grpo-rasp-v9-step5.md"
+}

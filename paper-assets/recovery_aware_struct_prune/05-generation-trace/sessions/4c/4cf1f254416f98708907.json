@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cf1f254416f98708907",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prep sft standard 25",
+  "task_key": "worker_ops_prep-sft-standard-25_20260516T051945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prep-sft-standard-25_20260516T051945_result.json",
+    "occurrence": 1,
+    "bytes": 2283,
+    "sha256": "f68f20800a97fa746e74c9c481189414759f8ce1c1bda6c8c40eac5f354e42e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理完成，cuda:1 已释放。\n\n---\n\n## 准备报告\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| **模型完整性** | ✅ | `model.safetensors` (11GB), `config.json`, `tokenizer.json`, `tokenizer_config.json`, `chat_template.jinja` 均存在 |\n| **磁盘空间** | ✅ | `/root/autodl-tmp/` 52GB 可用（250GB 总量，80% 使用） |\n| **cuda:1 状态** | ✅ | 当前空闲 (0 MiB / 0%) |\n| **SFT 脚本** | ✅ | `sft_recovery.py` 参数解析正常 |\n| **Dry-run 训练** | ✅ | 1 step 完成：loss=3.342, grad_norm=38.5, token_accuracy=0.5154 |\n| **EOS 验证** | ✅ | token=`<｜end▁of▁sentence｜>`, id=151643 |\n| **峰值显存** | ~19.5 GB（2 samples, bs=1, seq_len=2048） |\n\n### 发现的问题及修正\n\n1. **`--gpu` 参数冲突**：脚本内部会用 `--gpu` 值覆盖 `CUDA_VISIBLE_DEVICES`。正确用法是直接 `--gpu 1`（不需要外部设置 `CUDA_VISIBLE_DEVICES=1`）。\n\n2. **网络依赖**：`load_dataset(\"openai/gsm8k\")` 需要网络。正式运行前必须 `source /etc/network_turbo` 并设置：\n   ```\n   HF_HOME=/root/autodl-tmp/.hf_cache\n   HF_HUB_DISABLE_XET=1\n   REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n   SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n   ```\n\n3. **输出目录**：正式实验必须写到 `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25/`（不要用 /tmp，tmpfs 空间不够存 11GB 模型）。\n\n### 正式运行命令（审批后执行）\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nsource /etc/network_turbo\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\ncd /root/recovery_aware_struct_prune\n\npython -u src/sft_recovery.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 \\\n  --gpu 1 \\\n  --num_train_epochs 2 \\\n  --learning_rate 2e-5 \\\n  --batch_size 1 \\\n  --gradient_accumulation_steps 8 \\\n  --max_seq_length 2048 \\\n  --logging_steps 10 \\\n  --seed 42\n```\n\n实验就绪，等待 Director 审批。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prep-sft-standard-25.md"
+}

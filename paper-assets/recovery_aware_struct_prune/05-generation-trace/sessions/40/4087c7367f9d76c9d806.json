@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4087c7367f9d76c9d806",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf5 westd3 v2",
+  "task_key": "worker_launch_mf5_westd3_v2_20260522T102708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf5_westd3_v2_20260522T102708_result.json",
+    "occurrence": 1,
+    "bytes": 912,
+    "sha256": "267fb40ec889550d6609e66cc4aa6ca38c016897c82ea8c504c71dec1aed5d40"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MF5 pipeline 已经在运行，无需重新启动。\n\n```\n排查: 之前 Worker 已成功启动 pipeline，Phase 1 (prune) 已完成，Phase 2 (SFT) 正在运行\nSynthetic scores: 已存在 (18KB, May 22 13:14)\nBase model: pruned_depth_first_20 已生成 (12.3GB model.safetensors)\nPID: 36167 (sft_recovery.py)\nnvidia-smi 输出:\n  GPU 0: 19251 MiB, 98%  (eval_math500 grpo_standard_20_fair)\n  GPU 1: 17651 MiB, 93%  (eval_math500 sft_random_20)\n  GPU 2: 0 MiB, 0%\n  GPU 3: 51263 MiB, 95%  ← MF5 SFT 正在运行\nps 确认: GPU 3 有 python 进程 (PID 36167, sft_recovery.py)\n当前 phase: Phase 2 SFT (10/1870 steps, ~1.64 it/s, 预计 ~19 分钟)\n日志关键行: \"Starting SFT recovery: 7473 samples, 2 epochs, lr=2e-05, effective_batch=8\"\n```\n\nPipeline 状态正常，SFT 刚开始训练（10/1870 steps），后续会自动链式执行 GRPO → Eval GRPO → Eval SFT。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf5-westd3-v2.md"
+}

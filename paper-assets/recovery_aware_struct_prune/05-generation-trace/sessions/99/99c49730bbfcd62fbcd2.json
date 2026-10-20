@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99c49730bbfcd62fbcd2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo alpha3 math500 westd0",
+  "task_key": "worker_ssh_submit_grpo_alpha3_math500_westd0_20260523T031906",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_alpha3_math500_westd0_20260523T031906_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "5c5e9b174c52595ac1c2eab55ed8a823fbf6dc284ab8fec4c88cafb943c8ddda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交。\n\n- **模型路径**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_alpha3p0_20_v2/checkpoint-100`（v2）\n- **PID**: 100223\n- **GPU**: westd-32935 cuda:0（模型加载中，CPU→GPU 传输尚未完成）\n- **tmux session**: `eval_math500_grpo_alpha3p0`\n- **日志**: `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_alpha3p0_20.log`\n- **Registry**: `eval_math500_grpo_rasp_alpha3p0_20` → RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-alpha3-math500-westd0.md"
+}

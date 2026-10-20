@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fcc5abad14114ae71756",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "deploy push hotfix",
+  "task_key": "worker_deploy_push-hotfix_20260512T091000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_push-hotfix_20260512T091000_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "098c7241aec682e8262db17f3c246f01f09d11806bc3e39ca0eef95bbd67c61e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n**测试结果：26/26 全部通过**，3 处 reward hacking 修复均生效：\n- `check_type_conformance`: 空输入返回 0.0\n- `check_relational_constraints`: 无关系时返回 0.0\n- `check_structural_completeness`: 空列表时返回 0.0\n\n**模型下载进度：Qwen3.5-9B 下载中，当前 ~1.2GB/16 文件，遇到超时重试**\n- 进程仍在运行（PID 5000，`hf download` 命令）\n- HF 下载走代理偏慢，且有 timeout 错误在自动重试\n- 未设 HF_TOKEN，速率受限\n\n**服务器状态：代码已 ready，模型下载尚未完成，不能立即 dry-run。** 如果下载持续超时，建议切换到 ModelScope 下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/deploy-push-hotfix.md"
+}

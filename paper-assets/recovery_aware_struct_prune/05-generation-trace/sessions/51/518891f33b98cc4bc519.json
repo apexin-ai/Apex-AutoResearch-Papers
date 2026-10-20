@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "518891f33b98cc4bc519",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code fix inference speedup",
+  "task_key": "worker_code_fix_inference_speedup_20260516T215142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_inference_speedup_20260516T215142_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "68e18967995e9dc2d8406e02e9400c6902bd130f28abe310302a27584c6174bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Benchmark 已成功启动，正在加载 Dense 模型权重 (94%)。数据集使用了本地缓存。\n\n**修复内容：**\n- `benchmark_inference.py` 第 17-19 行原来对所有模型用 `AutoModelForCausalLM.from_pretrained()`\n- 新增 `from model_utils import load_pruned_model` 导入（带 `sys.path` 修正）\n- `benchmark_model()` 新增 `is_pruned` 参数：`True` 时调用 `load_pruned_model()` 处理非均匀 MLP 维度，`False` 时保持原 `from_pretrained` 逻辑\n- Dense 模型 `is_pruned=False`，rasp_20/standard_20 为 `is_pruned=True`\n\n**运行状态：**\n- tmux session: `inference_bench`\n- GPU: cuda:1 (CUDA_VISIBLE_DEVICES=1)\n- 配置: 50 prompts × 512 max_new_tokens × 3 models\n- 预计完成时间: ~20-30 分钟（每模型 ~7-10 min）\n- 结果输出: `/root/autodl-tmp/recovery_aware_struct_prune/results/inference_benchmark.json`\n- 日志: `/root/autodl-tmp/recovery_aware_struct_prune/results/inference_bench.log`\n\n可用 `tmux capture-pane -t inference_bench -p -S -100` 查看进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-inference-speedup.md"
+}

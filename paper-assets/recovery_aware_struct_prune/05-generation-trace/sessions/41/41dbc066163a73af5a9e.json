@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41dbc066163a73af5a9e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh anon repo dryrun westb1",
+  "task_key": "worker_ssh_anon_repo_dryrun_westb1_20260523T135215",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_anon_repo_dryrun_westb1_20260523T135215_result.json",
+    "occurrence": 1,
+    "bytes": 1000,
+    "sha256": "0cbf25dded90ee1b48aebc89063a9f7b61df479ed5f349922ac9092a69091337"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Dry-run 验证结果\n\n| 项目 | 结果 |\n|------|------|\n| Clone | **OK** |\n| 文件数 | 56（不含 .git） |\n| README | 存在，内容合理 |\n| requirements.txt | 存在 |\n| 语法检查 | **OK** |\n| prune.py --help | **OK** |\n| eval_gsm8k.py --help | **OK** |\n| 匿名化 | **泄露** |\n\n### 匿名化泄露详情\n\n服务器名泄露（7 处）：\n\n| 文件 | 行号 | 泄露内容 |\n|------|------|----------|\n| `figures/paper/gen_fig2_reward_trajectories.py` | 49 | `westd-11672` |\n| `scripts/run_alpha_verify_512.sh` | 2 | `westb` |\n| `src/bootstrap_ci_accuracy.py` | 17 | `westb-23072` |\n| `src/bootstrap_ci_accuracy.py` | 114 | `westd-29022` |\n| `src/bootstrap_ci_accuracy.py` | 119 | `westd`（文件名） |\n| `src/bootstrap_ci_accuracy.py` | 128 | `westb-23072` |\n| `src/bootstrap_ci_accuracy.py` | 134 | `westb` |\n\n需要将这些服务器名注释/字符串清除或替换为 `server-A` / `server-B` 等匿名标识，然后重新 push。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-anon-repo-dryrun-westb1.md"
+}

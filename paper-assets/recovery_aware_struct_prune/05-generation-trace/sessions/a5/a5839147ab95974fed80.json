@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5839147ab95974fed80",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent westb full check",
+  "task_key": "worker_ssh_urgent_westb_full_check_20260523T192322",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_westb_full_check_20260523T192322_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "860ea723772108a4c8493ccad33f61b7acd38a05ae2ee9c021c243aa54a6904d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072\n\n| 项目 | 状态 |\n|------|------|\n| **空闲 GPU** | `cuda:0` (97887 MiB 全空闲) |\n| **占用 GPU** | `cuda:1` — PID 306968 (python), 17030 MiB, 99% util |\n| **grpo_random_20_retrain_v2** | **已完成** ✓ EXIT_CODE=0, 100/100 steps, 耗时 2h56m。checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_random_20_retrain/model.safetensors` + `checkpoint-100/model.safetensors`。wandb: `grpo_sft_random_20` (9c16hnf7) |\n| **eval_math500_sft_cka_only_20_fixed_v2** | **运行中** 484/500 (97%), 已跑 3h38m, 预计还需 ~15min。结果 JSON 尚未写入 |\n| **sft_rasp_alpha3p0_20 checkpoint** | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha3p0_20/checkpoint-935/model.safetensors` |\n| **磁盘** | `/root/autodl-tmp/` **99%** (246G/250G, 仅剩 4.3G) — 危险 |\n\n**注意**: 数据盘只剩 4.3G，后续实验（如 grpo retrain for sft_rasp_alpha3p0_20）需要先清理空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-westb-full-check.md"
+}

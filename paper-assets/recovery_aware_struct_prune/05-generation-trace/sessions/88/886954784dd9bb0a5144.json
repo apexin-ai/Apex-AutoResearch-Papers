@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "886954784dd9bb0a5144",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "write experiments setup",
+  "task_key": "worker_write_experiments-setup_20260514T085919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_experiments-setup_20260514T085919_result.json",
+    "occurrence": 1,
+    "bytes": 811,
+    "sha256": "d6494b9455b5a06fd93b6752f17090fe656b708a085d33aceefb20e1fcefaa23"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments section 框架已写入 `docs/paper/experiments.tex`（v1），包含 4 个子节：\n\n- **4.1 Models and Datasets** — DeepSeek-R1-Distill-Qwen-7B（28 layers, GQA 4 KV groups），GSM8K 校准+评测，Phase 2 扩展 benchmark 标注\n- **4.2 Pruning Methods** — Standard importance-only / RASP (ours) / GRASPrune (ACL 2026)，35% sparsity 为主实验，公式和引用齐全\n- **4.3 Recovery Methods** — GRPO RLVR，超参数全部标 `[TBD]`，Phase 2 对比 SFT 标注\n- **4.4 Evaluation Metrics** — exact-match accuracy / recoverability Δacc / Spearman ρ correlation，Phase 2 扩展指标标注\n\n3 条 provenance claims 已注册，全部关联 D001 决策和 MVP 实验。所有待填数据统一用 `\\textbf{[TBD]}` 标记，MVP 结果出来后直接替换。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/write-experiments-setup.md"
+}

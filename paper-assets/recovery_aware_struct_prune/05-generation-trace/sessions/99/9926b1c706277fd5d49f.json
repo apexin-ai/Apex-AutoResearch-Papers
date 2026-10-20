@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9926b1c706277fd5d49f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops launch unpruned grpo v2",
+  "task_key": "worker_ops_launch-unpruned-grpo-v2_20260515T183335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_launch-unpruned-grpo-v2_20260515T183335_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "ff36c44dc94537f461e21886d50f94328e5c99e4cf526681e6ce71b465d8dc85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。westb-23072 当前状态：\n\n| GPU | 实验 | 显存 | 状态 |\n|-----|------|------|------|\n| cuda:0 | grpo_unpruned_baseline | 44.8/97.9 GB | RUNNING (0/100 steps) |\n| cuda:1 | grpo_stage2_standard_20_v8 | 71.7/97.9 GB | RUNNING |\n\nW&B: `e49c42ha` — 可在 wandb 上实时监控 reward 曲线和 completion 质量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-launch-unpruned-grpo-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7651c09c25fb8a2e7c20",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval gsm8k alpha4 progress",
+  "task_key": "worker_check_eval_gsm8k_alpha4_progress_20260521T211148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_gsm8k_alpha4_progress_20260521T211148_result.json",
+    "occurrence": 1,
+    "bytes": 951,
+    "sha256": "73819e1a5c2257b62389792b886da8f2d9a40cf9906086ae56d7d6565f4bf3f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n| 实验 | GPU | PID | 状态 | 进度 | 运行时间 | 当前 Acc | 预计剩余 |\n|------|-----|-----|------|------|---------|---------|---------|\n| eval_gsm8k_grpo_alpha4_20 | cuda:0 | 412988 | **ALIVE** | 689/1319 (52%) | 1h44m | **62.77%** @650 | ~1.5h |\n| eval_math500_grpo_random_20_v2 | cuda:1 | 382470 | **ALIVE** | 364/500 (73%) | 7h15m | **10.86%** @350 | ~3h |\n| eval_math500_grpo_alpha4_20 | cuda:2 | 412817 | **ALIVE** | 143/500 (29%) | 1h44m | **30.00%** @100 | ~5h |\n| eval_math500_sft_random_20 | cuda:3 | 385685 | **ALIVE** | 331/500 (66%) | 6h27m | **10.67%** @300 | ~3h |\n\n**磁盘**: /root/autodl-tmp 215G 可用 / 619G 总计 (66% used)\n\n**要点**:\n- 4 个实验全部在跑，无异常\n- GSM8K eval (grpo_alpha4_20) acc 62.77%，进度过半\n- MATH-500 上 grpo_alpha4_20 (30%) 远好于 grpo_random_20 (10.86%) 和 sft_random_20 (10.67%)，alpha4 剪枝的 GRPO 恢复效果显著"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-gsm8k-alpha4-progress.md"
+}

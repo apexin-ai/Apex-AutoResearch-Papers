@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "86eebf078f8baa899d3d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo rasp kill execute",
+  "task_key": "worker_ops_grpo-rasp-kill-execute_20260515T175143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo-rasp-kill-execute_20260515T175143_result.json",
+    "occurrence": 1,
+    "bytes": 298,
+    "sha256": "68c1ca707f2cbea90fa1afcef047d59fce2d0030d6d7a939490106eb86e160f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID 532861** (GRPO RASP v8): SIGTERM 正常终止\n- **cuda:0**: 已释放（0 MiB），可用于 unpruned baseline GRPO\n- **cuda:1**: 71701 MiB 占用，有其他任务在跑\n- **Registry**: `grpo_stage2_rasp_20_v8` 已标记 `conclusion=killed`，notes 已写入"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-rasp-kill-execute.md"
+}

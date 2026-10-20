@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8322ee9ae3977e9902de",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check scoring ablation magnitude progress",
+  "task_key": "worker_check_scoring_ablation_magnitude_progress_20260518T042555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scoring_ablation_magnitude_progress_20260518T042555_result.json",
+    "occurrence": 1,
+    "bytes": 839,
+    "sha256": "5b883d5c1a8a4a6ba36f132dc4e7c65820c8eb6deadc658fc121efc2b9813557"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**scoring_ablation_magnitude_20 状态：**\n\n| 项目 | 状态 |\n|------|------|\n| **当前阶段** | Step 2: GSM8K eval（剪枝已完成） |\n| **剪枝结果** | magnitude 模式，目标 20%，实际 18.99%，MLP 199/784 groups pruned，Attn 0 pruned |\n| **评估进度** | **99/200** (49.5%) |\n| **已运行时长** | 1h 35m |\n| **当前 accuracy** | 0.0000（前 50 样本，模型几乎没产出正确答案） |\n| **平均速度** | ~56.5s/sample |\n| **剩余样本** | 101 个 |\n| **预估剩余时间** | ~95 min（约 1h 35m） |\n| **预估完成时间** | ~2026-05-18 13:30 UTC |\n\n注意：acc=0.0000 且 eos_rate=2.00%、avg_len=4054，说明 magnitude pruning 20% 后模型基本丧失 GSM8K 推理能力，输出大量无效 token 且几乎不终止。这与 recovery-aware 方法形成对照。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scoring-ablation-magnitude-progress.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "639a33ab7d77471e0f1d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix registry westb1 westd3",
+  "task_key": "worker_fix_registry_westb1_westd3_20260521T233542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_registry_westb1_westd3_20260521T233542_result.json",
+    "occurrence": 1,
+    "bytes": 625,
+    "sha256": "b4b3d2e55108b7505bcbd67a0f6204dda32ecf82ea080403170df734b6dde491"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个实验全部修复完成。汇总：\n\n| 实验 | 修复前 | 修复后 |\n|------|--------|--------|\n| **eval_math500_sft_standard_25** | DONE, 无 pid/gpu | RUNNING, westb:1, PID 104592 |\n| **eval_math500_sft_cka_only_20_v6** | PREPARING, 无 hypothesis/parent/spec | RUNNING, westb:1, PID 118095, parent=v5, hypothesis 已填 |\n| **eval_math500_sft_random_20** | RUNNING, 无 gpu/pid | RUNNING, westd:3, PID 385685 |\n\n注意 `eval_math500_sft_standard_25` 保留了历史记录（v1 结果 13% accuracy 已被 Director 批准采用），retry_count 递增到 1。当前运行是新一轮 eval。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-registry-westb1-westd3.md"
+}

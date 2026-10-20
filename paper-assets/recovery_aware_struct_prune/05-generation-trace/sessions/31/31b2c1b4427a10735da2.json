@@ -1,0 +1,337 @@
+{
+  "schema_version": "1.0",
+  "id": "31b2c1b4427a10735da2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "diagnose westb analyzing sft standard 1p5b",
+  "task_key": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719.jsonl",
+    "occurrence": 1,
+    "bytes": 18084,
+    "sha256": "29dde5d6e3f9de0670105afbca072000c74fd8208f676e5ff19ff666ae2a66b0"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T13:08:04.791944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T13:08:04.792448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T13:08:04.792703+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T13:08:04.793200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.22896133434420016,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01156902486841511,\\\\n  \\\\\\\"n_correct\\\\\\\": 302,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 1193,\\\\n    \\\\\\\"truncated\\\\\\\": 126,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.9044730856709629,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 516.6914329037149,\\\\n    \\\\\\\"max_response_length\\\\\\\": 4096,\\\\n    \\\\\\\"min_response_length\\\\\\\": 32\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"13\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": false,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, divide the total age by the sum of the ratio to find the value of the ratio's denominator.\\\\\\\\n162 / 12 = <<162/12=13.5>>13.5\\\\\\\\nThen, multiply the value of the denominator by the value of the ratio to find the age of Allen.\\\\\\\\n13.5 * 11 = <<13.5*11=159>>159\\\\\\\\nThen, subtract the age of Allen from the total age to find the age of Darrell.\\\\\\\\n162 - 159 = <<162-159=3>>3\\\\\\\\nFinally, add 10 to the age of Darrell to find the age of Allen 10 years from now.\\\\\\\\n3 + 10 = <<3+10=13>>13\\\\\\\\n#### 13\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 184,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons \n…[truncated 7346 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T13:08:04.793555+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_sft_standard_20_1p5b",
+              "field": "metrics",
+              "value": "{'accuracy': 0.22896133434420016, 'n_correct': 302, 'n_total': 1319}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T13:08:04.793800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_sft_standard_20_1p5b",
+              "field": "log_path",
+              "value": "~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T13:08:04.794071+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_standard_20_1p5b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:10:55.912Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:47.269Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"842784\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T23:02:19.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-sft-standard-20\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:18:37.549Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:18:43.249877+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.22896133434420016, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0409}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T13:08:04.794456+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_standard_20_1p5b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:10:55.912Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:48.322Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"842784\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T23:02:19.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-sft-standard-20\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:18:37.549Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:18:43.249877+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.22896133434420016, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0199}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T13:08:04.794717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_sft_standard_20_1p5b",
+              "field": "checkpoint_path",
+              "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T13:08:04.794979+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_standard_20_1p5b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:10:55.912Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:49.395Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"842784\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T23:02:19.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-sft-standard-20\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:18:37.549Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:18:43.249877+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.22896133434420016, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0042}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T13:08:04.795238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_sft_standard_20_1p5b",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T13:08:04.795534+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_standard_20_1p5b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:10:55.912Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:54.044Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"842784\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T23:02:19.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-sft-standard-20\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:18:37.549Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:18:43.249877+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.22896133434420016, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"el\n…[truncated 26 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T13:08:04.795782+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_sft_standard_20_1p5b",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T13:08:04.796092+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_sft_standard_20_1p5b\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-18T18:10:55.912Z\\\", \\\"updated_at\\\": \\\"2026-05-19T13:07:57.786Z\\\", \\\"hypothesis\\\": \\\"1.5B Standard post-SFT GSM8K accuracy (N=1319). SFT baseline for computing GRPO delta on Standard pruning at 1.5B scale. Compare with GRPO Standard 1.5B (22.29%) to quantify GRPO benefit. Completes 3-method SFT vs GRPO comparison at 1.5B.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_sft_standard_20_1p5b.json'\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"842784\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"submitted_at\\\": \\\"2026-05-18T23:02:19.301Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"model_name\\\": \\\"Qwen2.5-1.5B-sft-standard-20\\\", \\\"checkpoint_source\\\": \\\"sft_standard_20_1p5b\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"data_path\\\": \\\"gsm8k\\\", \\\"data_count\\\": 1319, \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"wall_clock_seconds\\\": 50738.5, \\\"gpu_hours\\\": 14.09}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-19T03:18:37.549Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-19T03:18:43.249877+00:00\\\"}]}, \\\"metrics\\\": {\\\"accuracy\\\": 0.22896133434420016, \\\"n_correct\\\": 302, \\\"n_total\\\": 1319}, \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_gsm8k_sft_standard_20_1p5b.log\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_1p5b\\\", \\\"conclusion\\\": \\\n…[truncated 174 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T13:08:04.796420+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果摘要**：\n- **accuracy**: 22.90% (302/1319)\n- SFT Standard 1.5B (22.90%) vs GRPO Standard 1.5B (22.29%) → GRPO delta ≈ -0.6%，SFT 略优于 GRPO，基本持平。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/diagnose-westb-analyzing-sft-standard-1p5b.md"
+}

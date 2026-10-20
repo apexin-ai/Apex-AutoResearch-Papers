@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8f7d359d5e7141729797",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v3 prep",
+  "task_key": "worker_code_grpo_v3_prep_20260515T080439",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_v3_prep_20260515T080439_result.json",
+    "occurrence": 1,
+    "bytes": 1160,
+    "sha256": "c4a71960aae6fe13b3a6a682036825d5dfbadf37d044ea27f2c7af45f07b0307"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。修改摘要：\n\n**`src/train_grpo.py` 修改内容 (v4 → v5)：**\n\n1. **新增 CLI 参数**：\n   - `--repetition_penalty` (default=1.0) — 惩罚重复 token，>1.0 抑制退化循环\n   - `--top_p` (default=1.0) — nucleus sampling 阈值\n   - `--top_k` (default=0) — top-k sampling，0=禁用\n   - `--sampling_quality_check` — 训练前采样质量检查开关\n\n2. **GRPOConfig 传参**：`top_p`, `top_k`, `repetition_penalty` 直接传入 GRPOConfig（trl 1.1.0 原生支持）\n\n3. **`sampling_quality_check()` 函数**：训练前用当前 sampling 配置生成 10 个样本，报告：\n   - 平均 completion 长度\n   - 3-gram 重复率\n   - EOS 率（正常终止比例）\n   - 非零 reward 比例\n   - 前 3 个样本预览\n   - 0/10 非零 reward 时打印 WARNING 但不阻断训练\n\n4. **训练启动 log** 增加 sampling 配置摘要\n\n5. **文件注释** 更新为 v5，说明新参数用途\n\n`--help` 验证因 trl 导入慢（>30s）无法在 SSH 30s 超时内完成，但已通过语法检查 + argparse 独立验证 + grep 确认所有参数定义和传递路径正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v3-prep.md"
+}

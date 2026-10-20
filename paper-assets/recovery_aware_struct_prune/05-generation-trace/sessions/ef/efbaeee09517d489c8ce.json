@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "efbaeee09517d489c8ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix correlation rewrite",
+  "task_key": "worker_fix_correlation-rewrite_20260514T034207",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_correlation-rewrite_20260514T034207_result.json",
+    "occurrence": 1,
+    "bytes": 2239,
+    "sha256": "93bd3db3e013156ff115323f49e91be20057b9c94e6280088c5c0cf87430883f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证通过。汇报如下：\n\n---\n\n### 1. correlation_analysis.py 逻辑\n\n完全重写，实现 `ρ(CKA overlap, RLVR recoverability)`：\n\n- **模型加载**：通过 `--base_model_path` 加载原始模型，用 `prune.py` 的函数在内存中执行结构化剪枝（匹配保存的权重形状），再从 `--pruned_model_path` / `--recovered_model_path` 加载实际权重。解决了剪枝后模型 config 与权重形状不匹配的加载问题。\n- **Activation 收集**：hook 每层 `q_proj`，收集 retained heads 的输出，mean-pool over seq_len → `[n_samples, n_retained, head_dim]`\n- **Recoverability 计算**：对每个被剪 head h_p，从 pairwise CKA matrix 找最相似的 retained head h_r，计算 h_r 在 pruned model 和 recovered model 间的 cosine similarity shift（`1 - mean(cos_sim)`）\n- **统计分析**：Spearman ρ + bootstrap 95% CI (10000 resamples) + permutation test (10000 permutations)\n- **输出**：JSON（含 per-head data）+ scatter plot（颜色按 layer）+ 控制台 MVP 判定（ρ≥0.4=PASS, [0.3,0.4)=WARNING, <0.3=FAIL）\n\n### 2. cka_overlap.py 修改\n\n`compute_overlap` 新增返回 pairwise CKA matrix（`dict[layer_idx -> tensor[n_structs, n_structs]]`）。同时优化计算：利用 CKA 对称性只算上三角（n*(n-1)/2 次 vs 原来的 n*(n-1) 次）。输出新增键 `attn_cka_matrix` 和 `mlp_cka_matrix`。\n\n### 3. prune.py 未修改\n\n已有 `pruning_metadata.pt` 保存 `attn_keep_masks`（per-layer keep indices），pruned heads 取补集即可。\n\n### 4. run_mvp.sh Step 6\n\n步骤改为 1-6（原 1-5 编号更新为 /6），新增：\n```bash\nCUDA_VISIBLE_DEVICES=0 python3 src/correlation_analysis.py \\\n  --base_model_path models/DeepSeek-R1-Distill-Qwen-7B \\\n  --pruned_model_path models/pruned_rasp_35 \\\n  --recovered_model_path models/recovered_rasp_35 \\\n  --cka_scores_path results/cka_scores.pt \\\n  --pruning_mask_path models/pruned_rasp_35/pruning_metadata.pt \\\n  --output_dir results/analysis/ --n_samples 256\n```\n最终 summary 增加 correlation results 输出。\n\n### 5. --help 验证\n\n`correlation_analysis.py` 和 `cka_overlap.py` 的 `--help` 均正常输出，参数格式正确。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-correlation-rewrite.md"
+}

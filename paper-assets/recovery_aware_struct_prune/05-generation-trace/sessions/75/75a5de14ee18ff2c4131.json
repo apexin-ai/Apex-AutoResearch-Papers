@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "75a5de14ee18ff2c4131",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose grpo rasp rlvr 20",
+  "task_key": "worker_diagnose_grpo_rasp_rlvr_20_20260516T202158",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_grpo_rasp_rlvr_20_20260516T202158_result.json",
+    "occurrence": 1,
+    "bytes": 2913,
+    "sha256": "67d04b5dda6fafb2131a56f17eb0e7aa2bf2e6aef350a0e7273c6d629fc0b1e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "综合所有证据，诊断结论明确了：\n\n```json\n{\n  \"status\": \"crashed\",\n  \"root_cause\": \"进程在 step 16 (约 1:49 elapsed) 被静默 kill，日志无 traceback/error/OOM 记录。日志最后修改时间 2026-05-17 04:20:40，训练启动于 02:26:32，运行约 1h54m。仅保存了 step 10 的 completions parquet，无 checkpoint。最可能原因：系统 OOM killer 杀死进程（模型 6.16B params + ref_model 同等大小 = ~24GB+ GPU显存，加上 GRPO 4 generations × 1024 tokens 的中间状态）。\",\n  \"error_type\": \"resource\",\n  \"fix_steps\": [\n    \"减少 num_generations 从 4 到 2，降低 generation 时的显存峰值\",\n    \"减少 generation_batch_size 从 16 到 8\",\n    \"减少 max_completion_length 从 1024 到 512（日志显示 mean_terminated_length 仅 292.5）\",\n    \"或将训练移至 westd-11672（4×RTX PRO 6000，显存更充裕）\",\n    \"重启训练前用 nvidia-smi 确认显存可用量\"\n  ],\n  \"can_auto_fix\": true,\n  \"log_snippet\": \"最后一行进度: 16%|█▌| 16/100 [1:49:06<9:43:44, 416.96s/it]\\n无任何 error/traceback/OOM 信息 → 被信号静默终止（SIGKILL by OOM killer 或手动 kill）\"\n}\n```\n\n**关键发现**：训练正常跑到 step 16，然后被静默杀死（无 graceful shutdown）。日志中零 error。模型配置显示 `num_parameters = 6,161,946,112`（~6.16B），因为模型+ref_model 两份都加载到同一 GPU（`CUDA_VISIBLE_DEVICES=1`），加上 GRPO generation batch 的中间状态，极大概率是 GPU OOM 导致系统直接 SIGKILL。\n\n最便宜的修复是减小 `max_completion_length`（实际 mean_terminated_length 仅 292.5，1024 浪费且触发 OOM）和减小 `generation_batch_size`。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "status": "crashed",
+              "root_cause": "进程在 step 16 (约 1:49 elapsed) 被静默 kill，日志无 traceback/error/OOM 记录。日志最后修改时间 2026-05-17 04:20:40，训练启动于 02:26:32，运行约 1h54m。仅保存了 step 10 的 completions parquet，无 checkpoint。最可能原因：系统 OOM killer 杀死进程（模型 6.16B params + ref_model 同等大小 = ~24GB+ GPU显存，加上 GRPO 4 generations × 1024 tokens 的中间状态）。",
+              "error_type": "resource",
+              "fix_steps": [
+                "减少 num_generations 从 4 到 2，降低 generation 时的显存峰值",
+                "减少 generation_batch_size 从 16 到 8",
+                "减少 max_completion_length 从 1024 到 512（日志显示 mean_terminated_length 仅 292.5）",
+                "或将训练移至 westd-11672（4×RTX PRO 6000，显存更充裕）",
+                "重启训练前用 nvidia-smi 确认显存可用量"
+              ],
+              "can_auto_fix": true,
+              "log_snippet": "最后一行进度: 16%|█▌| 16/100 [1:49:06<9:43:44, 416.96s/it]\n无任何 error/traceback/OOM 信息 → 被信号静默终止（SIGKILL by OOM killer 或手动 kill）"
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-grpo-rasp-rlvr-20.md"
+}

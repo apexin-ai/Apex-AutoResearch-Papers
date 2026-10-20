@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46123cf2e5f945393f6a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch seed456 grpo westb0",
+  "task_key": "worker_launch_seed456_grpo_westb0_20260522T123544",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_seed456_grpo_westb0_20260522T123544_result.json",
+    "occurrence": 1,
+    "bytes": 1024,
+    "sha256": "e4622ae069f8e0bd0e3a637377946960ac225fdbf65145d175411e531b889c5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO seed456 已成功启动，数据集准备中，训练即将开始。\n\n## 汇总\n\n| 项目 | 值 |\n|------|-----|\n| **Bash PID** | 205665 |\n| **Python PID** | 205670 |\n| **GPU** | cuda:0 (RTX PRO 6000, 12326MiB / 97887MiB) |\n| **命令** | `train_grpo.py --model_path sft_random_20 --output_dir grpo_random_20_seed456 --seed 456 --per_device_train_batch_size 1 --num_train_epochs 3` |\n| **磁盘** | `/root/autodl-tmp/` 14GB 可用 (95%) |\n| **日志** | `/root/recovery_aware_struct_prune/results/train_grpo_random_20_seed456.log` |\n\n**注意**: 原始命令中的 `--max_steps 100` 和 `--save_only_model true` 不是该脚本的有效参数，已去掉。脚本通过 `--num_train_epochs`（默认 3）控制训练量。\n\n**日志进度**:\n1. `20:37:35` - 开始加载剪枝模型\n2. `20:37:36` - 检测到非均匀 MLP (intermediate_size 11508-17592) 和 attention (heads 7-28)\n3. `20:39:27` - 模型成功加载到 cuda:0\n4. `20:39:27` - 准备 GSM8K 训练数据集（进行中）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-seed456-grpo-westb0.md"
+}

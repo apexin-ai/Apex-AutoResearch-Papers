@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "533013c1faf3f99dd3a0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh diagnose mf3 n500 exit westb1",
+  "task_key": "worker_ssh_diagnose_mf3_n500_exit_westb1_20260522T142817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose_mf3_n500_exit_westb1_20260522T142817_result.json",
+    "occurrence": 1,
+    "bytes": 614,
+    "sha256": "3b7c671a0afff799ddb806678f31a6a179bf1b8996e479c69ca63b3fc783d247"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结论：\n\n1. **进程退出原因：被 kill**。日志中无 error/traceback/signal 记录，日志仅 8 行（停在 26/500，约 5% 进度）。从 v2 的启动命令可以看到 `kill 217502` 前缀，确认是被主动 kill 后重启的。原始 PID 202364 已不存在。\n\n2. **无结果 JSON**。`eval_gsm8k_grpo_qwen_math_cka_only_20_n500.json` 不存在——进程在完成前被终止，未产出结果。\n\n3. **v2 已在运行**。PID 217798，使用 `max_new_tokens=2048`，输出到 `eval_gsm8k_grpo_qwen_math_cka_only_20_n500_v2.json`，刚启动约 30 秒，正在加载中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-mf3-n500-exit-westb1.md"
+}

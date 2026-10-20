@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e1b28ae67b7c9fcbc7b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval eval gsm8k grpo rasp 20 fair",
+  "task_key": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "b37fd805944e70ab6907969dc68631947a2e0184ba09829dcb5b9a544ce1695a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: `eval_gsm8k_grpo_rasp_20_fair`\n- **服务器**: westd-29022 cuda:0\n- **tmux session**: `eval_gsm8k_grpo_rasp_20_fair` (已确认运行)\n- **checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json`\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-eval-gsm8k-grpo-rasp-20-fair.md"
+}

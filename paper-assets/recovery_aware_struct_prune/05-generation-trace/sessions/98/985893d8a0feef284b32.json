@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "985893d8a0feef284b32",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1b prune 1p5b",
+  "task_key": "worker_code_e1b_prune_1p5b_20260518T104250",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1b_prune_1p5b_20260518T104250_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "34182d4b44ecbe1b37e3f38325e22a3a979c844e50b7cc2fd2f52411073950b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`grpo_cka_only_20/checkpoint-100` 占 27GB，包含 optimizer/scheduler states。最终模型已在顶层保存（12GB `model.safetensors`）。\n\n**删除 `checkpoint-100` 可释放 ~27GB，足够 1.5B 实验所需的 ~10GB。** 确认可以删除吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1b-prune-1p5b.md"
+}

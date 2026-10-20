@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b9cdefdc82ba5337316",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check eval progress all",
+  "task_key": "worker_ssh_check_eval_progress_all_20260524T005336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_eval_progress_all_20260524T005336_result.json",
+    "occurrence": 1,
+    "bytes": 1420,
+    "sha256": "20f331e05b32e9ef44ae93219f65c78f7e058d503c5730c5931e21f14868edad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据齐了。汇总：\n\n当前时间约 **08:54 UTC** (May 24)\n\n| 实验 | Server:GPU | 进度 | 平均速度 | tqdm 瞬时 | ETA (UTC) |\n|------|-----------|------|---------|----------|-----------|\n| sft_standard_25_fixed_v2 | westd:0 | **213/500** (43%) | 62s/it | 55s/it | ~13:50 |\n| grpo_rasp_alpha2p0_20_fixed | westd:1 | **323/500** (65%) | 38s/it | 8.9s/it | ~09:20 – 10:45 |\n| sft_rasp_alpha2p0_20_fixed | westd:2 | **286/500** (57%) | 34s/it | 58s/it | ~11:00 – 12:22 |\n| grpo_cka_only_25_fixed | westd:3 | **401/500** (80%) | 30s/it | 3.5s/it | ~09:00 – 09:44 |\n| sft_random_20_fixed_v3 | westb:0 | **83/500** (17%) | 68s/it | 71s/it | ~16:46 |\n| grpo_random_20_fixed | westb:1 | **154/500** (31%) | 71s/it | 81s/it | ~15:44 |\n\n**关键发现：**\n\n1. **westd:2 (sft_rasp_alpha2p0_20_fixed) 没有快完成。** 预期 ~14.6s/it，实际平均 34s/it、瞬时 58s/it。仅完成 57%，还需 2-3.5 小时。与预期的 00:14 UTC 完成差距很大。\n\n2. **最快完成的两个**是 westd:3 (grpo_cka_only_25, 80%) 和 westd:1 (grpo_rasp_alpha2p0, 65%)——两个 GRPO 模型的 eval 速度变化剧烈（瞬时速度极快可能因为某些问题生成很短的回答就停了）。\n\n3. **最慢的两个**是 westb 上的两个：sft_random (17%, ~16:46 UTC) 和 grpo_random (31%, ~15:44 UTC)。\n\n4. westd:0 (sft_standard_25) 稳定但慢，预计 ~13:50 UTC。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-eval-progress-all.md"
+}

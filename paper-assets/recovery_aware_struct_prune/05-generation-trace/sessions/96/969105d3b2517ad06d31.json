@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "969105d3b2517ad06d31",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha0 sft eval and queue",
+  "task_key": "worker_code_alpha0-sft-eval-and-queue_20260515T135630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha0-sft-eval-and-queue_20260515T135630_result.json",
+    "occurrence": 1,
+    "bytes": 650,
+    "sha256": "533bc7ca40d05ab25e137dec9b42954bd5b4763fbd34c0e9885b21cf35f88a00"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "α=2.0 SFT 已在跑（之前的 cron 提交），1014/1870 步（54%），~1.1 it/s，还剩约 13 分钟。不需要重复提交。\n\n**当前进度汇总**：\n\n| α | post-SFT accuracy | eos_rate | avg_len | 状态 |\n|---|---|---|---|---|\n| 0.0 | **64%** | 97% | 257.9 | eval 完成 ✓ |\n| 1.0 | **57%** | 98% | 224.2 | eval 完成 ✓ |\n| 2.0 | - | - | - | SFT 运行中 (54%) |\n| 4.0 | 62% | - | - | 已完成 |\n\nα=2.0 SFT 无需额外操作，预计 ~13 分钟完成。所有任务步骤已执行：\n- eval α=0.0: 64% ✓\n- eval α=1.0: 57% ✓  \n- α=2.0 SFT: 已在跑，无需重复提交\n- registry 已更新"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha0-sft-eval-and-queue.md"
+}

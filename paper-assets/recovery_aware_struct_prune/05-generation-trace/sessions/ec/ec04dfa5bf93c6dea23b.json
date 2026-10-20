@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ec04dfa5bf93c6dea23b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "prep mf3 qwen grpo",
+  "task_key": "worker_prep_mf3_qwen_grpo_20260522T063407",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_mf3_qwen_grpo_20260522T063407_result.json",
+    "occurrence": 1,
+    "bytes": 2535,
+    "sha256": "75e22174fd863777856adcfa4cd8ecf168052db159cd0517828a3cc323dd6e17"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完成。\n\n```\n== MF3 Qwen-Math GRPO 准备 ==\nSFT Checkpoint: /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final (11.5GB, 完整)\n  - config: Qwen2ForCausalLM, 28层, per_layer_intermediate_size 存在 (pruned model)\nTokenizer: 兼容 (vocab=151643, pad=eos=151643, chat_template=Qwen2 im_start格式)\ntrain_grpo_v5.py: 兼容，无 DeepSeek 硬编码\n  - load_pruned_model 正确识别 per_layer_intermediate_size\n  - monkey-patch ref_model 加载路径正确\neval_gsm8k.py: 兼容，使用 apply_chat_template，无模型特定代码\nDry-run (tokenizer+data): PASS (GSM8K 7473 samples 加载正常)\nQwen scores: 缺失 (无 importance_scores_qwen_math_7b.pt / cka_scores_qwen_math_7b.pt)，但 GRPO 不需要\n\nReady-to-submit command:\nbash -c 'cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/train_grpo_v5.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_cka_only_20_final \\\n  --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20 \\\n  --gpu 0 \\\n  --learning_rate 1e-6 \\\n  --num_train_epochs 3 \\\n  --per_device_train_batch_size 2 \\\n  --gradient_accumulation_steps 8 \\\n  --max_completion_length 512 \\\n  --temperature 0.4 \\\n  --beta 0.01 \\\n  --loss_type dapo \\\n  --format_reward_weight 0.1 \\\n  --gradient_checkpointing \\\n  --optim adamw_8bit'\n\nEval command:\nbash -c 'cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_qwen_math_cka_only_20/checkpoint-100 \\\n  --max_new_tokens 2048 \\\n  --output_path /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_qwen_math_cka_only_20.json'\n\n风险/注意事项:\n1. **Prompt 格式不一致**: train_grpo_v5.py 用原始文本 prompt（\"Solve the following...\"），但 SFT checkpoint 是在 chat template 格式（<|im_start|>user...）上微调的。eval_gsm8k.py 则正确使用 apply_chat_template。训练/评估的 prompt 格式不一致可能影响 GRPO 初始收敛速度。如需对齐，需修改 prepare_dataset 中 format_prompt 函数使用 tokenizer.apply_chat_template。\n2. **Qwen-Math 内置 system prompt**（\"Please reason step by step, and put your final answer within \\boxed{}.\"）会在 eval 时自动注入，但 GRPO 训练时不会——这可能导致训练期间模型缺少 math reasoning 指令。\n3. Qwen scores 文件不影响 GRPO，不阻塞。\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-mf3-qwen-grpo.md"
+}

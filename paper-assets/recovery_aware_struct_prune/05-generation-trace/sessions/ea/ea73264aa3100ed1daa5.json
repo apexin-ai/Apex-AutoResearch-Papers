@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea73264aa3100ed1daa5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d025 vllm compat check",
+  "task_key": "worker_code_d025-vllm-compat-check_20260515T092337",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d025-vllm-compat-check_20260515T092337_result.json",
+    "occurrence": 1,
+    "bytes": 2300,
+    "sha256": "e4035cc0c2e36625f49d728dcce57fbd2561b19dc3526f7634e338b10cf6e50a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有信息已收集完毕。\n\n---\n\n## 产出报告\n\n### 1. vLLM 兼容性结论：**不兼容**\n\n- vLLM 0.18.1 已安装，但源码中**没有** `per_layer_intermediate_size` 支持\n- 剪枝模型 `sft_rasp_20` 有非均匀 MLP：28 层 intermediate_size 从 8128 到 18944 不等\n- vLLM 假设所有层 intermediate_size 相同，加载必定失败\n- 另外 TRL 当前只支持 vLLM 0.11.0-0.17.1，0.18.1 也不在兼容范围内\n\n### 2. 选择方案 B：无 vLLM，参数优化加速\n\n### 3. v5 vs v4 参数对比\n\n| 参数 | v4 | v5 | 说明 |\n|------|-----|-----|------|\n| `max_completion_length` | **2048** | **512** | GSM8K 解题 ~300 token 够用，2048 极度浪费 |\n| `steps_per_generation` | _(未设)_ | **4** | 生成复用 4 步，生成开销摊薄 4x |\n| `generation_batch_size` | _(未设)_ | _(可配)_ | 新增可选参数 |\n| 其余参数 | 不变 | 不变 | beta=0.01, temp=0.4, rep_penalty=1.15 等全部保持 |\n\n### 4. 预估加速比\n\n- v4: **29 min/step** → 250 步 = **~120h (5 天)**\n- v5 保守估计: **6-8 min/step** → 250 步 = **~25-33h (1-1.4 天)**\n- 加速来源：\n  - `max_completion_length 512`：生成长度上限缩短 4x → 生成阶段 ~2-4x 快\n  - `steps_per_generation=4`：每 4 步才生成一次 → 生成开销摊薄 4x\n  - 综合：**~4-5x 加速**\n\n### 5. GPU 状态\n\n| GPU | 进程 | 状态 |\n|-----|------|------|\n| cuda:0 | GRPO v4 (PID 339111) | 1/250 步，29min/step，100% util |\n| cuda:1 | SFT standard_20 retrain (PID 239077) | 1145/1870 步 (61%)，~4s/step，**约 50 分钟后完成** |\n\n### 6. Kill v4 + 启动 v5 命令（待审批）\n\n```bash\n# Step 1: Kill v4\nkill 339111\n# 等 5 秒确认退出\nsleep 5 && nvidia-smi --query-compute-apps=pid,used_memory --format=csv,noheader\n\n# Step 2: 启动 v5（通过 agent-ml submit_training_job 或手动）\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/recovery_aware_struct_prune\nbash scripts/run_grpo_stage2_v5_rasp.sh\n```\n\n### 7. 已创建文件\n\n- `/root/recovery_aware_struct_prune/src/train_grpo_v5.py`\n- `/root/recovery_aware_struct_prune/scripts/run_grpo_stage2_v5_rasp.sh`\n\n**等待审批后执行 kill v4 + 启动 v5。** v4 只跑了 1 步，损失可忽略。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d025-vllm-compat-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "81b09b7e100c76de535e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "knowledge paper data provenance audit",
+  "task_key": "worker_knowledge_paper_data_provenance_audit_20260523T104659",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_knowledge_paper_data_provenance_audit_20260523T104659_result.json",
+    "occurrence": 1,
+    "bytes": 832,
+    "sha256": "7136fe13de6e9ac8bd229d7d3409378c82be5a6e202cfd6e9d0f860fd3951e7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "溯源表已写入 `artifacts/data_provenance_audit.md` 并注册。\n\n**覆盖范围**: 9 个表格文件 + experiments.tex/appendix.tex/abstract.tex/introduction.tex 中的内联数值 + 5 个 Figure 的数据来源。\n\n**关键发现**:\n\n1. **4 个论文数值无 registry 记录**:\n   - MATH-500 Standard 25% GRPO = 12.8%\n   - Qwen2.5-Math-7B CKA-only Post-Prune = 1.0% 和 Post-SFT = 51.50%\n   - Qwen2.5-Math-7B Standard Post-Prune = 18.5%\n\n2. **4 个微小数值差异** (均为四舍五入，≤0.01pp):\n   - CKA seed456: 64.59% vs 64.58%\n   - α=3.0 GRPO: 63.45% vs 63.46%\n   - Extended training 两个 reward 值\n\n3. **3 个 registry 记录 metrics 为空** (Random seed123、depth-first SFT/GRPO)\n\n4. **30% cliff CKA-only**: paper=0% (N=100) vs registry=1.6% (N=500)，评估样本量不同"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/knowledge-paper-data-provenance-audit.md"
+}

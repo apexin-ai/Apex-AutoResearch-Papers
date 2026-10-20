@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b4a07613f6eb05230145",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb cka model and magnitude status",
+  "task_key": "worker_check_westb_cka_model_and_magnitude_status_20260518T052117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_cka_model_and_magnitude_status_20260518T052117_result.json",
+    "occurrence": 1,
+    "bytes": 1284,
+    "sha256": "9bdfaf74204543e8a7ff04933506abc7ad6b889b4224c22fa204e77bb4d3bc81"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. CKA-only GRPO 模型 — 完整\n\n路径: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20/`，总大小 **38G**。\n\n关键文件齐全:\n- `config.json` ✓\n- `model.safetensors` (12.3 GB) ✓\n- `tokenizer.json` + `tokenizer_config.json` ✓\n- `generation_config.json` ✓\n- `training_args.bin` ✓\n- 另含 `checkpoint-100/` 和 `completions/` 子目录\n\n### 2. scoring_ablation_magnitude_20 — 仍在运行，157/200\n\n剪枝已完成（magnitude mode, 199/784 MLP groups pruned, actual sparsity 18.99%），当前在 **GSM8K eval 阶段**。\n\n| 指标 | 值 |\n|---|---|\n| 进度 | **157/200** (78.5%) |\n| 当前 acc | 0.0400 (at 150/200) |\n| eos_rate | 1.33% |\n| avg_len | 4063 |\n| 速度 | ~56.6 s/it |\n| 预估剩余 | **~40 分钟** |\n\nMagnitude-only 剪枝 acc 极低（4%），符合预期（无 recovery-aware 信号）。\n\n### 3. eval_math500_grpo_cka_only_20 — 仍在运行，101/500\n\n| 指标 | 值 |\n|---|---|\n| 进度 | **101/500** (20.2%) |\n| 已用时间 | ~1h50m |\n| 速度 | 高度不均匀（有些 sample 5-6min，有些几秒） |\n| 预估剩余 | **~7-8 小时**（基于平均 ~65s/sample） |\n\n生成长度变化大导致 ETA 波动剧烈。这个 eval 预计今晚完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-cka-model-and-magnitude-status.md"
+}

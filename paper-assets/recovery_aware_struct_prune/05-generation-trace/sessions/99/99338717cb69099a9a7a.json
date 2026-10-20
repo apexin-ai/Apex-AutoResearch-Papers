@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "99338717cb69099a9a7a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp rasp grpo v9 launch",
+  "task_key": "worker_exp_rasp-grpo-v9-launch_20260515T223803",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_rasp-grpo-v9-launch_20260515T223803_result.json",
+    "occurrence": 1,
+    "bytes": 312,
+    "sha256": "a65594c6a0b837203d133105f6e7184a5c40ce8e9190441887cda40e929f188c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询已设置。当前状态：\n- **cuda:0**: α sweep 运行中，正在 eval α=0.5（已跑 ~27 min），后续还有 α=1.0 和 α=2.0\n- **cuda:1**: standard v8 GRPO 在跑（不影响）\n- **预计剩余时间**: ~2h（可能超过 70 min 上限）\n\n3 分钟后自动检查下一次。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-rasp-grpo-v9-launch.md"
+}

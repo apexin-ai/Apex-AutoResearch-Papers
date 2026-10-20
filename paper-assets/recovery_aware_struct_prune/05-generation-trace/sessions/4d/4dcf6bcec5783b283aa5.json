@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dcf6bcec5783b283aa5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westb analyzing sft standard 1p5b",
+  "task_key": "worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westb_analyzing_sft_standard_1p5b_20260519T130719_result.json",
+    "occurrence": 1,
+    "bytes": 235,
+    "sha256": "88d499b9c550593e9aa48982b16ceca1fe8d92a2838fb0c84706af218f97728f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。\n\n**结果摘要**：\n- **accuracy**: 22.90% (302/1319)\n- SFT Standard 1.5B (22.90%) vs GRPO Standard 1.5B (22.29%) → GRPO delta ≈ -0.6%，SFT 略优于 GRPO，基本持平。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westb-analyzing-sft-standard-1p5b.md"
+}

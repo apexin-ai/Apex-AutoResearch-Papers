@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c1cf2ebba3a6d9504df5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westb checkpoint scan",
+  "task_key": "worker_ssh_westb_checkpoint_scan_20260521T013838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westb_checkpoint_scan_20260521T013838_result.json",
+    "occurrence": 1,
+    "bytes": 3277,
+    "sha256": "177dcac836e5a380f78bbd26ba2af8a9b5da22d35f93656b6b75dabd4f08ae2a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总如下：\n\n---\n\n## westb-23072 资源清单\n\n### GPU\n| GPU | 型号 | 显存 | 利用率 |\n|-----|------|------|--------|\n| cuda:0 | NVIDIA RTX PRO 6000 Blackwell | 96 GB | 0% (空闲) |\n| cuda:1 | NVIDIA RTX PRO 6000 Blackwell | 96 GB | 0% (空闲) |\n\n### 磁盘\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| /root/autodl-tmp (数据盘) | 250G | 227G | 24G | 91% |\n| / (根分区) | 30G | 7.9G | 23G | 27% |\n\n### Checkpoint 列表\n\n**Dense 基线模型：**\n- `models/DeepSeek-R1-Distill-Qwen-1.5B/` — 3.4G\n\n**7B 系列 (pruned → SFT → GRPO)：**\n\n| 目录 | 阶段 | 大小 |\n|------|------|------|\n| `pruned_standard_25/` | pruned | 11G |\n| `pruned_standard_20/` | pruned | 12G |\n| `pruned_cka_only_20/` | pruned | 12G |\n| `pruned_rasp_20/` | pruned | 12G |\n| `pruned_rasp_rlvr_20/` | pruned | 12G |\n| `pruned_cka_only_20_qwen_math/` | pruned | 12G |\n| `pruned_standard_20_qwen_math/` | pruned | 12G |\n| `sft_standard_25/` (checkpoint-1870) | SFT | 11G |\n| `sft_cka_only_20/` | SFT | 12G |\n| `sft_rasp_rlvr_20/` (checkpoint-1870) | SFT | 12G |\n| `sft_qwen_math_cka_only_20/` (checkpoint-935) | SFT | 12G |\n| `sft_qwen_math_cka_only_20_final/` | SFT | 12G |\n| `sft_standard_20_qwen_math/` (checkpoint-935) | SFT | 12G |\n| `sft_standard_20_qwen_math_final/` | SFT | 12G |\n| `grpo_cka_only_20/` (checkpoint-100) | GRPO | 12G |\n| `grpo_cka_only_20_seed123/` | GRPO | 12G |\n| `grpo_random_20/` | GRPO | 220K (几乎为空) |\n\n**1.5B 系列：**\n\n| 目录 | 阶段 | 大小 |\n|------|------|------|\n| `pruned_standard_20_1p5b/` | pruned | 2.8G |\n| `pruned_cka_only_20_1p5b/` | pruned | 2.8G |\n| `pruned_rasp_20_1p5b/` | pruned | 2.8G |\n| `sft_standard_20_1p5b/` | SFT | 2.8G |\n| `sft_cka_only_20_1p5b/` | SFT | 2.8G |\n| `sft_rasp_20_1p5b/` | SFT | 2.8G |\n| `grpo_cka_only_20_1p5b/` (checkpoint-100) | GRPO | 2.8G |\n| `grpo_standard_20_1p5b/` | GRPO | 2.8G |\n| `grpo_rasp_20_1p5b/` (checkpoint-100) | GRPO | 2.8G |\n\n### 缓存数据集\n- **HF Hub**: `DeepSeek-R1-Distill-Qwen-1.5B`, `DeepSeek-R1-Distill-Qwen-7B`, `gsm8k`\n- **本地 datasets cache**: `gsm8k`, `math-500`, `mbpp`, `openai_humaneval`, `parquet`\n\nGSM8K / MBPP / HumanEval / MATH-500 均已缓存，无需重新下载。\n\n### 已有 Eval 结果\nresults/ 目录下有 ~80+ 个结果文件，覆盖：\n- GSM8K: dense/pruned/sft/grpo 各变体 (standard/cka_only/rasp, 7B+1.5B, 含 seed 实验)\n- HumanEval: sft_rasp_20_1p5b, grpo_standard_20_1p5b\n- MBPP: sft_cka_only_20_1p5b, sft_standard_20_1p5b\n- CKA heatmap: 4个剪枝方法 (cka_only/random/rasp/standard)\n- Gradient flow: v3\n- Inference benchmark: cka_only\n- Bootstrap CI, RCI diversity correlation\n- Qwen-Math 变体: postprune + SFT eval\n\n### 建议：可在 westb 上跑的 pending eval\n\n两张 96GB GPU 均空闲，适合跑：\n1. **缺失的 HumanEval/MBPP eval** — 7B 系列的 GRPO 和 SFT 变体大多只有 GSM8K 结果，HumanEval/MBPP 覆盖很少\n2. **grpo_random_20 几乎为空** (220K)，可能训练失败需排查\n3. **Qwen-Math 系列的 GRPO** — 只有 pruned + SFT，没有 GRPO checkpoint\n4. **数据盘 91%** — 只剩 24G，跑新实验前可能需要清理旧的中间 checkpoint"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westb-checkpoint-scan.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4dcf5f3e12962bb25d46",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westd gpu status 0522",
+  "task_key": "worker_check_westd_gpu_status_0522_20260522T083258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd_gpu_status_0522_20260522T083258_result.json",
+    "occurrence": 1,
+    "bytes": 1519,
+    "sha256": "b74fddb51dd5f90df786479773b3b5f39ca5c617f0337cd7878373415ff33412"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nGPU 0: [忙] PID=2234  命令=eval_math500 grpo_stage2_standard_20_fair  显存=19242MiB  运行=4h46m\nGPU 1: [忙] PID=5241  命令=eval_math500 sft_random_20               显存=17642MiB  运行=4h23m\nGPU 2: [忙] PID=22661 命令=eval_gsm8k grpo_rasp_alpha2p0_20/ckpt-100 显存=16486MiB  运行=1h11m\nGPU 3: [空闲] 0MiB / 0%\n\n磁盘: /root/autodl-tmp/ 526G/650G (81%)\n```\n\n**关键发现:**\n\n1. **GPU 0/1 — MATH-500 eval 进行中:**\n   - GPU 0: `grpo_stage2_standard_20_fair` → 331/500 (66%), Acc@300 = 27.0%, 预计还需 ~2-3h\n   - GPU 1: `sft_random_20` → 222/500 (44%), 预计还需 ~4-5h\n\n2. **GPU 2 — α=2.0 管线:**\n   - 原 pipeline GRPO 训练已完成，GSM8K eval 在日志中被 `Terminated`（只跑到 15/5604）\n   - 但重新启动了 eval_gsm8k（PID 22661），正在跑 `grpo_rasp_alpha2p0_20/checkpoint-100`，GPU 利用率 96%，正常运行中\n\n3. **GPU 3 — α=0.5 管线异常:**\n   - 原 pipeline GSM8K eval 同样只到 15/5604 后日志停止更新（14:48）\n   - PID 20444 (`eval_gsm8k sft_rasp_alpha0p5_20`) 已运行 1h33m，但 **不在 nvidia-smi 中**（0 GPU 显存），CPU 仅 1.6%\n   - **很可能卡住了** — 该进程应该用 CUDA_VISIBLE_DEVICES=3 但 GPU 3 完全空闲，说明模型没有成功加载到 GPU 上。需要检查或 kill 后重启\n\n4. **α=0.5 的 GRPO eval (grpo checkpoint) 还没跑** — pipeline 日志显示 GRPO 训练后的 eval 被 terminated，当前只在跑 SFT eval（且卡住了）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd-gpu-status-0522.md"
+}

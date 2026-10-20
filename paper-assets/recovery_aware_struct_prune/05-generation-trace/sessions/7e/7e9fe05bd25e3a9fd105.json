@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "7e9fe05bd25e3a9fd105",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 grpo cka only 25",
+  "task_key": "worker_diagnose_eval_math500_grpo_cka_only_25_20260521T134134",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_grpo_cka_only_25_20260521T134134_result.json",
+    "occurrence": 1,
+    "bytes": 3103,
+    "sha256": "fa830d68a27de1a41e68fe61aaad32fb4e0e98728623d8cd81210d710283feed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。以下是结果：\n\n---\n\n## 诊断结果\n\n**共同根因**：3 个进程在 ~21:25-21:28 (UTC+8) 被外部 SIGTERM 杀掉。**不是网络问题**——原始运行期间 `network_turbo` 处于激活状态，所有 HF HTTP 请求均正常返回 200/307。\n\n时间线：进程死于 ~21:25-21:28，监控系统在 21:38-21:39 (=13:38 UTC) 检测到\"process dead 5× with no sentinel/W&B\"，自动标记失败。\n\n```json\n{\"exp_id\": \"eval_math500_grpo_cka_only_25\", \"root_cause\": \"最后一行 'Terminated' (SIGTERM)，进程在 205/500 (Acc=0.1800) 时被外部杀掉\", \"error_type\": \"infrastructure\", \"fix_steps\": [\"v2 已自动重启 (PID 379999, GPU 0)，当前正在运行，使用缓存数据集\"], \"can_auto_fix\": true, \"common_cause\": true}\n```\n\n```json\n{\"exp_id\": \"eval_math500_sft_cka_only_25\", \"root_cause\": \"日志在 179/500 (Acc=0.2067) 处截断，无错误信息，进程被 SIGTERM 杀掉\", \"error_type\": \"infrastructure\", \"fix_steps\": [\"v2 已自动重启 (PID 380074, GPU 2)，当前正在运行，使用缓存数据集\"], \"can_auto_fix\": true, \"common_cause\": true}\n```\n\n```json\n{\"exp_id\": \"eval_math500_grpo_random_20\", \"root_cause\": \"进程在 43/500 时被 SIGTERM 杀掉。额外问题：极慢，~360s/problem，预计完整跑完需 ~50 小时\", \"error_type\": \"infrastructure\", \"fix_steps\": [\"需手动重启（无 v2）\", \"GPU 1 当前空闲可用\", \"建议加 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 避免网络超时延迟\", \"考虑该模型是否有 EOS 生成问题导致每题都跑满 max_new_tokens\"], \"can_auto_fix\": false, \"common_cause\": true}\n```\n\n## 总结\n\n| 实验 | 状态 | 进度 | GPU |\n|------|------|------|-----|\n| grpo_cka_only_25 | **v2 运行中** | 从头开始，~21/500 | cuda:0 |\n| sft_cka_only_25 | **v2 运行中** | 从头开始，~23/500 | cuda:2 |\n| grpo_random_20 | **未重启** | 需手动重启 | cuda:1 (空闲) |\n| (额外) gsm8k_sft_standard_25 | 运行中 | 1149/1319 | cuda:3 |\n\n**关键发现**：\n1. 杀进程的原因不明（可能是 `network_turbo` 关闭时连带影响，或监控系统主动 kill）。v2 重启未设 `HF_DATASETS_OFFLINE=1`，但 HF 库在网络不可达时 80 秒超时后自动回退到缓存，目前能正常工作。\n2. `grpo_random_20` 的极慢速度（~6 min/problem，vs 其他模型 ~1.5 min）是独立问题，可能是 random pruning 破坏了 EOS token 生成能力，导致每题都生成到 `max_new_tokens` 上限。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "exp_id": "eval_math500_grpo_random_20",
+              "root_cause": "进程在 43/500 时被 SIGTERM 杀掉。额外问题：极慢，~360s/problem，预计完整跑完需 ~50 小时",
+              "error_type": "infrastructure",
+              "fix_steps": [
+                "需手动重启（无 v2）",
+                "GPU 1 当前空闲可用",
+                "建议加 HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1 避免网络超时延迟",
+                "考虑该模型是否有 EOS 生成问题导致每题都跑满 max_new_tokens"
+              ],
+              "can_auto_fix": false,
+              "common_cause": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-grpo-cka-only-25.md"
+}

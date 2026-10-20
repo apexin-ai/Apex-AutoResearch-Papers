@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "732ae7823b39b07d7467",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check c1 progress",
+  "task_key": "worker_ssh_check_c1_progress_20260524T023019",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_c1_progress_20260524T023019_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "7ac508ebc1a70fb670c0329f506afca6dbf914c621c065421c367ce9e6f78027"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态汇报：\n\n- **进程存活**: PID 182199 正在运行，已运行 37 分钟\n- **GPU 3 显存**: 16758 MiB（子进程 PID 182208），正常\n- **tqdm 进度**: **43/500**，当前速度 ~28s/it，已跑约 35 分钟\n- **输出文件**: 尚未生成（eval 完成后才写 JSON）\n- **无错误信息**\n\n按当前速度（平均 ~50s/it），预计还需 **~6.3 小时** 完成剩余 457 题。总计约 7 小时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-c1-progress.md"
+}

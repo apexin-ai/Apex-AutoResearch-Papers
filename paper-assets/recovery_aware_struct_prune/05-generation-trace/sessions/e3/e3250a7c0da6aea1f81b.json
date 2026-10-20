@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e3250a7c0da6aea1f81b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check 15pct sft seeds and eval",
+  "task_key": "worker_check_15pct_sft_seeds_and_eval_20260521T173620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_15pct_sft_seeds_and_eval_20260521T173620_result.json",
+    "occurrence": 1,
+    "bytes": 660,
+    "sha256": "6003694e71c8c793d5d92a84947765b0d621735a8ddff28a0592a92e8e43d67b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**15% SFT 多种子 checkpoint 不存在。**\n\nwestd-29022 上检查结果：\n\n| 路径 | 存在 |\n|------|------|\n| `sft_cka_only_15` | 有（单种子） |\n| `sft_standard_15` | 有（单种子） |\n| `sft_cka_only_15_seed123/456` | 无 |\n| `sft_standard_15_seed123/456` | 无 |\n| `pruned_cka_only_15` | 有（单种子） |\n| `pruned_standard_15` | 有（单种子） |\n| `/root/runs/` 下 sft*15* | 无 |\n\n前置的 pruned 模型也只有单种子，所以即使要补 SFT 多种子，需要先跑 pruning（不同 seed）→ SFT → eval 全链路。当前无法直接跑 GSM8K eval。\n\nwestd-29022 cuda:0 空闲待分配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-15pct-sft-seeds-and-eval.md"
+}

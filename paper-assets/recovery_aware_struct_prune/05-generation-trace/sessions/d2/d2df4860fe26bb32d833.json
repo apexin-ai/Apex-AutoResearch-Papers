@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2df4860fe26bb32d833",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code check gradient and humaneval",
+  "task_key": "worker_code_check_gradient_and_humaneval_20260517T075413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_check_gradient_and_humaneval_20260517T075413_result.json",
+    "occurrence": 1,
+    "bytes": 1362,
+    "sha256": "240032dd9754b38e16c44878efa54842831943e063d5957a0987013bb7832553"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### westb-23072: Gradient eval\n\n**状态: Running** (PID 691565)\n- `run_remaining_ablation.sh` 已自动启动，当前在 scoring_ablation_v2 tmux 中执行 gradient pipeline Step 2/4 (eval post-prune)\n- 模型: `pruned_gradient_20` (actual sparsity 19.09%)\n- 进度: 12/200 samples (6%), 预计 ~1.5h 剩余\n- GPU 0: 13GB / 98GB, 77% util\n\n同时 GPU 1 上还在跑 `eval_unstructured_20` (n=1319, PID 680604), 17.7GB / 98GB, 89% util。\n\n### westd-11672: HumanEval sft_rasp_20\n\n**状态: Completed** (PID 7528 已结束)\n- **pass@1 = 7.32%** (12/164), stderr = 0.0203\n- 结果已保存: `eval_humaneval_sft_rasp_20.json`\n- 主要失败模式: 模型输出自然语言思考过程而非代码 (SyntaxError: unterminated string literal), 以及语法错误 (括号未闭合等)\n- median response length = 512 (频繁触达 max_tokens 截断)\n\n### GPU 利用概况\n\n| 服务器 | GPU | 占用 | Util | 任务 |\n|--------|-----|------|------|------|\n| westb-23072 | cuda:0 | 13GB | 77% | gradient eval (PID 691565) |\n| westb-23072 | cuda:1 | 17.7GB | 89% | unstructured eval (PID 680604) |\n| westd-11672 | cuda:0 | 17.7GB | 90% | python (PID 3331) |\n| westd-11672 | cuda:1 | 13GB | 88% | python (PID 3335) |\n| westd-11672 | cuda:2 | 13GB | 88% | python (PID 3333) |\n| westd-11672 | cuda:3 | 0MB | 0% | idle |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-check-gradient-and-humaneval.md"
+}

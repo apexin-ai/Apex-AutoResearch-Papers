@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "da9ede3adff4c3c2d5d1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix mvp script patches",
+  "task_key": "worker_fix_mvp-script-patches_20260514T062934",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_mvp-script-patches_20260514T062934_result.json",
+    "occurrence": 1,
+    "bytes": 1166,
+    "sha256": "53b70926fb788a40305515c36621f4dd3c856d33cf563687eb1646e6fe079a62"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n**修改汇报：**\n\n| 文件 | 变更 |\n|------|------|\n| `src/run_mvp.sh` | 全文更新 (154行) |\n| `src/run_mvp_resume_from_3_5.sh` | 新建 (104行) |\n\n**三个修复状态：**\n\n| 修复 | 状态 | 说明 |\n|------|------|------|\n| Step 0 (Baseline eval) | **新增** L15-20 | `eval_gsm8k.py` → `results/baseline_eval.json`，使用 cuda:0 |\n| Step 3.5 (Post-prune eval) | **已存在**，无需修改 | 输出路径 `eval_pruned_standard_35.json` / `eval_pruned_rasp_35.json` |\n| Step 6 JSON 解析 | **已正确**，无需修改 | 已使用 `d[\"combined\"][\"spearman_rho\"]` |\n| 修复 3: Pruning Distribution 日志 | **新增** L61-66 | Step 3 后打印 `n_attn_groups_pruned` / `n_mlp_groups_pruned` / `sparsity_actual`，直接从 metadata 读取 |\n| 最终汇总 | **已更新** | 新增 Baseline 行到 echo 和 Python 汇总 |\n\n**run_mvp_resume_from_3_5.sh：** 就绪。包含前置检查、Step 3.5→6 全流程、错误传播 (`set -e` + 逐步 check)、GPU 分配 (cuda:0=standard, cuda:1=rasp)。`model_utils.py` 尚不存在，已在 Step 4 处加 TODO 注释。\n\n**READY**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-mvp-script-patches.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6cfaa419f1be35c1b4e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval humaneval grpo rasp 20 fair 2048 and relay",
+  "task_key": "worker_analysis_eval_humaneval_grpo_rasp_20_fair_2048_and_relay_20260519T093557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_humaneval_grpo_rasp_20_fair_2048_and_relay_20260519T093557_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "c5a8af42f7c3de4150ef729a317289258c5da34ba7547ea70d0642a04c63ed68"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两步任务完成。\n\n## 产出\n\n**任务 1 — RASP fair HumanEval 收割**\n| 指标 | 值 |\n|---|---|\n| pass@1 | **10.98%** (18/164) |\n| stderr | 0.0244 |\n| 对比 interim | 12.5% → 10.98%（最终偏低） |\n\nRegistry `eval_humaneval_grpo_rasp_20_fair_2048` → DONE (success)\n\n**任务 2 — SFT Standard HumanEval v3 启动**\n- PID 86171 on westd-29022 cuda:3\n- tmux session: `eval_humaneval_sft_standard_20_2048_v3`\n- 模型正在加载中（14.5GB RSS，CPU 密集），即将转移到 GPU\n- Registry → RUNNING\n\n**附注**: `eval_humaneval_grpo_standard_20_fair_2048` 的结果文件不存在（cuda:3 之前的任务，pid 72393 已退出但无输出文件），可能需要后续排查。Cron 列表为空，无需删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-humaneval-grpo-rasp-20-fair-2048-and-relay.md"
+}

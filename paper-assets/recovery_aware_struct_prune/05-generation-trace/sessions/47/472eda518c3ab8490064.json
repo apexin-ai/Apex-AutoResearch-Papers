@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "472eda518c3ab8490064",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze grpo standard 20 fair",
+  "task_key": "worker_analyze_grpo_standard_20_fair_20260518T020344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grpo_standard_20_fair_20260518T020344_result.json",
+    "occurrence": 1,
+    "bytes": 1203,
+    "sha256": "c463dbf0923372b1d41cb5cc1f7791609226db6294f3fc05a681d728d3361da7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n---\n\n```\nConclusion: success\nStandard collapse pattern: stagnation — reward flat 0.03-0.08 全程无上升趋势,\n  frac_zero_std stuck 0.5-0.55, entropy 缓慢下降 0.16→0.14。\n  Step 40 有微弱 peak (0.081) 后 step 50 dip 至 0.019, 此后再无恢复。\n  完成示例显示大量 repetitive \"#### number\" 垃圾输出, reward 全 0.00。\n4-way gradient: CKA-only (active recovery) > Random (plateau) > Standard (stagnation) > RASP (permanent collapse)\nKey metrics at step 100: reward=0.054, frac_zero_std=0.55, entropy=0.14\nD058 resolved: yes\n```\n\n**对比数据 (fair v5 config, step 100)**:\n\n| Method | reward | frac_zero_std | pattern |\n|--------|--------|---------------|---------|\n| CKA-only | rising | declining | active recovery |\n| Random | slowly rising | stable | plateau |\n| **Standard** | **0.054** | **0.55** | **stagnation** |\n| RASP | 0.01 | 0.85 | permanent collapse |\n\nStandard 落在 Random 和 RASP 之间，符合 \"partial collapse\" 场景。Recovery capacity gradient 四点确认：剪枝方法对 RL 恢复能力的影响呈清晰梯度，CKA-only scoring 保留的结构最有利于 GRPO 恢复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grpo-standard-20-fair.md"
+}

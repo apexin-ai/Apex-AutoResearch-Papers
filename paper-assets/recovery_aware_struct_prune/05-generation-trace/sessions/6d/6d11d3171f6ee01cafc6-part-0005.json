@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "session_id": "6d11d3171f6ee01cafc6",
+  "rounds": [
+    {
+      "number": 18,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-25T21:25:48.518974+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 1 审稿请求]:\n## 交叉分享：Reviewer 1 的完整审稿意见\n\n请逐条回应以下 Reviewer 1 的审稿意见，对每个点标注 `[AGREE]` 或 `[REBUT]`（附理由）。\n\n---\n\n**Reviewer 1 评分：Overall 3.0/5（Findings）**\n\n### Critical 问题\n\n**N1**: RASP 作为方法贡献被自身消融否定——CKA-only（α→∞ 极限）在 recovery capacity spectrum 排第一（Peak Rew 0.354），RASP 默认 α=1.0 reward collapse（Peak Rew 0.061）。论文最终推荐 CKA-only 而非 RASP，方法贡献不成立。\n\n**N2**: 乘法形式 I(h)=0 退化行为未与加法替代对比——I(h)=0⟹S=0 是 RASP 败给 CKA-only 的原因，加法形式不存在此退化。缺少加法对照无法区分乘法 artifact 与 tradeoff 本质。\n\n**N3**: Random baseline max_completion_length 不一致违反受控实验设计——Random GRPO 用 512 vs 其他 1024，论文自称 \"hold everything else constant\" 但此处不一致。\n\n**N4**: RASP α 变体全部单 seed，dose-response 曲线不可靠——α=2.0 的 66.11% vs CKA-only 64.39±0.19% 的 1.72pp 差距在方差未知时不可信。\n\n### Warning 问题\n\n**W1**: TOST ε=2pp 缺乏 a priori justification\n**W2**: 15% sparsity 下 GRPO 放大 CKA 优势（+1.51pp），Standard Δ=-0.93pp 接近 1pp 边界\n**W3**: 25% sparsity 单 seed，Standard Δ=+0.99pp 恰在 1pp 边界\n**W4**: 300-step extended training 未报告 step-by-step accuracy 曲线\n**W5**: Limitations 关于 Random seed 的表述与正文矛盾\n**W6**: Calibration M=512 importance score 稳定性未验证\n\n### Questions\n\nQ1: α=1.0 collapse 是乘法 I(h)≈0 退化还是 diversity-importance 平衡失败？\nQ2: 为什么不统一 Random 的 max_completion_length 为 1024？\nQ3: 如果 α=2.0 补跑 3 seeds 仍优于 CKA-only，结论是否需根本性修改？\n\n---\n\n请对 N1-N4 和 W1-W6 逐条给出 [AGREE] 或 [REBUT]，重点关注：\n1. N1/N2 与你的 C2（α=2.0 本质 CKA-dominant）是否指向同一根本问题\n2. N3 的控制变量问题对你的 spectrum 有效窗口判断有无影响\n3. N4 的单 seed 问题是否加剧了你对方法新颖性的质疑"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:reviewer_2",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-25T21:27:12.752554+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 2 交叉回应：逐条回应 Reviewer 1 的审稿意见\n\n---\n\n## Critical 问题\n\n**[AGREE] R1-N1: RASP 方法贡献被自身消融否定**\n\n同意，且与我的 N2 指向同一根本问题。我的 N2 从 \"α=2.0 最优意味着 CKA-dominant，undermines balancing 叙事\" 角度论述，R1-N1 从 \"论文最终推荐 CKA-only 而非 RASP\" 角度论述——本质一致：RASP 作为独立方法贡献不成立。\n\n补充一点 R1 未提及的：Table 1 数据显示 RASP(α=2.0) Peak Rew = 0.354，CKA-only Peak Rew = 0.354，两者完全相同。这比 R1 的论证更直接——在最优配置下 RASP 与 CKA-only 的 recovery capacity 指标无差异，RASP 框架的额外 parametric 复杂性没有带来任何增益。如果作者声称 α=2.0 时 accuracy (66.11%) 优于 CKA-only (64.39%)，这个 1.72pp 差异恰好落在 R1-N4 指出的单 seed 不可信区间内。\n\n**[AGREE] R1-N2: 乘法形式退化行为未与加法替代对比**\n\n同意，这是一个我未覆盖的有价值技术点。RASP 的乘法形式 $S_{RASP}(h) = I(h) \\times (1-F(h))^\\alpha$（Eq. 5）意味着 $I(h)=0$ 的结构无论 diversity 多高都被零化。加法替代（如 $S = \\beta \\cdot I(h) + (1-\\beta) \\cdot (1-F(h))$）不存在此退化，是合理的 ablation 对照。缺少这个对照，无法判断 α=1.0 collapse（Table 1, Peak Rew 0.061）是乘法形式的 pathological artifact 还是 importance-diversity tradeoff 在该配置下的真实行为。这一遗漏与我的 N2 构成互补——我关注 α=2.0 端（CKA-dominant），R1 关注 α=1.0 端（collapse），合在一起说明 RASP 的整个 parametric 空间都有问题：一端退化，另一端等价于 CKA-only。\n\n**[AGREE with nuance] R1-N3: Random baseline max_completion_length 不一致**\n\n同意这违反了受控实验设计原则，论文自称 \"hold everything else constant\"（Section 3）但此处不一致。但我对严重程度的评估略低于 R1：\n\n- Random 是四种方法中最弱的 baseline，用于 \"控制 informative scoring 的效应\"\n- max_completion_length 512 vs 1024 可能导致 Random 的 GRPO reward 被低估（因为 reasoning trace 更容易截断），但 Random 在 recovery capacity spectrum 中已经排在 Standard 之上（Peak Rew 0.125 vs 0.060, Table 1），如果统一到 1024 可能进一步拉大这个差距\n- 关键影响：如果 Random 在 1024 设置下 accuracy 和 reward 都更高，那 Standard（唯一一个低于 Random 的 informative method）的表现就更显尴尬，这反而强化了论文关于 \"importance-only 不如 diversity-preserving\" 的结论\n\n所以不一致是真实问题，应报告并修复，但不太可能翻转核心 spectrum ordering。对我的有效窗口判断（N3）无直接影响——30% collapse 是所有方法共享的架构限制，与 Random 的超参数无关。\n\n**[AGREE] R1-N4: RASP α 变体全部单 seed，dose-response 曲线不可靠**\n\n强烈同意，且与我的 N2 直接相关。我的 N2 指出 \"α=2.0 CKA-dominant undermines balancing narrative\"，R1-N4 进一步指出这个 α=2.0 的优势本身在统计上就不可信。两个问题叠加：\n\n1. (我的 N2) 即使 α=2.0 真的更好，它也只是 CKA-only 的近似\n2. (R1-N4) α=2.0 是否真的更好，在单 seed 下无法确认\n\nAppendix J 报告 CKA-only 的 3-seed 标准差为 0.19pp（Section 4.5）。α=2.0 的 66.11% vs CKA-only 64.39% 差距为 1.72pp，看似显著，但 α=2.0 自身方差未知。如果 α=2.0 的标准差与 CKA-only 相当（~0.19pp），则 1.72pp 可能显著；但如果 α=2.0 方差更大（考虑到 RASP 在不同 α 下表现差异巨大——从 collapse 到 66%——variance 可能更高），则 1.72pp 不可信。\n\n这加剧了我对方法新颖性的质疑：RASP 不仅在最优配置下等价于 CKA-only（我的 N2），而且连 \"是否真的优于 CKA-only\" 这个前提都未被统计验证（R1-N4）。\n\n---\n\n## Warning 问题\n\n**[AGREE] R1-W1: TOST ε=2pp 缺乏 a priori justification**\n\n同意。TOST 的 equivalence margin 是结论成立与否的关键参数。ε=2pp 对于 GSM8K（~1300 题，准确率 60-65%）意味着约 26 题的差异，这在教育评测中算实质性差异还是噪音？论文选择 2pp 但未引用文献或给出统计 power 分析来证明这个选择。如果 ε=1pp，部分 \"等价\" 结论可能不成立。\n\n**[AGREE] R1-W2: 15% sparsity 下 CKA-only 优势被 GRPO 放大**\n\n同意这削弱了 \"SFT+GRPO 抹平差异\" 的叙事。Appendix M 的 15% 数据（CKA-only vs Standard: +1.51pp post-GRPO，而 post-SFT 差距更小）表明 GRPO 在低剪枝率下并非纯粹的 diagnostic——它可以放大方法间差异。这与我的 N1（decoupling 可能是天花板效应）一致：在 15% sparsity 下 accuracy headroom 更大，GRPO 开始产生实质性差异，进一步暗示 20% 下的 \"decoupling\" 是 headroom 耗尽的 artifact。\n\n**[REBUT] R1-W3: 25% sparsity 单 seed，Standard Δ=+0.99pp 恰在 1pp 边界**\n\n部分反驳。R1 的担忧合理——单 seed 下 0.99pp 恰在边界确实不够稳健。但这个数据点不是论文核心 claim 的支撑：25% sparsity 主要作为 \"collapse 前的边界条件\" 出现（Section 4.1, \"All methods collapse at 30%\"），而非核心 spectrum 分析的基础。论文的核心 spectrum 结论建立在 20% sparsity 数据上（Table 1, 3 seeds for CKA-only/Standard/Random）。25% 数据的不确定性是真实问题，但严重程度低于 R1 隐含的判断。\n\n**[AGREE] R1-W4: 300-step extended training 未报告 step-by-step accuracy 曲线**\n\n同意。Appendix E 只报告了 100 步和 300 步的 checkpoint accuracy，但没有中间步骤的 accuracy trajectory。这是一个遗漏——如果 CKA-only 在 150-200 步时 accuracy 仍在上升，而 Standard 在 100 步后就 plateau 了，这将是非常有信息量的。更重要的是，300 步仍然远少于 RLVR 文献中常见的训练预算（通常 1000-5000 步），这与我的 Q5 一致。\n\n**[AGREE] R1-W5: Limitations 关于 Random seed 的表述与正文矛盾**\n\n同意这是写作问题。如果 Limitations 说 \"RASP α variants and Random use single GRPO seeds\" 但 Appendix L (Table 11) 显示 Random 有 3 seeds（42, 123, 456），则存在矛盾。这类不一致会降低审稿人对其他声称的信任度。\n\n**[REBUT] R1-W6: Calibration M=512 importance score 稳定性未验证**\n\n部分反驳。R1 关心 M=512 样本量是否足够计算稳定的 importance score。但 Appendix H（Table 8）报告了 CKA scoring 在不同 calibration set sizes（256/512/1024）下的 Spearman ρ 稳定性（ρ=0.964-0.979），虽然这只验证了 CKA ranking 的稳定性而非 importance score 的稳定性，但暗示 512 样本量对 structure ranking 的计算已经足够稳定。更直接的反驳：importance score 基于 Taylor expansion（一阶梯度×激活），这在剪枝文献中是标准做法，M=512 远超 LLM-Pruner（Ma et al., 2023）使用的 calibration 规模。\n\n---\n\n## 综合评估\n\nR1 的审稿意见整体高质量，与我的评审高度互补：\n\n| 问题域 | R1 视角 | R2 视角 | 关系 |\n|--------|---------|---------|------|\n| RASP 贡献 | N1: 推荐 CKA-only 否定 RASP | N2: α=2.0 CKA-dominant 否定 balancing | 同一问题的两面 |\n| 乘法退化 | N2: 缺加法对照 | 未覆盖 | R1 独有贡献 |\n| 实验控制 | N3: Random 超参不一致 | 未覆盖 | R1 独有贡献 |\n| 统计可靠性 | N4: α 变体单 seed | Q2: RASP vs CKA-only 重叠度 | 互补 |\n| Decoupling 本质 | 未深入讨论 | N1: SFT 天花板效应 | R2 独有贡献 |\n| 有效窗口 | 未直接讨论 | N3: 20-25% 过窄 | R2 独有贡献 |\n| Framing 错位 | 未直接讨论 | W1: Title vs 实际发现 | R2 独有贡献 |\n\n两份审稿合在一起对 RASP 方法贡献形成了全面否定：从 α→0（Standard 退化）到 α=1.0（乘法 collapse）到 α=2.0（CKA-only 等价且单 seed 不可信）到 α→∞（CKA-only 本身）。RASP 作为 parametric family 在整个参数空间都不优于其端点。\n\n我维持 Overall 3.0（Findings）评分。R1 的技术细节问题（N2 乘法 vs 加法、N3 超参不一致）加强了我对方法贡献不足的判断，但未改变总体评估——论文的控制变量实验设计和实证发现（尤其 SFT dominance 和 criterion-dependent training dynamics）仍然有 Findings 级别的价值。\n",
+              "reviewer_id": "2",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-25T21:27:16.265457+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_40839c097b00df44480b45ab767f59cf:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:reviewer_2",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3512
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-25T21:27:26.193617+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "交叉回应已提交。逐条回应了 R1 的 N1-N4 和 W1-W6：\n\n- **N1/N2/N4**：全部 AGREE，与我的 N2 形成互补——R1 从 \"论文推荐 CKA-only 否定 RASP\" 和 \"乘法退化\" 角度，我从 \"α=2.0 CKA-dominant\" 角度，共同否定 RASP 的方法贡献\n- **N3**（Random 超参不一致）：AGREE with nuance——违反控制原则但不太可能翻转 spectrum ordering\n- **W3**：REBUT——25% 单 seed 问题真实但非核心 claim 支撑\n- **W6**：REBUT——Appendix H 的 CKA 稳定性数据和 Taylor expansion 文献标准提供了间接支持\n\n维持 Overall 3.0（Findings）不变。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:reviewer_2"
+          },
+          "id": "event-000724"
+        }
+      ]
+    }
+  ]
+}

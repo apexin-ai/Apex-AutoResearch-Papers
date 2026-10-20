@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c18be252fb746f33bcaa",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval math500 unpruned",
+  "task_key": "worker_diag_eval_math500_unpruned_20260517T120449",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_math500_unpruned_20260517T120449_result.json",
+    "occurrence": 1,
+    "bytes": 346,
+    "sha256": "54fd91768f133efc0028f8a85ab8a4286e622d3bf766d97cdf688fd3e15414c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验成功。**\n\n- **MATH-500 Accuracy: 73.60% ± 1.97% (368/500)**\n- 模型: DeepSeek-R1-Distill-Qwen-7B (unpruned baseline)\n- 耗时 ~4h48m，EXIT_CODE=0\n- 结果已保存至 `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_unpruned.json`\n- 诊断报告写入 `artifacts/diag_eval_math500_unpruned.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-math500-unpruned-copy-2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2d97e77fa01d0621faf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor grpo rlvr qwen math early stop",
+  "task_key": "worker_monitor_grpo_rlvr_qwen_math_early_stop_20260516T185324",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_grpo_rlvr_qwen_math_early_stop_20260516T185324_result.json",
+    "occurrence": 1,
+    "bytes": 1194,
+    "sha256": "81f6babdc19d845cc9848bc940ae5f0af2e36c79b11532ebabf1698fb10c128c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据已提取。总结如下：\n\n**当前进度**: Step 57/100（基于进度条），最新完整指标在 step 50。\n\n**frac_reward_zero_std 趋势**:\n| Step | frac_zero_std | reward | KL |\n|------|--------------|--------|-----|\n| 10 | 0.650 | 0.084 | 0.006 |\n| 20 | **0.825** | 0.057 | 0.029 |\n| 30 | **0.750** | 0.065 | 0.059 |\n| 40 | **0.875** | 0.026 | 0.396 |\n| 50 | 0.575 | 0.105 | 0.008 |\n\n**判定**: 不满足自动 kill 条件（最新 step 50 的 frac_zero_std = 0.575 < 0.7），但也不满足\"继续等\"条件。\n\n**需 Director 决策的关键信号**:\n1. 5 次记录中有 3 次 frac_zero_std > 0.7（step 20/30/40），均值 0.735\n2. reward 始终极低（0.026–0.105），无明显上升趋势\n3. Step 40 出现 KL 飙升（0.396）后 step 50 突然回落到 0.008，同时 frac_zero_std 也从 0.875 降到 0.575 — 可能是一次偶然的 lucky batch\n4. 实际速度 ~27s/step（非 400s），预计还剩 ~20min 完成全部 100 steps\n\n**建议交由 Director**：整体信号偏 negative（reward 不涨，frac_zero_std 多数时候 > 0.7），但最新一步有所改善，且距离训练结束仅剩 ~43 steps ≈ 20min。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-grpo-rlvr-qwen-math-early-stop.md"
+}

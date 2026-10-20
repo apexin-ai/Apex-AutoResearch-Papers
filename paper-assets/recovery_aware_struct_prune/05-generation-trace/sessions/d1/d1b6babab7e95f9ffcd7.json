@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d1b6babab7e95f9ffcd7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent status check westd westb",
+  "task_key": "worker_ssh_urgent_status_check_westd_westb_20260523T120329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_status_check_westd_westb_20260523T120329_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "0a731839c6781c9846682a035834e167d148c4df281d83a9a75e7bc1bfac34c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nFloor 0.3: ✅ 完成  accuracy=65.05% (858/1319)\nFloor 0.5: 🔄 运行中  80% (1054/1319), 当前 acc≈62.4%\nFloor 0.6: ❌ 失败  GRPO 训练完成但 save_model 时磁盘满 (No space left on device)\nSFT Standard MATH-500 v3: 🔄 运行中  82% (409/500), PID 108574, 已运行 6h+\n\nwestd-32935 GPU:\n  GPU 0: 空闲 (floor 0.3 已完成)\n  GPU 1: 98%, 19.3/97.9 GB (SFT MATH-500 v3)\n  GPU 2: 空闲 (floor 0.6 已失败)\n  GPU 3: 99%, 29.2/97.9 GB (floor 0.5 eval 中)\n\nwestb-23072 GPU:\n  GPU 0: 空闲\n  GPU 1: 空闲\n```\n\n**关键问题**: `/root/autodl-tmp` 数据盘 650G 已 100% 满，导致 floor=0.6 的模型保存失败（`safetensors_rust.SafetensorError: I/O error: No space left on device`）。floor 0.6 的 GRPO 训练本身已完成（100 steps），但 `trainer.save_model()` 崩溃，后续 GSM8K eval 未执行。\n\n需要清理磁盘空间后重跑 floor=0.6 的模型保存 + eval 步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-status-check-westd-westb.md"
+}

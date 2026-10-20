@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dbbe59cef0ec67de1f83",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill depth first launch math500 westd",
+  "task_key": "worker_ssh_kill_depth_first_launch_math500_westd_20260522T151656",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_depth_first_launch_math500_westd_20260522T151656_result.json",
+    "occurrence": 1,
+    "bytes": 1249,
+    "sha256": "aa31644e46f5689bef206ba078289990710ae05b5591282af006a92271462a85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU:2 loading (7GB VRAM). GPU:3 still in model load phase. Both Python processes confirmed running (PID 58276 and 58435). Here's the summary:\n\n## depth-first interim results\n- GRPO: no result file (eval was at ~54 min, still in progress)\n- SFT: no result file (eval was at ~36 min, still in progress)\n\n## kill 确认\n- PID 51981/51986 (GRPO depth-first): killed\n- PID 54882 (SFT depth-first): killed\n\n## model paths\n- α=0.5: `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha0p5_20/` (直接有 config.json + model.safetensors)\n- α=4.0: `/root/autodl-tmp/recovery_aware_struct_prune/sft_alpha4_20/` (直接有 config.json + model.safetensors)\n\n## new evals launched\n- α=0.5 MATH-500 (GPU:2): Python PID=58276 (bash wrapper 58270)\n- α=4.0 MATH-500 (GPU:3): Python PID=58435 (bash wrapper 58430)\n\n## GPU 验证\n```\nGPU 0: 25793 MiB, 99%  (existing gsm8k eval)\nGPU 1: 16755 MiB, 99%  (existing math500 α=2.0 eval)\nGPU 2:  6999 MiB,  5%  ← α=0.5 MATH-500, model loading\nGPU 3:     0 MiB, 100% ← α=4.0 MATH-500, model loading to GPU\n```\n\n注意：output_path 写入 `/root/autodl-tmp/recovery_aware_struct_prune/results/`，日志写入 `/root/autodl-tmp/recovery_aware_struct_prune/logs/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-depth-first-launch-math500-westd.md"
+}

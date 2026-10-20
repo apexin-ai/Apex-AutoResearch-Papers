@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "969765cb29efe83cd72d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prep eval math500 sft unpruned",
+  "task_key": "worker_code_prep_eval_math500_sft_unpruned_20260518T064056",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prep_eval_math500_sft_unpruned_20260518T064056_result.json",
+    "occurrence": 1,
+    "bytes": 2478,
+    "sha256": "c8da16cc23b2a1b7260cb60c31c9bf94861cb35a2332c5e0f24ab76452793638"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 方案\n\n### 1. 模型信息\n\n| 项目 | 值 |\n|------|-----|\n| **exp_id** | `sft_unpruned_baseline` |\n| **模型路径** | `/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline` |\n| **所在服务器** | **westd-11672** |\n| **基座模型** | DeepSeek-R1-Distill-Qwen-7B (unpruned) |\n| **训练配置** | 2 epochs, lr=2e-5, GSM8K train, seed=42 |\n| **GSM8K 精度** | 81.27% (N=1319) |\n\n### 2. 是否需要 SCP\n\n**是**，如果要在 westb-23072 上跑。模型仅存在于 westd-11672。\n\n但所有已有 MATH-500 eval 都在 westd 上跑的（`eval_math500_unpruned`、`eval_math500_sft_rasp_20`、`eval_math500_sft_standard_20`），**建议直接在 westd 上跑**，省去 SCP ~14GB 的时间。westd cuda:0-3 均属本项目（C004）。\n\n### 3. Eval 命令\n\n```bash\ncd /root/recovery_aware_struct_prune && \\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && \\\nCUDA_VISIBLE_DEVICES=0 python src/eval_math500.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\n```\n\n与已有 MATH-500 eval 命令格式一致（参考 `eval_math500_sft_rasp_20` 的 `python src/eval_math500.py --model_path sft_rasp_20_westd`）。用全路径更明确。\n\n### 4. submit_training_job 参数\n\n```\nserver: westd-11672\naccount: root\ngpu: cuda:0  (或任一空闲 GPU)\ncommand: 上述命令\nexp_id: eval_math500_sft_unpruned\ntmux_session: eval_math500_sft_unpruned\n```\n\n### 5. Registry 注册信息\n\n```\nexp_id: eval_math500_sft_unpruned\nparent: sft_unpruned_baseline\nhypothesis: MATH-500 eval of unpruned SFT model — fills asymmetric baseline gap (W3 review). Completes the comparison: base unpruned (73.6%) vs SFT unpruned (?) vs GRPO unpruned (69%).\nspec.checkpoint_source: /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\nspec.data_path: MATH-500\nspec.data_count: 500\nspec.server: westd-11672\nspec.seed: 42\n```\n\n### 6. 预计运行时间\n\n~30-45 分钟。GSM8K full eval (1319 samples) 在同模型上耗时 ~65 分钟 (~2.5s/it)，MATH-500 仅 500 题但生成更长，估计 3-5s/it。\n\n### 7. 已有 MATH-500 数据对照\n\n| 模型 | MATH-500 |\n|------|----------|\n| Unpruned base | 73.6% |\n| Unpruned SFT | **待测** |\n| Unpruned GRPO | 69.0% |\n| Pruned RASP SFT | 24.2% |\n| Pruned Standard SFT | 26.0% |\n\nW3 要的就是 \"Unpruned SFT\" 这一行，补上后 base→SFT→GRPO 三阶段对比完整。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prep-eval-math500-sft-unpruned.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f854e3428cfbff433148",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code deepseek 25 grpo pipeline",
+  "task_key": "worker_code_deepseek_25_grpo_pipeline_20260516T155120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_deepseek_25_grpo_pipeline_20260516T155120_result.json",
+    "occurrence": 1,
+    "bytes": 641,
+    "sha256": "5f11b2f73aef6b610caa19cf690fa863fb0dd7fc8204c14d340df4e859a074de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**当前状态报告：**\n\n| 任务 | GPU | PID | 状态 |\n|------|-----|-----|------|\n| grpo_rasp_25 | cuda:0 | 21408 | ✅ 模型已加载，正在准备 GSM8K 数据集 |\n| sft_standard_25_westd | cuda:1 | 21488 | ✅ 模型已加载到 GPU (11.8GB)，训练中（日志有缓冲延迟） |\n\n**模型来源：**\n- `sft_rasp_25`：westd 上已存在完整模型，直接启动 GRPO\n- `sft_standard_25`：目录为空，从 `pruned_standard_25` 做 SFT（从头训练）\n\n**待办：** SFT 完成后（预计 30-60 分钟）需提交 `grpo_standard_25` 到 cuda:1。需要我设置定时监控并自动提交吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-deepseek-25-grpo-pipeline.md"
+}

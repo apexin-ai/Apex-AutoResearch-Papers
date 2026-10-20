@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2a5d74240e9c855c191",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose westd 11672 connectivity",
+  "task_key": "worker_diagnose_westd_11672_connectivity_20260517T054209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_westd_11672_connectivity_20260517T054209_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "c8af222d3236aca48c58d3c537511d4213a8077eb437e00dd8f167ebd39b184f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n**westd-11672 不可达。** 两次连接均失败，错误一致：\n\n```\n[Errno None] Unable to connect to port 11672 on 36.103.198.204\n```\n\n连接在 0.1-0.3 秒内被拒绝（不是超时），说明端口未开放——服务器很可能已关机或被平台回收。\n\n### 实验状态判断\n\n| 实验 | 状态 |\n|------|------|\n| eval_sft_rasp_20_seed456 | **failed**（cron 已标记） |\n| eval_sft_rasp_20_seed123 | **failed**（cron 已标记） |\n| eval_sft_standard_20_seed123 | **failed**（cron 已标记） |\n| eval_sft_standard_20_seed456 (pid=75384) | **实际已死**，服务器不可达，进程不可能存活 |\n\n### 结论\n\nwestd-11672 当前完全不可用。4 个实验均应视为 failed。需要在平台侧确认服务器状态（是否过期/欠费/维护），恢复后重新提交实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-westd-11672-connectivity.md"
+}

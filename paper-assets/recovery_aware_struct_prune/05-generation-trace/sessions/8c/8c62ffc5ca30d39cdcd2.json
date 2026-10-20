@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c62ffc5ca30d39cdcd2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd eos diag scp",
+  "task_key": "worker_ops_westd_eos_diag_scp_20260516T110317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_eos_diag_scp_20260516T110317_result.json",
+    "occurrence": 1,
+    "bytes": 2215,
+    "sha256": "4d2e7aba47983a117fda1c2990efa7b8d47270e49f10788133d11ff4e3a60220"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-11672 完全不可达。可能是磁盘满导致实例崩溃或 AutoDL 自动重启（端口会变）。\n\n---\n\n## 诊断报告\n\n### 1. EOS Token 诊断 — **根因确认**\n\n| | SFT Model | Base (generation_config) |\n|---|---|---|\n| eos_token | `<|endoftext|>` | `<|endoftext|>` |\n| eos_token_id | 151643 | 151643 |\n| **`<|im_end|>` (151645)** | **不在 eos_token_id 中** | **不在 eos_token_id 中** |\n\n**病因**: eval 脚本用 `apply_chat_template` 构建 prompt（格式为 `<|im_start|>user\\n...<|im_end|>\\n<|im_start|>assistant\\n`），模型学会了在回答结束时生成 `<|im_end|>` (151645)，但 `generation_config.json` 的 `eos_token_id` 只有 `[151643]`（`<|endoftext|>`）。`model.generate()` 不会在 `<|im_end|>` 处停止，导致每个 sample 都生成满 max_new_tokens (4096) 个 token。\n\n**所有模型都受影响**：sft_qwen_math_rasp_20、sft_qwen_math_standard_20、pruned_rasp_rlvr_20 的 generation_config 均只有 151643。\n\n**修复方案**（二选一）：\n- **A**：修改 eval 脚本，在 `gen_kwargs` 中显式传 `eos_token_id=[151643, 151645]`\n- **B**：修改每个模型的 `generation_config.json`，在 `eos_token_id` 中加入 151645\n\n### 2. N=50 快速 Eval — **未完成**\n\neval 启动成功，进度 ~7/50（12s/it），但服务器在 ~19:09 后失联，可能磁盘满导致 AutoDL 实例崩溃/重启。\n\n### 3. SCP 测速 — **双向不通**\n\n| 方向 | 结果 |\n|---|---|\n| westd → westb | Permission denied（SSH key 未配置） |\n| westb → westd | Permission denied（SSH key 未配置） |\n\n两台服务器间无法直接 SCP，模型传输需要通过中间节点或其他方式（如共享存储/HuggingFace Hub）。\n\n### 4. 磁盘状态（失联前）\n\n- `/root/autodl-tmp`: 246G/250G（99%，仅 4.2G 剩余）\n- 最大占用：`grpo_unpruned_v2` (46G)，可考虑清理\n- 建议下次连接后优先清理不需要的模型释放空间\n\n### 下一步\n\n1. 用户需到 AutoDL 控制台检查 westd-11672 状态，如已重启则获取新 SSH 端口\n2. 恢复连接后先清理磁盘（建议删除 `grpo_unpruned_v2` 释放 46G）\n3. 修复 EOS 问题后重跑 eval"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-eos-diag-scp.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "972fa3f597769b471aee",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval unpruned grpo fixed",
+  "task_key": "worker_ops_eval-unpruned-grpo-fixed_20260516T033838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-unpruned-grpo-fixed_20260516T033838_result.json",
+    "occurrence": 1,
+    "bytes": 531,
+    "sha256": "4c899858aba729207c46897d9c150631392fc138b604fa14ca16a99841c548e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "双卡 eval 均已成功启动，汇报如下：\n\n### 参数确认\n`--output_path` 是正确参数名（非 `--output_file`）。\n\n### 启动状态\n\n| Job | GPU | PID | 显存占用 | 状态 |\n|-----|-----|-----|---------|------|\n| eval_grpo_unpruned_v2_step100 | cuda:0 | 83594 | 17585 MiB | 运行中 (99% CPU) |\n| eval_grpo_unpruned_v2_step90 | cuda:1 | 83672 | 15085 MiB | 运行中 (99% CPU) |\n\n两个 eval 进程均已加载模型到 GPU 并开始推理，这次参数名正确，不会再失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-unpruned-grpo-fixed.md"
+}

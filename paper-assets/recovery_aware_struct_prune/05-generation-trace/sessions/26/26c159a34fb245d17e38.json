@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "26c159a34fb245d17e38",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose sft alpha4 20 manual",
+  "task_key": "worker_diagnose_sft_alpha4_20_manual_20260521T182335",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_sft_alpha4_20_manual_20260521T182335_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "f1fa60e46fe5ae3ba3e85f86dc6e238172c2299db7aaeceb3e5488ac26af64b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n### 关键错误片段\n\n```\nRuntimeError: basic_ios::clear: iostream error\nRuntimeError: [enforce fail at inline_container.cc:672] . unexpected pos 15735283264 vs 15735283164\n\nFile \"/root/miniconda3/lib/python3.12/site-packages/transformers/trainer.py\", line 3248, in _save_optimizer_and_scheduler\n    torch.save(self.optimizer.state_dict(), os.path.join(output_dir, OPTIMIZER_NAME))\n```\n\n崩溃发生在 step 468/936 (epoch ~0.98)，保存 checkpoint 时写 optimizer state dict 失败。\n\n### 失败根因\n\n**数据盘 `/root/autodl-tmp/` 已 100% 满（619G/619G，剩余仅 4MB）。** Trainer 在 epoch 1 结束时尝试保存 checkpoint（optimizer state ~15GB），写入过程中磁盘空间耗尽，触发 iostream error。\n\n### 当前状态\n\n- 训练进程已退出（EXIT_CODE=1），无残留进程\n- pruned model `/root/autodl-tmp/recovery_aware_struct_prune/pruned_alpha4_20/` 存在且完整（12.3GB）\n- 根分区正常（17%），问题仅在数据盘\n- GPU 上有 2 个 eval_math500 任务仍在运行（cuda:1 和 cuda:3）\n\n### 修复方案\n\n1. **清理数据盘空间** — 需要释放至少 ~30-40GB（模型 shards + optimizer state + 余量）。可清理的候选：\n   - 旧的/不再需要的 checkpoint 目录\n   - 已完成评估的临时文件\n   - HuggingFace cache 中的重复文件\n2. **重试实验** — 空间释放后可直接重新启动，模型和数据都在\n3. **可选优化** — 训练配置中设置 `save_total_limit=1` 或 `save_strategy=\"epoch\"` 减少 checkpoint 存储压力；或加 `--save_only_model` 跳过保存 optimizer state\n\n是否需要我帮忙清理磁盘空间？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-sft-alpha4-20-manual.md"
+}

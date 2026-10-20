@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea71850ef8d616a9401b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code prepare unstructured eval pipeline",
+  "task_key": "worker_code_prepare_unstructured_eval_pipeline_20260519T041949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_prepare_unstructured_eval_pipeline_20260519T041949_result.json",
+    "occurrence": 1,
+    "bytes": 1218,
+    "sha256": "ae0889f08f115f3528a2069868ff5e17a482b9628998119d0e0adf66a582137d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪，汇总如下：\n\n**文件检查**: `eval_gsm8k.py` 和 `eval_math500.py` 均存在于 westb-23072。\n\n**磁盘空间**: `/root/autodl-tmp/` 剩余 24G (91% used)，足够评估使用。\n\n**Dry-run**: 两个脚本 `--help` 均正常输出，无 import 错误。\n\n**可用命令（训练完成后依次执行）**:\n\n**GSM8K eval** (cuda:0):\n```bash\nbash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_unstructured_20.json\"\n```\n\n**MATH-500 eval** (cuda:0, GSM8K 完成后):\n```bash\nbash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_unstructured_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_unstructured_20_2048.json\"\n```\n\n无需额外准备，训练完成后即可启动评估。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-prepare-unstructured-eval-pipeline.md"
+}

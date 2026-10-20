@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3c7d7fc0cd5cb68ee9e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh m023 verify standard 15 v4",
+  "task_key": "worker_ssh_m023_verify_standard_15_v4_20260520T225004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m023_verify_standard_15_v4_20260520T225004_result.json",
+    "occurrence": 1,
+    "bytes": 1223,
+    "sha256": "e9eaeade74dfb5cf613f87b83a3af30e74649b2393655f894bd4588076d16768"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## M023 验证结果：v4 双双失败\n\n### 原因\n两个 seed 完全相同的错误：\n\n```\nConnectionError: Couldn't reach 'openai/gsm8k' on the Hub (OfflineModeIsEnabled)\n```\n\n`train_grpo_v5.py:164` 调用 `load_dataset(\"openai/gsm8k\", ...)` 时触发离线模式限制。\n\n### 验证清单\n\n| 项目 | 状态 |\n|------|------|\n| GPU 2/3 显存 > 10GB | ❌ 0 MiB / 0 MiB（进程已退出） |\n| 无 \"No space left\" | ✅ 磁盘正常（根 17%, 数据盘 90%) |\n| 绝对路径加载模型 | ✅ `Loading pruned model from /root/autodl-tmp/...` |\n| output_dir 数据盘创建 | ⚠️ 目录创建了但为空（训练未开始就崩了） |\n| 无 RuntimeError | ❌ ConnectionError: OfflineModeIsEnabled |\n\n### 根因\n\n启动命令大概率包含了 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`（与同服务器上的 eval 任务一样），或者这些变量在环境中全局设置了。GSM8K 数据集需要从 Hub 下载但被离线模式阻断。\n\n### 修复方向\n\n1. 去掉启动命令中的 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`\n2. 或者先缓存 GSM8K 数据集再启动离线训练\n3. 或者让 `train_grpo_v5.py` 支持从本地路径加载已缓存的 GSM8K"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m023-verify-standard-15-v4.md"
+}

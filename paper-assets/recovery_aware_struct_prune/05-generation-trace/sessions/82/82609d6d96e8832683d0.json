@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82609d6d96e8832683d0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code disk cleanup 51g",
+  "task_key": "worker_code_disk_cleanup_51g_20260517T091855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_disk_cleanup_51g_20260517T091855_result.json",
+    "occurrence": 1,
+    "bytes": 357,
+    "sha256": "9d5056b77ff9494938a903ed75f991652ba23ab1b9aa275e359cad7ceddd032d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**删除完成：**\n\n| 目录 | 状态 |\n|---|---|\n| `pruned_unstructured_20` (15G) | 已删除 |\n| `sft_standard_20` (12G) | 已删除 |\n| `sft_rasp_20` (12G) | 已删除 |\n| `grpo_stage2_rasp_20_v9` (12G) | 已删除 |\n\n**磁盘状态：** `/root/autodl-tmp` 从 94% → **74%**，可用空间从 17G → **66G**，释放约 49G。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-disk-cleanup-51g.md"
+}

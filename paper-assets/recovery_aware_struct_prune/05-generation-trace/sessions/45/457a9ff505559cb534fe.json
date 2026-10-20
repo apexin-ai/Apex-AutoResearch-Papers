@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "457a9ff505559cb534fe",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix gpu3 contention",
+  "task_key": "worker_ssh_fix_gpu3_contention_20260523T223849",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_gpu3_contention_20260523T223849_result.json",
+    "occurrence": 1,
+    "bytes": 718,
+    "sha256": "f24fa06e7165893f7b22b4b5a137a3836ffb20d6698020c20337721b90c42b99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "情况有变：\n\n**GPU 3 当前状态**: 只有 PID 168451 (GRPO cka_only)，PID 170326 (SFT RASP) 已经不在了 — 进程已死，可能因 GPU 竞争 OOM。\n\n**GPU 1 状态**: 只剩 PID 168524 (grpo_rasp_alpha2p0)，符合预期（170179 已被 kill）。\n\n**四卡概览**:\n| GPU | PID | 显存 | 利用率 |\n|-----|-----|------|--------|\n| 0 | 166245 | 16824MiB | 96% |\n| 1 | 168524 | 16732MiB | 97% |\n| 2 | 171964 | 16732MiB | 91% |\n| 3 | 168451 | 16846MiB | 98% |\n\nPID 170326 (SFT RASP) 已死，GPU 3 上的竞争已自行消除。现在 kill 168451 会让 GPU 3 完全空闲，而 GRPO 已跑了 ~50min 的进度也会丢失。\n\n还要 kill 168451 吗？还是让它跑完？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-gpu3-contention.md"
+}

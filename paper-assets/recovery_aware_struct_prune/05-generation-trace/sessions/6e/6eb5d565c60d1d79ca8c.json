@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6eb5d565c60d1d79ca8c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh cka heatmap 15pct",
+  "task_key": "worker_ssh_cka_heatmap_15pct_20260521T013817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_cka_heatmap_15pct_20260521T013817_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "91b962426aa67daf76ad83b3e1bca763082d06bd21755b8d25591b42d07eea4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### Diagonal CKA 均值\n\n| Method | 15% sparsity | 20% sparsity |\n|--------|-------------|-------------|\n| **CKA-only** | **0.6104** | 0.6202 |\n| **Standard** | **0.8958** | 0.9039 |\n\n### 15% vs 20% 对比\n- CKA-only: 15% 略低于 20%（0.610 vs 0.620），差异很小，说明 CKA-only 剪枝在两个 sparsity 下都大幅重塑了中间层表征（layer 9-23 区间 diagonal CKA 低至 0.42-0.51）\n- Standard: 15% 与 20% 非常接近（0.896 vs 0.904），整体保留了与 dense 模型的高相似度\n\n### Heatmap 特征\n- CKA-only 15%：浅层（0-3）和深层（26）保留高相似度（>0.9），中间层（9-23）CKA 大幅下降至 0.4-0.5，表征发生显著重组\n- Standard 15%：整体对角线高相似度（>0.7），浅层 4-6 处有一个低谷区域，但仍远高于 CKA-only\n\n### 文件路径\n- Heatmap 图: `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_15pct.png`\n- CKA-only JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_cka_only_15.json`\n- Standard JSON: `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/cka_heatmap_standard_15.json`\n- Dense reprs cache: `/root/autodl-tmp/recovery_aware_struct_prune/results/cka_15pct/dense_reprs.pt`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-cka-heatmap-15pct.md"
+}

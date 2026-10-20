@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "7e82d7d35ad554fd4f12",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d023 reeval postprune urgent",
+  "task_key": "worker_code_d023-reeval-postprune-urgent_20260515T084833",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d023-reeval-postprune-urgent_20260515T084833.log",
+    "occurrence": 1,
+    "bytes": 2034692,
+    "sha256": "5a561c2944943e4de7799a3b0d226497565236cbf85c75c04004e457e637afa8"
+  },
+  "statistics": {
+    "messages": 1186,
+    "user_turns": 1,
+    "tool_calls": 459,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 260,
+      "tool_call": 459,
+      "tool_result": 459,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 669,
+      "chunks": [
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0004.json",
+          "message_count": 129
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 517,
+      "chunks": [
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0004.json",
+          "message_count": 51
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "7e82d7d35ad554fd4f12-part-0007.json",
+          "message_count": 106
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d023-reeval-postprune-urgent.md"
+}

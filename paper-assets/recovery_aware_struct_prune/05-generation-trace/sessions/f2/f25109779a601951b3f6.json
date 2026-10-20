@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f25109779a601951b3f6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "pipeline qwen math rasp rlvr",
+  "task_key": "worker_pipeline_qwen_math_rasp_rlvr_20260516T161827",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_pipeline_qwen_math_rasp_rlvr_20260516T161827_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "e44f6fbcdd31b320356f5ed9deb34daa9da6c53db4f19f047c1727226991a18d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO `grpo_rasp_25` 在 cuda:0 上只跑到 step 30/100，按当前速度还需 ~90 分钟才能完成。同时 eval 也在 GPU 0 上跑（89/200，~10min 剩余）。\n\n但 **cuda:2 和 cuda:3 完全空闲**（0% utilization, 0MiB）。建议改用 cuda:2 跑这个 pipeline，无需等待。是否同意切换到 cuda:2？还是坚持等 cuda:0 空闲？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/pipeline-qwen-math-rasp-rlvr.md"
+}

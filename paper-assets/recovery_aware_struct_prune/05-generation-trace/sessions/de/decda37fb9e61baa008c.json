@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "decda37fb9e61baa008c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exec eval math500 grpo standard 20 fair 2048 westb",
+  "task_key": "worker_exec_eval_math500_grpo_standard_20_fair_2048_westb_20260521T223452",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exec_eval_math500_grpo_standard_20_fair_2048_westb_20260521T223452_result.json",
+    "occurrence": 1,
+    "bytes": 993,
+    "sha256": "a1ff62e7a60042f34ec7f2d00c58a524ecb3a5f04da370a814d7b2478b8208bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 更新完成。\n\n**启动确认**：\n\n| 项目 | 值 |\n|------|------|\n| **exp_id** | `eval_math500_grpo_standard_20_fair_2048` |\n| **服务器** | westd-29022（备选，因 westb 磁盘不足） |\n| **GPU** | cuda:0（与 gsm8k eval 共享，98GB 卡充裕） |\n| **Python PID** | 427456 |\n| **模型路径** | `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair` |\n| **输出** | `/root/recovery_aware_struct_prune/results/eval_math500_grpo_standard_20_fair_2048.json` |\n| **日志** | `/root/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_2048.log` |\n| **状态** | RUNNING，500 题 MATH-500 已开始推理 |\n\n**westb 未使用原因**：数据盘仅剩 14GB，装不下 12GB checkpoint。westd-29022 cuda:0 有 85GB 空余 VRAM，checkpoint 已在本地。\n\n**备注**：westd 上已有旧结果 `math500_grpo_standard_20_fair_v2.json`（May 19, 145K），本次为独立重跑，输出路径不同。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exec-eval-math500-grpo-standard-20-fair-2048-westb.md"
+}

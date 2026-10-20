@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d704de68106dadd7bd6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup",
+  "task_key": "worker_ops_westb_disk_cleanup_20260515T201023",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_disk_cleanup_20260515T201023_result.json",
+    "occurrence": 1,
+    "bytes": 1200,
+    "sha256": "c5efb3e130bf442fc1fc5f4c2d235642e052f119f35a2f1b70708fc205d267e2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### 清理前磁盘状态\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 `/` | 30G | 8.6G | 22G | 29% |\n| 数据盘 `/root/autodl-tmp` | 250G | 177G | **74G** | 71% |\n\n### 空间占用明细\n| 目录 | 大小 | 状态 |\n|------|------|------|\n| sft_rasp_20 | 81G | 保留 |\n| sft_standard_20 | 81G | 保留（v8 base model） |\n| DeepSeek-R1-Distill-Qwen-7B | 15G | 保留 |\n| data | 1.5G | 保留 |\n| GRPO v1-v7 所有目录 | **< 500K 合计** | 无实质 checkpoint |\n| `recovered_*` | 不存在 | 已被清理过 |\n\n### 无需清理\n旧 GRPO 目录（v1-v7）全部为空或仅含配置文件（最大 172K），`recovered_*` 目录已不存在。**没有可清理的大文件。** 74G 空闲远超 checkpoint 需求（~15-25G），v8 可以安全保存。\n\n### GRPO v8 进程健康\n- **PID 534667**: 运行中，已跑 5h28m\n- **GPU 1**: 71701/97887 MiB (73%), 利用率 98%\n- **GPU 0**: 空闲\n- **命令**: `train_grpo_v5.py`, output_dir 指向 `grpo_stage2_standard_20_v8`, save_steps=50, max_steps=100\n\n**结论：磁盘空间充足，无需清理。GRPO v8 进程健康运行中。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-copy-5.md"
+}

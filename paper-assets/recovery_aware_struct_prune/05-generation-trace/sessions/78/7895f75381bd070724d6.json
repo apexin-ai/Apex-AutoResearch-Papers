@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7895f75381bd070724d6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval mbpp sft cka only 20 1p5b exit",
+  "task_key": "worker_diagnose_eval_mbpp_sft_cka_only_20_1p5b_exit_20260519T184119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_mbpp_sft_cka_only_20_1p5b_exit_20260519T184119_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "be3f19bee3fedb6b90d81b60d996846ef0fe037ea6af7588b6c369557b3c8080"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 已不在当前 session 中（可能由上一个 session 创建，已随 session 结束自动清除）。\n\n**结果汇总：**\n\n- **状态**：失败\n- **原因**：AutoDL 实例网络不可达，`load_dataset(\"mbpp\")` 尝试访问 huggingface.co 时抛出 `[Errno 101] Network is unreachable`，重试后 httpx client 关闭导致 `RuntimeError`\n- **根因**：启动 eval 前未执行 `source /etc/network_turbo`，且 MBPP 数据集未在本地预缓存\n- **Registry**：已更新为 DONE/failed，failure_reason 已记录\n\n**重跑建议**：重跑前先 `source /etc/network_turbo` 启用代理，或提前将 MBPP 数据集缓存到 `/root/autodl-tmp/` 使用离线模式加载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-mbpp-sft-cka-only-20-1p5b-exit.md"
+}

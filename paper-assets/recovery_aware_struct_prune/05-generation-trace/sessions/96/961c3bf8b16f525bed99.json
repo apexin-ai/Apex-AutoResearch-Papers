@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "961c3bf8b16f525bed99",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code d025 westb status check",
+  "task_key": "worker_code_d025-westb-status-check_20260515T093014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d025-westb-status-check_20260515T093014_result.json",
+    "occurrence": 1,
+    "bytes": 1559,
+    "sha256": "de38ae696248ee51ff6f4c567bffdb142d5f955d918eee1d879829669af88beb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### 1. GRPO v4 (PID 339111)\n- **存活**: 是，运行 58 分钟\n- **当前 step**: 1/250 (刚完成第 1 步，耗时 ~29 分钟/step)\n- **尚无 reward/grad_norm 输出** — 日志停在第 1 个 iteration，还在 warmup 阶段\n- **GPU**: cuda:0，显存 60205 MiB，利用率 100%\n- **W&B run**: `grpo_stage2_rasp_20_v4` (75d1o9wa)\n\n### 2. SFT retrain (PID 239076)\n- **存活**: 是，运行 1h30m\n- **当前 step**: **1148/1870** (61%)\n- **最新指标**: loss=0.828, grad_norm=3.91, mean_token_accuracy=0.788, epoch=0.90\n- **GPU**: cuda:1，显存 51581 MiB，利用率 18%\n- **预计剩余**: ~55 分钟（~4.5s/it × 722 steps）\n\n### 3. D023 CPU re-eval\n有 **4 组**进程在跑：\n\n| 进程 | PID | max_samples | 状态 |\n|------|-----|-------------|------|\n| standard_20 (旧 nohup, 20 samples) | 476886 | 20 | 运行中，0% 进度（CPU 711%） |\n| rasp_20 (旧 nohup, 20 samples) | 476993 | 20 | 运行中，0% 进度（CPU 711%） |\n| standard_20 (v4, 100 samples) | 486213 | 100 | 运行中，2/100 (CPU 448%) |\n| rasp_20 (v4, 100 samples) | 486293 | 100 | 运行中，0/100 (CPU 389%) |\n\n所有 re-eval 均在进行中，**尚无结果输出**。CPU eval 极慢（~3-5 分钟/sample），100 samples 预计需数小时。\n\n### 4. GPU 使用\n| GPU | 显存占用 | 利用率 | 用途 |\n|-----|---------|--------|------|\n| cuda:0 | 60205 MiB | 100% | GRPO v4 |\n| cuda:1 | 51581 MiB | 18% | SFT retrain |\n\n### 5. 磁盘\n- `/root/autodl-tmp`: **176G / 250G (71%)**，剩余 75G"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-d025-westb-status-check.md"
+}

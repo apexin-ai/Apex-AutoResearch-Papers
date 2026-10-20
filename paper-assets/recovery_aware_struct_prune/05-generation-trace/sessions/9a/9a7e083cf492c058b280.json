@@ -1,0 +1,2616 @@
+{
+  "schema_version": "1.0",
+  "id": "9a7e083cf492c058b280",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "code scoring ablation magnitude 20",
+  "task_key": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_scoring_ablation_magnitude_20_20260518T024943.jsonl",
+    "occurrence": 1,
+    "bytes": 88395,
+    "sha256": "1090087395e77ca3be40a72734a557afa0f55606c40db5733c614d4dd02fade9"
+  },
+  "statistics": {
+    "messages": 129,
+    "user_turns": 0,
+    "tool_calls": 64,
+    "roles": {
+      "tool_call": 64,
+      "tool_result": 64,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-18T02:56:16.944656+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__submit_training_job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-18T02:56:16.944988+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-18T02:56:16.945154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/recovery_aware_struct_prune/src/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-18T02:56:16.945349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'status': 'DONE'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['exp_id', 'spec.command', 'status', 'conclusion']",
+              "limit": "20"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-18T02:56:16.945526+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\nbenchmark_inference.py\\\\ncka_overlap.py\\\\ncka_overlap.py.bak\\\\nconvert_graspune_to_hf.py\\\\ncorrelation_analysis.py\\\\ncorrelation_analysis.py.bak\\\\ndebug_extract.py\\\\neval_gsm8k.py\\\\neval_humaneval.py\\\\neval_math500.py\\\\nextract_cka_for_figures.py\\\\nextract_pruning_pattern.py\\\\ngrasp_scoring.py\\\\nimportance_score.py\\\\nimportance_score.py.bak\\\\nmeasure_inference_speed.py\\\\nmodel_utils.py\\\\nplot_cka_figures.py\\\\nprune.py\\\\nprune.py.bak\\\\nprune.py.bak2\\\\nprune_unstructured.py\\\\nrasp_scoring.py\\\\nrun_alpha_ablation.sh\\\\nrun_cka_reliability.py\\\\nrun_eval_25.sh\\\\nrun_extended_eval.sh\\\\nrun_full_eval.sh\\\\nrun_full_eval_all.sh\\\\nrun_full_eval_d008.sh\\\\nrun_full_eval_d008_parallel.sh\\\\nrun_grasp_prune.sh\\\\nrun_graspune.sh\\\\nrun_grpo_multiseed.sh\\\\nrun_grpo_stage2.sh\\\\nrun_grpo_v4.sh\\\\nrun_multi_seed_rasp.sh\\\\nrun_mvp.sh\\\\nrun_mvp_resume.sh\\\\nrun_mvp_resume_from_3_5.sh\\\\nrun_post_recovery_eval.sh\\\\nrun_remaining_ablation.sh\\\\nrun_scoring_ablation.sh\\\\nrun_scoring_ablation_continue.sh\\\\nrun_sft_eval.sh\\\\nrun_sft_warmup.sh\\\\nrun_unstructured_baseline.py\\\\nsft_recovery.py\\\\ntrain_grpo.py\\\\ntrain_grpo.py.bak\\\\ntrain_grpo_v3.py\\\\ntrain_grpo_v4.py\\\\ntrain_grpo_v5.py\\\\ntrain_sft_warmup.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T02:56:16.945773+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"grpo_random_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"eval_math500_sft_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"grpo_cka_only_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_standard_20_fair\\\": {\\\"status\\\": \\\"DONE\\\", \\\"conclusion\\\": \\\"success\\\"}, \\\"grpo_rasp_20_fair\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_postprune_standard_30\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_sft_cka_only_20_n1319\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_postprune_cka_only_30\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"prune_cka_only_30\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_postprune_rasp_30\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_sft_cka_only_20_full_v2\\\": {\\\"conclusion\\\": \\\"killed\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_humaneval_sft_standard_20_2048_v2\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_sft_cka_only_20_full\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_humaneval_grpo_standard_20_2048\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"grpo_rasp_25\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_humaneval_grpo_rasp_20_2048\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_math500_grpo_rasp_20_v2\\\": {\\\"conclusion\\\": \\\"failed\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_sft_cka_only_20\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"sft_cka_only_20\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}, \\\"eval_humaneval_unpruned_2048\\\": {\\\"conclusion\\\": \\\"success\\\", \\\"status\\\": \\\"DONE\\\"}}, \\\"count\\\": 20, \\\"total\\\": 155, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5715}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-18T02:56:16.946212+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/recovery_aware_struct_prune/src/run_scoring_ablation.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-18T02:56:16.946621+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -100 /root/recovery_aware_struct_prune/src/prune.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T02:56:16.947078+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nPYTHON=/root/miniconda3/bin/python\\\\nPROJECT=/root/recovery_aware_struct_prune\\\\nDATA_DIR=/root/autodl-tmp/recovery_aware_struct_prune\\\\nMODEL_PATH=/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\nIMPORTANCE_PATH=${PROJECT}/results/importance_scores.pt\\\\nCKA_PATH=${PROJECT}/results/cka_scores.pt\\\\nSPARSITY=0.20\\\\nGPU=${1:-0}\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=$GPU\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"Scoring Ablation: 4 methods x prune+eval+SFT+eval\\\\\\\"\\\\necho \\\\\\\"GPU: $GPU | Sparsity: $SPARSITY\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\nfor METHOD in magnitude gradient random cka_only; do\\\\n    PRUNE_DIR=${DATA_DIR}/pruned_${METHOD}_20\\\\n    SFT_DIR=${DATA_DIR}/sft_${METHOD}_20\\\\n\\\\n    echo \\\\\\\"\\\\\\\"\\\\n    echo \\\\\\\">>> [$METHOD] Step 1/4: Pruning...\\\\\\\"\\\\n\\\\n    PRUNE_ARGS=\\\\\\\"--model_path $MODEL_PATH --mode $METHOD --sparsity $SPARSITY --output_path $PRUNE_DIR --seed 42 --skip_attention\\\\\\\"\\\\n\\\\n    if [ \\\\\\\"$METHOD\\\\\\\" = \\\\\\\"gradient\\\\\\\" ]; then\\\\n        PRUNE_ARGS=\\\\\\\"$PRUNE_ARGS --importance_path $IMPORTANCE_PATH\\\\\\\"\\\\n    elif [ \\\\\\\"$METHOD\\\\\\\" = \\\\\\\"cka_only\\\\\\\" ]; then\\\\n        PRUNE_ARGS=\\\\\\\"$PRUNE_ARGS --cka_path $CKA_PATH\\\\\\\"\\\\n    fi\\\\n\\\\n    $PYTHON ${PROJECT}/src/prune.py $PRUNE_ARGS\\\\n\\\\n    echo \\\\\\\">>> [$METHOD] Step 2/4: Eval post-prune...\\\\\\\"\\\\n    $PYTHON ${PROJECT}/src/eval_gsm8k.py \\\\\\\\\\\\n        --model_path $PRUNE_DIR \\\\\\\\\\\\n        --max_samples 200 \\\\\\\\\\\\n        --seed 42 \\\\\\\\\\\\n        --output_path ${DATA_DIR}/results/eval_postprune_${METHOD}_20.json\\\\n\\\\n    echo \\\\\\\">>> [$METHOD] Step 3/4: SFT recovery...\\\\\\\"\\\\n    $PYTHON ${PROJECT}/src/sft_recovery.py \\\\\\\\\\\\n        --model_path $PRUNE_DIR \\\\\\\\\\\\n        --output_dir $SFT_DIR \\\\\\\\\\\\n        --gpu 0 \\\\\\\\\\\\n        --learning_rate 2e-5 \\\\\\\\\\\\n        --num_train_epochs 2 \\\\\\\\\\\\n        --batch_size 1 \\\\\\\\\\\\n        --gradient_accumulation_steps 8 \\\\\n…[truncated 684 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-18T02:56:16.947406+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /root/recovery_aware_struct_prune/src/run_scoring_ablation_continue.sh",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-18T02:56:16.947771+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nStructured Pruning for Qwen2.5 architecture (GQA-group granularity).\\\\n\\\\nRemoves GQA groups (7 Q heads + 1 KV head each) and MLP channel groups\\\\nbased on RASP or standard importance scores.\\\\n\\\\nInput:  pretrained model + pruning scores\\\\nOutput: pruned model saved to disk\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport copy\\\\nimport logging\\\\nimport os\\\\nimport random\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef prune_attention_heads(model, attn_keep_masks: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Prune GQA groups from the model by slicing weight matrices in-place.\\\\n\\\\n    attn_keep_masks: dict[layer_idx -> list of GQA group indices to KEEP]\\\\n    Each GQA group = heads_per_kv Q heads + 1 KV head.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = model.config\\\\n    n_heads = config.num_attention_heads\\\\n    n_kv_heads = config.num_key_value_heads\\\\n    head_dim = config.hidden_size // n_heads\\\\n    heads_per_kv = n_heads // n_kv_heads\\\\n\\\\n    total_pruned_groups = 0\\\\n\\\\n    for layer_idx, keep_groups in attn_keep_masks.items():\\\\n        layer = model.model.layers[layer_idx]\\\\n        attn = layer.self_attn\\\\n        n_keep_groups = len(keep_groups)\\\\n        pruned_groups = n_kv_heads - n_keep_groups\\\\n\\\\n        # Expand GQA group indices to Q head weight indices\\\\n        q_indices = []\\\\n        for g in keep_groups:\\\\n            for qh in range(heads_per_kv):\\\\n                h = g * heads_per_kv + qh\\\\n                start = h * head_dim\\\\n                q_indices.extend(range(start, start + head_dim))\\\\n        q_indices = torch.tensor(q_indi\n…[truncated 1937 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T02:56:16.948109+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "filters": "{'exp_id': 'scoring_ablation_random_20'}",
+              "project": "recovery_aware_struct_prune",
+              "fields": "['exp_id', 'spec.command', 'status', 'conclusion', 'metrics']",
+              "limit": "5"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-18T02:56:16.948605+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"#!/bin/bash\\\\nset -e\\\\n\\\\nPYTHON=/root/miniconda3/bin/python\\\\nPROJECT=/root/recovery_aware_struct_prune\\\\nDATA_DIR=/root/autodl-tmp/recovery_aware_struct_prune\\\\nMODEL_PATH=/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\nIMPORTANCE_PATH=${PROJECT}/results/importance_scores.pt\\\\nCKA_PATH=${PROJECT}/results/cka_scores.pt\\\\nSPARSITY=0.20\\\\nGPU=${1:-0}\\\\n\\\\nexport CUDA_VISIBLE_DEVICES=$GPU\\\\n\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\necho \\\\\\\"Scoring Ablation CONTINUE: magnitude SFT onwards\\\\\\\"\\\\necho \\\\\\\"GPU: $GPU | Sparsity: $SPARSITY\\\\\\\"\\\\necho \\\\\\\"==========================================\\\\\\\"\\\\n\\\\n# magnitude: Step 3/4 SFT (step 1 prune done, step 2 eval skipped - acc=0%)\\\\nMETHOD=magnitude\\\\nPRUNE_DIR=${DATA_DIR}/pruned_${METHOD}_20\\\\nSFT_DIR=${DATA_DIR}/sft_${METHOD}_20\\\\n\\\\necho \\\\\\\"\\\\\\\"\\\\necho \\\\\\\">>> [$METHOD] Step 3/4: SFT recovery...\\\\\\\"\\\\n$PYTHON ${PROJECT}/src/sft_recovery.py \\\\\\\\\\\\n    --model_path $PRUNE_DIR \\\\\\\\\\\\n    --output_dir $SFT_DIR \\\\\\\\\\\\n    --gpu 0 \\\\\\\\\\\\n    --learning_rate 2e-5 \\\\\\\\\\\\n    --num_train_epochs 2 \\\\\\\\\\\\n    --batch_size 1 \\\\\\\\\\\\n    --gradient_accumulation_steps 8 \\\\\\\\\\\\n    --max_seq_length 2048 \\\\\\\\\\\\n    --seed 42\\\\n\\\\necho \\\\\\\">>> [$METHOD] Step 4/4: Eval post-SFT...\\\\\\\"\\\\n$PYTHON ${PROJECT}/src/eval_gsm8k.py \\\\\\\\\\\\n    --model_path $SFT_DIR \\\\\\\\\\\\n    --max_samples 200 \\\\\\\\\\\\n    --seed 42 \\\\\\\\\\\\n    --output_path ${DATA_DIR}/results/eval_sft_${METHOD}_20.json\\\\n\\\\necho \\\\\\\">>> [$METHOD] DONE\\\\\\\"\\\\n\\\\n# Continue with remaining methods\\\\nfor METHOD in gradient random cka_only; do\\\\n    PRUNE_DIR=${DATA_DIR}/pruned_${METHOD}_20\\\\n    SFT_DIR=${DATA_DIR}/sft_${METHOD}_20\\\\n\\\\n    echo \\\\\\\"\\\\\\\"\\\\n    echo \\\\\\\">>> [$METHOD] Step 1/4: Pruning...\\\\\\\"\\\\n\\\\n    PRUNE_ARGS=\\\\\\\"--model_path $MODEL_PATH --mode $METHOD --sparsity $SPARSITY --output_path $PRUNE_DIR --seed 42 --skip_attention\\\\\\\"\\\\n\\\\n    if [ \\\\\\\"$METHOD\\\\\\\" = \\\\\\\"gradient\\\\\\\" ]; then\\\\n        PRU\n…[truncated 1571 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-18T02:56:16.948867+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4352}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T02:56:16.949051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-18T02:56:16.949182+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-18T02:56:16.949331+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-18T02:56:16.949458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"mode\" /root/recovery_aware_struct_prune/src/prune.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-18T02:56:16.949601+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_log.txt\\\\neval_cka_only_20_n200.json\\\\neval_gradient_postsft.json\\\\neval_gradient_sft.log\\\\neval_grpo_rasp_25_n1319.json\\\\neval_grpo_rasp_v9_step10.json\\\\neval_postprune_gradient_20.json\\\\neval_postprune_random_20.json\\\\neval_sft_cka_only_20.json\\\\neval_sft_random_20.json\\\\neval_sft_rasp_20_full.log\\\\neval_sft_rasp_20_full_n1319.json\\\\neval_sft_rasp_20_seed123.json\\\\neval_sft_rasp_20_seed456.json\\\\neval_sft_rasp_25.json\\\\neval_sft_rasp_rlvr_20.json\\\\neval_sft_standard_20_full.log\\\\neval_sft_standard_20_seed123.json\\\\neval_sft_standard_20_seed456.json\\\\neval_sft_standard_25.json\\\\neval_unstructured_20_n1319.json\\\\ngroup_selection_comparison.csv\\\\ngroup_selection_comparison.json\\\\ninference_bench.log\\\\ninference_benchmark.json\\\\ninference_speedup_plan016.log\\\\nrandom_cka_ablation_log.txt\\\\nreeval_rasp_20_gpu0.json\\\\nreeval_standard_20_gpu1.json\\\\nsft_random_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-18T02:56:16.950082+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"7:Input:  pretrained model + pruning scores\\\\n8:Output: pruned model saved to disk\\\\n35:def prune_attention_heads(model, attn_keep_masks: dict):\\\\n36:    \\\\\\\"\\\\\\\"\\\\\\\"Prune GQA groups from the model by slicing weight matrices in-place.\\\\n41:    config = model.config\\\\n50:        layer = model.model.layers[layer_idx]\\\\n105:def prune_mlp_channels(model, mlp_keep_masks: dict, n_mlp_groups: int = 28):\\\\n107:    config = model.config\\\\n114:        layer = model.model.layers[layer_idx]\\\\n155:def count_parameters(model) -> int:\\\\n156:    return sum(p.numel() for p in model.parameters())\\\\n159:def compute_magnitude_scores(model):\\\\n160:    config = model.config\\\\n174:        layer = model.model.layers[layer_idx]\\\\n209:    parser = argparse.ArgumentParser(description=\\\\\\\"Execute structured pruning on Qwen2.5 model (GQA-group granularity)\\\\\\\")\\\\n210:    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, required=True, help=\\\\\\\"Path to pretrained model\\\\\\\")\\\\n213:    parser.add_argument(\\\\\\\"--mode\\\\\\\", type=str, choices=[\\\\\\\"standard\\\\\\\", \\\\\\\"rasp\\\\\\\", \\\\\\\"rasp-rlvr\\\\\\\", \\\\\\\"magnitude\\\\\\\", \\\\\\\"gradient\\\\\\\", \\\\\\\"random\\\\\\\", \\\\\\\"cka_only\\\\\\\"], required=True)\\\\n216:    parser.add_argument(\\\\\\\"--output_path\\\\\\\", type=str, required=True, help=\\\\\\\"Output path for pruned model\\\\\\\")\\\\n227:    logger.info(f\\\\\\\"Loading model from {args.model_path}\\\\\\\")\\\\n228:    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\\\\n229:    model = AutoModelForCausalLM.from_pretrained(\\\\n230:        args.model_path,\\\\n236:    original_params = count_parameters(model)\\\\n237:    logger.info(f\\\\\\\"Original model parameters: {original_params:,}\\\\\\\")\\\\n239:    # Load scores based on mode\\\\n240:    needs_importance = args.mode in (\\\\\\\"standard\\\\\\\", \\\\\\\"rasp\\\\\\\", \\\\\\\"rasp-rlvr\\\\\\\", \\\\\\\"gradient\\\\\\\")\\\\n241:    needs_cka = args.mode in (\\\\\\\"rasp\\\\\\\", \\\\\\\"rasp-rlvr\\\\\\\", \\\\\\\"cka_only\\\\\\\")\\\\n245:            raise ValueError(f\\\\\\\"--\n…[truncated 2599 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-18T02:56:16.950324+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ls /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/config.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-18T02:56:16.950472+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-18T02:56:16.950628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/config.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-18T02:56:16.950778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  234G   17G  94% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-18T02:56:16.950953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_training_job"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "tool_args": {
+              "server": "westb-23072",
+              "gpu_ids": "['cuda:0']",
+              "command": "bash -c \"source /root/miniconda3/bin/activate && export CUDA_VISIBLE_DEVICES=0 && echo '=== Step 1: Magnitude pruning at 20% ===' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode magnitude --sparsity 0.20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --seed 42 --skip_attention && echo '=== Step 2: GSM8K eval (200 samples) ===' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_postprune_magnitude_20.json && echo '=== ALL DONE ==='\"",
+              "exp_id": "scoring_ablation_magnitude_20",
+              "account": "root",
+              "project": "recovery_aware_struct_prune",
+              "timeout_hours": "3"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-18T02:56:16.951099+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"pid\\\": \\\"766171\\\", \\\"log_file\\\": \\\"~/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log\\\", \\\"gpu_ids\\\": [\\\"cuda:0\\\"], \\\"server\\\": \\\"westb-23072\\\", \\\"account\\\": \\\"root\\\", \\\"cuda_visible_devices\\\": \\\"0\\\", \\\"backend\\\": \\\"tmux\\\", \\\"tmux_session\\\": \\\"scoring_ablation_magnitude_20\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__submit_training_job",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-18T02:56:16.951240+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -20 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-18T02:56:16.951435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Step 1: Magnitude pruning at 20% ===\\\\n2026-05-18 10:51:14,248 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:00<00:00, 9410.49it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-18T02:56:16.951588+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -30 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-18T02:56:16.951726+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Step 1: Magnitude pruning at 20% ===\\\\n2026-05-18 10:51:14,248 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:00<00:00, 9410.49it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-18T02:56:16.951882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "sleep 60 && echo \"ready to check\"",
+              "description": "Wait 60 seconds before next check"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-18T02:56:16.952005+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Blocked: sleep 60 followed by: echo \"ready to check\". To wait for a condition, use Monitor with an until-loop (e.g. `until <check>; do sleep 2; done`). To wait for a command you started, use run_in_background: true. Do not chain shorter sleeps to work around this block.</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-18T02:56:16.952124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -40 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-18T02:56:16.952255+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Step 1: Magnitude pruning at 20% ===\\\\n2026-05-18 10:51:14,248 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:00<00:00, 9410.49it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-18T02:56:16.952435+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "wc -l /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-18T02:56:16.952569+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"4 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-18T02:56:16.952689+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -50 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-18T02:56:16.952819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Step 1: Magnitude pruning at 20% ===\\\\n2026-05-18 10:51:14,248 [INFO] Loading model from /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\\\\n[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:00<00:00, 9410.49it/s]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-18T02:56:16.952958+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "cat /proc/$(cat /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.pid 2>/dev/null)/status 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-18T02:56:16.953089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-18T02:56:16.953206+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-18T02:56:16.953342+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-18T02:56:16.953457+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-18T02:56:16.953577+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 97887 MiB, 0 %\\\\n1, 28721 MiB, 97887 MiB, 73 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-18T02:56:16.953752+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tmux list-sessions 2>&1",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-18T02:56:16.954093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -60 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-18T02:56:16.954252+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_math500_grpo_cka_only_20: 1 windows (created Mon May 18 10:41:37 2026)\\\\nscoring_ablation_magnitude_20: 1 windows (created Mon May 18 10:51:10 2026)\\\\nscoring_ablation_v2: 1 windows (created Sun May 17 15:37:29 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-18T02:56:16.954495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:50,393 [INFO] Layer  4: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer  5: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer  6: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer  7: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer  8: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer  9: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer 10: MLP 12/28 ( 42.9%) intermediate 8112/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer 11: MLP 24/28 ( 85.7%) intermediate 16224/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer 12: MLP 27/28 ( 96.4%) intermediate 18252/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer 13: MLP 27/28 ( 96.4%) intermediate 18252/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,393 [INFO] Layer 14: MLP 26/28 ( 92.9%) intermediate 17576/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 15: MLP 28/28 (100.0%) intermediate 18928/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 16: MLP 22/28 ( 78.6%) intermediate 14872/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 17: MLP 19/28 ( 67.9%) intermediate 12844/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 18: MLP 28/28 (100.0%) intermediate 18928/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 19: MLP 28/28 (100.0%) intermediate 18928/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 20: MLP 28/28 (100.0%) intermediate 18928/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 21: MLP 28/28 (100.0%) intermediate 18928/18944, Attn 4/4 (100.0%)\\\\n2026-05-18 10:51:50,394 [INFO] Layer 22: ML\n…[truncated 3589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-18T02:56:16.954886+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -20 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-18T02:56:16.955087+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:51,086 [INFO]   Layer 14: pruned 2/28 MLP groups (1352 channels)\\\\n2026-05-18 10:51:51,105 [INFO]   Layer 16: pruned 6/28 MLP groups (4056 channels)\\\\n2026-05-18 10:51:51,177 [INFO]   Layer 17: pruned 9/28 MLP groups (6084 channels)\\\\n2026-05-18 10:51:51,177 [INFO] Total MLP pruning: 199 groups removed\\\\n2026-05-18 10:51:51,178 [INFO] Pruned model parameters: 6,169,214,464 (actual sparsity: 18.99%)\\\\n2026-05-18 10:51:51,178 [INFO] Uniform pruning: config num_attention_heads=28, num_key_value_heads=4\\\\n2026-05-18 10:51:51,178 [WARNING] Non-uniform MLP: intermediate_size range [8128, 18944]\\\\n2026-05-18 10:51:52,696 [INFO] Forward pass validation OK, output shape: torch.Size([1, 32, 152064])\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] PRUNING STATISTICS\\\\n2026-05-18 10:51:52,696 [INFO]   Mode: magnitude\\\\n2026-05-18 10:51:52,696 [INFO]   Attn GQA groups pruned: 0 / 112\\\\n2026-05-18 10:51:52,696 [INFO]   MLP groups pruned: 199 / 784\\\\n2026-05-18 10:51:52,696 [INFO]   Target sparsity: 20.00%\\\\n2026-05-18 10:51:52,696 [INFO]   Actual sparsity: 18.99%\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-18T02:56:16.955252+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-18T02:56:16.955443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:52,696 [INFO]   MLP groups pruned: 199 / 784\\\\n2026-05-18 10:51:52,696 [INFO]   Target sparsity: 20.00%\\\\n2026-05-18 10:51:52,696 [INFO]   Actual sparsity: 18.99%\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-18T02:56:16.955611+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-18T02:56:16.955904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-18T02:56:16.956069+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,memory.total,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-18T02:56:16.956201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 97887 MiB, 0 %\\\\n1, 28721 MiB, 97887 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-18T02:56:16.956381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-18T02:56:16.956513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 0 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-18T02:56:16.956648+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -20 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-18T02:56:16.956806+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:51,177 [INFO]   Layer 17: pruned 9/28 MLP groups (6084 channels)\\\\n2026-05-18 10:51:51,177 [INFO] Total MLP pruning: 199 groups removed\\\\n2026-05-18 10:51:51,178 [INFO] Pruned model parameters: 6,169,214,464 (actual sparsity: 18.99%)\\\\n2026-05-18 10:51:51,178 [INFO] Uniform pruning: config num_attention_heads=28, num_key_value_heads=4\\\\n2026-05-18 10:51:51,178 [WARNING] Non-uniform MLP: intermediate_size range [8128, 18944]\\\\n2026-05-18 10:51:52,696 [INFO] Forward pass validation OK, output shape: torch.Size([1, 32, 152064])\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] PRUNING STATISTICS\\\\n2026-05-18 10:51:52,696 [INFO]   Mode: magnitude\\\\n2026-05-18 10:51:52,696 [INFO]   Attn GQA groups pruned: 0 / 112\\\\n2026-05-18 10:51:52,696 [INFO]   MLP groups pruned: 199 / 784\\\\n2026-05-18 10:51:52,696 [INFO]   Target sparsity: 20.00%\\\\n2026-05-18 10:51:52,696 [INFO]   Actual sparsity: 18.99%\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-18T02:56:16.956968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps aux | grep eval_gsm8k | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-18T02:56:16.957124+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root     680597  0.0  0.0   7088  4624 ?        Ss   May17   0:02 tmux new-session -d -s eval_unstructured_20 bash -c 'source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_unstructured_20 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_unstructured_20_n1319.json 2>&1 | tee /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log; echo EXIT_CODE=$? >> /root/runs/recovery_aware_struct_prune/eval_unstructured_20.log'\\\\nroot     766171  0.0  0.0   4496  3624 pts/2    Ss+  10:51   0:00 bash -c rm -f /tmp/agent-ml-exit/scoring_ablation_magnitude_20.exit; mkdir -p /tmp/agent-ml-exit; trap '_EC=$?; echo \\\\\\\"EXIT_CODE=$_EC\\\\\\\" >> ~/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log; printf \\\\\\\"%s|%s\\\\\\\\n\\\\\\\" \\\\\\\"$_EC\\\\\\\" \\\\\\\"$(date -u +%Y-%m-%dT%H:%M:%SZ)\\\\\\\" > /tmp/agent-ml-exit/scoring_ablation_magnitude_20.exit' EXIT; trap 'exit 129' HUP; trap 'exit 130' INT; trap 'exit 143' TERM; { cd /root/recovery_aware_struct_prune && export CUDA_VISIBLE_DEVICES=0 && timeout 10800 env bash -c 'bash -c \\\\\\\"source /root/miniconda3/bin/activate && export CUDA_VISIBLE_DEVICES=0 && echo '\\\\\\\"'\\\\\\\"'=== Step 1: Magnitude pruning at 20% ==='\\\\\\\"'\\\\\\\"' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/prune.py --model_path /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B --mode magnitude --sparsity 0.20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --seed 42 --skip_attention && echo '\\\\\\\"'\\\\\\\"'=== Step 2: GSM8K eval (200 samples) ==='\\\\\\\"'\\\\\\\"' && /root/miniconda3/bin/python /root/recovery_aware_struct_prune/src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20 --max_samples 200 --seed 42 --output_path /root/autodl-tmp/recovery_aware_stru\n…[truncated 2353 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-18T02:56:16.957321+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-18T02:56:16.957459+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 0 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-18T02:56:16.957593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-18T02:56:16.957749+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-18T02:56:16.958015+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -80 /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-18T02:56:16.958206+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"\\\\nGSM8K Test Set Evaluation.\\\\n\\\\nEvaluates model accuracy on GSM8K test split by generating reasoning traces\\\\nand comparing extracted numeric answers against gold answers.\\\\n\\\\nSupports greedy decoding and majority voting (self-consistency).\\\\n\\\\nInput:  model path\\\\nOutput: accuracy printed to stdout + saved to results JSON\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport logging\\\\nimport os\\\\nimport random\\\\nimport re\\\\nfrom collections import Counter\\\\n\\\\nimport numpy as np\\\\nimport torch\\\\nfrom datasets import load_dataset\\\\nfrom transformers import AutoTokenizer\\\\nfrom model_utils import load_pruned_model\\\\nfrom tqdm import tqdm\\\\n\\\\nlogging.basicConfig(\\\\n    level=logging.INFO,\\\\n    format=\\\\\\\"%(asctime)s [%(levelname)s] %(message)s\\\\\\\",\\\\n)\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef set_seed(seed: int):\\\\n    random.seed(seed)\\\\n    np.random.seed(seed)\\\\n    torch.manual_seed(seed)\\\\n    torch.cuda.manual_seed_all(seed)\\\\n\\\\n\\\\ndef _extract_boxed(text: str) -> str | None:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract content from \\\\\\\\\\\\\\\\boxed{...} with balanced brace matching.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    idx = text.rfind(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    if idx == -1:\\\\n        return None\\\\n    depth = 0\\\\n    start = idx + len(\\\\\\\"\\\\\\\\\\\\\\\\boxed{\\\\\\\")\\\\n    for i in range(start, len(text)):\\\\n        if text[i] == \\\\\\\"{\\\\\\\":\\\\n            depth += 1\\\\n        elif text[i] == \\\\\\\"}\\\\\\\":\\\\n            if depth == 0:\\\\n                return text[start:i]\\\\n            depth -= 1\\\\n    return None\\\\n\\\\n\\\\ndef _clean_latex_number(s: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip LaTeX formatting to get a plain number.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\text\\\\\\\\{[^}]*\\\\\\\\}\\\\\\\", \\\\\\\"\\\\\\\", s)\\\\n    s = re.sub(r\\\\\\\"\\\\\\\\\\\\\\\\(mathrm|mathbf|textbf)\\\\\\\\{([^}]*)\\\\\\\\}\\\\\\\", r\\\\\\\"\\\\\\\\2\\\\\\\", s)\\\\n    s = s.replace(\\\\\\\"\\\\\\\\\\\\\\\\!\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\,\\\\\\\", \\\\\\\"\\\\\\\").replace(\\\\\\\"\\\\\\\\\\\\\\\\;\\\\\\\", \n…[truncated 820 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-18T02:56:16.958405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-18T02:56:16.958534+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-18T02:56:16.958675+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:52,696 [INFO]   MLP groups pruned: 199 / 784\\\\n2026-05-18 10:51:52,696 [INFO]   Target sparsity: 20.00%\\\\n2026-05-18 10:51:52,696 [INFO]   Actual sparsity: 18.99%\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-18T02:56:16.958812+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 0 %\\\\n1, 28721 MiB, 99 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-18T02:56:16.958963+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "head -120 /root/recovery_aware_struct_prune/src/model_utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-18T02:56:16.959144+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import logging\\\\nimport os\\\\n\\\\nimport torch\\\\nimport torch.nn as nn\\\\nfrom transformers import AutoConfig, AutoModelForCausalLM\\\\n\\\\nlogger = logging.getLogger(__name__)\\\\n\\\\n\\\\ndef _load_state_dict(model_path):\\\\n    safetensor_files = sorted(\\\\n        f for f in os.listdir(model_path) if f.endswith(\\\\\\\".safetensors\\\\\\\")\\\\n    )\\\\n    if safetensor_files:\\\\n        from safetensors.torch import load_file\\\\n        state_dict = {}\\\\n        for f in safetensor_files:\\\\n            state_dict.update(load_file(os.path.join(model_path, f)))\\\\n        return state_dict\\\\n    return torch.load(\\\\n        os.path.join(model_path, \\\\\\\"pytorch_model.bin\\\\\\\"),\\\\n        map_location=\\\\\\\"cpu\\\\\\\", weights_only=True,\\\\n    )\\\\n\\\\n\\\\ndef load_pruned_model(model_path, device_map=\\\\\\\"auto\\\\\\\", torch_dtype=torch.bfloat16):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load a pruned model that may have non-uniform MLP/attention dimensions per layer.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)\\\\n    per_layer_sizes = getattr(config, \\\\\\\"per_layer_intermediate_size\\\\\\\", None)\\\\n    per_layer_heads = getattr(config, \\\\\\\"per_layer_num_attention_heads\\\\\\\", None)\\\\n    per_layer_kv_heads = getattr(config, \\\\\\\"per_layer_num_key_value_heads\\\\\\\", None)\\\\n\\\\n    if per_layer_sizes is None and per_layer_heads is None:\\\\n        return AutoModelForCausalLM.from_pretrained(\\\\n            model_path, torch_dtype=torch_dtype, device_map=device_map,\\\\n            trust_remote_code=True,\\\\n        )\\\\n\\\\n    hidden_size = config.hidden_size\\\\n    head_dim = getattr(config, \\\\\\\"head_dim\\\\\\\", hidden_size // config.num_attention_heads)\\\\n\\\\n    if per_layer_sizes is not None:\\\\n        max_size = max(per_layer_sizes)\\\\n        config.intermediate_size = max_size\\\\n        logger.info(\\\\n            \\\\\\\"Non-uniform MLP detected: intermediate_size range [%d, %d]\\\\\\\",\\\\n            min(per_layer_sizes), max_size,\\\\n        )\\\\n\\\\n\n…[truncated 2786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-18T02:56:16.959327+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-18T02:56:16.959478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:51:52,696 [INFO]   MLP groups pruned: 199 / 784\\\\n2026-05-18 10:51:52,696 [INFO]   Target sparsity: 20.00%\\\\n2026-05-18 10:51:52,696 [INFO]   Actual sparsity: 18.99%\\\\n2026-05-18 10:51:52,696 [INFO] ==================================================\\\\n2026-05-18 10:51:52,696 [INFO] Saving pruned model to /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-18T02:56:16.959636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 766802 -o pid,state,%cpu,%mem,rss,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-18T02:56:16.959766+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"766802 R  748  1.4 15049348    01:24\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-18T02:56:16.959917+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-18T02:56:16.960039+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-18T02:56:16.960173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-18T02:56:16.960323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 3 MiB, 0 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-18T02:56:16.960465+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 766802 -o pid,state,%cpu,%mem,rss,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-18T02:56:16.960587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"766802 S  731  0.1 1267936     01:44\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-18T02:56:16.960717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-18T02:56:16.960840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -10 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-18T02:56:16.960961+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 12663 MiB, 77 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-18T02:56:16.961095+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rWriting model shards:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\rWriting model shards: 100%|██████████| 1/1 [00:11<00:00, 11.63s/it]\\\\n2026-05-18 10:52:05,695 [INFO] Done.\\\\n=== Step 2: GSM8K eval (200 samples) ===\\\\n2026-05-18 10:52:11,662 [INFO] Loading model from /root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20\\\\n2026-05-18 10:52:12,414 [INFO] Non-uniform MLP detected: intermediate_size range [8128, 18944]\\\\n2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-18T02:56:16.961241+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-18T02:56:16.961393+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-18T02:56:16.961517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000091"
+        },
+        {
+          "source_line": 92,
+          "timestamp": "2026-05-18T02:56:16.961645+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000092"
+        },
+        {
+          "source_line": 93,
+          "timestamp": "2026-05-18T02:56:16.961860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000093"
+        },
+        {
+          "source_line": 94,
+          "timestamp": "2026-05-18T02:56:16.962036+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000094"
+        },
+        {
+          "source_line": 95,
+          "timestamp": "2026-05-18T02:56:16.962179+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000095"
+        },
+        {
+          "source_line": 96,
+          "timestamp": "2026-05-18T02:56:16.962326+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 12807 MiB, 77 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.18}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000096"
+        },
+        {
+          "source_line": 97,
+          "timestamp": "2026-05-18T02:56:16.962466+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000097"
+        },
+        {
+          "source_line": 98,
+          "timestamp": "2026-05-18T02:56:16.962595+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000098"
+        },
+        {
+          "source_line": 99,
+          "timestamp": "2026-05-18T02:56:16.962718+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000099"
+        },
+        {
+          "source_line": 100,
+          "timestamp": "2026-05-18T02:56:16.962845+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 12887 MiB, 78 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000100"
+        },
+        {
+          "source_line": 101,
+          "timestamp": "2026-05-18T02:56:16.962982+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000101"
+        },
+        {
+          "source_line": 102,
+          "timestamp": "2026-05-18T02:56:16.963111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000102"
+        },
+        {
+          "source_line": 103,
+          "timestamp": "2026-05-18T02:56:16.963230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000103"
+        },
+        {
+          "source_line": 104,
+          "timestamp": "2026-05-18T02:56:16.963375+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 12947 MiB, 69 %\\\\n1, 28721 MiB, 100 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.16}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000104"
+        },
+        {
+          "source_line": 105,
+          "timestamp": "2026-05-18T02:56:16.963528+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000105"
+        },
+        {
+          "source_line": 106,
+          "timestamp": "2026-05-18T02:56:16.963657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000106"
+        },
+        {
+          "source_line": 107,
+          "timestamp": "2026-05-18T02:56:16.963779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 766802 -o pid,state,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000107"
+        },
+        {
+          "source_line": 108,
+          "timestamp": "2026-05-18T02:56:16.963906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"766802 R       02:46\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000108"
+        },
+        {
+          "source_line": 109,
+          "timestamp": "2026-05-18T02:56:16.964052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -5 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000109"
+        },
+        {
+          "source_line": 110,
+          "timestamp": "2026-05-18T02:56:16.964181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:51,443 [INFO] Loading GSM8K test set...\\\\n2026-05-18 10:53:52,572 [INFO] HTTP Request: HEAD https://s3.amazonaws.com/datasets.huggingface.co/datasets/datasets/parquet/parquet.py \\\\\\\"HTTP/1.1 404 Not Found\\\\\\\"\\\\n2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [00:57<3:10:46, 57.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000110"
+        },
+        {
+          "source_line": 111,
+          "timestamp": "2026-05-18T02:56:16.964358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"max_new_tokens\\|max_length\\|max_tokens\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000111"
+        },
+        {
+          "source_line": 112,
+          "timestamp": "2026-05-18T02:56:16.964489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000112"
+        },
+        {
+          "source_line": 113,
+          "timestamp": "2026-05-18T02:56:16.964609+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "grep -n \"max_new_tokens\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000113"
+        },
+        {
+          "source_line": 114,
+          "timestamp": "2026-05-18T02:56:16.964735+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"120:def evaluate(model, tokenizer, dataset, max_new_tokens: int = 4096,\\\\n135:        max_new_tokens=max_new_tokens,\\\\n214:def evaluate_majority_voting(model, tokenizer, dataset, max_new_tokens: int = 4096,\\\\n229:        max_new_tokens=max_new_tokens,\\\\n320:    parser.add_argument(\\\\\\\"--max_new_tokens\\\\\\\", type=int, default=4096)\\\\n356:            max_new_tokens=args.max_new_tokens,\\\\n365:            max_new_tokens=args.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000114"
+        },
+        {
+          "source_line": 115,
+          "timestamp": "2026-05-18T02:56:16.964901+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000115"
+        },
+        {
+          "source_line": 116,
+          "timestamp": "2026-05-18T02:56:16.965053+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [00:57<3:10:46, 57.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000116"
+        },
+        {
+          "source_line": 117,
+          "timestamp": "2026-05-18T02:56:16.965216+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000117"
+        },
+        {
+          "source_line": 118,
+          "timestamp": "2026-05-18T02:56:16.965389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [00:57<3:10:46, 57.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000118"
+        },
+        {
+          "source_line": 119,
+          "timestamp": "2026-05-18T02:56:16.965518+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000119"
+        },
+        {
+          "source_line": 120,
+          "timestamp": "2026-05-18T02:56:16.965644+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [00:57<3:10:46, 57.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000120"
+        },
+        {
+          "source_line": 121,
+          "timestamp": "2026-05-18T02:56:16.965808+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "tail -3 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000121"
+        },
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-18T02:56:16.965950+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-18 10:53:52,632 [INFO] Evaluating on 200 test samples\\\\n2026-05-18 10:53:52,635 [INFO] Generation config: do_sample=False, temperature=0.0\\\\n\\\\rEvaluating:   0%|          | 0/200 [00:00<?, ?it/s]\\\\rEvaluating:   0%|          | 1/200 [00:57<3:10:46, 57.52s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": "2026-05-18T02:56:16.966094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": "2026-05-18T02:56:16.966217+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8906 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": "2026-05-18T02:56:16.966356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "wc -c /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-18T02:56:16.966476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"8906 /root/runs/recovery_aware_struct_prune/scoring_ablation_magnitude_20.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": "2026-05-18T02:56:16.966606+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-23072",
+              "command": "ps -p 766802 -o pid,state,etime --no-headers",
+              "account": "root"
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": "2026-05-18T02:56:16.966897+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"766802 R       03:52\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.13}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-18T02:56:16.967090+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程运行 3:52 分钟 (含 ~2 分钟加载)，实际 eval ~2 分钟。约完成 2-3 个 sample。\n\n当前状态总结：\n\n**已完成：**\n- Magnitude pruning at 20%: 成功，actual sparsity 18.99%\n- 剪枝模式：MLP-only（199/784 groups），集中在 layer 0-10（各剪 16/28 groups），后层几乎保留全部\n- Pruned model 保存到 `/root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/`\n\n**进行中：**\n- GSM8K eval (200 samples)，~57s/sample，预计 ~3 小时完成（~11:50 UTC 前后）\n- 速度慢是因为模型严重损坏（早期层被大量剪枝），每个 sample 都生成到 max_new_tokens=4096\n\n**预期结果：**\n- 根据之前的 continue 脚本注释 \"acc=0%\"，post-prune accuracy 很可能为 0% 或接近 0%\n\n任务 `scoring_ablation_magnitude_20` 在 westb-23072 cuda:0 上运行，tmux session 同名，3 小时 timeout。如果想加速，可以 kill 后用更小的 `--max_new_tokens`（如 2048）重跑，但结果不会有实质差异。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_scoring_ablation_magnitude_20_20260518T024943"
+          },
+          "id": "event-000129"
+        }
+      ],
+      "message_count": 129
+    }
+  ],
+  "readable_path": "readable/conversations/code-scoring-ablation-magnitude-20.md"
+}

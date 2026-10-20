@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "859580e96a24f794bf7c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh verify all gpus westd",
+  "task_key": "worker_ssh_verify_all_gpus_westd_20260523T222345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify_all_gpus_westd_20260523T222345_result.json",
+    "occurrence": 1,
+    "bytes": 635,
+    "sha256": "3f293ce0f11d069215d37cbd7a1e1e64fd792763ba097dff1f22d9f54335472c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已清理完毕。当前各 GPU 状态：\n\n| GPU | PID | 进程 | 显存 | 利用率 |\n|-----|-----|------|------|--------|\n| 0 | 166245 | `eval_math500` — sft_standard_25_fixed_v2 | 16824 MiB | 98% |\n| 1 | 168524 | `eval_math500` — grpo_rasp_alpha2p0_20_fixed | 16732 MiB | 98% |\n| 2 | 171964 | `eval_math500` — sft_rasp_alpha2p0_20_fixed | 16732 MiB | 98% |\n| 3 | 168451 | `eval_math500` — grpo_cka_only_25_fixed | 16846 MiB | 98% |\n\nGPU 3 的入侵进程 `sft_rasp_alpha0p5_20` (PID 170326) 已 kill，显存从 33594 MiB 降回 16855 MiB。4 张卡现在每张都只有一个进程，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-all-gpus-westd.md"
+}

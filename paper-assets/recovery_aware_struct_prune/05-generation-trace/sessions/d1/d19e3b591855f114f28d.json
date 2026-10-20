@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d19e3b591855f114f28d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval math500 sft standard 20 2048",
+  "task_key": "worker_diag_eval_math500_sft_standard_20_2048_20260518T224914",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_math500_sft_standard_20_2048_20260518T224914_result.json",
+    "occurrence": 1,
+    "bytes": 1216,
+    "sha256": "6323199f2c09b47e169b9ef09050b395ef235542535194ae31b516b39de730d3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因已定位。\n\n## 诊断报告\n\n### 失败根因\n\n**GPU 资源冲突**：eval 进程 (PID 33033) 在 cuda:2 上运行到 10/500 时，另一个 SFT 训练任务 (PID 34346) 于 06:42 在同一 cuda:2 上启动：\n\n```\npython src/sft_recovery.py --model_path .../pruned_standard_20 --output_dir .../sft_standard_20 --gpu 2\n```\n\nSFT 任务抢占了 51.5GB 显存，导致 eval 进程被直接杀死（日志无 traceback，说明是被 OOM killer/CUDA 内存不足直接终止）。\n\n### 当前 GPU 状态\n\n| GPU | 占用 | 进程 |\n|-----|------|------|\n| cuda:0 | 17.7GB | python (PID 32469) |\n| cuda:1 | 19.3GB | python (PID 22049) |\n| cuda:2 | 51.5GB | sft_recovery.py (PID 34346) |\n| cuda:3 | 17.5GB | python (PID 21100) |\n\n4 张 GPU 全部被占用。\n\n### 环境/模型/脚本状态\n\n- 模型路径完好（12GB safetensors）\n- 评估脚本存在\n- 数据集已缓存（网络不通但 cache 可用）\n- 磁盘空间充足（数据盘 71GB 可用）\n\n### 结论\n\n- **可以直接重试**，脚本和模型无问题\n- **前提**：等 cuda:2 上的 SFT 任务结束后再重跑，或改用其他空闲 GPU\n- 无需修复代码，纯粹是 GPU 调度冲突"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-math500-sft-standard-20-2048.md"
+}

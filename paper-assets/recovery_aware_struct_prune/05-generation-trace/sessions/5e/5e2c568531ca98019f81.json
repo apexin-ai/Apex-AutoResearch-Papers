@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e2c568531ca98019f81",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag eval math500 unpruned",
+  "task_key": "worker_diag_eval_math500_unpruned_20260517T113514",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_eval_math500_unpruned_20260517T113514_result.json",
+    "occurrence": 1,
+    "bytes": 420,
+    "sha256": "8b251fb4fb2fb8462553b2251665810b8063c80cb914c20d3e1b4dc642eb7ff8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成。报告已写入 `artifacts/diag_eval_math500_unpruned.md`。\n\n**结论：实验未失败。** 评测正常完成，MATH-500 准确率 73.60% (368/500)，EXIT_CODE=0，结果已保存。监控系统因实验运行时间长（~5h）且无心跳输出，误判为进程死亡。建议将实验状态更正为 completed，并在后续长时间评测脚本中加入周期性 sentinel 输出。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-eval-math500-unpruned.md"
+}

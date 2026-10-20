@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "29a0ee4b16d940f67dfc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_20_1779384294.md",
+  "task_key": "loop_20_1779384294",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_20_1779384294.md",
+    "occurrence": 1,
+    "bytes": 4714,
+    "sha256": "f0eaf8657942d0718c05ff99fd9da78cbb54c8087098191884d8b4bf4f765493"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: idle_timeout\nupdated: '2026-05-21T15:31:18+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：`cuda:0, cuda:1, cuda:2, cuda:3`（两台服务器各自的 0-3）\n- westd-29022 **网络离线**：所有命令必须带 `HF_DATASETS_OFFLINE=1 HF_HUB_OFFLINE=1`，否则 HF 库发 HEAD 请求导致崩溃（已因此失败 5+ 次）\n- westd-29022 数据盘 `/root/autodl-tmp` **99% 满（仅剩 ~9.7GB）**：提交新实验前必须检查磁盘，写 checkpoint 可能失败\n- eval_math500_sft_standard_25 registry 状态异常：status=RUNNING 但 conclusion=success（v1 结果已被 Director 批准采用：13.0%/65/500）。westb:1 上跑的是 v2 重跑，实际可能已崩溃（v2 启动即崩溃的记录）。**不要依赖 v2 的 cron 回调——v1 数据已是 truth**\n- EMNLP 2026 ARR May 25 deadline，**还剩 ~3 天**\n\n### 2. 🖥️ 基础设施快照\n- **westd-29022**: 4× RTX PRO 6000, 工作目录 `/root/recovery_aware_struct_prune`, Python: `/root/miniconda3/bin/python`（conda base）, 数据盘 `/root/autodl-tmp/recovery_aware_struct_prune/`\n- **westb-23072**: 2× RTX PRO 6000, 同上结构\n- HF cache / 模型 / checkpoint 全在 `/root/autodl-tmp/recovery_aware_struct_prune/` 下\n- 活跃进程（6 个 MATH-500 eval）：\n  - westd:0 — eval_math500_grpo_cka_only_25_v2, PID 379999\n  - westd:1 — eval_math500_grpo_random_20_v2, PID 382470\n  - westd:2 — eval_math500_sft_cka_only_25_v2, PID 380074\n  - westd:3 — eval_math500_sft_random_20, PID 385685\n  - westb:0 — eval_math500_grpo_standard_25_v2, PID 99426\n  - westb:1 — eval_math500_sft_standard_25 (v2 重跑, 可能已死)\n- Cron 监控 5 个（不含 sft_standard_25）：reconcile 确认全部 still running\n- 1 个 running worker: `worker_ssh_check_math500_status_westd`（可能已过期，检查是否还活着）\n\n### 3. 📊 当前状态\n上一轮做的事：D097 kill 全部 @4096 MATH-500 eval → 用 @2048 重跑全线（6/6 GPU 满载）。Round 4 审稿已提交（apr_20260521T145013_qbke），待用户审批。\n\n**MATH-500 @2048 已有数据（20%）**：\n\n| Method | SFT | GRPO | Δ |\n|--------|-----|------|---|\n| CKA-only | 29.0% | 29.2% | +0.2pp |\n| Standard | 25.8% | 26.4% | +0.6pp |\n| RASP | 22.6% | 24.0% | +1.4pp |\n\n**RUNNING（25% + Random 20%）**：6 个 eval 跑了 ~1.5h，MATH-500 每个约 2-4h 完成，预计未来 1-3h 陆续出结果。\n\n**等待中**：\n- 5 个 cron 回调（MATH-500 eval 完成时触发）\n- Round 4 审稿报告（用户审批后到达）\n- worker_ssh_check_math500_status_westd 回调\n\n### 4. 📋 待办（条件触发式）\n- eval_math500_grpo_cka_only_25_v2 完成 → harvest 结果 → update registry → 与 GSM8K 25% CKA-only (59.59%) 对比\n- eval_math500_grpo_standard_25_v2 完成 → harvest → 预期 near-zero（GSM8K GRPO 25% Standard reward collapsed）\n- eval_math500_sft_cka_only_25_v2 完成 → harvest → 建立 25% SFT baseline\n- eval_math500_grpo_random_20_v2 + eval_math500_sft_random_20 完成 → harvest → 补全 20% MATH-500 最后两格（Random SFT/GRPO）\n- **全部 MATH-500 数据到齐** → spawn Paper Agent worker patch Table（MATH-500 列）→ 更新 paper_framing.md 数据 → 确认 C1 decoupling 跨 benchmark 成立\n- Round 4 审稿报告到达 → review-report-action 处理 → 逐条 resolve\n- eval_math500_sft_standard_25：v1 数据已采用(13.0%)，若 v2 cron 回调到达直接标记 killed/superseded，不覆盖 v1 数据\n- 所有 eval + 审稿 resolve 完成 → 最终提交准备（编译检查 + 页数 ≤8）\n\n### 5. 🎯 战略上下文\n- **核心结论**：Pruning criterion 决定 post-RLVR recovery capacity。CKA-only（保留 representational diversity）>> importance-based methods。GRPO 对所有方法 accuracy Δ ≈ 0（C1 universal decoupling）——recovery capacity 在 pruning 时已锁定，SFT 固化，RL 无法进一步改善。\n- **决策链关键节点**：D075 确立 universal decoupling framing（推翻 D071 task-dependent）；D090 Standard 3-seed mean 维持；D096 25% 数据定位为\"补强覆盖不升级 claim\"；D097 全部 @4096 改 @2048 保一致性\n- **最容易判断错的事**：\n  1. eval_math500_sft_standard_25 状态混乱——v1=truth，不要等 v2 回调\n  2. 25% 数据是**补强**不是升级 claim——不要因为 25% 数据好/坏就改动 paper 核心 narrative\n  3. westd 磁盘 99%——eval 只写小 json 问题不大，但不要在 westd 上提交任何训练/checkpoint 写入任务\n  4. MATH-500 eval 每题生成 2048 tokens，部分题目很慢（40-80s/题），不要因为看起来慢就 kill\n  5. 29 个 PREPARING 实验是历史残留（早期/已完成/已废弃），不要试图提交它们\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-1779384294.md"
+}

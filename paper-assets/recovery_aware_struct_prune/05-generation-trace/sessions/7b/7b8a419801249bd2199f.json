@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7b8a419801249bd2199f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest all westd evals",
+  "task_key": "worker_ssh_harvest_all_westd_evals_20260520T181211",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_all_westd_evals_20260520T181211_result.json",
+    "occurrence": 1,
+    "bytes": 605,
+    "sha256": "3db753c0f421ff2d83a0f02c1c333140a6e93f5b3c87eb075e3a417c02e7f4ff"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 eval 全部仍在运行，尚无结果文件输出。\n\n| Eval | GPU | PID | 进度 | 中期 Accuracy | 预计剩余 |\n|------|-----|-----|------|--------------|---------|\n| **CKA-only 15% SFT** | cuda:1 | 262728 | 1180/1319 (89%) | **72.52%** @1150 | ~7 min |\n| **CKA-only 20% SFT** | cuda:2 | 264522 | 932/1319 (71%) | **63.11%** @900 | ~19 min |\n| **Standard 20% SFT** | cuda:0 | 266847 | 425/1319 (32%) | **61.50%** @400 | ~44 min |\n\nCKA-only 15% 没完成，但即将结束（~89%），中期准确率 72.52%。CKA-only 20% 和 Standard 20% 分别在 71% 和 32% 进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-all-westd-evals.md"
+}

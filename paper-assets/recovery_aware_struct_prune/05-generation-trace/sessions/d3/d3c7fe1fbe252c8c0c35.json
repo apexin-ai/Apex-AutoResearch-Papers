@@ -1,0 +1,1025 @@
+{
+  "schema_version": "1.0",
+  "id": "d3c7fe1fbe252c8c0c35",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "exp unpruned full eval n1319",
+  "task_key": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_exp_unpruned-full-eval-n1319_20260516T013836.jsonl",
+    "occurrence": 1,
+    "bytes": 37293,
+    "sha256": "c61cc771c3acaeea25d4935dda389693f4d99238f4f0c683da01be071e6d901c"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T01:40:49.992578+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T01:40:49.992971+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T01:40:49.993158+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline/",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T01:40:49.993316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "df -h /root/autodl-tmp/",
+              "account": "root"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T01:40:49.993471+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 14885480\\\\ndrwxr-xr-x  2 root root        4096 May 16 07:10 .\\\\ndrwxr-xr-x 14 root root        4096 May 16 06:30 ..\\\\n-rw-r--r--  1 root root        2246 May 16 07:10 chat_template.jinja\\\\n-rw-r--r--  1 root root        1396 May 16 07:09 config.json\\\\n-rw-r--r--  1 root root         216 May 16 07:09 generation_config.json\\\\n-rw-r--r--  1 root root 15231272152 May 16 07:10 model.safetensors\\\\n-rw-r--r--  1 root root    11421907 May 16 07:10 tokenizer.json\\\\n-rw-r--r--  1 root root         419 May 16 07:10 tokenizer_config.json\\\\n-rw-r--r--  1 root root        5777 May 16 07:10 training_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T01:40:49.993605+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"gpu\\|CUDA\\|device\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T01:40:49.993756+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Filesystem      Size  Used Avail Use% Mounted on\\\\n/dev/md0        250G  213G   38G  86% /root/autodl-tmp\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T01:40:49.993893+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T01:40:49.994013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ps -p 71116 -o pid=",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T01:40:49.994134+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T01:40:49.994326+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"gpu\\|CUDA\\|device\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T01:40:49.994468+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T01:40:49.994589+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "cat /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T01:40:49.994706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T01:40:49.994973+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.84,\\\\n  \\\\\\\"stderr\\\\\\\": 0.036660605559646724,\\\\n  \\\\\\\"n_correct\\\\\\\": 84,\\\\n  \\\\\\\"n_total\\\\\\\": 100,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 100,\\\\n    \\\\\\\"truncated\\\\\\\": 0,\\\\n    \\\\\\\"eos_rate\\\\\\\": 1.0,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 187.22,\\\\n    \\\\\\\"max_response_length\\\\\\\": 652,\\\\n    \\\\\\\"min_response_length\\\\\\\": 47\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Darrell and Allen's ages are in the ratio of 7:11. If their total age now is 162, calculate Allen's age 10 years from now.\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"109\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"The ratio of Darrell's age to Allen's age is 7:11, meaning for every 7 years of Darrell's age, Allen is 11 years old. The total number of parts in the ratio is 7 + 11 = <<7+11=18>>18.\\\\\\\\nIf the total age of Darrell and Allen is 162 years, then each part of the ratio represents 162 / 18 = <<162/18=9>>9 years.\\\\\\\\nSince Allen's age is represented by 11 parts of the ratio, he is currently 11 * 9 = <<11*9=99>>99 years old.\\\\\\\\nTen years from now, Allen will be 99 + 10 = <<99+10=109>>109 years old.\\\\\\\\n#### 109\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 189,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Lorraine and Colleen are trading stickers for buttons. Each large sticker is worth a large button or three small buttons. A small sticker is worth one small button. A large button is worth three small stickers. Lorraine starts with 30 small stickers and 40 large stickers. She trades 90% of her small stickers for large buttons. She trades 50% of her large stickers for large buttons and trades the rest of them for small b\n…[truncated 7237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T01:40:49.995171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 09:39:02 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   29C    P8             33W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             34W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|  No running processes fou\n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T01:40:49.995371+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"gpu\\|CUDA\\|device\\|argparse\\|add_argument\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T01:40:49.995503+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T01:40:49.995624+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"gpu\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T01:40:49.995744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "grep -n \"device\" /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T01:40:49.995870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T01:40:49.995997+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"124:    device = next(model.parameters()).device\\\\n156:            inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(device)\\\\n218:    device = next(model.parameters()).device\\\\n245:        inputs = tokenizer(prompt, return_tensors=\\\\\\\"pt\\\\\\\", truncation=True, max_length=2048).to(device)\\\\n342:    model = load_pruned_model(args.model_path, device_map=\\\\\\\"auto\\\\\\\", torch_dtype=torch_dtype)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T01:40:49.996144+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py \\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline \\\n  --max_samples 1319 \\\n  --max_new_tokens 4096 \\\n  --seed 42 \\\n  --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json \\\n  > /tmp/eval_unpruned_full.log 2>&1 &\necho $!",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T01:40:49.996297+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py \\\\\\\\\\\\\\\\\\\\\\\\n  --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline \\\\\\\\\\\\\\\\\\\\\\\\n  --max_samples 1319 \\\\\\\\\\\\\\\\\\\\\\\\n  --max_new_tokens 4096 \\\\\\\\\\\\\\\\\\\\\\\\n  --seed 42 \\\\\\\\\\\\\\\\\\\\\\\\n  --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json \\\\\\\\\\\\\\\\\\\\\\\\n  > /tmp/eval_unpruned_full.log 2>&1 &\\\\\\\\necho $!'\\\\n\\\\nStdout:\\\\n\\\\n74129\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T01:40:49.996459+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "ps -p 74129 -o pid,cmd",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T01:40:49.996579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "tail -10 /tmp/eval_unpruned_full.log",
+              "account": "root"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T01:40:49.996711+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID CMD\\\\n 74129 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 nohup /root/miniconda3/bin/python -u /root/recovery_aware_struct_prune/src/eval_gsm8k.py \\\\\\\\   --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline \\\\\\\\   --max_samples 1319 \\\\\\\\   --max_new_tokens 4096 \\\\\\\\   --seed 42 \\\\\\\\   --output_path /root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json \\\\\\\\   > /tmp/eval_unpruned_full.log 2>&1 & echo $!\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.21}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T01:40:49.996834+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-11672",
+              "command": "nvidia-smi",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T01:40:49.996989+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[transformers] `torch_dtype` is deprecated! Use `dtype` instead!\\\\n\\\\rLoading weights:   0%|          | 0/339 [00:00<?, ?it/s]\\\\rLoading weights:   0%|          | 1/339 [00:00<00:38,  8.70it/s]\\\\rLoading weights:   1%|          | 2/339 [00:00<00:43,  7.83it/s]\\\\rLoading weights:   5%|▌         | 17/339 [00:00<00:05, 64.20it/s]\\\\rLoading weights:  12%|█▏        | 40/339 [00:00<00:02, 111.02it/s]\\\\rLoading weights:  19%|█▉        | 64/339 [00:00<00:02, 133.11it/s]\\\\rLoading weights:  26%|██▋       | 89/339 [00:00<00:01, 151.57it/s]\\\\rLoading weights:  33%|███▎      | 113/339 [00:00<00:01, 174.89it/s]\\\\rLoading weights:  40%|███▉      | 135/339 [00:00<00:01, 172.98it/s]\\\\rLoading weights:  47%|████▋     | 160/339 [00:01<00:00, 186.30it/s]\\\\rLoading weights:  53%|█████▎    | 179/339 [00:01<00:00, 184.43it/s]\\\\rLoading weights:  58%|█████▊    | 198/339 [00:01<00:00, 173.57it/s]\\\\rLoading weights:  64%|██████▎   | 216/339 [00:01<00:00, 164.76it/s]\\\\rLoading weights:  72%|███████▏  | 245/339 [00:01<00:00, 194.81it/s]\\\\rLoading weights:  79%|███████▉  | 268/339 [00:01<00:00, 198.00it/s]\\\\rLoading weights:  85%|████████▌ | 289/339 [00:01<00:00, 195.07it/s]\\\\rLoading weights:  91%|█████████ | 309/339 [00:01<00:00, 187.47it/s]\\\\rLoading weights:  97%|█████████▋| 329/339 [00:02<00:00, 189.18it/s]\\\\rLoading weights: 100%|██████████| 339/339 [00:02<00:00, 165.78it/s]\\\\n2026-05-16 09:39:28,526 [INFO] Loading GSM8K test set...\\\\nUsing the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\n2026-05-16 09:39:28,527 [WARNING] Using the latest cached version of the dataset since openai/gsm8k couldn't be found on the Hugging Face Hub (offline mode is enabled).\\\\nFound the latest cached dataset configuration 'main' at /root/.cache/huggingface/datasets/openai___gsm8k/main/0.0.0/740312add88f781978c0658806c59bc2815b9866 (last modified on Sat May 16 01:03:33 2026\n…[truncated 1255 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T01:40:49.997152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 16 09:39:58 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:B8:00.0 Off |                  Off |\\\\n| N/A   47C    P0            325W /  600W |   17641MiB /  97887MiB |     91%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n|   1  NVIDIA RTX PRO 6000 Blac...    On  |   00000000:C8:00.0 Off |                  Off |\\\\n| N/A   30C    P8             35W /  600W |       0MiB /  97887MiB |      0%      Default |\\\\n|                                         |                        |             Disabled |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          \n…[truncated 265 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T01:40:49.997336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_full",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 1319, 'model_name': 'Qwen2.5-7B (unpruned, SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline', 'eval_data': 'gsm8k_test_full_1319', 'parent': 'sft_unpruned_baseline', 'hypothesis': 'Unpruned SFT baseline full GSM8K eval for three-way comparison: Standard SFT 59.29% vs RASP SFT 61.49% vs Unpruned SFT ?%', 'pid': 74129, 'gpu': 'cuda:0', 'log_path': '/tmp/eval_unpruned_full.log', 'checkpoint_path': '/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json'}"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T01:40:49.997491+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.135}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T01:40:49.997618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 100, 'model_name': 'Qwen2.5-7B (unpruned, SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline', 'eval_data': 'gsm8k_test_n100', 'parent': 'sft_unpruned_baseline', 'checkpoint_path': '/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json', 'log_path': '/tmp/eval_unpruned_n100.log'}"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T01:40:49.997791+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → DONE. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1496}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T01:40:49.997953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_full",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T01:40:49.998075+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T01:40:49.998198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.174Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:17.174Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5241}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T01:40:49.998340+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:17.686Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4359}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T01:40:49.998464+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_full",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 1319, 'model_name': 'Qwen2.5-7B (unpruned, SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline', 'eval_data': 'gsm8k_test_full_1319', 'parent': 'sft_unpruned_baseline', 'hypothesis': 'Unpruned SFT baseline full GSM8K eval for three-way comparison', 'pid': 74129, 'gpu': 'cuda:0', 'log_path': '/tmp/eval_unpruned_full.log', 'checkpoint_path': '/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json'}"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T01:40:49.998611+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.174Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:23.655Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 1319 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_full_1319\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"hypothesis\\\": \\\"Unpruned SFT baseline full GSM8K eval for three-way comparison\\\", \\\"pid\\\": 74129, \\\"gpu\\\": \\\"cuda:0\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_full.log\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_full.json\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4384}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T01:40:49.998744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42', 'server': 'westd-11672', 'data_path': 'openai/gsm8k', 'data_count': 100, 'model_name': 'Qwen2.5-7B (unpruned, SFT)', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline', 'eval_data': 'gsm8k_test_n100', 'parent': 'sft_unpruned_baseline', 'checkpoint_path': '/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json', 'log_path': '/tmp/eval_unpruned_n100.log'}"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T01:40:49.998889+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:26.117Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.618}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T01:40:49.999025+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "conclusion",
+              "value": "success",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T01:40:49.999157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:30.296Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2486}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T01:40:49.999303+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "status",
+              "value": "DONE",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T01:40:49.999445+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:33.108Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T01:40:33.108Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4653}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T01:40:49.999571+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_sft_unpruned_n100",
+              "field": "metrics",
+              "value": "{'accuracy': 0.84, 'n_correct': 84, 'n_total': 100, 'eos_rate': 1, 'avg_response_length': 187.22, 'stderr': 0.0367}",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T01:40:49.999715+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_unpruned_n100\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T01:40:17.686Z\\\", \\\"updated_at\\\": \\\"2026-05-16T01:40:37.975Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python eval_gsm8k.py --model_path sft_unpruned_baseline --max_samples 100 --seed 42\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 100, \\\"model_name\\\": \\\"Qwen2.5-7B (unpruned, SFT)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_unpruned_baseline\\\", \\\"eval_data\\\": \\\"gsm8k_test_n100\\\", \\\"parent\\\": \\\"sft_unpruned_baseline\\\", \\\"checkpoint_path\\\": \\\"/root/recovery_aware_struct_prune/results/eval_sft_unpruned_baseline_n100.json\\\", \\\"log_path\\\": \\\"/tmp/eval_unpruned_n100.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T01:40:33.108Z\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.84, \\\"n_correct\\\": 84, \\\"n_total\\\": 100, \\\"eos_rate\\\": 1, \\\"avg_response_length\\\": 187.22, \\\"stderr\\\": 0.0367}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2434}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T01:40:49.999887+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 摘要\n\n**Unpruned N=1319 full eval**: PID 74129, westd cuda:0, ~2.5s/it → ETA ~55min\n\n**Unpruned N=100 eval**: 完成\n| 指标 | 值 |\n|------|-----|\n| accuracy | **84.00%** |\n| n_correct | 84/100 |\n| eos_rate | 1.0 |\n| avg_len | 187.22 |\n| stderr | 0.0367 |\n\nN=100 快速对比（参考）：\n- Standard SFT: 59% (N=100 时未记录)\n- RASP SFT: 61% (N=100 时未记录)\n- **Unpruned SFT: 84%** (N=100)\n\nN=100 的 84% 非常高，full 1319 的结果将确认是否稳定。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_exp_unpruned-full-eval-n1319_20260516T013836"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/exp-unpruned-full-eval-n1319.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "365878f98851980e9f00",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval math500 sft random exit",
+  "task_key": "worker_diagnose_eval_math500_sft_random_exit_20260522T140838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_math500_sft_random_exit_20260522T140838_result.json",
+    "occurrence": 1,
+    "bytes": 1316,
+    "sha256": "ea724dc067db2b1a52c2632f38eab6960582789cfbf9d58d45cc62fab434e728"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总结果：\n\n```\n=== LOG ===\n(logs/eval_math500_sft_random_20_v3.log — 末尾)\n...\nMATH-500 eval: 100%|██████████| 500/500 [9:54:42<00:00, 71.37s/it]\n2026-05-22 22:08:06,287 [INFO] MATH-500 Accuracy: 0.1440 +/- 0.0157 (72/500)\n2026-05-22 22:08:06,288 [INFO] EOS Stats: {\n  \"natural_eos\": 171,\n  \"truncated\": 329,\n  \"avg_response_length\": 1470.44\n}\n2026-05-22 22:08:06,290 [INFO] Results saved to /root/recovery_aware_struct_prune/results/eval_math500_sft_random_20_v3.json\n\n(results/eval_math500_sft_random_20_v3.log — NO_LOG_AT_RESULTS)\n\n=== RESULT FILE ===\n-rw-r--r-- 1 root root 165884 May 22 22:08 /root/recovery_aware_struct_prune/results/eval_math500_sft_random_20_v3.json\n\n(autodl-tmp 下无同名文件)\n\n=== RESULT CONTENT ===\neval_math500_sft_random_20_v3.json: accuracy=0.144, stderr=0.0157\n\n=== PID CHECK ===\nPID 5236: EXITED\nPID 5241: EXITED\n\n=== GPU ===\n0, 29599 MiB, 99 %\n1, 0 MiB, 0 %\n2, 26219 MiB, 99 %\n3, 0 MiB, 0 %\n```\n\n**结论**：eval_math500_sft_random_20_v3 已正常完成退出。500 题全部跑完，accuracy = 14.4% (72/500)，结果已写入 JSON。进程已退出。GPU 0 和 2 被其他任务占用。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "natural_eos": 171,
+              "truncated": 329,
+              "avg_response_length": 1470.44
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-math500-sft-random-exit.md"
+}

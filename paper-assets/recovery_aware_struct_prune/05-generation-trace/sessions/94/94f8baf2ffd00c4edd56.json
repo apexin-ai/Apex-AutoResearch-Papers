@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "94f8baf2ffd00c4edd56",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops step50 eval final collect",
+  "task_key": "worker_ops_step50-eval-final-collect_20260516T013626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_step50-eval-final-collect_20260516T013626_result.json",
+    "occurrence": 1,
+    "bytes": 740,
+    "sha256": "b1f25d7d54905e53ef50f79cc623c6364f9ccd1a06416ca95d643bcd84efdab0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完整摘要\n\n| 指标 | 值 |\n|------|-----|\n| **Accuracy** | 58.91% (777/1319) |\n| **Stderr** | ±1.35% |\n| **EOS rate** | 98.10% |\n| **Avg length** | 222.1 tokens |\n| **Runtime** | 3h 21m |\n\n### 关键对比\n\n| Model | GSM8K Accuracy (N=1319) |\n|-------|------------------------|\n| Post-SFT Standard | 59.29% |\n| Post-GRPO step 50 | 58.91% |\n| **Δ(GRPO - SFT)** | **-0.38 pp** |\n\n**结论 (negative)**: Standard GRPO v8 在 step 50（reward peak 附近）未能提升 GSM8K 准确率，反而微降 0.38pp（在 stderr 范围内，统计上无显著差异）。GRPO 阶段对 standard pruned model 的 math reasoning recovery 贡献为零。\n\nCron 已删除，registry 已更新为 DONE/negative。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-step50-eval-final-collect.md"
+}

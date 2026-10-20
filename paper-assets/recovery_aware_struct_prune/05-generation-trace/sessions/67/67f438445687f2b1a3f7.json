@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "67f438445687f2b1a3f7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd disk cleanup qwen25",
+  "task_key": "worker_ops_westd_disk_cleanup_qwen25_20260516T105526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_disk_cleanup_qwen25_20260516T105526_result.json",
+    "occurrence": 1,
+    "bytes": 758,
+    "sha256": "579e712e978eaba4d349c1b57a43b5e42c31083a4ff4e8ddfeda043bf0203872"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n## 清理结果\n- 已删除 `pruned_graspune_20` + `sft_graspune_20`\n- 数据盘剩余 **4.2GB** (99%)，两个新剪枝模型各占 ~11GB\n\n## Qwen Math 25% 剪枝统计\n\n| | RASP 25% | Standard 25% |\n|---|---|---|\n| MLP groups pruned | 252 / 784 | 251 / 784 |\n| Attn GQA groups pruned | 0 / 112 | 0 / 112 |\n| Target sparsity | 25.00% | 25.00% |\n| **Actual sparsity** | **24.05%** | **23.96%** |\n| Pruned params | 5,783,991,808 | ~5,790M |\n| 输出路径 | `pruned_rasp_25_qwen_math` | `pruned_standard_25_qwen_math` |\n\n两个模型均通过 forward pass validation，包含 `model.safetensors` + tokenizer + config。\n\n⚠️ 数据盘仅剩 4.2GB，后续 SFT 训练前需要清理更多空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-disk-cleanup-qwen25.md"
+}

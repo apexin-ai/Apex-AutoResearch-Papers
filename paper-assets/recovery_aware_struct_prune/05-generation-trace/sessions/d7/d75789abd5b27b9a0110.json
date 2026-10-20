@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d75789abd5b27b9a0110",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval westd cuda1 batch",
+  "task_key": "worker_eval_westd_cuda1_batch_20260516T014615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_westd_cuda1_batch_20260516T014615_result.json",
+    "occurrence": 1,
+    "bytes": 1347,
+    "sha256": "5222d6a72472e3cc60a6ce0254dfc62cf23d59b2f01bed8529eea10765c29a91"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个实验均无法执行，汇报如下：\n\n---\n\n## 结果汇报\n\n### 实验 1: eval_sft_grasp_20_westd — **OOM 失败**\n\n- **原因**: westd cuda:1 **不是空闲的**。GRPO 训练 `grpo_unpruned_v2` (PID 75381) 正在 GPU 1 上运行，内存占用 81GB/95GB。eval 加载模型需要 ~14GB，总计超出 GPU 容量，触发 CUDA OOM。\n- **GRPO 进度**: 仅完成 step 5/100 (save_steps=5)，远未结束。\n- **Registry**: 已标记为 DONE(failed)，附 OOM 详情。\n\n### 实验 2: eval_sft_alpha_0p5 — **模型不存在**\n\n- **原因**: α=0.5 的 **SFT 模型从未训练**。\n  - `sft_ablation/` 目录仅有: alpha_0.0, alpha_1.0, alpha_2.0, alpha_4.0 — **缺少 alpha_0.5**\n  - `alpha_ablation/alpha_0.5/` 存在，但是 **pruned 模型**（含 `pruning_metadata.pt`），不是 post-SFT 模型\n- **需要**: 先对 α=0.5 pruned 模型做 SFT 训练，才能跑 eval\n\n### westd-11672 GPU 状态\n\n| GPU | PID | 进程 | 显存占用 |\n|-----|-----|------|----------|\n| cuda:0 | 74134 | python (未查) | 17.6GB / 95GB |\n| cuda:1 | 75381 | grpo_unpruned_v2 (step 5/100) | 81.2GB / 95GB |\n\n### 后续建议\n\n1. **GraSP eval**: 等 GRPO 训练结束后再跑，或在 westb-23072 的空闲 GPU 上跑\n2. **α=0.5 eval**: 需要先在 `alpha_ablation/alpha_0.5/` 上启动 SFT 训练"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-westd-cuda1-batch.md"
+}

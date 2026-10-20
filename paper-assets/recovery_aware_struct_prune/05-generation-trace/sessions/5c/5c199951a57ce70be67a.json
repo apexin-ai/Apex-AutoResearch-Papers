@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "5c199951a57ce70be67a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code d022 alpha code diff",
+  "task_key": "worker_code_d022-alpha-code-diff_20260515T084504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_d022-alpha-code-diff_20260515T084504.log",
+    "occurrence": 1,
+    "bytes": 801472,
+    "sha256": "6ebe2e33c8bdfeceb60e61822c7806e840c9928b59249004b6e13f797bc7ad00"
+  },
+  "statistics": {
+    "messages": 225,
+    "user_turns": 0,
+    "tool_calls": 82,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 82,
+      "tool_result": 82,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 225,
+      "chunks": [
+        {
+          "path": "5c199951a57ce70be67a-part-0001.json",
+          "message_count": 133
+        },
+        {
+          "path": "5c199951a57ce70be67a-part-0002.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-d022-alpha-code-diff.md"
+}

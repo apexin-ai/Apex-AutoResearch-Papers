@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "92470593393952ee911d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code sft alpha4 westd followup",
+  "task_key": "worker_code_sft-alpha4-westd-followup_20260515T134319",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_sft-alpha4-westd-followup_20260515T134319_result.json",
+    "occurrence": 1,
+    "bytes": 84,
+    "sha256": "fdb703b55e50c8aa068e235e04fbc3f063d56dfbe224c6a25d7f12ad5c5c93b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 后台运行中 (PID 37305)，4.5 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-sft-alpha4-westd-followup.md"
+}

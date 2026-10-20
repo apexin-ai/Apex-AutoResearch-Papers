@@ -1,0 +1,1453 @@
+{
+  "schema_version": "1.0",
+  "id": "6755756f8064be86fcdf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "diagnose eval sft standard 20 n1319",
+  "task_key": "worker_diagnose_eval_sft_standard_20_n1319_20260517T010711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_sft_standard_20_n1319_20260517T010711.log",
+    "occurrence": 1,
+    "bytes": 57947,
+    "sha256": "d480cdbf9d8d3ee9eb6bbe67674673d8213864a046c6cd4d21ab40d95dac620e"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 6,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__read_registry",
+                  "mcp__agent-ml-research__register_artifact",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only",
+                  "mcp__agent-ml-research__update_registry"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "443d2ec6-364c-4b8e-a96f-0cc8288c0395",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778996400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "60593140-680c-4f34-8d20-f95206796786",
+                "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me check the status of the eval_sft_standard_20_n1319 job by SSHing to westd-11672 and reading the logs and results.",
+              "signature": "ErQCClkIDRgCKkBpsr0DsfW2YnlSBwk5o1ZmxEtO5Zj9zbm7u/zXR9NJe41GKn7Jaqzvk1H2ddWuykfq3UpCygFLFF8Ebq1g/GfOMg9jbGF1ZGUtb3B1cy00LTY4ABIMctOzKzqVtEN6/2D3GgxAtK3rsv4/8PZfWGciMDLKn/ZE6nziV/Oa2kwvKRhH/JRcAPVW4m+5nBBfYIvsDfb4PrzRrA8mxEBwEWAEtSqIASdII8PIMG1brfWfIosXSaxv4NCUg/lgHIzRGG8qNxumL/Epb9qVEdQ+vR8rnn+GzG4qMcY2XY5Ah5vk6BVg2K/3gGza8DiWu3uxhOW6RDYFxL9jjvS7ovduh7o6WxKiUnDCs0R4cYLAosClORPJS7nhPvdYN2AQcgNl4jtCFs+OZX6F2yhog1oYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "981ad05c-fe89-49b3-96f1-16e623108428",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017FGHBC31fCVbAAS7hMnpxR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12893,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12893
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01592nhsNqfP5RVJBbrxtpJ9",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+                "max_results": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "e756abdc-5e0b-4f86-a753-844ad0ea9b02",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017FGHBC31fCVbAAS7hMnpxR",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12893,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12893
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T01:07:25.517Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01592nhsNqfP5RVJBbrxtpJ9",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__update_registry"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "3c001894-3fb5-4582-a68e-5cdbf3664a91",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute",
+                "mcp__agent-ml-research__update_registry",
+                "mcp__agent-ml-research__read_registry"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me SSH to westd-11672 to check the logs and results.",
+              "signature": "EvMBClkIDRgCKkCCZhkl2V4xChHFYNEZV7lQMwq8qeECk4gGV5J5k14H0G70OvjHq1vJv9c13dNObUFX8gx3eIAkxa63qV0gHVA3Mg9jbGF1ZGUtb3B1cy00LTY4ABIMdqrfCuEznbEOkF4OGgwnPPz4vzxyUWCo0qwiMBlRHpEcLCPt8fzY9JYxXwdNaR7gFyadeXoNFULztaybEveGaL4ioVNV22VOVVat4CpIjTWK2sx08ygaTKCAzWLmi/YcER3tw46y9LKo/2yWNJ86HGrkBrJTqEa3M3F61k+PW9L2J5/NXHehjTdg1vkoSpQ1wLbszDBVGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "898486c8-4976-4d00-b75b-3151290aaf19",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017KH6SAxTtU2ScX8faJSdJa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1239,
+                "cache_read_input_tokens": 24734,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1239
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019NugnFyzE9xuyrxUGBTDi4",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "tail -30 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "4ebd34e2-57b6-47ff-b59f-c518337989b2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017KH6SAxTtU2ScX8faJSdJa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1239,
+                "cache_read_input_tokens": 24734,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1239
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T01:07:31.207Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019NugnFyzE9xuyrxUGBTDi4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'tail -30 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\ntail: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log' for reading: No such file or directory\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "2856ef4f-bf17-4573-b039-1ad5e35effa0",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'tail -30 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\ntail: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log' for reading: No such file or directory\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.07}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'tail -30 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\ntail: cannot open '/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.log' for reading: No such file or directory\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.07}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P1UWLr5DfaeBrCDdjmUd9F",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json 2>/dev/null && python3 -c \"import json; d=json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json')); print(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}, n_samples={d.get(\\\"n_samples\\\",d.get(\\\"n_total\\\",\\\"N/A\\\"))}, correct={d.get(\\\"n_correct\\\",d.get(\\\"correct\\\",\\\"N/A\\\"))}')\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "0ad88d38-02d4-4364-a765-f036d7e3acbd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017KH6SAxTtU2ScX8faJSdJa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1239,
+                "cache_read_input_tokens": 24734,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1239
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T01:07:32.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P1UWLr5DfaeBrCDdjmUd9F",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json 2>/dev/null && python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, n_samples={d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_samples\\\\\\\\\\\\\\\\\\\\\\\",d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\"))}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_correct\\\\\\\\\\\\\\\\\\\\\\\",d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\"))}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n-rw-r--r-- 1 root root 1000532 May 17 09:01 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "c6e30eaa-6696-480c-a44e-48093bd6f51d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json 2>/dev/null && python3 -c \\\\\\\"import json; d=json.load(open(\\\\\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\\\\\')); print(f\\\\\\\\'accuracy={d.get(\\\\\\\\\\\\\\\\\\\\\\\"accuracy\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\")}, n_samples={d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_samples\\\\\\\\\\\\\\\\\\\\\\\",d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_total\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\"))}, correct={d.get(\\\\\\\\\\\\\\\\\\\\\\\"n_correct\\\\\\\\\\\\\\\\\\\\\\\",d.get(\\\\\\\\\\\\\\\\\\\\\\\"correct\\\\\\\\\\\\\\\\\\\\\\\",\\\\\\\\\\\\\\\\\\\\\\\"N/A\\\\\\\\\\\\\\\\\\\\\\\"))}\\\\\\\\')\\\\\\\"'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n-rw-r--r-- 1 root root 1000532 May 17 09:01 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python3: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json 2>/dev/null && python3 -c \\\"import json; d=json.load(open(\\\\'/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\')); print(f\\\\'accuracy={d.get(\\\\\\\\\\\"accuracy\\\\\\\\\\\",\\\\\\\\\\\"N/A\\\\\\\\\\\")}, n_samples={d.get(\\\\\\\\\\\"n_samples\\\\\\\\\\\",d.get(\\\\\\\\\\\"n_total\\\\\\\\\\\",\\\\\\\\\\\"N/A\\\\\\\\\\\"))}, correct={d.get(\\\\\\\\\\\"n_correct\\\\\\\\\\\",d.get(\\\\\\\\\\\"correct\\\\\\\\\\\",\\\\\\\\\\\"N/A\\\\\\\\\\\"))}\\\\')\\\"'\\n\\nExit code: 127\\n\\nStdout:\\n\\n-rw-r--r-- 1 root root 1000532 May 17 09:01 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\n\\nStderr:\\n\\nbash: line 1: python3: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.94}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 文件存在（1MB, 09:01 生成），但 log 文件不存在，python3 未在 PATH。让我用 conda python 解析结果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "47166ba0-fc15-4280-a2bb-bcab4bca3d6c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019VM8pGKU1TfDfrxHR8JLCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1120,
+                "cache_read_input_tokens": 25973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1120
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0111sTaxnwztjYiFX98Kj8pT",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'))\nprint(f'accuracy={d.get(\\\"accuracy\\\",\\\"N/A\\\")}')\nprint(f'n_samples={d.get(\\\"n_samples\\\",d.get(\\\"n_total\\\",\\\"N/A\\\"))}')\nprint(f'n_correct={d.get(\\\"n_correct\\\",d.get(\\\"correct\\\",\\\"N/A\\\"))}')\nprint(f'keys={list(d.keys())[:15]}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "e6dadbd0-f537-47d3-a8fb-c63f6f0c0fdd",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019VM8pGKU1TfDfrxHR8JLCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1120,
+                "cache_read_input_tokens": 25973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1120
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AwcJ3u1AELv4iKJBxrc4dG",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20* 2>/dev/null",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "d0eb2cb8-da05-4731-971c-67e13747f0ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019VM8pGKU1TfDfrxHR8JLCT",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1120,
+                "cache_read_input_tokens": 25973,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1120
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T01:07:39.995Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0111sTaxnwztjYiFX98Kj8pT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"accuracy=0.5928733889310084\\\\nn_samples=1319\\\\nn_correct=782\\\\nkeys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "a85ddd82-8463-45a0-a37d-5cc9b3156805",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"accuracy=0.5928733889310084\\\\nn_samples=1319\\\\nn_correct=782\\\\nkeys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.89}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"accuracy=0.5928733889310084\\nn_samples=1319\\nn_correct=782\\nkeys=['model_path', 'mode', 'accuracy', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'temperature', 'do_sample', 'examples']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T01:07:40.518Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AwcJ3u1AELv4iKJBxrc4dG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "1b678ff7-81db-43a3-aa97-e78252f3a3c8",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NEYPde4GFpPDLeSgqx33zz",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-11672",
+                "command": "/root/miniconda3/bin/python -c \"\nimport json\nd = json.load(open('/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'))\nprint(f'stderr={d.get(\\\"stderr\\\",\\\"N/A\\\")}')\nprint(f'model_path={d.get(\\\"model_path\\\",\\\"N/A\\\")}')\nprint(f'n_total={d.get(\\\"n_total\\\",\\\"N/A\\\")}')\nprint(f'temperature={d.get(\\\"temperature\\\",\\\"N/A\\\")}')\nprint(f'do_sample={d.get(\\\"do_sample\\\",\\\"N/A\\\")}')\nprint(f'eos_stats={d.get(\\\"eos_stats\\\",\\\"N/A\\\")}')\n\"\n",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "84251a0d-91e8-43cb-8fd0-a1b05e941307",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZNFQfY73ta9JZ3jLjH5KG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 756,
+                "cache_read_input_tokens": 27093,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 756
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T01:07:45.542Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NEYPde4GFpPDLeSgqx33zz",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"stderr=0.013527680145543942\\\\nmodel_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\nn_total=1319\\\\ntemperature=0.0\\\\ndo_sample=False\\\\neos_stats={'natural_eos': 1293, 'truncated': 26, 'eos_rate': 0.9802880970432145, 'avg_response_length': 226.73692191053829, 'max_response_length': 4096, 'min_response_length': 32}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "16005485-99e7-4d32-a43a-9079ef248b6f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"stderr=0.013527680145543942\\\\nmodel_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\\nn_total=1319\\\\ntemperature=0.0\\\\ndo_sample=False\\\\neos_stats={'natural_eos': 1293, 'truncated': 26, 'eos_rate': 0.9802880970432145, 'avg_response_length': 226.73692191053829, 'max_response_length': 4096, 'min_response_length': 32}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"stderr=0.013527680145543942\\nmodel_path=/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\nn_total=1319\\ntemperature=0.0\\ndo_sample=False\\neos_stats={'natural_eos': 1293, 'truncated': 26, 'eos_rate': 0.9802880970432145, 'avg_response_length': 226.73692191053829, 'max_response_length': 4096, 'min_response_length': 32}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "评估成功完成。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "b2f0503f-5f3b-4dc0-8e40-cea86f18c629",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBtpsN2jA8Lcthx71uQSL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 531,
+                "cache_read_input_tokens": 27849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 531
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PsaF1fzMhBEXWaS9bjaChF",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_standard_20_n1319",
+                "field": "conclusion",
+                "value": "success",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "2e513ddd-faf9-4fdc-ae5a-a34217701c8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01BBtpsN2jA8Lcthx71uQSL9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 531,
+                "cache_read_input_tokens": 27849,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 531
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T01:07:50.275Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PsaF1fzMhBEXWaS9bjaChF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:50.046Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5132}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "a8b2e1fc-a27c-46b8-9a55-7ffac1b268c6",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:50.046Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5132}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_standard_20_n1319\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:20:21.771Z\", \"updated_at\": \"2026-05-17T01:07:50.046Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"60789\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\", \"submitted_at\": \"2026-05-17T07:58:30Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\", \"eval_data\": \"gsm8k_test\", \"data_path\": \"gsm8k:test\", \"model_name\": \"Qwen2.5-7B-Standard-20%-SFT\", \"seed\": 42, \"data_count\": 1319}, \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\", \"parent\": \"sft_standard_20_retrain\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5132}}"
+              }
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01M3jvvVgt5NJY7e6X4Vcf8k",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_standard_20_n1319",
+                "field": "metrics",
+                "value": {
+                  "accuracy": 0.5929,
+                  "n_samples": 1319,
+                  "n_correct": 782,
+                  "stderr": 0.01353,
+                  "eos_rate": 0.9803,
+                  "temperature": 0,
+                  "do_sample": false
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "e1d0c74e-85d4-4454-acd7-3c01634c034b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RnMYL21qBGwpz8xBmUfpZX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 28380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 775
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T01:07:55.251Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01M3jvvVgt5NJY7e6X4Vcf8k",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:55.039Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5199}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "be000e62-7389-4306-93e6-80c718922284",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:55.039Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5199}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_standard_20_n1319\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:20:21.771Z\", \"updated_at\": \"2026-05-17T01:07:55.039Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"60789\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\", \"submitted_at\": \"2026-05-17T07:58:30Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\", \"eval_data\": \"gsm8k_test\", \"data_path\": \"gsm8k:test\", \"model_name\": \"Qwen2.5-7B-Standard-20%-SFT\", \"seed\": 42, \"data_count\": 1319}, \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\", \"parent\": \"sft_standard_20_retrain\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5929, \"n_samples\": 1319, \"n_correct\": 782, \"stderr\": 0.01353, \"eos_rate\": 0.9803, \"temperature\": 0, \"do_sample\": false}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5199}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013BKgKpCWKJpLWCNxUpYnqA",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_standard_20_n1319",
+                "field": "checkpoint_path",
+                "value": "/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "ae9d039f-704b-42c0-bb32-6144888f07d2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RnMYL21qBGwpz8xBmUfpZX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 28380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 775
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T01:07:56.193Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013BKgKpCWKJpLWCNxUpYnqA",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:55.994Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4668}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "8d4dbb25-4745-42b3-aaed-c54ea9e1d631",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:55.994Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4668}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_standard_20_n1319\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:20:21.771Z\", \"updated_at\": \"2026-05-17T01:07:55.994Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"60789\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\", \"submitted_at\": \"2026-05-17T07:58:30Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\", \"eval_data\": \"gsm8k_test\", \"data_path\": \"gsm8k:test\", \"model_name\": \"Qwen2.5-7B-Standard-20%-SFT\", \"seed\": 42, \"data_count\": 1319}, \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\", \"parent\": \"sft_standard_20_retrain\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5929, \"n_samples\": 1319, \"n_correct\": 782, \"stderr\": 0.01353, \"eos_rate\": 0.9803, \"temperature\": 0, \"do_sample\": false}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4668}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ad1bo3DyUxGqom8XMVVtM",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "eval_sft_standard_20_n1319",
+                "field": "log_path",
+                "value": "/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "d93172fa-ffa4-43a4-916f-93c31754f801",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RnMYL21qBGwpz8xBmUfpZX",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 775,
+                "cache_read_input_tokens": 28380,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 775
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T01:07:57.248Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ad1bo3DyUxGqom8XMVVtM",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:57.049Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4786}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "58ca2c85-4392-4c1e-a94f-6aeafdaced2f",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_sft_standard_20_n1319\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T05:20:21.771Z\\\", \\\"updated_at\\\": \\\"2026-05-17T01:07:57.049Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"60789\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\\\", \\\"submitted_at\\\": \\\"2026-05-17T07:58:30Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"eval_data\\\": \\\"gsm8k_test\\\", \\\"data_path\\\": \\\"gsm8k:test\\\", \\\"model_name\\\": \\\"Qwen2.5-7B-Standard-20%-SFT\\\", \\\"seed\\\": 42, \\\"data_count\\\": 1319}, \\\"hypothesis\\\": \\\"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\\\", \\\"parent\\\": \\\"sft_standard_20_retrain\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"accuracy\\\": 0.5929, \\\"n_samples\\\": 1319, \\\"n_correct\\\": 782, \\\"stderr\\\": 0.01353, \\\"eos_rate\\\": 0.9803, \\\"temperature\\\": 0, \\\"do_sample\\\": false}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4786}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_sft_standard_20_n1319\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T05:20:21.771Z\", \"updated_at\": \"2026-05-17T01:07:57.049Z\", \"spec\": {\"command\": \"bash -c 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && HF_HUB_OFFLINE=1 CUDA_VISIBLE_DEVICES=3 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json'\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"60789\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/eval_sft_standard_20_n1319.log\", \"submitted_at\": \"2026-05-17T07:58:30Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\", \"eval_data\": \"gsm8k_test\", \"data_path\": \"gsm8k:test\", \"model_name\": \"Qwen2.5-7B-Standard-20%-SFT\", \"seed\": 42, \"data_count\": 1319}, \"hypothesis\": \"Standard post-SFT full GSM8K eval (N=1319, greedy, seed=42). N=100 result: 64%. Full eval provides tight CI for paper Table 1. Parent: sft_standard_20_retrain.\", \"parent\": \"sft_standard_20_retrain\", \"conclusion\": \"success\", \"metrics\": {\"accuracy\": 0.5929, \"n_samples\": 1319, \"n_correct\": 782, \"stderr\": 0.01353, \"eos_rate\": 0.9803, \"temperature\": 0, \"do_sample\": false}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_westd\", \"log_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_20_full_westd.json\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4786}}"
+              }
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me try to delete the cron."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "26e93ca7-59fd-4e07-bd34-13eb94d6a0cb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WLKpgrdf8wNSL9JfM4Jp64",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2883,
+                "cache_read_input_tokens": 29155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2883
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MME2WMYNCWfFLdGqggJUCo",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:CronDelete",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "bbf1e82e-080b-4e3a-a919-a204adda36ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WLKpgrdf8wNSL9JfM4Jp64",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2883,
+                "cache_read_input_tokens": 29155,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2883
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T01:08:00.638Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01MME2WMYNCWfFLdGqggJUCo",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "CronDelete"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "5da3858f-ac1c-4090-8d03-dd21191ce8ff",
+            "tool_use_result": {
+              "matches": [
+                "CronDelete"
+              ],
+              "query": "select:CronDelete",
+              "total_deferred_tools": 26
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UKLxZGLiTi1UvwJSN69UNj",
+              "name": "CronDelete",
+              "input": {
+                "id": "eval_sft_standard_20_n1319"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "1844d312-3ed3-4d42-842b-5a0bced124c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GaVXhZVZcLszui1g2j1u9F",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 225,
+                "cache_read_input_tokens": 32038,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 225
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T01:08:03.291Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>No scheduled job with id 'eval_sft_standard_20_n1319'</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01UKLxZGLiTi1UvwJSN69UNj"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "f1a2b8f2-3d70-40ab-9a5c-a6257578221b",
+            "tool_use_result": "Error: No scheduled job with id 'eval_sft_standard_20_n1319'"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中删除或未创建），无需处理。\n\n---\n\n## 结果汇报\n\n**eval_sft_standard_20_n1319 — 成功完成 ✓**\n\n| 指标 | 值 |\n|------|------|\n| Accuracy | **59.29%** |\n| N samples | 1319 (full GSM8K test) |\n| N correct | 782 |\n| Stderr | ±1.35% |\n| EOS rate | 98.0% |\n| 设置 | greedy (T=0, do_sample=False) |\n\n**Paper Table 1 数据点**: Standard 20% pruning + SFT → **59.29% ± 1.35%**\n\n对比 N=100 快速评估的 64%，full eval 下降约 5pp，这是正常的小样本波动修正。Registry 已更新为 success + 完整 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "uuid": "54e9b304-8385-4832-a3e3-bfe2c4cc2f79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0131QWNS7nDN9TNthAjK93wz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 119,
+                "cache_read_input_tokens": 32263,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 119
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cron 不存在（可能已在之前的 session 中删除或未创建），无需处理。\n\n---\n\n## 结果汇报\n\n**eval_sft_standard_20_n1319 — 成功完成 ✓**\n\n| 指标 | 值 |\n|------|------|\n| Accuracy | **59.29%** |\n| N samples | 1319 (full GSM8K test) |\n| N correct | 782 |\n| Stderr | ±1.35% |\n| EOS rate | 98.0% |\n| 设置 | greedy (T=0, do_sample=False) |\n\n**Paper Table 1 数据点**: Standard 20% pruning + SFT → **59.29% ± 1.35%**\n\n对比 N=100 快速评估的 64%，full eval 下降约 5pp，这是正常的小样本波动修正。Registry 已更新为 success + 完整 metrics。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 51768,
+            "duration_api_ms": 49725,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "4ce09634-08d9-4eeb-ad11-5cd4cdb940e1",
+            "total_cost_usd": 0.30939625,
+            "usage": {
+              "input_tokens": 15,
+              "cache_creation_input_tokens": 20541,
+              "cache_read_input_tokens": 239326,
+              "output_tokens": 2389,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 20541,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 261,
+                  "cache_read_input_tokens": 32263,
+                  "cache_creation_input_tokens": 119,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 119
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1432,
+                "outputTokens": 24,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001552,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 15,
+                "outputTokens": 2389,
+                "cacheReadInputTokens": 239326,
+                "cacheCreationInputTokens": 20541,
+                "webSearchRequests": 0,
+                "costUSD": 0.30784425,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a62b6b06-d01d-4f99-aafa-c0b837f1922c"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/worker-executions/diagnose-eval-sft-standard-20-n1319-copy-2.md"
+}

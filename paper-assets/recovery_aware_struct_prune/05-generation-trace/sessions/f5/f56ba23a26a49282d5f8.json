@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f56ba23a26a49282d5f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper figure fig3 collapse dynamics",
+  "task_key": "worker_paper_figure_fig3_collapse_dynamics_20260516T083038",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_fig3_collapse_dynamics_20260516T083038_result.json",
+    "occurrence": 1,
+    "bytes": 384,
+    "sha256": "5437950fc52cb19a25c5f5055dc1923e563080da479046c385cf9859fbe07bb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册。\n\n- PDF: `figures/paper/fig3_collapse_dynamics.pdf` (35K)\n- PNG: `figures/paper/fig3_collapse_dynamics.png` (416K, 2624×2076)\n- Artifact ID: `art_20260516_137722`\n\n四个子图均包含 Unpruned / Standard 20% / RASP 20% 三条线，collapse onset 垂直虚线 (step 10 RASP, step 60 Standard)，以及各子图关键数值标注。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-fig3-collapse-dynamics-copy-2.md"
+}

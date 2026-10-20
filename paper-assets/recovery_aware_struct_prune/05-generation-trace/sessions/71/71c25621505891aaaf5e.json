@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71c25621505891aaaf5e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh fix gpu contention westd v3",
+  "task_key": "worker_ssh_fix_gpu_contention_westd_v3_20260523T221745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix_gpu_contention_westd_v3_20260523T221745_result.json",
+    "occurrence": 1,
+    "bytes": 338,
+    "sha256": "f10f5ad0d703ff401d0d7e0ef243f74b118e9dda999a4dad1181881003624648"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 竞争已解决，现在只剩 168524（grpo_rasp_alpha2p0）。\n\n**GPU 2 上有 `sft_rasp_alpha2p0_20_fixed`（PID 171964）在跑，97% 利用率。** 要在 GPU 2 上启动 sft_standard_20_fixed_v4，需要先 kill 171964。确认要 kill 吗？还是改到其他方案（比如等它跑完、或者换 GPU）？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-gpu-contention-westd-v3.md"
+}

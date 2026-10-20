@@ -1,0 +1,1005 @@
+{
+  "schema_version": "1.0",
+  "session_id": "8d699b907b6913378c93",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 122,
+          "timestamp": "2026-05-16T15:52:56.204Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015CBE8movTtv3ZtXXCV5iq3",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_standard_25_westd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"21483\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:30.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:28.541Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21403\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_standard_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:42.896Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:50:15.072Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 20% sparsity v3 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"16892\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:42.407Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\\\", \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"wall_clock_seconds\\\": 3632.7, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:42.910Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:46.610010+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.044, \\\"reward_std_final\\\": 0.1458, \\\"frac_zero_std_final\\\": 0.85, \\\"completion_length_final\\\": 921, \\\"kl_final\\\": 0.005193, \\\"loss_final\\\": -0.01208, \\\"reward_peak\\\": 0.069, \\\"frac_zero_std_min\\\": 0.75, \\\"frac_zero_std_max\\\": 0.9, \\\"clipped_ratio_final\\\": 0.856, \\\"collapse_pattern\\\": \\\"permanent_collapse\\\", \\\"collapse_onset\\\": \\\"step1\\\", \\\"recovery\\\": false, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true}, \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math/\\\", \\\"completed_at\\\": \\\"2026-05-16T15:50:15.072Z\\\"}, \\\"grpo_rasp_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:39.708Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:50:13.550Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math_v3 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"16812\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:39.494Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B (RASP 20% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3634.1, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C1/C2. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_rasp_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:34.213Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:36.937539+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"yyg9ty4u\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.061, \\\"reward_std_final\\\": 0.1997, \\\"frac_zero_std_final\\\": 0.675, \\\"completion_length_final\\\": 1006, \\\"kl_final\\\": 0.009132, \\\"loss_final\\\": -0.00236, \\\"reward_peak\\\": 0.083, \\\"frac_zero_std_min\\\": 0.55, \\\"frac_zero_std_max\\\": 0.7, \\\"clipped_ratio_final\\\": 0.975, \\\"collapse_pattern\\\": \\\"permanent_collapse\\\", \\\"collapse_onset\\\": \\\"step1\\\", \\\"recovery\\\": false, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true}, \\\"completed_at\\\": \\\"2026-05-16T15:50:13.550Z\\\"}, \\\"grpo_standard_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:48:39.584Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_step10\\\": 0.2006, \\\"frac_zero_std_step10\\\": 0.375, \\\"kl_step20\\\": 56.08, \\\"kl_step80\\\": 4096000, \\\"loss_step80\\\": 220300, \\\"collapse_pattern\\\": \\\"kl_explosion_transient\\\", \\\"collapse_onset\\\": \\\"step20_kl_spike\\\", \\\"collapse_permanence\\\": \\\"transient_recovery_step90\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\\\"}, \\\"grpo_rasp_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:48:38.688Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_step10\\\": 0.1119, \\\"frac_zero_std_step10\\\": 0.575, \\\"frac_zero_std_step30\\\": 0.55, \\\"collapse_pattern\\\": \\\"mild_partial\\\", \\\"collapse_onset\\\": \\\"step10_borderline\\\", \\\"collapse_permanence\\\": \\\"not_permanent\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}, \\\"eval_sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:51:38.892Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:54:49.149Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_rlvr_20.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"625453\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_sft_rasp_rlvr_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:51:38.607Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct (RASP-RLVR 20% SFT recovered)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870\\\", \\\"eval_data\\\": \\\"openai/gsm8k test split\\\"}, \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). 验证反向 CKA scoring 的 RLVR 恢复效果。对比 RASP SFT (61.49%) 和 Standard SFT (59.29%)。Parent: sft_rasp_rlvr_20.\\\", \\\"parent\\\": \\\"sft_rasp_rlvr_20\\\"}, \\\"sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:50:43.369Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:50:02.686Z\\\", \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"620651\\\", \\\"data_path\\\": \\\"gsm8k_sft\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct (RASP-RLVR pruned 20%)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_rasp_rlvr_20.log\\\"}, \\\"notes\\\": \\\"v1 failed (EXIT_CODE=2): wrong arg names. v2 fixed args but EXIT_CODE=1: 训练完成 2 epochs (1870 steps, 36min), loss ~0.64, token_acc ~0.83。模型 shards 已保存到 checkpoint-1870（6.16B params, 验证可加载，需用 load_pruned_model）。optimizer state 被截断（4.3G vs 预期 23G）不可恢复训练，但模型推理可用。westb 数据盘 250GB 100% 满，需清理 checkpoint-935 (35GB) 后才能跑新实验。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T14:20:31.427Z\\\"}, \\\"failure_reason\\\": \\\"磁盘空间不足：训练完成但保存 optimizer state 时 torch.save 失败 (RuntimeError: iostream error)。模型 shards 已写入，checkpoint 可能可用。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T14:20:32.511Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T14:20:34.191603+00:00\\\"}]}}, \\\"grpo_standard_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:44.572Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:27:51.309Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO (100 steps, save_steps=5). 跨模型验证 C2: Standard collapse gradient (transient dip+recovery). DeepSeek Standard: transient dip step ~60, recovery step ~90. 参数同 grpo_stage2_standard_20_v8。Parent: sft_standard_20_qwen_math.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_standard_qwen_math --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"13783\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:05:40.637Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1330.7, \\\"gpu_hours\\\": 0.37}, \\\"wandb_run_id\\\": \\\"iq8nkk1p\\\", \\\"notes\\\": \\\"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_standard_qwen_math_v2.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T14:27:51.309Z\\\"}, \\\"grpo_rasp_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:43.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:27:50.618Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 20% GRPO (100 steps, save_steps=5). 跨模型验证 C1/C2: GRPO collapse 是否在 Qwen Math 上复现。DeepSeek RASP collapse onset ~step 10 (permanent). 参数同 grpo_stage2_rasp_20_v9。Parent: sft_rasp_20_qwen_math.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"13703\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:05:37.906Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1332.7, \\\"gpu_hours\\\": 0.37}, \\\"wandb_run_id\\\": \\\"2sgy2m1a\\\", \\\"notes\\\": \\\"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_rasp_qwen_math_v2.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T14:27:50.618Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 103, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5755}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "3fbbeaf6-5857-4721-a8a8-5a3b1aa62b71",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sft_standard_25_westd\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:30.818Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"21483\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:30.596Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_rasp_25\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:40.256Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:52:28.541Z\\\", \\\"hypothesis\\\": \\\"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"21403\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T15:52:28.168Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}}, \\\"grpo_standard_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:42.896Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:50:15.072Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 20% sparsity v3 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"16892\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:42.407Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\\\", \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"wall_clock_seconds\\\": 3632.7, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:42.910Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:46.610010+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.044, \\\"reward_std_final\\\": 0.1458, \\\"frac_zero_std_final\\\": 0.85, \\\"completion_length_final\\\": 921, \\\"kl_final\\\": 0.005193, \\\"loss_final\\\": -0.01208, \\\"reward_peak\\\": 0.069, \\\"frac_zero_std_min\\\": 0.75, \\\"frac_zero_std_max\\\": 0.9, \\\"clipped_ratio_final\\\": 0.856, \\\"collapse_pattern\\\": \\\"permanent_collapse\\\", \\\"collapse_onset\\\": \\\"step1\\\", \\\"recovery\\\": false, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true}, \\\"wandb_run_id\\\": \\\"5n2snh48\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math/\\\", \\\"completed_at\\\": \\\"2026-05-16T15:50:15.072Z\\\"}, \\\"grpo_rasp_qwen_math_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:49:39.708Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:50:13.550Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math_v3 --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"16812\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math_v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:39.494Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B (RASP 20% SFT recovered)\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3634.1, \\\"gpu_hours\\\": 1.01}, \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C1/C2. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_rasp_20.\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:43:34.213Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:43:36.937539+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"yyg9ty4u\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math/\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.061, \\\"reward_std_final\\\": 0.1997, \\\"frac_zero_std_final\\\": 0.675, \\\"completion_length_final\\\": 1006, \\\"kl_final\\\": 0.009132, \\\"loss_final\\\": -0.00236, \\\"reward_peak\\\": 0.083, \\\"frac_zero_std_min\\\": 0.55, \\\"frac_zero_std_max\\\": 0.7, \\\"clipped_ratio_final\\\": 0.975, \\\"collapse_pattern\\\": \\\"permanent_collapse\\\", \\\"collapse_onset\\\": \\\"step1\\\", \\\"recovery\\\": false, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true}, \\\"completed_at\\\": \\\"2026-05-16T15:50:13.550Z\\\"}, \\\"grpo_standard_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:48:39.584Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_step10\\\": 0.2006, \\\"frac_zero_std_step10\\\": 0.375, \\\"kl_step20\\\": 56.08, \\\"kl_step80\\\": 4096000, \\\"loss_step80\\\": 220300, \\\"collapse_pattern\\\": \\\"kl_explosion_transient\\\", \\\"collapse_onset\\\": \\\"step20_kl_spike\\\", \\\"collapse_permanence\\\": \\\"transient_recovery_step90\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\\\"}, \\\"grpo_rasp_25_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:48:38.688Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_step10\\\": 0.1119, \\\"frac_zero_std_step10\\\": 0.575, \\\"frac_zero_std_step30\\\": 0.55, \\\"collapse_pattern\\\": \\\"mild_partial\\\", \\\"collapse_onset\\\": \\\"step10_borderline\\\", \\\"collapse_permanence\\\": \\\"not_permanent\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}, \\\"eval_sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T14:51:38.892Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:54:49.149Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_rlvr_20.json\\\\\\\"\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"625453\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/eval_sft_rasp_rlvr_20.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:51:38.607Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct (RASP-RLVR 20% SFT recovered)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870\\\", \\\"eval_data\\\": \\\"openai/gsm8k test split\\\"}, \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). 验证反向 CKA scoring 的 RLVR 恢复效果。对比 RASP SFT (61.49%) 和 Standard SFT (59.29%)。Parent: sft_rasp_rlvr_20.\\\", \\\"parent\\\": \\\"sft_rasp_rlvr_20\\\"}, \\\"sft_rasp_rlvr_20\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T09:50:43.369Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:50:02.686Z\\\", \\\"hypothesis\\\": \\\"RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 --seed 42\\\", \\\"server\\\": \\\"westb-23072\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": \\\"620651\\\", \\\"data_path\\\": \\\"gsm8k_sft\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-7B-Instruct (RASP-RLVR pruned 20%)\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/sft_rasp_rlvr_20.log\\\"}, \\\"notes\\\": \\\"v1 failed (EXIT_CODE=2): wrong arg names. v2 fixed args but EXIT_CODE=1: 训练完成 2 epochs (1870 steps, 36min), loss ~0.64, token_acc ~0.83。模型 shards 已保存到 checkpoint-1870（6.16B params, 验证可加载，需用 load_pruned_model）。optimizer state 被截断（4.3G vs 预期 23G）不可恢复训练，但模型推理可用。westb 数据盘 250GB 100% 满，需清理 checkpoint-935 (35GB) 后才能跑新实验。\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T14:20:31.427Z\\\"}, \\\"failure_reason\\\": \\\"磁盘空间不足：训练完成但保存 optimizer state 时 torch.save 失败 (RuntimeError: iostream error)。模型 shards 已写入，checkpoint 可能可用。\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-16T14:20:32.511Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T14:20:34.191603+00:00\\\"}]}}, \\\"grpo_standard_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:44.572Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:27:51.309Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 20% GRPO (100 steps, save_steps=5). 跨模型验证 C2: Standard collapse gradient (transient dip+recovery). DeepSeek Standard: transient dip step ~60, recovery step ~90. 参数同 grpo_stage2_standard_20_v8。Parent: sft_standard_20_qwen_math.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_standard_qwen_math --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"13783\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:05:40.637Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1330.7, \\\"gpu_hours\\\": 0.37}, \\\"wandb_run_id\\\": \\\"iq8nkk1p\\\", \\\"notes\\\": \\\"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_standard_qwen_math_v2.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T14:27:51.309Z\\\"}, \\\"grpo_rasp_qwen_math\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T08:42:43.989Z\\\", \\\"updated_at\\\": \\\"2026-05-16T14:27:50.618Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 20% GRPO (100 steps, save_steps=5). 跨模型验证 C1/C2: GRPO collapse 是否在 Qwen Math 上复现。DeepSeek RASP collapse onset ~step 10 (permanent). 参数同 grpo_stage2_rasp_20_v9。Parent: sft_rasp_20_qwen_math.\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math --seed 42\\\\\\\"\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"13703\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:05:37.906Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 1332.7, \\\"gpu_hours\\\": 0.37}, \\\"wandb_run_id\\\": \\\"2sgy2m1a\\\", \\\"notes\\\": \\\"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_rasp_qwen_math_v2.\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-16T14:27:50.618Z\\\"}}, \\\"count\\\": 10, \\\"total\\\": 103, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5755}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"experiments\": {\"sft_standard_25_westd\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:52:30.818Z\", \"updated_at\": \"2026-05-16T15:52:30.818Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_standard_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_standard_25 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_length 2048 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"21483\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_standard_25_westd.log\", \"submitted_at\": \"2026-05-16T15:52:30.596Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"grpo_rasp_25\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:40.256Z\", \"updated_at\": \"2026-05-16T15:52:28.541Z\", \"hypothesis\": \"RASP 25% GRPO recovery (100 steps). 预期 collapse 比 20% 更快更严重。与 grpo_standard_25 对比验证 C3: recovery method conditions pruning order. Parent: sft_rasp_25.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25 --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_25 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"21403\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25.log\", \"submitted_at\": \"2026-05-16T15:52:28.168Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"grpo_standard_qwen_math_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:49:42.896Z\", \"updated_at\": \"2026-05-16T15:50:15.072Z\", \"spec\": {\"command\": \"GRPO v4 Standard 20% sparsity v3 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"16892\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_standard_qwen_math_v3.log\", \"submitted_at\": \"2026-05-16T14:49:42.407Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math\", \"wandb_run_id\": \"5n2snh48\", \"wall_clock_seconds\": 3632.7, \"gpu_hours\": 1.01}, \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C2: Standard collapse gradient. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_standard_20.\", \"reproduce\": {\"finished_at\": \"2026-05-16T15:43:42.910Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:43:46.610010+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"reward_final\": 0.044, \"reward_std_final\": 0.1458, \"frac_zero_std_final\": 0.85, \"completion_length_final\": 921, \"kl_final\": 0.005193, \"loss_final\": -0.01208, \"reward_peak\": 0.069, \"frac_zero_std_min\": 0.75, \"frac_zero_std_max\": 0.9, \"clipped_ratio_final\": 0.856, \"collapse_pattern\": \"permanent_collapse\", \"collapse_onset\": \"step1\", \"recovery\": false, \"total_steps\": 100, \"max_steps_reached\": true}, \"wandb_run_id\": \"5n2snh48\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math/\", \"completed_at\": \"2026-05-16T15:50:15.072Z\"}, \"grpo_rasp_qwen_math_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:49:39.708Z\", \"updated_at\": \"2026-05-16T15:50:13.550Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 100 --save_total_limit 3 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math_v3 --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"16812\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math_v3.log\", \"submitted_at\": \"2026-05-16T14:49:39.494Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B (RASP 20% SFT recovered)\", \"seed\": 42, \"wall_clock_seconds\": 3634.1, \"gpu_hours\": 1.01}, \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% GRPO v3 (100 steps, save_steps=100). 跨模型验证 C1/C2. 修复 save_steps=5 磁盘膨胀问题。Parent: sft_qwen_math_rasp_20.\", \"reproduce\": {\"finished_at\": \"2026-05-16T15:43:34.213Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:43:36.937539+00:00\"}]}, \"wandb_run_id\": \"yyg9ty4u\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math/\", \"conclusion\": \"success\", \"metrics\": {\"reward_final\": 0.061, \"reward_std_final\": 0.1997, \"frac_zero_std_final\": 0.675, \"completion_length_final\": 1006, \"kl_final\": 0.009132, \"loss_final\": -0.00236, \"reward_peak\": 0.083, \"frac_zero_std_min\": 0.55, \"frac_zero_std_max\": 0.7, \"clipped_ratio_final\": 0.975, \"collapse_pattern\": \"permanent_collapse\", \"collapse_onset\": \"step1\", \"recovery\": false, \"total_steps\": 100, \"max_steps_reached\": true}, \"completed_at\": \"2026-05-16T15:50:13.550Z\"}, \"grpo_standard_25_qwen_math\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:12.657Z\", \"updated_at\": \"2026-05-16T15:48:39.584Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\", \"spec\": {\"command\": \"GRPO v4 Standard 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"17062\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:48.269Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3357.7, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"wandb_run_id\": \"16vqw4e6\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:31.419Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:34.585285+00:00\"}]}, \"wandb_run_id\": \"16vqw4e6\", \"metrics\": {\"reward_final\": 0.1819, \"reward_std_final\": 0.3673, \"frac_zero_std_final\": 0.325, \"completion_length_final\": 527, \"kl_final\": 0.2983, \"loss_final\": 0.1651, \"reward_step10\": 0.2006, \"frac_zero_std_step10\": 0.375, \"kl_step20\": 56.08, \"kl_step80\": 4096000, \"loss_step80\": 220300, \"collapse_pattern\": \"kl_explosion_transient\", \"collapse_onset\": \"step20_kl_spike\", \"collapse_permanence\": \"transient_recovery_step90\", \"early_stop\": false, \"total_steps\": 100}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T15:45:46.005Z\", \"notes\": \"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\"}, \"grpo_rasp_25_qwen_math\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:11.170Z\", \"updated_at\": \"2026-05-16T15:48:38.688Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\", \"spec\": {\"command\": \"GRPO v4 RASP 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:2\"], \"pid\": \"16978\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:45.668Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3335.3, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"wandb_run_id\": \"3vjjzi13\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:25.443Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:27.310795+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"reward_final\": 0.2056, \"reward_std_final\": 0.4003, \"frac_zero_std_final\": 0.35, \"completion_length_final\": 811.9, \"kl_final\": 0.003789, \"loss_final\": 0.06824, \"reward_step10\": 0.1119, \"frac_zero_std_step10\": 0.575, \"frac_zero_std_step30\": 0.55, \"collapse_pattern\": \"mild_partial\", \"collapse_onset\": \"step10_borderline\", \"collapse_permanence\": \"not_permanent\", \"early_stop\": false, \"total_steps\": 100}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"completed_at\": \"2026-05-16T15:45:20.942Z\", \"wandb_run_id\": \"3vjjzi13\", \"notes\": \"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\"}, \"eval_sft_rasp_rlvr_20\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-16T14:51:38.892Z\", \"updated_at\": \"2026-05-16T14:54:49.149Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870 --max_samples 1319 --seed 42 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_rlvr_20.json\\\"\", \"server\": \"westb-23072\", \"gpu\": [\"cuda:1\"], \"pid\": \"625453\", \"log_path\": \"~/runs/recovery_aware_struct_prune/eval_sft_rasp_rlvr_20.log\", \"submitted_at\": \"2026-05-16T14:51:38.607Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 1319, \"model_name\": \"Qwen2.5-7B-Instruct (RASP-RLVR 20% SFT recovered)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870\", \"eval_data\": \"openai/gsm8k test split\"}, \"hypothesis\": \"RASP-RLVR 20% post-SFT GSM8K eval (N=1319, greedy, seed=42). 验证反向 CKA scoring 的 RLVR 恢复效果。对比 RASP SFT (61.49%) 和 Standard SFT (59.29%)。Parent: sft_rasp_rlvr_20.\", \"parent\": \"sft_rasp_rlvr_20\"}, \"sft_rasp_rlvr_20\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T09:50:43.369Z\", \"updated_at\": \"2026-05-16T14:50:02.686Z\", \"hypothesis\": \"RASP-RLVR 20% post-prune SFT recovery (lr=2e-5, epochs=2). 验证反向 CKA scoring (保留冗余结构) 是否产生更好的 RLVR 恢复基础。对比 RASP SFT 和 Standard SFT。Parent: prune_rasp_rlvr_20.\", \"spec\": {\"command\": \"python src/sft_recovery.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20 --gpu 1 --learning_rate 2e-5 --num_train_epochs 2 --batch_size 1 --gradient_accumulation_steps 8 --max_seq_len 2048 --seed 42\", \"server\": \"westb-23072\", \"gpu\": \"cuda:1\", \"pid\": \"620651\", \"data_path\": \"gsm8k_sft\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-7B-Instruct (RASP-RLVR pruned 20%)\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20\", \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20\", \"log_path\": \"~/runs/recovery_aware_struct_prune/sft_rasp_rlvr_20.log\"}, \"notes\": \"v1 failed (EXIT_CODE=2): wrong arg names. v2 fixed args but EXIT_CODE=1: 训练完成 2 epochs (1870 steps, 36min), loss ~0.64, token_acc ~0.83。模型 shards 已保存到 checkpoint-1870（6.16B params, 验证可加载，需用 load_pruned_model）。optimizer state 被截断（4.3G vs 预期 23G）不可恢复训练，但模型推理可用。westb 数据盘 250GB 100% 满，需清理 checkpoint-935 (35GB) 后才能跑新实验。\", \"reproduce\": {\"finished_at\": \"2026-05-16T14:20:31.427Z\"}, \"failure_reason\": \"磁盘空间不足：训练完成但保存 optimizer state 时 torch.save 失败 (RuntimeError: iostream error)。模型 shards 已写入，checkpoint 可能可用。\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-16T14:20:32.511Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:20:34.191603+00:00\"}]}}, \"grpo_standard_qwen_math\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:44.572Z\", \"updated_at\": \"2026-05-16T14:27:51.309Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 20% GRPO (100 steps, save_steps=5). 跨模型验证 C2: Standard collapse gradient (transient dip+recovery). DeepSeek Standard: transient dip step ~60, recovery step ~90. 参数同 grpo_stage2_standard_20_v8。Parent: sft_standard_20_qwen_math.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_standard_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_standard_qwen_math --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:1\"], \"pid\": \"13783\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_standard_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:05:40.637Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1330.7, \"gpu_hours\": 0.37}, \"wandb_run_id\": \"iq8nkk1p\", \"notes\": \"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_standard_qwen_math_v2.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T14:27:51.309Z\"}, \"grpo_rasp_qwen_math\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T08:42:43.989Z\", \"updated_at\": \"2026-05-16T14:27:50.618Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 20% GRPO (100 steps, save_steps=5). 跨模型验证 C1/C2: GRPO collapse 是否在 Qwen Math 上复现。DeepSeek RASP collapse onset ~step 10 (permanent). 参数同 grpo_stage2_rasp_20_v9。Parent: sft_rasp_20_qwen_math.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && python src/train_grpo_v5.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20 --output_dir /root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math --gpu 0 --max_completion_length 1024 --beta 0.04 --temperature 0.4 --repetition_penalty 1.15 --format_reward_weight 0.1 --gradient_checkpointing true --optim adamw_bnb_8bit --loss_type dapo --learning_rate 5e-7 --max_steps 100 --save_steps 5 --save_total_limit 5 --reward_desert_patience 50 --run_name grpo_rasp_qwen_math --seed 42\\\"\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:0\"], \"pid\": \"13703\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:05:37.906Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1332.7, \"gpu_hours\": 0.37}, \"wandb_run_id\": \"2sgy2m1a\", \"notes\": \"v2 restart with EOS fix (generation_config eos_token_id=[151643,151645]). Step speed ~27s/step (vs ~7min pre-fix). wandb run name: grpo_rasp_qwen_math_v2.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T14:27:50.618Z\"}}, \"count\": 10, \"total\": 103, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5755}}"
+              }
+            }
+          },
+          "id": "event-000122"
+        },
+        {
+          "source_line": 123,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have the full picture. The 25% experiments are already DONE with conclusions and metrics set:\n\n1. `grpo_rasp_25_qwen_math`: conclusion=\"success\", metrics set, notes=\"stable-but-low-signal\"\n2. `grpo_standard_25_qwen_math`: conclusion=\"negative\", metrics set, notes=\"catastrophic-divergence\"\n\nThese were already analyzed by a previous agent. However, the user wants me to do a comprehensive analysis comparing with 20% and write it to `artifacts/analysis_grpo_qwen_math_25.md`.\n\n\nI'm checking the 20% v3 conclusions to understand the pattern: RASP showed success with permanent collapse, while Standard showed negative results with the opposite behavior from DeepSeek. Now I need to reconcile these existing conclusions with my own analysis, particularly understanding why RASP 25% was marked success despite mild partial collapse and why Standard 25% got flagged for catastrophic KL divergence.\n\nLooking at the data more carefully, I'm noticing something crucial: the 20% and 25% experiments show dramatically different patterns. At 20%, both RASP and Standard collapse severely, but at 25%, there's no collapse at all—though Standard develops KL explosions instead. This counterintuitive shift is important to understand. Since these experiments are already complete, I need to update their metrics with the full step-by-step data I've extracted and potentially revise the conclusions based on what \"success\" actually meant in the original hypothesis context.\n\nComparing the 25% RASP results to 20% RASP directly, the 25% version is actually performing better—less collapse, higher rewards—which suggests the sparsity gradient hypothesis (more sparsity equals worse outcomes) isn't holding up. I should write out the full analysis now and update the registry with these more detailed findings and revised notes. I'm realizing the previous assessment of RASP 25% as \"success\" was likely based on observing *some* collapse signal rather than confirming the sparsity gradient hypothesis—since 25% actually shows *less* collapse than 20%, which contradicts the expected pattern. Both RASP and Standard at 25% should be marked negative because neither demonstrates the predicted relationship where higher sparsity increases collapse. Looking at the user's success criteria more carefully, I see that 25% RASP actually shows less collapse than 20% RASP, which contradicts the hypothesis that higher sparsity should cause worse collapse. Similarly, 25% Standard doesn't demonstrate more severe collapse either. Both experiments fail to meet the \"success\" threshold, so I need to revise the RASP 25% result from success to negative and document why both conditions don't support the pattern.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "afb9555d-0171-4964-aa7d-76fcd1b31d40",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016up1PSmvkAvrmv8jvvNzxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8008,
+                "cache_read_input_tokens": 109921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8008
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000123"
+        },
+        {
+          "source_line": 124,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据完整了。两个 25% 实验已有初步结论，但缺乏与 20% 的系统对比。现在写综合分析报告并更新 registry。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "891bac17-7bc4-42f7-bece-0ebab1041be5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016up1PSmvkAvrmv8jvvNzxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8008,
+                "cache_read_input_tokens": 109921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8008
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000124"
+        },
+        {
+          "source_line": 125,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BUwEQSwiaaHeWYA6qo5aWs",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "artifacts/analysis_grpo_qwen_math_25.md",
+                "content": "# GRPO Qwen2.5-Math-7B 25% Sparsity Analysis\n\n**Date**: 2026-05-16\n**Experiments**: grpo_rasp_25_qwen_math, grpo_standard_25_qwen_math\n**Server**: westd-11672 (cuda:2, cuda:3)\n**W&B**: 3vjjzi13 (RASP), 16vqw4e6 (Standard)\n\n## 1. Training Metrics (10-step resolution)\n\n### RASP 25% (grpo_rasp_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.112 | 0.575 | 772.7 | 0.002 | 0.006 | 0.117 |\n| 20 | 0.203 | 0.250 | 811.9 | 0.002 | 0.045 | 0.109 |\n| 30 | 0.125 | 0.550 | 801.0 | 0.026 | 0.004 | 0.107 |\n| 40 | 0.184 | 0.375 | 784.4 | 0.002 | 0.076 | 0.098 |\n| 50 | 0.177 | 0.300 | 763.3 | 0.045 | 0.035 | 0.099 |\n| 60 | 0.183 | 0.350 | 743.1 | **725** | **49.7** | 0.107 |\n| 70 | 0.199 | 0.375 | 750.7 | 0.002 | 0.027 | 0.112 |\n| 80 | 0.225 | 0.400 | 758.3 | 0.002 | 0.079 | 0.104 |\n| 90 | 0.111 | 0.375 | 753.2 | 0.002 | 0.055 | 0.115 |\n| 100 | 0.206 | 0.350 | 811.9 | 0.004 | 0.068 | 0.090 |\n\n**Pattern**: Stable training. Reward flat ~0.11-0.23. One transient KL spike at step 60 (725), immediately recovers. frac_zero_std 0.575→0.35 (improving). No collapse.\n\n### Standard 25% (grpo_standard_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.201 | 0.375 | 510.5 | 0.005 | 0.090 | 0.240 |\n| 20 | 0.163 | 0.400 | 531.6 | **56** | **2.6** | 0.230 |\n| 30 | 0.106 | 0.425 | 594.6 | 0.005 | 0.061 | 0.243 |\n| 40 | 0.211 | 0.300 | 515.7 | **7.9e15** | **3.7e14** | 0.248 |\n| 50 | 0.159 | 0.325 | 515.1 | 0.006 | 0.069 | 0.244 |\n| 60 | 0.208 | 0.350 | 460.0 | 0.005 | 0.101 | 0.255 |\n| 70 | 0.190 | 0.375 | 544.4 | 0.005 | 0.074 | 0.236 |\n| 80 | 0.209 | 0.275 | 533.8 | **4.1e6** | **2.2e5** | 0.262 |\n| 90 | 0.174 | 0.225 | 576.7 | 0.026 | 0.121 | 0.245 |\n| 100 | 0.182 | 0.325 | 527.0 | 0.298 | 0.165 | 0.238 |\n\n**Pattern**: Recurrent catastrophic KL explosions (steps 20, 40, 80). Each time self-recovers within 10 steps. Despite KL reaching 7.9e15, reward stays stable ~0.11-0.21 and frac_zero_std actually improves (0.375→0.225→0.325). No reward collapse.\n\n## 2. Comparison with 20% Qwen Math GRPO (v3 runs)\n\n### RASP 20% (grpo_rasp_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.049 | 0.650 | 1015 | 0.064 | 0.000 | 0.077 |\n| 50 | 0.069 | 0.675 | 1013 | 0.010 | 0.009 | 0.071 |\n| 100 | 0.061 | 0.675 | 1006 | 0.009 | -0.002 | 0.078 |\n\n**20% RASP pattern**: Permanent collapse. reward 0.05-0.10, frac_zero_std 0.55-0.70, comp_len maxed ~1003-1024, entropy very low 0.07.\n\n### Standard 20% (grpo_standard_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.063 | 0.750 | 943 | 0.051 | 0.015 | 0.200 |\n| 30 | 0.031 | 0.900 | 931 | 0.006 | -0.005 | 0.198 |\n| 100 | 0.044 | 0.850 | 921 | 0.005 | -0.012 | 0.175 |\n\n**20% Standard pattern**: Severe permanent collapse. reward 0.03-0.07, frac_zero_std 0.75-0.90, comp_len ~921-952.\n\n## 3. Cross-Sparsity Comparison (Same Model)\n\n| Metric | RASP 20% | RASP 25% | Std 20% | Std 25% |\n|--------|----------|----------|---------|---------|\n| reward (final) | 0.061 | **0.206** | 0.044 | **0.182** |\n| reward (peak) | 0.083 | **0.225** | 0.069 | **0.211** |\n| frac_0std (final) | 0.675 | **0.350** | 0.850 | **0.325** |\n| frac_0std (range) | 0.55-0.70 | **0.25-0.575** | 0.75-0.90 | **0.225-0.425** |\n| comp_len (final) | 1006 | 812 | 921 | 527 |\n| entropy (final) | 0.078 | **0.090** | 0.175 | **0.238** |\n| KL spikes | none | 1 (step 60) | none | **3** (steps 20,40,80) |\n| collapse_pattern | permanent | **none** | permanent | **KL explosions** |\n\n**Key finding: 25% is BETTER than 20% across all collapse metrics.** This is the opposite of the expected sparsity gradient.\n\n## 4. Cross-Model Comparison (DeepSeek vs Qwen Math)\n\n| Pattern | DeepSeek 20% | Qwen Math 20% | Qwen Math 25% |\n|---------|-------------|---------------|---------------|\n| RASP collapse | permanent (frac→0.95) | permanent (frac 0.55-0.70) | **no collapse** (frac 0.25-0.575) |\n| Standard collapse | transient dip + recovery | **permanent** (frac 0.75-0.90) | KL explosions, no reward collapse |\n| RASP vs Standard | RASP worse | **Standard worse** | Standard more unstable |\n\n**RASP vs Standard direction reverses between models**: On DeepSeek RASP collapses worse; on Qwen Math Standard collapses worse. This is inconsistent.\n\n## 5. Conclusion\n\n### Verdict: **NEGATIVE** (both experiments)\n\nThe sparsity gradient hypothesis (C3: more sparsity → worse collapse) is **contradicted**:\n\n1. **25% < 20% in collapse severity** — reward is 3-4x higher, frac_zero_std is substantially lower at 25% than 20%. Higher sparsity paradoxically produces better GRPO outcomes.\n\n2. **RASP vs Standard direction inconsistent** — On DeepSeek, RASP collapses worse. On Qwen Math at 20%, Standard collapses worse. At 25%, neither shows classic collapse (Standard shows KL instability instead).\n\n3. **New failure mode**: Standard 25% introduces catastrophic KL explosions (up to 7.9e15) that are qualitatively different from reward collapse. The model survives these through DAPO's clipping, but the optimization trajectory is severely disrupted.\n\n### Why 25% might be better than 20%\n\nPossible explanations (require further investigation):\n- **SFT recovery quality**: The 25% SFT models may have converged to a better point in parameter space for GRPO\n- **Model capacity**: More aggressive pruning may force the model into a more constrained but more stable optimization landscape\n- **Completion length**: 20% models generate maxed-out completions (~1024 tokens) suggesting degenerate repetitive behavior; 25% models generate shorter, more diverse completions\n\n### Impact on Paper Claims\n\n| Claim | Status after this experiment |\n|-------|------------------------------|\n| C1: RASP causes permanent GRPO collapse | **Model-dependent** — holds for DeepSeek & Qwen 20%, NOT for Qwen 25% |\n| C2: Standard causes transient collapse | **Model-dependent** — on Qwen Math, Standard shows WORSE collapse at 20%, KL explosions at 25% |\n| C3: Higher sparsity → worse collapse | **CONTRADICTED** — 25% Qwen Math is better than 20% |\n| New: Collapse is model-specific | **Supported** — DeepSeek and Qwen show qualitatively different patterns |\n| New: KL explosion as alternative failure mode | **Observed** — Standard 25% shows recurrent KL blowups not seen in other experiments |\n\n### Recommended Next Steps\n\n1. Run 25% GRPO on DeepSeek (grpo_rasp_25, already PREPARING) to test if sparsity gradient holds within-model\n2. Investigate SFT checkpoint quality differences between 20% and 25% (eval scores, perplexity)\n3. Consider whether 100 steps is sufficient — 25% models may simply be slower to manifest collapse\n\n## 6. Checkpoints\n\n- RASP 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math/` (checkpoint-100)\n- Standard 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math/` (checkpoint-100)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "22d007b1-365d-42a0-a92d-fc4a2b4e9d22",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016up1PSmvkAvrmv8jvvNzxn",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8008,
+                "cache_read_input_tokens": 109921,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8008
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000125"
+        },
+        {
+          "source_line": 126,
+          "timestamp": "2026-05-16T15:54:20.070Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BUwEQSwiaaHeWYA6qo5aWs",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/analysis_grpo_qwen_math_25.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "d94538fd-c258-4ff2-8c8b-e6d5a4d281b1",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'artifacts/analysis_grpo_qwen_math_25.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/analysis_grpo_qwen_math_25.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000126"
+        },
+        {
+          "source_line": 127,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Can't write artifacts directly via save_project_file. Need to use register_artifact instead, or write the file to the artifacts directory on the local filesystem and then register. Let me write it locally.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "42effa4c-133a-4624-a107-f4692b67e2c1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dXEAoBKkRsegAZMxMr8us",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4769,
+                "cache_read_input_tokens": 117929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4769
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000127"
+        },
+        {
+          "source_line": 128,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DdkhHjV9pmtWJDQuTFfziy",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__register_artifact",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "34802ccb-6278-4728-8ff4-cfd38eb92ade",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_014dXEAoBKkRsegAZMxMr8us",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4769,
+                "cache_read_input_tokens": 117929,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4769
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000128"
+        },
+        {
+          "source_line": 129,
+          "timestamp": "2026-05-16T15:54:25.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01DdkhHjV9pmtWJDQuTFfziy",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__register_artifact"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "1ea4da16-e1da-4f46-a4b9-7b7ce2bca594",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__register_artifact"
+              ],
+              "query": "select:mcp__agent-ml-research__register_artifact",
+              "total_deferred_tools": 34
+            }
+          },
+          "id": "event-000129"
+        },
+        {
+          "source_line": 130,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WH1jaCbpvqkEZJQJE7btma",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "analysis_grpo_qwen_math_25",
+                "type": "report",
+                "description": "GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).",
+                "project": "recovery_aware_struct_prune",
+                "content_filename": "analysis_grpo_qwen_math_25.md",
+                "tags": [
+                  "grpo",
+                  "qwen-math",
+                  "25pct",
+                  "cross-sparsity",
+                  "analysis"
+                ],
+                "content": "# GRPO Qwen2.5-Math-7B 25% Sparsity Analysis\n\n**Date**: 2026-05-16\n**Experiments**: grpo_rasp_25_qwen_math, grpo_standard_25_qwen_math\n**Server**: westd-11672 (cuda:2, cuda:3)\n**W&B**: 3vjjzi13 (RASP), 16vqw4e6 (Standard)\n\n## 1. Training Metrics (10-step resolution)\n\n### RASP 25% (grpo_rasp_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.112 | 0.575 | 772.7 | 0.002 | 0.006 | 0.117 |\n| 20 | 0.203 | 0.250 | 811.9 | 0.002 | 0.045 | 0.109 |\n| 30 | 0.125 | 0.550 | 801.0 | 0.026 | 0.004 | 0.107 |\n| 40 | 0.184 | 0.375 | 784.4 | 0.002 | 0.076 | 0.098 |\n| 50 | 0.177 | 0.300 | 763.3 | 0.045 | 0.035 | 0.099 |\n| 60 | 0.183 | 0.350 | 743.1 | **725** | **49.7** | 0.107 |\n| 70 | 0.199 | 0.375 | 750.7 | 0.002 | 0.027 | 0.112 |\n| 80 | 0.225 | 0.400 | 758.3 | 0.002 | 0.079 | 0.104 |\n| 90 | 0.111 | 0.375 | 753.2 | 0.002 | 0.055 | 0.115 |\n| 100 | 0.206 | 0.350 | 811.9 | 0.004 | 0.068 | 0.090 |\n\n**Pattern**: Stable training. Reward flat ~0.11-0.23. One transient KL spike at step 60 (725), immediately recovers. frac_zero_std 0.575→0.35 (improving). No collapse.\n\n### Standard 25% (grpo_standard_25_qwen_math)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.201 | 0.375 | 510.5 | 0.005 | 0.090 | 0.240 |\n| 20 | 0.163 | 0.400 | 531.6 | **56** | **2.6** | 0.230 |\n| 30 | 0.106 | 0.425 | 594.6 | 0.005 | 0.061 | 0.243 |\n| 40 | 0.211 | 0.300 | 515.7 | **7.9e15** | **3.7e14** | 0.248 |\n| 50 | 0.159 | 0.325 | 515.1 | 0.006 | 0.069 | 0.244 |\n| 60 | 0.208 | 0.350 | 460.0 | 0.005 | 0.101 | 0.255 |\n| 70 | 0.190 | 0.375 | 544.4 | 0.005 | 0.074 | 0.236 |\n| 80 | 0.209 | 0.275 | 533.8 | **4.1e6** | **2.2e5** | 0.262 |\n| 90 | 0.174 | 0.225 | 576.7 | 0.026 | 0.121 | 0.245 |\n| 100 | 0.182 | 0.325 | 527.0 | 0.298 | 0.165 | 0.238 |\n\n**Pattern**: Recurrent catastrophic KL explosions (steps 20, 40, 80). Each time self-recovers within 10 steps. Despite KL reaching 7.9e15, reward stays stable ~0.11-0.21 and frac_zero_std actually improves (0.375→0.225→0.325). No reward collapse.\n\n## 2. Comparison with 20% Qwen Math GRPO (v3 runs)\n\n### RASP 20% (grpo_rasp_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.049 | 0.650 | 1015 | 0.064 | 0.000 | 0.077 |\n| 50 | 0.069 | 0.675 | 1013 | 0.010 | 0.009 | 0.071 |\n| 100 | 0.061 | 0.675 | 1006 | 0.009 | -0.002 | 0.078 |\n\n**20% RASP**: Permanent collapse. reward 0.05-0.10, frac_zero_std 0.55-0.70, comp_len maxed ~1003-1024, entropy very low 0.07.\n\n### Standard 20% (grpo_standard_qwen_math_v3)\n\n| Step | reward | frac_0std | comp_len | kl | loss | entropy |\n|------|--------|-----------|----------|------|------|---------|\n| 10 | 0.063 | 0.750 | 943 | 0.051 | 0.015 | 0.200 |\n| 30 | 0.031 | 0.900 | 931 | 0.006 | -0.005 | 0.198 |\n| 100 | 0.044 | 0.850 | 921 | 0.005 | -0.012 | 0.175 |\n\n**20% Standard**: Severe permanent collapse. reward 0.03-0.07, frac_zero_std 0.75-0.90.\n\n## 3. Cross-Sparsity Comparison (Same Model)\n\n| Metric | RASP 20% | RASP 25% | Std 20% | Std 25% |\n|--------|----------|----------|---------|---------|\n| reward (final) | 0.061 | **0.206** | 0.044 | **0.182** |\n| reward (peak) | 0.083 | **0.225** | 0.069 | **0.211** |\n| frac_0std (final) | 0.675 | **0.350** | 0.850 | **0.325** |\n| frac_0std (range) | 0.55-0.70 | **0.25-0.575** | 0.75-0.90 | **0.225-0.425** |\n| comp_len (final) | 1006 | 812 | 921 | 527 |\n| entropy (final) | 0.078 | **0.090** | 0.175 | **0.238** |\n| KL spikes | none | 1 (step 60) | none | **3** (steps 20,40,80) |\n| collapse_pattern | permanent | **none** | permanent | **KL explosions** |\n\n**Key finding: 25% is BETTER than 20% across all collapse metrics.** This is the opposite of the expected sparsity gradient.\n\n## 4. Cross-Model Comparison (DeepSeek vs Qwen Math)\n\n| Pattern | DeepSeek 20% | Qwen Math 20% | Qwen Math 25% |\n|---------|-------------|---------------|---------------|\n| RASP collapse | permanent (frac→0.95) | permanent (frac 0.55-0.70) | **no collapse** (frac 0.25-0.575) |\n| Standard collapse | transient dip + recovery | **permanent** (frac 0.75-0.90) | KL explosions, no reward collapse |\n| RASP vs Standard | RASP worse | **Standard worse** | Standard more unstable |\n\n**RASP vs Standard direction reverses between models**: On DeepSeek RASP collapses worse; on Qwen Math Standard collapses worse.\n\n## 5. Conclusion\n\n### Verdict: NEGATIVE (both experiments)\n\nThe sparsity gradient hypothesis (C3: more sparsity → worse collapse) is **contradicted**:\n\n1. **25% < 20% in collapse severity** — reward is 3-4x higher, frac_zero_std is substantially lower at 25% than 20%. Higher sparsity paradoxically produces better GRPO outcomes on Qwen Math.\n\n2. **RASP vs Standard direction inconsistent** — On DeepSeek, RASP collapses worse. On Qwen Math at 20%, Standard collapses worse. At 25%, neither shows classic collapse (Standard shows KL instability instead).\n\n3. **New failure mode**: Standard 25% introduces catastrophic KL explosions (up to 7.9e15) that are qualitatively different from reward collapse. The model survives these through DAPO's clipping, but the optimization trajectory is severely disrupted.\n\n### Why 25% might be better than 20%\n\nPossible explanations (require further investigation):\n- **SFT recovery quality**: The 25% SFT models may have converged to a better point for GRPO\n- **Model capacity**: More aggressive pruning may force the model into a more constrained but more stable optimization landscape\n- **Completion length**: 20% models generate maxed-out completions (~1024 tokens) suggesting degenerate repetitive behavior; 25% models generate shorter, more diverse completions\n\n### Impact on Paper Claims\n\n| Claim | Status after this experiment |\n|-------|------------------------------|\n| C1: RASP causes permanent GRPO collapse | **Model-dependent** — holds for DeepSeek and Qwen 20%, NOT for Qwen 25% |\n| C2: Standard causes transient collapse | **Model-dependent** — on Qwen Math, Standard shows WORSE collapse at 20%, KL explosions at 25% |\n| C3: Higher sparsity → worse collapse | **CONTRADICTED** — 25% Qwen Math is better than 20% |\n| New: Collapse is model-specific | **Supported** — DeepSeek and Qwen show qualitatively different patterns |\n| New: KL explosion as alternative failure mode | **Observed** — Standard 25% shows recurrent KL blowups not seen in other experiments |\n\n### Recommended Next Steps\n\n1. Run 25% GRPO on DeepSeek (grpo_rasp_25, already PREPARING) to test if sparsity gradient holds within-model\n2. Investigate SFT checkpoint quality differences between 20% and 25% (eval scores, perplexity)\n3. Consider whether 100 steps is sufficient — 25% models may simply be slower to manifest collapse\n\n## 6. Checkpoints\n\n- RASP 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math/` (checkpoint-100)\n- Standard 25%: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math/` (checkpoint-100)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "45193cc2-d98e-4b4a-839b-15480c66b76e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016bqpRGdk9KPmstfYid52rV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 769,
+                "cache_read_input_tokens": 122698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 769
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000130"
+        },
+        {
+          "source_line": 131,
+          "timestamp": "2026-05-16T15:54:55.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WH1jaCbpvqkEZJQJE7btma",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_b0a4c6\\\", \\\"name\\\": \\\"analysis_grpo_qwen_math_25\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_25.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T15:54:55.751824+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"qwen-math\\\", \\\"25pct\\\", \\\"cross-sparsity\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "a4f82ee7-1851-4c62-a6a9-f067af5ecec7",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_b0a4c6\\\", \\\"name\\\": \\\"analysis_grpo_qwen_math_25\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_25.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T15:54:55.751824+00:00\\\", \\\"tags\\\": [\\\"grpo\\\", \\\"qwen-math\\\", \\\"25pct\\\", \\\"cross-sparsity\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260516_b0a4c6\", \"name\": \"analysis_grpo_qwen_math_25\", \"type\": \"report\", \"description\": \"GRPO Qwen2.5-Math-7B 25% sparsity analysis: RASP vs Standard, comparison with 20% and DeepSeek baselines. Key finding: 25% shows LESS collapse than 20% (contradicts sparsity gradient hypothesis).\", \"path\": \"projects/recovery_aware_struct_prune/artifacts/_project/report/analysis_grpo_qwen_math_25.md\", \"url\": null, \"project\": \"recovery_aware_struct_prune\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-16T15:54:55.751824+00:00\", \"tags\": [\"grpo\", \"qwen-math\", \"25pct\", \"cross-sparsity\", \"analysis\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000131"
+        },
+        {
+          "source_line": 132,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析报告已注册。现在更新 registry — RASP 25% 的 conclusion 需要从 \"success\" 改为 \"negative\"（因为 25% 没有比 20% 更严重的 collapse），并补充完整的 metrics 和 notes。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "c118f1e2-bae4-4225-8563-d2764ff902a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WiU28zGHQSDo1XwB7moXL9",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25_qwen_math",
+                "field": "conclusion",
+                "value": "negative",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "3beb43af-6974-4d40-a147-4e1f6e82265b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": "2026-05-16T15:55:01.955Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WiU28zGHQSDo1XwB7moXL9",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:01.639Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_step10\\\": 0.1119, \\\"frac_zero_std_step10\\\": 0.575, \\\"frac_zero_std_step30\\\": 0.55, \\\"collapse_pattern\\\": \\\"mild_partial\\\", \\\"collapse_onset\\\": \\\"step10_borderline\\\", \\\"collapse_permanence\\\": \\\"not_permanent\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.562}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "7fa2f530-40bd-4c7a-9f13-5542ceed0b55",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:01.639Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_step10\\\": 0.1119, \\\"frac_zero_std_step10\\\": 0.575, \\\"frac_zero_std_step30\\\": 0.55, \\\"collapse_pattern\\\": \\\"mild_partial\\\", \\\"collapse_onset\\\": \\\"step10_borderline\\\", \\\"collapse_permanence\\\": \\\"not_permanent\\\", \\\"early_stop\\\": false, \\\"total_steps\\\": 100}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.562}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25_qwen_math\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:11.170Z\", \"updated_at\": \"2026-05-16T15:55:01.639Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\", \"spec\": {\"command\": \"GRPO v4 RASP 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:2\"], \"pid\": \"16978\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:45.668Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3335.3, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"wandb_run_id\": \"3vjjzi13\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:25.443Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:27.310795+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"reward_final\": 0.2056, \"reward_std_final\": 0.4003, \"frac_zero_std_final\": 0.35, \"completion_length_final\": 811.9, \"kl_final\": 0.003789, \"loss_final\": 0.06824, \"reward_step10\": 0.1119, \"frac_zero_std_step10\": 0.575, \"frac_zero_std_step30\": 0.55, \"collapse_pattern\": \"mild_partial\", \"collapse_onset\": \"step10_borderline\", \"collapse_permanence\": \"not_permanent\", \"early_stop\": false, \"total_steps\": 100}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"completed_at\": \"2026-05-16T15:45:20.942Z\", \"wandb_run_id\": \"3vjjzi13\", \"notes\": \"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.562}}"
+              }
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01N4XJwqrmzq5BPMZthLMBuE",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25_qwen_math",
+                "field": "metrics",
+                "value": {
+                  "reward_final": 0.2056,
+                  "reward_std_final": 0.4003,
+                  "frac_zero_std_final": 0.35,
+                  "completion_length_final": 811.9,
+                  "kl_final": 0.003789,
+                  "loss_final": 0.06824,
+                  "reward_peak": 0.225,
+                  "reward_min": 0.111,
+                  "frac_zero_std_min": 0.25,
+                  "frac_zero_std_max": 0.575,
+                  "frac_zero_std_trend": "improving",
+                  "kl_spike_step60": 725.1,
+                  "kl_spike_recovery": "immediate_step70",
+                  "entropy_final": 0.09,
+                  "clipped_ratio_final": 0.719,
+                  "collapse_pattern": "no_collapse",
+                  "collapse_onset": "none",
+                  "recovery": "n/a",
+                  "total_steps": 100,
+                  "max_steps_reached": true,
+                  "comparison_vs_20pct": "25pct_better_than_20pct",
+                  "reward_ratio_vs_20pct": 3.4,
+                  "frac_0std_improvement_vs_20pct": "0.675->0.350"
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "661d21cc-f99c-4473-a6ba-362990f0a7fe",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": "2026-05-16T15:55:07.564Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01N4XJwqrmzq5BPMZthLMBuE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:07.291Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 3.4, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.675->0.350\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5373}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "fa9825e3-9146-4ed0-8c2b-6724db6d7ed4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:07.291Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 3.4, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.675->0.350\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5373}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25_qwen_math\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:11.170Z\", \"updated_at\": \"2026-05-16T15:55:07.291Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\", \"spec\": {\"command\": \"GRPO v4 RASP 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:2\"], \"pid\": \"16978\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:45.668Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3335.3, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"wandb_run_id\": \"3vjjzi13\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:25.443Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:27.310795+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"reward_final\": 0.2056, \"reward_std_final\": 0.4003, \"frac_zero_std_final\": 0.35, \"completion_length_final\": 811.9, \"kl_final\": 0.003789, \"loss_final\": 0.06824, \"reward_peak\": 0.225, \"reward_min\": 0.111, \"frac_zero_std_min\": 0.25, \"frac_zero_std_max\": 0.575, \"frac_zero_std_trend\": \"improving\", \"kl_spike_step60\": 725.1, \"kl_spike_recovery\": \"immediate_step70\", \"entropy_final\": 0.09, \"clipped_ratio_final\": 0.719, \"collapse_pattern\": \"no_collapse\", \"collapse_onset\": \"none\", \"recovery\": \"n/a\", \"total_steps\": 100, \"max_steps_reached\": true, \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"reward_ratio_vs_20pct\": 3.4, \"frac_0std_improvement_vs_20pct\": \"0.675->0.350\"}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"completed_at\": \"2026-05-16T15:45:20.942Z\", \"wandb_run_id\": \"3vjjzi13\", \"notes\": \"stable-but-low-signal: KL<0.004 全程，frac_zero_std 0.575→0.35（改善），训练完全稳定但 100 步内未产生有意义 policy shift。非 collapse（frac_zero_std 远低于 0.8 阈值），是超参/步数不足问题。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5373}}"
+              }
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0185WSpRiAyVDcoW9HK32Dei",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_rasp_25_qwen_math",
+                "field": "notes",
+                "value": "NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "2a4510bf-47e1-4a08-8736-a234e8606405",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": "2026-05-16T15:55:10.438Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0185WSpRiAyVDcoW9HK32Dei",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:10.257Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 3.4, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.675->0.350\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4129}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "718d3a9e-d632-482d-bec4-25bdf31afb18",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_rasp_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:11.170Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:10.257Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 RASP 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:2\\\"], \\\"pid\\\": \\\"16978\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:45.668Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3335.3, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:25.443Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:27.310795+00:00\\\"}]}, \\\"conclusion\\\": \\\"negative\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.2056, \\\"reward_std_final\\\": 0.4003, \\\"frac_zero_std_final\\\": 0.35, \\\"completion_length_final\\\": 811.9, \\\"kl_final\\\": 0.003789, \\\"loss_final\\\": 0.06824, \\\"reward_peak\\\": 0.225, \\\"reward_min\\\": 0.111, \\\"frac_zero_std_min\\\": 0.25, \\\"frac_zero_std_max\\\": 0.575, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step60\\\": 725.1, \\\"kl_spike_recovery\\\": \\\"immediate_step70\\\", \\\"entropy_final\\\": 0.09, \\\"clipped_ratio_final\\\": 0.719, \\\"collapse_pattern\\\": \\\"no_collapse\\\", \\\"collapse_onset\\\": \\\"none\\\", \\\"recovery\\\": \\\"n/a\\\", \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 3.4, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.675->0.350\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:20.942Z\\\", \\\"wandb_run_id\\\": \\\"3vjjzi13\\\", \\\"notes\\\": \\\"NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4129}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_rasp_25_qwen_math\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:11.170Z\", \"updated_at\": \"2026-05-16T15:55:10.257Z\", \"hypothesis\": \"Qwen2.5-Math-7B RASP 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: RASP collapse pattern. 对比 20% (grpo_rasp_qwen_math) 和 Standard 25% (grpo_standard_25_qwen_math)。Parent: sft_qwen_math_rasp_25.\", \"spec\": {\"command\": \"GRPO v4 RASP 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:2\"], \"pid\": \"16978\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:45.668Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3335.3, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"wandb_run_id\": \"3vjjzi13\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:25.443Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:27.310795+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"reward_final\": 0.2056, \"reward_std_final\": 0.4003, \"frac_zero_std_final\": 0.35, \"completion_length_final\": 811.9, \"kl_final\": 0.003789, \"loss_final\": 0.06824, \"reward_peak\": 0.225, \"reward_min\": 0.111, \"frac_zero_std_min\": 0.25, \"frac_zero_std_max\": 0.575, \"frac_zero_std_trend\": \"improving\", \"kl_spike_step60\": 725.1, \"kl_spike_recovery\": \"immediate_step70\", \"entropy_final\": 0.09, \"clipped_ratio_final\": 0.719, \"collapse_pattern\": \"no_collapse\", \"collapse_onset\": \"none\", \"recovery\": \"n/a\", \"total_steps\": 100, \"max_steps_reached\": true, \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"reward_ratio_vs_20pct\": 3.4, \"frac_0std_improvement_vs_20pct\": \"0.675->0.350\"}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_rasp_25_qwen_math.log\", \"completed_at\": \"2026-05-16T15:45:20.942Z\", \"wandb_run_id\": \"3vjjzi13\", \"notes\": \"NEGATIVE for sparsity gradient hypothesis: 25% RASP shows NO collapse (frac_zero_std 0.25-0.575, reward 0.11-0.23), dramatically better than 20% RASP (frac_zero_std 0.55-0.70, reward 0.05-0.10). One transient KL spike at step 60 (725) with immediate recovery. Higher sparsity paradoxically produces better GRPO outcomes. Contradicts C3 (more sparsity → worse collapse). See artifacts/analysis_grpo_qwen_math_25.md.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4129}}"
+              }
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FZqLFNdbMfokKfTEPwcbRm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_standard_25_qwen_math",
+                "field": "metrics",
+                "value": {
+                  "reward_final": 0.1819,
+                  "reward_std_final": 0.3673,
+                  "frac_zero_std_final": 0.325,
+                  "completion_length_final": 527,
+                  "kl_final": 0.2983,
+                  "loss_final": 0.1651,
+                  "reward_peak": 0.211,
+                  "reward_min": 0.106,
+                  "frac_zero_std_min": 0.225,
+                  "frac_zero_std_max": 0.425,
+                  "frac_zero_std_trend": "improving",
+                  "kl_spike_step20": 56.08,
+                  "kl_spike_step40": 7913000000000000,
+                  "kl_spike_step80": 4096000,
+                  "loss_spike_step40": 369500000000000,
+                  "loss_spike_step80": 220300,
+                  "kl_spike_count": 3,
+                  "kl_spike_recovery": "always_within_10_steps",
+                  "entropy_final": 0.238,
+                  "clipped_ratio_final": 0.338,
+                  "collapse_pattern": "kl_explosion_transient_no_reward_collapse",
+                  "collapse_onset": "step20_first_kl_spike",
+                  "recovery": true,
+                  "total_steps": 100,
+                  "max_steps_reached": true,
+                  "comparison_vs_20pct": "25pct_better_than_20pct",
+                  "reward_ratio_vs_20pct": 4.1,
+                  "frac_0std_improvement_vs_20pct": "0.850->0.325"
+                },
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "b9090f3c-6902-4ec3-932a-e88ceaa827d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": "2026-05-16T15:55:15.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FZqLFNdbMfokKfTEPwcbRm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:15.311Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\": \\\"kl_explosion_transient_no_reward_collapse\\\", \\\"collapse_onset\\\": \\\"step20_first_kl_spike\\\", \\\"recovery\\\": true, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 4.1, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.850->0.325\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4084}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "f94747fe-6294-4089-abe5-9b97eb55062d",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:15.311Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\": \\\"kl_explosion_transient_no_reward_collapse\\\", \\\"collapse_onset\\\": \\\"step20_first_kl_spike\\\", \\\"recovery\\\": true, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 4.1, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.850->0.325\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4084}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_standard_25_qwen_math\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:12.657Z\", \"updated_at\": \"2026-05-16T15:55:15.311Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\", \"spec\": {\"command\": \"GRPO v4 Standard 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"17062\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:48.269Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3357.7, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"wandb_run_id\": \"16vqw4e6\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:31.419Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:34.585285+00:00\"}]}, \"wandb_run_id\": \"16vqw4e6\", \"metrics\": {\"reward_final\": 0.1819, \"reward_std_final\": 0.3673, \"frac_zero_std_final\": 0.325, \"completion_length_final\": 527, \"kl_final\": 0.2983, \"loss_final\": 0.1651, \"reward_peak\": 0.211, \"reward_min\": 0.106, \"frac_zero_std_min\": 0.225, \"frac_zero_std_max\": 0.425, \"frac_zero_std_trend\": \"improving\", \"kl_spike_step20\": 56.08, \"kl_spike_step40\": 7913000000000000, \"kl_spike_step80\": 4096000, \"loss_spike_step40\": 369500000000000, \"loss_spike_step80\": 220300, \"kl_spike_count\": 3, \"kl_spike_recovery\": \"always_within_10_steps\", \"entropy_final\": 0.238, \"clipped_ratio_final\": 0.338, \"collapse_pattern\": \"kl_explosion_transient_no_reward_collapse\", \"collapse_onset\": \"step20_first_kl_spike\", \"recovery\": true, \"total_steps\": 100, \"max_steps_reached\": true, \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"reward_ratio_vs_20pct\": 4.1, \"frac_0std_improvement_vs_20pct\": \"0.850->0.325\"}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T15:45:46.005Z\", \"notes\": \"catastrophic-divergence: step 80 KL=4,096,000 + loss=220,300，灾难性策略爆炸。虽然 step 90 回落，但模型经历了巨大参数偏移。训练不稳定，最终模型质量需 eval 验证。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.4084}}"
+              }
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WfLbfxEqAAzzyRn86DBHTW",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "grpo_standard_25_qwen_math",
+                "field": "notes",
+                "value": "NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.",
+                "project": "recovery_aware_struct_prune"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "efc091c1-c0e4-4516-b74b-3d5d984384a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TyxEMAjLRc6ez4Lq1Lio5X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3636,
+                "cache_read_input_tokens": 123467,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3636
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": "2026-05-16T15:55:18.661Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WfLbfxEqAAzzyRn86DBHTW",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:18.380Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\": \\\"kl_explosion_transient_no_reward_collapse\\\", \\\"collapse_onset\\\": \\\"step20_first_kl_spike\\\", \\\"recovery\\\": true, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 4.1, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.850->0.325\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7552}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "d9164a81-d89f-4336-882f-e75361227386",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"grpo_standard_25_qwen_math\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T12:51:12.657Z\\\", \\\"updated_at\\\": \\\"2026-05-16T15:55:18.380Z\\\", \\\"hypothesis\\\": \\\"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\\\", \\\"spec\\\": {\\\"command\\\": \\\"GRPO v4 Standard 25% sparsity 100 steps\\\", \\\"server\\\": \\\"westd-11672\\\", \\\"gpu\\\": [\\\"cuda:3\\\"], \\\"pid\\\": \\\"17062\\\", \\\"log_path\\\": \\\"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"submitted_at\\\": \\\"2026-05-16T14:49:48.269Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"openai/gsm8k\\\", \\\"data_count\\\": 7473, \\\"model_name\\\": \\\"Qwen2.5-Math-7B\\\", \\\"seed\\\": 42, \\\"wall_clock_seconds\\\": 3357.7, \\\"gpu_hours\\\": 0.93, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"wandb_run_id\\\": \\\"16vqw4e6\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-16T15:40:31.419Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-16T15:40:34.585285+00:00\\\"}]}, \\\"wandb_run_id\\\": \\\"16vqw4e6\\\", \\\"metrics\\\": {\\\"reward_final\\\": 0.1819, \\\"reward_std_final\\\": 0.3673, \\\"frac_zero_std_final\\\": 0.325, \\\"completion_length_final\\\": 527, \\\"kl_final\\\": 0.2983, \\\"loss_final\\\": 0.1651, \\\"reward_peak\\\": 0.211, \\\"reward_min\\\": 0.106, \\\"frac_zero_std_min\\\": 0.225, \\\"frac_zero_std_max\\\": 0.425, \\\"frac_zero_std_trend\\\": \\\"improving\\\", \\\"kl_spike_step20\\\": 56.08, \\\"kl_spike_step40\\\": 7913000000000000, \\\"kl_spike_step80\\\": 4096000, \\\"loss_spike_step40\\\": 369500000000000, \\\"loss_spike_step80\\\": 220300, \\\"kl_spike_count\\\": 3, \\\"kl_spike_recovery\\\": \\\"always_within_10_steps\\\", \\\"entropy_final\\\": 0.238, \\\"clipped_ratio_final\\\": 0.338, \\\"collapse_pattern\\\": \\\"kl_explosion_transient_no_reward_collapse\\\", \\\"collapse_onset\\\": \\\"step20_first_kl_spike\\\", \\\"recovery\\\": true, \\\"total_steps\\\": 100, \\\"max_steps_reached\\\": true, \\\"comparison_vs_20pct\\\": \\\"25pct_better_than_20pct\\\", \\\"reward_ratio_vs_20pct\\\": 4.1, \\\"frac_0std_improvement_vs_20pct\\\": \\\"0.850->0.325\\\"}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\\\", \\\"log_path\\\": \\\"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\\\", \\\"conclusion\\\": \\\"negative\\\", \\\"completed_at\\\": \\\"2026-05-16T15:45:46.005Z\\\", \\\"notes\\\": \\\"NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7552}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"grpo_standard_25_qwen_math\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T12:51:12.657Z\", \"updated_at\": \"2026-05-16T15:55:18.380Z\", \"hypothesis\": \"Qwen2.5-Math-7B Standard 25% GRPO (100 steps, save_steps=5). 跨模型×跨稀疏度验证 C2: Standard collapse gradient. 对比 20% (grpo_standard_qwen_math) 和 RASP 25% (grpo_rasp_25_qwen_math)。Parent: sft_qwen_math_standard_25.\", \"spec\": {\"command\": \"GRPO v4 Standard 25% sparsity 100 steps\", \"server\": \"westd-11672\", \"gpu\": [\"cuda:3\"], \"pid\": \"17062\", \"log_path\": \"/root/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"submitted_at\": \"2026-05-16T14:49:48.269Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"openai/gsm8k\", \"data_count\": 7473, \"model_name\": \"Qwen2.5-Math-7B\", \"seed\": 42, \"wall_clock_seconds\": 3357.7, \"gpu_hours\": 0.93, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"wandb_run_id\": \"16vqw4e6\"}, \"reproduce\": {\"finished_at\": \"2026-05-16T15:40:31.419Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T15:40:34.585285+00:00\"}]}, \"wandb_run_id\": \"16vqw4e6\", \"metrics\": {\"reward_final\": 0.1819, \"reward_std_final\": 0.3673, \"frac_zero_std_final\": 0.325, \"completion_length_final\": 527, \"kl_final\": 0.2983, \"loss_final\": 0.1651, \"reward_peak\": 0.211, \"reward_min\": 0.106, \"frac_zero_std_min\": 0.225, \"frac_zero_std_max\": 0.425, \"frac_zero_std_trend\": \"improving\", \"kl_spike_step20\": 56.08, \"kl_spike_step40\": 7913000000000000, \"kl_spike_step80\": 4096000, \"loss_spike_step40\": 369500000000000, \"loss_spike_step80\": 220300, \"kl_spike_count\": 3, \"kl_spike_recovery\": \"always_within_10_steps\", \"entropy_final\": 0.238, \"clipped_ratio_final\": 0.338, \"collapse_pattern\": \"kl_explosion_transient_no_reward_collapse\", \"collapse_onset\": \"step20_first_kl_spike\", \"recovery\": true, \"total_steps\": 100, \"max_steps_reached\": true, \"comparison_vs_20pct\": \"25pct_better_than_20pct\", \"reward_ratio_vs_20pct\": 4.1, \"frac_0std_improvement_vs_20pct\": \"0.850->0.325\"}, \"checkpoint_path\": \"/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_25_qwen_math\", \"log_path\": \"~/runs/recovery_aware_struct_prune/grpo_standard_25_qwen_math.log\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T15:45:46.005Z\", \"notes\": \"NEGATIVE for sparsity gradient: 25% Standard shows NO reward collapse (frac_zero_std 0.225-0.425, reward 0.11-0.21) vs 20% Standard permanent collapse (frac_zero_std 0.75-0.90, reward 0.03-0.07). New failure mode: 3 catastrophic KL explosions (steps 20/40/80, peak 7.9e15) with self-recovery each time — DAPO clipping prevents reward collapse despite astronomical KL divergence. Contradicts C3. See artifacts/analysis_grpo_qwen_math_25.md.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7552}}"
+              }
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 分析结论：两个实验均为 NEGATIVE\n\n### 核心发现：25% 反而比 20% 好（反直觉）\n\n| 指标 | RASP 20% → 25% | Standard 20% → 25% |\n|------|----------------|---------------------|\n| reward | 0.061 → **0.206** (3.4x) | 0.044 → **0.182** (4.1x) |\n| frac_zero_std | 0.675 → **0.350** | 0.850 → **0.325** |\n| collapse | permanent → **no collapse** | permanent → **KL explosions but no reward collapse** |\n\n### 为什么判 NEGATIVE\n\n1. **C3 被推翻**：25% sparsity 的 collapse 比 20% 更轻而非更重\n2. **RASP vs Standard 方向跨模型不一致**：DeepSeek 上 RASP 更差，Qwen Math 上 Standard 更差\n3. **Standard 25% 出现新失败模式**：3 次灾难性 KL 爆炸（peak 7.9e15），但 DAPO clipping 保护了 reward 不崩溃\n\n### Registry 更新\n\n- `grpo_rasp_25_qwen_math`: conclusion 从 success → **negative**，补充完整 10 步 metrics 和跨稀疏度对比\n- `grpo_standard_25_qwen_math`: conclusion 保持 **negative**，更新完整 metrics 和 notes\n\n分析报告已注册为 artifact: `analysis_grpo_qwen_math_25.md`"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "uuid": "b246b2fc-fd5d-4893-b1a6-ac2c265ce281",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J2Ex1jtr8iaF3nZjmYQyr9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7899,
+                "cache_read_input_tokens": 127103,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 7899
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n## 分析结论：两个实验均为 NEGATIVE\n\n### 核心发现：25% 反而比 20% 好（反直觉）\n\n| 指标 | RASP 20% → 25% | Standard 20% → 25% |\n|------|----------------|---------------------|\n| reward | 0.061 → **0.206** (3.4x) | 0.044 → **0.182** (4.1x) |\n| frac_zero_std | 0.675 → **0.350** | 0.850 → **0.325** |\n| collapse | permanent → **no collapse** | permanent → **KL explosions but no reward collapse** |\n\n### 为什么判 NEGATIVE\n\n1. **C3 被推翻**：25% sparsity 的 collapse 比 20% 更轻而非更重\n2. **RASP vs Standard 方向跨模型不一致**：DeepSeek 上 RASP 更差，Qwen Math 上 Standard 更差\n3. **Standard 25% 出现新失败模式**：3 次灾难性 KL 爆炸（peak 7.9e15），但 DAPO clipping 保护了 reward 不崩溃\n\n### Registry 更新\n\n- `grpo_rasp_25_qwen_math`: conclusion 从 success → **negative**，补充完整 10 步 metrics 和跨稀疏度对比\n- `grpo_standard_25_qwen_math`: conclusion 保持 **negative**，更新完整 metrics 和 notes\n\n分析报告已注册为 artifact: `analysis_grpo_qwen_math_25.md`"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 511652,
+            "duration_api_ms": 500724,
+            "num_turns": 52,
+            "stop_reason": "end_turn",
+            "session_id": "42244f99-8f2d-437e-842f-a5cf012c6165",
+            "total_cost_usd": 2.51111675,
+            "usage": {
+              "input_tokens": 36,
+              "cache_creation_input_tokens": 123161,
+              "cache_read_input_tokens": 1981989,
+              "output_tokens": 29922,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 123161,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 452,
+                  "cache_read_input_tokens": 127103,
+                  "cache_creation_input_tokens": 7899,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 7899
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1996,
+                "outputTokens": 28,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002136,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 36,
+                "outputTokens": 29922,
+                "cacheReadInputTokens": 1981989,
+                "cacheCreationInputTokens": 123161,
+                "webSearchRequests": 0,
+                "costUSD": 2.5089807499999996,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "01bc60c5-3f02-43ce-a003-3b449c569046"
+          },
+          "id": "event-000144"
+        }
+      ]
+    }
+  ]
+}

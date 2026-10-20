@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea92b48edaec685b5581",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose eval gsm8k grpo rasp 20 fair",
+  "task_key": "worker_diagnose_eval_gsm8k_grpo_rasp_20_fair_20260519T153024",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_eval_gsm8k_grpo_rasp_20_fair_20260519T153024_result.json",
+    "occurrence": 1,
+    "bytes": 1056,
+    "sha256": "a12428d30b4b30e04c572beab8858cae323669b587521f2183231ecc1751d347"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断文件名不在白名单中，直接汇报结果。\n\n## 诊断结论：实验已成功完成\n\n**实验未失败。** 最新一次运行（2026-05-19 20:49 启动）已完整执行 1319/1319 样本并于 23:20 正常退出。\n\n### 结果\n\n- **GSM8K Accuracy: 60.88% ± 1.34% (803/1319)**\n- EOS rate: 98.79%, avg response length: 195.7 tokens\n- 结果文件已写入: `eval_gsm8k_grpo_rasp_20_fair.json` (1.0MB)\n- Sentinel 文件已写入: `eval_gsm8k_grpo_rasp_20_fair.json.done`\n\n### 关于 \"process dead 5×\" 的解释\n\n此前 cron 监控报告的 5 次 process dead 可能来自更早的失败尝试。最终这次运行完整跑完了。运行过程中有两个小插曲但均自动恢复：\n\n1. **HuggingFace Hub 不可达** — 脚本自动回退到本地缓存数据集，未影响结果\n2. **sample 1309 附近短暂减速**（~2s/it → 107s/it，约 6 分钟）— 可能是 GPU 瞬时负载，之后恢复\n\n### 无需任何操作\n\n结果文件和 sentinel 均已就绪，下游流程可正常消费。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-eval-gsm8k-grpo-rasp-20-fair.md"
+}

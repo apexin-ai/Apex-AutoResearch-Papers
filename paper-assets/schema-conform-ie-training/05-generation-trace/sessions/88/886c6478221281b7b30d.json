@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "886c6478221281b7b30d",
+  "project": "schema-conform-ie-training",
+  "kind": "result",
+  "title": "verify eval c and gpu",
+  "task_key": "worker_verify_eval_c_and_gpu_20260513T062358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_eval_c_and_gpu_20260513T062358_result.json",
+    "occurrence": 1,
+    "bytes": 1315,
+    "sha256": "85d56eb45e2ce6c666e522b27dce8c9e5bb3a4118c22c316ca26ed003be9893e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GPU 1 上跑的是 **formal_D1 GRPO 训练**（scierc, max_steps=500），不是残留进程。\n\n汇总：\n\n---\n\n### 1. GPU 状态\n\n| GPU | 利用率 | 显存 | 状态 |\n|-----|--------|------|------|\n| 0 | 0% | 0 / 97887 MiB | **空闲** |\n| 1 | 100% | 65294 / 97887 MiB | **D1 GRPO 训练中** (PID 67223, 70714) |\n\n### 2. eval_C_v2 — crossner_science **已完成**\n\n完整三数据集结果：\n\n| Metric | scierc_test | crossner_politics | crossner_science |\n|--------|------------|-------------------|------------------|\n| **entity_f1** | 0.3949 | 0.4158 | **0.5514** |\n| **f1_correctness** | 0.2184 | 0.4116 | **0.5329** |\n| **structural_validity** | 0.9964 | 1.0000 | **0.9982** |\n| type_conformance | 0.9537 | 0.9997 | 0.9781 |\n| structural_completeness | 0.9543 | 0.9932 | 0.9678 |\n| relational_constraint | 0.7191 | 0.0000 | 0.0000 |\n\n结果文件: `/root/autodl-tmp/output/base_zero_shot_v2/base_model_results.json`\n预测文件: `/root/autodl-tmp/output/base_zero_shot_v2/predictions/base_crossner_science.jsonl`\n\n### 3. A checkpoint-200 — **存在，完整**\n\n路径: `/root/autodl-tmp/output/formal_A/checkpoint-200/`\n包含 adapter_model.safetensors (465MB), optimizer.pt (931MB), scheduler.pt, trainer_state.json 等，可用于 D2 Phase 2 resume。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-eval-c-and-gpu.md"
+}

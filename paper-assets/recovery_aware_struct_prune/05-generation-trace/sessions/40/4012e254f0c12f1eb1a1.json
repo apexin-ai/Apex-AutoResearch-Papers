@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4012e254f0c12f1eb1a1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix kill orphan mbpp westb1",
+  "task_key": "worker_fix_kill_orphan_mbpp_westb1_20260519T181959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_orphan_mbpp_westb1_20260519T181959_result.json",
+    "occurrence": 1,
+    "bytes": 545,
+    "sha256": "10fb384299b28cedd9aac72a5e9d82a592a4dabce7701de24040534d5516cbb1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`eval_mbpp_grpo_cka_only_20` tmux session 不存在，可能已经自行结束了。\n\n当前 GPU 状态：\n- **cuda:0**: eval_humaneval (sft_rasp_20_1p5b) 正在运行，占用 4314MiB\n- **cuda:1**: 空闲，0MiB 占用，已可用\n\n残留的 tmux session 是 `eval_unstructured_20`（PID 680597），但从 nvidia-smi 看它没有占用 GPU（可能已结束但 tmux session 还在）。需要 kill 这个吗？还是只关注 `eval_mbpp_grpo_cka_only_20`？\n\n目标 session 不存在，cuda:1 已释放，无需操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-orphan-mbpp-westb1.md"
+}

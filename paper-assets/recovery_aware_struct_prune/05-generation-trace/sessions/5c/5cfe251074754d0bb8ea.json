@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cfe251074754d0bb8ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix cuda2 collision and register crons",
+  "task_key": "worker_ops_fix_cuda2_collision_and_register_crons_20260519T064156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_cuda2_collision_and_register_crons_20260519T064156_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "5b4b230b2f96b6efc025b4ea6cea10833faf573975e746ecf4b02619b76bd6af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "冲突已解决。汇总：\n\n## GPU 状态 (westd-29022)\n\n| GPU | 进程 | 显存 | 利用率 | 状态 |\n|-----|------|------|--------|------|\n| cuda:0 | PID 56151 | 19242MiB | 98% | 运行中（其他任务） |\n| cuda:1 | PID 66531 | 17254MiB | 99% | 运行中（其他任务） |\n| cuda:2 | PID 63783 (SFT CKA-only) | 17802MiB | 98% | **冲突已解决**，仅剩此进程 |\n| cuda:3 | PID 74303 (RASP fair) | 13110MiB | 97% | 正常运行 (2/164) |\n\n## 冲突处理\n\n- **存在冲突**：cuda:2 上同时运行 SFT CKA-only (PID 63783, 17802MiB) 和 Standard fair v2 (PID 74379, 12980MiB)，合计 30796MiB\n- **已杀掉** `eval_humaneval_standard_fair` tmux session (Standard fair v2)，因为它刚启动无数据损失\n- **Registry 已更新**：`eval_humaneval_grpo_standard_20_fair_2048_v2` → DONE/failed，原因：GPU collision\n- **SFT CKA-only** (PID 63783) 继续在 cuda:2 独占运行，结果文件尚未生成\n- **RASP fair** 在 cuda:3 正常运行，进度 2/164\n\n**待办**：SFT CKA-only 完成后，需重启 Standard fair v2 (在 cuda:2 上)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-cuda2-collision-and-register-crons.md"
+}

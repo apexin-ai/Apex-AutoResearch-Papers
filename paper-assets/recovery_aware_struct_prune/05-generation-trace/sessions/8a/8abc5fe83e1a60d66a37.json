@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8abc5fe83e1a60d66a37",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd cuda1 check and launch",
+  "task_key": "worker_ops_westd_cuda1_check_and_launch_20260518T214600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_cuda1_check_and_launch_20260518T214600_result.json",
+    "occurrence": 1,
+    "bytes": 570,
+    "sha256": "9422e9a87a57249099f429807337e716fa573ea63e228d44fb21edacc8003ae5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_math500_grpo_standard_20_fair_v2 仍在运行中。**\n\n状态：\n- **进度**: 234/500 (47%)，已跑 ~3h16m\n- **中间 accuracy**: 28.50% (200 samples 时)\n- **GPU 1**: 98% 利用率, 19251MiB 显存, PID 22049\n- **预计剩余**: ~3.5h（按当前 ~50s/it）\n\ncuda:1 占用中，无法启动下一个 eval。其余 GPU 状态：\n- cuda:0: 空闲 (0MiB)\n- cuda:2: 占用 (17010MiB, 98%)\n- cuda:3: 占用 (17541MiB, 96%)\n\n需要等 v2 eval 完成后再启动 eval_math500_sft_standard_20_2048。预计完成时间约 UTC 09:00-09:30。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cuda1-check-and-launch.md"
+}

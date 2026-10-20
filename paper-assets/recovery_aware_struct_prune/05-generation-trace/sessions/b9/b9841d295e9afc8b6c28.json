@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9841d295e9afc8b6c28",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor westb verify status",
+  "task_key": "worker_monitor_westb_verify_status_20260516T184713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_westb_verify_status_20260516T184713_result.json",
+    "occurrence": 1,
+    "bytes": 345,
+    "sha256": "285c8a202dc2ee1e69f7c9fddb5709e4ae1b28c174522206f4e59f7b7970adbe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| GPU | 任务 | PID | VRAM |\n|-----|------|-----|------|\n| cuda:0 | `eval_gsm8k.py` (eval_sft_rasp_25) | 602990 | 28.9 / 97.9 GB |\n| cuda:1 | `train_grpo_v5.py` (grpo_rasp_rlvr_20) | 635524 | 71.7 / 97.9 GB |\n\n两张卡均正常运行，符合预期。GRPO 训练已启动约 21 分钟（02:26 开始），wandb 已连接。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-westb-verify-status.md"
+}

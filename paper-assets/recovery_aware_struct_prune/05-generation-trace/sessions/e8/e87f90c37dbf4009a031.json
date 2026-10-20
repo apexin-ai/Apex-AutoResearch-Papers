@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e87f90c37dbf4009a031",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo cka only 20 logs",
+  "task_key": "worker_analysis_grpo_cka_only_20_logs_20260518T011915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_cka_only_20_logs_20260518T011915_result.json",
+    "occurrence": 1,
+    "bytes": 1213,
+    "sha256": "1f8631eefe9cc0891dee8edd04270e3afa3b61f80102e6700241c4ac28cd3fb5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已写入。总结：\n\n**grpo_cka_only_20** (CKA-guided pruning):\n| Step | Reward | frac_zero_std | grad_norm |\n|------|--------|---------------|-----------|\n| 10   | 0.253  | 0.175         | 1.89      |\n| 50   | **0.354** | **0.150**  | 1.98      |\n| 70   | 0.308  | **0.125**     | 1.16      |\n| 80   | **0.342** | 0.250      | 2.67      |\n| 90   | 0.242  | 0.300         | 1.22      |\n\n**grpo_random_20** (Random pruning):\n| Step | Reward | frac_zero_std | grad_norm |\n|------|--------|---------------|-----------|\n| 10   | 0.161  | 0.300         | 3.75      |\n| 50   | 0.175  | 0.300         | 4.75      |\n| 70   | 0.190  | 0.300         | 7.09      |\n| 90   | 0.173  | 0.325         | 7.53      |\n\n**关键发现**:\n- CKA-only 在 step 50-80 有明显学习（reward 0.31-0.35），但 step 90 回落到 0.24，frac_zero_std 升至 0.30\n- Random 几乎没有学习（reward 始终 0.14-0.19），frac_zero_std 持续 0.30-0.40，grad_norm 极不稳定（3.5-8.6 vs CKA 的 1.0-3.8）\n- CKA-only 的 step 70+ 下降趋势确认：peak 在 step 70-80，之后 reward 和 collapse 指标均恶化\n- 当前进度：cka_only step 94, random step 97，均未完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-cka-only-20-logs.md"
+}

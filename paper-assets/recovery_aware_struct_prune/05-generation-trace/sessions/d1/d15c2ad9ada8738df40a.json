@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d15c2ad9ada8738df40a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "research check v9 wandb",
+  "task_key": "worker_research_check_v9_wandb_20260516T014728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_check_v9_wandb_20260516T014728_result.json",
+    "occurrence": 1,
+    "bytes": 2007,
+    "sha256": "8f0112701b85d47e4c2130e4c6cfa7735457f8ea18800c5cd2fefae4c236c6e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### v9 RASP (`mrikafz3`) — `grpo_stage2_rasp_20_v9`\n\n| 指标 | Step 10 值 | Collapse 阈值 | 判定 |\n|------|-----------|--------------|------|\n| grad_norm | **0.00735** | < 0.05 | COLLAPSED |\n| frac_reward_zero_std | **0.875** | ≥ 0.85 | COLLAPSED |\n| reward | **0.015** | < 0.03 | COLLAPSED |\n| entropy | **0.054** | — | 极低 |\n| loss | **0.0069** | — | 近零 |\n| clipped_ratio | **0.956** | — | 95.6% 输出打满 max_length |\n| mean_completion_length | **991.4** | max=1024 | 几乎全部截断 |\n\n**状态**: running, step 10/30, runtime ~1.7h\n\n**结论: Step 10 已全面 collapse**，三项 collapse 指标全部触发。与 v8 RASP 完全一致——collapse onset 在 step ≤10。由于 `logging_steps=10`，第一个数据点就是 step 10，无法从 wandb 判断 step 5 的精确状态。但 `save_steps=5` 意味着 **step 5 的 checkpoint 已保存在磁盘**——这是可能的 pre-collapse/early-collapse 快照，需要 SSH 到服务器手动检查。\n\n### v8 Standard (`q34vz8j2`) — `grpo_stage2_standard_20_v8`\n\n| 指标 | Step 90 值 | 判定 |\n|------|-----------|------|\n| grad_norm | **2.14** | 健康 |\n| frac_reward_zero_std | **0.475** | 健康 |\n| reward | **0.065** | 健康 |\n| entropy | **0.151** | 正常 |\n| clipped_ratio | **0.588** | 正常 |\n\n**状态**: running, step 90/100, runtime ~10.9h。预计 ~1h 内跑完最后 10 步。训练完全健康，无 collapse 迹象。\n\n### 对比\n\n| | v9 RASP (step 10) | v8 Standard (step 90) |\n|--|-------------------|----------------------|\n| reward | 0.015 | 0.065 |\n| grad_norm | 0.007 | 2.14 |\n| frac_zero_std | 0.875 | 0.475 |\n| collapse | **YES** | **NO** |\n\nv9 RASP 复现了 v8 RASP 的 collapse 模式——RASP 剪枝模型在 GRPO 训练中迅速 collapse（step ≤10），而 standard 剪枝模型健康训练到 100 步。核心发现稳固。关键下一步：SSH 检查 step 5 checkpoint 是否捕获了 collapse 前的状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-check-v9-wandb.md"
+}

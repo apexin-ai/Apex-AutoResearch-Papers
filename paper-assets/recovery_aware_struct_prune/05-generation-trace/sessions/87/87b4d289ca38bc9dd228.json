@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "87b4d289ca38bc9dd228",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix westd disk execute cleanup",
+  "task_key": "worker_fix_westd_disk_execute_cleanup_20260516T142447",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd_disk_execute_cleanup_20260516T142447_result.json",
+    "occurrence": 1,
+    "bytes": 1374,
+    "sha256": "e00c3c032e14f3492a7f4e4156318daa4c8e463b0bd243dd191d50ec8687d2aa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "清理已被执行过。汇总：\n\n**磁盘状态**: `/dev/md0` 750G, 已用 635G (85%), 剩余 **116G** — 不再紧急。\n\n**Phase 1 — 损坏 checkpoint**: 4 个目录均已不存在（已清理）\n- `/root/autodl-tmp/grpo_rasp_qwen_math/checkpoint-40` — 不存在\n- `/root/autodl-tmp/grpo_standard_qwen_math/checkpoint-35` — 不存在\n- `/root/autodl-tmp/grpo_rasp_25_qwen_math/checkpoint-25` — 不存在\n- `/root/autodl-tmp/grpo_standard_25_qwen_math/checkpoint-25` — 不存在\n\n**Phase 2 — 旧 checkpoint**: 4 个实验的整个输出目录均已不存在（已被彻底清理）\n- `/root/autodl-tmp/grpo_rasp_qwen_math/` — 不存在\n- `/root/autodl-tmp/grpo_standard_qwen_math/` — 不存在\n- `/root/autodl-tmp/grpo_rasp_25_qwen_math/` — 不存在\n- `/root/autodl-tmp/grpo_standard_25_qwen_math/` — 不存在\n\n**运行中实验**: 两个进程均存活\n- PID 13703 (cuda:0) — `grpo_rasp_qwen_math`，输出到 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_qwen_math`\n- PID 13783 (cuda:1) — `grpo_standard_qwen_math`，输出到 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_standard_qwen_math`\n\n注意：运行中的实验写入路径是 `/root/autodl-tmp/recovery_aware_struct_prune/grpo_*`，与清理目标 `/root/autodl-tmp/grpo_*` 是不同路径，未受影响。无需进一步操作。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd-disk-execute-cleanup.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ab2d62ea164fa67a8ba3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh urgent kill zombies and resubmit",
+  "task_key": "worker_ssh_urgent_kill_zombies_and_resubmit_20260523T211441",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent_kill_zombies_and_resubmit_20260523T211441_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "8c658536e4527a71600671f68d72d8b4a9e263a507874638772473092d3b1296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程均已启动，正在加载模型。\n\n## Kill 结果\n- westd: 142647 161700 165259 165865 159074 全部 DEAD\n- westb: 322091 327023 全部 DEAD\n\n## GPU 验证\n| GPU | 状态 |\n|-----|------|\n| westd GPU 0 | sft_standard_25_fixed_v2 已在运行 (PID 166245) — 不碰 |\n| westd GPU 1 | grpo_rasp (PID 145176) — 不碰 |\n| westd GPU 2 | grpo_standard (PID 142486) — 不碰 |\n| westd GPU 3 | 已清空，新任务加载中 |\n| westb GPU 0 | grpo_cka_only (PID 321428) — 不碰 |\n| westb GPU 1 | 已清空，新任务加载中 |\n\n## 重新提交\n| 任务 | GPU | PID |\n|------|-----|-----|\n| westd:0 sft_standard_25_fixed_v2 | 跳过（已在运行 PID 166245） | — |\n| westd:3 sft_standard_20_fixed_v3 | ✓ 已提交 | 167047 |\n| westb:1 sft_random_20_fixed_v2 | ✓ 已提交 | 327972 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-kill-zombies-and-resubmit.md"
+}

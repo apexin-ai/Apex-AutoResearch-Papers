@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59ea53b61d481488b8b0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code shortgpt baseline",
+  "task_key": "worker_code_shortgpt_baseline_20260519T132458",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_shortgpt_baseline_20260519T132458_result.json",
+    "occurrence": 1,
+    "bytes": 1085,
+    "sha256": "a491bbbe8e741aec9dc32dad8e4918af525e48becba482059dd6852d129cb17e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成总结\n\n**`src/prune_shortgpt.py`** 已部署到 westd-29022 并通过端到端验证。\n\n### 脚本功能\n实现 ShortGPT (Men et al., 2024) depth pruning：用 forward hook 捕获每层 input/output hidden states，计算 Block Influence = 1 - cos_sim，删除 BI 最低的层（保留首尾层）。\n\n### 参数\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--model_path` | (必填) | 预训练模型路径 |\n| `--pruning_ratio` | 0.2 | 层删除比例 |\n| `--calibration_size` | 512 | 校准样本数 |\n| `--output_path` | (必填) | 输出路径 |\n| `--seed` | 42 | |\n| `--dtype` | bfloat16 | |\n\n### Dry-run 结果（calibration_size=8）\n- 28 → 23 层，删除 [15, 16, 17, 24, 25]\n- 7.62B → 6.45B 参数（15.3% sparsity）\n- Forward pass 验证通过\n- 保存的模型可正常重新加载（config.layer_types 同步更新）\n\n### SFT/GRPO 兼容性\n输出是标准 Qwen2ForCausalLM（只是 `num_hidden_layers=23`），可直接传入现有 `train_sft_warmup.py` 和 `train_grpo_v5.py`，无需任何修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-shortgpt-baseline.md"
+}

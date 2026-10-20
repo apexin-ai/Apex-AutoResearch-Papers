@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8fad6209df0e8df5ed3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch seed456 grpo v5 westb0 fix",
+  "task_key": "worker_launch_seed456_grpo_v5_westb0_fix_20260522T130528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_seed456_grpo_v5_westb0_fix_20260522T130528_result.json",
+    "occurrence": 1,
+    "bytes": 808,
+    "sha256": "b3b864d3611eeaa9d331b624dd9103287f075d03610e3c9598412466fea3c4bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Training started successfully. Here's the summary:\n\n---\n\n**Kill 确认**: PID 205670 已 kill (SIGTERM, clean exit). 错误输出目录已清理。\n\n**新 PID**: **209508** (bash wrapper 209503, python 实际进程 209508)\n\n**nvidia-smi**:\n- GPU 0: PID 209508 — **40,348 MiB** (train_grpo_v5.py, seed456)\n- GPU 1: PID 202364 — 29,636 MiB (其他实验)\n\n**超参数确认** (日志 21:09:56):\n- `beta=0.01` ✓\n- `loss_type=dapo` ✓\n- `temperature=0.4` ✓\n- `repetition_penalty=1.15`\n- `format_reward=0.1`\n- `optimizer: adamw_8bit`\n- `max_steps=100`\n\n**W&B run**: `grpo_sft_random_20` (run ID: `auv9riek`)\n\n**磁盘**: `/root/autodl-tmp/` 239G/250G used (12G free) — 偏紧，但 GRPO checkpoint 应该够用。\n\n训练已开始 (0/100 steps)，运行正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-seed456-grpo-v5-westb0-fix.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "c5b53421392d3dca553d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis sft standard 20 retrain",
+  "task_key": "worker_analysis_sft_standard_20_retrain_20260515T123130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sft_standard_20_retrain_20260515T123130.log",
+    "occurrence": 1,
+    "bytes": 763436,
+    "sha256": "d947e61445be67d0e1cfa3e68de1d653dfb2df75fc7a04998bed0d8486cbbb53"
+  },
+  "statistics": {
+    "messages": 392,
+    "user_turns": 0,
+    "tool_calls": 162,
+    "roles": {
+      "log": 1,
+      "system": 6,
+      "record": 1,
+      "assistant": 59,
+      "tool_call": 162,
+      "tool_result": 162,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 392,
+      "chunks": [
+        {
+          "path": "c5b53421392d3dca553d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5b53421392d3dca553d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "c5b53421392d3dca553d-part-0003.json",
+          "message_count": 32
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-sft-standard-20-retrain.md"
+}

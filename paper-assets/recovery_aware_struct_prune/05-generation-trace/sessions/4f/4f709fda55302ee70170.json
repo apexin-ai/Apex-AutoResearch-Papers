@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f709fda55302ee70170",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops cuda3 cascade sft rasp 2048",
+  "task_key": "worker_ops_cuda3_cascade_sft_rasp_2048_20260518T232744",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_cuda3_cascade_sft_rasp_2048_20260518T232744_result.json",
+    "occurrence": 1,
+    "bytes": 756,
+    "sha256": "9227c1d1d8ac3754ea97f1d1c0ff2de01b5d8f839796dea55516599847a3b7b0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 39767 已启动，模型正在加载。\n\n---\n\n## 产出汇总\n\n### 1. RASP GRPO MATH-500 最终结果\n| 指标 | 值 |\n|---|---|\n| **Accuracy** | **24.0% (120/500)** |\n| stderr | 0.0191 |\n| natural_eos | 64% (320/500) |\n| truncated | 36% (180/500) |\n| avg_response_length | 903.5 tokens |\n| median_response_length | 272 tokens |\n| max_new_tokens | 2048 |\n\nRegistry: `eval_math500_grpo_rasp_20_fair` → DONE (success)\n\n### 2. SFT RASP 模型状况\n`sft_rasp_20_westd` 存在且完整（12.3GB model.safetensors，config/tokenizer 齐全）。\n\n### 3. cuda:3 下一步\n`eval_math500_sft_rasp_20_2048` 已启动（PID 39767），使用 `sft_rasp_20_westd` 模型，max_new_tokens=2048。预计 5-6 小时完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-cuda3-cascade-sft-rasp-2048.md"
+}

@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "f3be55f14c42d27feb3b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "eval postprune 25 eval",
+  "task_key": "worker_eval_postprune-25-eval_20260516T052037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_postprune-25-eval_20260516T052037.log",
+    "occurrence": 1,
+    "bytes": 492599,
+    "sha256": "0b113ec5001d0e3f2496728e2a9a357dd8cfc025e3f97b13badcc0a11ec7fe0b"
+  },
+  "statistics": {
+    "messages": 371,
+    "user_turns": 0,
+    "tool_calls": 111,
+    "roles": {
+      "log": 1,
+      "system": 20,
+      "assistant": 127,
+      "record": 1,
+      "tool_call": 111,
+      "tool_result": 111
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 371,
+      "chunks": [
+        {
+          "path": "f3be55f14c42d27feb3b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f3be55f14c42d27feb3b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f3be55f14c42d27feb3b-part-0003.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-postprune-25-eval.md"
+}

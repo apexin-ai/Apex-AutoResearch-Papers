@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c150cb746c8a91b84cd6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diagnose mf3 progress westb1",
+  "task_key": "worker_diagnose_mf3_progress_westb1_20260522T115415",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_mf3_progress_westb1_20260522T115415_result.json",
+    "occurrence": 1,
+    "bytes": 806,
+    "sha256": "74d6a3f2ccd5ee0ffc004bd47205d6a5c2843e3d8e00641c00ab20b1fb09fbd9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== MF3 Eval 状态 ===\nPID 179898: alive\n运行时间: 2h19m02s\nGPU 1 使用: 16547MiB / 97887MiB, 99% util, 82°C, 608W\n当前进度: 96/1319 samples (7.3%)\n速度: ~78s/sample (正常应 3-5s，仍然极慢)\n预计剩余: ~26h28m\n预计完成: ~May 23 22:22 CST\n结果文件: 不存在\n\n中间统计 (50/1319): acc=46.0%, eos_rate=14.0%, avg_len=1805 tokens\n```\n\n**速度异常原因**：avg_len=1805 tokens，生成长度极高（正常 GSM8K 回答约 200-400 tokens）。eos_rate 仅 14%——86% 的样本没有正常结束，模型在不停生成直到 max_tokens。这是导致 78s/sample 的根本原因。\n\n按当前速度跑完需要 **~26.5 小时**（明天晚上才能结束）。是否要 kill 掉重跑（加 max_new_tokens 限制），还是继续等？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-mf3-progress-westb1.md"
+}

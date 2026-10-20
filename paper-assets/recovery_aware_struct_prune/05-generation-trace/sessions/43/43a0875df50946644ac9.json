@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "43a0875df50946644ac9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb 1p5b batch 20260522",
+  "task_key": "worker_ops_westb_1p5b_batch_20260522_20260522T042908",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_1p5b_batch_20260522_20260522T042908_result.json",
+    "occurrence": 1,
+    "bytes": 350,
+    "sha256": "c3ec58d99b896dbd7aaaaad4a8d048b16e152d0dae8b7b2bb2eb30480d33d1ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== Checkpoint 确认 ==\nsft_standard_20_1p5b: OK\nsft_rasp_20_1p5b: OK\n\n== 提交 ==\n| GPU | exp_id | PID | 验证 |\n|-----|--------|-----|------|\n| 0 | eval_math500_sft_standard_20_1p5b | 147023 | OK (3499 MiB) |\n| 1 | eval_math500_sft_rasp_20_1p5b | 147308 | OK (3473 MiB) |\n\n== Cron ==\n已注册（120s 轮询）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-1p5b-batch-20260522.md"
+}

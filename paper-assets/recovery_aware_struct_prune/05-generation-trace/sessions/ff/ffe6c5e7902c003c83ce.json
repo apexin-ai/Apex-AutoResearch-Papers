@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ffe6c5e7902c003c83ce",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "diag sft rasp westd completion",
+  "task_key": "worker_diag_sft-rasp-westd-completion_20260515T173352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_sft-rasp-westd-completion_20260515T173352_result.json",
+    "occurrence": 1,
+    "bytes": 406,
+    "sha256": "e78c8fb9b34cb6236692987611bdf97a154956de089cf8936232c34719e83042"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| 项目 | 值 |\n|------|-----|\n| 状态 | 成功 |\n| final loss | 0.658 |\n| token accuracy | 0.8302 |\n| 模型路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd/model.safetensors` (12G) |\n| 训练时长 | 28.4 min (1870 steps, 2 epochs) |\n\n与 westb 结果基本一致（预期 loss ~0.6, accuracy ~0.84）。Registry 已更新，cron 已清除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-sft-rasp-westd-completion.md"
+}

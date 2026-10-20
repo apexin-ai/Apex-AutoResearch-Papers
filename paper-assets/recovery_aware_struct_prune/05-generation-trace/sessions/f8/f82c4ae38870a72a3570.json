@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f82c4ae38870a72a3570",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops inference bench clean v2 cuda3",
+  "task_key": "worker_ops_inference_bench_clean_v2_cuda3_20260519T014113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_inference_bench_clean_v2_cuda3_20260519T014113_result.json",
+    "occurrence": 1,
+    "bytes": 580,
+    "sha256": "e566c9b0508912e5b0207dd74bc1e2a24410bddb8dfbb25ee8bae034baac3b57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交。\n\n**状态汇总：**\n- **exp_id**: `inference_bench_clean_v2`\n- **GPU**: westd-29022 cuda:3（干净，0 MiB / 0% util）\n- **三个模型**: Dense (7B) / CKA-only 20% / Standard 20%，路径均确认存在\n- **配置**: 50 prompts × 256 max_new_tokens，GSM8K 测试集\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/inference_bench_clean_v2.json`\n- **日志**: `~/runs/recovery_aware_struct_prune/inference_bench_clean_v2.log`\n- **预计完成**: ~20 分钟（3 模型 × warmup + 50 prompts 各两次 generate）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-inference-bench-clean-v2-cuda3.md"
+}

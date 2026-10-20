@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "478ca26ef50c86f35921",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops harvest sft cka only 1p5b gsm8k",
+  "task_key": "worker_ops_harvest_sft_cka_only_1p5b_gsm8k_20260518T234314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_harvest_sft_cka_only_1p5b_gsm8k_20260518T234314_result.json",
+    "occurrence": 1,
+    "bytes": 233,
+    "sha256": "e86824fe67eadb595fd0f7974e00bb517356a47cc0ae912956115fe8389e8076"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**SFT CKA-only 1.5B GSM8K 最终结果：accuracy = 35.63%** (470/1319, stderr=1.32%)\n\n**eval_gsm8k_sft_rasp_20_1p5b** 已在 westb cuda:0 启动 (pid=845212)，对比目标是 GRPO RASP 1.5B (26.16%)。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-harvest-sft-cka-only-1p5b-gsm8k.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ff229c8e8b04daad8cf4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis grpo random 20 early wandb",
+  "task_key": "worker_analysis_grpo_random_20_early_wandb_20260517T144342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_grpo_random_20_early_wandb_20260517T144342_result.json",
+    "occurrence": 1,
+    "bytes": 999,
+    "sha256": "4f2a48697c82dc1738188ba213dc3732e51e283e30c59c06671421df52255632"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，写入 `artifacts/grpo_random_20_early_analysis.md`。\n\n核心发现：\n\n1. **所有三个 run 的 logging_steps=10，W&B 在 steps 1-8 没有任何数据。** Step 10 是最早的 log 点。\n\n2. **grpo_random_20 目前在 step 8**，step time 从 314s 缓慢增长到 378s（+20%），属于正常范围。**没有发现 immediate collapse 信号**（RASP v9 的 catastrophic collapse 到 step 10 时 grad_norm 已降至 0.007、mean_length 991/1024）。\n\n3. **初步判断倾向 Scenario B 或 C**（Random collapse 晚于 RASP），这对论文叙事有利：说明 CKA-aware pruning（RASP）特别伤 RL recovery，而不是所有结构剪枝都导致 immediate collapse。\n\n4. **预测 Random collapse 窗口：step 20-40**（介于 RASP 的 ~10 和 Standard 的 ~60 之间），但置信度低，需 step 10 数据确认。\n\n5. **关键下一步**：step 10 的 W&B 数据将在 ~22:51 UTC 可用，届时可直接判断 Random 是否已 collapse。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-grpo-random-20-early-wandb.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "58b0efb919138662cb5a",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops scp models for e3",
+  "task_key": "worker_ops_scp_models_for_e3_20260518T153905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp_models_for_e3_20260518T153905_result.json",
+    "occurrence": 1,
+    "bytes": 1164,
+    "sha256": "e20ce8b8cf3ab44f2c597d1ff090d3844925bbf388e96b5b450242ccb0c52564"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘空间不足。** westb `/root/autodl-tmp` 只剩 7.7GB，需要 ~24GB。\n\n当前 westb 上的大目录一览（`/root/autodl-tmp/recovery_aware_struct_prune/`）：\n\n| 目录 | 大小 | 备注 |\n|------|------|------|\n| grpo_cka_only_20 | 27G | 最大，可能含多个 checkpoint |\n| grpo_rasp_25 | 11G | |\n| grpo_standard_20_1p5b | 9.6G | |\n| pruned_gradient_20 | 12G | |\n| pruned_magnitude_20 | 12G | |\n| pruned_rasp_25 | 11G | |\n| pruned_rasp_rlvr_20 | 12G | |\n| pruned_standard_25 | 11G | |\n| sft_* (多个) | 11-12G each | |\n| pruned_cka_only_20 | 12G | **E3 需要** |\n| pruned_random_20 | 12G | **E3 需要** |\n\nE3 CKA Heatmap 只需要 5 个模型（pruned_standard_20, pruned_rasp_20, pruned_cka_only_20, pruned_random_20, DeepSeek-R1-Distill-Qwen-7B）。\n\n需要你决定删哪些来腾出 24GB 空间。候选：\n- `grpo_cka_only_20` (27G) — 如果 westd 上有备份，删它一个就够\n- `pruned_gradient_20` + `pruned_magnitude_20` (24G) — 如果 E3 不需要\n- 25% 系列（pruned_rasp_25, pruned_standard_25, sft_rasp_25 等）\n- 1.5B 系列模型\n\n要删哪些？或者还有其他方案？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-models-for-e3.md"
+}

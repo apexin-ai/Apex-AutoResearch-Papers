@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7773f315773a1c3333e2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westd disk",
+  "task_key": "worker_ssh_check_westd_disk_20260521T151930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westd_disk_20260521T151930_result.json",
+    "occurrence": 1,
+    "bytes": 2180,
+    "sha256": "51a57a63e75fb1be53d118cd15c7b0bd38f1a838c0db514f66a9b786f42ae805"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-29022 磁盘状态报告\n\n### 磁盘总览\n\n| 分区 | 总容量 | 已用 | 可用 | 使用率 |\n|------|--------|------|------|--------|\n| 根分区 `/` | 30G | 5.1G | 25G | 17% |\n| 数据盘 `/root/autodl-tmp` | 619G | 610G | **9.7G** | **99%** |\n\n**数据盘未清理，仍仅剩 9.7G。**\n\n### 大目录 Top 10\n\n| 目录 | 大小 |\n|------|------|\n| grpo_unpruned_v2 | 15G |\n| grpo_cka_only_15_seed123 | 14G |\n| grpo_cka_only_15_v2 | 13G |\n| grpo_standard_15_seed123_v3 | 13G |\n| grpo_standard_15_seed456_v3 | 13G |\n| grpo_standard_15_v2 | 13G |\n| grpo_shortgpt_20 | 13G |\n| sft_shortgpt_20 | 13G |\n| sft_standard_15 | 13G |\n| sft_cka_only_15 | 13G |\n\n共约 67 个实验目录，大多在 11-15G 之间，合计 ~610G。\n\n### 疑似失败实验（可安全删除的候选）\n\n| 目录 | 大小 | 原因 |\n|------|------|------|\n| grpo_standard_15 | 104K | 极小，疑似失败 |\n| grpo_standard_15_seed123 | 212K | 极小，疑似失败 |\n| grpo_standard_15_seed456 | 208K | 极小，疑似失败 |\n| grpo_standard_15_seed123_v4 | 0 | 空目录 |\n| grpo_standard_15_seed456_v4 | 0 | 空目录 |\n| sft_standard_20_westd | 12K | 极小，疑似失败 |\n| sft_unpruned_baseline | 0 | 空目录 |\n\n但这些都很小，删除不会释放有意义的空间。要腾出空间需要删除完整的 11-15G 实验目录。\n\n### 4 个 eval 进程状态：全部运行中\n\n| PID | 模型 | GPU | 启动时间 |\n|-----|------|-----|---------|\n| 379999 | grpo_cka_only_25 | cuda:0 | 21:30 |\n| 380074 | sft_cka_only_25 | cuda:2 | 21:30 |\n| 382472 | grpo_random_20 (checkpoint-100) | cuda:1 | 21:57 |\n| 385685 | sft_random_20 | cuda:3 | 22:45 |\n\n### GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| cuda:0 | 16.3G / 95.6G | 98% |\n| cuda:1 | 15.3G / 95.6G | 98% |\n| cuda:2 | 16.3G / 95.6G | 98% |\n| cuda:3 | 15.3G / 95.6G | 91% |\n\n4 GPU 全部满载运行。\n\n### 结论\n\n数据盘 99% 满，仅剩 9.7G，**未发生任何清理**。失败实验目录几乎不占空间。如需释放空间，需确认哪些已完成实验的完整 checkpoint（11-15G/个）可以删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westd-disk.md"
+}

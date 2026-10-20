@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "60fd4388fd5d838958e2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd results collect",
+  "task_key": "worker_ops_westd-results-collect_20260515T143402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-results-collect_20260515T143402_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "f7a43778c6cf6cd5a87bbbedcea9f1db14edf74870ccc6e1000f6268c3ca49d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### nvidia-smi\n| GPU | 型号 | 温度 | 功耗 | 显存 | 利用率 |\n|-----|------|------|------|------|--------|\n| 0 | RTX PRO 6000 | 56°C | 361/600W | 65.6/97.9 GB | 95% |\n| 1 | RTX PRO 6000 | 80°C | 600/600W | 22.6/97.9 GB | 99% |\n\nGPU 0 上 2 个进程：PID 38514 (GraSP SFT, 52.5GB) + PID 38120 (GraSP pre-SFT eval n=100, 13GB)\nGPU 1 上 1 个进程：PID 40494 (α=0.0 post-SFT eval, 22.6GB)\n\n---\n\n### GraSP SFT (cuda:0)\n**仍在运行** — 1263/1870 steps (67%), ~19min 剩余\n- 最新 loss=0.5828, token_accuracy=0.8455, epoch=1.348\n- 速度 ~1.85s/step\n\n### GraSP post-SFT eval\n不存在（SFT 未完成）\n\n### GraSP pre-SFT eval n=100 (cuda:0, PID 38120)\n**运行中** — 24/100, ~107s/sample（因与 SFT 共享 GPU 0 导致很慢）\n- ETA ≈ 2.3 小时\n\n### α=0.0 post-SFT eval (cuda:1, PID 40494)\n**运行中** — 30/100, ~2.4s/sample（非常快）\n- 预计 3-4 分钟完成\n- 尚无最终结果\n\n### α=2.0 SFT\n**失败 — CUDA OOM**。尝试在 GPU 0 上启动，但 GPU 0 已被 GraSP SFT + GraSP eval 占满（合计 ~64GB），Adam optimizer 分配 26MB 时爆内存。需要等 GPU 0 空闲后重跑，或改到 GPU 1。\n\n### GraSP 1319-sample eval (`logs/graspune_eval.log`)\n73/1319 (5.5%), ~51s/sample, 已无对应活跃进程 — 看起来是之前被杀掉或已失效的旧进程日志。当前只有 n=100 的 eval 在跑。\n\n---\n\n**关键问题**：α=2.0 SFT OOM 失败了，需要决定：\n1. 等 GraSP SFT 完成 (~19min) + GraSP eval 完成后在 GPU 0 重跑\n2. 等 α=0.0 eval 完成 (~3min) 后在 GPU 1 上启动"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-results-collect.md"
+}

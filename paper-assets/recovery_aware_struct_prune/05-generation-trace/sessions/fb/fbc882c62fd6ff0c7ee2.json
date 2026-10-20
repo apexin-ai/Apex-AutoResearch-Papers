@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fbc882c62fd6ff0c7ee2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch alpha3p0 grpo eval pipeline westd0",
+  "task_key": "worker_launch_alpha3p0_grpo_eval_pipeline_westd0_20260522T113434",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_alpha3p0_grpo_eval_pipeline_westd0_20260522T113434_result.json",
+    "occurrence": 1,
+    "bytes": 124,
+    "sha256": "8563840d4a07a3c7f5a7c8ac2659252cf3b1b9ef10468f10f843092c838d7ee8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "GRPO 训练当前 36/100 步，~10s/step，预计还需约 10 分钟。已设置 4.5 分钟后回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-alpha3p0-grpo-eval-pipeline-westd0.md"
+}

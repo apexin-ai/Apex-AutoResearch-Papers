@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d370b18b9f4d536870e9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code kill magnitude start gradient",
+  "task_key": "worker_code_kill_magnitude_start_gradient_20260517T073629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_kill_magnitude_start_gradient_20260517T073629_result.json",
+    "occurrence": 1,
+    "bytes": 763,
+    "sha256": "01946e06739733ee37a654e9c0c86b2bb61a58fdbb35f50833f68f34b726a366"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n| 项目 | 状态 |\n|------|------|\n| **Magnitude SFT kill** | 已确认终止 (PID 689115, SIGTERM 成功) |\n| **Gradient prune** | 已完成。MLP groups pruned: 200/784, actual sparsity: 19.09% |\n| **Gradient eval/SFT pipeline** | 已排队在 `scoring_ablation_v2` tmux session，等 GPU 0 空闲后自动启动 |\n| **Multiseed eval** | seed=456, 100/200 samples, ETA ~3-5 min |\n| **后续 pipeline** | 脚本自动执行 gradient eval → SFT → eval → random 全流程 → cka_only 全流程 |\n\nPipeline 脚本 (`run_remaining_ablation.sh`) 包含完整的 gradient + random + cka_only 三个方法各 4 步。GPU 0 释放后（multiseed 约 3-5 min 完成）自动开始，全程 tee 到 `results/ablation_log.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-kill-magnitude-start-gradient.md"
+}

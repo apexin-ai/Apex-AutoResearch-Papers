@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ba3fccca5a2cbee798d9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops fix tokenizer cka only 30",
+  "task_key": "worker_ops_fix_tokenizer_cka_only_30_20260517T215823",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_fix_tokenizer_cka_only_30_20260517T215823_result.json",
+    "occurrence": 1,
+    "bytes": 444,
+    "sha256": "7377120105f7cf48f757d28ea5cd1dd13d7435768b305f171d3abc0000f5f234"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型正在加载，没有 tokenizer 报错。\n\n## 产出\n\n1. **Tokenizer 来源**: base model (`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B/`)，复制了 `tokenizer.json` 和 `tokenizer_config.json`。`special_tokens_map.json` 在 base model 中本身不存在（Qwen 系正常）。\n2. **新 PID**: 59403\n3. **GPU 确认**: cuda:2，进程已启动，模型加载中（日志显示正常检测到 Non-uniform MLP）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-fix-tokenizer-cka-only-30.md"
+}

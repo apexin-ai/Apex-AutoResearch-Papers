@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2eedbd4e3cc5c0ef71d8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code scoring ablation magnitude sft",
+  "task_key": "worker_code_scoring_ablation_magnitude_sft_20260517T072457",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scoring_ablation_magnitude_sft_20260517T072457_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "9db4915bdad10d8d76d0bde4cd4ce8831d17ea5f801c140dd75793e3cd8c69bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 已成功启动并在运行。\n\n**报告：**\n\n| 项目 | 详情 |\n|------|------|\n| Kill 的进程 | PID 681896 — `eval_gsm8k.py --model_path pruned_magnitude_20`（60/200 samples, acc=0%） |\n| SFT 进程 PID | 689115 — `sft_recovery.py` on cuda:0 |\n| Pruned model 路径 | `/root/autodl-tmp/recovery_aware_struct_prune/pruned_magnitude_20/` |\n| SFT 输出路径 | `/root/autodl-tmp/recovery_aware_struct_prune/sft_magnitude_20/` |\n| GPU 利用 | cuda:0 96%, 29GB used（SFT）; cuda:1 90%, 17GB（其他 eval 进程） |\n| tmux session | `scoring_ablation_v2`（已重建） |\n\n**后续方法执行方式：** 原 script 因 `set -e` 在 kill 时退出。已创建续跑脚本 `run_scoring_ablation_continue.sh`，在 magnitude SFT+eval 完成后会自动依次执行 gradient → random → cka_only 全流程（prune+eval+SFT+eval），无需手动干预。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scoring-ablation-magnitude-sft.md"
+}

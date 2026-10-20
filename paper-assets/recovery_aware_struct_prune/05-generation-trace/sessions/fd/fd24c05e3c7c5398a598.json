@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fd24c05e3c7c5398a598",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval postprune cka only 30",
+  "task_key": "worker_fix_eval_postprune_cka_only_30_20260517T215905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_postprune_cka_only_30_20260517T215905_result.json",
+    "occurrence": 1,
+    "bytes": 518,
+    "sha256": "1bd7f644eed3de3a27cf66dc51784362ba45e27fcd8ecf1ef1296bab4517338c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已正常启动，模型加载成功，正在加载 GSM8K 测试集。\n\n**总结：**\n- Tokenizer 检查结果：`pruned_cka_only_30` 目录中的 `tokenizer_config.json` 已包含 `chat_template`，tokenizer 可正常加载。之前的报错可能是临时环境问题或文件已被其他进程修复。\n- 评估任务已通过 `submit_training_job` 提交到 westd-11672 cuda:2，exp_id=`eval_postprune_cka_only_30`，日志: `~/runs/recovery_aware_struct_prune/eval_postprune_cka_only_30.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-postprune-cka-only-30.md"
+}

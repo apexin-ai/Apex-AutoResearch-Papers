@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6a463fe3c1a87d90298c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix overflow and resume",
+  "task_key": "worker_fix_overflow-and-resume_20260514T075121",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_overflow-and-resume_20260514T075121_result.json",
+    "occurrence": 1,
+    "bytes": 828,
+    "sha256": "845930dff11c20c5f95e259ebd0ad69fb04e47a30614610117c0c62f1de78202"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**修复：**\n- `src/eval_gsm8k.py:62` — `except ValueError:` → `except (ValueError, OverflowError):`\n- `src/train_grpo.py:72` — `except ValueError:` → `except (ValueError, OverflowError):`\n\n**验证通过：** `normalize_answer(\"1e999\")` 不再 crash（float(\"1e999\")=inf → int(inf) 触发 OverflowError，现已捕获）。\n\n**产物检查：**\n- `models/pruned_standard_35/config.json` ✓\n- `models/pruned_rasp_35/config.json` ✓\n- `results/cka_scores.pt` ✓ (122KB)\n- `results/importance_scores.pt` ✓ (17KB)\n- `src/run_mvp_resume.sh` ✓ (可执行)\n- `src/run_mvp_resume_from_3_5.sh` ✓ (可执行)\n\n**Pipeline 状态：** 无 tmux session，无残留进程。\n\n**READY** — 两个 resume 脚本均可用，等 Main Agent 通过 submit_training_job 启动。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-overflow-and-resume.md"
+}

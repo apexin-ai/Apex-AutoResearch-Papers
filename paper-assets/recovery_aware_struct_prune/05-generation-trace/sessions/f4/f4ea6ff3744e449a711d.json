@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f4ea6ff3744e449a711d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb cleanup verify eval",
+  "task_key": "worker_ops_westb_cleanup_verify_eval_20260520T103030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb_cleanup_verify_eval_20260520T103030_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "897eb88fc4119d8faa2b1c1794f02d41503310f29b7424a7dc7d359bb04e6834"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个进程均在运行。\n\n## 总结\n\n| 项目 | 结果 |\n|------|------|\n| **optimizer.pt 清理** | 文件已不存在（之前已清理），无额外释放 |\n| **磁盘剩余** | /root/autodl-tmp/ 9.8G 可用 (97%) |\n| **Standard checkpoint-935** | 完好，339 tensors，12.3GB |\n| **CKA-only checkpoint-935** | 完好，339 tensors，12.3GB |\n| **eval 提交 - CKA-only** | `eval_gsm8k_sft_qwen_cka_only_20`，westb:0，PID 14636 |\n| **eval 提交 - Standard** | `eval_gsm8k_sft_qwen_standard_20`，westb:1，PID 14714 |\n| **Standard v2 registry** | 已标记 DONE/failed |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-cleanup-verify-eval.md"
+}

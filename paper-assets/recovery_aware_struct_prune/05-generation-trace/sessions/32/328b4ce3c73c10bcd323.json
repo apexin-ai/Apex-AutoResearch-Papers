@@ -1,0 +1,292 @@
+{
+  "schema_version": "1.0",
+  "id": "328b4ce3c73c10bcd323",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "monitor alpha2p0 sft eval westd2",
+  "task_key": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144.jsonl",
+    "occurrence": 1,
+    "bytes": 7507,
+    "sha256": "8cff9eda32ac794fdbeb28d1fac96c54259302b8e031988c33958efe152631b6"
+  },
+  "statistics": {
+    "messages": 13,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "tool_call": 6,
+      "tool_result": 6,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T10:22:14.528050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T10:22:14.528532+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T10:22:14.528822+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "ps aux | grep -E 'eval_gsm8k|sft.*alpha2p0|alpha2p0' | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T10:22:14.529050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T10:22:14.529351+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "ls -lt /tmp/alpha2p0_*.log 2>/dev/null",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T10:22:14.529572+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T10:22:14.529777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -name '*alpha2p0*' -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T10:22:14.529983+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "nvidia-smi --query-gpu=index,memory.used,utilization.gpu --format=csv,noheader",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T10:22:14.530198+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_grpo_alpha2p0_20.json.done\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json\\\\n/root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json.done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T10:22:14.530435+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"0, 19251 MiB, 98 %\\\\n1, 17651 MiB, 98 %\\\\n2, 0 MiB, 0 %\\\\n3, 0 MiB, 0 %\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T10:22:14.530684+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32935",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/eval_gsm8k_sft_alpha2p0_20.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T10:22:14.531163+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"model_path\\\\\\\": \\\\\\\"/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20\\\\\\\",\\\\n  \\\\\\\"mode\\\\\\\": \\\\\\\"greedy\\\\\\\",\\\\n  \\\\\\\"accuracy\\\\\\\": 0.6497346474601972,\\\\n  \\\\\\\"stderr\\\\\\\": 0.01313542730962711,\\\\n  \\\\\\\"n_correct\\\\\\\": 857,\\\\n  \\\\\\\"n_total\\\\\\\": 1319,\\\\n  \\\\\\\"eos_stats\\\\\\\": {\\\\n    \\\\\\\"natural_eos\\\\\\\": 1300,\\\\n    \\\\\\\"truncated\\\\\\\": 19,\\\\n    \\\\\\\"eos_rate\\\\\\\": 0.9855951478392722,\\\\n    \\\\\\\"avg_response_length\\\\\\\": 185.7414708112206,\\\\n    \\\\\\\"max_response_length\\\\\\\": 2048,\\\\n    \\\\\\\"min_response_length\\\\\\\": 39\\\\n  },\\\\n  \\\\\\\"temperature\\\\\\\": 0.0,\\\\n  \\\\\\\"do_sample\\\\\\\": false,\\\\n  \\\\\\\"examples\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"Janet’s ducks lay 16 eggs per day. She eats three for breakfast every morning and bakes muffins for her friends every day with four. She sells the remainder at the farmers' market daily for $2 per fresh duck egg. How much in dollars does she make every day at the farmers' market?\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"18\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"18\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"Janet’s ducks lay 16 eggs per day and she eats 3 for breakfast, so she has 16-3 = <<16-3=13>>13 eggs left.\\\\\\\\nShe bakes muffins for her friends 4 times a week, so she has 13-4 = <<13-4=9>>9 eggs left to sell at the farmers' market.\\\\\\\\nShe sells the remaining eggs at $2 per egg, so she makes 9*2 = $<<9*2=18>>18 at the farmers' market.\\\\\\\\n#### 18\\\\\\\",\\\\n      \\\\\\\"response_length\\\\\\\": 125,\\\\n      \\\\\\\"hit_eos\\\\\\\": true\\\\n    },\\\\n    {\\\\n      \\\\\\\"question\\\\\\\": \\\\\\\"A robe takes 2 bolts of blue fiber and half that much white fiber.  How many bolts in total does it take?\\\\\\\",\\\\n      \\\\\\\"gold\\\\\\\": \\\\\\\"3\\\\\\\",\\\\n      \\\\\\\"prediction\\\\\\\": \\\\\\\"3\\\\\\\",\\\\n      \\\\\\\"correct\\\\\\\": true,\\\\n      \\\\\\\"response\\\\\\\": \\\\\\\"First, find the number of white fiber bolts by dividing the number of blue fiber bolts by 2: 2 / 2 = <<2/2=1>>1\\\\\\\\nThen add the number of blue\n…[truncated 7286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T10:22:14.531509+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n状态: ✅ 完成\nAccuracy: 64.97% (857/1319)\nC1 Δ = GRPO(66.11%) - SFT(64.97%) = +1.14 pp\nC1 claim 影响: SAFE (Δ ≤ 2pp) ✅\nGPU 2 当前: 0 MiB, 0% (已释放)\n```\n\nα=2.0 的 SFT 准确率 64.97%，与 GRPO 66.11% 的差距仅 1.14pp，在 ±2pp 范围内。C1 \"universal ±2pp\" 声明安全。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144"
+          },
+          "id": "event-000013"
+        }
+      ],
+      "message_count": 13
+    }
+  ],
+  "readable_path": "readable/conversations/monitor-alpha2p0-sft-eval-westd2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "49b0b28c6d56fa791962",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check westb available models",
+  "task_key": "worker_check_westb_available_models_20260518T094750",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westb_available_models_20260518T094750_result.json",
+    "occurrence": 1,
+    "bytes": 1877,
+    "sha256": "433f9bc72a9ff40f7a9aca572ecf9c08961cb846df763ea371fe0cc22d358569"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 上的模型清单：\n\n**Dense model**\n- `/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B` ✅\n\n**Pruned models (未训练)**\n| 路径 | 说明 |\n|------|------|\n| `pruned_cka_only_20/` | CKA-only 剪枝 20% |\n| `pruned_gradient_20/` | Gradient 剪枝 20% |\n| `pruned_magnitude_20/` | Magnitude 剪枝 20% |\n| `pruned_random_20/` | Random 剪枝 20% |\n| `pruned_rasp_25/` | RASP 剪枝 25% |\n| `pruned_rasp_30/` | RASP 剪枝 30% |\n| `pruned_rasp_rlvr_20/` | RASP-RLVR 剪枝 20% |\n| `pruned_standard_25/` | Standard 剪枝 25% |\n| `pruned_standard_30/` | Standard 剪枝 30% |\n\n**SFT checkpoints**\n| 路径 | 说明 |\n|------|------|\n| `sft_cka_only_20/` | CKA-only 20% SFT |\n| `sft_gradient_20/` | Gradient 20% SFT |\n| `sft_random_20/` | Random 20% SFT |\n| `sft_rasp_25/` | RASP 25% SFT |\n| `sft_rasp_rlvr_20/` | RASP-RLVR 20% SFT |\n| `sft_standard_25/` | Standard 25% SFT |\n\n**GRPO checkpoints**\n| 路径 | 说明 |\n|------|------|\n| `grpo_cka_only_20/` | CKA-only 20% GRPO |\n| `grpo_random_20/` | Random 20% GRPO |\n| `grpo_rasp_25/` | RASP 25% GRPO |\n\n所有路径前缀均为 `/root/autodl-tmp/recovery_aware_struct_prune/`。\n\n---\n\n**你要找的 5 个模型全部不在 westb 上：**\n\n| 需要的模型 | westb 状态 |\n|-----------|-----------|\n| `grpo_standard_20` / `grpo_standard_20_fair` | ❌ 没有（只有 25% 的 `grpo` 没有 standard 20%） |\n| `grpo_rasp_20` / `grpo_stage2_rasp_20_v9` | ❌ 没有（只有 `grpo_rasp_25`） |\n| `sft_standard_20` | ❌ 没有（只有 `sft_standard_25`） |\n| `sft_rasp_20` | ❌ 没有（只有 `sft_rasp_25`） |\n| `grpo_unpruned_v2` | ❌ 没有 |\n\nwestb 上有的是另一批实验（25%/30% sparsity 以及 cka_only/gradient/random/rasp_rlvr 等 ablation 变体），核心的 20% standard/rasp GRPO/SFT checkpoint 都只在 westd-11672 上。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westb-available-models.md"
+}

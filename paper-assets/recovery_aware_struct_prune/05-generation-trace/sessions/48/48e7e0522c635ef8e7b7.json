@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "48e7e0522c635ef8e7b7",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check gsm8k sft standard 25 westd",
+  "task_key": "worker_ssh_check_gsm8k_sft_standard_25_westd_20260521T105958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_gsm8k_sft_standard_25_westd_20260521T105958_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "6fde00e84d7e442a5909c674e966cb23de27770995eccebf7b83a4a645ca7908"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **进程状态**: ALIVE（PID 335301，已运行 2h52m，CPU 102%）\n- **当前进度**: 729/1319（55%）\n- **最近 checkpoint** (700/1319): accuracy=0.5286, eos_rate=96.29%, avg_len=293\n- **预计剩余**: ~2h（按 ~2s/it 估算，剩余 590 samples ≈ 1180s ≈ 20min；但有偶发长尾 spike，保守估 1-1.5h）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gsm8k-sft-standard-25-westd.md"
+}

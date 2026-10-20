@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c024df413c092a0301f8",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb v7 fix",
+  "task_key": "worker_ops_westb-v7-fix_20260515T142306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-v7-fix_20260515T142306_result.json",
+    "occurrence": 1,
+    "bytes": 1769,
+    "sha256": "9f1291c6cac425ef35d3258c369617758dac1fa71f065b69f3fc3eb460c3a345"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Standard v7 正在训练中。GPU 1 已升至 39GB / 100% / 590W / 65°C。\n\n---\n\n## 最终报告\n\n### Standard v7 (GPU 1) — 已成功启动\n| 字段 | 值 |\n|------|-----|\n| PID | 532557 |\n| GPU | cuda:1 (CUDA_VISIBLE_DEVICES=1, --gpu 0) |\n| model_path | `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20` (无 final 子目录) |\n| output_dir | `grpo_stage2_standard_20_v7` |\n| 训练样本 | 7473 (完整 GSM8K) |\n| 总 steps | 5604 |\n| 当前进度 | Step 0/5604 (刚启动，第一个 step 正在跑) |\n| WandB | `grpo_stage2_standard_20_v7`, run ID `45u85way` |\n| 超参 | beta=0.01, loss_type=dapo, format_reward=0.1, temp=0.4, rep_penalty=1.15, optim=adamw_8bit, lr=1e-6 |\n| 显存 | 39.3GB / 97.9GB |\n| GPU util | 100%, 590W, 65°C |\n\n### RASP v7 (GPU 0) — 未在运行\n- 原始在 GPU 0 上的两个进程是 **dryrun**（`--max_steps 1 --output_dir /tmp/grpo_v7_dryrun`），不是真正的 RASP v7。\n- 另一个 agent 曾短暂启动 RASP v7（PID 530945），但被 SIGHUP 终止（EXIT_CODE=129）。\n- 目前 GPU 0 上跑的是另一个 agent 启动的 **RASP v8**（PID 532861, `grpo_rasp_20_v8`），仍在加载阶段（12.5GB, 0% util）。\n\n### nvidia-smi 最终状态\n```\nGPU 0: 12,497MiB / 97,887MiB  |  0% util  |  RASP v8 (PID 532861, 另一个 agent)\nGPU 1: 39,331MiB / 97,887MiB  | 100% util  |  Standard v7 (PID 532557, 本次启动)\n```\n\n### 遇到的问题\n1. **sft_standard_20/final 不存在** — 模型直接在 `sft_standard_20/` 下\n2. **首次启动 ENOSPC 崩溃** — HF 锁文件写根分区失败，改为 `HF_HOME=/root/autodl-tmp/.hf_cache` 后解决\n3. **SIGHUP 批量杀进程** — 另一个 agent 启动的 v7 进程（RASP + Standard）均被 SIGHUP 终止"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-v7-fix.md"
+}

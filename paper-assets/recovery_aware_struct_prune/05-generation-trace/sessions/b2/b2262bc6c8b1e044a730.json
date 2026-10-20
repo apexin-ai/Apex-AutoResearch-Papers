@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b2262bc6c8b1e044a730",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops verify and fix westb cuda0 20260517",
+  "task_key": "worker_ops_verify_and_fix_westb_cuda0_20260517_20260517T143930",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_and_fix_westb_cuda0_20260517_20260517T143930_result.json",
+    "occurrence": 1,
+    "bytes": 774,
+    "sha256": "90bd97371f807fcf6b684f4c81c92f4b3d62c15465283825f40102eb06e6813f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**PID 723605 仍然存活** — eval_sft_cka_only_20 正在运行中，当前进度 176/200 (88%)，中间 accuracy = 0.6600。\n\n**cuda:0 状态**：活跃，GPU-Util 99%，14.6GB 显存占用（PID 723610 python 进程）。\n\n**cuda:1 状态**：grpo_random_20 (PID 719684) 仍在跑，GPU-Util 100%，73GB 显存占用。\n\n**结果文件**：尚未生成（评估未完成）。\n\n### 总结\n\n| 项目 | 状态 |\n|------|------|\n| PID 723605 (eval_sft_cka_only_20) | ✅ 运行中，88% (176/200)，预计 ~2 分钟内完成 |\n| cuda:0 | 活跃 99% — 不空闲 |\n| cuda:1 / grpo_random_20 (PID 719679→719684) | ✅ 正常运行 |\n| 中间 accuracy | 66.0% (150 samples 时) |\n\n无需重新提交。eval 即将自然完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-and-fix-westb-cuda0-20260517.md"
+}

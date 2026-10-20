@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ee46b588a5c865e5be69",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 sft cka only 20 v7",
+  "task_key": "worker_harvest_eval_math500_sft_cka_only_20_v7_20260522T042429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_sft_cka_only_20_v7_20260522T042429_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "0bee30df6daba0c52c294f142347fc8474a9cf4c99af0a8ea21aeaad6995329a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n== 结果 ==\naccuracy: 26.80% (134/500)\nvs 预期 (~29%): 略低，基本一致（@2048 truncation rate 23.2% 解释了差距）\n\n== Registry ==\n已更新: DONE(negative)\n\n== Cron ==\n已删除\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-sft-cka-only-20-v7.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77a598a0a7c1a1fc4061",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval math500 sft cka only 20 fixed v2",
+  "task_key": "worker_analysis_eval_math500_sft_cka_only_20_fixed_v2_20260523T193809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_math500_sft_cka_only_20_fixed_v2_20260523T193809_result.json",
+    "occurrence": 1,
+    "bytes": 461,
+    "sha256": "34079d21211242fdfbaaa01e5cea3f6492c9aa2d0b21961a2646c04600607405"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n- **MATH-500 准确率：27.4% (137/500)**，stderr ±2.0%\n- 与 buggy 版本 26.8% 仅差 +0.6pp（3 题），在误差范围内，说明之前的 eval bug 对该模型影响可忽略\n- 23.2% 的回复被截断（max_length=2048），可能略压低分数\n- 运行无异常，结果可直接用于 tab_math500.tex 的 CKA-only SFT 行\n\n报告已写入 `artifacts/worker_output_eval_math500_sft_cka_only_20_fixed_v2.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-math500-sft-cka-only-20-fixed-v2.md"
+}

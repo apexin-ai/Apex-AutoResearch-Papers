@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "57ebfff038dd46d85eb4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analyze grasp baseline westd",
+  "task_key": "worker_analyze_grasp_baseline_westd_20260515T150711",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_grasp_baseline_westd_20260515T150711_result.json",
+    "occurrence": 1,
+    "bytes": 946,
+    "sha256": "f7d860ee7e43166a2a1a0f01a6a4dff4f0032cb11dac58c077a26b4469acc005"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**实验仍在运行，尚未完成。**\n\n进程状态：\n- **PID 38120** 仍在运行（CPU 105%），当前进度 **51/100**\n- 日志最后修改时间：23:07:18（刚刚）\n\n中间结果（50/100 checkpoint）：\n- **GSM8K accuracy = 6.0%**（6/100 correct so far）\n- EOS rate = 2.00%（模型很少自行停止，几乎都跑满 4096 tokens）\n- 平均生成长度 = 4018 tokens\n\n没有 JSON 结果文件或 checkpoint，因为评估尚未完成。\n\n警告：\n- HuggingFace 网络不可达（已自动 fallback 到本地缓存，无影响）\n- 无 ERROR 或 Traceback\n\n同服务器还有 3 个进程在跑：\n1. `sft_grasp_20_westd` — GraSP pruned model 的 SFT 恢复训练（cuda:0）\n2. `eval-sft-alpha-1p0` — alpha=1.0 SFT 模型的 GSM8K eval（cuda:1）\n3. `sft_alpha2_0` — alpha=2.0 模型的 SFT 训练（cuda:1）\n\n按 ~51s/sample 估算，剩余 49 个样本约需 **42 分钟**完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-grasp-baseline-westd.md"
+}

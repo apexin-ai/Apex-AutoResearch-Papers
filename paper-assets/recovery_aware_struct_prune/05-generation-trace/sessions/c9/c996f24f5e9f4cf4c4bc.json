@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c996f24f5e9f4cf4c4bc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh westd execute cleanup and grpo",
+  "task_key": "worker_ssh_westd_execute_cleanup_and_grpo_20260521T024428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_westd_execute_cleanup_and_grpo_20260521T024428_result.json",
+    "occurrence": 1,
+    "bytes": 325,
+    "sha256": "880013a521f021f69292ddd36a2164a62a8d1655a2d93983b64c64ab71ec1c3d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已启动。\n\n**结果汇总：**\n\n| 项目 | 结果 |\n|------|------|\n| 磁盘清理 | 释放 ~25GB（41GB → 66GB free），目标 ≥60GB 达成 |\n| GRPO 进程 | PID 310542，GPU 2 占用 23851 MiB |\n| W&B | `grpo_sft_cka_only_25` run `mirgxi5b` |\n| 训练进度 | 0/100 steps，刚开始 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-westd-execute-cleanup-and-grpo.md"
+}

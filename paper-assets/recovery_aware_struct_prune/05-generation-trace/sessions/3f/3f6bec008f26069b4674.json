@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3f6bec008f26069b4674",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check scoring ablation magnitude progress v2",
+  "task_key": "worker_check_scoring_ablation_magnitude_progress_v2_20260518T045438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_scoring_ablation_magnitude_progress_v2_20260518T045438_result.json",
+    "occurrence": 1,
+    "bytes": 370,
+    "sha256": "46ef1ffa0619699436776a2acd99d113936b07c18b686e74d6ead271212f67f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 **ALIVE**，当前进度 **129/200** samples。\n\n- 最近一次日志汇报 (100/200): acc=2.00%, eos_rate=2.00%, avg_len=4046\n- 速度: ~56.6s/sample\n- 剩余: 71 samples × 56.6s ≈ **67 min**\n- 预计完成时间: ~12:20 UTC (当前约 11:13 UTC)\n\n与 40min 前相比，从 99→129，推进了 30 samples，acc 从 0.00% 升到 2.00%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-scoring-ablation-magnitude-progress-v2.md"
+}

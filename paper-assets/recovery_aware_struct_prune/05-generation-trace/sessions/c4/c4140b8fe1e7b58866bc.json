@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c4140b8fe1e7b58866bc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh p0 kill slow sft submit grpo evals",
+  "task_key": "worker_ssh_p0_kill_slow_sft_submit_grpo_evals_20260523T212835",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_p0_kill_slow_sft_submit_grpo_evals_20260523T212835_result.json",
+    "occurrence": 1,
+    "bytes": 1385,
+    "sha256": "7523bcd6cb69afff3e0be64d29e3875a2d413075025d92e1ffddedde13c46eea"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n### 1. Kill 结果\n- PID 167047 (sft_standard_20_fixed_v3, GPU 3) 已成功 kill\n\n### 2. GPU 状态\n| GPU | 状态 | 进程 |\n|-----|------|------|\n| 0 | 占用 | sft_standard_25_fixed_v2 (PID 166245) |\n| 1 | **新提交** | eval_math500_grpo_rasp_alpha2p0_20_fixed (PID 168524) |\n| 2 | 占用 | grpo_standard_20_fixed (PID 142486) |\n| 3 | **新提交** | eval_math500_grpo_cka_only_25_fixed (PID 168451) |\n\n### 3. 新提交的 eval\n| GPU | Exp ID | Model Path | PID |\n|-----|--------|-----------|-----|\n| 3 | eval_math500_grpo_cka_only_25_fixed | `grpo_cka_only_25/` | 168451 |\n| 1 | eval_math500_grpo_rasp_alpha2p0_20_fixed | `grpo_rasp_alpha2p0_20/` | 168524 |\n\nGPU 1 选了 grpo_rasp_alpha2p0_20，因为 grpo_random_20 缺 model.safetensors，grpo_rasp_alpha0p5_20 目录不存在。\n\n### 4. Checkpoint 存在情况\n| Checkpoint | model.safetensors |\n|-----------|:-:|\n| grpo_cka_only_25 | ✓ |\n| grpo_random_20 | ✗（只有 config，无权重）|\n| grpo_rasp_alpha0p5_20 | ✗（目录不存在）|\n| grpo_rasp_alpha2p0_20 | ✓ |\n| grpo_rasp_alpha4p0_20 | ✗（目录不存在，但 grpo_alpha4_20 有）|\n| grpo_unpruned | ✗（目录不存在）|\n\n### 5. grpo_standard_20_fixed 进度\n462/500 (92%)，还在跑，预计 ~15 分钟内完成。结果文件尚未生成（写完 500 题才写入）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-p0-kill-slow-sft-submit-grpo-evals.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f2c5f693d805f49f2c19",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check cka only rerun math500 result",
+  "task_key": "worker_ssh_check_cka_only_rerun_math500_result_20260523T085503",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_cka_only_rerun_math500_result_20260523T085503_result.json",
+    "occurrence": 1,
+    "bytes": 519,
+    "sha256": "908e905172da3df231dbfdadfecbfd50812ddadc4c4e3a78376598a3323de636"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（可能已被删除或未在本 session 创建）。\n\n**结果汇报：**\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | **27.4%** (137/500) |\n| Stderr | ±1.995% |\n| Natural EOS | 390, Truncated 110 |\n| Avg response length | 654.7 tokens |\n\n**GPU 3 已空闲**（0% utilization, 0 MiB memory）。\n\n对比：旧 eval 脚本报 29.2%，新 eval 脚本 rerun 得 27.4%，下降 1.8pp。SFT CKA-only 新脚本为 26.8%，GRPO 仍高 0.6pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-cka-only-rerun-math500-result.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6b5afc468487a3da132f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code full eval script",
+  "task_key": "worker_code_full-eval-script_20260515T022654",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_full-eval-script_20260515T022654_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "106f56b1873e0f58af39bbaa1a81373a8124b8238f74a09e73e7ae531aab07c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法验证通过。\n\n**产出总结**：\n\n**eval_gsm8k.py** — 无需修改，已支持 per-sample 输出（每个样本保存 question, gold, prediction, correct, response, response_length, hit_eos 到 JSON 的 `examples` 数组）。\n\n**`/root/recovery_aware_struct_prune/src/run_full_eval.sh`** — 已创建，功能：\n\n| 命令 | 作用 |\n|------|------|\n| `bash run_full_eval.sh phase1` | 跑 baseline + pruned_rasp_20 + sft_rasp_20 + sft_standard_20 |\n| `bash run_full_eval.sh phase2` | 跑 grpo_rasp_20 + grpo_standard_20 |\n| `bash run_full_eval.sh all` | 全部 |\n\n**GPU 分配**：\n- Phase 1: GPU0 → baseline + sft_rasp_20, GPU1 → pruned_rasp_20 + sft_standard_20（并行）\n- Phase 2: GPU0 → grpo_rasp_20, GPU1 → grpo_standard_20（并行）\n\n**跳重机制**：已评估的模型（输出文件已存在）自动跳过。\n\n**预估运行时间**（7B 模型, 1319 样本, greedy, max_new_tokens=4096）：\n- 每个模型约 40-60 分钟（取决于平均生成长度）\n- Phase 1: ~60 分钟（两组并行，每组 2 个模型串行）\n- Phase 2: ~40 分钟（两个模型并行）\n- 总计: ~1.5-2 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-full-eval-script.md"
+}

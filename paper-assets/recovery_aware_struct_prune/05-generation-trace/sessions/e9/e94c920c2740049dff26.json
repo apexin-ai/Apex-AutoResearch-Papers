@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e94c920c2740049dff26",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "analysis eval sft cka only 20",
+  "task_key": "worker_analysis_eval_sft_cka_only_20_20260517T144730",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_eval_sft_cka_only_20_20260517T144730_result.json",
+    "occurrence": 1,
+    "bytes": 412,
+    "sha256": "ec13d3730c9b5f2a63043cd772dbf7a4868d8ebb187edc9476ee179681f181b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。memory.md 和 registry 均已更新。\n\n核心结论：CKA-only 20% post-SFT accuracy **64.0%**，比 RASP (~60%)、Standard (~59%)、Random (~60%) 均高 4-5pp。结合 post-prune 阶段的优势 (38.5% vs ~15-19%)，CKA-only scoring 在剪枝质量和 SFT 恢复两个维度都是最优的。不过 SFT 的 equalizing effect 很强，将原本 ~20pp 的差距压缩到了 ~4-5pp。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-eval-sft-cka-only-20.md"
+}

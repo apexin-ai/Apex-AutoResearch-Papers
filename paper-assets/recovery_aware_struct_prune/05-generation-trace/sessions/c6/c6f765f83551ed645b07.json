@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c6f765f83551ed645b07",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "verify cka only wandb metrics",
+  "task_key": "worker_verify_cka_only_wandb_metrics_20260518T022117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_cka_only_wandb_metrics_20260518T022117_result.json",
+    "occurrence": 1,
+    "bytes": 1341,
+    "sha256": "b1187903423b7bc551ffba05bd0ce3d6777cd6b259bf00dcc6fb4563c2e138fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整数据已提取。结果如下：\n\n| Step | reward | frac_zero_std | entropy | grad_norm | kl |\n|------|--------|---------------|---------|-----------|------|\n| 10 | 0.2531 | 0.1750 | 0.0830 | 1.8906 | 0.00121 |\n| 20 | 0.2181 | 0.2000 | 0.0749 | 1.2500 | 0.00123 |\n| 30 | 0.2500 | 0.2000 | 0.0968 | 1.1016 | 0.00167 |\n| 40 | 0.2344 | 0.3500 | 0.0940 | 0.9844 | 0.00150 |\n| 50 | **0.3544** | 0.1500 | 0.0938 | 1.9766 | 0.00157 |\n| 60 | 0.2994 | 0.2000 | 0.0934 | 3.7500 | 0.00158 |\n| 70 | 0.3075 | 0.1250 | 0.0862 | 1.1641 | 0.00156 |\n| 80 | **0.3419** | 0.2500 | 0.0851 | 2.6719 | 0.00170 |\n| 90 | 0.2419 | 0.3000 | 0.0772 | 1.2188 | 0.00151 |\n| 100 | 0.3444 | 0.2000 | 0.0875 | 1.4141 | 0.00161 |\n\n**关键发现：**\n\n- **Peak reward: 0.3544 at step 50** (不是 step 80)\n- **Step 50 reward: 0.3544** — Reviewer 说 0.264 是错的。0.354 就来自这里。\n- **Step 80 reward: 0.3419** — Reviewer 说 0.342 是正确的。\n- **Step 100: reward=0.3444, frac_zero_std=0.200, grad_norm=1.4141**\n- **0.354 出现在哪？** 出现在 **step 50**（精确值 0.354375）\n\n**结论：** Director 之前报的 0.354 是真实的，就是 step 50 的 reward。Reviewer 说 step 50=0.264 是错误的（可能看的是另一个 run 或另一个 metric）。真实 peak 在 step 50 而非 step 80。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-cka-only-wandb-metrics.md"
+}

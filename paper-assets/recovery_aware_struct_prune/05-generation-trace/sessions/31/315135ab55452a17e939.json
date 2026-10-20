@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "315135ab55452a17e939",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh m023 verify standard 15 eval",
+  "task_key": "worker_ssh_m023_verify_standard_15_eval_20260520T224714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_m023_verify_standard_15_eval_20260520T224714_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "f4f32923f34a81452a20a369436d024f2d995aa92096ef72a2bfba6abee7407a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### Standard 15% eval — 两个都失败了\n\n两个 seed 启动后立即报错退出，GPU 2/3 显存 0 MiB，进程已不在。错误相同：\n\n```\nOSError: Repo id must be in the form 'repo_name' or 'namespace/repo_name': \n'/root/recovery_aware_struct_prune/grpo_standard_15_seed{123,456}_v3/checkpoint-100'\n```\n\ncheckpoint 路径在根分区 `/root/recovery_aware_struct_prune/`，transformers 无法将其识别为本地路径。可能原因：\n1. checkpoint 不存在于该路径（应在 `/root/autodl-tmp/...`）\n2. `from_pretrained()` 调用方式有问题\n\n需要确认 checkpoint 实际位置。\n\n### CKA-only 15% eval — 正常运行中\n\n| Eval | GPU | 进度 | 当前 acc | ETA |\n|------|-----|------|---------|-----|\n| seed123 | cuda:0 | 760/1319 (58%) | 73.20% (@750) | ~32min |\n| seed456 | cuda:1 | 672/1319 (51%) | 72.46% (@650) | ~29min |\n\n两个 CKA-only eval 预计约 30 分钟内完成，结果文件尚未生成。\n\n---\n\n要不要我查一下 standard checkpoint 的实际路径，定位问题？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-m023-verify-standard-15-eval.md"
+}

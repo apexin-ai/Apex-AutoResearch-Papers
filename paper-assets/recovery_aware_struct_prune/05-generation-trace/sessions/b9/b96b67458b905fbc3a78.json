@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b96b67458b905fbc3a78",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops math500 rasp v3 westd cuda3",
+  "task_key": "worker_ops_math500_rasp_v3_westd_cuda3_20260517T144433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_math500_rasp_v3_westd_cuda3_20260517T144433_result.json",
+    "occurrence": 1,
+    "bytes": 592,
+    "sha256": "f35336f9e97bcc18b5a0a3cc1a1d60b9d6c2d3926298f3a1f595a0868ed73221"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型加载完成，正在加载 MATH 数据集。任务已正常启动。\n\n---\n\n**报告：**\n\n| 项目 | 结果 |\n|------|------|\n| eval_math500.py 是否支持 resume | **不支持**（无 `--start_idx` / `--resume` 参数），全量重跑 |\n| HumanEval kill 确认 | PID 31087 (tmux) + 31092 (python) 均已终止，tmux session 已清理 |\n| MATH-500 v3 PID | **31706**（tmux session: `eval_math500_grpo_rasp_20_v3`） |\n| nvidia-smi 状态 | 模型加载耗时 ~90s（CPU→GPU），22:47:21 已完成加载进入 dataset 加载阶段，即将开始推理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-math500-rasp-v3-westd-cuda3.md"
+}

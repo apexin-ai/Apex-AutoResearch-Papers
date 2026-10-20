@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "3e0a35f60b2f1d10f912",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code westd rasp reeval definitive",
+  "task_key": "worker_code_westd-rasp-reeval-definitive_20260515T112703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_westd-rasp-reeval-definitive_20260515T112703.log",
+    "occurrence": 1,
+    "bytes": 1132437,
+    "sha256": "5071ff8ccd15e6a0459a0f7c5f0c2afcf757c1f67ab1f76fc7f7c6a681fcb08b"
+  },
+  "statistics": {
+    "messages": 739,
+    "user_turns": 1,
+    "tool_calls": 279,
+    "roles": {
+      "log": 1,
+      "system": 24,
+      "record": 1,
+      "assistant": 149,
+      "tool_call": 279,
+      "tool_result": 279,
+      "user": 1,
+      "result": 5
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 658,
+      "chunks": [
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0004.json",
+          "message_count": 118
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 81,
+      "chunks": [
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0004.json",
+          "message_count": 62
+        },
+        {
+          "path": "3e0a35f60b2f1d10f912-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-westd-rasp-reeval-definitive.md"
+}

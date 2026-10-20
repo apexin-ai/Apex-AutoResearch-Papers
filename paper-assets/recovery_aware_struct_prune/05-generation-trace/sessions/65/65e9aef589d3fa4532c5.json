@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65e9aef589d3fa4532c5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "cleanup westd 288g and restart sft",
+  "task_key": "worker_cleanup_westd_288g_and_restart_sft_20260521T182921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westd_288g_and_restart_sft_20260521T182921_result.json",
+    "occurrence": 1,
+    "bytes": 620,
+    "sha256": "2cf80e17013d35af5d446f8f03e96be36af0df0a45d249e83fd0b611e136e774"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n**Phase 2 — 磁盘清理**\n- 删除 5 批共 ~274G（ShortGPT 39G + 1.5B 16.8G + α=4.0 残留 27G + Qwen-Math 116G + 旧版 53G + pruned 中间产物 36G）\n- `df -h`: 619G → 345G used, **275G 可用**（56%）\n\n**Phase 3 — sft_warmup.py 修改**\n- 在 SFTConfig 中添加 `save_only_model=True` 和 `save_total_limit=1`（第97-98行）\n- 语法验证通过\n\n**Phase 4 — SFT 提交**\n- exp_id: `sft_alpha4_20_v2`\n- PID: `401581`\n- GPU: westd-29022 cuda:2\n- tmux session: `sft_alpha4_20_v2`\n- log: `~/runs/recovery_aware_struct_prune/sft_alpha4_20_v2.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westd-288g-and-restart-sft.md"
+}

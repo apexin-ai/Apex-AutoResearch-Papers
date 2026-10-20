@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2894437082b966d2f593",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "check eval sft unpruned full",
+  "task_key": "worker_check_eval_sft_unpruned_full_20260516T014547",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_eval_sft_unpruned_full_20260516T014547_result.json",
+    "occurrence": 1,
+    "bytes": 402,
+    "sha256": "bf74a3f80e2ec88b8cb001f3d27efeb46ba787bf9b2ca2c639ce7fb7ae9b8be1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验仍在运行中，总结当前状态：\n\n**eval_sft_unpruned_full** — RUNNING (PID 74129, westd-11672 cuda:0)\n- 进度：155/1319 (12%)，~2.5s/sample\n- 中间 accuracy：84% @100, 86.67% @150，eos_rate=100%\n- 预计完成时间：~10:35 UTC（约 48 分钟后）\n- Registry 已更新进度信息\n\n需要等完成后再来收集最终结果并更新 registry 为 DONE。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-eval-sft-unpruned-full.md"
+}

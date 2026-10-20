@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e372dc4c3a84f84fea0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westb disk cleanup and prune retry",
+  "task_key": "worker_ops_westb-disk-cleanup-and-prune-retry_20260516T045217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-disk-cleanup-and-prune-retry_20260516T045217_result.json",
+    "occurrence": 1,
+    "bytes": 469,
+    "sha256": "a549c540089aa116fddf3e4e3a44e72df388be045cb6d63ccc558441e5862543"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n**清理空间**：删除残缺 pruned_standard_25（9.6G）+ checkpoint-15（27G）+ checkpoint-25（27G），共释放 ~63G\n\n**Standard 25% 剪枝**：成功\n- 模型大小：11G（`model.safetensors` 11.6GB），与 RASP 25% 一致\n- MLP groups pruned: 251/784，Attn GQA groups pruned: 0/112\n- 实际稀疏度：23.96%（目标 25%）\n- Forward pass 验证通过\n\n**磁盘状态**：199G/250G（80%），剩余 52G"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westb-disk-cleanup-and-prune-retry.md"
+}

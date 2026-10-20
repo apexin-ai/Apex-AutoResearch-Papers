@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2abeab4caf10eca252bb",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check gsm8k grpo standard 25 westb",
+  "task_key": "worker_ssh_check_gsm8k_grpo_standard_25_westb_20260521T105952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_gsm8k_grpo_standard_25_westb_20260521T105952_result.json",
+    "occurrence": 1,
+    "bytes": 306,
+    "sha256": "714e2dfcc6f678e0932cd4898d05a71b91de5ae93de96dd20b75d8360aa7c1f6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **进程状态**：ALIVE（PID 75282，已运行 4h18m，CPU 104%，RSS ~1.8GB）\n- **当前进度**：1067/1319（~81%）\n- **最新 checkpoint 指标**（@1050）：accuracy=0.5171, eos_rate=96.19%, avg_len=296\n- **预计剩余**：~252 samples，按 ~2s/it 估算约 8-9 分钟完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-gsm8k-grpo-standard-25-westb.md"
+}

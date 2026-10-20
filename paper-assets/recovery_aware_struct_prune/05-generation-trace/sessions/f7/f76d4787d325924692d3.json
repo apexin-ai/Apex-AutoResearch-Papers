@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f76d4787d325924692d3",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "setup shortgpt grpo cuda0",
+  "task_key": "worker_setup_shortgpt_grpo_cuda0_20260519T160224",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_setup_shortgpt_grpo_cuda0_20260519T160224_result.json",
+    "occurrence": 1,
+    "bytes": 477,
+    "sha256": "7c32c74b1e683b119468a18d08b8c3d3ca24173e2510f5df1c7f50d97a8e0bd0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n| 步骤 | 状态 |\n|------|------|\n| 杀 117053 + 子进程 117059 | done |\n| cuda:0 确认空闲 | done |\n| ShortGPT GRPO 训练启动 | PID=118669, cuda:0 占用 15354 MiB |\n| Registry 注册 | grpo_shortgpt_20 → RUNNING, parent=sft_shortgpt_20 |\n\n训练参数：v5 fair config（lr=1e-6, beta=0.01, temperature=0.4, dapo loss, 100 steps, seed=42）。日志：`/root/autodl-tmp/recovery_aware_struct_prune/grpo_shortgpt_20.log`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/setup-shortgpt-grpo-cuda0.md"
+}

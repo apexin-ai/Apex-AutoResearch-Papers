@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77995f1e1b57e8c0abdf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_13.md",
+    "occurrence": 1,
+    "bytes": 4270,
+    "sha256": "e636fc1478346e6a4fade3aa372b3bd2bf831fe88e35cd854b25b993092122be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: idle_timeout\nupdated: '2026-05-16T12:01:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：仅 westb-23072:cuda:0/1, westd-11672:cuda:0/1。其他 GPU 一律不能用\n- westb 用 conda 环境（`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`），不存在 .venv\n- GRPO v9 RASP 已确认 collapse（step 10 永久 collapse），不要再尝试 RASP GRPO 恢复\n- 论文 narrative 已 pivot 到 \"Pruning for Plasticity\"（D037/D038/D044）——不再是 \"RASP enables better RLVR recovery\"\n- eval 脚本在 `/root/recovery_aware_struct_prune/`，模型和 checkpoint 在 `/root/autodl-tmp/recovery_aware_struct_prune/`\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2×~98GB GPU | 工作目录 `/root/recovery_aware_struct_prune/` | 数据盘 `/root/autodl-tmp/`\n  - Python: `/root/miniconda3/bin/python`\n  - HF cache: `/root/autodl-tmp/.hf_cache`\n  - GRPO v9 checkpoints: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_v9/checkpoint-{10,15,20,25,30}`\n  - Standard v8 checkpoint: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_v8/checkpoint-50`\n  - Unpruned GRPO checkpoints: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_unpruned_v2/checkpoint-{90,95,100}`\n- **westd-11672**: 2×~95GB GPU | 同结构路径\n  - SFT models: `sft_rasp_20_westd/`, `sft_standard_20_westd/`, `sft_rasp_25/`, `sft_standard_25/`\n- W&B entity: `xiaoyucorynne-` / project: `recovery_aware_struct_prune`\n- 活跃 Worker: `worker_analyze_eval_grpo_rasp_v9_step10_20260516T075918`（正在读取 eval 结果）\n\n### 3. 📊 当前状态\n**刚收到 cron 回调**: `eval_grpo_rasp_v9_step10` 进程正常退出，状态 ANALYZING。已派 Worker 去 westb-23072 读最终 accuracy。中间指标 acc_at_200=0.68。\n\n**RUNNING 实验**:\n- `eval_sft_standard_25` — westb, Standard 25% post-SFT GSM8K N=1319 eval\n- `eval_sft_rasp_25` — westd, RASP 25% post-SFT GSM8K N=1319 eval\n\n**PREPARING 实验（重要）**:\n- `eval_postprune_25` — 25% post-prune accuracy (N=100)\n- `eval_sft_standard_20_n1319` — Standard 20% full eval (替代之前 failed 的)\n- `eval_sft_rasp_20_full` — RASP 20% full eval\n- `grpo_standard_20_v8` / `grpo_rasp_20_v8` — 旧 placeholder，已被 v8 实际实验取代\n\n**等待中**:\n- Worker 回调：eval_grpo_rasp_v9_step10 结果读取\n- eval_sft_standard_25 和 eval_sft_rasp_25 的 cron 完成回调\n\n### 4. 📋 待办（条件触发式）\n- Worker 回调带回 eval_grpo_rasp_v9_step10 最终 accuracy → update_registry(DONE) + 与 step-5 (60.65%) 和 Standard step-50 (58.91%) 对比 → 汇报 Director\n- eval_sft_standard_25 cron 回调 → 读结果 + 与 eval_sft_rasp_25 配对分析 25% sparsity SFT recovery\n- eval_sft_rasp_25 cron 回调 → 同上，两个都到了做 RASP vs Standard @25% 对比\n- 两个 25% eval 都完成 → 汇总 20%+25% multi-sparsity 表格，汇报 Director\n- GPU 空出来后 → 优先跑 eval_sft_standard_20_n1319 和 eval_sft_rasp_20_full（补 Table 1 的 tight CI）\n\n### 5. 🎯 战略上下文\n**核心发现（D044 narrative pivot）**:\n- 三模型 GRPO collapse severity gradient: RASP step~10 (永久) > Standard step~60 (transient recovery) > Unpruned 无 collapse\n- 原假设 \"RASP enables better RLVR recovery\" 已失败——RASP GRPO 反而最快 collapse\n- 新 narrative: \"Pruning for Plasticity\" — pruning 创造 reward-accuracy decoupling 现象，CKA-guided pruning 影响 collapse dynamics\n- **Unpruned GRPO v2 step-100 eval = 81.27%** 是关键对照（无 collapse + 高 accuracy）\n- Standard GRPO step-50 eval = 58.91%（Δ=-0.38pp vs SFT，GRPO 未提升 accuracy）\n- RASP step-5 eval = 60.65%（collapse 前仍保留 SFT 水平）\n\n**易错点**:\n- 不要把 westb 和 westd 的 SFT eval 直接合并——westd RASP=61.49% vs westb RASP≈57%，有 cross-server variance\n- 论文 Table 1 用 N=1319 full eval 数据，N=100 只做 pilot\n- DDL: EMNLP 2026 ARR May 25（距今 9 天），GRPO narrative pivot 后需要重新构建实验矩阵\n- eval_grpo_rasp_v9_step10 的 acc_at_200=0.68 暗示最终可能在 ~65% 左右（比 step-5 的 60.65% 高），如果确认则 step-10 collapse onset 时 accuracy 仍在上升——这支持 \"reward-accuracy decoupling\" narrative\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-2.md"
+}

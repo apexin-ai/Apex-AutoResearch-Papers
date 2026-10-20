@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "98fb1721c6938bb122bc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_10_1778884061.md",
+  "task_key": "loop_10_1778884061",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_10_1778884061.md",
+    "occurrence": 1,
+    "bytes": 5390,
+    "sha256": "af4087393562307124b2cb12898cfddbd7c81c9069ff5aaeb122b86bf12088a1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 10\nreason: idle_timeout\nupdated: '2026-05-15T22:03:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb cuda:0/1, westd cuda:0/1（约束 C001）。即使 Director 指令也不能用白名单外 GPU\n- westb 磁盘 250G/250G 已满——Standard v8 checkpoint 保存可能失败，新实验前必须清理（HF cache 已迁移到 /root/autodl-tmp，但旧 checkpoint/log 可能还占空间）\n- RASP GRPO 已连续 3 次 collapse（v2/v5/v8），**不要再用同参数重跑 RASP GRPO**\n- Unpruned GRPO 也 collapse（D039/D040/D041）——\"pruning causes collapse\" 这条因果链已被 invalidated，不要在论文中使用\n- DDL: EMNLP ARR May 25（距今 10 天），GRPO v8 Standard 是 pivot-or-publish 的唯一判据\n- Narrative 尚未最终确定（D037/D038 暂定 Narrative A \"Pruning for Plasticity\"，B 作 contingency），**paper_framing.md 不要改，等 Standard v8 结果出来再由 Director 决定**\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× ~98GB GPU, 工作目录 /root/recovery_aware_struct_prune（代码）+ /root/autodl-tmp/recovery_aware_struct_prune（模型/数据/checkpoint）\n  - Python: /root/miniconda3/bin/python（conda base 环境，不是 venv）\n  - HF_HOME: /root/autodl-tmp/.hf_cache\n  - 活跃进程: grpo_stage2_standard_20_v8 PID=534667, cuda:1, tmux 管理, cron 监控中\n  - W&B run: q34vz8j2, project 推测为 recovery_aware_struct_prune\n  - 磁盘: **满 250G/250G**——严重风险\n- **westd-11672**: 2× ~95GB GPU, 同样路径结构\n  - cuda:0: GraSP SFT + eval 流程（应已接近完成，PREPARING 状态中有 eval_sft_grasp_20_westd）\n  - cuda:1: α ablation SFT sweep（α=0.0/0.5/1.0/4.0 完成，α=2.0 启动中）\n  - eval 脚本：必须用 westb 版本（含 apply_chat_template），旧版不可靠\n- **Cron**: grpo_stage2_standard_20_v8 有活跃 cron 监控（reconcile 确认 pid=534667 still running）\n- **Workers 运行中（3 个）**:\n  - worker_ops_alpha-sweep-monitor-v3 (21:39 UTC)\n  - worker_ops_alpha-sweep-diagnose-fix (21:42 UTC)\n  - worker_diag_grpo-v8-step60-check (22:02 UTC)\n\n### 3. 📊 当前状态\n**Registry**: 43 DONE + 1 RUNNING + 11 PREPARING\n\n**RUNNING**:\n- `grpo_stage2_standard_20_v8` — westb cuda:1, step 30 指标 HEALTHY（reward_mean=0.061, grad_norm=2.3, frac_zero_std=0.525 reversed from 0.675）。Director 决策跑到 step 100，不设 kill。ETA ~5/16 11:30 UTC（~21h total, ~13h remaining from now）。这是**项目成败的唯一判据**。\n\n**正在等待的 Worker 回调**:\n- `worker_diag_grpo-v8-step60-check` — 检查 step 60 指标\n- `worker_ops_alpha-sweep-monitor-v3` + `worker_ops_alpha-sweep-diagnose-fix` — westd α ablation 相关\n\n**核心数据已有**:\n- Post-SFT 三方: Standard 64% > RASP 57% > GraSP 41% (N=100, westb)\n- Post-prune: RASP 31% vs Standard 27% (4pp, p=0.54, 不显著)\n- α ablation post-SFT: α=0.0 64% | α=0.5 pending | α=1.0 57% | α=2.0 pending | α=4.0 62%（差异不显著）\n- westd full eval (N=1319): eval_sft_rasp_full_westd + eval_sft_standard_full_westd 已 DONE/success\n- RASP GRPO 3x collapse，Unpruned GRPO 也 collapse，Standard GRPO v8 是唯一还在学习的\n\n### 4. 📋 待办（条件触发式）\n- **grpo_stage2_standard_20_v8 cron 回调 (ANALYZING/DONE)** → spawn Worker 做 N=100 greedy eval on westb → 根据 accuracy 判定 ROADMAP contingency（>15pp gap / 5-15pp / <5pp / Standard>RASP），汇报 Director 做 narrative 最终决策\n- **Worker grpo-v8-step60-check 完成** → 读回调内容，如果 step 60 仍 HEALTHY 则无需干预；如果异常则汇报 Director\n- **α-sweep Workers 完成** → 整合 α=0.5 和 α=2.0 post-SFT eval 结果，更新 registry + report.md，完成 α vs recovery 曲线\n- **GRPO v8 Standard 结果出来且 accuracy 合理** → 立即提交 eval_sft_standard_20_full + eval_sft_rasp_20_full (N=1319 full eval) 用于统计显著性\n- **westb 磁盘满** → 任何新 checkpoint 保存前必须清理旧 checkpoint（grpo v1-v7 的残留、旧 SFT checkpoint）\n- **Director 确定 narrative** → 按 framing-reaudit skill 做全文 re-audit，然后铺开论文写作 Workers\n\n### 5. 🎯 战略上下文\n**核心 story**: RASP（CKA-aware pruning）在 matched sparsity 下与 Standard post-prune 差异不显著，但 recovery 阶段（SFT/GRPO）应产生差异。SFT 阶段 Standard 反超 RASP 7pp，所以 **GRPO recovery gap 是唯一救命数据点**。\n\n**Narrative 未定**: D037/D038 暂定 Narrative A \"Pruning for Plasticity\"（pruning 帮助 RLVR 稳定），但 unpruned baseline 也 collapse 后削弱了这条线。Narrative B \"Recovery-Method Conditional\"（不同 recovery 方法偏好不同 pruning）是 contingency。**等 Standard v8 最终 accuracy 出来再定**。\n\n**最容易判断错的事**:\n1. 不要把 RASP GRPO collapse 归因于 pruning——unpruned 也 collapse（D039-D041）\n2. westd 和 westb 的 RASP 结果不可直接对比——calibration 不同（D022: westd cal=256 vs westb cal=512）导致 ~5% group 选择差异\n3. α ablation post-SFT 差异统计不显著（D033），不要 over-claim α 的效果\n4. Standard GRPO v8 是**负对照**但目前是唯一 HEALTHY 的——如果 Standard 也最终 collapse，项目需要根本性 pivot\n5. 磁盘满是隐患——Standard v8 如果 step 50 checkpoint 保存失败会丢失关键数据，优先级很高\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-10-1778884061.md"
+}

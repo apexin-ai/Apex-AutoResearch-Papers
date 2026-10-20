@@ -1,0 +1,29 @@
+{
+  "exp_id": "eval_D2_ckpt400",
+  "project": "schema-conform-ie-training",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T10:08:50.515Z",
+    "updated_at": "2026-05-13T10:54:26.608Z",
+    "spec": {
+      "hypothesis": "D2 checkpoint-400 eval (pre-mode-collapse, reward peak 0.59). Compare with final merged to assess collapse impact.",
+      "parent": "exp_006_d2_phase2",
+      "checkpoint_source": "/root/autodl-tmp/output/formal_D2/checkpoint-400-merged",
+      "eval_data": "scierc_test, crossner_politics, crossner_science",
+      "data_path": "/root/autodl-tmp/data",
+      "model_name": "Qwen/Qwen3.5-9B + LoRA (D2 ckpt400)",
+      "seed": 42,
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": [
+        "cuda:0"
+      ],
+      "log_path": "/root/autodl-tmp/logs/eval_D2_ckpt400.log",
+      "checkpoint_path": "/root/autodl-tmp/output/formal_D2/checkpoint-400-merged"
+    }
+  },
+  "timestamp": "2026-05-13T10:54:26.641177+00:00",
+  "trigger": "update_registry"
+}

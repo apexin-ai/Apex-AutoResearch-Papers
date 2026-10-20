@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34b84e46a75572221c89",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf3 eval gsm8k westb1",
+  "task_key": "worker_launch_mf3_eval_gsm8k_westb1_20260522T093356",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf3_eval_gsm8k_westb1_20260522T093356_result.json",
+    "occurrence": 1,
+    "bytes": 747,
+    "sha256": "2e0bbee7e75315fcbbeed6a5fef44517134b67a2c696843972e279fc8ce605c2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 正常运行。GPU 1 99% 利用率，14603 MiB 显存。日志显示 0% 是 tqdm 的 `\\r` 覆写导致，实际在跑。\n\n```\nGRPO 状态: 完成 (100/100, 1h38m31s, wandb: eushw8ks)\nEval 启动: 成功 PID=179898, 输出 → results/eval_gsm8k_grpo_qwen_math_cka_only_20.json\nGPU 1 显存: 14603 MiB, 99% 利用率\nChat template: 已处理 (eval_gsm8k.py L154/L244 有 apply_chat_template)\n```\n\n**补充发现**:\n- GPU 0 上有 alpha3.0 GRPO 训练在跑（PID 170676, 55min elapsed）\n- 杀掉了一个重复的 eval 进程（PID 164705），它与我们的 eval 评估同一模型但输出路径不对，共享 GPU 1 会互相拖慢\n- GSM8K eval 1319 样本 + max_new_tokens=2048，预计需要 1-2 小时完成"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf3-eval-gsm8k-westb1.md"
+}

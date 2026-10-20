@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72d1f419edc8c2d54e29",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "investigate westb cuda0 next",
+  "task_key": "worker_investigate_westb_cuda0_next_20260520T154359",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_westb_cuda0_next_20260520T154359_result.json",
+    "occurrence": 1,
+    "bytes": 1938,
+    "sha256": "0f25eefbbe1eeaa5ef4163764f0e869ac70f28c87ec009a6514329c6477b21dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n```\nCKA-only SFT 状态: epoch 1 完成 (checkpoint-935)，epoch 2 保存 checkpoint 时磁盘满崩溃 (No space left on device)\n                   但 _final 目录已有完整模型 (~12.3GB)——训练跑完了 1870/1870 步，只是 checkpoint 保存失败\nStandard SFT 状态: epoch 1 完成 (checkpoint-935)，epoch 2 同样磁盘满崩溃 (enforce fail at inline_container.cc)\n                   _final 目录也有完整模型 (~12.3GB)——训练实际跑完，final 保存成功\n\ncuda:0 占用: 空闲\ncuda:1 占用: 空闲（eval_gsm8k_sft_qwen_standard_20 刚完成）\n\n磁盘: 根分区 28% (22GB 可用)，数据盘 97% (9.8GB 可用) ⚠️\n\neval 结果:\n  CKA-only  (checkpoint-935, epoch 1): GSM8K = 51.5% (103/200), eos_rate=0.27\n  Standard  (checkpoint-935, epoch 1): GSM8K = 21.0% (42/200),  eos_rate 较低\n\n可用 Qwen-Math checkpoint 清单:\n  - pruned_cka_only_20_qwen_math          # 剪枝后未 SFT\n  - pruned_standard_20_qwen_math          # 剪枝后未 SFT\n  - sft_qwen_math_cka_only_20/checkpoint-935  # CKA-only SFT epoch 1\n  - sft_qwen_math_cka_only_20_final          # CKA-only SFT 完整 2 epoch\n  - sft_standard_20_qwen_math/checkpoint-935  # Standard SFT epoch 1\n  - sft_standard_20_qwen_math_final           # Standard SFT 完整 2 epoch\n  - cka_scores_qwen_math_7b.pt\n  - importance_scores_qwen_math_7b.pt\n```\n\n**关键发现**: CKA-only 51.5% vs Standard 21.0%，CKA-only 大幅领先。但两者 eval 都只用了 checkpoint-935 (epoch 1)，还没评 `_final` (2 epoch) 模型。\n\n**建议 cuda:0 下一步（按优先级）**:\n1. **eval `_final` 模型** — 跑 `eval_gsm8k_sft_qwen_cka_only_20_final` 和 `eval_gsm8k_sft_qwen_standard_20_final`，看 epoch 2 是否有额外收益（数据盘 9.8GB 足够跑 eval）\n2. **清理数据盘** — 97% 已经危险，可以考虑删除 checkpoint-935（已有 final 模型）释放空间"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-westb-cuda0-next.md"
+}

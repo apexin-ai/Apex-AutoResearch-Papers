@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "997cafe8e5b9e6fb6ee0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "reviewer / loop_8.md",
+  "task_key": "loop_8",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_8.md",
+    "occurrence": 1,
+    "bytes": 4413,
+    "sha256": "4a7cfe2d028140e74f07863695e72b5c56be58cfd866620ebb61b7b5c471aaef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: max_wall_time\nupdated: '2026-05-15T19:24:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 仅 cuda:0/cuda:1，westd-11672 仅 cuda:0/cuda:1（C001/C003）\n- 所有大文件写 `/root/autodl-tmp/recovery_aware_struct_prune/`，禁止写根分区（根分区仅 30GB，C002）\n- westb 磁盘 78%（56GB free），westd 需检查——checkpoint save 可能因磁盘满失败\n- Reviewer 只读：不执行实验、不修改文件，唯一输出渠道 `reviewer_post_to_director`\n- W&B entity/project 未配置，`fetch_wandb_metrics` 不可用——只能从服务器日志直接提取 metrics\n\n### 2. 🖥️ 基础设施快照\n- **westb-23072**: 2× RTX PRO 6000 Blackwell (~98GB each)\n  - cuda:0: PID 547366 — grpo_unpruned_baseline（未剪枝 DeepSeek-R1-7B GRPO，82.7GB，刚启动）\n  - cuda:1: PID 534667 — grpo_stage2_standard_20_v8（step ~32/100，71.7GB）\n  - 日志：`/tmp/grpo_standard_v8.log`, `/tmp/grpo_unpruned_baseline.log`\n  - 模型路径：`/root/autodl-tmp/recovery_aware_struct_prune/` 下各子目录\n  - Base model：`/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B`\n- **westd-11672**: 2× RTX PRO 6000 (~98GB each)\n  - **双卡完全空闲**（0% util, 0 MiB）\n  - SFT 模型已保存：`sft_rasp_20_westd/`, `sft_standard_20_westd/`\n  - eval 脚本反复失败（EXIT_CODE=2, shell syntax），Agent 在修但尚未修好\n- Python: `/root/miniconda3/bin/python`，conda base 环境\n- 代码根目录：`/root/recovery_aware_struct_prune`（两台服务器相同）\n- HF cache: `/root/autodl-tmp/.hf_cache`\n\n### 3. 📊 当前状态\n**我刚完成的审查**：\n- GRPO v8 双组 step 20 + step 30 独立核实（日志直接提取 metrics）\n- RASP v8 collapse 确认 → kill 执行核实（进程消失确认）\n- Standard v8 step 30 正面意外：frac_zero_std 逆转 0.675→0.525，模型在学习\n- GPU 资源合规检查全部通过\n\n**RUNNING 实验**：\n- `grpo_stage2_standard_20_v8` — westb cuda:1, step ~32/100, 健康且改善中。Step 50 做 eval。\n- `grpo_unpruned_baseline` — westb cuda:0, 刚启动，未剪枝模型 GRPO（验证 GRPO 本身是否正常工作）\n\n**阻塞/待修**：\n- `eval_sft_rasp_20_westd_n100` + `eval_sft_standard_20_westd_n100` — EXIT_CODE=2 反复失败（≥3次），westd 双卡空闲浪费中\n- N=1319 full eval 被 N=100 eval 阻塞\n\n### 4. 📋 待办（条件触发式）\n- Standard v8 step 40 metrics 出现（~19:30 UTC）→ 核实 frac_zero_std 趋势是否持续改善\n- Standard v8 step 50 checkpoint → Agent 应做 N=100 eval，核实 accuracy 变化（64% baseline）\n- Standard v8 step 100 完成 → 最终 eval + 与 RASP collapse 对比 → 决定论文 story\n- unpruned GRPO step 10 metrics → 核实未剪枝模型 GRPO 正常（排除 GRPO 实现 bug）\n- westd eval 修复成功 → 核实 RASP westd ~57% / Standard westd ~64% 跨服务器复现性\n- westd eval 持续失败 → 提醒 Director 空闲 GPU 浪费，建议改用 westb eval 或手动修 shell syntax\n\n### 5. 🎯 战略上下文\n**核心决策链**：D027 post-prune claim 崩塌（RASP 31% vs Standard 27%, p=0.54）→ D029 SFT 也 Standard > RASP → D033 所有 claim 系于 GRPO v8 → **RASP v8 collapse 确认（v2/v5/v8 三次），Standard v8 在改善中**\n\n**当前论文 story 候选**（待 Standard v8 + unpruned baseline 完成后定）：\n1. Standard GRPO 成功 + RASP collapse → \"Pruning strategy determines RL recoverability\"（方向与原假设相反但可发表）\n2. 双方都 collapse → \"GRPO 对结构化剪枝模型系统性失效\"（需 unpruned baseline 证明 GRPO 本身正常）\n3. GraSP 41% vs Standard 64% vs RASP 57% (post-SFT) 是唯一 p<0.001 数据点（D034 已确认为核心 finding）\n\n**最容易判断错的事**：\n- **不要套人类时间直觉**——\"v1-v8 连续 8 版失败说明项目不行\" 是错的，v1-v7 是工程问题（截断/OOM/磁盘满），v8 是首个工程稳定版本，算法结论才刚开始有效\n- **Standard v8 frac_zero_std 的 step 10→20 上升不代表 collapse**——我在 step 20 时预测 step 30 会到 0.85，实际降到 0.525，GRPO 早期波动是正常的\n- **SFT accuracy 差异（57% vs 64%）在 N=100 下统计不显著**（D033: p=0.31），不要当作确定结论\n- **westd eval EXIT_CODE=2 是 shell syntax 问题不是模型问题**——SFT 训练本身成功（checkpoint 已保存）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-copy-3.md"
+}

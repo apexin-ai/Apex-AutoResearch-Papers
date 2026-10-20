@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393f6d723ecc31e94051",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westd status 20260517T143700",
+  "task_key": "worker_ops_check_westd_status_20260517T143700_20260517T143828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_westd_status_20260517T143700_20260517T143828_result.json",
+    "occurrence": 1,
+    "bytes": 760,
+    "sha256": "a36908e63d2660a610e79d8f826a7234c815e3334230aa0c116244f42e147fda"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态报告已写入 `artifacts/westd_status_check_143700.md`。摘要：\n\n**GPU 状态:**\n| GPU | 任务 | 状态 |\n|-----|------|------|\n| cuda:0 | humaneval_grpo_rasp_20_2048 | 52/164 (32%), Pass@1=0.20 |\n| cuda:1 | math500_grpo_standard_20 | 运行 5h12m, 无日志, 超时风险高 |\n| cuda:2 | humaneval_grpo_standard_20_2048 | 39/164 (24%), Pass@1=0.15 |\n| **cuda:3** | **空闲** | **可立即使用** |\n\n**MATH-500 RASP 超时诊断:**\n- EXIT_CODE=124, 6h timeout 时仅完成 193/500 (38.6%)\n- 最后记录 Acc=0.3067 (150/500 时)\n- 根因: max_new_tokens 导致部分题目生成极慢 (单题最高 247s)\n- 无部分结果 JSON, 需重跑\n- cuda:1 的 standard 版同样用 max_new_tokens=4096, 大概率也会超时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westd-status-20260517t143700.md"
+}

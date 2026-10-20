@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "89dd5cb303496f07dfd0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "launch mf3 qwen grpo westb0",
+  "task_key": "worker_launch_mf3_qwen_grpo_westb0_20260522T070956",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf3_qwen_grpo_westb0_20260522T070956.log",
+    "occurrence": 1,
+    "bytes": 494147,
+    "sha256": "788e0d93584c30329ce7e41c96fdd89a3f0a3bdf9074c688b694e8980976f900"
+  },
+  "statistics": {
+    "messages": 336,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 39,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 18
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 336,
+      "chunks": [
+        {
+          "path": "89dd5cb303496f07dfd0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "89dd5cb303496f07dfd0-part-0002.json",
+          "message_count": 156
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/launch-mf3-qwen-grpo-westb0.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d6cae07002c65d777d17",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1d cleanup and grpo",
+  "task_key": "worker_code_e1d_cleanup_and_grpo_20260518T124101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1d_cleanup_and_grpo_20260518T124101_result.json",
+    "occurrence": 1,
+    "bytes": 574,
+    "sha256": "369136f5f5d2b74962fdb7cc056e129426ea0e97054a23c37cff9b07b065b604"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n1. **磁盘清理**: 删除冗余 `model.safetensors` (~11.5GB)，数据盘从 5.8GB → 18GB 可用\n2. **cuda:0 释放**: eval 批处理 (standard + cka_only 两个 1.5B 模型 quick eval) 自然完成后释放\n3. **GRPO 启动**: PID 806188, W&B run `grpo_cka_only_20_1p5b` (8zkpr0hh), GPU 占用 ~63GB 生成中\n4. **初始 log**: 模型加载正常 (非均匀 MLP [3738, 8960])，7473 训练样本，进度条 0/100 首步生成中\n5. **预计完成时间**: 1.5B 模型 100 steps，每步约 3-5 分钟（含生成），预计 5-8 小时"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1d-cleanup-and-grpo.md"
+}

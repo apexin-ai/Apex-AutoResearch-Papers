@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3afcc0d1c399e8303a97",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops validate phase b paths",
+  "task_key": "worker_ops_validate_phase_b_paths_20260516T084330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_validate_phase_b_paths_20260516T084330_result.json",
+    "occurrence": 1,
+    "bytes": 1173,
+    "sha256": "6ca2203b1b6239bb98af3afbaf8a554341c6b22bcdea35785dca2262eab01998"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Phase B 就绪状态报告\n\n| 实验 | 服务器 | 模型路径 | 状态 |\n|------|--------|----------|------|\n| grpo_rasp_25 | westb-23072 | `sft_rasp_25/model.safetensors` | ✅ 存在 |\n| grpo_standard_25 | westb-23072 | `sft_standard_25/checkpoint-1870/model.safetensors` | ✅ 存在 |\n| grpo_rasp_qwen_math | westd-11672 | `sft_qwen_math_rasp_20/` | ⏳ SFT 训练中 68% (1899/2805, ETA ~14min) |\n| grpo_standard_qwen_math | westd-11672 | `sft_qwen_math_standard_20/` | ⏳ SFT 训练中 66% (1849/2805, ETA ~15min) |\n\n**脚本可用性：**\n- `train_grpo_v5.py` — westb ✅ / westd ✅\n- `eval_gsm8k.py` — westd ✅\n\n**磁盘空间：**\n\n| 服务器 | 总量 | 已用 | 可用 | 使用率 |\n|--------|------|------|------|--------|\n| westb-23072 | 250G | 232G | **19G** | 93% |\n| westd-11672 | 250G | 225G | 26G | 90% |\n\n### ⚠️ 风险项\n\n**westb-23072 磁盘仅剩 19GB。** GRPO 训练会保存多个 checkpoint（每个 ~6-7GB），当前剩余空间不足以安全运行两组 GRPO 实验。建议在启动 Phase B 前清理 westb 旧文件释放空间，或配置 `save_total_limit=2` 限制 checkpoint 数量。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-validate-phase-b-paths.md"
+}

@@ -1,0 +1,1035 @@
+{
+  "schema_version": "1.0",
+  "id": "a3754a173d5d08cc28e4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ops cuda2 harvest and case study",
+  "task_key": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ops_cuda2_harvest_and_case_study_20260519T110142.jsonl",
+    "occurrence": 1,
+    "bytes": 65743,
+    "sha256": "f9aacb7962b521bae29ffa0bf9a741a111aca3df70b790e634f64ab6aa5fcd44"
+  },
+  "statistics": {
+    "messages": 49,
+    "user_turns": 0,
+    "tool_calls": 24,
+    "roles": {
+      "tool_call": 24,
+      "tool_result": 24,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T11:08:12.608686+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T11:08:12.609049+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T11:08:12.609255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps aux | grep 76392 | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T11:08:12.609455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T11:08:12.609592+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps aux | grep 78740 | grep -v grep",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T11:08:12.609745+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T11:08:12.609910+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps aux | grep 76392 | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T11:08:12.610036+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ps aux | grep 78740 | grep -v grep",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T11:08:12.610171+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      76392  101  0.1 59699096 1866892 pts/3 Rl+ 15:03 243:32 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.json\\\\nroot      91600  0.0  0.0   4364  3240 ?        Ss   19:00   0:00 bash -c ls -la /proc/76392/fd/1 2>/dev/null; cat /proc/76392/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/78740/fd/1 2>/dev/null; cat /proc/78740/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/83299/fd/1 2>/dev/null; cat /proc/83299/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/86171/fd/1 2>/dev/null; cat /proc/86171/fd/1 2>/dev/null | tail -5\\\\nroot      91602  0.0  0.0   2932  1000 ?        S    19:00   0:00 cat /proc/76392/fd/1\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.03}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T11:08:12.610344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root      78740  102  0.1 59652124 2040564 pts/2 Rl+ 15:38 208:20 /root/miniconda3/bin/python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --max_new_tokens 2048 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_sft_cka_only_20_2048_v2.json\\\\nroot      91600  0.0  0.0   4364  3240 ?        Ss   19:00   0:00 bash -c ls -la /proc/76392/fd/1 2>/dev/null; cat /proc/76392/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/78740/fd/1 2>/dev/null; cat /proc/78740/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/83299/fd/1 2>/dev/null; cat /proc/83299/fd/1 2>/dev/null | tail -5; echo \\\\\\\"---\\\\\\\"; ls -la /proc/86171/fd/1 2>/dev/null; cat /proc/86171/fd/1 2>/dev/null | tail -5\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T11:08:12.610515+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "wc -l /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.json.partial 2>/dev/null; tail -5 /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_fair_2048_v3.log 2>/dev/null",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T11:08:12.610649+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T11:08:12.610780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "python3 -c \"\nimport json, sys\n\n# Load both result files\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\n\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\n# Explore structure\nprint('=== CKA-only keys:', list(d1.keys()))\nprint('=== RASP fair keys:', list(d2.keys()))\n\n# Check results structure\nfor name, d in [('CKA-only', d1), ('RASP-fair', d2)]:\n    results_key = 'results' if 'results' in d else 'details' if 'details' in d else None\n    if results_key:\n        r = d[results_key]\n        print(f'{name}: {len(r)} items, type={type(r)}, first keys={list(r[0].keys()) if isinstance(r, list) and len(r)>0 else \\\"N/A\\\"}')\n        if isinstance(r, list) and len(r) > 0:\n            print(f'  sample: task_id={r[0].get(\\\"task_id\\\",\\\"?\\\")}, passed={r[0].get(\\\"passed\\\",\\\"?\\\")}, has completion={\\\"completion\\\" in r[0] or \\\"generated_text\\\" in r[0] or \\\"output\\\" in r[0]}')\n            # Print all keys of first item\n            print(f'  all keys: {list(r[0].keys())}')\n    else:\n        print(f'{name}: no results/details key found')\n    print(f'{name} top-level: pass_at_1={d.get(\\\"pass_at_1\\\")}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T11:08:12.610925+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python3: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T11:08:12.611065+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.json* 2>/dev/null; ls -la /root/autodl-tmp/recovery_aware_struct_prune/results/eval_humaneval_grpo_standard_20_fair_2048_v3* 2>/dev/null; echo \"---\"; ls /root/autodl-tmp/recovery_aware_struct_prune/results/ | grep -i \"grpo_standard.*v3\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T11:08:12.611195+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"---\\\\nhumaneval_grpo_standard_20_fair_2048_v3.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T11:08:12.611342+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "python -c \"\nimport json, sys\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\n\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\nprint('CKA-only keys:', list(d1.keys()))\nprint('RASP fair keys:', list(d2.keys()))\n\nfor name, d in [('CKA-only', d1), ('RASP-fair', d2)]:\n    results_key = 'results' if 'results' in d else 'details' if 'details' in d else None\n    if results_key:\n        r = d[results_key]\n        print(f'{name}: {len(r)} items, first keys={list(r[0].keys()) if isinstance(r, list) and len(r)>0 else \\\"N/A\\\"}')\n    else:\n        print(f'{name}: no results/details key')\n    print(f'{name}: pass_at_1={d.get(\\\"pass_at_1\\\")}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T11:08:12.611520+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T11:08:12.611813+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tail -10 /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.log",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T11:08:12.612050+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2026-05-19 15:06:00,329 [WARNING] Found the latest cached dataset configuration 'openai_humaneval' at /root/.cache/huggingface/datasets/openai___openai_humaneval/openai_humaneval/0.0.0/7dce6050a7d6d172f3cc5c32aa97f52fa1a2e544 (last modified on Sun May 17 14:19:27 2026).\\\\n2026-05-19 15:06:00,355 [INFO] Loaded 164 problems\\\\n\\\\rHumanEval:   0%|          | 0/164 [00:00<?, ?it/s]\\\\rHumanEval:   1%|          | 1/164 [01:44<4:43:01, 104.18s/it]\\\\rHumanEval:   1%|          | 2/164 [03:27<4:39:39, 103.58s/it]\\\\rHumanEval:   2%|▏         | 3/164 [05:08<4:34:57, 102.47s/it]\\\\rHumanEval:   2%|▏         | 4/164 [06:11<3:52:13, 87.08s/it] \\\\rHumanEval:   3%|▎         | 5/164 [07:55<4:06:17, 92.94s/it]\\\\rHumanEval:   4%|▎         | 6/164 [09:11<3:49:37, 87.20s/it]\\\\rHumanEval:   4%|▍         | 7/164 [10:54<4:01:40, 92.36s/it]\\\\rHumanEval:   5%|▍         | 8/164 [12:36<4:07:51, 95.33s/it]\\\\rHumanEval:   5%|▌         | 9/164 [13:07<3:14:48, 75.41s/it]\\\\rHumanEval:   6%|▌         | 10/164 [14:26<3:15:57, 76.35s/it]\\\\rHumanEval:   7%|▋         | 11/164 [16:11<3:37:11, 85.17s/it]\\\\rHumanEval:   7%|▋         | 12/164 [17:05<3:11:45, 75.70s/it]\\\\rHumanEval:   8%|▊         | 13/164 [18:47<3:30:49, 83.77s/it]\\\\rHumanEval:   9%|▊         | 14/164 [20:05<3:24:47, 81.92s/it]\\\\rHumanEval:   9%|▉         | 15/164 [20:43<2:50:32, 68.68s/it]\\\\rHumanEval:  10%|▉         | 16/164 [22:23<3:12:40, 78.11s/it]\\\\rHumanEval:  10%|█         | 17/164 [23:10<2:48:21, 68.72s/it]\\\\rHumanEval:  11%|█         | 18/164 [24:19<2:47:56, 69.01s/it]\\\\rHumanEval:  12%|█▏        | 19/164 [26:01<3:10:16, 78.74s/it]2026-05-19 15:33:44,138 [INFO] Progress: 20/164, Pass@1: 0.0500\\\\n\\\\rHumanEval:  12%|█▏        | 20/164 [27:43<3:26:06, 85.88s/it]\\\\rHumanEval:  13%|█▎        | 21/164 [29:30<3:39:41, 92.18s/it]\\\\rHumanEval:  13%|█▎        | 22/164 [31:14<3:46:30, 95.71s/it]\\\\rHumanEval:  14%|█▍        | 23/164 [32:56<3:49:08, 97.50s/it]\\\\rHumanEval:  15%|█▍        | 2\n…[truncated 6447 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T11:08:12.612235+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\n\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\nprint('CKA-only keys:', list(d1.keys()))\nprint('RASP fair keys:', list(d2.keys()))\n\nfor name, d in [('CKA-only', d1), ('RASP-fair', d2)]:\n    results_key = 'results' if 'results' in d else 'details' if 'details' in d else None\n    if results_key:\n        r = d[results_key]\n        print(f'{name}: {len(r)} items, first keys={list(r[0].keys()) if isinstance(r, list) and len(r)>0 else \\\"N/A\\\"}')\n    else:\n        print(f'{name}: no results/details key')\n    print(f'{name}: pass_at_1={d.get(\\\"pass_at_1\\\")}, n_correct={d.get(\\\"n_correct\\\")}, n_total={d.get(\\\"n_total\\\")}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T11:08:12.612463+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"CKA-only keys: ['model_path', 'benchmark', 'pass_at_1', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'examples']\\\\nRASP fair keys: ['model_path', 'benchmark', 'pass_at_1', 'stderr', 'n_correct', 'n_total', 'eos_stats', 'examples']\\\\nCKA-only: no results/details key\\\\nCKA-only: pass_at_1=0.20121951219512196, n_correct=33, n_total=164\\\\nRASP-fair: no results/details key\\\\nRASP-fair: pass_at_1=0.10975609756097561, n_correct=18, n_total=164\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T11:08:12.612670+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nd1 = json.load(open(f1))\nexamples = d1['examples']\nprint(f'type: {type(examples)}, len: {len(examples)}')\nif isinstance(examples, list) and len(examples) > 0:\n    print('first item keys:', list(examples[0].keys()))\n    ex = examples[0]\n    for k, v in ex.items():\n        val_str = str(v)\n        print(f'  {k}: type={type(v).__name__}, preview={val_str[:150]}')\nelif isinstance(examples, dict):\n    first_key = list(examples.keys())[0]\n    print('first key:', first_key)\n    print('first val keys:', list(examples[first_key].keys()) if isinstance(examples[first_key], dict) else type(examples[first_key]))\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T11:08:12.612825+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"type: <class 'list'>, len: 164\\\\nfirst item keys: ['task_id', 'passed', 'error', 'response_length']\\\\n  task_id: type=str, preview=HumanEval/0\\\\n  passed: type=bool, preview=False\\\\n  error: type=str, preview=  File \\\\\\\"/tmp/tmpenrk3xvr.py\\\\\\\", line 12\\\\n    Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other th\\\\n  response_length: type=int, preview=2048\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T11:08:12.612994+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\nex1 = d1['examples']\nex2 = d2['examples']\n\n# Find a passed example in CKA-only\nfor e in ex1:\n    if e['passed']:\n        print('=== CKA-only PASSED example ===')\n        print(f'task_id: {e[\\\"task_id\\\"]}')\n        print(f'error: {repr(e[\\\"error\\\"][:200] if e[\\\"error\\\"] else None)}')\n        print(f'response_length: {e[\\\"response_length\\\"]}')\n        break\n\n# Find a failed example\nfor e in ex1:\n    if not e['passed']:\n        print('=== CKA-only FAILED example ===')\n        print(f'task_id: {e[\\\"task_id\\\"]}')\n        print(f'error: {repr(e[\\\"error\\\"][:300] if e[\\\"error\\\"] else None)}')\n        print(f'response_length: {e[\\\"response_length\\\"]}')\n        break\n\n# Check if there's a completion field we might have missed\nprint('\\\\nAll keys in first item:', list(ex1[0].keys()))\n# Check all unique keys across items\nall_keys = set()\nfor e in ex1:\n    all_keys.update(e.keys())\nprint('All unique keys:', all_keys)\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T11:08:12.613146+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== CKA-only PASSED example ===\\\\ntask_id: HumanEval/2\\\\nerror: None\\\\nresponse_length: 397\\\\n=== CKA-only FAILED example ===\\\\ntask_id: HumanEval/0\\\\nerror: '  File \\\\\\\"/tmp/tmpenrk3xvr.py\\\\\\\", line 12\\\\\\\\n    Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold. Let\\\\\\\\'s see how I can approach this.\\\\\\\\n                                                                                             '\\\\nresponse_length: 2048\\\\n\\\\nAll keys in first item: ['task_id', 'passed', 'error', 'response_length']\\\\nAll unique keys: {'error', 'task_id', 'response_length', 'passed'}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T11:08:12.613370+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\nex1 = {e['task_id']: e for e in d1['examples']}\nex2 = {e['task_id']: e for e in d2['examples']}\n\nboth_pass = []\ncka_only_pass = []\nrasp_only_pass = []\nboth_fail = []\n\nfor tid in sorted(ex1.keys()):\n    e1 = ex1[tid]\n    e2 = ex2[tid]\n    if e1['passed'] and e2['passed']:\n        both_pass.append(tid)\n    elif e1['passed'] and not e2['passed']:\n        cka_only_pass.append(tid)\n    elif not e1['passed'] and e2['passed']:\n        rasp_only_pass.append(tid)\n    else:\n        both_fail.append(tid)\n\nprint(f'Both pass: {len(both_pass)}')\nprint(f'CKA-only pass: {len(cka_only_pass)} -> {cka_only_pass}')\nprint(f'RASP-only pass: {len(rasp_only_pass)} -> {rasp_only_pass}')\nprint(f'Both fail: {len(both_fail)}')\nprint()\n\n# For CKA-only pass cases, show RASP failure details\nprint('=== CKA-only pass, RASP fail ===')\nfor tid in cka_only_pass[:5]:\n    e1 = ex1[tid]\n    e2 = ex2[tid]\n    print(f'\\\\n--- {tid} ---')\n    print(f'CKA: passed, resp_len={e1[\\\"response_length\\\"]}')\n    err2 = e2['error'] or 'None'\n    print(f'RASP: failed, resp_len={e2[\\\"response_length\\\"]}, error={err2[:300]}')\n\n# For RASP-only pass cases\nprint('\\\\n=== RASP-only pass, CKA fail ===')\nfor tid in rasp_only_pass[:5]:\n    e1 = ex1[tid]\n    e2 = ex2[tid]\n    print(f'\\\\n--- {tid} ---')\n    err1 = e1['error'] or 'None'\n    print(f'CKA: failed, resp_len={e1[\\\"response_length\\\"]}, error={err1[:300]}')\n    print(f'RASP: passed, resp_len={e2[\\\"response_length\\\"]}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T11:08:12.613592+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Both pass: 5\\\\nCKA-only pass: 28 -> ['HumanEval/112', 'HumanEval/115', 'HumanEval/133', 'HumanEval/139', 'HumanEval/159', 'HumanEval/17', 'HumanEval/2', 'HumanEval/21', 'HumanEval/22', 'HumanEval/27', 'HumanEval/30', 'HumanEval/4', 'HumanEval/40', 'HumanEval/42', 'HumanEval/44', 'HumanEval/49', 'HumanEval/51', 'HumanEval/52', 'HumanEval/53', 'HumanEval/55', 'HumanEval/63', 'HumanEval/68', 'HumanEval/7', 'HumanEval/72', 'HumanEval/8', 'HumanEval/88', 'HumanEval/90', 'HumanEval/97']\\\\nRASP-only pass: 13 -> ['HumanEval/102', 'HumanEval/13', 'HumanEval/154', 'HumanEval/157', 'HumanEval/29', 'HumanEval/31', 'HumanEval/34', 'HumanEval/47', 'HumanEval/69', 'HumanEval/73', 'HumanEval/74', 'HumanEval/82', 'HumanEval/92']\\\\nBoth fail: 118\\\\n\\\\n=== CKA-only pass, RASP fail ===\\\\n\\\\n--- HumanEval/112 ---\\\\nCKA: passed, resp_len=1250\\\\nRASP: failed, resp_len=359, error=Traceback (most recent call last):\\\\n  File \\\\\\\"/tmp/tmpzv5gpztk.py\\\\\\\", line 27, in <module>\\\\n    check(reverse_delete)\\\\n  File \\\\\\\"/tmp/tmpzv5gpztk.py\\\\\\\", line 17, in check\\\\n    assert candidate(\\\\\\\"abcde\\\\\\\",\\\\\\\"ae\\\\\\\") == ('bcd',False)\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nAssertionError\\\\n\\\\n\\\\n--- HumanEval/115 ---\\\\nCKA: passed, resp_len=1768\\\\nRASP: failed, resp_len=207, error=Traceback (most recent call last):\\\\n  File \\\\\\\"/tmp/tmp246s2pju.py\\\\\\\", line 25, in <module>\\\\n    check(max_fill)\\\\n  File \\\\\\\"/tmp/tmp246s2pju.py\\\\\\\", line 22, in check\\\\n    assert candidate([[1,1,1,1], [1,1,1,1]], 9) == 2, \\\\\\\"Error\\\\\\\"\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nAssertionError: Error\\\\n\\\\n\\\\n--- HumanEval/133 ---\\\\nCKA: passed, resp_len=1314\\\\nRASP: failed, resp_len=2048, error=Traceback (most recent call last):\\\\n  File \\\\\\\"/tmp/tmpdon4elng.py\\\\\\\", line 25, in <module>\\\\n    check(sum_squares)\\\\n  File \\\\\\\"/tmp/tmpdon4elng.py\\\\\\\", line 10, in check\\\\n    assert candidate([1.4,4.2,0])==29, \\\\\\\"This prints if this assert f\n…[truncated 2786 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T11:08:12.613873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\n\nex1 = {e['task_id']: e for e in d1['examples']}\nex2 = {e['task_id']: e for e in d2['examples']}\n\ndef classify_error(e):\n    if e['passed']:\n        return 'passed'\n    err = e.get('error', '') or ''\n    if 'SyntaxError' in err:\n        # Check if it looks like reasoning text in code\n        if any(kw in err.lower() for kw in ['i need to', 'let me', 'i think', 'first', 'okay', 'the function', 'we need']):\n            return 'reasoning_as_code'\n        return 'syntax_error'\n    elif 'AssertionError' in err or 'AssertError' in err:\n        return 'logic_error'\n    elif 'TypeError' in err:\n        return 'type_error'\n    elif 'NameError' in err:\n        return 'name_error'\n    elif 'IndexError' in err:\n        return 'index_error'\n    elif 'TimeoutError' in err or 'timeout' in err.lower():\n        return 'timeout'\n    elif e['response_length'] >= 2048:\n        return 'max_length_hit'\n    else:\n        return 'other_runtime'\n\n# Classify all failures\nprint('=== CKA-only failure patterns ===')\ncka_fail_patterns = {}\nfor tid in sorted(ex1.keys()):\n    if not ex1[tid]['passed']:\n        p = classify_error(ex1[tid])\n        cka_fail_patterns.setdefault(p, []).append(tid)\n\nfor p, tids in sorted(cka_fail_patterns.items(), key=lambda x: -len(x[1])):\n    print(f'  {p}: {len(tids)}')\n\nprint()\nprint('=== RASP-fair failure patterns ===')\nrasp_fail_patterns = {}\nfor tid in sorted(ex2.keys()):\n    if not ex2[tid]['passed']:\n        p = classify_error(ex2[tid])\n        rasp_fail_patterns.setdefault(p, []).append(tid)\n\nfor p, tids in sorted(rasp_fail_patterns.items(), key=lambda x: -len(x[1])):\n    print(f'  {p}: {len(tids)}')\n\n# Response length distribution for failures\nprint()\nprint('=== Response length stats (failures only) ===')\ncka_lens = [ex1[tid]['response_length'] for tid in ex1 if not ex1[tid]['passed']]\nrasp_lens = [ex2[tid]['response_length'] for tid in ex2 if not ex2[tid]['passed']]\nimport statistics\nprint(f'CKA fails: mean={statistics.mean(cka_lens):.0f}, median={statistics.median(cka_lens):.0f}, max_len_count={sum(1 for l in cka_lens if l>=2048)}')\nprint(f'RASP fails: mean={statistics.mean(rasp_lens):.0f}, median={statistics.median(rasp_lens):.0f}, max_len_count={sum(1 for l in rasp_lens if l>=2048)}')\n\n# CKA-only pass: what does RASP fail with?\nprint()\nprint('=== CKA pass, RASP fail: RASP failure patterns ===')\ncka_only_pass = [tid for tid in ex1 if ex1[tid]['passed'] and not ex2[tid]['passed']]\nrasp_fail_in_cka_pass = {}\nfor tid in cka_only_pass:\n    p = classify_error(ex2[tid])\n    rasp_fail_in_cka_pass.setdefault(p, []).append(tid)\nfor p, tids in sorted(rasp_fail_in_cka_pass.items(), key=lambda x: -len(x[1])):\n    print(f'  {p}: {len(tids)} -> {tids[:3]}')\n\n# RASP-only pass: what does CKA fail with?\nprint()\nprint('=== RASP pass, CKA fail: CKA failure patterns ===')\nrasp_only_pass = [tid for tid in ex1 if not ex1[tid]['passed'] and ex2[tid]['passed']]\ncka_fail_in_rasp_pass = {}\nfor tid in rasp_only_pass:\n    p = classify_error(ex1[tid])\n    cka_fail_in_rasp_pass.setdefault(p, []).append(tid)\nfor p, tids in sorted(cka_fail_in_rasp_pass.items(), key=lambda x: -len(x[1])):\n    print(f'  {p}: {len(tids)} -> {tids[:3]}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-19T11:08:12.614076+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== CKA-only failure patterns ===\\\\n  reasoning_as_code: 47\\\\n  syntax_error: 36\\\\n  max_length_hit: 36\\\\n  logic_error: 8\\\\n  other_runtime: 3\\\\n  type_error: 1\\\\n\\\\n=== RASP-fair failure patterns ===\\\\n  reasoning_as_code: 59\\\\n  syntax_error: 35\\\\n  logic_error: 27\\\\n  max_length_hit: 18\\\\n  type_error: 2\\\\n  other_runtime: 2\\\\n  index_error: 2\\\\n  name_error: 1\\\\n\\\\n=== Response length stats (failures only) ===\\\\nCKA fails: mean=1667, median=2048, max_len_count=91\\\\nRASP fails: mean=1422, median=2048, max_len_count=90\\\\n\\\\n=== CKA pass, RASP fail: RASP failure patterns ===\\\\n  reasoning_as_code: 11 -> ['HumanEval/2', 'HumanEval/22', 'HumanEval/30']\\\\n  logic_error: 8 -> ['HumanEval/7', 'HumanEval/17', 'HumanEval/55']\\\\n  max_length_hit: 4 -> ['HumanEval/27', 'HumanEval/40', 'HumanEval/51']\\\\n  syntax_error: 3 -> ['HumanEval/4', 'HumanEval/21', 'HumanEval/68']\\\\n  other_runtime: 1 -> ['HumanEval/8']\\\\n  index_error: 1 -> ['HumanEval/63']\\\\n\\\\n=== RASP pass, CKA fail: CKA failure patterns ===\\\\n  max_length_hit: 6 -> ['HumanEval/31', 'HumanEval/47', 'HumanEval/73']\\\\n  reasoning_as_code: 4 -> ['HumanEval/13', 'HumanEval/69', 'HumanEval/74']\\\\n  syntax_error: 2 -> ['HumanEval/34', 'HumanEval/82']\\\\n  logic_error: 1 -> ['HumanEval/29']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-19T11:08:12.614279+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\nex1 = {e['task_id']: e for e in d1['examples']}\nex2 = {e['task_id']: e for e in d2['examples']}\n\n# Selected examples for case study\nselected = {\n    'cka_pass_rasp_reasoning': ['HumanEval/139', 'HumanEval/159'],  # RASP generates reasoning\n    'cka_pass_rasp_logic': ['HumanEval/112', 'HumanEval/7'],  # RASP logic error\n    'rasp_pass_cka_reasoning': ['HumanEval/102', 'HumanEval/13'],  # CKA generates reasoning\n    'rasp_pass_cka_maxlen': ['HumanEval/47', 'HumanEval/73'],  # CKA hits max length\n    'both_pass': ['HumanEval/2'],\n    'both_fail': ['HumanEval/0'],\n}\n\nfor category, tids in selected.items():\n    print(f'\\\\n===== {category} =====')\n    for tid in tids:\n        e1 = ex1[tid]\n        e2 = ex2[tid]\n        print(f'\\\\n--- {tid} ---')\n        print(f'CKA: passed={e1[\\\"passed\\\"]}, resp_len={e1[\\\"response_length\\\"]}')\n        err1 = (e1.get('error') or '')[:400]\n        print(f'CKA error: {repr(err1)}')\n        print(f'RASP: passed={e2[\\\"passed\\\"]}, resp_len={e2[\\\"response_length\\\"]}')\n        err2 = (e2.get('error') or '')[:400]\n        print(f'RASP error: {repr(err2)}')\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-19T11:08:12.614504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n===== cka_pass_rasp_reasoning =====\\\\n\\\\n--- HumanEval/139 ---\\\\nCKA: passed=True, resp_len=1629\\\\nCKA error: ''\\\\nRASP: passed=False, resp_len=2048\\\\nRASP error: '  File \\\\\\\"/tmp/tmp7w3e8oct.py\\\\\\\", line 4\\\\\\\\n    First, we\\\\\\\\'ll write a function to calculate the factorial of a number.\\\\\\\\n             ^\\\\\\\\nSyntaxError: unterminated string literal (detected at line 4)\\\\\\\\n'\\\\n\\\\n--- HumanEval/159 ---\\\\nCKA: passed=True, resp_len=1047\\\\nCKA error: ''\\\\nRASP: passed=False, resp_len=2048\\\\nRASP error: '  File \\\\\\\"/tmp/tmpptnls_g4.py\\\\\\\", line 1\\\\\\\\n    The function eat takes three arguments: number, need, and remaining.\\\\\\\\n        ^^^^^^^^\\\\\\\\nSyntaxError: invalid syntax\\\\\\\\n'\\\\n\\\\n===== cka_pass_rasp_logic =====\\\\n\\\\n--- HumanEval/112 ---\\\\nCKA: passed=True, resp_len=1250\\\\nCKA error: ''\\\\nRASP: passed=False, resp_len=359\\\\nRASP error: 'Traceback (most recent call last):\\\\\\\\n  File \\\\\\\"/tmp/tmpzv5gpztk.py\\\\\\\", line 27, in <module>\\\\\\\\n    check(reverse_delete)\\\\\\\\n  File \\\\\\\"/tmp/tmpzv5gpztk.py\\\\\\\", line 17, in check\\\\\\\\n    assert candidate(\\\\\\\"abcde\\\\\\\",\\\\\\\"ae\\\\\\\") == (\\\\\\\\'bcd\\\\\\\\',False)\\\\\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\\\\\nAssertionError\\\\\\\\n'\\\\n\\\\n--- HumanEval/7 ---\\\\nCKA: passed=True, resp_len=526\\\\nCKA error: ''\\\\nRASP: passed=False, resp_len=606\\\\nRASP error: 'Traceback (most recent call last):\\\\\\\\n  File \\\\\\\"/tmp/tmp8vbcjmyg.py\\\\\\\", line 26, in <module>\\\\\\\\n    check(filter_by_substring)\\\\\\\\n  File \\\\\\\"/tmp/tmp8vbcjmyg.py\\\\\\\", line 21, in check\\\\\\\\n    assert candidate([], \\\\\\\\'john\\\\\\\\') == []\\\\\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\\\\\nAssertionError\\\\\\\\n'\\\\n\\\\n===== rasp_pass_cka_reasoning =====\\\\n\\\\n--- HumanEval/102 ---\\\\nCKA: passed=False, resp_len=2048\\\\nCKA error: '  File \\\\\\\"/tmp/tmpzg0t9nzf.py\\\\\\\", line 1\\\\\\\\n    Okay, I need to write a Python function called choose_num that takes two positive numbers x and y and returns the biggest even integer in the range [\n…[truncated 3121 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-19T11:08:12.614697+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "/root/miniconda3/bin/python -c \"\nimport json\n\nf1 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_cka_only_20_2048.json'\nf2 = '/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_rasp_20_fair_2048.json'\nd1 = json.load(open(f1))\nd2 = json.load(open(f2))\nex1 = {e['task_id']: e for e in d1['examples']}\nex2 = {e['task_id']: e for e in d2['examples']}\n\nboth_pass = [tid for tid in sorted(ex1.keys()) if ex1[tid]['passed'] and ex2[tid]['passed']]\nprint('Both pass:', both_pass)\n\n# Show both_pass examples\nfor tid in both_pass[:2]:\n    print(f'{tid}: CKA len={ex1[tid][\\\"response_length\\\"]}, RASP len={ex2[tid][\\\"response_length\\\"]}')\n\n# A both_fail example with different failure modes\nboth_fail = [tid for tid in sorted(ex1.keys()) if not ex1[tid]['passed'] and not ex2[tid]['passed']]\n# Find one where failure types differ\nfor tid in both_fail:\n    e1_err = (ex1[tid].get('error') or '')\n    e2_err = (ex2[tid].get('error') or '')\n    e1_has_syntax = 'SyntaxError' in e1_err\n    e2_has_assert = 'AssertionError' in e2_err\n    if e1_has_syntax and e2_has_assert:\n        print(f'\\\\nDiff failure: {tid}')\n        print(f'CKA ({ex1[tid][\\\"response_length\\\"]}): {e1_err[:250]}')\n        print(f'RASP ({ex2[tid][\\\"response_length\\\"]}): {e2_err[:250]}')\n        break\n\"\n",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-19T11:08:12.614865+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Both pass: ['HumanEval/100', 'HumanEval/12', 'HumanEval/151', 'HumanEval/3', 'HumanEval/48']\\\\nHumanEval/100: CKA len=1403, RASP len=1829\\\\nHumanEval/12: CKA len=474, RASP len=614\\\\n\\\\nDiff failure: HumanEval/118\\\\nCKA (2048):   File \\\\\\\"/tmp/tmp5467xgxi.py\\\\\\\", line 3\\\\n    First, I need to understand what a \\\\\\\"vowel\\\\\\\" is. Vowels are the letters a, e, i, o, u, and sometimes y. But in this problem, I think it's just the five mentioned because the examples don't include y. So I'll con\\\\nRASP (229): Traceback (most recent call last):\\\\n  File \\\\\\\"/tmp/tmp8qn_cfj3.py\\\\\\\", line 35, in <module>\\\\n    check(get_closest_vowel)\\\\n  File \\\\\\\"/tmp/tmp8qn_cfj3.py\\\\\\\", line 17, in check\\\\n    assert candidate(\\\\\\\"yogurt\\\\\\\") == \\\\\\\"u\\\\\\\"\\\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\\\\nAssertionEr\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-19T11:08:12.615051+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat > /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md << 'REPORT_EOF'\n# HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair\n\n## Summary\n- GRPO CKA-only: 33/164 passed (pass@1 = 20.12%)\n- GRPO RASP fair: 18/164 passed (pass@1 = 10.98%)\n- Both passed: 5\n- CKA-only passed: 28\n- RASP-only passed: 13\n- Both failed: 118\n\n## Failure Pattern Breakdown\n\n| Pattern | CKA-only failures | RASP-fair failures |\n|---------|---:|---:|\n| Reasoning-as-code (NL text instead of Python) | 47 | 59 |\n| Other syntax error | 36 | 35 |\n| Logic error (valid code, wrong output) | 8 | 27 |\n| Max length hit (2048 tokens, no other error) | 36 | 18 |\n| Type/Name/Index error | 1 | 5 |\n| Other runtime error | 3 | 2 |\n\n**Response length stats (failures only):**\n- CKA: mean=1667, median=2048, hit max length 91/131\n- RASP: mean=1422, median=2048, hit max length 90/146\n\n## Category 1: CKA passed, RASP failed (28 cases)\n\nRASP failure breakdown: reasoning-as-code (11), logic error (8), max length (4), syntax error (3), other (2).\n\n### Example 1: HumanEval/139 (RASP: reasoning-as-code)\n**Task**: `special_factorial` (compute sum of squares with ceiling/rounding rules)\n**CKA output** (passed): resp_len=1629, produced valid Python code\n**RASP output** (failed): resp_len=2048, generated natural language: `First, we'll write a function to calculate the factorial of a number.`\n**Failure pattern**: RASP emitted reasoning text instead of code, causing SyntaxError. Hit max token length (2048) while still \"thinking.\"\n\n### Example 2: HumanEval/112 (RASP: logic error)\n**Task**: `reverse_delete` (delete chars from string, check palindrome)\n**CKA output** (passed): resp_len=1250\n**RASP output** (failed): resp_len=359, produced valid Python but assertion failed on `candidate(\"abcde\",\"ae\") == ('bcd',False)`\n**Failure pattern**: RASP generated syntactically correct code but implemented the logic incorrectly. Shorter output suggests it produced a concise but wrong solution.\n\n### Example 3: HumanEval/7 (RASP: logic error)\n**Task**: `filter_by_substring`\n**CKA output** (passed): resp_len=526\n**RASP output** (failed): resp_len=606, assertion failed on empty list input `candidate([], 'john') == []`\n**Failure pattern**: RASP code failed to handle edge case (empty list).\n\n## Category 2: RASP passed, CKA failed (13 cases)\n\nCKA failure breakdown: max length hit (6), reasoning-as-code (4), syntax error (2), logic error (1).\n\n### Example 1: HumanEval/102 (CKA: reasoning-as-code)\n**Task**: `choose_num` (find biggest even integer in range)\n**CKA output** (failed): resp_len=2048, generated: `Okay, I need to write a Python function called choose_num that takes two positive numbers x and y and returns the biggest even integer in the range [x, y] inclusive...`\n**RASP output** (passed): resp_len=185, produced concise correct code\n**Failure pattern**: CKA entered chain-of-thought mode, exhausted 2048 tokens on reasoning without ever producing code. RASP solved it with a compact 185-token solution.\n\n### Example 2: HumanEval/47 (CKA: max length)\n**Task**: `median` (compute median of a list)\n**CKA output** (failed): resp_len=2048, started with: `Okay, I need to write a Python function to calculate the median of a list...`\n**RASP output** (passed): resp_len=161, produced correct code\n**Failure pattern**: CKA again entered verbose reasoning mode and ran out of tokens. RASP produced a short, correct solution.\n\n### Example 3: HumanEval/13 (CKA: reasoning-as-code)\n**Task**: `greatest_common_divisor`\n**CKA output** (failed): resp_len=897, generated: `I think the best way to find the GCD is to use the Euclidean algorithm because it's efficient...`\n**RASP output** (passed): resp_len=355\n**Failure pattern**: CKA generated an essay about the Euclidean algorithm instead of implementing it.\n\n## Category 3: Both passed (5 cases)\n\nTask IDs: HumanEval/3, HumanEval/12, HumanEval/48, HumanEval/100, HumanEval/151\n\n### Example: HumanEval/12\n**CKA**: resp_len=474\n**RASP**: resp_len=614\n**Note**: Both solved it, CKA with slightly more concise output.\n\n## Category 4: Both failed (118 cases)\n\n### Example: HumanEval/118 (different failure modes)\n**Task**: `get_closest_vowel`\n**CKA output** (failed): resp_len=2048, SyntaxError from reasoning text: `First, I need to understand what a \"vowel\" is...`\n**RASP output** (failed): resp_len=229, AssertionError on `candidate(\"yogurt\") == \"u\"`\n**Failure pattern**: CKA failed by generating reasoning text (never produced code). RASP produced code that compiled and ran but returned wrong answer. Same task, fundamentally different failure modes.\n\n### Example: HumanEval/0 (both reasoning/syntax)\n**Task**: `has_close_elements`\n**CKA output** (failed): resp_len=2048, generated: `Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold...`\n**RASP output** (failed): resp_len=1027, SyntaxError: `for i in range(len(numbers):` (missing closing parenthesis)\n**Failure pattern**: CKA failed due to pure reasoning output. RASP attempted code but had a syntax error (missing `)` in `range()`).\n\n## Key Findings\n\n1. **CKA-only preserves more coding ability overall** (33 vs 18 correct, +83% relative). The 28 problems CKA solves but RASP cannot far outnumber the 13 RASP-only successes.\n\n2. **Reasoning-as-code is the dominant failure mode for both models**, but RASP suffers more (59 vs 47 cases). Both GRPO-trained models struggle to stay in \"code generation\" mode and frequently slip into chain-of-thought reasoning as if they are in an instruction-following context rather than a code completion context.\n\n3. **When RASP does produce code, it is more error-prone**: RASP has 27 logic errors vs CKA's 8. RASP's pruning appears to damage the model's ability to implement correct algorithms, not just its ability to produce code format.\n\n4. **CKA's failures are more often \"almost right\"**: CKA failures are dominated by max-length hits (36) and reasoning-as-code (47). When CKA does produce code, it is more likely to be correct. RASP produces more code that runs but gives wrong answers.\n\n5. **RASP's 13 unique successes tend to be simpler problems** (shorter output: median ~250 tokens) where a compact solution suffices. CKA fails these by entering verbose reasoning mode. This suggests CKA's \"reasoning trap\" is somewhat random and not correlated with problem difficulty.\n\n6. **Implication for RASP vs CKA pruning**: CKA-only recovery better preserves the model's code generation capabilities. The additional structural awareness in RASP (Recovery-Aware Structured Pruning) with its current fair weighting degrades both the model's formatting discipline (more reasoning-as-code) and its algorithmic accuracy (more logic errors).\nREPORT_EOF\necho \"Report written successfully\"",
+              "account": "root",
+              "warn": "True"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-19T11:08:12.615247+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Report written successfully\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-19T11:08:12.615425+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair",
+              "type": "report",
+              "description": "Detailed case study comparing HumanEval outputs between GRPO CKA-only (33/164, 20.12%) and GRPO RASP fair (18/164, 10.98%). Analyzes failure patterns (reasoning-as-code, logic errors, max length), per-category examples, and implications for pruning method comparison.",
+              "project": "recovery_aware_struct_prune",
+              "source_path": "/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md",
+              "tags": "['humaneval', 'case-study', 'grpo', 'cka-only', 'rasp', 'analysis']"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-19T11:08:12.615565+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-19T11:08:12.615717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "cat /root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-19T11:08:12.615906+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair\\\\n\\\\n## Summary\\\\n- GRPO CKA-only: 33/164 passed (pass@1 = 20.12%)\\\\n- GRPO RASP fair: 18/164 passed (pass@1 = 10.98%)\\\\n- Both passed: 5\\\\n- CKA-only passed: 28\\\\n- RASP-only passed: 13\\\\n- Both failed: 118\\\\n\\\\n## Failure Pattern Breakdown\\\\n\\\\n| Pattern | CKA-only failures | RASP-fair failures |\\\\n|---------|---:|---:|\\\\n| Reasoning-as-code (NL text instead of Python) | 47 | 59 |\\\\n| Other syntax error | 36 | 35 |\\\\n| Logic error (valid code, wrong output) | 8 | 27 |\\\\n| Max length hit (2048 tokens, no other error) | 36 | 18 |\\\\n| Type/Name/Index error | 1 | 5 |\\\\n| Other runtime error | 3 | 2 |\\\\n\\\\n**Response length stats (failures only):**\\\\n- CKA: mean=1667, median=2048, hit max length 91/131\\\\n- RASP: mean=1422, median=2048, hit max length 90/146\\\\n\\\\n## Category 1: CKA passed, RASP failed (28 cases)\\\\n\\\\nRASP failure breakdown: reasoning-as-code (11), logic error (8), max length (4), syntax error (3), other (2).\\\\n\\\\n### Example 1: HumanEval/139 (RASP: reasoning-as-code)\\\\n**Task**: `special_factorial` (compute sum of squares with ceiling/rounding rules)\\\\n**CKA output** (passed): resp_len=1629, produced valid Python code\\\\n**RASP output** (failed): resp_len=2048, generated natural language: `First, we'll write a function to calculate the factorial of a number.`\\\\n**Failure pattern**: RASP emitted reasoning text instead of code, causing SyntaxError. Hit max token length (2048) while still \\\\\\\"thinking.\\\\\\\"\\\\n\\\\n### Example 2: HumanEval/112 (RASP: logic error)\\\\n**Task**: `reverse_delete` (delete chars from string, check palindrome)\\\\n**CKA output** (passed): resp_len=1250\\\\n**RASP output** (failed): resp_len=359, produced valid Python but assertion failed on `candidate(\\\\\\\"abcde\\\\\\\",\\\\\\\"ae\\\\\\\") == ('bcd',False)`\\\\n**Failure pattern**: RASP generated syntactically correct code but implemented the logic incorrectly. Shorter output suggests it produc\n…[truncated 5072 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-19T11:08:12.616089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair",
+              "type": "report",
+              "description": "Detailed case study comparing HumanEval outputs between GRPO CKA-only (33/164, 20.12%) and GRPO RASP fair (18/164, 10.98%). Analyzes failure patterns (reasoning-as-code, logic errors, max length), per-category examples, and implications for pruning method comparison.",
+              "project": "recovery_aware_struct_prune",
+              "content_filename": "humaneval_case_study.md",
+              "content": "# HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair\n\n## Summary\n- GRPO CKA-only: 33/164 passed (pass@1 = 20.12%)\n- GRPO RASP fair: 18/164 passed (pass@1 = 10.98%)\n- Both passed: 5\n- CKA-only passed: 28\n- RASP-only passed: 13\n- Both failed: 118\n\n## Failure Pattern Breakdown\n\n| Pattern | CKA-only failures | RASP-fair failures |\n|---------|---:|---:|\n| Reasoning-as-code (NL text instead of Python) | 47 | 59 |\n| Other syntax error | 36 | 35 |\n| Logic error (valid code, wrong output) | 8 | 27 |\n| Max length hit (2048 tokens, no other error) | 36 | 18 |\n| Type/Name/Index error | 1 | 5 |\n| Other runtime error | 3 | 2 |\n\n**Response length stats (failures only):**\n- CKA: mean=1667, median=2048, hit max length 91/131\n- RASP: mean=1422, median=2048, hit max length 90/146\n\n## Category 1: CKA passed, RASP failed (28 cases)\n\nRASP failure breakdown: reasoning-as-code (11), logic error (8), max length (4), syntax error (3), other (2).\n\n### Example 1: HumanEval/139 (RASP: reasoning-as-code)\n**Task**: `special_factorial` (compute sum of squares with ceiling/rounding rules)\n**CKA output** (passed): resp_len=1629, produced valid Python code\n**RASP output** (failed): resp_len=2048, generated natural language: `First, we'll write a function to calculate the factorial of a number.`\n**Failure pattern**: RASP emitted reasoning text instead of code, causing SyntaxError. Hit max token length (2048) while still \"thinking.\"\n\n### Example 2: HumanEval/112 (RASP: logic error)\n**Task**: `reverse_delete` (delete chars from string, check palindrome)\n**CKA output** (passed): resp_len=1250\n**RASP output** (failed): resp_len=359, produced valid Python but assertion failed on `candidate(\"abcde\",\"ae\") == ('bcd',False)`\n**Failure pattern**: RASP generated syntactically correct code but implemented the logic incorrectly. Shorter output suggests it produced a concise but wrong solution.\n\n### Example 3: HumanEval/7 (RASP: logic error)\n**Task**: `filter_by_substring`\n**CKA output** (passed): resp_len=526\n**RASP output** (failed): resp_len=606, assertion failed on empty list input `candidate([], 'john') == []`\n**Failure pattern**: RASP code failed to handle edge case (empty list).\n\n## Category 2: RASP passed, CKA failed (13 cases)\n\nCKA failure breakdown: max length hit (6), reasoning-as-code (4), syntax error (2), logic error (1).\n\n### Example 1: HumanEval/102 (CKA: reasoning-as-code)\n**Task**: `choose_num` (find biggest even integer in range)\n**CKA output** (failed): resp_len=2048, generated: `Okay, I need to write a Python function called choose_num that takes two positive numbers x and y and returns the biggest even integer in the range [x, y] inclusive...`\n**RASP output** (passed): resp_len=185, produced concise correct code\n**Failure pattern**: CKA entered chain-of-thought mode, exhausted 2048 tokens on reasoning without ever producing code. RASP solved it with a compact 185-token solution.\n\n### Example 2: HumanEval/47 (CKA: max length)\n**Task**: `median` (compute median of a list)\n**CKA output** (failed): resp_len=2048, started with: `Okay, I need to write a Python function to calculate the median of a list...`\n**RASP output** (passed): resp_len=161, produced correct code\n**Failure pattern**: CKA again entered verbose reasoning mode and ran out of tokens. RASP produced a short, correct solution.\n\n### Example 3: HumanEval/13 (CKA: reasoning-as-code)\n**Task**: `greatest_common_divisor`\n**CKA output** (failed): resp_len=897, generated: `I think the best way to find the GCD is to use the Euclidean algorithm because it's efficient...`\n**RASP output** (passed): resp_len=355\n**Failure pattern**: CKA generated an essay about the Euclidean algorithm instead of implementing it.\n\n## Category 3: Both passed (5 cases)\n\nTask IDs: HumanEval/3, HumanEval/12, HumanEval/48, HumanEval/100, HumanEval/151\n\n### Example: HumanEval/12\n**CKA**: resp_len=474\n**RASP**: resp_len=614\n**Note**: Both solved it, CKA with slightly more concise output.\n\n## Category 4: Both failed (118 cases)\n\n### Example: HumanEval/118 (different failure modes)\n**Task**: `get_closest_vowel`\n**CKA output** (failed): resp_len=2048, SyntaxError from reasoning text: `First, I need to understand what a \"vowel\" is...`\n**RASP output** (failed): resp_len=229, AssertionError on `candidate(\"yogurt\") == \"u\"`\n**Failure pattern**: CKA failed by generating reasoning text (never produced code). RASP produced code that compiled and ran but returned wrong answer. Same task, fundamentally different failure modes.\n\n### Example: HumanEval/0 (both reasoning/syntax)\n**Task**: `has_close_elements`\n**CKA output** (failed): resp_len=2048, generated: `Okay, I need to write a Python function that checks if any two numbers in a list are closer to each other than a given threshold...`\n**RASP output** (failed): resp_len=1027, SyntaxError: `for i in range(len(numbers):` (missing closing parenthesis)\n**Failure pattern**: CKA failed due to pure reasoning output. RASP attempted code but had a syntax error (missing `)` in `range()`).\n\n## Key Findings\n\n1. **CKA-only preserves more coding ability overall** (33 vs 18 correct, +83% relative). The 28 problems CKA solves but RASP cannot far outnumber the 13 RASP-only successes.\n\n2. **Reasoning-as-code is the dominant failure mode for both models**, but RASP suffers more (59 vs 47 cases). Both GRPO-trained models struggle to stay in \"code generation\" mode and frequently slip into chain-of-thought reasoning as if they are in an instruction-following context rather than a code completion context.\n\n3. **When RASP does produce code, it is more error-prone**: RASP has 27 logic errors vs CKA's 8. RASP's pruning appears to damage the model's ability to implement correct algorithms, not just its ability to produce code format.\n\n4. **CKA's failures are more often \"almost right\"**: CKA failures are dominated by max-length hits (36) and reasoning-as-code (47). When CKA does produce code, it is more likely to be correct. RASP produces more code that runs but gives wrong answers.\n\n5. **RASP's 13 unique successes tend to be simpler problems** (shorter output: median ~250 tokens) where a compact solution suffices. CKA fails these by entering verbose reasoning mode. This suggests CKA's \"reasoning trap\" is somewhat random and not correlated with problem difficulty.\n\n6. **Implication for RASP vs CKA pruning**: CKA-only recovery better preserves the model's code generation capabilities. The additional structural awareness in RASP (Recovery-Aware Structured Pruning) with its current fair weighting degrades both the model's formatting discipline (more reasoning-as-code) and its algorithmic accuracy (more logic errors).",
+              "tags": "['humaneval', 'case-study', 'grpo', 'cka-only', 'rasp', 'analysis']"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-19T11:08:12.616320+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_04604c\\\", \\\"name\\\": \\\"HumanEval Case Study: GRPO CKA-only vs GRPO RASP fair\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Detailed case study comparing HumanEval outputs between GRPO CKA-only (33/164, 20.12%) and GRPO RASP fair (18/164, 10.98%). Analyzes failure patterns (reasoning-as-code, logic errors, max length), per-category examples, and implications for pruning method comparison.\\\", \\\"path\\\": \\\"projects/recovery_aware_struct_prune/artifacts/_project/report/humaneval_case_study.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"recovery_aware_struct_prune\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T11:06:58.213522+00:00\\\", \\\"tags\\\": [\\\"humaneval\\\", \\\"case-study\\\", \\\"grpo\\\", \\\"cka-only\\\", \\\"rasp\\\", \\\"analysis\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-19T11:08:12.616483+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "filters": "{'status': 'RUNNING'}"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-19T11:08:12.616657+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_humaneval_sft_standard_20_2048_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T10:05:36.497Z\\\", \\\"updated_at\\\": \\\"2026-05-19T10:06:02.211Z\\\", \\\"hypothesis\\\": \\\"SFT Standard 20% HumanEval pass@1 @2048. Uses current sft_standard_20 model on westd-29022 (same model as MATH-500 eval at 25.8%). Fills SFT×method HumanEval matrix. Compare with GRPO Standard fair (~10% interim) and SFT CKA-only (~24% interim).\\\"}, \\\"grpo_cka_only_20_seed123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T09:27:11.294Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:28:28.046Z\\\", \\\"hypothesis\\\": \\\"Multi-seed validation (seed=123) of CKA-only 20% GRPO training. If CKA-only advantage holds across seeds, strengthens C1 claim that pruning criteria determine recovery capacity. Seed 42 result: 64.37% GSM8K.\\\"}, \\\"eval_gsm8k_grpo_standard_20_fair_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T09:27:09.334Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:28:25.813Z\\\", \\\"hypothesis\\\": \\\"验证 Standard GRPO fair (v5 config: beta=0.01, temp=0.4, maxlen=1024, DAPO, lr=1e-6) 的 GSM8K 准确率。替换 phantom 58.91% (从未被实际验证过的数字)。使用 grpo_stage2_standard_20_fair checkpoint, N=1319。\\\"}, \\\"eval_humaneval_sft_cka_only_20_2048_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T09:27:07.470Z\\\", \\\"updated_at\\\": \\\"2026-05-19T09:28:22.550Z\\\", \\\"hypothesis\\\": \\\"SFT CKA-only HumanEval v2 (PATH bug 修复版重跑)，验证 v1 的 0% 是否为假结果。v1 因 eval_humaneval.py 用裸 python 导致 164 题全部 sandbox 失败。修复后用 sys.executable 重跑。\\\", \\\"parent\\\": \\\"eval_humaneval_sft_cka_only_20_2048\\\"}, \\\"eval_humaneval_grpo_standard_20_fair_2048_v3\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"created_at\\\": \\\"2026-05-19T07:05:14.343Z\\\", \\\"updated_at\\\": \\\"2026-05-19T07:05:42.545Z\\\", \\\"hypothesis\\\": \\\"GRPO stage2 with standard 20% fair pruning recovers meaningful code generation ability on HumanEval, demonstrating that the fair pruning strategy preserves code-critical layers better than CKA-only pruning.\\\"}\n…[truncated 115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-19T11:08:12.616845+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_fair_2048_v3",
+              "field": "conclusion",
+              "value": "in-progress: 156/164 (95.1%), interim pass@1 ~0.1143 at problem 140. Estimated ~15min remaining.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-19T11:08:12.616982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'in-progress: 156/164 (95.1%), interim pass@1 ~0.1143 at problem 140. Estimated ~15min remaining.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5647}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-19T11:08:12.617108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_humaneval_grpo_standard_20_fair_2048_v3",
+              "field": "notes",
+              "value": "2026-05-19 19:06 progress check: 156/164 (95.1%), interim pass@1 ~0.1143 at problem 140. ~15min remaining.",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-19T11:08:12.617250+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_humaneval_grpo_standard_20_fair_2048_v3\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T07:05:14.343Z\\\", \\\"updated_at\\\": \\\"2026-05-19T11:07:57.562Z\\\", \\\"hypothesis\\\": \\\"GRPO stage2 with standard 20% fair pruning recovers meaningful code generation ability on HumanEval, demonstrating that the fair pruning strategy preserves code-critical layers better than CKA-only pruning.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=2 python src/eval_humaneval.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --max_new_tokens 2048\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_grpo_standard_20_fair_2048_v3.log\\\", \\\"data_path\\\": \\\"HumanEval\\\", \\\"data_count\\\": 164, \\\"model_name\\\": \\\"grpo_stage2_standard_20_fair\\\", \\\"seed\\\": 42}, \\\"notes\\\": \\\"2026-05-19 19:06 progress check: 156/164 (95.1%), interim pass@1 ~0.1143 at problem 140. ~15min remaining.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9528}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-19T11:08:12.617453+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 任务 A：GRPO Standard fair v3\n- **仍在运行**，PID 76392，进度 **156/164 (95.1%)**\n- 中间 pass@1 约 **0.1143** (at problem 140)\n- 预计 ~15 分钟完成\n- 已更新 registry notes\n\n### 任务 B：HumanEval Case Study (GRPO CKA-only vs GRPO RASP fair)\nSFT CKA-only v2 (PID 78740) 仍在运行，按计划使用 GRPO CKA-only vs GRPO RASP fair 做对比。\n\n**核心发现**：\n\n| | CKA-only | RASP fair |\n|---|---|---|\n| 通过数 | 33/164 (20.12%) | 18/164 (10.98%) |\n| CKA独有通过 | 28 | - |\n| RASP独有通过 | - | 13 |\n| 两者都通过 | 5 | 5 |\n\n**失败模式对比**：\n- **Reasoning-as-code**（输出自然语言推理而非代码）：CKA 47次 vs RASP 59次，RASP 更严重\n- **Logic error**（代码能跑但答案错）：CKA 8次 vs RASP **27次**，RASP 的算法准确性受损更严重\n- CKA 独有通过的 28 题中，RASP 失败原因：11个 reasoning-as-code + 8个 logic error\n- RASP 独有通过的 13 题中，CKA 失败原因：6个 max length + 4个 reasoning-as-code（CKA 在简单题上随机陷入冗长推理）\n\n报告已写入远程 `/root/autodl-tmp/recovery_aware_struct_prune/results/humaneval_case_study.md` 并注册为 artifact (`art_20260519_04604c`)。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ops_cuda2_harvest_and_case_study_20260519T110142"
+          },
+          "id": "event-000049"
+        }
+      ],
+      "message_count": 49
+    }
+  ],
+  "readable_path": "readable/conversations/ops-cuda2-harvest-and-case-study.md"
+}

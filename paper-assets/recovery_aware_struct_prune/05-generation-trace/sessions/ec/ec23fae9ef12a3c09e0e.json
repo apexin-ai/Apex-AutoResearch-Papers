@@ -1,0 +1,1363 @@
+{
+  "schema_version": "1.0",
+  "id": "ec23fae9ef12a3c09e0e",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "write experiments setup",
+  "task_key": "worker_write_experiments-setup_20260514T085919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_write_experiments-setup_20260514T085919.log",
+    "occurrence": 1,
+    "bytes": 94023,
+    "sha256": "ead4fa13e092031a57a89302cdb6b6d8418063746610f055c9bdc3c555d73eca"
+  },
+  "statistics": {
+    "messages": 31,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 9,
+      "tool_result": 9,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file",
+                  "mcp__agent-ml-research__write_paper_section"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "773ca1e2-589d-4909-8461-922519cd7bb1",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778763000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7f23721f-e775-49c6-8c64-d3a72bc70220",
+                "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the three project files to understand the context, then write the Experimental Setup section.",
+              "signature": "ErECClkIDRgCKkAH8MSwpkA8ggaPeqgyxVd3RCQH/cA4hWCFg605QZUbsc3Jb5x0gqkXCaD7GSIwqVoxUwnR5ZGevKt6GswThvNDMg9jbGF1ZGUtb3B1cy00LTY4ABIMhdOgrq6Xq/yyS7auGgwvj7v51R3D6nHmfoQiMPCgWIwbKlPStyhPkBGtEtLz8aog5C6IoFLbMTSzFtwgMtBXki1qroqpa1SWgxxZkSqFAdfBf8Ce53OEK5FZM6NXQ3QFf1zuOZLrsb8fvvDF3kxxGyS9rXV4oD82UTtXQzT2S0DIIPaN9MzdwhkZVRBYbF/Hd+hiaPjmxvxBRHJjdH+u+eoOyy/aZxZ61TmZVSOxwjKztz+xD7e3I9shJOhJUbR2l4kt3m1eCoaQbNlGi1Di0FVNhiwYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "3fd48709-d943-4365-b2d2-69e5fb22a0e8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCePaUbcXVKdyN7JW3LYbJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11541,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11541
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UkY9ipkNwNc2rFYYn5P8os",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "191e07fb-6cb6-4294-9739-471796d5075e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TCePaUbcXVKdyN7JW3LYbJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11541,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 11541
+                },
+                "output_tokens": 31,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T08:59:29.381Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UkY9ipkNwNc2rFYYn5P8os",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__write_paper_section"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "74419e7e-58bd-4357-86ba-da61acbd3ef3",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__write_paper_section"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__write_paper_section",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "读取三个上下文文件。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "cb5e1b10-f100-4c36-bafd-7f7d29ec2b16",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PonjuwWYWDY1qQ6PixicbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 23382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 884
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Scvxoser8Jn9YmptQA8qEF",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "paper_framing.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "c7d54b55-2eba-42e0-b04d-6eb612d6e802",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PonjuwWYWDY1qQ6PixicbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 23382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 884
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T08:59:33.936Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Scvxoser8Jn9YmptQA8qEF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_framing.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "518be10f-b3a3-4a82-ae47-ea548b7ddaf5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No paper_framing.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"No paper_framing.md found for 'recovery_aware_struct_prune'.\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XpUaNTz7ndvvuAuVs7NFQU",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "ROADMAP.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "b6483ad6-34da-4c83-9178-6a7d6ca2f111",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PonjuwWYWDY1qQ6PixicbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 23382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 884
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T08:59:34.875Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XpUaNTz7ndvvuAuVs7NFQU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 04:11 UTC | 更新原因: MVP 实验已启动，更新进展\\\\n\\\\n## 核心方向\\\\nRecovery-Aware Structured Pruning (RASP)：利用 CKA 度量的 functional overlap 预测结构化剪枝后 RLVR 的可恢复性。详见 IDEA_BRIEF.md。\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR May 25 提交（距今 11 天）\\\\n\\\\n## 当前进展\\\\n- 阶段：MVP 验证 — **实验运行中**\\\\n- 服务器：westb-23072 2× RTX PRO 6000 96G（cuda:0 + cuda:1 均在用）\\\\n- 实验 ID：mvp_rasp_pipeline（tmux session，PID 150792）\\\\n- 预计完成：~16-19h（明天下午前），Step 4 GRPO 为关键路径\\\\n- Reviewer 审查：代码修复全部 PASS\\\\n\\\\n## MVP（Phase 1, 运行中）\\\\n- 模型：DeepSeek-R1-Distill-Qwen-7B / 35% / LLM-Pruner vs RASP / GRPO RLVR / GSM8K\\\\n- 7 步流水线：baseline eval → CKA+importance 并行 → 剪枝 → post-prune eval → GRPO recovery 并行 → post-recovery eval → correlation analysis\\\\n- ✅ ρ ≥ 0.4 → Phase 2 | ⚠️ [0.3,0.4) → 25% 重复验证 | ❌ < 0.3 → Contingency\\\\n\\\\n## Phase 2 骨架（MVP pass 后，~Day 3-9）\\\\n1. P1 — GRASPrune + RLVR（35%）\\\\n2. P2 — RLVR vs SFT 对比（35%，LLM-Pruner + GRASPrune）\\\\n3. P2.5 — Scoring ablation（CKA vs magnitude/gradient/random）\\\\n4. P3 — 多剪枝率（25%, 45%）\\\\n5. P4 — Bonsai baseline（35%）\\\\n6. P5 — 扩展评估（best config 跑 MMLU/HumanEval/LongBench 等）\\\\n- 论文启动：P1-P2 结果出后（~Day 5）\\\\n\\\\n## Contingency（MVP fail）\\\\nPivot：3 methods × 3-5 sparsity × 2 recovery 交互 benchmark\\\\n\\\\n## 近期任务\\\\n- [x] 环境搭建 + 模型下载\\\\n- [x] CKA overlap + importance 代码\\\\n- [x] correlation_analysis.py 重写（post-RLVR recoverability metric）\\\\n- [x] MVP 实验启动\\\\n- [ ] 等待 GRPO 训练完成（~12-15h）\\\\n- [ ] MVP 结果分析 + pass/fail 判定\\\\n\\\\n## GPU 预算\\\\nwestb-23072：2× RTX PRO 6000 96G（cuda:0, cuda:1）| 约束 C001\\\\nMVP 实验中，2/2 GPU 在用\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D001 | 2026-05-14 | MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attenti | mvp_rasp_pipeline_v2 |\\\\n\\\\n\\\", \\\"total_chars\\\": 1625, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "617ddbb4-41b5-47d7-8333-08513c8f229e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\\\", \\\"content\\\": \\\"# recovery_aware_struct_prune — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-14 04:11 UTC | 更新原因: MVP 实验已启动，更新进展\\\\n\\\\n## 核心方向\\\\nRecovery-Aware Structured Pruning (RASP)：利用 CKA 度量的 functional overlap 预测结构化剪枝后 RLVR 的可恢复性。详见 IDEA_BRIEF.md。\\\\n\\\\n## 目标会议\\\\nEMNLP 2026 ARR May 25 提交（距今 11 天）\\\\n\\\\n## 当前进展\\\\n- 阶段：MVP 验证 — **实验运行中**\\\\n- 服务器：westb-23072 2× RTX PRO 6000 96G（cuda:0 + cuda:1 均在用）\\\\n- 实验 ID：mvp_rasp_pipeline（tmux session，PID 150792）\\\\n- 预计完成：~16-19h（明天下午前），Step 4 GRPO 为关键路径\\\\n- Reviewer 审查：代码修复全部 PASS\\\\n\\\\n## MVP（Phase 1, 运行中）\\\\n- 模型：DeepSeek-R1-Distill-Qwen-7B / 35% / LLM-Pruner vs RASP / GRPO RLVR / GSM8K\\\\n- 7 步流水线：baseline eval → CKA+importance 并行 → 剪枝 → post-prune eval → GRPO recovery 并行 → post-recovery eval → correlation analysis\\\\n- ✅ ρ ≥ 0.4 → Phase 2 | ⚠️ [0.3,0.4) → 25% 重复验证 | ❌ < 0.3 → Contingency\\\\n\\\\n## Phase 2 骨架（MVP pass 后，~Day 3-9）\\\\n1. P1 — GRASPrune + RLVR（35%）\\\\n2. P2 — RLVR vs SFT 对比（35%，LLM-Pruner + GRASPrune）\\\\n3. P2.5 — Scoring ablation（CKA vs magnitude/gradient/random）\\\\n4. P3 — 多剪枝率（25%, 45%）\\\\n5. P4 — Bonsai baseline（35%）\\\\n6. P5 — 扩展评估（best config 跑 MMLU/HumanEval/LongBench 等）\\\\n- 论文启动：P1-P2 结果出后（~Day 5）\\\\n\\\\n## Contingency（MVP fail）\\\\nPivot：3 methods × 3-5 sparsity × 2 recovery 交互 benchmark\\\\n\\\\n## 近期任务\\\\n- [x] 环境搭建 + 模型下载\\\\n- [x] CKA overlap + importance 代码\\\\n- [x] correlation_analysis.py 重写（post-RLVR recoverability metric）\\\\n- [x] MVP 实验启动\\\\n- [ ] 等待 GRPO 训练完成（~12-15h）\\\\n- [ ] MVP 结果分析 + pass/fail 判定\\\\n\\\\n## GPU 预算\\\\nwestb-23072：2× RTX PRO 6000 96G（cuda:0, cuda:1）| 约束 C001\\\\nMVP 实验中，2/2 GPU 在用\\\\n\\\\n## 关键决策日志\\\\n\\\\n| ID | 日期 | 摘要 | 关联实验 |\\\\n|----|------|------|----------|\\\\n| D001 | 2026-05-14 | MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attenti | mvp_rasp_pipeline_v2 |\\\\n\\\\n\\\", \\\"total_chars\\\": 1625, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/ROADMAP.md\", \"content\": \"# recovery_aware_struct_prune — Research Dashboard\\n\\n> 最后更新: 2026-05-14 04:11 UTC | 更新原因: MVP 实验已启动，更新进展\\n\\n## 核心方向\\nRecovery-Aware Structured Pruning (RASP)：利用 CKA 度量的 functional overlap 预测结构化剪枝后 RLVR 的可恢复性。详见 IDEA_BRIEF.md。\\n\\n## 目标会议\\nEMNLP 2026 ARR May 25 提交（距今 11 天）\\n\\n## 当前进展\\n- 阶段：MVP 验证 — **实验运行中**\\n- 服务器：westb-23072 2× RTX PRO 6000 96G（cuda:0 + cuda:1 均在用）\\n- 实验 ID：mvp_rasp_pipeline（tmux session，PID 150792）\\n- 预计完成：~16-19h（明天下午前），Step 4 GRPO 为关键路径\\n- Reviewer 审查：代码修复全部 PASS\\n\\n## MVP（Phase 1, 运行中）\\n- 模型：DeepSeek-R1-Distill-Qwen-7B / 35% / LLM-Pruner vs RASP / GRPO RLVR / GSM8K\\n- 7 步流水线：baseline eval → CKA+importance 并行 → 剪枝 → post-prune eval → GRPO recovery 并行 → post-recovery eval → correlation analysis\\n- ✅ ρ ≥ 0.4 → Phase 2 | ⚠️ [0.3,0.4) → 25% 重复验证 | ❌ < 0.3 → Contingency\\n\\n## Phase 2 骨架（MVP pass 后，~Day 3-9）\\n1. P1 — GRASPrune + RLVR（35%）\\n2. P2 — RLVR vs SFT 对比（35%，LLM-Pruner + GRASPrune）\\n3. P2.5 — Scoring ablation（CKA vs magnitude/gradient/random）\\n4. P3 — 多剪枝率（25%, 45%）\\n5. P4 — Bonsai baseline（35%）\\n6. P5 — 扩展评估（best config 跑 MMLU/HumanEval/LongBench 等）\\n- 论文启动：P1-P2 结果出后（~Day 5）\\n\\n## Contingency（MVP fail）\\nPivot：3 methods × 3-5 sparsity × 2 recovery 交互 benchmark\\n\\n## 近期任务\\n- [x] 环境搭建 + 模型下载\\n- [x] CKA overlap + importance 代码\\n- [x] correlation_analysis.py 重写（post-RLVR recoverability metric）\\n- [x] MVP 实验启动\\n- [ ] 等待 GRPO 训练完成（~12-15h）\\n- [ ] MVP 结果分析 + pass/fail 判定\\n\\n## GPU 预算\\nwestb-23072：2× RTX PRO 6000 96G（cuda:0, cuda:1）| 约束 C001\\nMVP 实验中，2/2 GPU 在用\\n\\n## 关键决策日志\\n\\n| ID | 日期 | 摘要 | 关联实验 |\\n|----|------|------|----------|\\n| D001 | 2026-05-14 | MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attenti | mvp_rasp_pipeline_v2 |\\n\\n\", \"total_chars\": 1625, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DYg9bSEjcriKFUDvVQZZys",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "b4afc394-6341-48bb-b77a-d07ef9b79b05",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PonjuwWYWDY1qQ6PixicbD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 884,
+                "cache_read_input_tokens": 23382,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 884
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T08:59:35.056Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DYg9bSEjcriKFUDvVQZZys",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\\\", \\\"content\\\": \\\"# GRASPrune 调研报告 — Phase 2 P1 Baseline 实现方案\\\\n\\\\n> 调研日期: 2026-05-14\\\\n> 目标: 将 GRASPrune 作为 Phase 2 P1 的额外 baseline pruning method\\\\n\\\\n---\\\\n\\\\n## 1. GRASPrune 概述\\\\n\\\\n**论文**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\\n**会议**: ACL 2026 Main Conference\\\\n**arXiv**: 2604.19398\\\\n**代码**: https://github.com/ZiY-Wang/GRASPrune\\\\n**作者**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\\\\n\\\\nGRASPrune 是一个 post-training structured pruning 框架，对 decoder-only LLM 做 FFN channel 和 attention KV group 的联合剪枝。核心特点：\\\\n- **Global gating**: 所有层的 FFN channel 和 KV group 共享一个全局 budget\\\\n- **Projected STE**: 每个 training step 都投影到 budget-feasible 的 hard mask\\\\n- **Rescale compensation**: 剪枝后学习 scaling factor 补偿 scale mismatch\\\\n- 支持 LLaMA 和 **Qwen** 架构（直接兼容我们的 DeepSeek-R1-Distill-Qwen-7B）\\\\n\\\\n---\\\\n\\\\n## 2. 核心算法\\\\n\\\\n### 2.1 问题形式化\\\\n\\\\n将 structured pruning 建模为 budget-constrained binary optimization:\\\\n\\\\n$$\\\\\\\\min_{z \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}^{|S|}} \\\\\\\\mathcal{L}(\\\\\\\\theta; z) \\\\\\\\quad \\\\\\\\text{s.t.} \\\\\\\\quad \\\\\\\\sum_{i \\\\\\\\in S} c_i z_i \\\\\\\\leq B$$\\\\n\\\\n其中:\\\\n- $S$ = 所有可剪枝 structural unit 的集合（FFN channels + KV groups across all layers）\\\\n- $z_i \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}$: unit $i$ 的保留标志\\\\n- $c_i$: unit $i$ 的参数代价\\\\n- $B = \\\\\\\\rho \\\\\\\\sum_{i \\\\\\\\in S} c_i$: 全局 budget，$\\\\\\\\rho$ = keep_ratio\\\\n\\\\n### 2.2 代价模型 (Cost Model)\\\\n\\\\n**FFN channel**: $c_i = 1$（归一化单位代价）\\\\n\\\\n**KV group (attention)**: \\\\n$$\\\\\\\\alpha = \\\\\\\\frac{(2G + 2) d_h}{3}$$\\\\n\\\\n其中 $G = H / H^{kv}$（query-to-KV head ratio），$d_h$ = head_dim。\\\\n\\\\n对于 DeepSeek-R1-Distill-Qwen-7B:\\\\n- $H = 28$, $H^{kv} = 4$, $G = 7$, $d_h = 128$\\\\n- $\\\\\\\\alpha = (2 \\\\\\\\times 7 + 2) \\\\\\\\times 128 / 3 = 16 \\\\\\\\times 128 / 3 \\\\\\\\approx 682.67$\\\\n\\\\n### 2.3 Gate Parameterization\\\\n\\\\n为每个 structural unit 引入可学习 scalar gate $s_i$：\\\\n- **FFN**: `gate_score` — shape `(intermediate_size,)` = `(18944,)` per layer\\\\n- **KV group**: `gate_score_kv` — shape `(num_key_value_heads,)` = `(4,)` per layer\\\\n\\\\nSoft probability: $p_i = \\\\\\\\sigma(s_i / \\\\\\\\tau)$，其中 $\\\\\\\\tau = 1.5$ 为 temperature。\\\\n\\\\n### 2.4 Projected Straight-Through Estimator (PSTE)\\\\n\\\\n**Forward pass** (hard mask):\\\\n1. 收集所有 gate 的 soft probabilities $\\\\\\\\{p_i\\\\\\\\}$\\\\n2. Budget projection `Project(p, c, B)`:\\\\n   - 按 $p_i$ 降序排列\\\\n   - 贪心选择 $m_i = 1$ 直到 $\\\\\\\\sum c_i m_i \\\\\\\\leq B$\\\\n   - 复杂度: $O(n \\\\\\\\log n)$ 排序 + $O(n)$ 扫描\\\\n3. 得到 hard mask $\\\\\\\\hat{m}$\\\\n\\\\n**STE trick** (soft backward):\\\\n$$\\\\\\\\tilde{z}_i = m_i + (p_i - \\\\\\\\text{stopgrad}(p_i))$$\\\\n\\\\nForward 用 hard mask $m_i \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}$，backward 梯度穿过 soft $p_i$:\\\\n$$\\\\\\\\frac{\\\\\\\\partial \\\\\\\\mathcal{L}}{\\\\\\\\partial s_i} = \\\\\\\\frac{1}{\\\\\\\\tau} \\\\\\\\frac{\\\\\\\\partial \\\\\\\\mathcal{L}}{\\\\\\\\partial \\\\\\\\tilde{z}_i} p_i(1 - p_i)$$\\\\n\\\\n**Training objective**:\\\\n$$\\\\\\\\tilde{\\\\\\\\mathcal{L}}(s) = \\\\\\\\mathbb{E}_x[\\\\\\\\mathcal{L}(f(x; \\\\\\\\theta, \\\\\\\\hat{m}(p(s))))]$$\\\\n\\\\n其中 $\\\\\\\\theta$ 冻结，只优化 gate scores $\\\\\\\\{s_i\\\\\\\\}$。\\\\n\\\\n### 2.5 Rescale Compensation (Stage B)\\\\n\\\\nHard mask 固定后，对保留 unit 学习 multiplicative scaling:\\\\n$$\\\\\\\\text{output}_i = m_i \\\\\\\\cdot (1 + \\\\\\\\alpha_r \\\\\\\\cdot \\\\\\\\tanh(s_i)) \\\\\\\\cdot \\\\\\\\text{activation}_i$$\\\\n\\\\n其中 $\\\\\\\\alpha_r = 0.5$（rescale_alpha）。学习完成后，scaling factor 折叠进 weight matrix，推理时无额外开销。\\\\n\\\\n### 2.6 算法伪代码\\\\n\\\\n```\\\\nAlgorithm: GRASPrune Pipeline\\\\n\\\\nInput: pretrained model θ, keep_ratio ρ, calibration data D\\\\nOutput: pruned dense checkpoint\\\\n\\\\n# Stage A: Gate Training\\\\n1. Attach gate scores {s_i} to all FFN channels and KV groups, init s_i = 0\\\\n2. Freeze all backbone weights θ\\\\n3. Compute cost vector c (FFN: 1.0, KV group: α)\\\\n4. Budget B = ρ * Σ c_i\\\\n5. For epoch = 1..4:\\\\n     For batch x in D:\\\\n       p_i = sigmoid(s_i / τ)  for all i\\\\n       m = Project(p, c, B)    # greedy top-k by probability\\\\n       z̃_i = m_i + (p_i - stopgrad(p_i))  # STE\\\\n       Apply z̃ as mask to FFN channels and KV groups\\\\n       loss = CrossEntropyLoss(model(x; θ, z̃), x)\\\\n       Backprop through z̃ → update {s_i} via AdamW\\\\n\\\\n# Finalize Hard Masks\\\\n6. Compute final p_i, run Project → get final hard masks\\\\n7. Register masks on all gate modules\\\\n\\\\n# Stage B: Rescale Compensation\\\\n8. Zero gate scores, enable rescale mode\\\\n9. For epoch = 1..1:\\\\n     For batch x in D_val:\\\\n       Apply mask with rescale: output_i = m_i * (1 + 0.5 * tanh(s_i)) * act_i\\\\n       loss = CrossEntropyLoss(model(x), x)\\\\n       Backprop → update {s_i}\\\\n\\\\n# Export\\\\n10. Materialize pruning: physically remove pruned dimensions from weight matrices\\\\n11. Fold rescale factors into weights\\\\n12. Export pruned_state_dict.safetensors + meta.json\\\\n```\\\\n\\\\n---\\\\n\\\\n## 3. 与现有方法的对比\\\\n\\\\n| 特性 | Standard (我们的) | RASP (我们的) | GRASPrune (baseline) |\\\\n|------|-------------------|---------------|---------------------|\\\\n| Scoring | Taylor: $I(h) = \\\\\\\\|w_h \\\\\\\\cdot g_h\\\\\\\\|_2$ | $S(h) = I(h) \\\\\\\\cdot (1-F(h))^\\\\\\\\alpha$ | Learned gates via PSTE |\\\\n| 优化方式 | One-shot (无迭代) | One-shot (无迭代) | 迭代 gate training (4 epochs) |\\\\n| Budget 约束 | 事后贪心裁剪 | 事后贪心裁剪 | 每步投影到 feasible set |\\\\n| Attn 粒度 | Q head → 推导 KV | Q head → 推导 KV | **直接 KV group** |\\\\n| MLP 粒度 | n_heads 个 group | n_heads 个 group | **Per-channel** |\\\\n| 补偿 | 无 | 无 | Rescale compensation |\\\\n| 校准数据 | GSM8K train | GSM8K train | WikiText2 train |\\\\n| 耗时 | ~10 min (importance) | ~30 min (importance+CKA) | ~6 min (A100 80G) |\\\\n\\\\n### 关键区别:\\\\n1. **GRASPrune 的 attention pruning 天然在 KV group 粒度**，`gate_score_kv` shape = `(num_key_value_heads,)`。这完美满足我们的 GQA group 硬约束。\\\\n2. **MLP pruning 更细粒度**: per-channel 而非 per-group，理论上更优但也更多参数要学。\\\\n3. **有 rescale 补偿**: 这给 GRASPrune 额外优势，公平起见实验中可能需要注意。\\\\n\\\\n---\\\\n\\\\n## 4. 集成方案\\\\n\\\\n### 4.1 推荐方案: 直接使用 GRASPrune 官方代码\\\\n\\\\nGRASPrune 已原生支持 Qwen 架构，输出格式 (safetensors + meta.json) 与我们的 `load_pruned_model()` 完全兼容。\\\\n\\\\n**Pipeline**:\\\\n```\\\\nGRASPrune(DeepSeek-R1-Distill-Qwen-7B, keep_ratio=0.65)\\\\n    → pruned_state_dict.safetensors + meta.json\\\\n    → load_pruned_model()  # 用我们的 rebuild.py\\\\n    → GRPO recovery training\\\\n    → eval (GSM8K)\\\\n```\\\\n\\\\n**服务器部署步骤**:\\\\n```bash\\\\n# 1. Clone GRASPrune 到服务器\\\\ncd /root\\\\ngit clone https://github.com/ZiY-Wang/GRASPrune.git\\\\ncd GRASPrune\\\\npip install -r requirements.txt\\\\n\\\\n# 2. 运行 GRASPrune pruning (keep_ratio=0.65 ↔ 35% sparsity)\\\\npython train.py \\\\\\\\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\\\\\\\n  --model-family qwen \\\\\\\\\\\\n  --trust-remote-code \\\\\\\\\\\\n  --device cuda:0 \\\\\\\\\\\\n  --keep-ratio 0.65 \\\\\\\\\\\\n  --epochs 4 \\\\\\\\\\\\n  --num-samples 512 \\\\\\\\\\\\n  --max-len 512 \\\\\\\\\\\\n  --batch-size 1 \\\\\\\\\\\\n  --output-dir /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65\\\\n\\\\n# 3. 验证 pruned model\\\\npython eval_pruned_ppl.py \\\\\\\\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\\\\\\\n  --sd /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/pruned_state_dict.safetensors \\\\\\\\\\\\n  --meta /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/meta.json \\\\\\\\\\\\n  --trust-remote-code \\\\\\\\\\\\n  --use-fast-tokenizer \\\\\\\\\\\\n  --device cuda:0\\\\n\\\\n# 4. 接入我们的 GRPO recovery pipeline\\\\ncd /root/recovery_aware_struct_prune\\\\npython src/train_grpo.py \\\\\\\\\\\\n  --pruned_model_path /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65 \\\\\\\\\\\\n  ...\\\\n```\\\\n\\\\n### 4.2 meta.json 格式兼容性\\\\n\\\\nGRASPrune 的 `meta.json` 格式:\\\\n```json\\\\n{\\\\n  \\\\\\\"model_id\\\\\\\": \\\\\\\"...\\\\\\\",\\\\n  \\\\\\\"model_family\\\\\\\": \\\\\\\"qwen\\\\\\\",\\\\n  \\\\\\\"dtype\\\\\\\": \\\\\\\"torch.bfloat16\\\\\\\",\\\\n  \\\\\\\"export_format\\\\\\\": \\\\\\\"materialized\\\\\\\",\\\\n  \\\\\\\"rescale_alpha\\\\\\\": 0.5,\\\\n  \\\\\\\"layers\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"ffn_intermediate_size\\\\\\\": 12345,\\\\n      \\\\\\\"num_heads\\\\\\\": 21,\\\\n      \\\\\\\"num_key_value_heads\\\\\\\": 3,\\\\n      \\\\\\\"head_dim\\\\\\\": 128\\\\n    },\\\\n    ...\\\\n  ]\\\\n}\\\\n```\\\\n\\\\n我们的 `rebuild.py` 中 `rebuild_from_meta()` 读取 `meta[\\\\\\\"layers\\\\\\\"]` 的 `ffn_intermediate_size`、`num_heads`、`num_key_value_heads`、`head_dim`，然后 resize linear layers 并 load state_dict。两边完全兼容，无需修改。\\\\n\\\\n### 4.3 需要注意的兼容性问题\\\\n\\\\n1. **Qwen 的 bias**: DeepSeek-R1-Distill-Qwen-7B 的 attention 有 bias（q_proj, k_proj, v_proj 有 bias），GRASPrune 的 `QwenAttnGate.materialize_pruning()` 已正确处理 bias 的 slicing。\\\\n\\\\n2. **GQA group 映射**: GRASPrune 的 attention materialization 逻辑:\\\\n   ```python\\\\n   # gate_score_kv shape = (num_key_value_heads,) = (4,)\\\\n   # keep_kv: bool mask on KV heads\\\\n   # keep_heads = keep_kv.repeat_interleave(group_size)  # expand to Q heads\\\\n   # group_size = num_heads // num_key_value_heads = 28 // 4 = 7\\\\n   ```\\\\n   这正是我们要求的 GQA group 粒度: 1 KV head + 7 Q heads = 1 group。\\\\n\\\\n3. **校准数据**: GRASPrune 默认用 WikiText2 train，我们的 importance/CKA 用 GSM8K train。为公平对比，可以考虑让 GRASPrune 也用 GSM8K（需要修改 `data.py` 或 `config.train_dataset_name`）。\\\\n\\\\n---\\\\n\\\\n## 5. 参考代码关键片段\\\\n\\\\n### 5.1 Gate 注入 (`gates.py`)\\\\n\\\\n```python\\\\n# FFN gate: per-channel scalar\\\\nclass LlamaMLPGate(nn.Module):\\\\n    def __init__(self, cfg, src, gate_init, tau, device):\\\\n        self.gate_score = nn.Parameter(\\\\n            torch.full((cfg.intermediate_size,), gate_init, device=device)\\\\n        )\\\\n    \\\\n    def forward(self, x):\\\\n        inter = self.up_proj(x) * self.act_fn(self.gate_proj(x))\\\\n        # STE: hard_mask + (soft - stopgrad(soft))\\\\n        if self.training and hasattr(self, \\\\\\\"_batch_mask\\\\\\\"):\\\\n            hard_mask = self._batch_mask\\\\n            soft_prob = torch.sigmoid(self.gate_score / self.tau)\\\\n            z = hard_mask + (soft_prob - soft_prob.detach())\\\\n        return self.down_proj(inter * z)\\\\n\\\\n# Attention gate: per-KV-group scalar  \\\\nclass LlamaAttnGate(nn.Module):\\\\n    def __init__(self, cfg, layer_idx, src, gate_init, tau, device):\\\\n        self.gate_score_kv = nn.Parameter(\\\\n            torch.full((cfg.num_key_value_heads,), gate_init, device=device)\\\\n        )\\\\n    \\\\n    def forward(self, hidden_states, ...):\\\\n        # ... compute q, k, v, apply RoPE ...\\\\n        # Gate KV at head level\\\\n        kv_gate = z.view(1, -1, 1, 1)  # [1, num_kv_heads, 1, 1]\\\\n        k = k * kv_gate\\\\n        v = v * kv_gate\\\\n        # ... attention computation ...\\\\n```\\\\n\\\\n### 5.2 Budget Mask Projection (`pipeline.py`)\\\\n\\\\n```python\\\\ndef build_batch_budget_masks(model, f_cost, a_cost, keep_ratio, tau):\\\\n    scores, costs, holders = [], [], []\\\\n    for block in get_transformer_layers(model):\\\\n        # FFN gates\\\\n        values = sigmoid(block.mlp.gate_score.detach() / tau)\\\\n        scores.append(values); costs.append(full_like(values, f_cost))\\\\n        # KV gates\\\\n        values = sigmoid(block.self_attn.gate_score_kv.detach() / tau)\\\\n        scores.append(values); costs.append(full_like(values, a_cost))\\\\n    \\\\n    score_tensor = cat(scores)\\\\n    cost_tensor = cat(costs)\\\\n    budget = cost_tensor.sum() * keep_ratio\\\\n    \\\\n    # Greedy top-k by probability (not by cost-efficiency)\\\\n    order = argsort(score_tensor, descending=True)\\\\n    cumsum = cumsum(cost_tensor[order])\\\\n    chosen = order[cumsum <= budget]\\\\n    \\\\n    # Distribute back to per-module masks\\\\n    ...\\\\n```\\\\n\\\\n### 5.3 Materialization (`gates.py`)\\\\n\\\\n```python\\\\n# Attention: physically slice weight matrices\\\\ndef materialize_pruning(self):\\\\n    keep_kv = self.eval_keep_mask_kv.to(torch.bool)  # [num_kv_heads]\\\\n    keep_heads = keep_kv.repeat_interleave(group_size)  # [num_heads]\\\\n    \\\\n    # With optional rescale folding\\\\n    if self._rescale_mode:\\\\n        scale = 1.0 + alpha * tanh(gate_score)\\\\n        scale_keep_kv = scale[keep_kv]\\\\n    \\\\n    self.q_proj = prune_q_out(self.q_proj, keep_heads)\\\\n    self.k_proj = prune_kv_out(self.k_proj, keep_kv, scale_keep_kv)\\\\n    self.v_proj = prune_kv_out(self.v_proj, keep_kv, scale_keep_kv)\\\\n    self.o_proj = prune_o_in(self.o_proj, keep_heads)\\\\n```\\\\n\\\\n---\\\\n\\\\n## 6. 实现建议\\\\n\\\\n### 对下一个 Worker 的指引:\\\\n\\\\n1. **最简路径**: 在服务器上 clone GRASPrune repo，直接用 `python train.py` 跑。不需要改我们的代码。\\\\n\\\\n2. **校准数据一致性**: 如果 reviewer 要求公平对比，需要让 GRASPrune 也用 GSM8K 校准数据。修改方法:\\\\n   - 在 GRASPrune 的 `data.py` 中添加 GSM8K loader\\\\n   - 或在 `config.py` 中把 `train_dataset_name` 改为自定义名\\\\n\\\\n3. **GPU 约束**: 必须指定 `--device cuda:0` 或 `cuda:1`（C001 约束），GRASPrune 单卡即可运行。\\\\n\\\\n4. **接入 GRPO recovery**: GRASPrune 产出的 `pruned_state_dict.safetensors` + `meta.json` 可直接用我们的 `rebuild.py:load_pruned_model()` 加载。\\\\n\\\\n5. **实验矩阵** (Phase 2 P1):\\\\n\\\\n   | Method | Pruning | Recovery | Eval |\\\\n   |--------|---------|----------|------|\\\\n   | Standard | importance-only pruning | GRPO | GSM8K |\\\\n   | RASP | importance × (1-CKA)^α | GRPO | GSM8K |\\\\n   | **GRASPrune** | learned gates + rescale | GRPO | GSM8K |\\\\n\\\\n6. **公平性考虑**:\\\\n   - GRASPrune 有 rescale compensation，Standard 和 RASP 没有。如果差距太大可以考虑也给 Standard/RASP 加 rescale（或者在论文中讨论这个差异）。\\\\n   - GRASPrune 是 gradient-free 对 backbone 的（backbone frozen），而我们的 importance scoring 需要 backward through backbone。这意味着 GRASPrune 对 backbone 权重无任何修改。\\\\n\\\\n---\\\\n\\\\n## 7. 参考文献\\\\n\\\\n- [GRASPrune paper (arXiv)](https://arxiv.org/abs/2604.19398)\\\\n- [GRASPrune official code](https://github.com/ZiY-Wang/GRASPrune)\\\\n- [Original GraSP (2020) — 不同的方法](https://arxiv.org/abs/2002.07376): \\\\\\\"Picking Winning Tickets Before Training by Preserving Gradient Flow\\\\\\\"，这是 unstructured pruning at initialization，与 GRASPrune 是完全不同的工作。\\\\n- [GraSP official code (2020)](https://github.com/alecwangcq/GraSP)\\\\n\\\\n**注意命名区分**:\\\\n- **GraSP** (2020, ICLR): Gradient Signal Preservation，unstructured，pruning at initialization\\\\n- **GRASPrune** (2026, ACL): Global Gating for Budgeted Structured Pruning，structured，post-training，这是我们要用的\\\\n\\\", \\\"total_chars\\\": 12354, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "12809633-9291-4661-8539-f0c438c10944",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\\\", \\\"content\\\": \\\"# GRASPrune 调研报告 — Phase 2 P1 Baseline 实现方案\\\\n\\\\n> 调研日期: 2026-05-14\\\\n> 目标: 将 GRASPrune 作为 Phase 2 P1 的额外 baseline pruning method\\\\n\\\\n---\\\\n\\\\n## 1. GRASPrune 概述\\\\n\\\\n**论文**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\\\n**会议**: ACL 2026 Main Conference\\\\n**arXiv**: 2604.19398\\\\n**代码**: https://github.com/ZiY-Wang/GRASPrune\\\\n**作者**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\\\\n\\\\nGRASPrune 是一个 post-training structured pruning 框架，对 decoder-only LLM 做 FFN channel 和 attention KV group 的联合剪枝。核心特点：\\\\n- **Global gating**: 所有层的 FFN channel 和 KV group 共享一个全局 budget\\\\n- **Projected STE**: 每个 training step 都投影到 budget-feasible 的 hard mask\\\\n- **Rescale compensation**: 剪枝后学习 scaling factor 补偿 scale mismatch\\\\n- 支持 LLaMA 和 **Qwen** 架构（直接兼容我们的 DeepSeek-R1-Distill-Qwen-7B）\\\\n\\\\n---\\\\n\\\\n## 2. 核心算法\\\\n\\\\n### 2.1 问题形式化\\\\n\\\\n将 structured pruning 建模为 budget-constrained binary optimization:\\\\n\\\\n$$\\\\\\\\min_{z \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}^{|S|}} \\\\\\\\mathcal{L}(\\\\\\\\theta; z) \\\\\\\\quad \\\\\\\\text{s.t.} \\\\\\\\quad \\\\\\\\sum_{i \\\\\\\\in S} c_i z_i \\\\\\\\leq B$$\\\\n\\\\n其中:\\\\n- $S$ = 所有可剪枝 structural unit 的集合（FFN channels + KV groups across all layers）\\\\n- $z_i \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}$: unit $i$ 的保留标志\\\\n- $c_i$: unit $i$ 的参数代价\\\\n- $B = \\\\\\\\rho \\\\\\\\sum_{i \\\\\\\\in S} c_i$: 全局 budget，$\\\\\\\\rho$ = keep_ratio\\\\n\\\\n### 2.2 代价模型 (Cost Model)\\\\n\\\\n**FFN channel**: $c_i = 1$（归一化单位代价）\\\\n\\\\n**KV group (attention)**: \\\\n$$\\\\\\\\alpha = \\\\\\\\frac{(2G + 2) d_h}{3}$$\\\\n\\\\n其中 $G = H / H^{kv}$（query-to-KV head ratio），$d_h$ = head_dim。\\\\n\\\\n对于 DeepSeek-R1-Distill-Qwen-7B:\\\\n- $H = 28$, $H^{kv} = 4$, $G = 7$, $d_h = 128$\\\\n- $\\\\\\\\alpha = (2 \\\\\\\\times 7 + 2) \\\\\\\\times 128 / 3 = 16 \\\\\\\\times 128 / 3 \\\\\\\\approx 682.67$\\\\n\\\\n### 2.3 Gate Parameterization\\\\n\\\\n为每个 structural unit 引入可学习 scalar gate $s_i$：\\\\n- **FFN**: `gate_score` — shape `(intermediate_size,)` = `(18944,)` per layer\\\\n- **KV group**: `gate_score_kv` — shape `(num_key_value_heads,)` = `(4,)` per layer\\\\n\\\\nSoft probability: $p_i = \\\\\\\\sigma(s_i / \\\\\\\\tau)$，其中 $\\\\\\\\tau = 1.5$ 为 temperature。\\\\n\\\\n### 2.4 Projected Straight-Through Estimator (PSTE)\\\\n\\\\n**Forward pass** (hard mask):\\\\n1. 收集所有 gate 的 soft probabilities $\\\\\\\\{p_i\\\\\\\\}$\\\\n2. Budget projection `Project(p, c, B)`:\\\\n   - 按 $p_i$ 降序排列\\\\n   - 贪心选择 $m_i = 1$ 直到 $\\\\\\\\sum c_i m_i \\\\\\\\leq B$\\\\n   - 复杂度: $O(n \\\\\\\\log n)$ 排序 + $O(n)$ 扫描\\\\n3. 得到 hard mask $\\\\\\\\hat{m}$\\\\n\\\\n**STE trick** (soft backward):\\\\n$$\\\\\\\\tilde{z}_i = m_i + (p_i - \\\\\\\\text{stopgrad}(p_i))$$\\\\n\\\\nForward 用 hard mask $m_i \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}$，backward 梯度穿过 soft $p_i$:\\\\n$$\\\\\\\\frac{\\\\\\\\partial \\\\\\\\mathcal{L}}{\\\\\\\\partial s_i} = \\\\\\\\frac{1}{\\\\\\\\tau} \\\\\\\\frac{\\\\\\\\partial \\\\\\\\mathcal{L}}{\\\\\\\\partial \\\\\\\\tilde{z}_i} p_i(1 - p_i)$$\\\\n\\\\n**Training objective**:\\\\n$$\\\\\\\\tilde{\\\\\\\\mathcal{L}}(s) = \\\\\\\\mathbb{E}_x[\\\\\\\\mathcal{L}(f(x; \\\\\\\\theta, \\\\\\\\hat{m}(p(s))))]$$\\\\n\\\\n其中 $\\\\\\\\theta$ 冻结，只优化 gate scores $\\\\\\\\{s_i\\\\\\\\}$。\\\\n\\\\n### 2.5 Rescale Compensation (Stage B)\\\\n\\\\nHard mask 固定后，对保留 unit 学习 multiplicative scaling:\\\\n$$\\\\\\\\text{output}_i = m_i \\\\\\\\cdot (1 + \\\\\\\\alpha_r \\\\\\\\cdot \\\\\\\\tanh(s_i)) \\\\\\\\cdot \\\\\\\\text{activation}_i$$\\\\n\\\\n其中 $\\\\\\\\alpha_r = 0.5$（rescale_alpha）。学习完成后，scaling factor 折叠进 weight matrix，推理时无额外开销。\\\\n\\\\n### 2.6 算法伪代码\\\\n\\\\n```\\\\nAlgorithm: GRASPrune Pipeline\\\\n\\\\nInput: pretrained model θ, keep_ratio ρ, calibration data D\\\\nOutput: pruned dense checkpoint\\\\n\\\\n# Stage A: Gate Training\\\\n1. Attach gate scores {s_i} to all FFN channels and KV groups, init s_i = 0\\\\n2. Freeze all backbone weights θ\\\\n3. Compute cost vector c (FFN: 1.0, KV group: α)\\\\n4. Budget B = ρ * Σ c_i\\\\n5. For epoch = 1..4:\\\\n     For batch x in D:\\\\n       p_i = sigmoid(s_i / τ)  for all i\\\\n       m = Project(p, c, B)    # greedy top-k by probability\\\\n       z̃_i = m_i + (p_i - stopgrad(p_i))  # STE\\\\n       Apply z̃ as mask to FFN channels and KV groups\\\\n       loss = CrossEntropyLoss(model(x; θ, z̃), x)\\\\n       Backprop through z̃ → update {s_i} via AdamW\\\\n\\\\n# Finalize Hard Masks\\\\n6. Compute final p_i, run Project → get final hard masks\\\\n7. Register masks on all gate modules\\\\n\\\\n# Stage B: Rescale Compensation\\\\n8. Zero gate scores, enable rescale mode\\\\n9. For epoch = 1..1:\\\\n     For batch x in D_val:\\\\n       Apply mask with rescale: output_i = m_i * (1 + 0.5 * tanh(s_i)) * act_i\\\\n       loss = CrossEntropyLoss(model(x), x)\\\\n       Backprop → update {s_i}\\\\n\\\\n# Export\\\\n10. Materialize pruning: physically remove pruned dimensions from weight matrices\\\\n11. Fold rescale factors into weights\\\\n12. Export pruned_state_dict.safetensors + meta.json\\\\n```\\\\n\\\\n---\\\\n\\\\n## 3. 与现有方法的对比\\\\n\\\\n| 特性 | Standard (我们的) | RASP (我们的) | GRASPrune (baseline) |\\\\n|------|-------------------|---------------|---------------------|\\\\n| Scoring | Taylor: $I(h) = \\\\\\\\|w_h \\\\\\\\cdot g_h\\\\\\\\|_2$ | $S(h) = I(h) \\\\\\\\cdot (1-F(h))^\\\\\\\\alpha$ | Learned gates via PSTE |\\\\n| 优化方式 | One-shot (无迭代) | One-shot (无迭代) | 迭代 gate training (4 epochs) |\\\\n| Budget 约束 | 事后贪心裁剪 | 事后贪心裁剪 | 每步投影到 feasible set |\\\\n| Attn 粒度 | Q head → 推导 KV | Q head → 推导 KV | **直接 KV group** |\\\\n| MLP 粒度 | n_heads 个 group | n_heads 个 group | **Per-channel** |\\\\n| 补偿 | 无 | 无 | Rescale compensation |\\\\n| 校准数据 | GSM8K train | GSM8K train | WikiText2 train |\\\\n| 耗时 | ~10 min (importance) | ~30 min (importance+CKA) | ~6 min (A100 80G) |\\\\n\\\\n### 关键区别:\\\\n1. **GRASPrune 的 attention pruning 天然在 KV group 粒度**，`gate_score_kv` shape = `(num_key_value_heads,)`。这完美满足我们的 GQA group 硬约束。\\\\n2. **MLP pruning 更细粒度**: per-channel 而非 per-group，理论上更优但也更多参数要学。\\\\n3. **有 rescale 补偿**: 这给 GRASPrune 额外优势，公平起见实验中可能需要注意。\\\\n\\\\n---\\\\n\\\\n## 4. 集成方案\\\\n\\\\n### 4.1 推荐方案: 直接使用 GRASPrune 官方代码\\\\n\\\\nGRASPrune 已原生支持 Qwen 架构，输出格式 (safetensors + meta.json) 与我们的 `load_pruned_model()` 完全兼容。\\\\n\\\\n**Pipeline**:\\\\n```\\\\nGRASPrune(DeepSeek-R1-Distill-Qwen-7B, keep_ratio=0.65)\\\\n    → pruned_state_dict.safetensors + meta.json\\\\n    → load_pruned_model()  # 用我们的 rebuild.py\\\\n    → GRPO recovery training\\\\n    → eval (GSM8K)\\\\n```\\\\n\\\\n**服务器部署步骤**:\\\\n```bash\\\\n# 1. Clone GRASPrune 到服务器\\\\ncd /root\\\\ngit clone https://github.com/ZiY-Wang/GRASPrune.git\\\\ncd GRASPrune\\\\npip install -r requirements.txt\\\\n\\\\n# 2. 运行 GRASPrune pruning (keep_ratio=0.65 ↔ 35% sparsity)\\\\npython train.py \\\\\\\\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\\\\\\\n  --model-family qwen \\\\\\\\\\\\n  --trust-remote-code \\\\\\\\\\\\n  --device cuda:0 \\\\\\\\\\\\n  --keep-ratio 0.65 \\\\\\\\\\\\n  --epochs 4 \\\\\\\\\\\\n  --num-samples 512 \\\\\\\\\\\\n  --max-len 512 \\\\\\\\\\\\n  --batch-size 1 \\\\\\\\\\\\n  --output-dir /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65\\\\n\\\\n# 3. 验证 pruned model\\\\npython eval_pruned_ppl.py \\\\\\\\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\\\\\\\n  --sd /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/pruned_state_dict.safetensors \\\\\\\\\\\\n  --meta /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/meta.json \\\\\\\\\\\\n  --trust-remote-code \\\\\\\\\\\\n  --use-fast-tokenizer \\\\\\\\\\\\n  --device cuda:0\\\\n\\\\n# 4. 接入我们的 GRPO recovery pipeline\\\\ncd /root/recovery_aware_struct_prune\\\\npython src/train_grpo.py \\\\\\\\\\\\n  --pruned_model_path /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65 \\\\\\\\\\\\n  ...\\\\n```\\\\n\\\\n### 4.2 meta.json 格式兼容性\\\\n\\\\nGRASPrune 的 `meta.json` 格式:\\\\n```json\\\\n{\\\\n  \\\\\\\"model_id\\\\\\\": \\\\\\\"...\\\\\\\",\\\\n  \\\\\\\"model_family\\\\\\\": \\\\\\\"qwen\\\\\\\",\\\\n  \\\\\\\"dtype\\\\\\\": \\\\\\\"torch.bfloat16\\\\\\\",\\\\n  \\\\\\\"export_format\\\\\\\": \\\\\\\"materialized\\\\\\\",\\\\n  \\\\\\\"rescale_alpha\\\\\\\": 0.5,\\\\n  \\\\\\\"layers\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"ffn_intermediate_size\\\\\\\": 12345,\\\\n      \\\\\\\"num_heads\\\\\\\": 21,\\\\n      \\\\\\\"num_key_value_heads\\\\\\\": 3,\\\\n      \\\\\\\"head_dim\\\\\\\": 128\\\\n    },\\\\n    ...\\\\n  ]\\\\n}\\\\n```\\\\n\\\\n我们的 `rebuild.py` 中 `rebuild_from_meta()` 读取 `meta[\\\\\\\"layers\\\\\\\"]` 的 `ffn_intermediate_size`、`num_heads`、`num_key_value_heads`、`head_dim`，然后 resize linear layers 并 load state_dict。两边完全兼容，无需修改。\\\\n\\\\n### 4.3 需要注意的兼容性问题\\\\n\\\\n1. **Qwen 的 bias**: DeepSeek-R1-Distill-Qwen-7B 的 attention 有 bias（q_proj, k_proj, v_proj 有 bias），GRASPrune 的 `QwenAttnGate.materialize_pruning()` 已正确处理 bias 的 slicing。\\\\n\\\\n2. **GQA group 映射**: GRASPrune 的 attention materialization 逻辑:\\\\n   ```python\\\\n   # gate_score_kv shape = (num_key_value_heads,) = (4,)\\\\n   # keep_kv: bool mask on KV heads\\\\n   # keep_heads = keep_kv.repeat_interleave(group_size)  # expand to Q heads\\\\n   # group_size = num_heads // num_key_value_heads = 28 // 4 = 7\\\\n   ```\\\\n   这正是我们要求的 GQA group 粒度: 1 KV head + 7 Q heads = 1 group。\\\\n\\\\n3. **校准数据**: GRASPrune 默认用 WikiText2 train，我们的 importance/CKA 用 GSM8K train。为公平对比，可以考虑让 GRASPrune 也用 GSM8K（需要修改 `data.py` 或 `config.train_dataset_name`）。\\\\n\\\\n---\\\\n\\\\n## 5. 参考代码关键片段\\\\n\\\\n### 5.1 Gate 注入 (`gates.py`)\\\\n\\\\n```python\\\\n# FFN gate: per-channel scalar\\\\nclass LlamaMLPGate(nn.Module):\\\\n    def __init__(self, cfg, src, gate_init, tau, device):\\\\n        self.gate_score = nn.Parameter(\\\\n            torch.full((cfg.intermediate_size,), gate_init, device=device)\\\\n        )\\\\n    \\\\n    def forward(self, x):\\\\n        inter = self.up_proj(x) * self.act_fn(self.gate_proj(x))\\\\n        # STE: hard_mask + (soft - stopgrad(soft))\\\\n        if self.training and hasattr(self, \\\\\\\"_batch_mask\\\\\\\"):\\\\n            hard_mask = self._batch_mask\\\\n            soft_prob = torch.sigmoid(self.gate_score / self.tau)\\\\n            z = hard_mask + (soft_prob - soft_prob.detach())\\\\n        return self.down_proj(inter * z)\\\\n\\\\n# Attention gate: per-KV-group scalar  \\\\nclass LlamaAttnGate(nn.Module):\\\\n    def __init__(self, cfg, layer_idx, src, gate_init, tau, device):\\\\n        self.gate_score_kv = nn.Parameter(\\\\n            torch.full((cfg.num_key_value_heads,), gate_init, device=device)\\\\n        )\\\\n    \\\\n    def forward(self, hidden_states, ...):\\\\n        # ... compute q, k, v, apply RoPE ...\\\\n        # Gate KV at head level\\\\n        kv_gate = z.view(1, -1, 1, 1)  # [1, num_kv_heads, 1, 1]\\\\n        k = k * kv_gate\\\\n        v = v * kv_gate\\\\n        # ... attention computation ...\\\\n```\\\\n\\\\n### 5.2 Budget Mask Projection (`pipeline.py`)\\\\n\\\\n```python\\\\ndef build_batch_budget_masks(model, f_cost, a_cost, keep_ratio, tau):\\\\n    scores, costs, holders = [], [], []\\\\n    for block in get_transformer_layers(model):\\\\n        # FFN gates\\\\n        values = sigmoid(block.mlp.gate_score.detach() / tau)\\\\n        scores.append(values); costs.append(full_like(values, f_cost))\\\\n        # KV gates\\\\n        values = sigmoid(block.self_attn.gate_score_kv.detach() / tau)\\\\n        scores.append(values); costs.append(full_like(values, a_cost))\\\\n    \\\\n    score_tensor = cat(scores)\\\\n    cost_tensor = cat(costs)\\\\n    budget = cost_tensor.sum() * keep_ratio\\\\n    \\\\n    # Greedy top-k by probability (not by cost-efficiency)\\\\n    order = argsort(score_tensor, descending=True)\\\\n    cumsum = cumsum(cost_tensor[order])\\\\n    chosen = order[cumsum <= budget]\\\\n    \\\\n    # Distribute back to per-module masks\\\\n    ...\\\\n```\\\\n\\\\n### 5.3 Materialization (`gates.py`)\\\\n\\\\n```python\\\\n# Attention: physically slice weight matrices\\\\ndef materialize_pruning(self):\\\\n    keep_kv = self.eval_keep_mask_kv.to(torch.bool)  # [num_kv_heads]\\\\n    keep_heads = keep_kv.repeat_interleave(group_size)  # [num_heads]\\\\n    \\\\n    # With optional rescale folding\\\\n    if self._rescale_mode:\\\\n        scale = 1.0 + alpha * tanh(gate_score)\\\\n        scale_keep_kv = scale[keep_kv]\\\\n    \\\\n    self.q_proj = prune_q_out(self.q_proj, keep_heads)\\\\n    self.k_proj = prune_kv_out(self.k_proj, keep_kv, scale_keep_kv)\\\\n    self.v_proj = prune_kv_out(self.v_proj, keep_kv, scale_keep_kv)\\\\n    self.o_proj = prune_o_in(self.o_proj, keep_heads)\\\\n```\\\\n\\\\n---\\\\n\\\\n## 6. 实现建议\\\\n\\\\n### 对下一个 Worker 的指引:\\\\n\\\\n1. **最简路径**: 在服务器上 clone GRASPrune repo，直接用 `python train.py` 跑。不需要改我们的代码。\\\\n\\\\n2. **校准数据一致性**: 如果 reviewer 要求公平对比，需要让 GRASPrune 也用 GSM8K 校准数据。修改方法:\\\\n   - 在 GRASPrune 的 `data.py` 中添加 GSM8K loader\\\\n   - 或在 `config.py` 中把 `train_dataset_name` 改为自定义名\\\\n\\\\n3. **GPU 约束**: 必须指定 `--device cuda:0` 或 `cuda:1`（C001 约束），GRASPrune 单卡即可运行。\\\\n\\\\n4. **接入 GRPO recovery**: GRASPrune 产出的 `pruned_state_dict.safetensors` + `meta.json` 可直接用我们的 `rebuild.py:load_pruned_model()` 加载。\\\\n\\\\n5. **实验矩阵** (Phase 2 P1):\\\\n\\\\n   | Method | Pruning | Recovery | Eval |\\\\n   |--------|---------|----------|------|\\\\n   | Standard | importance-only pruning | GRPO | GSM8K |\\\\n   | RASP | importance × (1-CKA)^α | GRPO | GSM8K |\\\\n   | **GRASPrune** | learned gates + rescale | GRPO | GSM8K |\\\\n\\\\n6. **公平性考虑**:\\\\n   - GRASPrune 有 rescale compensation，Standard 和 RASP 没有。如果差距太大可以考虑也给 Standard/RASP 加 rescale（或者在论文中讨论这个差异）。\\\\n   - GRASPrune 是 gradient-free 对 backbone 的（backbone frozen），而我们的 importance scoring 需要 backward through backbone。这意味着 GRASPrune 对 backbone 权重无任何修改。\\\\n\\\\n---\\\\n\\\\n## 7. 参考文献\\\\n\\\\n- [GRASPrune paper (arXiv)](https://arxiv.org/abs/2604.19398)\\\\n- [GRASPrune official code](https://github.com/ZiY-Wang/GRASPrune)\\\\n- [Original GraSP (2020) — 不同的方法](https://arxiv.org/abs/2002.07376): \\\\\\\"Picking Winning Tickets Before Training by Preserving Gradient Flow\\\\\\\"，这是 unstructured pruning at initialization，与 GRASPrune 是完全不同的工作。\\\\n- [GraSP official code (2020)](https://github.com/alecwangcq/GraSP)\\\\n\\\\n**注意命名区分**:\\\\n- **GraSP** (2020, ICLR): Gradient Signal Preservation，unstructured，pruning at initialization\\\\n- **GRASPrune** (2026, ACL): Global Gating for Budgeted Structured Pruning，structured，post-training，这是我们要用的\\\\n\\\", \\\"total_chars\\\": 12354, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/memory.md\", \"content\": \"# GRASPrune 调研报告 — Phase 2 P1 Baseline 实现方案\\n\\n> 调研日期: 2026-05-14\\n> 目标: 将 GRASPrune 作为 Phase 2 P1 的额外 baseline pruning method\\n\\n---\\n\\n## 1. GRASPrune 概述\\n\\n**论文**: GRASPrune: Global Gating for Budgeted Structured Pruning of Large Language Models\\n**会议**: ACL 2026 Main Conference\\n**arXiv**: 2604.19398\\n**代码**: https://github.com/ZiY-Wang/GRASPrune\\n**作者**: Ziyang Wang, Jiangfeng Xiao, Chuan Xiao, Ruoxiang Li, Rui Mao, Jianbin Qin\\n\\nGRASPrune 是一个 post-training structured pruning 框架，对 decoder-only LLM 做 FFN channel 和 attention KV group 的联合剪枝。核心特点：\\n- **Global gating**: 所有层的 FFN channel 和 KV group 共享一个全局 budget\\n- **Projected STE**: 每个 training step 都投影到 budget-feasible 的 hard mask\\n- **Rescale compensation**: 剪枝后学习 scaling factor 补偿 scale mismatch\\n- 支持 LLaMA 和 **Qwen** 架构（直接兼容我们的 DeepSeek-R1-Distill-Qwen-7B）\\n\\n---\\n\\n## 2. 核心算法\\n\\n### 2.1 问题形式化\\n\\n将 structured pruning 建模为 budget-constrained binary optimization:\\n\\n$$\\\\min_{z \\\\in \\\\{0,1\\\\}^{|S|}} \\\\mathcal{L}(\\\\theta; z) \\\\quad \\\\text{s.t.} \\\\quad \\\\sum_{i \\\\in S} c_i z_i \\\\leq B$$\\n\\n其中:\\n- $S$ = 所有可剪枝 structural unit 的集合（FFN channels + KV groups across all layers）\\n- $z_i \\\\in \\\\{0,1\\\\}$: unit $i$ 的保留标志\\n- $c_i$: unit $i$ 的参数代价\\n- $B = \\\\rho \\\\sum_{i \\\\in S} c_i$: 全局 budget，$\\\\rho$ = keep_ratio\\n\\n### 2.2 代价模型 (Cost Model)\\n\\n**FFN channel**: $c_i = 1$（归一化单位代价）\\n\\n**KV group (attention)**: \\n$$\\\\alpha = \\\\frac{(2G + 2) d_h}{3}$$\\n\\n其中 $G = H / H^{kv}$（query-to-KV head ratio），$d_h$ = head_dim。\\n\\n对于 DeepSeek-R1-Distill-Qwen-7B:\\n- $H = 28$, $H^{kv} = 4$, $G = 7$, $d_h = 128$\\n- $\\\\alpha = (2 \\\\times 7 + 2) \\\\times 128 / 3 = 16 \\\\times 128 / 3 \\\\approx 682.67$\\n\\n### 2.3 Gate Parameterization\\n\\n为每个 structural unit 引入可学习 scalar gate $s_i$：\\n- **FFN**: `gate_score` — shape `(intermediate_size,)` = `(18944,)` per layer\\n- **KV group**: `gate_score_kv` — shape `(num_key_value_heads,)` = `(4,)` per layer\\n\\nSoft probability: $p_i = \\\\sigma(s_i / \\\\tau)$，其中 $\\\\tau = 1.5$ 为 temperature。\\n\\n### 2.4 Projected Straight-Through Estimator (PSTE)\\n\\n**Forward pass** (hard mask):\\n1. 收集所有 gate 的 soft probabilities $\\\\{p_i\\\\}$\\n2. Budget projection `Project(p, c, B)`:\\n   - 按 $p_i$ 降序排列\\n   - 贪心选择 $m_i = 1$ 直到 $\\\\sum c_i m_i \\\\leq B$\\n   - 复杂度: $O(n \\\\log n)$ 排序 + $O(n)$ 扫描\\n3. 得到 hard mask $\\\\hat{m}$\\n\\n**STE trick** (soft backward):\\n$$\\\\tilde{z}_i = m_i + (p_i - \\\\text{stopgrad}(p_i))$$\\n\\nForward 用 hard mask $m_i \\\\in \\\\{0,1\\\\}$，backward 梯度穿过 soft $p_i$:\\n$$\\\\frac{\\\\partial \\\\mathcal{L}}{\\\\partial s_i} = \\\\frac{1}{\\\\tau} \\\\frac{\\\\partial \\\\mathcal{L}}{\\\\partial \\\\tilde{z}_i} p_i(1 - p_i)$$\\n\\n**Training objective**:\\n$$\\\\tilde{\\\\mathcal{L}}(s) = \\\\mathbb{E}_x[\\\\mathcal{L}(f(x; \\\\theta, \\\\hat{m}(p(s))))]$$\\n\\n其中 $\\\\theta$ 冻结，只优化 gate scores $\\\\{s_i\\\\}$。\\n\\n### 2.5 Rescale Compensation (Stage B)\\n\\nHard mask 固定后，对保留 unit 学习 multiplicative scaling:\\n$$\\\\text{output}_i = m_i \\\\cdot (1 + \\\\alpha_r \\\\cdot \\\\tanh(s_i)) \\\\cdot \\\\text{activation}_i$$\\n\\n其中 $\\\\alpha_r = 0.5$（rescale_alpha）。学习完成后，scaling factor 折叠进 weight matrix，推理时无额外开销。\\n\\n### 2.6 算法伪代码\\n\\n```\\nAlgorithm: GRASPrune Pipeline\\n\\nInput: pretrained model θ, keep_ratio ρ, calibration data D\\nOutput: pruned dense checkpoint\\n\\n# Stage A: Gate Training\\n1. Attach gate scores {s_i} to all FFN channels and KV groups, init s_i = 0\\n2. Freeze all backbone weights θ\\n3. Compute cost vector c (FFN: 1.0, KV group: α)\\n4. Budget B = ρ * Σ c_i\\n5. For epoch = 1..4:\\n     For batch x in D:\\n       p_i = sigmoid(s_i / τ)  for all i\\n       m = Project(p, c, B)    # greedy top-k by probability\\n       z̃_i = m_i + (p_i - stopgrad(p_i))  # STE\\n       Apply z̃ as mask to FFN channels and KV groups\\n       loss = CrossEntropyLoss(model(x; θ, z̃), x)\\n       Backprop through z̃ → update {s_i} via AdamW\\n\\n# Finalize Hard Masks\\n6. Compute final p_i, run Project → get final hard masks\\n7. Register masks on all gate modules\\n\\n# Stage B: Rescale Compensation\\n8. Zero gate scores, enable rescale mode\\n9. For epoch = 1..1:\\n     For batch x in D_val:\\n       Apply mask with rescale: output_i = m_i * (1 + 0.5 * tanh(s_i)) * act_i\\n       loss = CrossEntropyLoss(model(x), x)\\n       Backprop → update {s_i}\\n\\n# Export\\n10. Materialize pruning: physically remove pruned dimensions from weight matrices\\n11. Fold rescale factors into weights\\n12. Export pruned_state_dict.safetensors + meta.json\\n```\\n\\n---\\n\\n## 3. 与现有方法的对比\\n\\n| 特性 | Standard (我们的) | RASP (我们的) | GRASPrune (baseline) |\\n|------|-------------------|---------------|---------------------|\\n| Scoring | Taylor: $I(h) = \\\\|w_h \\\\cdot g_h\\\\|_2$ | $S(h) = I(h) \\\\cdot (1-F(h))^\\\\alpha$ | Learned gates via PSTE |\\n| 优化方式 | One-shot (无迭代) | One-shot (无迭代) | 迭代 gate training (4 epochs) |\\n| Budget 约束 | 事后贪心裁剪 | 事后贪心裁剪 | 每步投影到 feasible set |\\n| Attn 粒度 | Q head → 推导 KV | Q head → 推导 KV | **直接 KV group** |\\n| MLP 粒度 | n_heads 个 group | n_heads 个 group | **Per-channel** |\\n| 补偿 | 无 | 无 | Rescale compensation |\\n| 校准数据 | GSM8K train | GSM8K train | WikiText2 train |\\n| 耗时 | ~10 min (importance) | ~30 min (importance+CKA) | ~6 min (A100 80G) |\\n\\n### 关键区别:\\n1. **GRASPrune 的 attention pruning 天然在 KV group 粒度**，`gate_score_kv` shape = `(num_key_value_heads,)`。这完美满足我们的 GQA group 硬约束。\\n2. **MLP pruning 更细粒度**: per-channel 而非 per-group，理论上更优但也更多参数要学。\\n3. **有 rescale 补偿**: 这给 GRASPrune 额外优势，公平起见实验中可能需要注意。\\n\\n---\\n\\n## 4. 集成方案\\n\\n### 4.1 推荐方案: 直接使用 GRASPrune 官方代码\\n\\nGRASPrune 已原生支持 Qwen 架构，输出格式 (safetensors + meta.json) 与我们的 `load_pruned_model()` 完全兼容。\\n\\n**Pipeline**:\\n```\\nGRASPrune(DeepSeek-R1-Distill-Qwen-7B, keep_ratio=0.65)\\n    → pruned_state_dict.safetensors + meta.json\\n    → load_pruned_model()  # 用我们的 rebuild.py\\n    → GRPO recovery training\\n    → eval (GSM8K)\\n```\\n\\n**服务器部署步骤**:\\n```bash\\n# 1. Clone GRASPrune 到服务器\\ncd /root\\ngit clone https://github.com/ZiY-Wang/GRASPrune.git\\ncd GRASPrune\\npip install -r requirements.txt\\n\\n# 2. 运行 GRASPrune pruning (keep_ratio=0.65 ↔ 35% sparsity)\\npython train.py \\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --model-family qwen \\\\\\n  --trust-remote-code \\\\\\n  --device cuda:0 \\\\\\n  --keep-ratio 0.65 \\\\\\n  --epochs 4 \\\\\\n  --num-samples 512 \\\\\\n  --max-len 512 \\\\\\n  --batch-size 1 \\\\\\n  --output-dir /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65\\n\\n# 3. 验证 pruned model\\npython eval_pruned_ppl.py \\\\\\n  --model-id /root/autodl-tmp/models/DeepSeek-R1-Distill-Qwen-7B \\\\\\n  --sd /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/pruned_state_dict.safetensors \\\\\\n  --meta /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65/meta.json \\\\\\n  --trust-remote-code \\\\\\n  --use-fast-tokenizer \\\\\\n  --device cuda:0\\n\\n# 4. 接入我们的 GRPO recovery pipeline\\ncd /root/recovery_aware_struct_prune\\npython src/train_grpo.py \\\\\\n  --pruned_model_path /root/recovery_aware_struct_prune/outputs/graspune_qwen7b_65 \\\\\\n  ...\\n```\\n\\n### 4.2 meta.json 格式兼容性\\n\\nGRASPrune 的 `meta.json` 格式:\\n```json\\n{\\n  \\\"model_id\\\": \\\"...\\\",\\n  \\\"model_family\\\": \\\"qwen\\\",\\n  \\\"dtype\\\": \\\"torch.bfloat16\\\",\\n  \\\"export_format\\\": \\\"materialized\\\",\\n  \\\"rescale_alpha\\\": 0.5,\\n  \\\"layers\\\": [\\n    {\\n      \\\"ffn_intermediate_size\\\": 12345,\\n      \\\"num_heads\\\": 21,\\n      \\\"num_key_value_heads\\\": 3,\\n      \\\"head_dim\\\": 128\\n    },\\n    ...\\n  ]\\n}\\n```\\n\\n我们的 `rebuild.py` 中 `rebuild_from_meta()` 读取 `meta[\\\"layers\\\"]` 的 `ffn_intermediate_size`、`num_heads`、`num_key_value_heads`、`head_dim`，然后 resize linear layers 并 load state_dict。两边完全兼容，无需修改。\\n\\n### 4.3 需要注意的兼容性问题\\n\\n1. **Qwen 的 bias**: DeepSeek-R1-Distill-Qwen-7B 的 attention 有 bias（q_proj, k_proj, v_proj 有 bias），GRASPrune 的 `QwenAttnGate.materialize_pruning()` 已正确处理 bias 的 slicing。\\n\\n2. **GQA group 映射**: GRASPrune 的 attention materialization 逻辑:\\n   ```python\\n   # gate_score_kv shape = (num_key_value_heads,) = (4,)\\n   # keep_kv: bool mask on KV heads\\n   # keep_heads = keep_kv.repeat_interleave(group_size)  # expand to Q heads\\n   # group_size = num_heads // num_key_value_heads = 28 // 4 = 7\\n   ```\\n   这正是我们要求的 GQA group 粒度: 1 KV head + 7 Q heads = 1 group。\\n\\n3. **校准数据**: GRASPrune 默认用 WikiText2 train，我们的 importance/CKA 用 GSM8K train。为公平对比，可以考虑让 GRASPrune 也用 GSM8K（需要修改 `data.py` 或 `config.train_dataset_name`）。\\n\\n---\\n\\n## 5. 参考代码关键片段\\n\\n### 5.1 Gate 注入 (`gates.py`)\\n\\n```python\\n# FFN gate: per-channel scalar\\nclass LlamaMLPGate(nn.Module):\\n    def __init__(self, cfg, src, gate_init, tau, device):\\n        self.gate_score = nn.Parameter(\\n            torch.full((cfg.intermediate_size,), gate_init, device=device)\\n        )\\n    \\n    def forward(self, x):\\n        inter = self.up_proj(x) * self.act_fn(self.gate_proj(x))\\n        # STE: hard_mask + (soft - stopgrad(soft))\\n        if self.training and hasattr(self, \\\"_batch_mask\\\"):\\n            hard_mask = self._batch_mask\\n            soft_prob = torch.sigmoid(self.gate_score / self.tau)\\n            z = hard_mask + (soft_prob - soft_prob.detach())\\n        return self.down_proj(inter * z)\\n\\n# Attention gate: per-KV-group scalar  \\nclass LlamaAttnGate(nn.Module):\\n    def __init__(self, cfg, layer_idx, src, gate_init, tau, device):\\n        self.gate_score_kv = nn.Parameter(\\n            torch.full((cfg.num_key_value_heads,), gate_init, device=device)\\n        )\\n    \\n    def forward(self, hidden_states, ...):\\n        # ... compute q, k, v, apply RoPE ...\\n        # Gate KV at head level\\n        kv_gate = z.view(1, -1, 1, 1)  # [1, num_kv_heads, 1, 1]\\n        k = k * kv_gate\\n        v = v * kv_gate\\n        # ... attention computation ...\\n```\\n\\n### 5.2 Budget Mask Projection (`pipeline.py`)\\n\\n```python\\ndef build_batch_budget_masks(model, f_cost, a_cost, keep_ratio, tau):\\n    scores, costs, holders = [], [], []\\n    for block in get_transformer_layers(model):\\n        # FFN gates\\n        values = sigmoid(block.mlp.gate_score.detach() / tau)\\n        scores.append(values); costs.append(full_like(values, f_cost))\\n        # KV gates\\n        values = sigmoid(block.self_attn.gate_score_kv.detach() / tau)\\n        scores.append(values); costs.append(full_like(values, a_cost))\\n    \\n    score_tensor = cat(scores)\\n    cost_tensor = cat(costs)\\n    budget = cost_tensor.sum() * keep_ratio\\n    \\n    # Greedy top-k by probability (not by cost-efficiency)\\n    order = argsort(score_tensor, descending=True)\\n    cumsum = cumsum(cost_tensor[order])\\n    chosen = order[cumsum <= budget]\\n    \\n    # Distribute back to per-module masks\\n    ...\\n```\\n\\n### 5.3 Materialization (`gates.py`)\\n\\n```python\\n# Attention: physically slice weight matrices\\ndef materialize_pruning(self):\\n    keep_kv = self.eval_keep_mask_kv.to(torch.bool)  # [num_kv_heads]\\n    keep_heads = keep_kv.repeat_interleave(group_size)  # [num_heads]\\n    \\n    # With optional rescale folding\\n    if self._rescale_mode:\\n        scale = 1.0 + alpha * tanh(gate_score)\\n        scale_keep_kv = scale[keep_kv]\\n    \\n    self.q_proj = prune_q_out(self.q_proj, keep_heads)\\n    self.k_proj = prune_kv_out(self.k_proj, keep_kv, scale_keep_kv)\\n    self.v_proj = prune_kv_out(self.v_proj, keep_kv, scale_keep_kv)\\n    self.o_proj = prune_o_in(self.o_proj, keep_heads)\\n```\\n\\n---\\n\\n## 6. 实现建议\\n\\n### 对下一个 Worker 的指引:\\n\\n1. **最简路径**: 在服务器上 clone GRASPrune repo，直接用 `python train.py` 跑。不需要改我们的代码。\\n\\n2. **校准数据一致性**: 如果 reviewer 要求公平对比，需要让 GRASPrune 也用 GSM8K 校准数据。修改方法:\\n   - 在 GRASPrune 的 `data.py` 中添加 GSM8K loader\\n   - 或在 `config.py` 中把 `train_dataset_name` 改为自定义名\\n\\n3. **GPU 约束**: 必须指定 `--device cuda:0` 或 `cuda:1`（C001 约束），GRASPrune 单卡即可运行。\\n\\n4. **接入 GRPO recovery**: GRASPrune 产出的 `pruned_state_dict.safetensors` + `meta.json` 可直接用我们的 `rebuild.py:load_pruned_model()` 加载。\\n\\n5. **实验矩阵** (Phase 2 P1):\\n\\n   | Method | Pruning | Recovery | Eval |\\n   |--------|---------|----------|------|\\n   | Standard | importance-only pruning | GRPO | GSM8K |\\n   | RASP | importance × (1-CKA)^α | GRPO | GSM8K |\\n   | **GRASPrune** | learned gates + rescale | GRPO | GSM8K |\\n\\n6. **公平性考虑**:\\n   - GRASPrune 有 rescale compensation，Standard 和 RASP 没有。如果差距太大可以考虑也给 Standard/RASP 加 rescale（或者在论文中讨论这个差异）。\\n   - GRASPrune 是 gradient-free 对 backbone 的（backbone frozen），而我们的 importance scoring 需要 backward through backbone。这意味着 GRASPrune 对 backbone 权重无任何修改。\\n\\n---\\n\\n## 7. 参考文献\\n\\n- [GRASPrune paper (arXiv)](https://arxiv.org/abs/2604.19398)\\n- [GRASPrune official code](https://github.com/ZiY-Wang/GRASPrune)\\n- [Original GraSP (2020) — 不同的方法](https://arxiv.org/abs/2002.07376): \\\"Picking Winning Tickets Before Training by Preserving Gradient Flow\\\"，这是 unstructured pruning at initialization，与 GRASPrune 是完全不同的工作。\\n- [GraSP official code (2020)](https://github.com/alecwangcq/GraSP)\\n\\n**注意命名区分**:\\n- **GraSP** (2020, ICLR): Gradient Signal Preservation，unstructured，pruning at initialization\\n- **GRASPrune** (2026, ACL): Global Gating for Budgeted Structured Pruning，structured，post-training，这是我们要用的\\n\", \"total_chars\": 12354, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "paper_framing.md doesn't exist. Let me check if there's a similar file like ideas.md or IDEA_BRIEF.md that might have the story arc and claims.",
+              "signature": "EssCClkIDRgCKkBHgnwny126NsfuAHijH9gTPPx2rl7kUWEqe+WbhBDaQk0Ct1RGp+tzYrl0EQLc8Yp70CaJo9C+oyhO8gRSRmiuMg9jbGF1ZGUtb3B1cy00LTY4ABIMhP2NQo2Zg958LEMdGgycGrYevCBOCsYvJswiME+HTSTpO70dJKZWvPxU3OA5Dy2m6w7+1Gdgz5Pe5iegeOyqiffAfgFm1Ne9S7+3UiqfAQDD5g21QmcyxA2mGIqX10J13CvMbkJJSt2iB90nIdQCwgCpbH7EOA/XyBOpetreSXbbeUnjqVYgqY5vvZXNWL7nOfZMrltDstGiQt3Pbk5bFgcDcisuRBk191898KOARHgy6Df5YQYcrzFsze7nN8CyZYXEZEa1MsDc+Z00ItW9SSnqi9qyfhFiAHrpbAx+0P4IfkAz07hYhIDW4Pz5sxgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "dddca29e-5e57-4596-af6c-66617b9d30aa",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0153qAo4W3UMHpVuwPJV1h7i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8127,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "paper_framing.md 不存在，读取 ideas.md 和 IDEA_BRIEF.md 补充上下文。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "2eb5481b-196f-4a49-94cd-38fc3b377580",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0153qAo4W3UMHpVuwPJV1h7i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8127,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FADQaij5ED39FLLDDcgMMi",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "ideas.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "3a9e0d7c-5ba1-440a-af8f-210df258c392",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0153qAo4W3UMHpVuwPJV1h7i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8127,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T08:59:42.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FADQaij5ED39FLLDDcgMMi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "fccddeb4-a374-4c15-8122-e66fad7c2109",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"No ideas.md found for 'recovery_aware_struct_prune'.\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Ju2UBr8yW1RMbTL3WnBzGx",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "IDEA_BRIEF.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "f294f2b9-9375-4235-a677-c3fe65c5bcc2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0153qAo4W3UMHpVuwPJV1h7i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 8127,
+                "cache_read_input_tokens": 24266,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 8127
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T08:59:42.622Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Ju2UBr8yW1RMbTL3WnBzGx",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'IDEA_BRIEF.md'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "e80c67f5-82d8-4849-9f20-a8d1b915f436",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'IDEA_BRIEF.md'\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'IDEA_BRIEF.md'\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me try reading decisions.yaml and writing_plan.yaml for more context.",
+              "signature": "EoQCClkIDRgCKkB+NajwhJ8IXkPb8E5QH6s1tAPF3J/UMMZV3iAdufYVV5ERu4VX45Z7mT+iCgRJ7+LJptub+l2jEGWxLZcRfvi+Mg9jbGF1ZGUtb3B1cy00LTY4ABIMonfbJ2qOU2Lj9MWzGgzx2X+GsL8Yc/wduBIiMJyCsihx+wgLQ3iFXt+dCXM/aHvdeuyR5+SOwle4HclRA9Ta+67o9bXSJhTepkGMEipZF2SHQ3+jiMy9/gq/55h8GKpe1pOSfoXMUwcIjXWLft3PpNgjvFCvWiI4grJRLWqfj4j/VhglzsC9NhzpGXXonFhcG7sz1DEnHf7Xmrj5HCLOxPMULvY3Kt0YAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "05c974ca-57ee-4458-bbe0-214ea0177fd6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KF8NYDiAMPdmDqRsFK8wRs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 577,
+                "cache_read_input_tokens": 32393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "补充读取 decisions.yaml 和 writing_plan.yaml。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "02aba410-9ca6-4b1a-a724-7fa126aa8573",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KF8NYDiAMPdmDqRsFK8wRs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 577,
+                "cache_read_input_tokens": 32393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KoTEgj4QbCpdZTrDtnbcZr",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "decisions.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "6fe8e657-b94b-460b-bc44-d8f00948a2ee",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KF8NYDiAMPdmDqRsFK8wRs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 577,
+                "cache_read_input_tokens": 32393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T08:59:47.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KoTEgj4QbCpdZTrDtnbcZr",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 2\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 06:10 UTC\\\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: primary\\\\n    result: running\\\\n  depends_on: []\\\\n\\\", \\\"total_chars\\\": 476, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "bd205348-c495-4265-94fc-7c4e4998d6c2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 2\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-14 06:10 UTC\\\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\\\n  related_experiments:\\\\n  - exp_id: mvp_rasp_pipeline_v2\\\\n    role: primary\\\\n    result: running\\\\n  depends_on: []\\\\n\\\", \\\"total_chars\\\": 476, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/decisions.yaml\", \"content\": \"_next_id: 2\\ndecisions:\\n- id: D001\\n  date: 2026-05-14 06:10 UTC\\n  summary: MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention 配额\\n  rationale: 全局统一排序下 attention GQA groups importance 普遍高于 MLP groups，35% sparsity\\n    自然只剪 MLP（367 groups）。这是模型结构特征的正确反映，不应人为干预。MLP-level correlation (N=367) 足以验证 CKA→recoverability\\n    假设。50% sparsity 放 Phase 2 获取 attention-level 数据。\\n  related_experiments:\\n  - exp_id: mvp_rasp_pipeline_v2\\n    role: primary\\n    result: running\\n  depends_on: []\\n\", \"total_chars\": 476, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019RFbtj4bTakxjMM1m6aYgG",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "file": "EVALUATION.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "1ff0aa93-38c8-4be1-b607-b420090f00dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KF8NYDiAMPdmDqRsFK8wRs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 577,
+                "cache_read_input_tokens": 32393,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 577
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T08:59:47.910Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019RFbtj4bTakxjMM1m6aYgG",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No EVALUATION.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "75a701fc-c6c5-4364-a947-83b5104a6e0e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No EVALUATION.md found for 'recovery_aware_struct_prune'.\\\", \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"No EVALUATION.md found for 'recovery_aware_struct_prune'.\", \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have enough context. Let me also look for IDEA_BRIEF.md locally, as the memory.md referenced it.",
+              "signature": "EqECClkIDRgCKkD/o+Lak+KvR9KU7FPz+wvRyzW7UyPNyPRp+hRDiXPa2Qm+ePYe3qxQ+GkscPRLrnJPhQdeYo+D+ZfsUaoo29u5Mg9jbGF1ZGUtb3B1cy00LTY4ABIM9r2F4fT9F9X063tkGgzG5uhYS07VMPPkbOgiMETjqJJB+1ArZQbPI3SdFE2ZjOHfMeAPl5LGxdKzDMAnzDj5T+AWWb7HJvTVZz8k0yp2GksFLW7YDpiDMnMAer5VoQLrPYR6L7jLf4CViuauec655TD4NS4oa694LPj9UaZ2WPC0f40nA7DSRq3JN9iMfIUCmoNc22CfvUvdWPLfiQLCUmpnGprE2pStS+xatWomhb5FpqlGjbwgmoWK3h8L5HQzyxHE5BgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "36f7bdd4-774e-4aaa-8845-d2dbad0fb9e5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4cskYUGUit5h9oEM3bNYt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 32970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 820
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "上下文已收集完毕。现在撰写 Experiments section LaTeX 框架。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "c170ad24-c0ec-4964-9f0e-6b9ce6ea0a0e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4cskYUGUit5h9oEM3bNYt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 32970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 820
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SCyDc5UuYM6se2Ctxis4sE",
+              "name": "mcp__agent-ml-research__write_paper_section",
+              "input": {
+                "project": "recovery_aware_struct_prune",
+                "section": "experiments",
+                "content": "\n\\section{Experiments}\n\n\\subsection{Models and Datasets}\n\n\\paragraph{Base Model.}\nWe use DeepSeek-R1-Distill-Qwen-7B~\\citep{deepseek2025r1} as our base model, a 7B-parameter reasoning-distilled model built on the Qwen2.5 architecture~\\citep{qwen2.5} with 28 transformer layers.\nThe model employs Grouped Query Attention (GQA) with 28 query heads and 4 key-value groups per layer (group size $G{=}7$), and an intermediate FFN dimension of 18944.\nThis model represents a compelling testbed for our study: as a reasoning-specialized model, its performance depends critically on chain-of-thought capabilities that are acquired through reinforcement learning, making the interaction between structural pruning and RL-based recovery particularly salient.\n\n\\paragraph{Calibration Data.}\nWe use 512 randomly sampled examples from the GSM8K training set~\\citep{cobbe2021gsm8k} for all calibration-dependent operations, including importance scoring, CKA computation, and GRASPrune gate training.\n\n\\paragraph{Evaluation Benchmarks.}\nOur primary evaluation benchmark is GSM8K~\\citep{cobbe2021gsm8k} (1319 test problems), measuring grade-school mathematical reasoning with exact-match accuracy.\n\\textbf{[Phase 2: We extend evaluation to MMLU~\\citep{hendrycks2021mmlu} for broad knowledge, HumanEval~\\citep{chen2021humaneval} for code generation, and LongBench~\\citep{bai2024longbench} for long-context understanding.]}\n\n\\subsection{Pruning Methods}\n\nWe compare three structured pruning strategies at the granularity of GQA groups (each comprising one KV head and $G{=}7$ query heads) and MLP intermediate channels:\n\n\\paragraph{Standard Importance-Only Pruning.}\nFollowing LLM-Pruner~\\citep{ma2024llmpruner}, we compute Taylor-expansion-based importance scores $I(h) = \\|w_h \\cdot g_h\\|_2$ for each structural group $h$, where $w_h$ and $g_h$ denote the weight and gradient vectors respectively. Groups are ranked globally by importance and the lowest-scoring groups are removed to meet the target sparsity.\n\n\\paragraph{RASP (Ours).}\nRecovery-Aware Structured Pruning augments the importance score with a functional overlap penalty derived from Centered Kernel Alignment (CKA)~\\citep{kornblith2019cka}:\n\\begin{equation}\nS(h) = I(h) \\times (1 - F(h))^\\alpha\n\\label{eq:rasp_score}\n\\end{equation}\nwhere $F(h) \\in [0,1]$ is the CKA-based functional overlap of group $h$ with its neighboring groups, and $\\alpha{=}1.0$ controls the penalty strength.\nIntuitively, groups with high functional overlap ($F(h) \\to 1$) are more likely to be compensated by remaining groups during recovery, so RASP deprioritizes their retention.\nThe scoring and pruning remain one-shot with no iterative optimization.\n\n\\paragraph{GRASPrune.}\nGRASPrune~\\citep{wang2026graspune} is a recent post-training structured pruning method that learns differentiable binary gates via a projected straight-through estimator (PSTE) under a global parameter budget constraint.\nIt jointly prunes FFN channels and KV groups with learned gate scores optimized over 4 epochs, followed by a rescale compensation stage that learns multiplicative scaling factors to mitigate pruning-induced distribution shift.\nWe use the official implementation with default hyperparameters.\n\n\\paragraph{Sparsity Levels.}\nOur primary experiments use 35\\% structural sparsity (keep ratio $\\rho{=}0.65$).\nAt this sparsity level, global importance ranking naturally concentrates pruning on MLP groups (attention GQA groups have uniformly higher importance), yielding \\textbf{[TBD]} pruned MLP groups across 28 layers with all attention groups retained.\n\\textbf{[Phase 2: We extend to 25\\% and 45\\% sparsity to study the interaction between pruning aggressiveness and recoverability.]}\n\n\\subsection{Recovery Methods}\n\n\\paragraph{GRPO (Primary).}\nWe use Group Relative Policy Optimization (GRPO)~\\citep{shao2024deepseekmath} as the primary RLVR recovery method.\nGRPO generates $K$ candidate responses per problem and uses the group-relative advantage as the reward signal, avoiding the need for a separate reward model.\nTraining is performed on the GSM8K training set with the following hyperparameters: learning rate \\textbf{[TBD]}, $K{=}$\\textbf{[TBD]} rollouts per prompt, KL coefficient $\\beta{=}$\\textbf{[TBD]}, batch size \\textbf{[TBD]}, trained for \\textbf{[TBD]} steps on 2$\\times$ NVIDIA RTX PRO 6000 (96GB each).\n\n\\textbf{[Phase 2: We additionally compare SFT recovery using the same GSM8K training data to isolate the effect of the RL-based recovery signal.]}\n\n\\subsection{Evaluation Metrics}\n\n\\paragraph{Task Accuracy.}\nWe report exact-match accuracy on GSM8K, extracting the final numerical answer from model generations and comparing against ground truth.\n\n\\paragraph{Recoverability.}\nWe define the recoverability of a pruning configuration as:\n\\begin{equation}\n\\Delta_{\\text{acc}} = \\text{Acc}_{\\text{post-recovery}} - \\text{Acc}_{\\text{post-prune}}\n\\label{eq:recoverability}\n\\end{equation}\nThis measures how much accuracy a pruned model regains through RLVR recovery, capturing the ease of fine-tuning recovery independent of the initial pruning damage.\n\n\\paragraph{Correlation Analysis.}\nTo validate our core hypothesis that functional overlap predicts recoverability, we compute the Spearman rank correlation $\\rho$ between per-group CKA overlap $F(h)$ and per-group contribution to recoverability.\nA statistically significant positive correlation ($\\rho \\geq 0.4$, $p < 0.01$) supports the claim that RASP's overlap-aware scoring preferentially retains groups whose removal would be hardest to recover from.\n\n\\textbf{[Phase 2: We additionally report perplexity on WikiText-2 and per-benchmark accuracy on MMLU, HumanEval, and LongBench.]}\n",
+                "claims": [
+                  {
+                    "text": "CKA functional overlap predicts recoverability of pruned groups under RLVR",
+                    "type": "empirical",
+                    "evidence": [
+                      "mvp_rasp_pipeline: Spearman correlation between F(h) and per-group recoverability"
+                    ],
+                    "decisions": [
+                      "D001"
+                    ]
+                  },
+                  {
+                    "text": "RASP achieves higher post-recovery accuracy than importance-only pruning at 35% sparsity",
+                    "type": "empirical",
+                    "evidence": [
+                      "mvp_rasp_pipeline: GSM8K accuracy comparison Standard vs RASP after GRPO"
+                    ],
+                    "decisions": [
+                      "D001"
+                    ]
+                  },
+                  {
+                    "text": "At 35% sparsity, global importance ranking naturally prunes only MLP groups",
+                    "type": "empirical",
+                    "evidence": [
+                      "mvp_rasp_pipeline: pruning mask analysis showing attention groups retained"
+                    ],
+                    "decisions": [
+                      "D001"
+                    ]
+                  }
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "0443e4dc-3a87-465d-95b8-f139022bd800",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01P4cskYUGUit5h9oEM3bNYt",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 820,
+                "cache_read_input_tokens": 32970,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 820
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T09:00:35.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SCyDc5UuYM6se2Ctxis4sE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/experiments.tex\\\", \\\"provenance_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_provenance.yaml\\\", \\\"version\\\": 1, \\\"coverage\\\": \\\"3/3\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "e7b51747-0ed6-4617-b885-2ca3ebcf05f2",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"section_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/experiments.tex\\\", \\\"provenance_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_provenance.yaml\\\", \\\"version\\\": 1, \\\"coverage\\\": \\\"3/3\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"section_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/docs/paper/experiments.tex\", \"provenance_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/paper_provenance.yaml\", \"version\": 1, \"coverage\": \"3/3\"}, \"error\": null, \"metadata\": {}}"
+              }
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments section 框架已写入 `docs/paper/experiments.tex`（v1），包含 4 个子节：\n\n- **4.1 Models and Datasets** — DeepSeek-R1-Distill-Qwen-7B（28 layers, GQA 4 KV groups），GSM8K 校准+评测，Phase 2 扩展 benchmark 标注\n- **4.2 Pruning Methods** — Standard importance-only / RASP (ours) / GRASPrune (ACL 2026)，35% sparsity 为主实验，公式和引用齐全\n- **4.3 Recovery Methods** — GRPO RLVR，超参数全部标 `[TBD]`，Phase 2 对比 SFT 标注\n- **4.4 Evaluation Metrics** — exact-match accuracy / recoverability Δacc / Spearman ρ correlation，Phase 2 扩展指标标注\n\n3 条 provenance claims 已注册，全部关联 D001 决策和 MVP 实验。所有待填数据统一用 `\\textbf{[TBD]}` 标记，MVP 结果出来后直接替换。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "uuid": "d00e4c96-a982-43ff-bbf7-044a4a68f5eb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WNd6SGWc7EQim7epMnD4Sx",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2204,
+                "cache_read_input_tokens": 33790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2204
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Experiments section 框架已写入 `docs/paper/experiments.tex`（v1），包含 4 个子节：\n\n- **4.1 Models and Datasets** — DeepSeek-R1-Distill-Qwen-7B（28 layers, GQA 4 KV groups），GSM8K 校准+评测，Phase 2 扩展 benchmark 标注\n- **4.2 Pruning Methods** — Standard importance-only / RASP (ours) / GRASPrune (ACL 2026)，35% sparsity 为主实验，公式和引用齐全\n- **4.3 Recovery Methods** — GRPO RLVR，超参数全部标 `[TBD]`，Phase 2 对比 SFT 标注\n- **4.4 Evaluation Metrics** — exact-match accuracy / recoverability Δacc / Spearman ρ correlation，Phase 2 扩展指标标注\n\n3 条 provenance claims 已注册，全部关联 D001 决策和 MVP 实验。所有待填数据统一用 `\\textbf{[TBD]}` 标记，MVP 结果出来后直接替换。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 82882,
+            "duration_api_ms": 84039,
+            "num_turns": 10,
+            "stop_reason": "end_turn",
+            "session_id": "022e6b68-959a-47f6-b2ef-15fbd84180c9",
+            "total_cost_usd": 0.31717225,
+            "usage": {
+              "input_tokens": 10,
+              "cache_creation_input_tokens": 24153,
+              "cache_read_input_tokens": 158642,
+              "output_tokens": 3416,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 24153,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 325,
+                  "cache_read_input_tokens": 33790,
+                  "cache_creation_input_tokens": 2204,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 2204
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1375,
+                "outputTokens": 14,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.0014449999999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 10,
+                "outputTokens": 3416,
+                "cacheReadInputTokens": 158642,
+                "cacheCreationInputTokens": 24153,
+                "webSearchRequests": 0,
+                "costUSD": 0.31572725,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "d4631cec-4b40-4768-8237-d1db6171b53a"
+          },
+          "id": "event-000031"
+        }
+      ],
+      "message_count": 31
+    }
+  ],
+  "readable_path": "readable/worker-executions/write-experiments-setup.md"
+}

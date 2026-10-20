@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a5e4a0e37cfba68c715c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix sft rasp rlvr 20 restart",
+  "task_key": "worker_fix_sft_rasp_rlvr_20_restart_20260516T142843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sft_rasp_rlvr_20_restart_20260516T142843_result.json",
+    "occurrence": 1,
+    "bytes": 646,
+    "sha256": "8a155df43bb82ce78fdcf9fb8e7e3ef3e1bd69d4eb1ede333674ecb4cce3b6c5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**模型验证通过。** checkpoint-1870 完整可用：\n\n- 格式：safetensors，339 个 tensor keys\n- 模型：Qwen2, hidden=3584, 28 layers（剪枝后结构）\n- Tokenizer：Qwen2Tokenizer\n- 路径：`/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20/checkpoint-1870`\n\n**磁盘问题严重**：数据盘 250G 已 100% 满。建议立即删除：\n- `checkpoint-935`（中间 checkpoint，35GB）— 有 checkpoint-1870 即可\n- `checkpoint-1870/optimizer.pt`（4.5GB）— eval 不需要 optimizer state\n\n这两项可释放 ~39.5GB，否则后续 eval 可能无法写结果文件。是否执行清理？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sft-rasp-rlvr-20-restart.md"
+}

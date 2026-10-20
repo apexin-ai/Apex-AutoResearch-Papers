@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8003058c270774fdca4b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code cka reliability",
+  "task_key": "worker_code_cka-reliability_20260515T024807",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka-reliability_20260515T024807_result.json",
+    "occurrence": 1,
+    "bytes": 679,
+    "sha256": "4628031a03ca7c83330567b70e9dca350e07c435930c898156a27a8e1693cbf5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Syntax check 和 dry-run 均通过。\n\n**运行命令**（需要 GPU 时执行）：\n```bash\ncd /root/recovery_aware_struct_prune/src && python run_cka_reliability.py \\\n  --original_model /root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B \\\n  --pruned_model /root/autodl-tmp/pruned_rasp_20 \\\n  --num_samples 1024 \\\n  --output /root/recovery_aware_struct_prune/artifacts/cka_reliability.json\n```\n\n**预估 GPU 运行时间：~4-5 分钟**\n- 模型加载+1024 样本前向传播（原始模型）：~1.5 min\n- 模型加载+1024 样本前向传播（剪枝模型）：~1.5 min\n- CPU 上计算 CKA（112 groups × 8 子集 = ~900 次 CKA 调用）：~1 min"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cka-reliability.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d948499c5665f878779",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix 30pct gpu eval",
+  "task_key": "worker_fix_30pct_gpu_eval_20260520T044416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_30pct_gpu_eval_20260520T044416_result.json",
+    "occurrence": 1,
+    "bytes": 771,
+    "sha256": "d1e529bf1beabf8313b1f3672099e0696cbe761fb7e9ad048348ef3abb6a67a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。\n\n## 总结\n\n| 项目 | 结果 |\n|------|------|\n| **Kill** | PID 191446/191519 已终止 |\n| **根因** | 原始 run 大概率也在 GPU 上（速度 pattern 完全一致）。诊断日志确认 retry 模型在 cuda:0/cuda:1，85-86% 利用率，11.5 GB VRAM |\n| **重新提交** | tmux `eval_cka30` (GPU 0) + `eval_std30` (GPU 1) 运行中 |\n| **速度** | ~48s/sample（DeepSeek-R1-Distill 生成长推理链的固有速度），ETA ~17h |\n| **代码修改** | `model_utils.py` 添加了 `.cuda()` 后的 device + CUDA_VISIBLE_DEVICES 诊断日志 |\n\n**决策点**：两个 eval 正在 GPU 上跑，预计明天早上出结果。如果 17h 不可接受，30% collapse 结论已有 N=200 数据支撑，可以 kill 掉。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-30pct-gpu-eval.md"
+}

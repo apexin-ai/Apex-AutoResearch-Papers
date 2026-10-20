@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "baacede3614b06c7a01c",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "analysis e5 bootstrap ci reward",
+  "task_key": "worker_analysis_e5_bootstrap_ci_reward_20260518T100946",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_e5_bootstrap_ci_reward_20260518T100946.log",
+    "occurrence": 1,
+    "bytes": 756553,
+    "sha256": "ecb3e21ab4dbbe47cfd61edd6953885510a631d602936015bdf3cbf0d61b81b5"
+  },
+  "statistics": {
+    "messages": 454,
+    "user_turns": 2,
+    "tool_calls": 159,
+    "roles": {
+      "log": 1,
+      "system": 87,
+      "record": 1,
+      "assistant": 44,
+      "tool_call": 159,
+      "tool_result": 159,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 123,
+      "chunks": [
+        {
+          "path": "baacede3614b06c7a01c-part-0001.json",
+          "message_count": 123
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 157,
+      "chunks": [
+        {
+          "path": "baacede3614b06c7a01c-part-0001.json",
+          "message_count": 57
+        },
+        {
+          "path": "baacede3614b06c7a01c-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "baacede3614b06c7a01c-part-0002.json",
+          "message_count": 80
+        },
+        {
+          "path": "baacede3614b06c7a01c-part-0003.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-e5-bootstrap-ci-reward.md"
+}

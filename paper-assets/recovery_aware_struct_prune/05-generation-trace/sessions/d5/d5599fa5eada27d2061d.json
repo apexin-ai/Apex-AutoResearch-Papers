@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5599fa5eada27d2061d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "cleanup westd disk and restart alpha4",
+  "task_key": "worker_cleanup_westd_disk_and_restart_alpha4_20260521T180027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_cleanup_westd_disk_and_restart_alpha4_20260521T180027_result.json",
+    "occurrence": 1,
+    "bytes": 120,
+    "sha256": "3bf74804be8e60629026f9020443b8c1ba12b652bbab161c440174bd2d7f98ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待任务已完成，但验证已在上一步执行过了——pipeline 确认正常运行中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/cleanup-westd-disk-and-restart-alpha4.md"
+}

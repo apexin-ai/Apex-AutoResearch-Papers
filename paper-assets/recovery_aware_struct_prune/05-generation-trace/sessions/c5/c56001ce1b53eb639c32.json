@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c56001ce1b53eb639c32",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops grpo standard 15 submit",
+  "task_key": "worker_ops_grpo_standard_15_submit_20260520T134140",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_grpo_standard_15_submit_20260520T134140_result.json",
+    "occurrence": 1,
+    "bytes": 374,
+    "sha256": "71c07420d6cf11f8623baeb5eff72635422c4d7877142784c204d114a414df5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**grpo_standard_15_v2** 已提交并确认 RUNNING：\n- **服务器**: westd-29022, cuda:2\n- **PID**: 253918\n- **进度**: 0/100 steps，模型和 ref_model 均已加载（cuda:2 占用 26251 MiB）\n- **配置**: beta=0.01, loss_type=dapo, format_reward=0.1, adamw_8bit, seed=42\n- **监控 cron**: 每 12 分钟自动检查（job 6f2e600f）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-grpo-standard-15-submit.md"
+}

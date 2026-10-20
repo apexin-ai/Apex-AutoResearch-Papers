@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "cdd023a2acb5cce7d856",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops 1p5b humaneval discovery and launch",
+  "task_key": "worker_ops_1p5b_humaneval_discovery_and_launch_20260519T112624",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_1p5b_humaneval_discovery_and_launch_20260519T112624.log",
+    "occurrence": 1,
+    "bytes": 747145,
+    "sha256": "a1795a7fe1c2462582b4183f3b5db892166f1ca930dea4691b9aa6ab108da64b"
+  },
+  "statistics": {
+    "messages": 473,
+    "user_turns": 0,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 184,
+      "tool_result": 184,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 473,
+      "chunks": [
+        {
+          "path": "cdd023a2acb5cce7d856-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdd023a2acb5cce7d856-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "cdd023a2acb5cce7d856-part-0003.json",
+          "message_count": 113
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-1p5b-humaneval-discovery-and-launch.md"
+}

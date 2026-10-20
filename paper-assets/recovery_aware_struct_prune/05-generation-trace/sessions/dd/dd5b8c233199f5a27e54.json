@@ -1,0 +1,614 @@
+{
+  "schema_version": "1.0",
+  "id": "dd5b8c233199f5a27e54",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "eval eval gsm8k grpo rasp 20 fair",
+  "task_key": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820.jsonl",
+    "occurrence": 1,
+    "bytes": 15077,
+    "sha256": "60d4d09c6ad1163e64a9e9e2e53c1e6fa83782db2a1f471abe32c13e8c9a6898"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "tool_call": 14,
+      "tool_result": 14,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-19T12:49:47.988066+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+              "max_results": "6"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-19T12:49:47.988420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-19T12:49:47.988603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__kill_job",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-19T12:49:47.988736+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-19T12:49:47.988856+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls -la /root/autodl-tmp/recovery_aware_struct_prune/ | grep rasp",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-19T12:49:47.988980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-19T12:49:47.989097+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls /root/recovery_aware_struct_prune/src/eval_gsm8k.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-19T12:49:47.989216+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/recovery_aware_struct_prune/src/eval_gsm8k.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.28}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-19T12:49:47.989389+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "find /root/autodl-tmp/recovery_aware_struct_prune/ -maxdepth 1 -type d -name \"*rasp*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-19T12:49:47.989527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_25_transfer_log\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_qwen_math_rasp_20\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_20\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_25_qwen_math\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20\\\\n/root/autodl-tmp/recovery_aware_struct_prune/pruned_rasp_rlvr_20_qwen_math\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_20\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_qwen_math_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_westd\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_25\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_rlvr_20_qwen_math\\\\n/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_20_1p5b\\\\n/root/autodl-tmp/recovery_aware_struct_prune/grpo_rasp_20_1p5b\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-19T12:49:47.989681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit training job",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-19T12:49:47.989840+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-19T12:49:47.989962+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "ls /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-19T12:49:47.990088+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\nchat_template.jinja\\\\ncheckpoint-100\\\\ncheckpoint-80\\\\ncheckpoint-90\\\\ncompletions\\\\nconfig.json\\\\ngeneration_config.json\\\\nmodel.safetensors\\\\ntokenizer.json\\\\ntokenizer_config.json\\\\ntraining_args.bin\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-19T12:49:47.990232+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "submit job training",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-19T12:49:47.990371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-19T12:49:47.990516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tmux new-session -d -s eval_gsm8k_grpo_rasp_20_fair \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.log\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-19T12:49:47.990641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-19T12:49:47.990770+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-19T12:49:47.990886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-19T12:49:47.991011+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json', 'server': 'westd-29022', 'data_path': 'GSM8K', 'data_count': 1319, 'model_name': 'grpo_stage2_rasp_20_fair', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair', 'eval_data': 'GSM8K (1319 samples)'}"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-19T12:49:47.991148+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.6052}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-19T12:49:47.991313+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+              "field": "status",
+              "value": "QUEUED",
+              "project": "recovery_aware_struct_prune"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-19T12:49:47.991440+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-29022",
+              "command": "tmux list-sessions",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-19T12:49:47.991571+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_grpo_rasp_20_fair\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T12:47:37.399Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:49:29.983Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\\\", \\\"parent\\\": \\\"eval_gsm8k_grpo_standard_20_fair_v2\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.025}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-19T12:49:47.991702+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"eval_gsm8k_grpo_rasp_20_fair: 1 windows (created Tue May 19 20:49:16 2026)\\\\neval_humaneval_grpo_cka_only_20_1p5b_2048: 1 windows (created Tue May 19 19:45:59 2026)\\\\neval_humaneval_sft_cka_only_20_1p5b_2048: 1 windows (created Tue May 19 19:45:57 2026)\\\\neval_humaneval_sft_standard_20_2048_v3: 1 windows (created Tue May 19 17:38:05 2026)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-19T12:49:47.991848+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "eval_gsm8k_grpo_rasp_20_fair",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "recovery_aware_struct_prune",
+              "spec": "{'command': 'CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json', 'server': 'westd-29022', 'data_path': 'GSM8K', 'data_count': 1319, 'model_name': 'grpo_stage2_rasp_20_fair', 'seed': 42, 'checkpoint_source': '/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair', 'eval_data': 'GSM8K (1319 samples)'}"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-19T12:49:47.992003+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_gsm8k_grpo_rasp_20_fair\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-19T12:47:37.399Z\\\", \\\"updated_at\\\": \\\"2026-05-19T12:49:41.897Z\\\", \\\"hypothesis\\\": \\\"GRPO RASP 20% fair (v5 config) GSM8K 全量评估。RASP 结合 recovery-awareness 与 structural pruning，预期性能介于 Standard (59.44%) 和 CKA-only (64.37%) 之间。若 RASP ≈ Standard，说明 recovery-awareness 的增益主要来自 CKA 信号而非 RASP 的混合策略。N=1319。\\\", \\\"parent\\\": \\\"eval_gsm8k_grpo_standard_20_fair_v2\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --max_samples 1319 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json\\\", \\\"server\\\": \\\"westd-29022\\\", \\\"data_path\\\": \\\"GSM8K\\\", \\\"data_count\\\": 1319, \\\"model_name\\\": \\\"grpo_stage2_rasp_20_fair\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair\\\", \\\"eval_data\\\": \\\"GSM8K (1319 samples)\\\"}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6946}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-19T12:49:47.992171+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **实验**: `eval_gsm8k_grpo_rasp_20_fair`\n- **服务器**: westd-29022 cuda:0\n- **tmux session**: `eval_gsm8k_grpo_rasp_20_fair` (已确认运行)\n- **checkpoint**: `/root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair`\n- **输出**: `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_gsm8k_grpo_rasp_20_fair.json`\n- **Registry**: RUNNING"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_eval_gsm8k_grpo_rasp_20_fair_20260519T124820"
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/eval-eval-gsm8k-grpo-rasp-20-fair.md"
+}

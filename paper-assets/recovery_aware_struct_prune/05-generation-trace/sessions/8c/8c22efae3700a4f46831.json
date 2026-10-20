@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8c22efae3700a4f46831",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops scp and eval pass k8 rasp deepseek",
+  "task_key": "worker_ops_scp-and-eval-pass-k8-rasp-deepseek_20260516T232326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scp-and-eval-pass-k8-rasp-deepseek_20260516T232326_result.json",
+    "occurrence": 1,
+    "bytes": 1051,
+    "sha256": "fadb6b5c0b6dd86ba6c98c21886076c91d82c939168952f7a308d98a02b54050"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**总结：**\n\n1. **传输完成：** RASP checkpoint (`grpo_stage2_rasp_20_v9`) 已成功传输到 westd-11672（12G model + tokenizer + config，排除了不必要的 checkpoint-10 中的 optimizer）\n2. **Standard 传输：** `grpo_stage2_standard_20_v8` 正在后台传输中（PID 653962）\n3. **pass@k eval 已启动：** westd-11672 cuda:0 上运行，PID 60022\n   - 模型已加载（GPU 0 占用 12,497 MiB）\n   - 参数：`--voting --num_samples_per_question 8 --voting_temperature 0.7 --max_samples 200 --seed 42 --max_new_tokens 512`\n   - 输出：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_deepseek.json`\n   - 日志：`/root/autodl-tmp/recovery_aware_struct_prune/results/eval_pass_k8_rasp_20_grpo_deepseek.log`\n4. **Registry 已更新：** exp_id `eval_pass_k8_rasp_20_grpo_deepseek` 状态 RUNNING\n\n**限制说明：** westb 和 westd 无法直接互通（不同 seetacloud 区域），通过生成临时 SSH 密钥建立了 westb→westd 的 rsync 通道。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scp-and-eval-pass-k8-rasp-deepseek.md"
+}

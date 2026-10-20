@@ -1,0 +1,37 @@
+{
+  "exp_id": "exp_001_grpo_baseline",
+  "project": "schema-conform-ie-training",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-12T11:05:25.079Z",
+    "updated_at": "2026-05-12T11:05:25.079Z",
+    "spec": {
+      "hypothesis": "GRPO with F1-only reward establishes baseline for zero-shot IE transfer",
+      "model_name": "Qwen/Qwen3.5-9B",
+      "data_path": "/root/autodl-tmp/data/scierc/",
+      "data_count": 1861,
+      "seed": 42,
+      "server": "seetacloud-westb-2xpro6000",
+      "gpu": "cuda:0",
+      "command": "CUDA_VISIBLE_DEVICES=0 python -m src.train_grpo --config configs/grpo_baseline.yaml --data_dir /root/autodl-tmp/data/scierc --dataset scierc --output_dir /root/autodl-tmp/output/grpo_baseline",
+      "hyperparams": {
+        "learning_rate": 5e-06,
+        "lora_r": 64,
+        "lora_alpha": 128,
+        "num_generations": 8,
+        "per_device_train_batch_size": 2,
+        "gradient_accumulation_steps": 8,
+        "num_train_epochs": 3,
+        "use_gdpo": false,
+        "reward_weights": {
+          "f1_correctness": 1
+        }
+      }
+    }
+  },
+  "timestamp": "2026-05-12T11:05:25.091188+00:00",
+  "trigger": "update_registry"
+}

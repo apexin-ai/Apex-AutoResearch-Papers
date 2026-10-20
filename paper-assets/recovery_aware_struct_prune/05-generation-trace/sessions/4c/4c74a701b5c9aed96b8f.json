@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c74a701b5c9aed96b8f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd cleanup and deploy",
+  "task_key": "worker_ops_westd_cleanup_and_deploy_20260516T202648",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd_cleanup_and_deploy_20260516T202648_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "34f83074e720e2a057a620eafeb227c672bbe68a70e9b2fd4ab983ec9a846616"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "cuda:0 已进入训练状态（85% util, 51GB 显存）。\n\n## 完成报告\n\n**已 Kill 进程：**\n- PID 42301 (cuda:0, eval_grpo_rasp_rlvr_20) — 已不存在（可能先前已结束）\n- PID 42096 (cuda:1, N=200 eval) — 已 kill\n- PID 34234 (cuda:2, eval_grpo_rasp_25) — 已 kill\n\n**保留进程确认正常：**\n- cuda:1: PID 42590 (N=1319 eval) ✓\n- cuda:2: PID 33921 (pass@k eval) ✓\n- cuda:3: Phase B SFT 61% (1146/1870) ✓\n\n**cuda:0 新部署：**\n- tmux session `alpha_phaseB_cuda0`：α=2.0 SFT → eval → α=1.0 SFT → eval（链式执行）\n- 当前状态：α=2.0 SFT 训练中（85% GPU util, 51GB 显存）\n\n**α ablation 剩余状态：**\n| α | 状态 |\n|---|------|\n| 0.0 | ✅ 完成 |\n| 0.3 | SFT 完成，eval pending（cuda:3 Phase B 会处理） |\n| 0.5 | cuda:3 Phase B 正在 SFT |\n| 0.7 | 待 cuda:3 接力 |\n| 1.0 | cuda:0 队列中（α=2.0 之后） |\n| 2.0 | cuda:0 正在 SFT |\n\n未处理 α：0.7（将由 cuda:3 Phase B 顺序覆盖）。所有 6 个 α 均有 GPU 在处理或已完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-cleanup-and-deploy.md"
+}

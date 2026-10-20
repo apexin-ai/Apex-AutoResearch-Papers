@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c3d5b2adfb51649feaaf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu-status-check_20260516T225855",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu-status-check_20260516T225855_result.json",
+    "occurrence": 1,
+    "bytes": 1266,
+    "sha256": "26ed99aceb7d28fc69053903e7c4faf5e188def16a41186637a6aca2e16a0de8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-11672\n\n| GPU | PID | 进程 | GPU 利用率 | 显存 |\n|-----|-----|------|-----------|------|\n| cuda:0 | — | — | 0% | 0 MiB | **空闲** |\n| cuda:1 | 48541 | eval_grpo_standard_25 (`eval_gsm8k.py --model_path grpo_standard_25 --max_samples 1319`) | 98% | 28902 MiB | **运行中** |\n| cuda:2 | 51283 | eval_pass_k8_v2 (`eval_gsm8k.py --model_path grpo_standard_qwen_math --pass_k 8 --num_samples_per_prompt 8 --max_samples 200`) | 91% | 29584 MiB | **运行中** |\n| cuda:3 | 54980 | alpha_ablation SFT (`sft_recovery.py --model_path pruned_alpha_2.0 --gpu 3`) | 83% | 51025 MiB | **运行中**（已跑到最后一个 alpha=2.0） |\n\n## westb-23072\n\n| GPU | PID | 进程 | GPU 利用率 | 显存 |\n|-----|-----|------|-----------|------|\n| cuda:0 | 639423 | eval_grpo_rasp_25 (`eval_gsm8k.py --model_path grpo_rasp_25 --max_samples 1319`) | 98% | 28922 MiB | **运行中** |\n| cuda:1 | 648993 | eval_sft_rasp_20_full (`eval_gsm8k.py --model_path sft_rasp_20 --max_samples 1319`) | 98% | 29644 MiB | **运行中**（已启动，PID 648993，父 shell PID 648988） |\n\n**总结**：6 张 GPU 中 5 张在跑任务，westd cuda:0 空闲。alpha ablation SFT 已到最后一轮 (alpha=2.0)，完成后 cuda:3 也将释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

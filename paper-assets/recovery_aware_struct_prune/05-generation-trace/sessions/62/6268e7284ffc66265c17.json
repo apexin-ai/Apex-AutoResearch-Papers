@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6268e7284ffc66265c17",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "infra westd gpu status",
+  "task_key": "worker_infra_westd-gpu-status_20260517T094813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd-gpu-status_20260517T094813_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "dd6c35730dc85dc888e0f2e6fe6ce2fbf10d498fcde5369bdc511972a156a515"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/westd_gpu_report.md`。\n\n## 总结\n\n**westd-11672 全部 4 GPU 满载运行：**\n\n| GPU | 任务 | 进度 | 预计完成 |\n|-----|------|------|----------|\n| 0 | eval_math500_unpruned | 357/500 (71%), acc=0.734 | ~19:00 今天 |\n| 1 | eval_math500_grpo_standard_20 | 9/500 (2%) | ~07:00 明天 |\n| 2 | eval_math500_sft_standard_20 | 484/500 (97%), acc=0.251 | ~18:00 今天（10-15分钟内） |\n| 3 | eval_math500_grpo_rasp_20_v2 | 55/500 (11%), acc=0.340 | ~03:30 明天 |\n\n**已完成结果**: eval_math500_sft_rasp_20 → accuracy **0.242**\n\n**空闲 GPU**: 无。GPU 2 约 10-15 分钟后释放，GPU 0 约 70 分钟后释放。GRPO eval（GPU 1/3）因生成长度极大，需过夜运行。\n\n**磁盘**: 根分区 18%，数据盘 3%，状态健康。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd-gpu-status.md"
+}

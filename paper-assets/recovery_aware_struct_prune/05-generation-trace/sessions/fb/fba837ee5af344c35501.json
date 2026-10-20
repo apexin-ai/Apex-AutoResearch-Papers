@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba837ee5af344c35501",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops westd sft eval check",
+  "task_key": "worker_ops_westd-sft-eval-check_20260515T183357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westd-sft-eval-check_20260515T183357_result.json",
+    "occurrence": 1,
+    "bytes": 1170,
+    "sha256": "95b75bf409de58c5e861a7e8ad5a573c1fd35888532b47473f7e291617cc8bbd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## 状态\n\n| 实验 | 状态 | 详情 |\n|------|------|------|\n| **sft_rasp_20_westd_retrain** | DONE | 完成，checkpoint 已保存 |\n| **sft_standard_20_westd_retrain** | DONE | 1870 steps, train_loss=0.7577, token_acc=0.8258 |\n| **eval_sft_rasp_20_westd_n100** | RUNNING | PID 55353, cuda:0, 36/100 (~51s/sample), ETA ~55min |\n| **eval_sft_standard_20_westd_n100** | RUNNING | PID 55286, cuda:1, 38/100 (~51s/sample), ETA ~53min |\n| **eval_sft_grasp_20_westd** | 排队 | 等 eval 完成后启动 |\n\n## 需要关注\n\nN=100 eval 已被之前的 worker 自动启动（PID 55353/55286）。但 **早期 accuracy 极低**：\n- RASP: 5.0% @20 samples（预期 ~57%）\n- Standard: 0.0% @20 samples（预期 ~64%）\n\n可能原因：\n1. 20 samples 偏差（GSM8K 前段题目分布不均）\n2. 模型路径问题（使用了相对路径 `sft_rasp_20_westd`，但模型加载日志显示 Non-uniform MLP detected，说明模型加载正确）\n3. eval 脚本的答案解析逻辑问题\n\n建议等 eval 完成后看最终结果再判断。两个 eval 预计在 ~55 分钟后完成（约 UTC 19:30），GraSP eval 排在其后。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-westd-sft-eval-check.md"
+}

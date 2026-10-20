@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbdf0821d4a94ba502e6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check alpha0p5 math500 result westb1",
+  "task_key": "worker_ssh_check_alpha0p5_math500_result_westb1_20260523T101015",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_alpha0p5_math500_result_westb1_20260523T101015_result.json",
+    "occurrence": 1,
+    "bytes": 292,
+    "sha256": "6cc3c366ab1e1e45bd331f95982ea3eca24e7c56138e35962f3b8497ee9b2af5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新为 DONE/success。Cron 不存在（可能已被清理）。\n\n**汇报**:\n- **accuracy = 24.8%** (124/500), stderr ±1.93%\n- EOS: 274 natural / 226 truncated, avg response length 1110 tokens\n- **GPU 1 空闲** (0%, 0 MiB)；GPU 0 被占用 (99%, ~19.5GB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-alpha0p5-math500-result-westb1.md"
+}

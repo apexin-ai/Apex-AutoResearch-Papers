@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9817d55ff335ed990ea",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check alpha2 script version",
+  "task_key": "worker_ssh_check_alpha2_script_version_20260523T032948",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_alpha2_script_version_20260523T032948_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "90a542f9c05a6cc4da6eeda289303c714851f7aea75b563981b17af5b50a18f7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果确认：\n\n| 项目 | 值 |\n|------|-----|\n| **文件路径** | `/root/recovery_aware_struct_prune/results/eval_math500_sft_rasp_alpha2p0_20.json` |\n| **修改时间** | 2026-05-23 04:03 (CST) |\n| **Eval 脚本版本** | **NEW 版** — 使用 `pred_answer` / `gold_answer` 字段（各 500 条），无 OLD 版的 `pred`/`gold`/`idx` 字段（均为 0） |\n| **Accuracy** | **0.24**（stderr=0.0191） |\n| **每条记录字段** | `problem`, `gold_answer`, `pred_answer`, `correct`, `response_length` |\n| **模型路径** | `/root/autodl-tmp/recovery_aware_struct_prune/sft_rasp_alpha2p0_20` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-alpha2-script-version.md"
+}

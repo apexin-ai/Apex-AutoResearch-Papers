@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1da43b1397d0365362d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval accuracy bug",
+  "task_key": "worker_fix_eval_accuracy_bug_20260514T183600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_accuracy_bug_20260514T183600_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "21c097198794ce45cff427a489222940aecf09d10f6aac079050b4252f6d790d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。变更摘要：\n\n**根因**：`n_correct` 从 `int(accuracy * len(dataset))` 反算，浮点截断导致 29 → 28（`int(0.29 * 100)` = `int(28.9999...)` = 28）。accuracy=0.29 是对的，n_correct=28 是错的。\n\n**修改内容**（`src/eval_gsm8k.py`）：\n\n| 行号 | 修改前 | 修改后 |\n|------|--------|--------|\n| 168 | `return accuracy, results` | `return accuracy, correct, total, results` |\n| 199 | `accuracy, results = evaluate(...)` | `accuracy, n_correct, n_total, results = evaluate(...)` |\n| 201 | `int(accuracy * len(dataset))` | `n_correct` |\n| 212 | `\"n_correct\": int(accuracy * len(dataset)),` | `\"n_correct\": n_correct,` |\n| 213 | `\"n_total\": len(dataset),` | `\"n_total\": n_total,` |\n\n语法验证通过。后续 eval 会输出正确的 n_correct=29, accuracy=0.29。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-accuracy-bug.md"
+}

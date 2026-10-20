@@ -1,0 +1,1454 @@
+{
+  "schema_version": "1.0",
+  "id": "b2a73e35fcc43d7d554b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "code cka fh reliability",
+  "task_key": "worker_code_cka_fh_reliability_20260515T031935",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cka_fh_reliability_20260515T031935.log",
+    "occurrence": 1,
+    "bytes": 168753,
+    "sha256": "7e2fd61c46120d0c2461bbb4917d5efac974f17c9f70b8d7b7f8b7853e0f8e13"
+  },
+  "statistics": {
+    "messages": 22,
+    "user_turns": 0,
+    "tool_calls": 6,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 5,
+      "tool_call": 6,
+      "tool_result": 6,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "af5c7f78-51c1-4576-b912-86a43a343f69",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778815200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d59e045b-3593-470c-a945-1bcb33bec9da",
+                "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll start by reading the two key source files to understand the current implementation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "51aeee06-9402-44ae-abb1-d1207b113ab3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PmUarVV8HJZWcn6X6evjzA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12259,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12259
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0168geaabRKUvWMpX9Sy3Nzg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "2ecaadf3-5252-4d85-bcdf-774bf3d31838",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PmUarVV8HJZWcn6X6evjzA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12259,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12259
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T03:19:47.230Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0168geaabRKUvWMpX9Sy3Nzg",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCKA Reliability Analysis for RASP.\n3\t\n4\tValidates the stability of cross-model CKA scores (original vs pruned) by:\n5\t1. Split-half reliability: Spearman rho between CKA scores on two data halves\n6\t2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n7\t\n8\tAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n9\t\"\"\"\n10\t\n11\timport argparse\n12\timport json\n13\timport logging\n14\timport os\n15\timport random\n16\timport sys\n17\t\n18\timport numpy as np\n19\timport scipy.stats as stats\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\n25\tlogger = logging.getLogger(__name__)\n26\t\n27\t\n28\tdef set_seed(seed):\n29\t    random.seed(seed)\n30\t    np.random.seed(seed)\n31\t    torch.manual_seed(seed)\n32\t    torch.cuda.manual_seed_all(seed)\n33\t\n34\t\n35\tdef linear_cka(X, Y):\n36\t    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n37\t    X = X - X.mean(0)\n38\t    Y = Y - Y.mean(0)\n39\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n40\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n41\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n42\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n43\t\n44\t\n45\tdef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n46\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n47\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n48\t    encodings = []\n49\t    for example in ds:\n50\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n51\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n52\t        encodings.append(ids)\n53\t    return encodings\n54\t\n55\t\n56\tdef collect_qproj_activations(model, calibration_data, device):\n57\t    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n58\t    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n59\t    \"\"\"\n60\t    n_layers = model.config.num_hidden_layers\n61\t    head_dim = model.config.hidden_size // model.config.num_attention_heads\n62\t\n63\t    q_outputs = {i: [] for i in range(n_layers)}\n64\t    hooks = []\n65\t\n66\t    def make_hook(layer_idx):\n67\t        def fn(module, inp, out):\n68\t            q_outputs[layer_idx].append(out.detach().cpu())\n69\t        return fn\n70\t\n71\t    for i in range(n_layers):\n72\t        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n73\t        hooks.append(h)\n74\t\n75\t    model.eval()\n76\t    with torch.no_grad():\n77\t        for idx, enc in enumerate(calibration_data):\n78\t            input_ids = enc[\"input_ids\"].to(device)\n79\t            attention_mask = enc[\"attention_mask\"].to(device)\n80\t            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n81\t            if (idx + 1) % 200 == 0:\n82\t                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n83\t\n84\t    for h in hooks:\n85\t        h.remove()\n86\t\n87\t    activations = {}\n88\t    for layer_idx in range(n_layers):\n89\t        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n90\t        n_heads = out_dim // head_dim\n91\t        per_head = []\n92\t        for t in q_outputs[layer_idx]:\n93\t            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n94\t            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n95\t            t = t.mean(dim=0)  # [n_heads, head_dim]\n96\t            per_head.append(t)\n97\t        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n98\t        q_outputs[layer_idx] = None\n99\t\n100\t    return activations\n101\t\n102\t\n103\tdef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n104\t    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n105\t    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n106\t    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n107\t\n108\t    src_dir = os.path.dirname(os.path.abspath(__file__))\n109\t    if src_dir not in sys.path:\n110\t        sys.path.insert(0, src_dir)\n111\t    from prune import prune_attention_heads, prune_mlp_channels\n112\t\n113\t    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n114\t    model = AutoModelForCausalLM.from_pretrained(\n115\t        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n116\t    )\n117\t    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n118\t    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n119\t\n120\t    safetensor_files = sorted(\n121\t        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n122\t    )\n123\t    if safetensor_files:\n124\t        from safetensors.torch import load_file\n125\t        state_dict = {}\n126\t        for f in safetensor_files:\n127\t            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n128\t    else:\n129\t        state_dict = torch.load(\n130\t            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n131\t            map_location=\"cpu\", weights_only=True,\n132\t        )\n133\t    model.load_state_dict(state_dict)\n134\t    model.to(device)\n135\t    return model, pruning_meta\n136\t\n137\t\n138\tdef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n139\t                      sample_indices=None):\n140\t    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n141\t\n142\t    For each KV group, concatenates retained Q head activations from both models\n143\t    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n144\t    only retained Q heads (CKA handles different feature dimensions).\n145\t\n146\t    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n147\t    \"\"\"\n148\t    heads_per_kv = n_heads_orig // n_kv_heads\n149\t    n_layers = len(orig_acts)\n150\t    scores = {}\n151\t\n152\t    for layer_idx in range(n_layers):\n153\t        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n154\t        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n155\t        retained = keep_masks[layer_idx]\n156\t\n157\t        if sample_indices is not None:\n158\t            orig_layer = orig_layer[sample_indices]\n159\t            pruned_layer = pruned_layer[sample_indices]\n160\t\n161\t        for g in range(n_kv_heads):\n162\t            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n163\t            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n164\t\n165\t            if not pruned_positions:\n166\t                scores[(layer_idx, g)] = float(\"nan\")\n167\t                continue\n168\t\n169\t            n = orig_layer.shape[0]\n170\t            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n171\t            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n172\t            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n173\t\n174\t    return scores\n175\t\n176\t\n177\tdef scores_to_aligned_arrays(scores_a, scores_b):\n178\t    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n179\t    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n180\t    a_vals, b_vals = [], []\n181\t    for k in common:\n182\t        va, vb = scores_a[k], scores_b[k]\n183\t        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n184\t            continue\n185\t        a_vals.append(va)\n186\t        b_vals.append(vb)\n187\t    return np.array(a_vals), np.array(b_vals)\n188\t\n189\t\n190\tdef main():\n191\t    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n192\t    parser.add_argument(\"--original_model\", type=str, required=True)\n193\t    parser.add_argument(\"--pruned_model\", type=str, required=True)\n194\t    parser.add_argument(\"--gpu_id\", type=int, default=0)\n195\t    parser.add_argument(\"--num_samples\", type=int, default=1024)\n196\t    parser.add_argument(\"--max_length\", type=int, default=512)\n197\t    parser.add_argument(\"--n_splits\", type=int, default=5)\n198\t    parser.add_argument(\"--output\", type=str, required=True)\n199\t    parser.add_argument(\"--seed\", type=int, default=42)\n200\t    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n201\t                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n202\t    args = parser.parse_args()\n203\t\n204\t    set_seed(args.seed)\n205\t    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n206\t    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n207\t                   \"float32\": torch.float32}[args.dtype]\n208\t\n209\t    logger.info(\"Loading tokenizer and calibration data...\")\n210\t    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n211\t    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n212\t                                             args.seed)\n213\t    n_total = len(calibration_data)\n214\t    logger.info(f\"Loaded {n_total} calibration samples\")\n215\t\n216\t    # --- Collect activations (load models one at a time to save GPU memory) ---\n217\t    logger.info(\"Loading original model...\")\n218\t    orig_model = AutoModelForCausalLM.from_pretrained(\n219\t        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n220\t    )\n221\t    config = orig_model.config\n222\t    n_heads_orig = config.num_attention_heads\n223\t    n_kv_heads = config.num_key_value_heads\n224\t    n_layers = config.num_hidden_layers\n225\t    heads_per_kv = n_heads_orig // n_kv_heads\n226\t    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n227\t                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n228\t\n229\t    logger.info(\"Collecting original model activations...\")\n230\t    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n231\t    del orig_model\n232\t    torch.cuda.empty_cache()\n233\t    logger.info(\"Original model freed.\")\n234\t\n235\t    logger.info(\"Loading pruned model...\")\n236\t    pruned_model, pruning_meta = load_pruned_model_with_meta(\n237\t        args.original_model, args.pruned_model, torch_dtype, device\n238\t    )\n239\t    keep_masks = pruning_meta[\"attn_keep_masks\"]\n240\t    logger.info(\"Collecting pruned model activations...\")\n241\t    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n242\t    del pruned_model\n243\t    torch.cuda.empty_cache()\n244\t    logger.info(\"Pruned model freed. All activations cached on CPU.\")\n245\t\n246\t    # --- Phase 1: Full CKA scores ---\n247\t    logger.info(\"=\" * 50)\n248\t    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n249\t    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n250\t                                    n_heads_orig, n_kv_heads)\n251\t    valid_scores = {k: v for k, v in full_scores.items()\n252\t                    if not (isinstance(v, float) and v != v)}\n253\t    vals = np.array(list(valid_scores.values()))\n254\t    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n255\t    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n256\t                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n257\t\n258\t    # --- Phase 2: Split-half reliability ---\n259\t    logger.info(\"=\" * 50)\n260\t    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n261\t    split_results = []\n262\t    for i in range(args.n_splits):\n263\t        rng = np.random.RandomState(args.seed + i)\n264\t        perm = rng.permutation(n_total)\n265\t        half = n_total // 2\n266\t        idx_a = sorted(perm[:half].tolist())\n267\t        idx_b = sorted(perm[half:2 * half].tolist())\n268\t\n269\t        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n270\t                                     n_heads_orig, n_kv_heads, idx_a)\n271\t        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n272\t                                     n_heads_orig, n_kv_heads, idx_b)\n273\t        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n274\t        rho, p = stats.spearmanr(arr_a, arr_b)\n275\t        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n276\t                              \"n_groups\": len(arr_a)})\n277\t        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n278\t\n279\t    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))\n280\t    std_rho = float(np.std([r[\"rho\"] for r in split_results]))\n281\t\n282\t    # --- Phase 3: Calibration size sensitivity ---\n283\t    logger.info(\"=\" * 50)\n284\t    logger.info(\"Phase 3: Calibration size sensitivity...\")\n285\t    size_results = []\n286\t    for n_sub in [128, 256, 512]:\n287\t        if n_sub >= n_total:\n288\t            continue\n289\t        rng = np.random.RandomState(args.seed)\n290\t        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n291\t\n292\t        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n293\t                                       n_heads_orig, n_kv_heads, sub_idx)\n294\t        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n295\t        rho, p = stats.spearmanr(ref_vals, sub_vals)\n296\t        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n297\t                             \"p_value\": float(p)})\n298\t        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n299\t\n300\t    # --- Compile and save results ---\n301\t    per_group = {}\n302\t    for (l, g), v in full_scores.items():\n303\t        key = f\"layer{l}_group{g}\"\n304\t        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n305\t\n306\t    output = {\n307\t        \"config\": {\n308\t            \"original_model\": args.original_model,\n309\t            \"pruned_model\": args.pruned_model,\n310\t            \"num_samples\": n_total,\n311\t            \"n_layers\": n_layers,\n312\t            \"n_heads_original\": n_heads_orig,\n313\t            \"n_kv_heads\": n_kv_heads,\n314\t            \"heads_per_kv\": heads_per_kv,\n315\t            \"total_gqa_groups\": n_layers * n_kv_heads,\n316\t            \"valid_gqa_groups\": len(valid_scores),\n317\t            \"seed\": args.seed,\n318\t        },\n319\t        \"per_group_cka_scores\": per_group,\n320\t        \"cka_summary\": {\n321\t            \"mean\": float(vals.mean()),\n322\t            \"std\": float(vals.std()),\n323\t            \"min\": float(vals.min()),\n324\t            \"max\": float(vals.max()),\n325\t            \"median\": float(np.median(vals)),\n326\t        },\n327\t        \"split_half_reliability\": {\n328\t            \"per_split\": split_results,\n329\t            \"mean_rho\": mean_rho,\n330\t            \"std_rho\": std_rho,\n331\t            \"pass\": mean_rho > 0.9,\n332\t        },\n333\t        \"size_sensitivity\": {\n334\t            \"reference_n\": n_total,\n335\t            \"per_size\": size_results,\n336\t            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n337\t        },\n338\t    }\n339\t\n340\t    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n341\t    with open(args.output, \"w\") as f:\n342\t        json.dump(output, f, indent=2)\n343\t    logger.info(f\"Results saved to {args.output}\")\n344\t\n345\t    print(f\"\\n{'=' * 60}\")\n346\t    print(\"CKA Reliability Analysis\")\n347\t    print(f\"{'=' * 60}\")\n348\t    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n349\t    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n350\t          f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n351\t    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"\n352\t    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")\n353\t    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")\n354\t    for r in split_results:\n355\t        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n356\t    print(f\"\\nSize sensitivity (vs N={n_total}):\")\n357\t    for s in size_results:\n358\t        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n359\t        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n360\t    print(f\"{'=' * 60}\")\n361\t\n362\t\n363\tif __name__ == \"__main__\":\n364\t    main()\n365\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "58188b1d-d4b7-43e0-a3a1-a4099b65d99e",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py",
+                "content": "\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of cross-model CKA scores (original vs pruned) by:\n1. Split-half reliability: Spearman rho between CKA scores on two data halves\n2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n\nAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, required=True)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Collect activations (load models one at a time to save GPU memory) ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed.\")\n\n    logger.info(\"Loading pruned model...\")\n    pruned_model, pruning_meta = load_pruned_model_with_meta(\n        args.original_model, args.pruned_model, torch_dtype, device\n    )\n    keep_masks = pruning_meta[\"attn_keep_masks\"]\n    logger.info(\"Collecting pruned model activations...\")\n    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n    del pruned_model\n    torch.cuda.empty_cache()\n    logger.info(\"Pruned model freed. All activations cached on CPU.\")\n\n    # --- Phase 1: Full CKA scores ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                    n_heads_orig, n_kv_heads)\n    valid_scores = {k: v for k, v in full_scores.items()\n                    if not (isinstance(v, float) and v != v)}\n    vals = np.array(list(valid_scores.values()))\n    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n    # --- Phase 2: Split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n    split_results = []\n    for i in range(args.n_splits):\n        rng = np.random.RandomState(args.seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_a)\n        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_b)\n        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n        rho, p = stats.spearmanr(arr_a, arr_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_groups\": len(arr_a)})\n        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))\n    std_rho = float(np.std([r[\"rho\"] for r in split_results]))\n\n    # --- Phase 3: Calibration size sensitivity ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 3: Calibration size sensitivity...\")\n    size_results = []\n    for n_sub in [128, 256, 512]:\n        if n_sub >= n_total:\n            continue\n        rng = np.random.RandomState(args.seed)\n        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                       n_heads_orig, n_kv_heads, sub_idx)\n        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n        rho, p = stats.spearmanr(ref_vals, sub_vals)\n        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                             \"p_value\": float(p)})\n        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n    # --- Compile and save results ---\n    per_group = {}\n    for (l, g), v in full_scores.items():\n        key = f\"layer{l}_group{g}\"\n        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"pruned_model\": args.pruned_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"valid_gqa_groups\": len(valid_scores),\n            \"seed\": args.seed,\n        },\n        \"per_group_cka_scores\": per_group,\n        \"cka_summary\": {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        },\n        \"split_half_reliability\": {\n            \"per_split\": split_results,\n            \"mean_rho\": mean_rho,\n            \"std_rho\": std_rho,\n            \"pass\": mean_rho > 0.9,\n        },\n        \"size_sensitivity\": {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        },\n    }\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n          f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"\n    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")\n    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")\n    for r in split_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n    print(f\"\\nSize sensitivity (vs N={n_total}):\")\n    for s in size_results:\n        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 365,
+                "startLine": 1,
+                "totalLines": 365
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NwDwYC8CC1JM8Ff1cyNvXE",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "55167162-83a3-4730-bb98-92de7417b704",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PmUarVV8HJZWcn6X6evjzA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12259,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12259
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T03:19:47.549Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NwDwYC8CC1JM8Ff1cyNvXE",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCKA Overlap Computation for RASP.\n3\t\n4\tComputes intra-layer functional overlap F(h) for each attention head and MLP channel group\n5\tusing linear CKA (Centered Kernel Alignment via HSIC).\n6\t\n7\tInput:  model + calibration data (GSM8K train subset)\n8\tOutput: per-structure F(h) scores saved as dict in .pt file\n9\t        Keys: 'attn_overlap' (dict[layer_idx -> tensor[n_heads]]),\n10\t              'mlp_overlap'  (dict[layer_idx -> tensor[n_groups]])\n11\t\"\"\"\n12\t\n13\timport argparse\n14\timport logging\n15\timport math\n16\timport os\n17\timport random\n18\t\n19\timport numpy as np\n20\timport torch\n21\tfrom datasets import load_dataset\n22\tfrom transformers import AutoModelForCausalLM, AutoTokenizer\n23\t\n24\tlogging.basicConfig(\n25\t    level=logging.INFO,\n26\t    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n27\t)\n28\tlogger = logging.getLogger(__name__)\n29\t\n30\t\n31\tdef set_seed(seed: int):\n32\t    random.seed(seed)\n33\t    np.random.seed(seed)\n34\t    torch.manual_seed(seed)\n35\t    torch.cuda.manual_seed_all(seed)\n36\t\n37\t\n38\tdef linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:\n39\t    \"\"\"Linear CKA between two activation matrices.\n40\t    X: [n, p], Y: [n, q]. Returns scalar similarity in [0, 1].\n41\t    \"\"\"\n42\t    X = X - X.mean(0)\n43\t    Y = Y - Y.mean(0)\n44\t    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n45\t    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n46\t    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n47\t    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n48\t\n49\t\n50\tdef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n51\t    \"\"\"Load GSM8K train questions as calibration prompts.\"\"\"\n52\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n53\t    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n54\t\n55\t    encodings = []\n56\t    for example in ds:\n57\t        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n58\t        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n59\t        encodings.append(ids)\n60\t    return encodings\n61\t\n62\t\n63\tdef collect_head_activations(model, tokenizer, calibration_data, device):\n64\t    \"\"\"Run calibration data through model and collect per-head activations for each layer.\n65\t\n66\t    Returns dict[layer_idx] -> tensor[n_samples, n_heads, pooled_dim]\n67\t    where pooled_dim collapses (seq_len, head_dim) via mean-pool over seq_len.\n68\t    \"\"\"\n69\t    config = model.config\n70\t    n_layers = config.num_hidden_layers\n71\t    n_heads = config.num_attention_heads\n72\t    head_dim = config.hidden_size // n_heads\n73\t\n74\t    layer_activations = {i: [] for i in range(n_layers)}\n75\t    hooks = []\n76\t\n77\t    def make_hook(layer_idx):\n78\t        def hook_fn(module, input, output):\n79\t            # output of attention: (hidden_states, attn_weights, past_kv)\n80\t            # We hook into q_proj to get query states, then reshape per-head\n81\t            pass\n82\t        return hook_fn\n83\t\n84\t    # Hook into each attention layer's output (the hidden_states after o_proj)\n85\t    # We instead hook the q_proj to capture per-head representations\n86\t    q_proj_outputs = {i: [] for i in range(n_layers)}\n87\t\n88\t    def make_q_hook(layer_idx):\n89\t        def hook_fn(module, input, output):\n90\t            # output shape: [batch, seq_len, n_heads * head_dim]\n91\t            q_proj_outputs[layer_idx].append(output.detach())\n92\t        return hook_fn\n93\t\n94\t    for i in range(n_layers):\n95\t        layer = model.model.layers[i]\n96\t        h = layer.self_attn.q_proj.register_forward_hook(make_q_hook(i))\n97\t        hooks.append(h)\n98\t\n99\t    model.eval()\n100\t    with torch.no_grad():\n101\t        for batch_idx, enc in enumerate(calibration_data):\n102\t            input_ids = enc[\"input_ids\"].to(device)\n103\t            attention_mask = enc[\"attention_mask\"].to(device)\n104\t            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n105\t            if (batch_idx + 1) % 50 == 0:\n106\t                logger.info(f\"  Processed {batch_idx + 1}/{len(calibration_data)} samples\")\n107\t\n108\t    for h in hooks:\n109\t        h.remove()\n110\t\n111\t    # Reshape and mean-pool: [batch, seq, n_heads*head_dim] -> per-head [batch, head_dim]\n112\t    for layer_idx in range(n_layers):\n113\t        tensors = q_proj_outputs[layer_idx]  # list of [1, seq, n_heads*head_dim]\n114\t        per_head_list = []\n115\t        for t in tensors:\n116\t            t = t.squeeze(0)  # [seq, n_heads*head_dim]\n117\t            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n118\t            t = t.mean(dim=0)  # [n_heads, head_dim] — mean pool over seq\n119\t            per_head_list.append(t)\n120\t        layer_activations[layer_idx] = torch.stack(per_head_list, dim=0)  # [n_samples, n_heads, head_dim]\n121\t        q_proj_outputs[layer_idx] = None  # free memory\n122\t\n123\t    return layer_activations\n124\t\n125\t\n126\tdef collect_mlp_activations(model, tokenizer, calibration_data, device, n_groups: int = 28):\n127\t    \"\"\"Collect MLP intermediate activations grouped into channel groups.\n128\t\n129\t    Returns dict[layer_idx] -> tensor[n_samples, n_groups, group_dim]\n130\t    \"\"\"\n131\t    config = model.config\n132\t    n_layers = config.num_hidden_layers\n133\t    intermediate_size = config.intermediate_size\n134\t    group_size = intermediate_size // n_groups\n135\t\n136\t    gate_outputs = {i: [] for i in range(n_layers)}\n137\t    hooks = []\n138\t\n139\t    def make_gate_hook(layer_idx):\n140\t        def hook_fn(module, input, output):\n141\t            gate_outputs[layer_idx].append(output.detach())\n142\t        return hook_fn\n143\t\n144\t    for i in range(n_layers):\n145\t        layer = model.model.layers[i]\n146\t        h = layer.mlp.gate_proj.register_forward_hook(make_gate_hook(i))\n147\t        hooks.append(h)\n148\t\n149\t    model.eval()\n150\t    with torch.no_grad():\n151\t        for enc in calibration_data:\n152\t            input_ids = enc[\"input_ids\"].to(device)\n153\t            attention_mask = enc[\"attention_mask\"].to(device)\n154\t            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n155\t\n156\t    for h in hooks:\n157\t        h.remove()\n158\t\n159\t    layer_activations = {}\n160\t    for layer_idx in range(n_layers):\n161\t        tensors = gate_outputs[layer_idx]\n162\t        per_group_list = []\n163\t        for t in tensors:\n164\t            t = t.squeeze(0)  # [seq, intermediate_size]\n165\t            t = t.mean(dim=0)  # [intermediate_size] — mean pool over seq\n166\t            # Truncate to exact multiple of group_size\n167\t            usable = n_groups * group_size\n168\t            t = t[:usable].view(n_groups, group_size)  # [n_groups, group_size]\n169\t            per_group_list.append(t)\n170\t        layer_activations[layer_idx] = torch.stack(per_group_list, dim=0)  # [n_samples, n_groups, group_size]\n171\t        gate_outputs[layer_idx] = None\n172\t\n173\t    return layer_activations\n174\t\n175\t\n176\tdef compute_overlap(activations_dict: dict, structure_name: str) -> tuple:\n177\t    \"\"\"Compute F(h) = mean CKA similarity and pairwise CKA matrix per layer.\n178\t\n179\t    activations_dict: dict[layer_idx] -> tensor[n_samples, n_structures, dim]\n180\t    Returns: (overlap_scores, cka_matrices)\n181\t        overlap_scores: dict[layer_idx] -> tensor[n_structures] of overlap F(h) in [0, 1]\n182\t        cka_matrices: dict[layer_idx] -> tensor[n_structures, n_structures] pairwise CKA\n183\t    \"\"\"\n184\t    overlap_scores = {}\n185\t    cka_matrices = {}\n186\t    for layer_idx, acts in activations_dict.items():\n187\t        n_samples, n_structs, dim = acts.shape\n188\t        matrix = torch.zeros(n_structs, n_structs)\n189\t        for i in range(n_structs):\n190\t            matrix[i, i] = 1.0\n191\t            for j in range(i + 1, n_structs):\n192\t                val = linear_cka(acts[:, i, :].float(), acts[:, j, :].float())\n193\t                matrix[i, j] = val\n194\t                matrix[j, i] = val\n195\t        scores = (matrix.sum(dim=1) - 1.0) / max(n_structs - 1, 1)\n196\t        overlap_scores[layer_idx] = scores\n197\t        cka_matrices[layer_idx] = matrix\n198\t        logger.info(\n199\t            f\"  Layer {layer_idx} {structure_name}: F(h) range [{scores.min():.4f}, {scores.max():.4f}], \"\n200\t            f\"mean={scores.mean():.4f}\"\n201\t        )\n202\t    return overlap_scores, cka_matrices\n203\t\n204\t\n205\tdef main():\n206\t    parser = argparse.ArgumentParser(description=\"Compute CKA-based functional overlap scores for RASP\")\n207\t    parser.add_argument(\"--model_path\", type=str, required=True, help=\"Path to pretrained model\")\n208\t    parser.add_argument(\"--output_path\", type=str, required=True, help=\"Output .pt file for overlap scores\")\n209\t    parser.add_argument(\"--n_samples\", type=int, default=512, help=\"Number of calibration samples\")\n210\t    parser.add_argument(\"--max_length\", type=int, default=512, help=\"Max token length for calibration inputs\")\n211\t    parser.add_argument(\"--mlp_groups\", type=int, default=28, help=\"Number of MLP channel groups per layer\")\n212\t    parser.add_argument(\"--seed\", type=int, default=42, help=\"Random seed\")\n213\t    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\", choices=[\"float16\", \"bfloat16\", \"float32\"])\n214\t    args = parser.parse_args()\n215\t\n216\t    set_seed(args.seed)\n217\t    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n218\t    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n219\t    torch_dtype = dtype_map[args.dtype]\n220\t\n221\t    logger.info(f\"Loading model from {args.model_path}\")\n222\t    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n223\t    model = AutoModelForCausalLM.from_pretrained(\n224\t        args.model_path,\n225\t        torch_dtype=torch_dtype,\n226\t        device_map=device,\n227\t        trust_remote_code=True,\n228\t    )\n229\t\n230\t    logger.info(f\"Loading {args.n_samples} calibration samples from GSM8K train\")\n231\t    calibration_data = load_calibration_data(tokenizer, args.n_samples, args.max_length, args.seed)\n232\t\n233\t    logger.info(\"Collecting attention head activations...\")\n234\t    head_acts = collect_head_activations(model, tokenizer, calibration_data, device)\n235\t\n236\t    logger.info(\"Computing attention head overlap F(h)...\")\n237\t    attn_overlap, attn_cka_matrix = compute_overlap(head_acts, \"attn_heads\")\n238\t    del head_acts\n239\t    torch.cuda.empty_cache()\n240\t\n241\t    logger.info(\"Collecting MLP activations...\")\n242\t    mlp_acts = collect_mlp_activations(model, tokenizer, calibration_data, device, n_groups=args.mlp_groups)\n243\t\n244\t    logger.info(\"Computing MLP group overlap F(h)...\")\n245\t    mlp_overlap, mlp_cka_matrix = compute_overlap(mlp_acts, \"mlp_groups\")\n246\t    del mlp_acts\n247\t    torch.cuda.empty_cache()\n248\t\n249\t    os.makedirs(os.path.dirname(args.output_path) or \".\", exist_ok=True)\n250\t    result = {\n251\t        \"attn_overlap\": attn_overlap,\n252\t        \"mlp_overlap\": mlp_overlap,\n253\t        \"attn_cka_matrix\": attn_cka_matrix,\n254\t        \"mlp_cka_matrix\": mlp_cka_matrix,\n255\t    }\n256\t    torch.save(result, args.output_path)\n257\t    logger.info(f\"Saved CKA overlap scores to {args.output_path}\")\n258\t\n259\t\n260\tif __name__ == \"__main__\":\n261\t    main()\n262\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "ea830610-4c5b-491e-a909-4b613a597ea5",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/cka_overlap.py",
+                "content": "\"\"\"\nCKA Overlap Computation for RASP.\n\nComputes intra-layer functional overlap F(h) for each attention head and MLP channel group\nusing linear CKA (Centered Kernel Alignment via HSIC).\n\nInput:  model + calibration data (GSM8K train subset)\nOutput: per-structure F(h) scores saved as dict in .pt file\n        Keys: 'attn_overlap' (dict[layer_idx -> tensor[n_heads]]),\n              'mlp_overlap'  (dict[layer_idx -> tensor[n_groups]])\n\"\"\"\n\nimport argparse\nimport logging\nimport math\nimport os\nimport random\n\nimport numpy as np\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format=\"%(asctime)s [%(levelname)s] %(message)s\",\n)\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed: int):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:\n    \"\"\"Linear CKA between two activation matrices.\n    X: [n, p], Y: [n, q]. Returns scalar similarity in [0, 1].\n    \"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples: int, max_length: int = 512, seed: int = 42):\n    \"\"\"Load GSM8K train questions as calibration prompts.\"\"\"\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_head_activations(model, tokenizer, calibration_data, device):\n    \"\"\"Run calibration data through model and collect per-head activations for each layer.\n\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads, pooled_dim]\n    where pooled_dim collapses (seq_len, head_dim) via mean-pool over seq_len.\n    \"\"\"\n    config = model.config\n    n_layers = config.num_hidden_layers\n    n_heads = config.num_attention_heads\n    head_dim = config.hidden_size // n_heads\n\n    layer_activations = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def hook_fn(module, input, output):\n            # output of attention: (hidden_states, attn_weights, past_kv)\n            # We hook into q_proj to get query states, then reshape per-head\n            pass\n        return hook_fn\n\n    # Hook into each attention layer's output (the hidden_states after o_proj)\n    # We instead hook the q_proj to capture per-head representations\n    q_proj_outputs = {i: [] for i in range(n_layers)}\n\n    def make_q_hook(layer_idx):\n        def hook_fn(module, input, output):\n            # output shape: [batch, seq_len, n_heads * head_dim]\n            q_proj_outputs[layer_idx].append(output.detach())\n        return hook_fn\n\n    for i in range(n_layers):\n        layer = model.model.layers[i]\n        h = layer.self_attn.q_proj.register_forward_hook(make_q_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for batch_idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (batch_idx + 1) % 50 == 0:\n                logger.info(f\"  Processed {batch_idx + 1}/{len(calibration_data)} samples\")\n\n    for h in hooks:\n        h.remove()\n\n    # Reshape and mean-pool: [batch, seq, n_heads*head_dim] -> per-head [batch, head_dim]\n    for layer_idx in range(n_layers):\n        tensors = q_proj_outputs[layer_idx]  # list of [1, seq, n_heads*head_dim]\n        per_head_list = []\n        for t in tensors:\n            t = t.squeeze(0)  # [seq, n_heads*head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim] — mean pool over seq\n            per_head_list.append(t)\n        layer_activations[layer_idx] = torch.stack(per_head_list, dim=0)  # [n_samples, n_heads, head_dim]\n        q_proj_outputs[layer_idx] = None  # free memory\n\n    return layer_activations\n\n\ndef collect_mlp_activations(model, tokenizer, calibration_data, device, n_groups: int = 28):\n    \"\"\"Collect MLP intermediate activations grouped into channel groups.\n\n    Returns dict[layer_idx] -> tensor[n_samples, n_groups, group_dim]\n    \"\"\"\n    config = model.config\n    n_layers = config.num_hidden_layers\n    intermediate_size = config.intermediate_size\n    group_size = intermediate_size // n_groups\n\n    gate_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_gate_hook(layer_idx):\n        def hook_fn(module, input, output):\n            gate_outputs[layer_idx].append(output.detach())\n        return hook_fn\n\n    for i in range(n_layers):\n        layer = model.model.layers[i]\n        h = layer.mlp.gate_proj.register_forward_hook(make_gate_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for enc in calibration_data:\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n\n    for h in hooks:\n        h.remove()\n\n    layer_activations = {}\n    for layer_idx in range(n_layers):\n        tensors = gate_outputs[layer_idx]\n        per_group_list = []\n        for t in tensors:\n            t = t.squeeze(0)  # [seq, intermediate_size]\n            t = t.mean(dim=0)  # [intermediate_size] — mean pool over seq\n            # Truncate to exact multiple of group_size\n            usable = n_groups * group_size\n            t = t[:usable].view(n_groups, group_size)  # [n_groups, group_size]\n            per_group_list.append(t)\n        layer_activations[layer_idx] = torch.stack(per_group_list, dim=0)  # [n_samples, n_groups, group_size]\n        gate_outputs[layer_idx] = None\n\n    return layer_activations\n\n\ndef compute_overlap(activations_dict: dict, structure_name: str) -> tuple:\n    \"\"\"Compute F(h) = mean CKA similarity and pairwise CKA matrix per layer.\n\n    activations_dict: dict[layer_idx] -> tensor[n_samples, n_structures, dim]\n    Returns: (overlap_scores, cka_matrices)\n        overlap_scores: dict[layer_idx] -> tensor[n_structures] of overlap F(h) in [0, 1]\n        cka_matrices: dict[layer_idx] -> tensor[n_structures, n_structures] pairwise CKA\n    \"\"\"\n    overlap_scores = {}\n    cka_matrices = {}\n    for layer_idx, acts in activations_dict.items():\n        n_samples, n_structs, dim = acts.shape\n        matrix = torch.zeros(n_structs, n_structs)\n        for i in range(n_structs):\n            matrix[i, i] = 1.0\n            for j in range(i + 1, n_structs):\n                val = linear_cka(acts[:, i, :].float(), acts[:, j, :].float())\n                matrix[i, j] = val\n                matrix[j, i] = val\n        scores = (matrix.sum(dim=1) - 1.0) / max(n_structs - 1, 1)\n        overlap_scores[layer_idx] = scores\n        cka_matrices[layer_idx] = matrix\n        logger.info(\n            f\"  Layer {layer_idx} {structure_name}: F(h) range [{scores.min():.4f}, {scores.max():.4f}], \"\n            f\"mean={scores.mean():.4f}\"\n        )\n    return overlap_scores, cka_matrices\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Compute CKA-based functional overlap scores for RASP\")\n    parser.add_argument(\"--model_path\", type=str, required=True, help=\"Path to pretrained model\")\n    parser.add_argument(\"--output_path\", type=str, required=True, help=\"Output .pt file for overlap scores\")\n    parser.add_argument(\"--n_samples\", type=int, default=512, help=\"Number of calibration samples\")\n    parser.add_argument(\"--max_length\", type=int, default=512, help=\"Max token length for calibration inputs\")\n    parser.add_argument(\"--mlp_groups\", type=int, default=28, help=\"Number of MLP channel groups per layer\")\n    parser.add_argument(\"--seed\", type=int, default=42, help=\"Random seed\")\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\", choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\")\n    dtype_map = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16, \"float32\": torch.float32}\n    torch_dtype = dtype_map[args.dtype]\n\n    logger.info(f\"Loading model from {args.model_path}\")\n    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)\n    model = AutoModelForCausalLM.from_pretrained(\n        args.model_path,\n        torch_dtype=torch_dtype,\n        device_map=device,\n        trust_remote_code=True,\n    )\n\n    logger.info(f\"Loading {args.n_samples} calibration samples from GSM8K train\")\n    calibration_data = load_calibration_data(tokenizer, args.n_samples, args.max_length, args.seed)\n\n    logger.info(\"Collecting attention head activations...\")\n    head_acts = collect_head_activations(model, tokenizer, calibration_data, device)\n\n    logger.info(\"Computing attention head overlap F(h)...\")\n    attn_overlap, attn_cka_matrix = compute_overlap(head_acts, \"attn_heads\")\n    del head_acts\n    torch.cuda.empty_cache()\n\n    logger.info(\"Collecting MLP activations...\")\n    mlp_acts = collect_mlp_activations(model, tokenizer, calibration_data, device, n_groups=args.mlp_groups)\n\n    logger.info(\"Computing MLP group overlap F(h)...\")\n    mlp_overlap, mlp_cka_matrix = compute_overlap(mlp_acts, \"mlp_groups\")\n    del mlp_acts\n    torch.cuda.empty_cache()\n\n    os.makedirs(os.path.dirname(args.output_path) or \".\", exist_ok=True)\n    result = {\n        \"attn_overlap\": attn_overlap,\n        \"mlp_overlap\": mlp_overlap,\n        \"attn_cka_matrix\": attn_cka_matrix,\n        \"mlp_cka_matrix\": mlp_cka_matrix,\n    }\n    torch.save(result, args.output_path)\n    logger.info(f\"Saved CKA overlap scores to {args.output_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+                "numLines": 262,
+                "startLine": 1,
+                "totalLines": 262
+              }
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a thorough understanding of both files. Let me plan the modifications to `run_cka_reliability.py`:\n\n1. Add `--mlp_groups` (default=28) and `--skip_cross_model` CLI args\n2. Make `--pruned_model` not required (since `--skip_cross_model` doesn't need it)\n3. Add Phase 4: F(h) split-half reliability for attention heads\n4. Add Phase 5: F(h) split-half reliability for MLP groups\n5. Add output JSON fields `fh_attn_reliability` and `fh_mlp_reliability`\n\n\n6. For the split-half reliability phases, I'll leverage the existing activation collection methods—`collect_qproj_activations` already gives me per-head format, and I'll create a corresponding MLP activation collector. The split-half approach divides the calibration data in half, computes F(h) independently on each half, then measures the correlation between the resulting rankings using Spearman's ρ. The `compute_overlap` function from `cka_overlap.py` handles the F(h) computation, taking activations organized by layer and returning F values per structure.\n\nFor Phase 4 specifically, I'm starting with the original model's attention activations already in the right format, then for each data split I'll partition the samples and compute the pairwise CKA matrix among heads...\n\nComputing CKA matrices across head pairs... what we need for F(h) computation. For the MLP layers, I'll need to add a collection function similar to what's in `cka_overlap.py`. Then I'll create a `compute_fh_scores` function that takes the activation tensors and computes F(h) values for a given sample subset, returning the scores per structure. I'm also planning to add a `compute_fh_reliability` function to handle the full pipeline.\n\nNow I'm restructuring the main flow: I'll make the pruned model optional since it's only needed for cross-model comparisons, always load the original model and collect both attention and MLP activations, conditionally run the first three phases, and always execute the final two phases. The output JSON will be updated accordingly.\n\nWriting the MLP collection function... Setting up forward hooks to capture gate outputs...\n\nAfter collecting activations across the calibration data, I'm removing the hooks and processing the captured outputs by layer. For each layer, I'm averaging the gate projections across the sequence dimension, reshaping them into groups, and stacking them together to create the final activation tensors that will be used for computing FH scores.\n\nNow I'm defining the function to compute F(h) scores, which takes the activation dictionary and optional sample indices, then builds a similarity matrix between structures in each layer using linear CKA.\n\nImplementing the reliability check... Finishing the split analysis function and logging results for each iteration. Now I'm considering whether to collect activations in a single forward pass or run separate passes—doing two separate passes is simpler and less error-prone, though it means running the model twice, which would be inefficient if I also need MLP activations. I'm realizing the activation collection strategy needs to account for reusing data across phases. Since the cross-model phase already collects q_proj activations from both models, I can leverage those same activations for the attention F(h) phases rather than re-collecting them. The MLP phases will need their own forward pass to gather gate_proj activations, but I should structure this to minimize redundant model loads and forward passes. Writing the activation collection function... Setting up the forward hooks to capture activations from the attention and MLP layers, then running the calibration data through the model while tracking these outputs. After collecting all the activations, I'm processing the query projection outputs into a per-head format for further analysis.\n\nProcessing gate projections into groups...\n\nActually, I realize `collect_qproj_activations` already returns the exact format I need—a dictionary mapping layer indices to tensors with shape `[n_samples, n_heads, head_dim]`—so I can reuse it for the original model and apply the same cross-model CKA comparisons between original and pruned versions.\n\nNow I'm planning the specific edits to make: I'll add the MLP activation collection function, implement the new scoring functions for Fisher-Hessian analysis, update the argument parser to support MLP grouping and optional pruned model paths, and restructure the main flow to handle both single-model and cross-model phases cleanly. I'm mapping out the restructured main flow now. The key changes are validating that the pruned model is required unless we're skipping cross-model analysis, collecting both q_proj and MLP activations from the original model in one pass, and then conditionally running the cross-model phases only if we have a pruned model available. After that comes a new phase 4 for F-H scores that wasn't in the original flow.\n\nFor step 4, I'm deciding between a combined activation collection function versus two separate passes—the combined approach is more efficient since the original model needs both activation types anyway, while the pruned model only needs q_proj. I should create a unified function for the original model but keep the existing separate function for the pruned model to avoid unnecessary changes downstream.\n\nNow I'm weighing whether the complexity is worth it—with 1024 samples and each forward pass taking several minutes, saving one full inference pass is meaningful, so I'll go with the combined approach and hook both q_proj and gate_proj in a single function.\n\nLet me think through the edge case with `--skip_cross_model`...\n\nwhen it's enabled, I only need per-head activations for F(h), but when it's disabled, I need the original activations for both cross-model CKA and F(h), so the combined function handles both cases cleanly.\n\nActually, to keep changes minimal and reduce risk, I'll just add a separate `collect_mlp_activations` function and run two forward passes on the original model instead of trying to combine them. I'll collect both activations in two forward passes while keeping the model loaded, then delete it after—the code stays clean and it's a reasonable tradeoff. For the argparse changes, I need to make `--pruned_model` optional and add validation logic.\n\nNow I'm mapping out the specific edits I need to make: inserting the new activation collection function after the existing one, adding the scoring functions, updating the argument parser to include new flags and make `--pruned_model` conditional, then validating the args before the main logic runs. I think using targeted edits is better than rewriting the whole file since the changes are scattered throughout.\n\nActually, given how many modifications are needed in the main function itself, I should just rewrite the entire file to avoid fragile edit operations. Let me compose the full modified version with all the new functions, updated argument parsing, and restructured main logic.\n\nWriting the complete file... I'm setting up utility functions for a model analysis pipeline—defining a seed setter for reproducibility, implementing linear CKA to measure activation similarity between layers, and loading calibration data from the GSM8K dataset. Now I'm working on a function to collect Q-projection activations from the model...\n\nCollecting activations... Writing activation collection code... Now I'm processing the gate outputs for each layer—squeezing and averaging them, then reshaping into groups before stacking them together as float tensors. After that I'm moving on to compute the F(h) scores across the structures using the activation dictionaries.\n\nComputing the similarity matrix... Now I'm computing F(h) scores separately on each half of the split data, then extracting all the layer values and calculating their Spearman correlation to measure reliability across the splits.\n\nSetting up the main function... Setting up the data pipeline and model loading...\n\nNow I'm extracting the model architecture details—layer count, attention heads, and key-value head configuration—then collecting the activation patterns from both the query projections and MLP gate projections across the calibration dataset.\n\nFreeing up memory after collecting activations, then building a configuration dictionary that captures all the key model parameters and settings. If cross-model comparison is enabled, I'll load the pruned model next to compare activation patterns between the original and compressed versions. Now I'm filtering out invalid scores and computing statistics across the valid groups to see how well the pruned model's attention patterns match the original. Then I'm moving into phase 2 to assess the reliability of these CKA scores by running multiple random splits of the calibration data.\n\nFor each split, I'm dividing the data in half, computing CKA scores separately for each half, and then calculating the Spearman correlation between the two halves to measure consistency.\n\nNow I'm moving into phase 3 where I'm testing how sensitive the results are to different calibration set sizes—trying 128, 256, and 512 samples and skipping any that exceed the total available data.\n\nFor each subset size, I'm computing the CKA scores between the original and pruned activations, then comparing those scores against the full dataset using Spearman correlation to see how well the smaller calibration sets approximate the full results. After cleaning up memory, I'm preparing to add these cross-model findings to the final output.\n\nBuilding output structure...\n\nNow I'm moving into phase 4 to compute split-half reliability metrics specifically for attention heads, running the analysis across multiple splits to assess consistency. Still writing reliability checks... Printing the split-half reliability results with correlation coefficients and pass/fail status for each split, then checking the size sensitivity analysis to see how CKA scores hold up across different sample sizes, and finally moving into the attention head reliability metrics. Finishing the output formatting...\n\nNow I'm thinking through the seeding strategy — Phase 2 uses `args.seed + i` for cross-model splits, and Phase 4-5 also use the same seed offset for their internal splits. That's actually fine since they're measuring different things, so having consistent split indices across phases makes them more comparable. Though I should double-check whether different seeds would be better here.\n\nActually, re-reading the requirements, it's clear I need to do n_splits iterations with the same seed-based approach and report mean reliability. The current plan of using `args.seed + i` consistently across phases works well. Let me write out the full implementation now.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "600ce7e2-7bdc-49cc-8ab2-34a1ca465f10",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LGoNHr7v1C5njHKrprKUix",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10047,
+                "cache_read_input_tokens": 24100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10047
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a clear picture of both files. I'll rewrite `run_cka_reliability.py` with the new phases and CLI args."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "f03af052-34af-4564-a580-b28c40a2bb67",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LGoNHr7v1C5njHKrprKUix",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10047,
+                "cache_read_input_tokens": 24100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10047
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017HAhXpPCH9V3SRMNM9aBbV",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py",
+                "content": "\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of structural scoring by:\n1-3. Cross-model CKA split-half reliability (original vs pruned, per GQA group)\n4.   F(h) split-half reliability for attention heads (intra-layer overlap)\n5.   F(h) split-half reliability for MLP groups (intra-layer overlap)\n\nPhases 1-3 address cross-model CKA stability.\nPhases 4-5 address intra-layer F(h) stability (Claim 2 core metric).\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef collect_mlp_activations(model, calibration_data, device, n_groups=28):\n    \"\"\"Collect MLP gate_proj activations grouped into channel groups.\n    Returns dict[layer_idx] -> tensor[n_samples, n_groups, group_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    intermediate_size = model.config.intermediate_size\n    group_size = intermediate_size // n_groups\n\n    gate_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            gate_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].mlp.gate_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        per_group = []\n        for t in gate_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, intermediate_size]\n            t = t.mean(dim=0)  # [intermediate_size]\n            usable = n_groups * group_size\n            t = t[:usable].view(n_groups, group_size)\n            per_group.append(t)\n        activations[layer_idx] = torch.stack(per_group, dim=0).float()\n        gate_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef compute_fh_scores(acts_dict, sample_indices=None):\n    \"\"\"Compute intra-layer F(h) for each structure.\n    acts_dict: dict[layer_idx] -> tensor[n_samples, n_structs, dim]\n    Returns dict[layer_idx] -> tensor[n_structs] of F(h) values.\n    \"\"\"\n    fh = {}\n    for layer_idx, acts in acts_dict.items():\n        if sample_indices is not None:\n            acts = acts[sample_indices]\n        n_samples, n_structs, dim = acts.shape\n        matrix = torch.zeros(n_structs, n_structs)\n        for i in range(n_structs):\n            matrix[i, i] = 1.0\n            for j in range(i + 1, n_structs):\n                val = linear_cka(acts[:, i, :].float(), acts[:, j, :].float())\n                matrix[i, j] = val\n                matrix[j, i] = val\n        scores = (matrix.sum(dim=1) - 1.0) / max(n_structs - 1, 1)\n        fh[layer_idx] = scores\n    return fh\n\n\ndef compute_fh_reliability(acts_dict, n_splits, seed, structure_name):\n    \"\"\"Split-half reliability of F(h) rankings across all layers.\n    Returns list of per-split result dicts with Spearman rho.\n    \"\"\"\n    n_total = next(iter(acts_dict.values())).shape[0]\n    split_results = []\n    for i in range(n_splits):\n        rng = np.random.RandomState(seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        logger.info(f\"  Split {i}: computing F(h) on half A ({len(idx_a)} samples)...\")\n        fh_a = compute_fh_scores(acts_dict, idx_a)\n        logger.info(f\"  Split {i}: computing F(h) on half B ({len(idx_b)} samples)...\")\n        fh_b = compute_fh_scores(acts_dict, idx_b)\n\n        vals_a, vals_b = [], []\n        for layer_idx in sorted(fh_a.keys()):\n            vals_a.extend(fh_a[layer_idx].tolist())\n            vals_b.extend(fh_b[layer_idx].tolist())\n\n        rho, p = stats.spearmanr(vals_a, vals_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_structures\": len(vals_a)})\n        logger.info(f\"  Split {i} {structure_name}: rho={rho:.4f}, p={p:.2e}, n={len(vals_a)}\")\n    return split_results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, default=None)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    parser.add_argument(\"--mlp_groups\", type=int, default=28,\n                        help=\"Number of MLP channel groups per layer\")\n    parser.add_argument(\"--skip_cross_model\", action=\"store_true\",\n                        help=\"Skip Phase 1-3 (cross-model CKA); only run F(h) reliability\")\n    args = parser.parse_args()\n\n    if not args.skip_cross_model and not args.pruned_model:\n        parser.error(\"--pruned_model is required unless --skip_cross_model is set\")\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Load original model and collect all activations ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model q_proj activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n\n    logger.info(\"Collecting original model MLP gate_proj activations...\")\n    orig_mlp_acts = collect_mlp_activations(orig_model, calibration_data, device, args.mlp_groups)\n\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed. All activations cached on CPU.\")\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"mlp_groups\": args.mlp_groups,\n            \"seed\": args.seed,\n        },\n    }\n\n    # --- Phase 1-3: Cross-model CKA (optional) ---\n    if not args.skip_cross_model:\n        logger.info(\"Loading pruned model...\")\n        pruned_model, pruning_meta = load_pruned_model_with_meta(\n            args.original_model, args.pruned_model, torch_dtype, device\n        )\n        keep_masks = pruning_meta[\"attn_keep_masks\"]\n        logger.info(\"Collecting pruned model activations...\")\n        pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n        del pruned_model\n        torch.cuda.empty_cache()\n        logger.info(\"Pruned model freed.\")\n\n        # Phase 1: Full CKA scores\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n        full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                        n_heads_orig, n_kv_heads)\n        valid_scores = {k: v for k, v in full_scores.items()\n                        if not (isinstance(v, float) and v != v)}\n        vals = np.array(list(valid_scores.values()))\n        logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n        logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                    f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n        # Phase 2: Split-half reliability (cross-model)\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n        cross_split_results = []\n        for i in range(args.n_splits):\n            rng = np.random.RandomState(args.seed + i)\n            perm = rng.permutation(n_total)\n            half = n_total // 2\n            idx_a = sorted(perm[:half].tolist())\n            idx_b = sorted(perm[half:2 * half].tolist())\n\n            scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                         n_heads_orig, n_kv_heads, idx_a)\n            scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                         n_heads_orig, n_kv_heads, idx_b)\n            arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n            rho, p = stats.spearmanr(arr_a, arr_b)\n            cross_split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                                        \"n_groups\": len(arr_a)})\n            logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n        cross_mean_rho = float(np.mean([r[\"rho\"] for r in cross_split_results]))\n        cross_std_rho = float(np.std([r[\"rho\"] for r in cross_split_results]))\n\n        # Phase 3: Calibration size sensitivity\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 3: Calibration size sensitivity...\")\n        size_results = []\n        for n_sub in [128, 256, 512]:\n            if n_sub >= n_total:\n                continue\n            rng = np.random.RandomState(args.seed)\n            sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n            sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                           n_heads_orig, n_kv_heads, sub_idx)\n            ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n            rho, p = stats.spearmanr(ref_vals, sub_vals)\n            size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                                 \"p_value\": float(p)})\n            logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n        del pruned_acts\n        torch.cuda.empty_cache()\n\n        per_group = {}\n        for (l, g), v in full_scores.items():\n            key = f\"layer{l}_group{g}\"\n            per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n        output[\"config\"][\"pruned_model\"] = args.pruned_model\n        output[\"config\"][\"valid_gqa_groups\"] = len(valid_scores)\n        output[\"per_group_cka_scores\"] = per_group\n        output[\"cka_summary\"] = {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        }\n        output[\"split_half_reliability\"] = {\n            \"per_split\": cross_split_results,\n            \"mean_rho\": cross_mean_rho,\n            \"std_rho\": cross_std_rho,\n            \"pass\": cross_mean_rho > 0.9,\n        }\n        output[\"size_sensitivity\"] = {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        }\n\n    # --- Phase 4: F(h) attention head split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 4: F(h) attention head split-half reliability (%d splits)...\",\n                args.n_splits)\n    attn_fh_results = compute_fh_reliability(orig_acts, args.n_splits, args.seed, \"attn_heads\")\n    attn_mean_rho = float(np.mean([r[\"rho\"] for r in attn_fh_results]))\n    attn_std_rho = float(np.std([r[\"rho\"] for r in attn_fh_results]))\n    attn_pass = attn_mean_rho > 0.9\n    logger.info(f\"Attn F(h) reliability: mean_rho={attn_mean_rho:.4f} +/- {attn_std_rho:.4f} \"\n                f\"{'PASS' if attn_pass else 'FAIL'}\")\n\n    output[\"fh_attn_reliability\"] = {\n        \"per_split\": attn_fh_results,\n        \"mean_rho\": attn_mean_rho,\n        \"std_rho\": attn_std_rho,\n        \"pass\": attn_pass,\n    }\n\n    del orig_acts\n    torch.cuda.empty_cache()\n\n    # --- Phase 5: F(h) MLP group split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 5: F(h) MLP group split-half reliability (%d splits)...\", args.n_splits)\n    mlp_fh_results = compute_fh_reliability(orig_mlp_acts, args.n_splits, args.seed, \"mlp_groups\")\n    mlp_mean_rho = float(np.mean([r[\"rho\"] for r in mlp_fh_results]))\n    mlp_std_rho = float(np.std([r[\"rho\"] for r in mlp_fh_results]))\n    mlp_pass = mlp_mean_rho > 0.9\n    logger.info(f\"MLP F(h) reliability: mean_rho={mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f} \"\n                f\"{'PASS' if mlp_pass else 'FAIL'}\")\n\n    output[\"fh_mlp_reliability\"] = {\n        \"per_split\": mlp_fh_results,\n        \"mean_rho\": mlp_mean_rho,\n        \"std_rho\": mlp_std_rho,\n        \"pass\": mlp_pass,\n    }\n\n    del orig_mlp_acts\n    torch.cuda.empty_cache()\n\n    # --- Save results ---\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    # --- Print summary ---\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n\n    if not args.skip_cross_model:\n        print(f\"\\nCross-model CKA (Phase 1-3):\")\n        print(f\"  GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n        print(f\"  CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n              f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n        sh_pass = \"PASS\" if cross_mean_rho > 0.9 else \"FAIL\"\n        print(f\"  Split-half reliability ({args.n_splits} splits):\")\n        print(f\"    rho = {cross_mean_rho:.4f} +/- {cross_std_rho:.4f}  {sh_pass} \"\n              f\"(threshold: 0.9)\")\n        for r in cross_split_results:\n            print(f\"      Split {r['split']}: rho={r['rho']:.4f}\")\n        print(f\"  Size sensitivity (vs N={n_total}):\")\n        for s in size_results:\n            sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n            print(f\"    N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n\n    print(f\"\\nF(h) Attention head reliability (Phase 4):\")\n    ah_label = \"PASS\" if attn_pass else \"FAIL\"\n    print(f\"  rho = {attn_mean_rho:.4f} +/- {attn_std_rho:.4f}  {ah_label} (threshold: 0.9)\")\n    for r in attn_fh_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n\n    print(f\"\\nF(h) MLP group reliability (Phase 5):\")\n    mh_label = \"PASS\" if mlp_pass else \"FAIL\"\n    print(f\"  rho = {mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f}  {mh_label} (threshold: 0.9)\")\n    for r in mlp_fh_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "37f1edc9-965b-418f-80ba-de21112f2fa1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LGoNHr7v1C5njHKrprKUix",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10047,
+                "cache_read_input_tokens": 24100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10047
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T03:24:37.583Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017HAhXpPCH9V3SRMNM9aBbV",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "1e3ed86d-5c63-4a15-8b04-c4e236cf285a",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py",
+              "content": "\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of structural scoring by:\n1-3. Cross-model CKA split-half reliability (original vs pruned, per GQA group)\n4.   F(h) split-half reliability for attention heads (intra-layer overlap)\n5.   F(h) split-half reliability for MLP groups (intra-layer overlap)\n\nPhases 1-3 address cross-model CKA stability.\nPhases 4-5 address intra-layer F(h) stability (Claim 2 core metric).\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef collect_mlp_activations(model, calibration_data, device, n_groups=28):\n    \"\"\"Collect MLP gate_proj activations grouped into channel groups.\n    Returns dict[layer_idx] -> tensor[n_samples, n_groups, group_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    intermediate_size = model.config.intermediate_size\n    group_size = intermediate_size // n_groups\n\n    gate_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            gate_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].mlp.gate_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        per_group = []\n        for t in gate_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, intermediate_size]\n            t = t.mean(dim=0)  # [intermediate_size]\n            usable = n_groups * group_size\n            t = t[:usable].view(n_groups, group_size)\n            per_group.append(t)\n        activations[layer_idx] = torch.stack(per_group, dim=0).float()\n        gate_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef compute_fh_scores(acts_dict, sample_indices=None):\n    \"\"\"Compute intra-layer F(h) for each structure.\n    acts_dict: dict[layer_idx] -> tensor[n_samples, n_structs, dim]\n    Returns dict[layer_idx] -> tensor[n_structs] of F(h) values.\n    \"\"\"\n    fh = {}\n    for layer_idx, acts in acts_dict.items():\n        if sample_indices is not None:\n            acts = acts[sample_indices]\n        n_samples, n_structs, dim = acts.shape\n        matrix = torch.zeros(n_structs, n_structs)\n        for i in range(n_structs):\n            matrix[i, i] = 1.0\n            for j in range(i + 1, n_structs):\n                val = linear_cka(acts[:, i, :].float(), acts[:, j, :].float())\n                matrix[i, j] = val\n                matrix[j, i] = val\n        scores = (matrix.sum(dim=1) - 1.0) / max(n_structs - 1, 1)\n        fh[layer_idx] = scores\n    return fh\n\n\ndef compute_fh_reliability(acts_dict, n_splits, seed, structure_name):\n    \"\"\"Split-half reliability of F(h) rankings across all layers.\n    Returns list of per-split result dicts with Spearman rho.\n    \"\"\"\n    n_total = next(iter(acts_dict.values())).shape[0]\n    split_results = []\n    for i in range(n_splits):\n        rng = np.random.RandomState(seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        logger.info(f\"  Split {i}: computing F(h) on half A ({len(idx_a)} samples)...\")\n        fh_a = compute_fh_scores(acts_dict, idx_a)\n        logger.info(f\"  Split {i}: computing F(h) on half B ({len(idx_b)} samples)...\")\n        fh_b = compute_fh_scores(acts_dict, idx_b)\n\n        vals_a, vals_b = [], []\n        for layer_idx in sorted(fh_a.keys()):\n            vals_a.extend(fh_a[layer_idx].tolist())\n            vals_b.extend(fh_b[layer_idx].tolist())\n\n        rho, p = stats.spearmanr(vals_a, vals_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_structures\": len(vals_a)})\n        logger.info(f\"  Split {i} {structure_name}: rho={rho:.4f}, p={p:.2e}, n={len(vals_a)}\")\n    return split_results\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, default=None)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    parser.add_argument(\"--mlp_groups\", type=int, default=28,\n                        help=\"Number of MLP channel groups per layer\")\n    parser.add_argument(\"--skip_cross_model\", action=\"store_true\",\n                        help=\"Skip Phase 1-3 (cross-model CKA); only run F(h) reliability\")\n    args = parser.parse_args()\n\n    if not args.skip_cross_model and not args.pruned_model:\n        parser.error(\"--pruned_model is required unless --skip_cross_model is set\")\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Load original model and collect all activations ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model q_proj activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n\n    logger.info(\"Collecting original model MLP gate_proj activations...\")\n    orig_mlp_acts = collect_mlp_activations(orig_model, calibration_data, device, args.mlp_groups)\n\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed. All activations cached on CPU.\")\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"mlp_groups\": args.mlp_groups,\n            \"seed\": args.seed,\n        },\n    }\n\n    # --- Phase 1-3: Cross-model CKA (optional) ---\n    if not args.skip_cross_model:\n        logger.info(\"Loading pruned model...\")\n        pruned_model, pruning_meta = load_pruned_model_with_meta(\n            args.original_model, args.pruned_model, torch_dtype, device\n        )\n        keep_masks = pruning_meta[\"attn_keep_masks\"]\n        logger.info(\"Collecting pruned model activations...\")\n        pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n        del pruned_model\n        torch.cuda.empty_cache()\n        logger.info(\"Pruned model freed.\")\n\n        # Phase 1: Full CKA scores\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n        full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                        n_heads_orig, n_kv_heads)\n        valid_scores = {k: v for k, v in full_scores.items()\n                        if not (isinstance(v, float) and v != v)}\n        vals = np.array(list(valid_scores.values()))\n        logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n        logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                    f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n        # Phase 2: Split-half reliability (cross-model)\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n        cross_split_results = []\n        for i in range(args.n_splits):\n            rng = np.random.RandomState(args.seed + i)\n            perm = rng.permutation(n_total)\n            half = n_total // 2\n            idx_a = sorted(perm[:half].tolist())\n            idx_b = sorted(perm[half:2 * half].tolist())\n\n            scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                         n_heads_orig, n_kv_heads, idx_a)\n            scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                         n_heads_orig, n_kv_heads, idx_b)\n            arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n            rho, p = stats.spearmanr(arr_a, arr_b)\n            cross_split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                                        \"n_groups\": len(arr_a)})\n            logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n        cross_mean_rho = float(np.mean([r[\"rho\"] for r in cross_split_results]))\n        cross_std_rho = float(np.std([r[\"rho\"] for r in cross_split_results]))\n\n        # Phase 3: Calibration size sensitivity\n        logger.info(\"=\" * 50)\n        logger.info(\"Phase 3: Calibration size sensitivity...\")\n        size_results = []\n        for n_sub in [128, 256, 512]:\n            if n_sub >= n_total:\n                continue\n            rng = np.random.RandomState(args.seed)\n            sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n            sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                           n_heads_orig, n_kv_heads, sub_idx)\n            ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n            rho, p = stats.spearmanr(ref_vals, sub_vals)\n            size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                                 \"p_value\": float(p)})\n            logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n        del pruned_acts\n        torch.cuda.empty_cache()\n\n        per_group = {}\n        for (l, g), v in full_scores.items():\n            key = f\"layer{l}_group{g}\"\n            per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n        output[\"config\"][\"pruned_model\"] = args.pruned_model\n        output[\"config\"][\"valid_gqa_groups\"] = len(valid_scores)\n        output[\"per_group_cka_scores\"] = per_group\n        output[\"cka_summary\"] = {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        }\n        output[\"split_half_reliability\"] = {\n            \"per_split\": cross_split_results,\n            \"mean_rho\": cross_mean_rho,\n            \"std_rho\": cross_std_rho,\n            \"pass\": cross_mean_rho > 0.9,\n        }\n        output[\"size_sensitivity\"] = {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        }\n\n    # --- Phase 4: F(h) attention head split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 4: F(h) attention head split-half reliability (%d splits)...\",\n                args.n_splits)\n    attn_fh_results = compute_fh_reliability(orig_acts, args.n_splits, args.seed, \"attn_heads\")\n    attn_mean_rho = float(np.mean([r[\"rho\"] for r in attn_fh_results]))\n    attn_std_rho = float(np.std([r[\"rho\"] for r in attn_fh_results]))\n    attn_pass = attn_mean_rho > 0.9\n    logger.info(f\"Attn F(h) reliability: mean_rho={attn_mean_rho:.4f} +/- {attn_std_rho:.4f} \"\n                f\"{'PASS' if attn_pass else 'FAIL'}\")\n\n    output[\"fh_attn_reliability\"] = {\n        \"per_split\": attn_fh_results,\n        \"mean_rho\": attn_mean_rho,\n        \"std_rho\": attn_std_rho,\n        \"pass\": attn_pass,\n    }\n\n    del orig_acts\n    torch.cuda.empty_cache()\n\n    # --- Phase 5: F(h) MLP group split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 5: F(h) MLP group split-half reliability (%d splits)...\", args.n_splits)\n    mlp_fh_results = compute_fh_reliability(orig_mlp_acts, args.n_splits, args.seed, \"mlp_groups\")\n    mlp_mean_rho = float(np.mean([r[\"rho\"] for r in mlp_fh_results]))\n    mlp_std_rho = float(np.std([r[\"rho\"] for r in mlp_fh_results]))\n    mlp_pass = mlp_mean_rho > 0.9\n    logger.info(f\"MLP F(h) reliability: mean_rho={mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f} \"\n                f\"{'PASS' if mlp_pass else 'FAIL'}\")\n\n    output[\"fh_mlp_reliability\"] = {\n        \"per_split\": mlp_fh_results,\n        \"mean_rho\": mlp_mean_rho,\n        \"std_rho\": mlp_std_rho,\n        \"pass\": mlp_pass,\n    }\n\n    del orig_mlp_acts\n    torch.cuda.empty_cache()\n\n    # --- Save results ---\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    # --- Print summary ---\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n\n    if not args.skip_cross_model:\n        print(f\"\\nCross-model CKA (Phase 1-3):\")\n        print(f\"  GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n        print(f\"  CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n              f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n        sh_pass = \"PASS\" if cross_mean_rho > 0.9 else \"FAIL\"\n        print(f\"  Split-half reliability ({args.n_splits} splits):\")\n        print(f\"    rho = {cross_mean_rho:.4f} +/- {cross_std_rho:.4f}  {sh_pass} \"\n              f\"(threshold: 0.9)\")\n        for r in cross_split_results:\n            print(f\"      Split {r['split']}: rho={r['rho']:.4f}\")\n        print(f\"  Size sensitivity (vs N={n_total}):\")\n        for s in size_results:\n            sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n            print(f\"    N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n\n    print(f\"\\nF(h) Attention head reliability (Phase 4):\")\n    ah_label = \"PASS\" if attn_pass else \"FAIL\"\n    print(f\"  rho = {attn_mean_rho:.4f} +/- {attn_std_rho:.4f}  {ah_label} (threshold: 0.9)\")\n    for r in attn_fh_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n\n    print(f\"\\nF(h) MLP group reliability (Phase 5):\")\n    mh_label = \"PASS\" if mlp_pass else \"FAIL\"\n    print(f\"  rho = {mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f}  {mh_label} (threshold: 0.9)\")\n    for r in mlp_fh_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 11,
+                  "newStart": 1,
+                  "newLines": 13,
+                  "lines": [
+                    " \"\"\"",
+                    " CKA Reliability Analysis for RASP.",
+                    " ",
+                    "-Validates the stability of cross-model CKA scores (original vs pruned) by:",
+                    "-1. Split-half reliability: Spearman rho between CKA scores on two data halves",
+                    "-2. Calibration size sensitivity: Spearman rho at different sample sizes vs full",
+                    "+Validates the stability of structural scoring by:",
+                    "+1-3. Cross-model CKA split-half reliability (original vs pruned, per GQA group)",
+                    "+4.   F(h) split-half reliability for attention heads (intra-layer overlap)",
+                    "+5.   F(h) split-half reliability for MLP groups (intra-layer overlap)",
+                    " ",
+                    "-Addresses Claim 2: CKA-based structural scoring is reliable and stable.",
+                    "+Phases 1-3 address cross-model CKA stability.",
+                    "+Phases 4-5 address intra-layer F(h) stability (Claim 2 core metric).",
+                    " \"\"\"",
+                    " ",
+                    " import argparse"
+                  ]
+                },
+                {
+                  "oldStart": 100,
+                  "oldLines": 6,
+                  "newStart": 102,
+                  "newLines": 53,
+                  "lines": [
+                    "     return activations",
+                    " ",
+                    " ",
+                    "+def collect_mlp_activations(model, calibration_data, device, n_groups=28):",
+                    "+    \"\"\"Collect MLP gate_proj activations grouped into channel groups.",
+                    "+    Returns dict[layer_idx] -> tensor[n_samples, n_groups, group_dim] on CPU float32.",
+                    "+    \"\"\"",
+                    "+    n_layers = model.config.num_hidden_layers",
+                    "+    intermediate_size = model.config.intermediate_size",
+                    "+    group_size = intermediate_size // n_groups",
+                    "+",
+                    "+    gate_outputs = {i: [] for i in range(n_layers)}",
+                    "+    hooks = []",
+                    "+",
+                    "+    def make_hook(layer_idx):",
+                    "+        def fn(module, inp, out):",
+                    "+            gate_outputs[layer_idx].append(out.detach().cpu())",
+                    "+        return fn",
+                    "+",
+                    "+    for i in range(n_layers):",
+                    "+        h = model.model.layers[i].mlp.gate_proj.register_forward_hook(make_hook(i))",
+                    "+        hooks.append(h)",
+                    "+",
+                    "+    model.eval()",
+                    "+    with torch.no_grad():",
+                    "+        for idx, enc in enumerate(calibration_data):",
+                    "+            input_ids = enc[\"input_ids\"].to(device)",
+                    "+            attention_mask = enc[\"attention_mask\"].to(device)",
+                    "+            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)",
+                    "+            if (idx + 1) % 200 == 0:",
+                    "+                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")",
+                    "+",
+                    "+    for h in hooks:",
+                    "+        h.remove()",
+                    "+",
+                    "+    activations = {}",
+                    "+    for layer_idx in range(n_layers):",
+                    "+        per_group = []",
+                    "+        for t in gate_outputs[layer_idx]:",
+                    "+            t = t.squeeze(0)  # [seq, intermediate_size]",
+                    "+            t = t.mean(dim=0)  # [intermediate_size]",
+                    "+            usable = n_groups * group_size",
+                    "+            t = t[:usable].view(n_groups, group_size)",
+                    "+            per_group.append(t)",
+                    "+        activations[layer_idx] = torch.stack(per_group, dim=0).float()",
+                    "+        gate_outputs[layer_idx] = None",
+                    "+",
+                    "+    return activations",
+                    "+",
+                    "+",
+                    " def load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):",
+                    "     \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"",
+                    "     meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")"
+                  ]
+                },
+                {
+                  "oldStart": 187,
+                  "oldLines": 10,
+                  "newStart": 236,
+                  "newLines": 62,
+                  "lines": [
+                    "     return np.array(a_vals), np.array(b_vals)",
+                    " ",
+                    " ",
+                    "+def compute_fh_scores(acts_dict, sample_indices=None):",
+                    "+    \"\"\"Compute intra-layer F(h) for each structure.",
+                    "+    acts_dict: dict[layer_idx] -> tensor[n_samples, n_structs, dim]",
+                    "+    Returns dict[layer_idx] -> tensor[n_structs] of F(h) values.",
+                    "+    \"\"\"",
+                    "+    fh = {}",
+                    "+    for layer_idx, acts in acts_dict.items():",
+                    "+        if sample_indices is not None:",
+                    "+            acts = acts[sample_indices]",
+                    "+        n_samples, n_structs, dim = acts.shape",
+                    "+        matrix = torch.zeros(n_structs, n_structs)",
+                    "+        for i in range(n_structs):",
+                    "+            matrix[i, i] = 1.0",
+                    "+            for j in range(i + 1, n_structs):",
+                    "+                val = linear_cka(acts[:, i, :].float(), acts[:, j, :].float())",
+                    "+                matrix[i, j] = val",
+                    "+                matrix[j, i] = val",
+                    "+        scores = (matrix.sum(dim=1) - 1.0) / max(n_structs - 1, 1)",
+                    "+        fh[layer_idx] = scores",
+                    "+    return fh",
+                    "+",
+                    "+",
+                    "+def compute_fh_reliability(acts_dict, n_splits, seed, structure_name):",
+                    "+    \"\"\"Split-half reliability of F(h) rankings across all layers.",
+                    "+    Returns list of per-split result dicts with Spearman rho.",
+                    "+    \"\"\"",
+                    "+    n_total = next(iter(acts_dict.values())).shape[0]",
+                    "+    split_results = []",
+                    "+    for i in range(n_splits):",
+                    "+        rng = np.random.RandomState(seed + i)",
+                    "+        perm = rng.permutation(n_total)",
+                    "+        half = n_total // 2",
+                    "+        idx_a = sorted(perm[:half].tolist())",
+                    "+        idx_b = sorted(perm[half:2 * half].tolist())",
+                    "+",
+                    "+        logger.info(f\"  Split {i}: computing F(h) on half A ({len(idx_a)} samples)...\")",
+                    "+        fh_a = compute_fh_scores(acts_dict, idx_a)",
+                    "+        logger.info(f\"  Split {i}: computing F(h) on half B ({len(idx_b)} samples)...\")",
+                    "+        fh_b = compute_fh_scores(acts_dict, idx_b)",
+                    "+",
+                    "+        vals_a, vals_b = [], []",
+                    "+        for layer_idx in sorted(fh_a.keys()):",
+                    "+            vals_a.extend(fh_a[layer_idx].tolist())",
+                    "+            vals_b.extend(fh_b[layer_idx].tolist())",
+                    "+",
+                    "+        rho, p = stats.spearmanr(vals_a, vals_b)",
+                    "+        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),",
+                    "+                              \"n_structures\": len(vals_a)})",
+                    "+        logger.info(f\"  Split {i} {structure_name}: rho={rho:.4f}, p={p:.2e}, n={len(vals_a)}\")",
+                    "+    return split_results",
+                    "+",
+                    "+",
+                    " def main():",
+                    "     parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")",
+                    "     parser.add_argument(\"--original_model\", type=str, required=True)",
+                    "-    parser.add_argument(\"--pruned_model\", type=str, required=True)",
+                    "+    parser.add_argument(\"--pruned_model\", type=str, default=None)",
+                    "     parser.add_argument(\"--gpu_id\", type=int, default=0)",
+                    "     parser.add_argument(\"--num_samples\", type=int, default=1024)",
+                    "     parser.add_argument(\"--max_length\", type=int, default=512)"
+                  ]
+                },
+                {
+                  "oldStart": 199,
+                  "oldLines": 8,
+                  "newStart": 300,
+                  "newLines": 15,
+                  "lines": [
+                    "     parser.add_argument(\"--seed\", type=int, default=42)",
+                    "     parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",",
+                    "                         choices=[\"float16\", \"bfloat16\", \"float32\"])",
+                    "+    parser.add_argument(\"--mlp_groups\", type=int, default=28,",
+                    "+                        help=\"Number of MLP channel groups per layer\")",
+                    "+    parser.add_argument(\"--skip_cross_model\", action=\"store_true\",",
+                    "+                        help=\"Skip Phase 1-3 (cross-model CKA); only run F(h) reliability\")",
+                    "     args = parser.parse_args()",
+                    " ",
+                    "+    if not args.skip_cross_model and not args.pruned_model:",
+                    "+        parser.error(\"--pruned_model is required unless --skip_cross_model is set\")",
+                    "+",
+                    "     set_seed(args.seed)",
+                    "     device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")",
+                    "     torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,"
+                  ]
+                },
+                {
+                  "oldStart": 213,
+                  "oldLines": 7,
+                  "newStart": 321,
+                  "newLines": 7,
+                  "lines": [
+                    "     n_total = len(calibration_data)",
+                    "     logger.info(f\"Loaded {n_total} calibration samples\")",
+                    " ",
+                    "-    # --- Collect activations (load models one at a time to save GPU memory) ---",
+                    "+    # --- Load original model and collect all activations ---",
+                    "     logger.info(\"Loading original model...\")",
+                    "     orig_model = AutoModelForCausalLM.from_pretrained(",
+                    "         args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True"
+                  ]
+                },
+                {
+                  "oldStart": 226,
+                  "oldLines": 137,
+                  "newStart": 334,
+                  "newLines": 207,
+                  "lines": [
+                    "     logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"",
+                    "                 f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")",
+                    " ",
+                    "-    logger.info(\"Collecting original model activations...\")",
+                    "+    logger.info(\"Collecting original model q_proj activations...\")",
+                    "     orig_acts = collect_qproj_activations(orig_model, calibration_data, device)",
+                    "+",
+                    "+    logger.info(\"Collecting original model MLP gate_proj activations...\")",
+                    "+    orig_mlp_acts = collect_mlp_activations(orig_model, calibration_data, device, args.mlp_groups)",
+                    "+",
+                    "     del orig_model",
+                    "     torch.cuda.empty_cache()",
+                    "-    logger.info(\"Original model freed.\")",
+                    "+    logger.info(\"Original model freed. All activations cached on CPU.\")",
+                    " ",
+                    "-    logger.info(\"Loading pruned model...\")",
+                    "-    pruned_model, pruning_meta = load_pruned_model_with_meta(",
+                    "-        args.original_model, args.pruned_model, torch_dtype, device",
+                    "-    )",
+                    "-    keep_masks = pruning_meta[\"attn_keep_masks\"]",
+                    "-    logger.info(\"Collecting pruned model activations...\")",
+                    "-    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)",
+                    "-    del pruned_model",
+                    "-    torch.cuda.empty_cache()",
+                    "-    logger.info(\"Pruned model freed. All activations cached on CPU.\")",
+                    "-",
+                    "-    # --- Phase 1: Full CKA scores ---",
+                    "-    logger.info(\"=\" * 50)",
+                    "-    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)",
+                    "-    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "-                                    n_heads_orig, n_kv_heads)",
+                    "-    valid_scores = {k: v for k, v in full_scores.items()",
+                    "-                    if not (isinstance(v, float) and v != v)}",
+                    "-    vals = np.array(list(valid_scores.values()))",
+                    "-    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")",
+                    "-    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"",
+                    "-                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")",
+                    "-",
+                    "-    # --- Phase 2: Split-half reliability ---",
+                    "-    logger.info(\"=\" * 50)",
+                    "-    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)",
+                    "-    split_results = []",
+                    "-    for i in range(args.n_splits):",
+                    "-        rng = np.random.RandomState(args.seed + i)",
+                    "-        perm = rng.permutation(n_total)",
+                    "-        half = n_total // 2",
+                    "-        idx_a = sorted(perm[:half].tolist())",
+                    "-        idx_b = sorted(perm[half:2 * half].tolist())",
+                    "-",
+                    "-        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "-                                     n_heads_orig, n_kv_heads, idx_a)",
+                    "-        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "-                                     n_heads_orig, n_kv_heads, idx_b)",
+                    "-        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)",
+                    "-        rho, p = stats.spearmanr(arr_a, arr_b)",
+                    "-        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),",
+                    "-                              \"n_groups\": len(arr_a)})",
+                    "-        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")",
+                    "-",
+                    "-    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))",
+                    "-    std_rho = float(np.std([r[\"rho\"] for r in split_results]))",
+                    "-",
+                    "-    # --- Phase 3: Calibration size sensitivity ---",
+                    "-    logger.info(\"=\" * 50)",
+                    "-    logger.info(\"Phase 3: Calibration size sensitivity...\")",
+                    "-    size_results = []",
+                    "-    for n_sub in [128, 256, 512]:",
+                    "-        if n_sub >= n_total:",
+                    "-            continue",
+                    "-        rng = np.random.RandomState(args.seed)",
+                    "-        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())",
+                    "-",
+                    "-        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "-                                       n_heads_orig, n_kv_heads, sub_idx)",
+                    "-        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)",
+                    "-        rho, p = stats.spearmanr(ref_vals, sub_vals)",
+                    "-        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),",
+                    "-                             \"p_value\": float(p)})",
+                    "-        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")",
+                    "-",
+                    "-    # --- Compile and save results ---",
+                    "-    per_group = {}",
+                    "-    for (l, g), v in full_scores.items():",
+                    "-        key = f\"layer{l}_group{g}\"",
+                    "-        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)",
+                    "-",
+                    "     output = {",
+                    "         \"config\": {",
+                    "             \"original_model\": args.original_model,",
+                    "-            \"pruned_model\": args.pruned_model,",
+                    "             \"num_samples\": n_total,",
+                    "             \"n_layers\": n_layers,",
+                    "             \"n_heads_original\": n_heads_orig,",
+                    "             \"n_kv_heads\": n_kv_heads,",
+                    "             \"heads_per_kv\": heads_per_kv,",
+                    "             \"total_gqa_groups\": n_layers * n_kv_heads,",
+                    "-            \"valid_gqa_groups\": len(valid_scores),",
+                    "+            \"mlp_groups\": args.mlp_groups,",
+                    "             \"seed\": args.seed,",
+                    "         },",
+                    "-        \"per_group_cka_scores\": per_group,",
+                    "-        \"cka_summary\": {",
+                    "+    }",
+                    "+",
+                    "+    # --- Phase 1-3: Cross-model CKA (optional) ---",
+                    "+    if not args.skip_cross_model:",
+                    "+        logger.info(\"Loading pruned model...\")",
+                    "+        pruned_model, pruning_meta = load_pruned_model_with_meta(",
+                    "+            args.original_model, args.pruned_model, torch_dtype, device",
+                    "+        )",
+                    "+        keep_masks = pruning_meta[\"attn_keep_masks\"]",
+                    "+        logger.info(\"Collecting pruned model activations...\")",
+                    "+        pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)",
+                    "+        del pruned_model",
+                    "+        torch.cuda.empty_cache()",
+                    "+        logger.info(\"Pruned model freed.\")",
+                    "+",
+                    "+        # Phase 1: Full CKA scores",
+                    "+        logger.info(\"=\" * 50)",
+                    "+        logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)",
+                    "+        full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "+                                        n_heads_orig, n_kv_heads)",
+                    "+        valid_scores = {k: v for k, v in full_scores.items()",
+                    "+                        if not (isinstance(v, float) and v != v)}",
+                    "+        vals = np.array(list(valid_scores.values()))",
+                    "+        logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")",
+                    "+        logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"",
+                    "+                    f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")",
+                    "+",
+                    "+        # Phase 2: Split-half reliability (cross-model)",
+                    "+        logger.info(\"=\" * 50)",
+                    "+        logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)",
+                    "+        cross_split_results = []",
+                    "+        for i in range(args.n_splits):",
+                    "+            rng = np.random.RandomState(args.seed + i)",
+                    "+            perm = rng.permutation(n_total)",
+                    "+            half = n_total // 2",
+                    "+            idx_a = sorted(perm[:half].tolist())",
+                    "+            idx_b = sorted(perm[half:2 * half].tolist())",
+                    "+",
+                    "+            scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "+                                         n_heads_orig, n_kv_heads, idx_a)",
+                    "+            scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "+                                         n_heads_orig, n_kv_heads, idx_b)",
+                    "+            arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)",
+                    "+            rho, p = stats.spearmanr(arr_a, arr_b)",
+                    "+            cross_split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),",
+                    "+                                        \"n_groups\": len(arr_a)})",
+                    "+            logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")",
+                    "+",
+                    "+        cross_mean_rho = float(np.mean([r[\"rho\"] for r in cross_split_results]))",
+                    "+        cross_std_rho = float(np.std([r[\"rho\"] for r in cross_split_results]))",
+                    "+",
+                    "+        # Phase 3: Calibration size sensitivity",
+                    "+        logger.info(\"=\" * 50)",
+                    "+        logger.info(\"Phase 3: Calibration size sensitivity...\")",
+                    "+        size_results = []",
+                    "+        for n_sub in [128, 256, 512]:",
+                    "+            if n_sub >= n_total:",
+                    "+                continue",
+                    "+            rng = np.random.RandomState(args.seed)",
+                    "+            sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())",
+                    "+",
+                    "+            sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,",
+                    "+                                           n_heads_orig, n_kv_heads, sub_idx)",
+                    "+            ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)",
+                    "+            rho, p = stats.spearmanr(ref_vals, sub_vals)",
+                    "+            size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),",
+                    "+                                 \"p_value\": float(p)})",
+                    "+            logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")",
+                    "+",
+                    "+        del pruned_acts",
+                    "+        torch.cuda.empty_cache()",
+                    "+",
+                    "+        per_group = {}",
+                    "+        for (l, g), v in full_scores.items():",
+                    "+            key = f\"layer{l}_group{g}\"",
+                    "+            per_group[key] = None if (isinstance(v, float) and v != v) else float(v)",
+                    "+",
+                    "+        output[\"config\"][\"pruned_model\"] = args.pruned_model",
+                    "+        output[\"config\"][\"valid_gqa_groups\"] = len(valid_scores)",
+                    "+        output[\"per_group_cka_scores\"] = per_group",
+                    "+        output[\"cka_summary\"] = {",
+                    "             \"mean\": float(vals.mean()),",
+                    "             \"std\": float(vals.std()),",
+                    "             \"min\": float(vals.min()),",
+                    "             \"max\": float(vals.max()),",
+                    "             \"median\": float(np.median(vals)),",
+                    "-        },",
+                    "-        \"split_half_reliability\": {",
+                    "-            \"per_split\": split_results,",
+                    "-            \"mean_rho\": mean_rho,",
+                    "-            \"std_rho\": std_rho,",
+                    "-            \"pass\": mean_rho > 0.9,",
+                    "-        },",
+                    "-        \"size_sensitivity\": {",
+                    "+        }",
+                    "+        output[\"split_half_reliability\"] = {",
+                    "+            \"per_split\": cross_split_results,",
+                    "+            \"mean_rho\": cross_mean_rho,",
+                    "+            \"std_rho\": cross_std_rho,",
+                    "+            \"pass\": cross_mean_rho > 0.9,",
+                    "+        }",
+                    "+        output[\"size_sensitivity\"] = {",
+                    "             \"reference_n\": n_total,",
+                    "             \"per_size\": size_results,",
+                    "             \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),",
+                    "-        },",
+                    "+        }",
+                    "+",
+                    "+    # --- Phase 4: F(h) attention head split-half reliability ---",
+                    "+    logger.info(\"=\" * 50)",
+                    "+    logger.info(\"Phase 4: F(h) attention head split-half reliability (%d splits)...\",",
+                    "+                args.n_splits)",
+                    "+    attn_fh_results = compute_fh_reliability(orig_acts, args.n_splits, args.seed, \"attn_heads\")",
+                    "+    attn_mean_rho = float(np.mean([r[\"rho\"] for r in attn_fh_results]))",
+                    "+    attn_std_rho = float(np.std([r[\"rho\"] for r in attn_fh_results]))",
+                    "+    attn_pass = attn_mean_rho > 0.9",
+                    "+    logger.info(f\"Attn F(h) reliability: mean_rho={attn_mean_rho:.4f} +/- {attn_std_rho:.4f} \"",
+                    "+                f\"{'PASS' if attn_pass else 'FAIL'}\")",
+                    "+",
+                    "+    output[\"fh_attn_reliability\"] = {",
+                    "+        \"per_split\": attn_fh_results,",
+                    "+        \"mean_rho\": attn_mean_rho,",
+                    "+        \"std_rho\": attn_std_rho,",
+                    "+        \"pass\": attn_pass,",
+                    "     }",
+                    " ",
+                    "+    del orig_acts",
+                    "+    torch.cuda.empty_cache()",
+                    "+",
+                    "+    # --- Phase 5: F(h) MLP group split-half reliability ---",
+                    "+    logger.info(\"=\" * 50)",
+                    "+    logger.info(\"Phase 5: F(h) MLP group split-half reliability (%d splits)...\", args.n_splits)",
+                    "+    mlp_fh_results = compute_fh_reliability(orig_mlp_acts, args.n_splits, args.seed, \"mlp_groups\")",
+                    "+    mlp_mean_rho = float(np.mean([r[\"rho\"] for r in mlp_fh_results]))",
+                    "+    mlp_std_rho = float(np.std([r[\"rho\"] for r in mlp_fh_results]))",
+                    "+    mlp_pass = mlp_mean_rho > 0.9",
+                    "+    logger.info(f\"MLP F(h) reliability: mean_rho={mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f} \"",
+                    "+                f\"{'PASS' if mlp_pass else 'FAIL'}\")",
+                    "+",
+                    "+    output[\"fh_mlp_reliability\"] = {",
+                    "+        \"per_split\": mlp_fh_results,",
+                    "+        \"mean_rho\": mlp_mean_rho,",
+                    "+        \"std_rho\": mlp_std_rho,",
+                    "+        \"pass\": mlp_pass,",
+                    "+    }",
+                    "+",
+                    "+    del orig_mlp_acts",
+                    "+    torch.cuda.empty_cache()",
+                    "+",
+                    "+    # --- Save results ---",
+                    "     os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)",
+                    "     with open(args.output, \"w\") as f:",
+                    "         json.dump(output, f, indent=2)",
+                    "     logger.info(f\"Results saved to {args.output}\")",
+                    " ",
+                    "+    # --- Print summary ---",
+                    "     print(f\"\\n{'=' * 60}\")",
+                    "     print(\"CKA Reliability Analysis\")",
+                    "     print(f\"{'=' * 60}\")",
+                    "-    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")",
+                    "-    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"",
+                    "-          f\"[{vals.min():.4f}, {vals.max():.4f}]\")",
+                    "-    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"",
+                    "-    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")",
+                    "-    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")",
+                    "-    for r in split_results:",
+                    "+",
+                    "+    if not args.skip_cross_model:",
+                    "+        print(f\"\\nCross-model CKA (Phase 1-3):\")",
+                    "+        print(f\"  GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")",
+                    "+        print(f\"  CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"",
+                    "+              f\"[{vals.min():.4f}, {vals.max():.4f}]\")",
+                    "+        sh_pass = \"PASS\" if cross_mean_rho > 0.9 else \"FAIL\"",
+                    "+        print(f\"  Split-half reliability ({args.n_splits} splits):\")",
+                    "+        print(f\"    rho = {cross_mean_rho:.4f} +/- {cross_std_rho:.4f}  {sh_pass} \"",
+                    "+              f\"(threshold: 0.9)\")",
+                    "+        for r in cross_split_results:",
+                    "+            print(f\"      Split {r['split']}: rho={r['rho']:.4f}\")",
+                    "+        print(f\"  Size sensitivity (vs N={n_total}):\")",
+                    "+        for s in size_results:",
+                    "+            sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"",
+                    "+            print(f\"    N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")",
+                    "+",
+                    "+    print(f\"\\nF(h) Attention head reliability (Phase 4):\")",
+                    "+    ah_label = \"PASS\" if attn_pass else \"FAIL\"",
+                    "+    print(f\"  rho = {attn_mean_rho:.4f} +/- {attn_std_rho:.4f}  {ah_label} (threshold: 0.9)\")",
+                    "+    for r in attn_fh_results:",
+                    "         print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")",
+                    "-    print(f\"\\nSize sensitivity (vs N={n_total}):\")",
+                    "-    for s in size_results:",
+                    "-        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"",
+                    "-        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")",
+                    "+",
+                    "+    print(f\"\\nF(h) MLP group reliability (Phase 5):\")",
+                    "+    mh_label = \"PASS\" if mlp_pass else \"FAIL\"",
+                    "+    print(f\"  rho = {mlp_mean_rho:.4f} +/- {mlp_std_rho:.4f}  {mh_label} (threshold: 0.9)\")",
+                    "+    for r in mlp_fh_results:",
+                    "+        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")",
+                    "+",
+                    "     print(f\"{'=' * 60}\")",
+                    " ",
+                    " "
+                  ]
+                }
+              ],
+              "originalFile": "\"\"\"\nCKA Reliability Analysis for RASP.\n\nValidates the stability of cross-model CKA scores (original vs pruned) by:\n1. Split-half reliability: Spearman rho between CKA scores on two data halves\n2. Calibration size sensitivity: Spearman rho at different sample sizes vs full\n\nAddresses Claim 2: CKA-based structural scoring is reliable and stable.\n\"\"\"\n\nimport argparse\nimport json\nimport logging\nimport os\nimport random\nimport sys\n\nimport numpy as np\nimport scipy.stats as stats\nimport torch\nfrom datasets import load_dataset\nfrom transformers import AutoModelForCausalLM, AutoTokenizer\n\nlogging.basicConfig(level=logging.INFO, format=\"%(asctime)s [%(levelname)s] %(message)s\")\nlogger = logging.getLogger(__name__)\n\n\ndef set_seed(seed):\n    random.seed(seed)\n    np.random.seed(seed)\n    torch.manual_seed(seed)\n    torch.cuda.manual_seed_all(seed)\n\n\ndef linear_cka(X, Y):\n    \"\"\"Linear CKA between two activation matrices. X: [n, p], Y: [n, q].\"\"\"\n    X = X - X.mean(0)\n    Y = Y - Y.mean(0)\n    hsic_xy = torch.norm(X.T @ Y, \"fro\") ** 2\n    hsic_xx = torch.norm(X.T @ X, \"fro\") ** 2\n    hsic_yy = torch.norm(Y.T @ Y, \"fro\") ** 2\n    return (hsic_xy / (torch.sqrt(hsic_xx) * torch.sqrt(hsic_yy) + 1e-8)).item()\n\n\ndef load_calibration_data(tokenizer, n_samples, max_length=512, seed=42):\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"train\")\n    ds = ds.shuffle(seed=seed).select(range(min(n_samples, len(ds))))\n    encodings = []\n    for example in ds:\n        prompt = f\"Question: {example['question']}\\nAnswer: Let me think step by step.\\n\"\n        ids = tokenizer(prompt, return_tensors=\"pt\", truncation=True, max_length=max_length)\n        encodings.append(ids)\n    return encodings\n\n\ndef collect_qproj_activations(model, calibration_data, device):\n    \"\"\"Collect per-head q_proj activations, mean-pooled over seq length.\n    Returns dict[layer_idx] -> tensor[n_samples, n_heads_in_layer, head_dim] on CPU float32.\n    \"\"\"\n    n_layers = model.config.num_hidden_layers\n    head_dim = model.config.hidden_size // model.config.num_attention_heads\n\n    q_outputs = {i: [] for i in range(n_layers)}\n    hooks = []\n\n    def make_hook(layer_idx):\n        def fn(module, inp, out):\n            q_outputs[layer_idx].append(out.detach().cpu())\n        return fn\n\n    for i in range(n_layers):\n        h = model.model.layers[i].self_attn.q_proj.register_forward_hook(make_hook(i))\n        hooks.append(h)\n\n    model.eval()\n    with torch.no_grad():\n        for idx, enc in enumerate(calibration_data):\n            input_ids = enc[\"input_ids\"].to(device)\n            attention_mask = enc[\"attention_mask\"].to(device)\n            model(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)\n            if (idx + 1) % 200 == 0:\n                logger.info(f\"  Forward pass {idx + 1}/{len(calibration_data)}\")\n\n    for h in hooks:\n        h.remove()\n\n    activations = {}\n    for layer_idx in range(n_layers):\n        out_dim = q_outputs[layer_idx][0].squeeze(0).shape[-1]\n        n_heads = out_dim // head_dim\n        per_head = []\n        for t in q_outputs[layer_idx]:\n            t = t.squeeze(0)  # [seq, n_heads * head_dim]\n            t = t.view(t.shape[0], n_heads, head_dim)  # [seq, n_heads, head_dim]\n            t = t.mean(dim=0)  # [n_heads, head_dim]\n            per_head.append(t)\n        activations[layer_idx] = torch.stack(per_head, dim=0).float()\n        q_outputs[layer_idx] = None\n\n    return activations\n\n\ndef load_pruned_model_with_meta(base_model_path, pruned_model_path, torch_dtype, device):\n    \"\"\"Load structurally pruned model via base model reconstruction + saved weights.\"\"\"\n    meta_path = os.path.join(pruned_model_path, \"pruning_metadata.pt\")\n    pruning_meta = torch.load(meta_path, map_location=\"cpu\", weights_only=True)\n\n    src_dir = os.path.dirname(os.path.abspath(__file__))\n    if src_dir not in sys.path:\n        sys.path.insert(0, src_dir)\n    from prune import prune_attention_heads, prune_mlp_channels\n\n    logging.getLogger(\"prune\").setLevel(logging.WARNING)\n    model = AutoModelForCausalLM.from_pretrained(\n        base_model_path, torch_dtype=torch_dtype, device_map=\"cpu\", trust_remote_code=True\n    )\n    prune_attention_heads(model, pruning_meta[\"attn_keep_masks\"])\n    prune_mlp_channels(model, pruning_meta[\"mlp_keep_masks\"])\n\n    safetensor_files = sorted(\n        [f for f in os.listdir(pruned_model_path) if f.endswith(\".safetensors\")]\n    )\n    if safetensor_files:\n        from safetensors.torch import load_file\n        state_dict = {}\n        for f in safetensor_files:\n            state_dict.update(load_file(os.path.join(pruned_model_path, f)))\n    else:\n        state_dict = torch.load(\n            os.path.join(pruned_model_path, \"pytorch_model.bin\"),\n            map_location=\"cpu\", weights_only=True,\n        )\n    model.load_state_dict(state_dict)\n    model.to(device)\n    return model, pruning_meta\n\n\ndef compute_group_cka(orig_acts, pruned_acts, keep_masks, n_heads_orig, n_kv_heads,\n                      sample_indices=None):\n    \"\"\"Compute per-GQA-group CKA between original and pruned representations.\n\n    For each KV group, concatenates retained Q head activations from both models\n    and computes linear CKA. Original uses all Q heads in the group, pruned uses\n    only retained Q heads (CKA handles different feature dimensions).\n\n    Returns dict[(layer, group)] -> float (or NaN if group fully pruned).\n    \"\"\"\n    heads_per_kv = n_heads_orig // n_kv_heads\n    n_layers = len(orig_acts)\n    scores = {}\n\n    for layer_idx in range(n_layers):\n        orig_layer = orig_acts[layer_idx]   # [N, n_heads_orig, head_dim]\n        pruned_layer = pruned_acts[layer_idx]  # [N, n_retained, head_dim]\n        retained = keep_masks[layer_idx]\n\n        if sample_indices is not None:\n            orig_layer = orig_layer[sample_indices]\n            pruned_layer = pruned_layer[sample_indices]\n\n        for g in range(n_kv_heads):\n            orig_head_range = list(range(g * heads_per_kv, (g + 1) * heads_per_kv))\n            pruned_positions = [i for i, h in enumerate(retained) if h in orig_head_range]\n\n            if not pruned_positions:\n                scores[(layer_idx, g)] = float(\"nan\")\n                continue\n\n            n = orig_layer.shape[0]\n            orig_flat = orig_layer[:, orig_head_range, :].reshape(n, -1)\n            pruned_flat = pruned_layer[:, pruned_positions, :].reshape(n, -1)\n            scores[(layer_idx, g)] = linear_cka(orig_flat, pruned_flat)\n\n    return scores\n\n\ndef scores_to_aligned_arrays(scores_a, scores_b):\n    \"\"\"Extract aligned non-NaN value arrays from two score dicts.\"\"\"\n    common = sorted(set(scores_a.keys()) & set(scores_b.keys()))\n    a_vals, b_vals = [], []\n    for k in common:\n        va, vb = scores_a[k], scores_b[k]\n        if (isinstance(va, float) and va != va) or (isinstance(vb, float) and vb != vb):\n            continue\n        a_vals.append(va)\n        b_vals.append(vb)\n    return np.array(a_vals), np.array(b_vals)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"CKA Reliability Analysis for RASP scoring\")\n    parser.add_argument(\"--original_model\", type=str, required=True)\n    parser.add_argument(\"--pruned_model\", type=str, required=True)\n    parser.add_argument(\"--gpu_id\", type=int, default=0)\n    parser.add_argument(\"--num_samples\", type=int, default=1024)\n    parser.add_argument(\"--max_length\", type=int, default=512)\n    parser.add_argument(\"--n_splits\", type=int, default=5)\n    parser.add_argument(\"--output\", type=str, required=True)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--dtype\", type=str, default=\"bfloat16\",\n                        choices=[\"float16\", \"bfloat16\", \"float32\"])\n    args = parser.parse_args()\n\n    set_seed(args.seed)\n    device = torch.device(f\"cuda:{args.gpu_id}\" if torch.cuda.is_available() else \"cpu\")\n    torch_dtype = {\"float16\": torch.float16, \"bfloat16\": torch.bfloat16,\n                   \"float32\": torch.float32}[args.dtype]\n\n    logger.info(\"Loading tokenizer and calibration data...\")\n    tokenizer = AutoTokenizer.from_pretrained(args.original_model, trust_remote_code=True)\n    calibration_data = load_calibration_data(tokenizer, args.num_samples, args.max_length,\n                                             args.seed)\n    n_total = len(calibration_data)\n    logger.info(f\"Loaded {n_total} calibration samples\")\n\n    # --- Collect activations (load models one at a time to save GPU memory) ---\n    logger.info(\"Loading original model...\")\n    orig_model = AutoModelForCausalLM.from_pretrained(\n        args.original_model, torch_dtype=torch_dtype, device_map=device, trust_remote_code=True\n    )\n    config = orig_model.config\n    n_heads_orig = config.num_attention_heads\n    n_kv_heads = config.num_key_value_heads\n    n_layers = config.num_hidden_layers\n    heads_per_kv = n_heads_orig // n_kv_heads\n    logger.info(f\"Architecture: {n_layers}L x {n_heads_orig}Q x {n_kv_heads}KV \"\n                f\"({heads_per_kv} Q/KV group, {n_layers * n_kv_heads} total groups)\")\n\n    logger.info(\"Collecting original model activations...\")\n    orig_acts = collect_qproj_activations(orig_model, calibration_data, device)\n    del orig_model\n    torch.cuda.empty_cache()\n    logger.info(\"Original model freed.\")\n\n    logger.info(\"Loading pruned model...\")\n    pruned_model, pruning_meta = load_pruned_model_with_meta(\n        args.original_model, args.pruned_model, torch_dtype, device\n    )\n    keep_masks = pruning_meta[\"attn_keep_masks\"]\n    logger.info(\"Collecting pruned model activations...\")\n    pruned_acts = collect_qproj_activations(pruned_model, calibration_data, device)\n    del pruned_model\n    torch.cuda.empty_cache()\n    logger.info(\"Pruned model freed. All activations cached on CPU.\")\n\n    # --- Phase 1: Full CKA scores ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 1: Full CKA scores (N=%d)...\", n_total)\n    full_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                    n_heads_orig, n_kv_heads)\n    valid_scores = {k: v for k, v in full_scores.items()\n                    if not (isinstance(v, float) and v != v)}\n    vals = np.array(list(valid_scores.values()))\n    logger.info(f\"Valid groups: {len(valid_scores)}/{n_layers * n_kv_heads}\")\n    logger.info(f\"CKA: mean={vals.mean():.4f}, std={vals.std():.4f}, \"\n                f\"range=[{vals.min():.4f}, {vals.max():.4f}]\")\n\n    # --- Phase 2: Split-half reliability ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 2: Split-half reliability (%d splits)...\", args.n_splits)\n    split_results = []\n    for i in range(args.n_splits):\n        rng = np.random.RandomState(args.seed + i)\n        perm = rng.permutation(n_total)\n        half = n_total // 2\n        idx_a = sorted(perm[:half].tolist())\n        idx_b = sorted(perm[half:2 * half].tolist())\n\n        scores_a = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_a)\n        scores_b = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                     n_heads_orig, n_kv_heads, idx_b)\n        arr_a, arr_b = scores_to_aligned_arrays(scores_a, scores_b)\n        rho, p = stats.spearmanr(arr_a, arr_b)\n        split_results.append({\"split\": i, \"rho\": float(rho), \"p_value\": float(p),\n                              \"n_groups\": len(arr_a)})\n        logger.info(f\"  Split {i}: rho={rho:.4f}, p={p:.2e}\")\n\n    mean_rho = float(np.mean([r[\"rho\"] for r in split_results]))\n    std_rho = float(np.std([r[\"rho\"] for r in split_results]))\n\n    # --- Phase 3: Calibration size sensitivity ---\n    logger.info(\"=\" * 50)\n    logger.info(\"Phase 3: Calibration size sensitivity...\")\n    size_results = []\n    for n_sub in [128, 256, 512]:\n        if n_sub >= n_total:\n            continue\n        rng = np.random.RandomState(args.seed)\n        sub_idx = sorted(rng.permutation(n_total)[:n_sub].tolist())\n\n        sub_scores = compute_group_cka(orig_acts, pruned_acts, keep_masks,\n                                       n_heads_orig, n_kv_heads, sub_idx)\n        ref_vals, sub_vals = scores_to_aligned_arrays(full_scores, sub_scores)\n        rho, p = stats.spearmanr(ref_vals, sub_vals)\n        size_results.append({\"n_samples\": n_sub, \"rho_vs_full\": float(rho),\n                             \"p_value\": float(p)})\n        logger.info(f\"  N={n_sub}: rho={rho:.4f} vs N={n_total}\")\n\n    # --- Compile and save results ---\n    per_group = {}\n    for (l, g), v in full_scores.items():\n        key = f\"layer{l}_group{g}\"\n        per_group[key] = None if (isinstance(v, float) and v != v) else float(v)\n\n    output = {\n        \"config\": {\n            \"original_model\": args.original_model,\n            \"pruned_model\": args.pruned_model,\n            \"num_samples\": n_total,\n            \"n_layers\": n_layers,\n            \"n_heads_original\": n_heads_orig,\n            \"n_kv_heads\": n_kv_heads,\n            \"heads_per_kv\": heads_per_kv,\n            \"total_gqa_groups\": n_layers * n_kv_heads,\n            \"valid_gqa_groups\": len(valid_scores),\n            \"seed\": args.seed,\n        },\n        \"per_group_cka_scores\": per_group,\n        \"cka_summary\": {\n            \"mean\": float(vals.mean()),\n            \"std\": float(vals.std()),\n            \"min\": float(vals.min()),\n            \"max\": float(vals.max()),\n            \"median\": float(np.median(vals)),\n        },\n        \"split_half_reliability\": {\n            \"per_split\": split_results,\n            \"mean_rho\": mean_rho,\n            \"std_rho\": std_rho,\n            \"pass\": mean_rho > 0.9,\n        },\n        \"size_sensitivity\": {\n            \"reference_n\": n_total,\n            \"per_size\": size_results,\n            \"all_pass_0.9\": all(s[\"rho_vs_full\"] > 0.9 for s in size_results),\n        },\n    }\n\n    os.makedirs(os.path.dirname(args.output) or \".\", exist_ok=True)\n    with open(args.output, \"w\") as f:\n        json.dump(output, f, indent=2)\n    logger.info(f\"Results saved to {args.output}\")\n\n    print(f\"\\n{'=' * 60}\")\n    print(\"CKA Reliability Analysis\")\n    print(f\"{'=' * 60}\")\n    print(f\"GQA groups: {len(valid_scores)}/{n_layers * n_kv_heads} valid\")\n    print(f\"CKA scores: {vals.mean():.4f} +/- {vals.std():.4f} \"\n          f\"[{vals.min():.4f}, {vals.max():.4f}]\")\n    sh_pass = \"PASS\" if mean_rho > 0.9 else \"FAIL\"\n    print(f\"\\nSplit-half reliability ({args.n_splits} splits):\")\n    print(f\"  rho = {mean_rho:.4f} +/- {std_rho:.4f}  {sh_pass} (threshold: 0.9)\")\n    for r in split_results:\n        print(f\"    Split {r['split']}: rho={r['rho']:.4f}\")\n    print(f\"\\nSize sensitivity (vs N={n_total}):\")\n    for s in size_results:\n        sv = \"PASS\" if s[\"rho_vs_full\"] > 0.9 else \"FAIL\"\n        print(f\"  N={s['n_samples']:4d}: rho={s['rho_vs_full']:.4f}  {sv}\")\n    print(f\"{'=' * 60}\")\n\n\nif __name__ == \"__main__\":\n    main()\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Verifying `--help` output."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "00091074-c51c-425c-a90e-0d826ef756af",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RX3z8HgHiVbT6jcPF5tSst",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21129,
+                "cache_read_input_tokens": 34147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 21129
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RKyTACseeoqwr9ZnKdwrw9",
+              "name": "Bash",
+              "input": {
+                "command": "python src/run_cka_reliability.py --help",
+                "description": "Verify argument parsing"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "f3235f39-7296-421b-9194-0e888113f9c3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RX3z8HgHiVbT6jcPF5tSst",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 21129,
+                "cache_read_input_tokens": 34147,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 21129
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1778833200,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "d5f57d74-c197-4306-ae62-91733a7b332e",
+                "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7"
+              }
+            }
+          ],
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T03:24:41.186Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01RKyTACseeoqwr9ZnKdwrw9"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "ca5934ad-00df-4cb2-9f00-c488fb9cdfd4",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GUwJiK6eotihTwakVH4hAs",
+              "name": "Bash",
+              "input": {
+                "command": "python3 src/run_cka_reliability.py --help",
+                "description": "Verify argument parsing with python3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "01412767-d668-44af-bae2-69980af5ca12",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KNpcDUaNjQjfRtaN3HkW86",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 133,
+                "cache_read_input_tokens": 55276,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 133
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T03:24:47.563Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py\", line 22, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'",
+              "is_error": true,
+              "tool_use_id": "toolu_01GUwJiK6eotihTwakVH4hAs"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "24fefc8e-6ae6-4d6f-8d61-e1f9fca7693e",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/src/run_cka_reliability.py\", line 22, in <module>\n    import torch\nModuleNotFoundError: No module named 'torch'"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0164wV8TR8w1QWHN21uBpEC2",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport ast, sys\nwith open('src/run_cka_reliability.py') as f:\n    tree = ast.parse(f.read())\nprint('Syntax OK')\n# Check argparse args\nsource = open('src/run_cka_reliability.py').read()\nfor arg in ['--mlp_groups', '--skip_cross_model', '--original_model', '--pruned_model', '--output']:\n    if arg in source:\n        print(f'  Found arg: {arg}')\n    else:\n        print(f'  MISSING arg: {arg}')\n\"",
+                "description": "Verify syntax and arg presence"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "16c461b5-c628-4957-9584-273943b9a486",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HAZt4YTyHL7GbP9t78HPez",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 194,
+                "cache_read_input_tokens": 55409,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 194
+                },
+                "output_tokens": 66,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T03:24:54.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0164wV8TR8w1QWHN21uBpEC2",
+              "type": "tool_result",
+              "content": "Syntax OK\n  Found arg: --mlp_groups\n  Found arg: --skip_cross_model\n  Found arg: --original_model\n  Found arg: --pruned_model\n  Found arg: --output",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "7c742930-1227-495d-8962-c019a0d649eb",
+            "tool_use_result": {
+              "stdout": "Syntax OK\n  Found arg: --mlp_groups\n  Found arg: --skip_cross_model\n  Found arg: --original_model\n  Found arg: --pruned_model\n  Found arg: --output",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，所有新参数都在。\n\n修改总结：\n- **Phase 4** (`fh_attn_reliability`): 对原始模型 attention heads 做 split-half F(h) 排名 Spearman ρ，阈值 0.9\n- **Phase 5** (`fh_mlp_reliability`): 对 MLP groups 做同样的 split-half F(h) reliability\n- 新增 `collect_mlp_activations` 收集 gate_proj 激活（与 `cka_overlap.py` 一致）\n- 新增 `compute_fh_scores` 计算 intra-layer pairwise CKA → F(h)\n- 新增 `compute_fh_reliability` 做 n_splits 次 split-half 并报告 Spearman ρ\n- `--pruned_model` 改为可选（`--skip_cross_model` 时不需要）\n- `--mlp_groups` 默认 28\n- 原始模型加载一次，两次 forward pass 分别收集 q_proj 和 gate_proj 激活\n- Phase 1-3 保留不变，仅在未设 `--skip_cross_model` 时执行"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "uuid": "7f56ee24-99d8-442b-bcda-ad2ea726980e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01HjjHtBm52CBRBDCTvbKUTU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 281,
+                "cache_read_input_tokens": 55603,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 281
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法正确，所有新参数都在。\n\n修改总结：\n- **Phase 4** (`fh_attn_reliability`): 对原始模型 attention heads 做 split-half F(h) 排名 Spearman ρ，阈值 0.9\n- **Phase 5** (`fh_mlp_reliability`): 对 MLP groups 做同样的 split-half F(h) reliability\n- 新增 `collect_mlp_activations` 收集 gate_proj 激活（与 `cka_overlap.py` 一致）\n- 新增 `compute_fh_scores` 计算 intra-layer pairwise CKA → F(h)\n- 新增 `compute_fh_reliability` 做 n_splits 次 split-half 并报告 Spearman ρ\n- `--pruned_model` 改为可选（`--skip_cross_model` 时不需要）\n- `--mlp_groups` 默认 28\n- 原始模型加载一次，两次 forward pass 分别收集 q_proj 和 gate_proj 激活\n- Phase 1-3 保留不变，仅在未设 `--skip_cross_model` 时执行"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 321013,
+            "duration_api_ms": 320274,
+            "num_turns": 7,
+            "stop_reason": "end_turn",
+            "session_id": "007d1df2-9b8b-4278-8004-c15c7675e9a7",
+            "total_cost_usd": 0.94866775,
+            "usage": {
+              "input_tokens": 7,
+              "cache_creation_input_tokens": 44043,
+              "cache_read_input_tokens": 236376,
+              "output_tokens": 22118,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 44043,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 334,
+                  "cache_read_input_tokens": 55603,
+                  "cache_creation_input_tokens": 281,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 281
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2111,
+                "outputTokens": 23,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.002226,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 7,
+                "outputTokens": 22118,
+                "cacheReadInputTokens": 236376,
+                "cacheCreationInputTokens": 44043,
+                "webSearchRequests": 0,
+                "costUSD": 0.9464417500000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "f4ac84c1-c57e-435b-815d-ecd7878546ba"
+          },
+          "id": "event-000022"
+        }
+      ],
+      "message_count": 22
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-cka-fh-reliability.md"
+}

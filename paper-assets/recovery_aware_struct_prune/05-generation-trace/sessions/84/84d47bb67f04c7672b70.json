@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84d47bb67f04c7672b70",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp eval qwen math westd",
+  "task_key": "worker_exp_eval_qwen_math_westd_20260516T101039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_eval_qwen_math_westd_20260516T101039_result.json",
+    "occurrence": 1,
+    "bytes": 713,
+    "sha256": "76c89f5c674aeb63601d31b9b13857a61be5b936cf01e65f1f2bd849ee9e2c34"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 eval 已成功启动并进入推理阶段：\n\n| 实验 | tmux session | PID | GPU | 显存占用 |\n|------|-------------|-----|-----|---------|\n| eval_sft_rasp_qwen_math | `eval_sft_rasp_qwen_math` | 102641 | cuda:0 | 12509 MiB |\n| eval_sft_standard_qwen_math | `eval_sft_standard_qwen_math` | 102643 | cuda:1 | 12467 MiB |\n\n两个进程都已加载模型到 GPU，正在 Loading GSM8K test set（可能需要下载数据集）。1319 样本 eval 预计 20-40 分钟完成。\n\n结果输出：\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_rasp_qwen_math_n1319.json`\n- `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_sft_standard_qwen_math_n1319.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-eval-qwen-math-westd.md"
+}

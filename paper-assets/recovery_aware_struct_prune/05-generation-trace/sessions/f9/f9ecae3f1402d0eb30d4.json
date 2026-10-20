@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9ecae3f1402d0eb30d4",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check 25 eval results",
+  "task_key": "worker_ops_check_25_eval_results_20260516T080527",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_25_eval_results_20260516T080527_result.json",
+    "occurrence": 1,
+    "bytes": 1068,
+    "sha256": "48d05369f3e5a82cca85df1ac14a7b879c29fc1c9e34cb20a4d89527dbb5a890"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n| 实验 | 状态 | Accuracy | 备注 |\n|------|------|----------|------|\n| **eval_postprune_rasp_25** | ✅ DONE | **21% (21/100)** | eos_rate=56%, avg_len=2033, 44/100 truncated |\n| **eval_sft_standard_25** | 🔄 RUNNING | ~53.4% (interim@350) | westb, 356/1319 (27%), ~2.3s/it |\n| **eval_sft_rasp_25** | 🔄 RUNNING | ~56.7% (interim@150) | westd, 163/1319 (12%), 很慢(GPU争抢, ~6min周期性stall) |\n| **eval_postprune_standard_25** | ❌ 不存在 | — | 未运行过，无文件无日志 |\n\n**关键观察：**\n- RASP 25% post-prune (21%) vs 20% post-prune (31%)：sparsity 增加 5pp 导致 post-prune accuracy 下降 10pp，且 eos_rate 崩塌 (56% vs 之前接近 100%)，说明 25% RASP 模型生成能力严重受损\n- eval_sft_rasp_25 在 westd 上跑得极慢（~5-6min GPU stall 周期），按当前速度预计还需 10+ 小时\n- eval_postprune_standard_25 从未启动，需要补跑\n\nRegistry 已更新 eval_postprune_rasp_25 → DONE。两个 SFT eval 仍为 RUNNING，等待完成后再更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-25-eval-results.md"
+}

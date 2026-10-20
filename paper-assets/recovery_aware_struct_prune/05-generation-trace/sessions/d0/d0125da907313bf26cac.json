@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0125da907313bf26cac",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "exp qwen math sft standard",
+  "task_key": "worker_exp_qwen_math_sft_standard_20260520T063534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_qwen_math_sft_standard_20260520T063534_result.json",
+    "occurrence": 1,
+    "bytes": 582,
+    "sha256": "ec241967d88e05622907512ad6141d1696ac08d933757c6f08ff6bf545247fe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。总结：\n\n- **实验**: `sft_qwen_math_standard_20`，状态 RUNNING\n- **服务器**: westb-23072 cuda:1，GPU 利用率 78%，显存 51GB\n- **训练配置**: 7473 GSM8K 样本，2 epochs，1870 steps，~1.13s/step\n- **预计完成**: ~35 分钟（约 14:50 + 35min ≈ 15:25 UTC+8）\n- **输出路径**: `/root/autodl-tmp/recovery_aware_struct_prune/sft_standard_20_qwen_math`\n- **问题修复**: `sft_recovery.py` 的 EOS assertion 已被自动修复（支持 Qwen 的 `<|im_end|>` token）\n- **Cron 自动回调**将在训练完成后触发"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-qwen-math-sft-standard.md"
+}

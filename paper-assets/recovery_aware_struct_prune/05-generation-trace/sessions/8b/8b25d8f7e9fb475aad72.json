@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b25d8f7e9fb475aad72",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code alpha ablation v2",
+  "task_key": "worker_code_alpha_ablation_v2_20260515T034726",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alpha_ablation_v2_20260515T034726_result.json",
+    "occurrence": 1,
+    "bytes": 692,
+    "sha256": "c292f244ffe1ce16835ce9abcf21b796ce65695eb63cac021827666157e61503"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 全部通过。\n\n**`scripts/run_alpha_ablation_v2.sh` 已就绪**，核心设计：\n\n| 项目 | 内容 |\n|------|------|\n| α 网格 | {0.0, 0.25, 0.5, 0.75, 1.0} |\n| 流程 | 顺序执行：prune → eval(GSM8K N=100) → 删除模型 → 下一个 α |\n| α=1.0 | 复用 `/root/autodl-tmp/pruned_rasp_20`，仅 eval，不删除 |\n| 磁盘安全 | 每轮结束立即 `rm -rf` 临时模型，峰值仅占 ~12GB |\n| GPU | 自动选择显存最多的 GPU（cuda:0 或 cuda:1） |\n| 输出 | `eval_results/alpha_ablation/eval_alpha_{0_0,0_25,...}.json` + 汇总 JSON |\n| 执行 | `bash scripts/run_alpha_ablation_v2.sh`（一键）或 `--dry-run`（验证） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alpha-ablation-v2.md"
+}

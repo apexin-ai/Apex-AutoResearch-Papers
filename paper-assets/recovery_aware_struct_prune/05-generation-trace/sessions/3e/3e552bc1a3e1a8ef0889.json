@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e552bc1a3e1a8ef0889",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "survey westd full harvest",
+  "task_key": "worker_survey_westd_full_harvest_20260522T001533",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_survey_westd_full_harvest_20260522T001533_result.json",
+    "occurrence": 1,
+    "bytes": 332,
+    "sha256": "47343152764e32fb57099779a657a1db5de219825fc550081f0e14c4894338ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "westb-23072 正常可达，确认是 westd-29022 单独的问题。\n\n**结论：westd-29022 无法连接（端口 29022 拒绝连接）。** AutoDL 实例可能已关机或重启后端口变更。请去 AutoDL 控制台检查该实例状态，获取新端口后告知我，我再重新执行全部探查和收割。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/survey-westd-full-harvest.md"
+}

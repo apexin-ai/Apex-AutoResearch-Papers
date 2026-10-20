@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "73e4066d915685a59fbd",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops prune 25pct rasp standard",
+  "task_key": "worker_ops_prune-25pct-rasp-standard_20260516T044629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_prune-25pct-rasp-standard_20260516T044629_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "5dfd0fe568068b89939913736ddb81eca6df5e0516d9769bb56d97ef36c209a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "磁盘满了，无法完成 Standard 25% 保存。当前状况：\n\n| 目录 | 大小 | 说明 |\n|------|------|------|\n| `grpo_stage2_rasp_20_v9/` | 143G | GRPO 训练 checkpoints |\n| `pruned_rasp_alpha_0.0/` | 12G | α ablation 模型 |\n| `pruned_rasp_alpha_1.0/` | 12G | α ablation 模型 |\n| `sft_rasp_20/` | 12G | SFT 模型 |\n| `sft_standard_20/` | 12G | SFT 模型 |\n| `grpo_stage2_standard_20_v8/` | 12G | GRPO checkpoints |\n| `pruned_rasp_25/` | 11G | **刚完成** |\n| `pruned_standard_25/` | 9.6G | **残缺，需删除** |\n| `models/Qwen2.5-Math-7B/` | 15G | 基线模型 |\n\n**必须做**：删除残缺的 `pruned_standard_25/`（9.6G）\n**但仍差 ~2G**：删除后只有 ~10G 可用，standard_25 需要 ~11G。\n\n建议清理候选（任选其一即可）：\n1. `grpo_stage2_rasp_20_v9/` 中的旧 checkpoints（143G，删部分即可）\n2. 空的 GRPO 目录（v5/v6/v7 等，但只释放几KB没用）\n3. `pruned_rasp_alpha_0.0/`（12G，如果 ablation 已完成）\n\n哪些可以删？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-prune-25pct-rasp-standard.md"
+}

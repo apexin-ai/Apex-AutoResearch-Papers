@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "65b90dbe0ef41acabae5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops eval unpruned grpo step50",
+  "task_key": "worker_ops_eval-unpruned-grpo-step50_20260516T030430",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_eval-unpruned-grpo-step50_20260516T030430_result.json",
+    "occurrence": 1,
+    "bytes": 464,
+    "sha256": "ca603813c8a03022b372ff2c5cc1361cf84fd680bbc0487df53929db8d37e0b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **可用 checkpoint**: checkpoint-90, checkpoint-95, checkpoint-100（save_total_limit=3，checkpoint-50 已被覆盖）\n- **实际选用**: **checkpoint-90**（可用的最早中间 checkpoint）\n- **eval 已成功启动**: westd-11672 cuda:1, PID **80819**\n- **exp_id**: `eval_grpo_unpruned_v2_step90`, 状态 RUNNING\n- **输出文件**: `/root/autodl-tmp/recovery_aware_struct_prune/artifacts/eval_grpo_unpruned_v2_step90.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-eval-unpruned-grpo-step50.md"
+}

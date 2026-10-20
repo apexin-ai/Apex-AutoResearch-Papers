@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "587375ba15b51db4abb2",
+  "project": "recovery_aware_struct_prune",
+  "kind": "history",
+  "title": "agent / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_2.md",
+    "occurrence": 1,
+    "bytes": 3666,
+    "sha256": "a301258697925746a479e5dff7ad96f34e406f411097fbe0ee5343750a7cb11b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_messages\nupdated: '2026-05-14T13:23:27+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-23072 的 cuda:0 和 cuda:1，不可用其他设备\n- 当前 MVP eval 正在跑（PID 170770/170786/170787），**不要 kill 或重启这些进程**\n- eval_gsm8k.py 已修复 OverflowError（磁盘上），但当前运行的 eval 用的是旧代码——如果 eval 崩溃需要用修复后代码重跑\n- **不要运行 `pip install -r /root/GRASPrune/requirements.txt`**——会降级 torch 从 2.10.0 到 2.7.0 破坏环境\n- GRASPrune 同时剪 MLP + attention KV groups（我们 RASP 只剪 MLP），论文对比时必须说明此差异\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-23072，2× RTX PRO 6000 96GB\n- 工作目录：/root/recovery_aware_struct_prune/\n- Python：/root/miniconda3/bin/python，激活方式 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：/root/autodl-tmp/DeepSeek-R1-Distill-Qwen-7B\n- HF cache：HF Hub 不可达，已 fallback 本地缓存\n- GRASPrune：/root/GRASPrune/（已 clone、patch data.py 支持 GSM8K、import 验证通过）\n- 活跃进程：PID 170770（主 bash wrapper）→ 170786（eval cuda:0）+ 170787（eval cuda:1），tmux session `mvp_rasp_pipeline_v2`\n- Cron：mvp_rasp_pipeline_v2 监控中（reconcile 确认 pid=170770 存活）\n\n### 3. 📊 当前状态\n**刚完成**：Director 指令的全部并行任务——Algorithm 1 伪代码修复、bib 修复、experiments.tex 框架+Reviewer 修复（citation keys/公式去重/activation shift 描述）、GRASPrune 代码准备+依赖安全+校准数据对齐。\n\n**RUNNING**：\n- `mvp_rasp_pipeline_v2`：Step 3.5 GSM8K eval ~6.5% done (~87/1319, ~7s/it)，预计 eval 还需 ~2h，之后自动进入 Step 4 GRPO RLVR (~12-15h)\n\n**DONE (failed)**：\n- `mvp_rasp_pipeline`：v1 失败（head 粒度 CKA 不适用 GQA），已用 v2 替代（GQA group 粒度 + MLP-level）\n\n**等待中**：cron 监控 mvp_rasp_pipeline_v2 完成回调。无待处理 Worker。\n\n### 4. 📋 待办\n- mvp_rasp_pipeline_v2 Step 3.5 eval 完成 → 自动进入 Step 4 GRPO，cron 继续监控\n- mvp_rasp_pipeline_v2 DONE(success) → on-experiment-done skill：分析 Spearman ρ，ρ≥0.4 宣布 MVP pass，立即启动 Phase 2 P1（`bash /root/recovery_aware_struct_prune/src/run_graspune.sh` 已就绪）\n- mvp_rasp_pipeline_v2 DONE(negative) → red-section Framing 调整提案，ρ∈[0.3,0.4) 在 25% sparsity 重复验证，ρ<0.3 走 Contingency pivot\n- mvp_rasp_pipeline_v2 DONE(failed) → on-experiment-failed skill，检查日志诊断原因，可能需要用修复后的 eval_gsm8k.py 重跑\n- eval 崩溃（OverflowError 触发）→ kill 旧进程，用修复后代码从 Step 3.5 resume\n- Phase 2 P1 启动后 → 同时派 Worker 写 Introduction + Related Work 初稿\n\n### 5. 🎯 战略上下文\n- **核心假设**：CKA functional overlap F(h) 预测结构化剪枝后 RLVR recoverability。MVP 验证 Spearman ρ(F(h), recoverability) ≥ 0.4\n- **目标会议**：EMNLP 2026 ARR May 25（距今 11 天）\n- **D001**：MVP 接受 35% sparsity 下 MLP-only pruning，不强制 attention pruning\n- **v1→v2 教训**：v1 在 head 粒度算 CKA 不适用 GQA 架构（shared KV），v2 改为 GQA group 粒度 + MLP-level correlation\n- **易错点**：GRASPrune 剪 MLP+attention 而 RASP 只剪 MLP，对比时 sparsity 含义不同（参数量 vs 结构数）；论文已在 experiments.tex 标注但分析时容易忘\n- **Phase 2 骨架**（MVP pass 后）：P1 GRASPrune+RLVR → P2 RLVR vs SFT → P2.5 Scoring ablation → P3 多剪枝率 → P4 Bonsai → P5 扩展评估\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-2.md"
+}

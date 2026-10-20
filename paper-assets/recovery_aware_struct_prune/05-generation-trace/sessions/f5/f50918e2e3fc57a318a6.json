@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f50918e2e3fc57a318a6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "monitor alpha2p0 sft eval westd2",
+  "task_key": "worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_monitor_alpha2p0_sft_eval_westd2_20260522T102144_result.json",
+    "occurrence": 1,
+    "bytes": 332,
+    "sha256": "b010a72e60cc72a31d73d3d9fca9be0c1746afcf1d7102e4873856df7142bd75"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n状态: ✅ 完成\nAccuracy: 64.97% (857/1319)\nC1 Δ = GRPO(66.11%) - SFT(64.97%) = +1.14 pp\nC1 claim 影响: SAFE (Δ ≤ 2pp) ✅\nGPU 2 当前: 0 MiB, 0% (已释放)\n```\n\nα=2.0 的 SFT 准确率 64.97%，与 GRPO 66.11% 的差距仅 1.14pp，在 ±2pp 范围内。C1 \"universal ±2pp\" 声明安全。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/monitor-alpha2p0-sft-eval-westd2.md"
+}

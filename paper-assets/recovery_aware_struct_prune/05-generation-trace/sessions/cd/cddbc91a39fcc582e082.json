@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cddbc91a39fcc582e082",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "harvest eval math500 sft cka only 20 v5",
+  "task_key": "worker_harvest_eval_math500_sft_cka_only_20_v5_20260521T193601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_harvest_eval_math500_sft_cka_only_20_v5_20260521T193601_result.json",
+    "occurrence": 1,
+    "bytes": 326,
+    "sha256": "ab404f56cfb8aabf6de6057a7dca80a66b68b5229b068c3a88dd11d5cfaaf561"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**eval_math500_sft_cka_only_20_v5: 失败**\n\n- 进程在 1/500 后静默退出，日志仅 10 行，无 error/traceback\n- 无 results.json 产出\n- 疑似 OOM kill 或外部终止（AutoDL 无系统日志可查）\n- Registry 已更新为 DONE/failed，cron 已删除\n\n**westb-23072 cuda:1: 空闲可用**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/harvest-eval-math500-sft-cka-only-20-v5.md"
+}

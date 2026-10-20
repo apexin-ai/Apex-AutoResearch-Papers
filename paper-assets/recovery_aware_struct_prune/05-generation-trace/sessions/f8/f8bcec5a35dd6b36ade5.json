@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8bcec5a35dd6b36ade5",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf5 depth baseline westd3",
+  "task_key": "worker_launch_mf5_depth_baseline_westd3_20260522T102129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf5_depth_baseline_westd3_20260522T102129_result.json",
+    "occurrence": 1,
+    "bytes": 436,
+    "sha256": "12842d562dc2519aa1a0ac26189a18d5b47692c091acc032739ca79d0b397538"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SFT 训练正常运行中。\n\n```\nPID: 36161\nGPU 3 显存: 52365 MiB\nPhase 1 (prune): 已完成（首次运行，19.12% sparsity）\nPhase 2 (SFT) 启动: 成功\n日志确认: 正常 — 180/1870 steps (~10%), ~1.65 it/s, 预计 SFT 总时间 ~19min\n```\n\nPipeline 从 Phase 2 开始正常推进，`&&` 链已修正确保后续阶段串联执行。预计总时间 ~5h（SFT ~19min + GRPO ~1.5h + eval×2 ~3h）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf5-depth-baseline-westd3.md"
+}

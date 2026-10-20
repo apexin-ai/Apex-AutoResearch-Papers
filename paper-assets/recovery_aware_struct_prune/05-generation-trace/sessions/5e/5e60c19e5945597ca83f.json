@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5e60c19e5945597ca83f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "paper compile check",
+  "task_key": "worker_paper_compile-check_20260515T051647",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_compile-check_20260515T051647_result.json",
+    "occurrence": 1,
+    "bytes": 1375,
+    "sha256": "3d0a255705f58f57e8bd5e61bcec7f0f7dcc423ad77c1c010b961852639721be"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All cross-references resolve. Here's the full report:\n\n---\n\n## 编译状态报告\n\n### main.tex 状态\n已存在，ACL review 格式，结构完整：abstract → introduction → related_work → method → experiments → conclusion → limitations → appendix。\n\n### 已修复的问题\n\n| # | 问题 | 修复 |\n|---|------|------|\n| 1 | `siunitx` 包未加载（表格文件使用 `\\sisetup` 和 `S` 列类型） | 已在 main.tex 添加 `\\usepackage{siunitx}` |\n| 2 | `hendrycks2021mmlu`、`chen2021humaneval`、`bai2024longbench` 三个 cite key 缺失 | 已添加到 references.bib |\n| 3 | 表格文件仅在 `artifacts/tables/`，paper 目录无副本 | 已复制到 `paper/tables/` |\n\n### 交叉引用一致性\n- **\\ref / \\eqref**：所有活跃引用（非注释）均有对应 \\label，无悬空引用\n- **\\cite**：所有 34 个 citation key 在 references.bib 中均有定义\n- **references.bib**：所有 33 条 bib entry 大括号平衡，无语法错误\n\n### 待完成项（不影响编译）\n- `abstract.tex`、`conclusion.tex`、`limitations.tex`、`appendix.tex` 为 TBD 占位符\n- 表格文件（`tables/table1_postprune.tex` 等）已就绪但未在 experiments.tex 中 `\\input`，待 GRPO 结果填入后取消注释\n- experiments.tex Results 和 Ablation 小节为注释占位，待实验完成后填写"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-compile-check.md"
+}

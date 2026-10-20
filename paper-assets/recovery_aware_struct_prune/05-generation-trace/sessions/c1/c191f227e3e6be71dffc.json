@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c191f227e3e6be71dffc",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check eval script default tokens",
+  "task_key": "worker_ops_check_eval_script_default_tokens_20260518T223702",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check_eval_script_default_tokens_20260518T223702_result.json",
+    "occurrence": 1,
+    "bytes": 225,
+    "sha256": "8413b0c6ee0d0ae7d3c08c38ef23b23f90edd33658f324b30971325de0ee0c6b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器的 `--max_new_tokens` 默认值一致：**default=4096**。\n\n之前不带此参数运行的 eval_math500 实际使用的就是 4096 tokens，旧结果 (26.6%) 在生成长度上是可比的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-eval-script-default-tokens.md"
+}

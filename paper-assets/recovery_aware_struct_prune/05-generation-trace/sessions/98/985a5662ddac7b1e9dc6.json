@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "985a5662ddac7b1e9dc6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops rasp clipped ratio monitor",
+  "task_key": "worker_ops_rasp-clipped-ratio-monitor_20260514T231735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_rasp-clipped-ratio-monitor_20260514T231735.log",
+    "occurrence": 1,
+    "bytes": 556065,
+    "sha256": "c7bdc42ed60740cbba3f7055e56dee3997edfef1b98dbecd0577c46ee594bf5b"
+  },
+  "statistics": {
+    "messages": 310,
+    "user_turns": 0,
+    "tool_calls": 122,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 122,
+      "tool_result": 122,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 310,
+      "chunks": [
+        {
+          "path": "985a5662ddac7b1e9dc6-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "985a5662ddac7b1e9dc6-part-0002.json",
+          "message_count": 130
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-rasp-clipped-ratio-monitor.md"
+}

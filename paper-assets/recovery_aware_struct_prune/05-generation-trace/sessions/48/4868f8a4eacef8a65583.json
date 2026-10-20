@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4868f8a4eacef8a65583",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "fix eval gsm8k sft alpha4 20 timeout",
+  "task_key": "worker_fix_eval_gsm8k_sft_alpha4_20_timeout_20260521T222131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_eval_gsm8k_sft_alpha4_20_timeout_20260521T222131_result.json",
+    "occurrence": 1,
+    "bytes": 1363,
+    "sha256": "b8ace19c649b5f2981efd55188a4e503988fcf741a881686c0d66c3f0ec975ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成报告\n\n### 1. Timeout 延长：N → 已重启\n\n`kill 422002` 发 SIGTERM 给 timeout 进程，timeout 将信号转发给 python 子进程，导致 python 被杀（EXIT_CODE=143）。正确做法应是 `kill -9`（SIGKILL 阻止转发）。\n\n**补救**：已用 timeout 28800s (8h) 重新启动。新进程链：\n- 424712 (bash) → 424716 (timeout 28800) → **424717** (python eval_gsm8k.py)\n\n### 2. Python 进程当前状态\n\n- **PID 424717**，已开始评估 (1/1319)\n- GPU 0，当前 VRAM 12712 MiB（模型权重加载完毕）\n- 预计运行 ~4.2h，8h timeout 有充足余量\n\n### 3. GPU 0 诊断\n\n| 项目 | 结果 |\n|------|------|\n| 竞争进程 | **无**，GPU 0 仅 PID 424717 |\n| VRAM（当前） | 12712 MiB（模型权重） |\n| VRAM（峰值预估） | ~29GB（KV cache 随 4096 tokens 增长） |\n| 29GB vs 17-18GB 差异原因 | eval_gsm8k 未传 `--max_new_tokens`，**默认 4096**；其他 eval_math500 用 2048 |\n\n### 4. Stall 根因\n\n**`--max_new_tokens` 默认 4096（命令行未指定）。** 当模型未生成 EOS（eos_rate=96.67%，~3.3% 的样本），会生成完整 4096 tokens：\n- 正常样本：avg_len=287 tokens，~2-3s\n- 无 EOS 样本：4096 tokens，~5-6 min（14x 慢）\n\n这同时解释了 stall 和 VRAM 异常（4096 tokens 的 KV cache 比 2048 大一倍）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-eval-gsm8k-sft-alpha4-20-timeout.md"
+}

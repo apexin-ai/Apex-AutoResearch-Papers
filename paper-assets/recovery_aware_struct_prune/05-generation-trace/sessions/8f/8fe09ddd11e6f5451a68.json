@@ -1,0 +1,782 @@
+{
+  "schema_version": "1.0",
+  "id": "8fe09ddd11e6f5451a68",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops kill stale downloads",
+  "task_key": "worker_ops_kill_stale_downloads_20260518T220525",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill_stale_downloads_20260518T220525.log",
+    "occurrence": 1,
+    "bytes": 26997,
+    "sha256": "ef6adc3e4173b6da79038dc1f28cdfe417a0cc3716b966307cd6bbd4e4209c62"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 0,
+    "tool_calls": 4,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 5,
+      "tool_call": 4,
+      "tool_result": 4,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune",
+                "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__detect_image",
+                  "mcp__agent-ml-research__kill_job",
+                  "mcp__agent-ml-research__ssh_execute",
+                  "mcp__agent-ml-research__ssh_read_only"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "c233c0cf-b32b-4163-b5b5-94c3445bf190",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-17-projects-recovery-aware-struct-prune/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779156000,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "61426de7-93c6-4584-ab5e-1fd327b319c7",
+                "session_id": "07597144-1638-4ab4-96e9-c905089238b6"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The user wants me to SSH to westd-29022, find and kill background model download processes, then check for incomplete downloads in the HuggingFace cache.",
+              "signature": "EtUCClkIDRgCKkDFZq1uH6AqkJGC/WOiGQJzDFraN6N5t2D2jnZuP7vAUH3pILLd3AL1w409qkr9hJiF//JosIe/NP3jrlzkjm7dMg9jbGF1ZGUtb3B1cy00LTY4ABIMQsqGeAUvy8IqYK/+Ggxy7o1A0WmrpETu2x0iMHhpvTiZwUE3mZVB0JH++4ucyUlwwLQfguoPmmEwyBHfGNIpazjFdED88DaiJ3a17SqpATViB8E8eTC1nmGykQv1euaCJX9lsx40arLQbL4WD1vSIydxklzmXRPu7maGMeQOIiRCTcNFyvgE6ZRWzLfXPJov8QrrFPyyKCBMYxa4d/rBTscC+jkbx3aszb8C0c/fUuLTpkz2KyolCOszFBVRwtdZt6tQAlQAtmxFSDfodjB+SVxhJIzHOWF6y/2N68hWfJUXOTB9mxQ3Ffcz6lb+ziMIR9IYI18AnIkYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "55a03d3c-20df-47e9-8978-906e6fd95ac4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ngm5RdzybLQmYNiE8ns2Dj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12934,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12934
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LXtSWYb7KCS53fKQLXHMEN",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__ssh_execute",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "86f1c258-197f-4a21-89db-8ca695c1d722",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ngm5RdzybLQmYNiE8ns2Dj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12934,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12934
+                },
+                "output_tokens": 23,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-18T22:05:38.662Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01LXtSWYb7KCS53fKQLXHMEN",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__ssh_execute"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "581c0e05-15fa-48ef-9ceb-7d72e9a2b89f",
+            "tool_use_result": {
+              "matches": [
+                "mcp__agent-ml-research__ssh_execute"
+              ],
+              "query": "select:mcp__agent-ml-research__ssh_execute",
+              "total_deferred_tools": 23
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "查找相关进程。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "e31a1aa4-997e-46d0-9a1c-9995dacc60a5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQFaaK6TtDGEX15qnCGH8p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 24775,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RkNy3cpkES4m9QNDq9yQ2z",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29022",
+                "command": "ps aux | grep -iE \"deepseek|huggingface|download|snapshot\" | grep -v grep",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "e2fd236f-03d7-461a-9669-b941ab5cc0d3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SQFaaK6TtDGEX15qnCGH8p",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 397,
+                "cache_read_input_tokens": 24775,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 397
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-18T22:05:43.128Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RkNy3cpkES4m9QNDq9yQ2z",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "8880e075-a1d3-4b4e-8a6e-846814750bcd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.05}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.05}}"
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有匹配的进程（grep 返回空）。扩大搜索范围看看是否有 python 下载类进程。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "8cd92003-2090-4ba4-a1ba-78184ef1bc5c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TP5cP87MR1G6cHMWDJJP8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 25172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 231
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YEQLad6znnetfEBUty6LVR",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29022",
+                "command": "ps aux | grep -iE \"python|wget|curl|aria2|git-lfs\" | grep -v grep",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "88326ee3-5317-4c23-8bc5-a0af166d1e31",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TP5cP87MR1G6cHMWDJJP8Q",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 231,
+                "cache_read_input_tokens": 25172,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 231
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-18T22:05:47.605Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YEQLad6znnetfEBUty6LVR",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        933  0.0  0.0 187552 101872 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        940  0.0  0.0 4147292 79680 ?       Sl   May18   0:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1052  0.0  0.0 28341068 12380 ?      Sl   May18   0:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4_ocohnk/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4_ocohnk/startup_error\\\\nroot      19609  0.0  0.0   6184  3872 ?        Ss   01:52   0:00 tmux new-session -d -s math500_standard_grpo_fair source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_standard_grpo_fair_v2.log\\\\nroot      21007  0.0  0.0   4364  3276 pts/1    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_sft_cka_only_20_v4.log\\\\nroot      21013  102  0.1 56088388 2037780 pts/1 Rl+ 02:15 235:31 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048\\\\nroot      21094  0.0  0.0   4364  3232 pts/2    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_grpo_rasp_20_fair.log\\\\nroot      21100  103  0.1 56658656 2021128 pts/2 Rl+ 02:15 239:09 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048\\\\nroot      22043  0.0  0.0   4364  3284 pts/0    Ss+  02:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_v2.log\\\\nroot      22049  102  0.1 58648428 1789792 pts/0 Rl+ 02:26 224:18 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "f4079fed-263d-499b-8e93-9b590e44a106",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"root        933  0.0  0.0 187552 101872 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\\\nroot        940  0.0  0.0 4147292 79680 ?       Sl   May18   0:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\\\nroot       1052  0.0  0.0 28341068 12380 ?      Sl   May18   0:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4_ocohnk/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4_ocohnk/startup_error\\\\nroot      19609  0.0  0.0   6184  3872 ?        Ss   01:52   0:00 tmux new-session -d -s math500_standard_grpo_fair source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_standard_grpo_fair_v2.log\\\\nroot      21007  0.0  0.0   4364  3276 pts/1    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_sft_cka_only_20_v4.log\\\\nroot      21013  102  0.1 56088388 2037780 pts/1 Rl+ 02:15 235:31 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048\\\\nroot      21094  0.0  0.0   4364  3232 pts/2    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_grpo_rasp_20_fair.log\\\\nroot      21100  103  0.1 56658656 2021128 pts/2 Rl+ 02:15 239:09 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048\\\\nroot      22043  0.0  0.0   4364  3284 pts/0    Ss+  02:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_v2.log\\\\nroot      22049  102  0.1 58648428 1789792 pts/0 Rl+ 02:26 224:18 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"root        933  0.0  0.0 187552 101872 ?       S    May18   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot        940  0.0  0.0 4147292 79680 ?       Sl   May18   0:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot       1052  0.0  0.0 28341068 12380 ?      Sl   May18   0:32 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_4_ocohnk/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_4_ocohnk/startup_error\\nroot      19609  0.0  0.0   6184  3872 ?        Ss   01:52   0:00 tmux new-session -d -s math500_standard_grpo_fair source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_standard_grpo_fair_v2.log\\nroot      21007  0.0  0.0   4364  3276 pts/1    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=2 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_sft_cka_only_20_v4.log\\nroot      21013  102  0.1 56088388 2037780 pts/1 Rl+ 02:15 235:31 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/sft_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_sft_cka_only_20_v4.json --max_new_tokens 2048\\nroot      21094  0.0  0.0   4364  3232 pts/2    Ss+  02:15   0:00 bash -c source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=3 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048 2>&1 | tee ~/runs/recovery_aware_struct_prune/math500_grpo_rasp_20_fair.log\\nroot      21100  103  0.1 56658656 2021128 pts/2 Rl+ 02:15 239:09 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_rasp_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_rasp_20_fair.json --max_new_tokens 2048\\nroot      22043  0.0  0.0   4364  3284 pts/0    Ss+  02:26   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/recovery_aware_struct_prune && CUDA_VISIBLE_DEVICES=1 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048 2>&1 | tee /root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_standard_20_fair_v2.log\\nroot      22049  102  0.1 58648428 1789792 pts/0 Rl+ 02:26 224:18 python src/eval_math500.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_stage2_standard_20_fair --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/math500_grpo_standard_20_fair_v2.json --max_new_tokens 2048\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有模型下载进程。当前运行的都是 `eval_math500.py` 评估任务（正常工作负载），没有 deepseek/huggingface 下载相关进程。\n\n检查 HuggingFace 缓存。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "a71f259f-e964-47ba-95fe-73c3c9e4cd41",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kfw2wnNXVWSarLzVkLJaFZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1762,
+                "cache_read_input_tokens": 25403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1762
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NTQnvAAJ2XnW2EtSo8kARY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westd-29022",
+                "command": "du -sh ~/.cache/huggingface/ 2>/dev/null && ls ~/.cache/huggingface/hub/ 2>/dev/null | head -20",
+                "account": "root",
+                "warn": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "16d4fff2-be6d-4e2c-a1b5-c6f0a1e28a57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kfw2wnNXVWSarLzVkLJaFZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1762,
+                "cache_read_input_tokens": 25403,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1762
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-18T22:05:52.749Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NTQnvAAJ2XnW2EtSo8kARY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"308M\\\\t/root/.cache/huggingface/\\\\nCACHEDIR.TAG\\\\ndatasets--HuggingFaceH4--MATH-500\\\\ndatasets--openai--gsm8k\\\\ndatasets--openai--openai_humaneval\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "e11ba5c4-9048-48ef-9226-3c9d56b10bff",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"308M\\\\t/root/.cache/huggingface/\\\\nCACHEDIR.TAG\\\\ndatasets--HuggingFaceH4--MATH-500\\\\ndatasets--openai--gsm8k\\\\ndatasets--openai--openai_humaneval\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"308M\\t/root/.cache/huggingface/\\nCACHEDIR.TAG\\ndatasets--HuggingFaceH4--MATH-500\\ndatasets--openai--gsm8k\\ndatasets--openai--openai_humaneval\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.46}}"
+              }
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n- **下载进程：无。** westd-29022 上没有任何模型下载进程（deepseek/huggingface/snapshot 等）。可能已经自行结束或被之前 kill 过了。\n- **当前运行的进程**都是本项目的 `eval_math500.py` 评估任务（3 个，分别在 cuda:1/2/3 上），属正常工作负载。\n- **HuggingFace 缓存：308MB**，内容仅为评估数据集（MATH-500、gsm8k、humaneval），没有未完成的模型下载文件，无需清理。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "uuid": "4df4f29c-5dc0-4690-ac40-a217858ba977",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0156xYvBZfW3HFj9UwbqmJW4",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 371,
+                "cache_read_input_tokens": 27165,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 371
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n- **下载进程：无。** westd-29022 上没有任何模型下载进程（deepseek/huggingface/snapshot 等）。可能已经自行结束或被之前 kill 过了。\n- **当前运行的进程**都是本项目的 `eval_math500.py` 评估任务（3 个，分别在 cuda:1/2/3 上），属正常工作负载。\n- **HuggingFace 缓存：308MB**，内容仅为评估数据集（MATH-500、gsm8k、humaneval），没有未完成的模型下载文件，无需清理。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 24084,
+            "duration_api_ms": 23087,
+            "num_turns": 5,
+            "stop_reason": "end_turn",
+            "session_id": "07597144-1638-4ab4-96e9-c905089238b6",
+            "total_cost_usd": 0.17879375,
+            "usage": {
+              "input_tokens": 9,
+              "cache_creation_input_tokens": 15695,
+              "cache_read_input_tokens": 114356,
+              "output_tokens": 886,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 15695,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 188,
+                  "cache_read_input_tokens": 27165,
+                  "cache_creation_input_tokens": 371,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 371
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1232,
+                "outputTokens": 19,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001327,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 9,
+                "outputTokens": 886,
+                "cacheReadInputTokens": 114356,
+                "cacheCreationInputTokens": 15695,
+                "webSearchRequests": 0,
+                "costUSD": 0.17746675,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "20c6e3c9-b3e2-421c-8381-5272ba12e1bd"
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-stale-downloads.md"
+}

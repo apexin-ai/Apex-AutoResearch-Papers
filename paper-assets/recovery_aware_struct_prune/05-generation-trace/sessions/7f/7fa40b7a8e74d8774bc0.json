@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fa40b7a8e74d8774bc0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh harvest gsm8k sft standard 25 final",
+  "task_key": "worker_ssh_harvest_gsm8k_sft_standard_25_final_20260521T142819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_harvest_gsm8k_sft_standard_25_final_20260521T142819_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "0ececfe5beb77e6b0847fd818c0d0ab44744de211d2b8a232ad3bf7198d8f2c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 ALIVE，当前进度 **1253/1319**（95%）。\n\n最近一次 checkpoint（样本 1250）的中间指标：\n- **accuracy**: 0.5096\n- **eos_rate**: 95.20%\n- **avg_response_length**: 337\n\n按当前速度（~3s/sample），剩余 66 个样本预计 **3-4 分钟**完成。稍后再来收割最终结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-harvest-gsm8k-sft-standard-25-final.md"
+}

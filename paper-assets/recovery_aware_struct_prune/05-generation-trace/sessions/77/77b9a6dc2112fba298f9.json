@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77b9a6dc2112fba298f9",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops urgent westb status check",
+  "task_key": "worker_ops_urgent_westb_status_check_20260517T171123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_urgent_westb_status_check_20260517T171123_result.json",
+    "occurrence": 1,
+    "bytes": 854,
+    "sha256": "3c1f0c376dc96e727884d3e3ab67b8bf2629bdb9c9c2b9db832e3f6d4fe7a4ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westb-23072 状态报告\n\n### GPU 状态\n\n| GPU | 进程 | PID | 显存占用 | GPU Util | 温度 | 功耗 |\n|-----|------|-----|---------|----------|------|------|\n| cuda:0 | grpo_cka_only_20 | 725232 (bash: 725227) | 73540 / 97887 MiB | 100% | 81°C | 600W/600W |\n| cuda:1 | grpo_random_20 | 719684 (bash: 719679) | 73156 / 97887 MiB | 100% | 83°C | 600W/600W |\n\n所有 4 个 PID 均存活，状态正常（python 进程 Rl = running）。\n\n### 实验进度\n\n| 实验 | 当前 step | 总 step | 进度 | 已运行 | 预估剩余 | 速度 |\n|------|----------|--------|------|--------|---------|------|\n| grpo_cka_only_20 (cuda:0) | 19/100 | 19% | ~2h09m | ~9h29m | ~421s/it |\n| grpo_random_20 (cuda:1) | 29/100 | 29% | ~3h27m | ~8h50m | ~448s/it |\n\n### 空闲 GPU\n\n**无空闲 GPU。** 两张卡均满载运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-urgent-westb-status-check.md"
+}

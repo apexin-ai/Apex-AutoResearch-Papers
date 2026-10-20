@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e288148683b0e3d27636",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "eval check gradient postsft and fill westb",
+  "task_key": "worker_eval_check_gradient_postsft_and_fill_westb_20260517T112307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_check_gradient_postsft_and_fill_westb_20260517T112307_result.json",
+    "occurrence": 1,
+    "bytes": 1512,
+    "sha256": "6bca8688d15414c668ec3e5111fe12f7ae2da761436b335a6907ee5e4e0df52e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. eval_gradient_postsft 结果\n\n| 指标 | 值 |\n|---|---|\n| **GSM8K Accuracy** | **61.5% ± 3.4%** (123/200) |\n| EOS rate | 99.5% |\n| Avg response length | 167 tokens |\n| 结论 | **success** |\n\nHypothesis 验证：Pre-SFT 25.5% → Post-SFT **61.5%**。Gradient scoring 经 SFT 恢复后与 RASP (~61%) **持平**，而非预期的更弱。这说明 gradient scoring 造成的损伤是可逆的，SFT 可以充分恢复。\n\nRegistry 已更新为 DONE/success。\n\n### 2. westb GPU 状态\n\n| GPU | 进程 | 占用 | 用途 |\n|---|---|---|---|\n| cuda:0 | PID 704557 | 50.4GB / 97.9GB, 52% util | `sft_recovery.py` — random pruned model SFT |\n| cuda:1 | PID 707938 | 12.6GB / 97.9GB, 80% util | `eval_gsm8k.py` — random pruned model post-prune eval |\n\n**两张 GPU 均被占用**，正在跑 scoring ablation（random method 阶段）。当前不可用于新实验。\n\n### 3. scoring ablation 代码\n\n- **`run_scoring_ablation.sh`** 和 **`run_scoring_ablation_continue.sh`** 已存在，覆盖 4 个 method: `magnitude`, `gradient`, `random`, `cka_only`\n- **`prune.py`** 的 `--mode` 参数支持 7 种 scoring: `standard`, `rasp`, `rasp-rlvr`, `magnitude`, `gradient`, `random`, `cka_only`\n- `magnitude` scoring ablation 已包含在现有脚本流程中（正在运行），**不需要额外准备代码**\n\n如果需要跑额外的 magnitude ablation 实验（不同 sparsity 或参数），需要等当前 scoring ablation 完成后释放 GPU。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-check-gradient-postsft-and-fill-westb.md"
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "bca79de5cdcae7814c73",
+  "project": "recovery_aware_struct_prune",
+  "kind": "conversation",
+  "title": "ssh launch seed123 v2 grpo westd1",
+  "task_key": "worker_ssh_launch_seed123_v2_grpo_westd1_20260522T142304",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_ssh_launch_seed123_v2_grpo_westd1_20260522T142304.jsonl",
+    "occurrence": 1,
+    "bytes": 484,
+    "sha256": "23c598144e26cd2026ffe6ec66b5b87de7070249960ac9b0bcaba056a9355d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:23:23.493519+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "westd-32935 不在 GPU 白名单内。\n\n约束 C005 规定：**GPU 白名单为 westb-23072 cuda:0/1 + westd-29022 cuda:0/1/2/3，严禁在白名单外的 GPU 上启动实验。**\n\nwestd-32935 未在白名单中。是 Manager 新分配的服务器？如果是，我执行任务并更新约束；如果不是，请确认正确的服务器。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_ssh_launch_seed123_v2_grpo_westd1_20260522T142304"
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/conversations/ssh-launch-seed123-v2-grpo-westd1.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fa0745ddb891a50bf3bf",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "launch mf3 eval n500 westb1",
+  "task_key": "worker_launch_mf3_eval_n500_westb1_20260522T120617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_mf3_eval_n500_westb1_20260522T120617_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "df9ae898625843977d89f0efc506d96e9ac9ae14617125ba5b87d58e67acc1e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程跑了 1.5 分钟，CPU 779%（多核加载权重），GPU 还没分配显存——模型正在从磁盘加载到 CPU 内存。这个阶段正常，等模型 `.to(device)` 后 GPU 显存才会涨。\n\n当前状态汇总：\n\n| 项目 | 结果 |\n|------|------|\n| **旧进程 Kill** | PID 179898 已终止 |\n| **新进程** | Bash wrapper PID 202359，实际 Python PID **202364** |\n| **GPU 1** | 模型加载中（CPU 阶段），权重即将转移到 GPU |\n| **日志** | 模型路径正确，检测到 Non-uniform MLP（剪枝后模型特征） |\n| **nvidia-smi** | GPU 0: 空闲 0MiB / GPU 1: 3MiB（即将涨到 ~16GB） |\n\nN=500 eval 已启动，预计模型加载完成后开始推理（约 500×78s ÷ 加速 ≈ 数小时内完成）。可通过以下命令后续跟踪：\n```\ntail -f results/eval_gsm8k_grpo_qwen_math_cka_only_20_n500.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-mf3-eval-n500-westb1.md"
+}

@@ -1,0 +1,209 @@
+_next_id: 15
+decisions:
+- id: D001
+  date: 2026-05-12 07:42 UTC
+  summary: MVP 方案确定：ACE2005 NER+RE 训练，CrossNER 零样本评估，对比 gold-label-only vs 全 conformance
+    rewards
+  rationale: 1) ACE2005 是 IE 标准 benchmark，规模小（~600 docs）适合快速迭代；2) CrossNER 零样本评估可直接对比
+    MR-UIE；3) NER+RE 同时测试 type conformance 和 relational constraint（最核心的差异化组件）；4) Pass
+    标准 ≥2 F1 与论文 significance 标准一致；5) 13 天 DDL 要求 MVP 必须在 2-3 天内完成
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-12 07:46 UTC
+  summary: 采纳 Reviewer 3 项 warning：增加 base model zero-shot baseline (C)、ACE2005 RE
+    in-domain 评估、灰区处理规则
+  rationale: 1) Base model baseline 几乎零成本但能检测 catastrophic forgetting，是必要 sanity check；2)
+    ACE2005 RE in-domain 指标可确认 relational constraint reward 未被 GRPO 忽略（RE zero-shot
+    留研究阶段）；3) 灰区规则避免 Δ=1.5 时无明确行动方案
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-12 09:09 UTC
+  summary: MVP 训练数据从 ACE2005 改为 SciERC（免费可得），ACE2005 留研究阶段补充
+  rationale: ACE2005 需 LDC 许可（LDC2006T06），获取耗时且 DDL 紧迫。SciERC 免费可得（AI2 DyGIE++ repo），同样含
+    NER+RE + type-pair constraints（6 entity types, 7 relation types），足以验证核心假设。IDEA_BRIEF
+    原方案也包含 SciERC 作为训练数据之一。
+  related_experiments: []
+  depends_on:
+  - D001
+  - D002
+- id: D004
+  date: 2026-05-12 09:13 UTC
+  summary: MVP 训练改为 LoRA 微调（非全参），两卡并行跑 A/B 对比组
+  rationale: 全参 GRPO 需 ~126GB 显存（model+ref+Adam+grad），单卡 RTX PRO 6000 98GB 不够。LoRA
+    微调降至 ~40GB/卡，可两卡并行跑 baseline(A) 和 conformance(B)，满足 10h 时间约束。LoRA 是 GRPO 微调 7-9B
+    模型的标准做法，不影响核心假设验证。
+  related_experiments: []
+  depends_on:
+  - D001
+  - D002
+- id: D005
+  date: 2026-05-13 03:14 UTC
+  summary: MVP 首轮未达标（B<A），允许 1 轮 reward 权重调参，不直接 kill
+  rationale: B 的 conformance 指标大幅提升（relational_constraint +49.9pp）但 F1 未提升（-0.62 到
+    -2.73pp）。信号方向正确但 reward 权重失衡——conformance 过强抑制了 F1。允许 1 天调参（降低 conformance 权重
+    / 提升 F1 权重 / curriculum）。调参后仍无改善则 kill 或转 framing。
+  related_experiments:
+  - exp_id: eval_A_v2
+    role: baseline
+    result: 'entity_f1: scierc 0.4404, politics 0.4460, science 0.5697'
+  - exp_id: eval_B_v2
+    role: treatment
+    result: 'entity_f1: scierc 0.4209, politics 0.4187, science 0.5635; conformance大幅提升但F1略低于A'
+  depends_on:
+  - D004
+  - D003
+- id: D006
+  date: 2026-05-13 03:19 UTC
+  summary: 批准 D1（F1 主导权重+去 GDPO）和 D2（两阶段课程学习）并行调参，D2 复用 A 的 checkpoint-250
+  rationale: MVP 首轮 B 的 conformance 大幅提升但 F1 略低于 A。D1 控制变量清楚（权重+GDPO），D2 提供 curriculum
+    insight。D2 Phase 1 与 A 训练相同，复用 checkpoint-250 节省 ~5h。cuda:1 当前空闲，D1 立即启动不等 C eval。
+  related_experiments:
+  - exp_id: eval_A_v2
+    role: baseline
+    result: F1 优于 B
+  - exp_id: eval_B_v2
+    role: treatment
+    result: conformance 大幅提升但 F1 略低
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-13 04:48 UTC
+  summary: Kill D1 v2 (59/500 steps)，修复 relation type 大小写 bug 后重跑
+  rationale: Reviewer 发现 _convert_dygiepp_doc 中 relation type 大小写不匹配（gold "PART-OF"
+    vs schema "Part-of"），导致 f1_correctness_reward 的 relation 部分在所有训练中始终为 0。D1 v2 仅完成
+    12%（59/500），kill 重跑成本 ~1h GPU。修复后 D1 将获得完整的 entity+relation F1 reward 信号。
+  related_experiments:
+  - exp_id: exp_004_d1_v2
+    role: affected
+    result: kill at step 59/500, relation reward was 0 throughout
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-13 05:38 UTC
+  summary: Kill D1 v3 (step 21/500)，训练中禁用 thinking mode 后重跑 D1 v4，消除 train-eval mismatch
+  rationale: D1 v3 clipped_ratio=0.994，99.4% completions 被 thinking token 截断，reward≈0.015，训练信号基本无效。训练中
+    thinking mode 导致 2x 降速（115s/it vs 62s/it）且与 eval（已禁用 thinking）存在 mismatch。禁用后预计恢复正常速度并获得有效
+    reward 信号。
+  related_experiments:
+  - exp_id: exp_004_d1_v3
+    role: affected
+    result: kill at step 21/500, clipped_ratio=0.994, reward=0.015
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-13 15:55 UTC
+  summary: MVP 初步 PASS：D2 curriculum learning 在 CrossNER 零样本 entity_f1 超过 A 3-4pp，达到
+    2pp 阈值，待 A/B re-eval 最终确认
+  rationale: D2 ckpt400 结果全面领先：scierc entity_f1 +9.2pp, politics +3.2pp, science +3.6pp
+    vs A。relation_f1=0.2379（首次非零）。conformance 指标与 A/C 持平（struct_comp >0.95），无 D1 v4
+    的跨域退化问题。D2 mode collapse 影响极小（≤1.1pp）。所有模型 > C baseline（无 catastrophic forgetting）。B(GDPO)
+    确认无效。Story 调整为 curriculum learning（F1-only → conformance）。A/B re-eval 用修复代码重跑后做最终确认。
+  related_experiments:
+  - exp_id: eval_D2_ckpt400
+    role: primary
+    result: scierc entity_f1=0.5325, relation_f1=0.2379; politics entity_f1=0.478;
+      science entity_f1=0.6057
+  - exp_id: eval_D1_v4
+    role: comparison
+    result: scierc entity_f1=0.4966, relation_f1=0.2913; CrossNER struct_comp 退化严重
+  - exp_id: eval_D2_final
+    role: ablation
+    result: mode collapse 影响 ≤1.1pp
+  - exp_id: eval_A_v2
+    role: baseline
+    result: 'entity_f1: scierc 0.4404, politics 0.4460, science 0.5697'
+  - exp_id: eval_C_v2
+    role: sanity
+    result: 所有模型 > C，无 catastrophic forgetting
+  depends_on:
+  - D008
+  - D006
+  - D005
+- id: D010
+  date: 2026-05-13 15:59 UTC
+  summary: 接受 Reviewer CONDITIONAL PASS，排期两个 blocking ablation：A/B re-eval + A-continued（A+400步
+    F1-only）
+  rationale: Reviewer 指出 D2 vs A 的 +3-4pp 可能部分来自多 400 步训练而非 curriculum/conformance。A-continued
+    ablation（A 继续 400 步 F1-only）是隔离"训练更久"vs"curriculum+conformance"的关键实验。如果 A-continued
+    也达 +2pp，claim 需从"conformance helps"降级。两个 ablation 合计 ~13h GPU，DDL 前完全可行。
+  related_experiments:
+  - exp_id: eval_D2_ckpt400
+    role: primary
+    result: CrossNER +3-4pp vs A, 数值达标
+  - exp_id: eval_D1_v4
+    role: comparison
+    result: CrossNER entity_f1 达标但 struct_comp 严重退化
+  depends_on:
+  - D009
+- id: D011
+  date: 2026-05-13 20:18 UTC
+  summary: Relation_f1 基线修正：A=0.181（非0），MVP 判定标准不变，paper narrative 待 post-MVP 调整
+  rationale: eval_A_v3 用修复后代码重新评估，relation_f1 从 0→0.181。entity_f1 和 conformance 指标完全不变，确认
+    MVP gate（基于 CrossNER entity_f1）不受影响。D2 vs A 的 relation_f1 优势从"从无到有"变为"+5.7pp 增量"，仍是显著提升但叙事强度需调整。此调整推迟到
+    post-MVP paper_framing.md 阶段处理。
+  related_experiments:
+  - exp_id: eval_A_v3
+    role: evidence
+    result: relation_f1=0.181 (scierc), entity_f1 unchanged
+  - exp_id: eval_D2_ckpt400
+    role: comparison
+    result: relation_f1=0.2379, delta=+5.7pp vs A
+  depends_on:
+  - D010
+- id: D012
+  date: 2026-05-13 23:10 UTC
+  summary: MVP 判定翻转为 FAIL：控制训练步数后 conformance reward 对 IE 质量无增量贡献，D009 初步 PASS 来自多训练步数而非
+    reward 效果
+  rationale: Reviewer 提交等步数对比 ablation 结果（A-continued ckpt400 vs D2 ckpt400，均 900
+    effective steps）：entity_f1 差距全部 <2pp 阈值（scierc +1.67pp、politics A-cont 反超 +0.36pp、science
+    +0.40pp），relation_f1 A-cont 胜出 +5.72pp，f1_correctness A-cont 全面优于 D2。D2 唯一优势是
+    schema 合规指标 relational_constraint（+20.7pp），不是 IE 质量。之前 D009 的 +3-4pp 表观优势完全来自多训练步数（900
+    vs 500），而非 conformance reward 的增量贡献。核心假设"schema conformance rewards 提升零样本 IE 迁移"不成立。
+  related_experiments:
+  - exp_id: eval_A_continued_ckpt400
+    role: ablation_baseline
+    result: 'entity_f1: scierc 0.5158, politics 0.4816, science 0.6017; relation_f1:
+      scierc 0.2951; f1_correctness 全面优于 D2'
+  - exp_id: eval_D2_ckpt400
+    role: treatment
+    result: 'entity_f1: scierc 0.5325, politics 0.478, science 0.6057; relation_f1:
+      scierc 0.2379; relational_constraint 0.918'
+  - exp_id: eval_B_v3
+    role: negative
+    result: entity_f1 全面低于 A; structural_completeness 跨域严重退化（politics -9.24pp, science
+      -14.98pp）
+  depends_on:
+  - D009
+  - D010
+  - D011
+- id: D013
+  date: 2026-05-13 23:30 UTC
+  summary: MVP FAIL 确认后暂停项目，向用户请示方向（kill+pivot vs reframe vs 换架构），推荐 kill+pivot
+  rationale: D012 已 falsify 核心假设。等步数对比（A-cont vs D2, 900 steps）差异全部 <2pp 阈值，relation_f1
+    A-cont 反超。根因：Qwen3.5-9B type_conformance 已 ~97%，conformance reward 边际收益趋零。边际迭代期望收益低于
+    pivot 到新方向。2 张 GPU 空闲等用户决策。
+  related_experiments:
+  - exp_id: eval_A_continued_ckpt400
+    role: ablation_baseline
+    result: entity_f1 scierc 0.5158, relation_f1 0.2951
+  - exp_id: eval_D2_ckpt400
+    role: treatment
+    result: entity_f1 scierc 0.5325, relation_f1 0.2379
+  - exp_id: eval_B_v3
+    role: negative
+    result: entity_f1 全面低于 A
+  depends_on:
+  - D012
+- id: D014
+  date: 2026-05-14 01:59 UTC
+  summary: 用户决策 Kill 项目：释放 GPU、通知 Manager、归档
+  rationale: MVP FAIL（D012）后向用户提供 A（kill+pivot）/B（per-component ablation 最后一搏）两个选项，用户选择
+    A。核心假设"schema-conformance rewards 提升零样本 IE 迁移"被干净 falsified——conformance 与 extraction
+    quality 之间缺乏因果关系（Reviewer 确认），非调参可救。释放 2 张 GPU 给其他项目。
+  related_experiments: []
+  depends_on:
+  - D012
+  - D013

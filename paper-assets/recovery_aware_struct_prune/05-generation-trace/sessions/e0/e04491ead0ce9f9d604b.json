@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e04491ead0ce9f9d604b",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo v7 emergency",
+  "task_key": "worker_code_grpo_v7_emergency_20260515T140620",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_v7_emergency_20260515T140620_result.json",
+    "occurrence": 1,
+    "bytes": 609,
+    "sha256": "1ba673c7616e8d7fd169ab9e8abbab79d06e34699e3341f763705d4ab489ca9b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Both jobs are alive and in early stages (~1h43m uptime). Current state:\n\n- **RASP v7** (GPU 0): Model loaded, preparing GSM8K dataset. GPU memory: 12.5GB/98GB. Last log at 22:30:33 — dataset prep phase.\n- **Standard v7** (GPU 1): Model loaded, non-uniform MLP detected. GPU memory: 3 MiB — still loading into RAM, hasn't moved to GPU yet.\n\nBoth are progressing normally. Model loading + dataset preparation + ref_model creation takes a while for these pruned models. The actual training steps haven't started yet — once they do, GPU memory will spike to ~96GB as seen in the dry run."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-v7-emergency.md"
+}

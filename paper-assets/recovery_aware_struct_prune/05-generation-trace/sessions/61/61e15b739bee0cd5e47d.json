@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "61e15b739bee0cd5e47d",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code grpo stage2 v2 launch",
+  "task_key": "worker_code_grpo_stage2_v2_launch_20260515T033101",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_grpo_stage2_v2_launch_20260515T033101_result.json",
+    "occurrence": 1,
+    "bytes": 342,
+    "sha256": "990e284f3d9f7965340367865b34d6823326107a25882b29119681a5ed9a75b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务已提交，等待中。当前状态：\n\n| 项目 | 状态 |\n|------|------|\n| 旧进程 (263888, 263966) | 已确认死亡 |\n| RASP v2 (cuda:0) | PID 274151, 模型加载中 |\n| Standard v2 (cuda:1) | PID 274234, 模型加载中 |\n| Registry spec | 已更新 |\n| Step 10 健康检查 | ~3 分钟后自动执行 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-grpo-stage2-v2-launch.md"
+}

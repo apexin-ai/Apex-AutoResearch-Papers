@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c479aef4bd2c5db85aa1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh check westb0 submit eval",
+  "task_key": "worker_ssh_check_westb0_submit_eval_20260522T222245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_westb0_submit_eval_20260522T222245_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "12c29eabbfe386427a2dc496bb6cc4d6e23680d0ea49d75624807662895dc5ed"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Eval 已开始运行，500 个问题。数据集从 cache 加载成功，eval loop 已启动。\n\n总结：\n\n- **任务**: `E_MATH500_SFT_QWEN_CKA` — Qwen2.5-Math-7B SFT CKA-only MATH-500 eval\n- **服务器**: westb-23072 cuda:0\n- **PID**: 247997 (bash) / 248002 (python)\n- **模型**: `sft_qwen_math_cka_only_20_final` (12.3GB, cuda:0 占用 12503 MiB)\n- **输出**: `results/eval_math500_sft_qwen_math_cka_only_20.json`\n- **预估时长**: ~3-4 小时（参考之前 0.5B 模型 MATH-500 eval 255/500 用了 ~1.5h，7B 模型会更慢）\n- **Registry**: RUNNING"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-westb0-submit-eval.md"
+}

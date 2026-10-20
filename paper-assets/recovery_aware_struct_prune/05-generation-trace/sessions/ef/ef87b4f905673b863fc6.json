@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef87b4f905673b863fc6",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops check westb status",
+  "task_key": "worker_ops_check-westb-status_20260516T022413",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-westb-status_20260516T022413_result.json",
+    "occurrence": 1,
+    "bytes": 1157,
+    "sha256": "0d8d2af0efa0f0af55f2f014581b21ecc69777f2cddcc6d3eb0217852221bbfe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n| 项目 | grpo_stage2_rasp_20_v9 (cuda:0) | eval_grpo_rasp_v9_step5 (cuda:1) |\n|------|------|------|\n| **PID** | 566666 ✅ 存活 | 572124 ✅ 存活 (子进程 572129 实际执行) |\n| **运行时长** | 2h20m | 29m |\n| **内存 RSS** | ~2.9GB | 3.6MB (wrapper shell) |\n| **GPU 显存** | 71,674 MiB | 29,644 MiB |\n| **当前进度** | **step 20/30** (67%), checkpoint-20 刚写完 (10:25) | **250/1319** samples (19%), acc=**0.6440** |\n| **关键 metrics** | step 10: reward=0.015, loss=0.007, kl=0.0007<br>step 20: reward=0.039, loss=-0.003, kl=0.001 | eos_rate=99.6%, avg_len=161 |\n| **速度** | ~7min/step (410-420s) | ~2.3s/sample (正常段), 有间歇性慢 sample |\n| **预计完成** | 剩 10 steps × 7min ≈ **~70min** (约 11:35) | 剩 1069 samples × ~2.5s ≈ **~45min** (约 11:10) |\n\n**磁盘**: `/root/autodl-tmp/` 250GB 用了 152GB (61%), 余 99GB，充足。\n\n**训练趋势**: reward 从 step 10 的 0.015 涨到 step 20 的 0.039，kl 仍然很低 (0.001)，clipped_ratio 从 0.956 升到 0.981（几乎全部被截断到 max_length=1024）。模型还没学会生成有效的短回答。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-westb-status.md"
+}

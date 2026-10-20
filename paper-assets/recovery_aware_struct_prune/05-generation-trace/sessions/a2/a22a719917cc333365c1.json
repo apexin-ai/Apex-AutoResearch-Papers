@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a22a719917cc333365c1",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ops final audit compile push",
+  "task_key": "worker_ops_final_audit_compile_push_20260524T162626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_audit_compile_push_20260524T162626_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "f947ab95ac3b5513be7ebd3f362770bbf6b7e5fe064023abe604920bb4e79b22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **主文本**：8 页（Discussion and Conclusion 在第 8 页结束）\n- **总页数**：15 页\n- **Undefined refs/citations**：无\n- **Abstract**：缩写已展开，渲染正常\n- **Push**：成功，`db935c0` 已推送到 `origin/main`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-audit-compile-push.md"
+}

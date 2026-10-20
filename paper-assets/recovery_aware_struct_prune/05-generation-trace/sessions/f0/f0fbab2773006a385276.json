@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f0fbab2773006a385276",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code eval gsm8k grpo cka only 20 prep",
+  "task_key": "worker_code_eval_gsm8k_grpo_cka_only_20_prep_20260518T042436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_eval_gsm8k_grpo_cka_only_20_prep_20260518T042436_result.json",
+    "occurrence": 1,
+    "bytes": 1078,
+    "sha256": "7bd8e4456357b9287dd39fb4184c1c9233f09563d856dd5551c4e46fdd353db4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本参数确认完毕。关键信息：\n\n- 脚本：`/root/recovery_aware_struct_prune/src/eval_gsm8k.py`\n- 参数 `--model_path` 指定模型路径，`--output_path` 指定输出，不传 `--max_samples` 则 eval 全部 1319 条\n- 默认 greedy decoding，`--dtype bfloat16`，`--device_map auto`\n- 脚本内部硬编码了 GSM8K parquet 本地路径，无需联网\n\n完整 eval 命令（submit_training_job 格式）：\n\n```\nbash -c \"source /root/miniconda3/bin/activate && cd /root/recovery_aware_struct_prune && python src/eval_gsm8k.py --model_path /root/autodl-tmp/recovery_aware_struct_prune/grpo_cka_only_20 --output_path /root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json --device_map cuda:1\"\n```\n\n说明：\n- `--device_map cuda:1` 避开 cuda:0 上正在跑的 scoring_ablation_magnitude_20\n- 不传 `--max_samples`，默认 eval 全部 1319 条\n- 默认 greedy decoding（temperature=0, do_sample=False）\n- 输出到 `/root/autodl-tmp/recovery_aware_struct_prune/results/gsm8k_grpo_cka_only_20.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-eval-gsm8k-grpo-cka-only-20-prep.md"
+}

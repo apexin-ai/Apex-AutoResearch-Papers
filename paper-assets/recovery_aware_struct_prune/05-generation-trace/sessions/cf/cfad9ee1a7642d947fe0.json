@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfad9ee1a7642d947fe0",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh kill and restart math500 westb",
+  "task_key": "worker_ssh_kill_and_restart_math500_westb_20260521T134845",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_kill_and_restart_math500_westb_20260521T134845_result.json",
+    "occurrence": 1,
+    "bytes": 893,
+    "sha256": "a8d66d4510ab909fc1bb1c7364c09b59a9b9a095edff950afdb81738d3884204"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态正常。进程 99426 存活，VmRSS=15GB（模型正在 CPU 加载中），232 线程。GPU 0 显示 100% utilization 但无 GPU 进程——这是之前 kill 的进程留下的 stale utilization 计数器，模型还没移到 GPU 上。\n\n**汇报：**\n\n| 项目 | 状态 |\n|------|------|\n| Kill 90585 (grpo_standard_25) | 已杀死 |\n| Kill 95278 (grpo_cka_only_20_v3) | 已杀死 |\n| 新 eval PID | **99426** (cuda:0, @2048) |\n| GPU 占用 | cuda:0 模型加载中（CPU→GPU），cuda:1 空闲 |\n| v1 SFT Standard 25% max_new_tokens | **2048**（JSON 无显式 config 字段，但 response_length 上限=2048，truncated=318/500 = 63.6%） |\n\n注意：首次启动用了错误参数名（`--output_dir`/`--n_samples`/`--temperature`），已更正为 `--output_path`/`--max_samples`（未传=全量500）/无 temperature 参数（脚本无此选项）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-kill-and-restart-math500-westb.md"
+}

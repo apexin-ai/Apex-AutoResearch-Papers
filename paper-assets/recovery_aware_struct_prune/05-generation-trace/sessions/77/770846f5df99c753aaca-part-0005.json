@@ -1,0 +1,358 @@
+{
+  "schema_version": "1.0",
+  "session_id": "770846f5df99c753aaca",
+  "rounds": [
+    {
+      "number": 57,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-25T21:25:56.721982+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n审稿意见已提交给 Review Director。\n\n总结：给出 **Overall 3.0 (Findings)**。核心问题有四个 critical：(1) RASP 被自身消融特例 CKA-only 超越，方法贡献不成立；(2) 乘法形式的 I(h)=0 退化行为缺少加法替代对比；(3) Random baseline 的 max_completion_length 不一致（512 vs 1024）违反受控实验设计；(4) RASP 全部 α 变体仅单 seed，dose-response 曲线不可靠。此外有 6 个 warning 级问题涉及 TOST ε 选择、decoupling 普适性边界、25% sparsity 单 seed 等。论文的优势在于受控实验设计理念、reward-accuracy decoupling 的新颖发现、以及多维训练动态诊断工具。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-25T21:26:07.075479+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Reviewer 1 交叉回应已收到，维持 3.0 (Findings)。等待 Reviewer 2 的交叉回应。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director"
+          },
+          "id": "event-000722"
+        }
+      ]
+    },
+    {
+      "number": 58,
+      "messages": [
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-25T21:27:17.748719+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿意见]:\n\n# Reviewer 2 交叉回应：逐条回应 Reviewer 1 的审稿意见\n\n---\n\n## Critical 问题\n\n**[AGREE] R1-N1: RASP 方法贡献被自身消融否定**\n\n同意，且与我的 N2 指向同一根本问题。我的 N2 从 \"α=2.0 最优意味着 CKA-dominant，undermines balancing 叙事\" 角度论述，R1-N1 从 \"论文最终推荐 CKA-only 而非 RASP\" 角度论述——本质一致：RASP 作为独立方法贡献不成立。\n\n补充一点 R1 未提及的：Table 1 数据显示 RASP(α=2.0) Peak Rew = 0.354，CKA-only Peak Rew = 0.354，两者完全相同。这比 R1 的论证更直接——在最优配置下 RASP 与 CKA-only 的 recovery capacity 指标无差异，RASP 框架的额外 parametric 复杂性没有带来任何增益。如果作者声称 α=2.0 时 accuracy (66.11%) 优于 CKA-only (64.39%)，这个 1.72pp 差异恰好落在 R1-N4 指出的单 seed 不可信区间内。\n\n**[AGREE] R1-N2: 乘法形式退化行为未与加法替代对比**\n\n同意，这是一个我未覆盖的有价值技术点。RASP 的乘法形式 $S_{RASP}(h) = I(h) \\times (1-F(h))^\\alpha$（Eq. 5）意味着 $I(h)=0$ 的结构无论 diversity 多高都被零化。加法替代（如 $S = \\beta \\cdot I(h) + (1-\\beta) \\cdot (1-F(h))$）不存在此退化，是合理的 ablation 对照。缺少这个对照，无法判断 α=1.0 collapse（Table 1, Peak Rew 0.061）是乘法形式的 pathological artifact 还是 importance-diversity tradeoff 在该配置下的真实行为。这一遗漏与我的 N2 构成互补——我关注 α=2.0 端（CKA-dominant），R1 关注 α=1.0 端（collapse），合在一起说明 RASP 的整个 parametric 空间都有问题：一端退化，另一端等价于 CKA-only。\n\n**[AGREE with nuance] R1-N3: Random baseline max_completion_length 不一致**\n\n同意这违反了受控实验设计原则，论文自称 \"hold everything else constant\"（Section 3）但此处不一致。但我对严重程度的评估略低于 R1：\n\n- Random 是四种方法中最弱的 baseline，用于 \"控制 informative scoring 的效应\"\n- max_completion_length 512 vs 1024 可能导致 Random 的 GRPO reward 被低估（因为 reasoning trace 更容易截断），但 Random 在 recovery capacity spectrum 中已经排在 Standard 之上（Peak Rew 0.125 vs 0.060, Table 1），如果统一到 1024 可能进一步拉大这个差距\n- 关键影响：如果 Random 在 1024 设置下 accuracy 和 reward 都更高，那 Standard（唯一一个低于 Random 的 informative method）的表现就更显尴尬，这反而强化了论文关于 \"importance-only 不如 diversity-preserving\" 的结论\n\n所以不一致是真实问题，应报告并修复，但不太可能翻转核心 spectrum ordering。对我的有效窗口判断（N3）无直接影响——30% collapse 是所有方法共享的架构限制，与 Random 的超参数无关。\n\n**[AGREE] R1-N4: RASP α 变体全部单 seed，dose-response 曲线不可靠**\n\n强烈同意，且与我的 N2 直接相关。我的 N2 指出 \"α=2.0 CKA-dominant undermines balancing narrative\"，R1-N4 进一步指出这个 α=2.0 的优势本身在统计上就不可信。两个问题叠加：\n\n1. (我的 N2) 即使 α=2.0 真的更好，它也只是 CKA-only 的近似\n2. (R1-N4) α=2.0 是否真的更好，在单 seed 下无法确认\n\nAppendix J 报告 CKA-only 的 3-seed 标准差为 0.19pp（Section 4.5）。α=2.0 的 66.11% vs CKA-only 64.39% 差距为 1.72pp，看似显著，但 α=2.0 自身方差未知。如果 α=2.0 的标准差与 CKA-only 相当（~0.19pp），则 1.72pp 可能显著；但如果 α=2.0 方差更大（考虑到 RASP 在不同 α 下表现差异巨大——从 collapse 到 66%——variance 可能更高），则 1.72pp 不可信。\n\n这加剧了我对方法新颖性的质疑：RASP 不仅在最优配置下等价于 CKA-only（我的 N2），而且连 \"是否真的优于 CKA-only\" 这个前提都未被统计验证（R1-N4）。\n\n---\n\n## Warning 问题\n\n**[AGREE] R1-W1: TOST ε=2pp 缺乏 a priori justification**\n\n同意。TOST 的 equivalence margin 是结论成立与否的关键参数。ε=2pp 对于 GSM8K（~1300 题，准确率 60-65%）意味着约 26 题的差异，这在教育评测中算实质性差异还是噪音？论文选择 2pp 但未引用文献或给出统计 power 分析来证明这个选择。如果 ε=1pp，部分 \"等价\" 结论可能不成立。\n\n**[AGREE] R1-W2: 15% sparsity 下 CKA-only 优势被 GRPO 放大**\n\n同意这削弱了 \"SFT+GRPO 抹平差异\" 的叙事。Appendix M 的 15% 数据（CKA-only vs Standard: +1.51pp post-GRPO，而 post-SFT 差距更小）表明 GRPO 在低剪枝率下并非纯粹的 diagnostic——它可以放大方法间差异。这与我的 N1（decoupling 可能是天花板效应）一致：在 15% sparsity 下 accuracy headroom 更大，GRPO 开始产生实质性差异，进一步暗示 20% 下的 \"decoupling\" 是 headroom 耗尽的 artifact。\n\n**[REBUT] R1-W3: 25% sparsity 单 seed，Standard Δ=+0.99pp 恰在 1pp 边界**\n\n部分反驳。R1 的担忧合理——单 seed 下 0.99pp 恰在边界确实不够稳健。但这个数据点不是论文核心 claim 的支撑：25% sparsity 主要作为 \"collapse 前的边界条件\" 出现（Section 4.1, \"All methods collapse at 30%\"），而非核心 spectrum 分析的基础。论文的核心 spectrum 结论建立在 20% sparsity 数据上（Table 1, 3 seeds for CKA-only/Standard/Random）。25% 数据的不确定性是真实问题，但严重程度低于 R1 隐含的判断。\n\n**[AGREE] R1-W4: 300-step extended training 未报告 step-by-step accuracy 曲线**\n\n同意。Appendix E 只报告了 100 步和 300 步的 checkpoint accuracy，但没有中间步骤的 accuracy trajectory。这是一个遗漏——如果 CKA-only 在 150-200 步时 accuracy 仍在上升，而 Standard 在 100 步后就 plateau 了，这将是非常有信息量的。更重要的是，300 步仍然远少于 RLVR 文献中常见的训练预算（通常 1000-5000 步），这与我的 Q5 一致。\n\n**[AGREE] R1-W5: Limitations 关于 Random seed 的表述与正文矛盾**\n\n同意这是写作问题。如果 Limitations 说 \"RASP α variants and Random use single GRPO seeds\" 但 Appendix L (Table 11) 显示 Random 有 3 seeds（42, 123, 456），则存在矛盾。这类不一致会降低审稿人对其他声称的信任度。\n\n**[REBUT] R1-W6: Calibration M=512 importance score 稳定性未验证**\n\n部分反驳。R1 关心 M=512 样本量是否足够计算稳定的 importance score。但 Appendix H（Table 8）报告了 CKA scoring 在不同 calibration set sizes（256/512/1024）下的 Spearman ρ 稳定性（ρ=0.964-0.979），虽然这只验证了 CKA ranking 的稳定性而非 importance score 的稳定性，但暗示 512 样本量对 structure ranking 的计算已经足够稳定。更直接的反驳：importance score 基于 Taylor expansion（一阶梯度×激活），这在剪枝文献中是标准做法，M=512 远超 LLM-Pruner（Ma et al., 2023）使用的 calibration 规模。\n\n---\n\n## 综合评估\n\nR1 的审稿意见整体高质量，与我的评审高度互补：\n\n| 问题域 | R1 视角 | R2 视角 | 关系 |\n|--------|---------|---------|------|\n| RASP 贡献 | N1: 推荐 CKA-only 否定 RASP | N2: α=2.0 CKA-dominant 否定 balancing | 同一问题的两面 |\n| 乘法退化 | N2: 缺加法对照 | 未覆盖 | R1 独有贡献 |\n| 实验控制 | N3: Random 超参不一致 | 未覆盖 | R1 独有贡献 |\n| 统计可靠性 | N4: α 变体单 seed | Q2: RASP vs CKA-only 重叠度 | 互补 |\n| Decoupling 本质 | 未深入讨论 | N1: SFT 天花板效应 | R2 独有贡献 |\n| 有效窗口 | 未直接讨论 | N3: 20-25% 过窄 | R2 独有贡献 |\n| Framing 错位 | 未直接讨论 | W1: Title vs 实际发现 | R2 独有贡献 |\n\n两份审稿合在一起对 RASP 方法贡献形成了全面否定：从 α→0（Standard 退化）到 α=1.0（乘法 collapse）到 α=2.0（CKA-only 等价且单 seed 不可信）到 α→∞（CKA-only 本身）。RASP 作为 parametric family 在整个参数空间都不优于其端点。\n\n我维持 Overall 3.0（Findings）评分。R1 的技术细节问题（N2 乘法 vs 加法、N3 超参不一致）加强了我对方法贡献不足的判断，但未改变总体评估——论文的控制变量实验设计和实证发现（尤其 SFT dominance 和 criterion-dependent training dynamics）仍然有 Findings 级别的价值。\n"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-25T21:27:37.383033+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__update_review_issues,mcp__agent-ml-research__submit_review_report_to_research_director",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-25T21:27:37.438980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 55
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-25T21:27:40.436328+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_local_file",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-25T21:27:40.575215+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "No matching deferred tools found"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "ToolSearch",
+            "elapsed_ms": 138
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-25T21:27:43.769720+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "file": "review_issues.yaml",
+              "max_chars": "0"
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-25T21:27:43.870505+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'mistakes.yaml', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'review_issues.yaml'\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 100
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-25T21:27:48.337445+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/review_issues.yaml"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-25T21:27:48.639740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\n2\t# ============================================================\n3\t# Round 1-3 Issues — All Resolved\n4\t# ============================================================\n5\t\n6\t- id: \"R1-C1\"\n7\t  summary: \"CKA-recovery link 仅相关性, 无因果干预\"\n8\t  category: method\n9\t  severity: critical\n10\t  status: resolved\n11\t  first_raised_round: 1\n12\t  last_seen_round: 3\n13\t  resolution: \"Jaccard overlap 分析 + Limitations 承认 + 多种子统计验证\"\n14\t  resolution_round: 3\n15\t\n16\t- id: \"R1-C2\"\n17\t  summary: \"Single-seed GRPO 无统计显著性\"\n18\t  category: experiment\n19\t  severity: critical\n20\t  status: resolved\n21\t  first_raised_round: 1\n22\t  last_seen_round: 3\n23\t  resolution: \"3-seed GRPO CKA-only, Welch's t-test p=0.0009\"\n24\t  resolution_round: 3\n25\t\n26\t- id: \"R1-C3\"\n27\t  summary: \"仅 GSM8K 单基准\"\n28\t  category: experiment\n29\t  severity: critical\n30\t  status: resolved\n31\t  first_raised_round: 1\n32\t  last_seen_round: 3\n33\t  resolution: \"MATH-500 OOD 验证 + MBPP 代码基准\"\n34\t  resolution_round: 3\n35\t\n36\t- id: \"R1-W1\"\n37\t  summary: \"Title overclaim 'determines'\"\n38\t  category: framing\n39\t  severity: warning\n40\t  status: resolved\n41\t  first_raised_round: 1\n42\t  last_seen_round: 3\n43\t  resolution: \"Title 改为 'shapes'\"\n44\t  resolution_round: 3\n45\t\n46\t- id: \"R1-W2\"\n47\t  summary: \"Abstract 'universally determines' overclaim\"\n48\t  category: framing\n49\t  severity: warning\n50\t  status: resolved\n51\t  first_raised_round: 1\n52\t  last_seen_round: 3\n53\t  resolution: \"改为 'significantly shapes'\"\n54\t  resolution_round: 3\n55\t\n56\t- id: \"R1-W3\"\n57\t  summary: \"仅 DeepSeek-R1-7B 单模型\"\n58\t  category: experiment\n59\t  severity: warning\n60\t  status: resolved\n61\t  first_raised_round: 1\n62\t  last_seen_round: 3\n63\t  resolution: \"Qwen2.5-Math-7B cross-arch + 1.5B cross-scale\"\n64\t  resolution_round: 3\n65\t\n66\t- id: \"R1-M1\"\n67\t  summary: \"GRPO 超参未报告\"\n68\t  category: experiment\n69\t  severity: info\n70\t  status: resolved\n71\t  first_raised_round: 1\n72\t  last_seen_round: 3\n73\t  resolution: \"Appendix 完整超参表\"\n74\t  resolution_round: 3\n75\t\n76\t- id: \"R1-M2\"\n77\t  sum\n…[truncated 33237 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "Read",
+            "elapsed_ms": 302
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-25T21:32:02.910376+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_review_issues"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "tool_args": {
+              "project": "recovery_aware_struct_prune",
+              "issues_yaml": "# ============================================================\n# Round 1-3 Issues — All Resolved\n# ============================================================\n\n- id: \"R1-C1\"\n  summary: \"CKA-recovery link 仅相关性, 无因果干预\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Jaccard overlap 分析 + Limitations 承认 + 多种子统计验证\"\n  resolution_round: 3\n\n- id: \"R1-C2\"\n  summary: \"Single-seed GRPO 无统计显著性\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"3-seed GRPO CKA-only, Welch's t-test p=0.0009\"\n  resolution_round: 3\n\n- id: \"R1-C3\"\n  summary: \"仅 GSM8K 单基准\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"MATH-500 OOD 验证 + MBPP 代码基准\"\n  resolution_round: 3\n\n- id: \"R1-W1\"\n  summary: \"Title overclaim 'determines'\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Title 改为 'shapes'\"\n  resolution_round: 3\n\n- id: \"R1-W2\"\n  summary: \"Abstract 'universally determines' overclaim\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"改为 'significantly shapes'\"\n  resolution_round: 3\n\n- id: \"R1-W3\"\n  summary: \"仅 DeepSeek-R1-7B 单模型\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Qwen2.5-Math-7B cross-arch + 1.5B cross-scale\"\n  resolution_round: 3\n\n- id: \"R1-M1\"\n  summary: \"GRPO 超参未报告\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Appendix 完整超参表\"\n  resolution_round: 3\n\n- id: \"R1-M2\"\n  summary: \"Table 1 缺 Random baseline\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 1\n  last_seen_round: 3\n  resolution: \"Table 1 加入 Random 行\"\n  resolution_round: 3\n\n- id: \"R2-NEW-C1\"\n  summary: \"GRPO 准确率几乎不变,为何要用 GRPO\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Dual-layer reframe: SFT(accuracy) + GRPO(reward signal)\"\n  resolution_round: 3\n\n- id: \"R2-NEW-C2\"\n  summary: \"Cross-architecture 仅 SFT 验证,GRPO 缺失\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"1.5B GRPO 补充 + Abstract 区分表述\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W1\"\n  summary: \"SFT recovery 被忽视,过度聚焦 GRPO\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"脚注解释 SFT catastrophic forgetting\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W2\"\n  summary: \"Qwen-Math 跨架构验证仅 SFT，Abstract overclaim\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Abstract 区分 GRPO(DeepSeek) vs SFT(Qwen-Math)\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W3\"\n  summary: \"GRPO 准确率改变 < 1pp — 实际效用存疑\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"300-step accuracy + reward-accuracy decoupling 论证\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W4\"\n  summary: \"RASP/Random 仍为单种子\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"脚注透明标注 + Limitations 披露\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W5\"\n  summary: \"Random baseline SFT/GRPO Acc 缺失\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Table 2 脚注标注 checkpoint not preserved\"\n  resolution_round: 3\n\n- id: \"R2-NEW-W6\"\n  summary: \"正文 5 处 'determines' 残留\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"全部替换为 shapes/significantly influences\"\n  resolution_round: 3\n\n- id: \"R2-NEW-M1\"\n  summary: \"GRPO batch size / rollouts 未报告\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Appendix 超参表完整覆盖\"\n  resolution_round: 3\n\n- id: \"R2-NEW-M2\"\n  summary: \"SFT lr/batch/optimizer 未报告\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Appendix 超参表完整覆盖\"\n  resolution_round: 3\n\n- id: \"R2-VIS-1\"\n  summary: \"末页 Figure 6 仅占 30%，70% 空白\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Appendix 重排\"\n  resolution_round: 3\n\n- id: \"R2-VIS-2\"\n  summary: \"Appendix page 12 过度拥挤\"\n  category: format\n  severity: info\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 3\n  resolution: \"Appendix 拆分到多页\"\n  resolution_round: 3\n\n- id: \"R3-S5\"\n  summary: \"Qwen-Math 'strongest evidence' 措辞仍略强\"\n  category: framing\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"strongest → additional evidence in §4.5\"\n  resolution_round: 3\n\n- id: \"R3-M2\"\n  summary: \"300-step accuracy 未标注 seed\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"(single seed) 标注已添加到 §4.3\"\n  resolution_round: 3\n\n- id: \"R3-M3\"\n  summary: \"无代码/checkpoint 发布声明\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 3\n  resolution: \"Code and checkpoints release statement in Conclusion\"\n  resolution_round: 3\n\n# ============================================================\n# Round 5-7 Issues — Carried forward\n# ============================================================\n\n- id: \"R5-N1\"\n  summary: \"Reward-accuracy decoupling 叙事薄弱（GRPO 增量 <1pp，可能是 SFT 天花板效应 artifact）\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 5\n  last_seen_round: 9\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"双 Reviewer 共识 critical。SYSTEMIC_ISSUE #1 核心。\"\n    - round: 6\n      reviewers: [1, 2]\n      note: \"R1-W4 和 R2-W2 再次提出，增加新角度：需区分 format compliance vs reasoning quality。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R2-N3 升级为 critical。R1 完全同意。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R2 升为本文最关键问题（Critical），R1 维持 Warning。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R2-C1 再次提出：SFT 已恢复大部分 accuracy（~60pp），GRPO 无 headroom。R1 虽未直接提但在交叉回应中认为 15% sparsity 数据（GRPO amplifies gap）支持天花板解释。连续 5 轮 Critical 未解决。\"\n  action_items:\n    - round: 5\n      action: \"D098 dual-layer reframe\"\n      assigned_to: paper_agent\n      status: in_progress\n    - round: 9\n      action: \"需要消融实验：在 SFT 恢复不充分的条件下（如更少 SFT steps 或更高 sparsity）验证 GRPO 是否产生 accuracy 差异\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-N2\"\n  summary: \"Cross-architecture/scale 泛化严重不足，所有模型共享 Qwen2.5 base\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 5\n  last_seen_round: 9\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"DDL 前不可行（需全 pipeline ~50h GPU）。但 1.5B GRPO 数据已有。\"\n    - round: 6\n      reviewers: [1, 2]\n      note: \"双 Reviewer 再次提出。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"双 Reviewer 再次共识。Appendix O 'Cross-Architecture Validation' 标题误导。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"双 Reviewer 再次共识 Critical。\"\n    - round: 9\n      reviewers: [2]\n      note: \"R2-W3 再次提出单一架构族（Qwen2.5 系列）。R1 未直接复述但在 Q6 中暗示 Standard 在不同设置下行为未知。连续 5 轮 Critical。\"\n  action_items:\n    - round: 8\n      action: \"Title 改为更精确范围或补充至少一个非 Qwen 架构 GRPO 结果\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-W1\"\n  summary: \"RASP 单 seed 验证不足——方法贡献可靠性存疑\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 5\n  last_seen_round: 9\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"核心比较 CKA vs Standard 有 3-seed p=0.0009。\"\n    - round: 6\n      reviewers: [1, 2]\n      note: \"R1 升级为 critical。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"双 Reviewer 再次共识 critical。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"Director 判定 Critical。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N4 再次明确提出：全部 α 变体（0.5-4.0）均单 seed，dose-response inverted-U 不可靠。R2 交叉回应强烈同意——α=2.0 方差未知时 1.72pp 不可信。连续 5 轮 Critical 未解决。\"\n  action_items:\n    - round: 9\n      action: \"至少 α=2.0 和 α=1.0 各跑 3 seeds；如无法完成则降级 RASP 为 exploratory\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-W2\"\n  summary: \"因果语言系统性过强——'causal driver' 超出 quasi-experimental 证据\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 7\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"SYSTEMIC_ISSUE #2 成员。\"\n    - round: 6\n      reviewers: [1, 2]\n      note: \"双 Reviewer 共识 critical。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R1-N3 详细论证。R2 补充 metrics diversity 不足。\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未单独复现为独立问题。可能已部分修复（论文已改用 'shapes'）。\"\n  action_items:\n    - round: 7\n      action: \"全文语言审计：'causal driver' → 'key determinant'；decoupling claims 加限定\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-W3\"\n  summary: \"Per-layer capacity floor (40%) 未消融\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 6\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"DDL 前不可行（需全 pipeline ~50h GPU）。\"\n    - round: 6\n      reviewers: [1]\n      note: \"R1-W3 再次提出。\"\n    - round: 9\n      reviewers: [1]\n      note: \"R1-Q6 问到 Floor ablation 仅对 CKA-only 做了，Standard 在不同 τ 下表现未知。\"\n  action_items:\n    - round: 5\n      action: \"Limitations 讨论 + rebuttal 论点准备\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"Floor ablation τ∈{0.3,0.4,0.5,0.6} experiments running; appendix table added\"\n  resolution_round: null\n\n- id: \"R5-W4\"\n  summary: \"α dose-response 存在 generation length 混杂变量\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 5\n  last_seen_round: 9\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"高 ROI 实验。\"\n    - round: 6\n      reviewers: [1, 2]\n      note: \"R1-W2 再次提出。R2-W1 扩展为 κ 消融缺失。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"升级为 critical。α=1.0 用 1024 tokens，其他用 512 tokens。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R1 在 W2（Random baseline）中再次确认。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N3 再次明确提出：Random GRPO 用 512 vs 其他 1024，违反受控设计。R2 交叉回应 AGREE with nuance——核心 CKA vs Standard 比较未受影响，但 Random spectrum 排序不可信。连续 5 轮未修复。\"\n  action_items:\n    - round: 7\n      action: \"统一所有方法 max_completion_length=1024 重跑\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-W5\"\n  summary: \"'Recovery capacity gradient' 术语与 gradient descent 混淆\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 6\n  resolution: \"全文替换为 'recovery capacity spectrum'\"\n  resolution_round: 7\n\n- id: \"R5-M1\"\n  summary: \"Section 5 末尾溢出至第 9 页\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  mentions:\n    - round: 7\n      reviewers: []\n      note: \"R7 确认格式合规\"\n  resolution: \"格式合规（R7/R8/R9 均未报告溢出）\"\n  resolution_round: 9\n\n- id: \"R5-M2\"\n  summary: \"Abstract p<0.001 未说明统计检验方法\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 5\n  resolution: \"Abstract 标注 Welch's t-test\"\n  resolution_round: 6\n\n- id: \"R5-M3\"\n  summary: \"Page 7 display items 过度拥挤\"\n  category: format\n  severity: info\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 8\n  mentions:\n    - round: 5\n      reviewers: [2]\n      note: \"Figure 3 + Figure 4 + Table 2 挤在同一页\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R1-M2 再次提出 Figure 2 信息密度过高。\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 5\n      action: \"Figure 前移平衡视觉节奏\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-M4\"\n  summary: \"bib key 年份误导 + 引用错误\"\n  category: format\n  severity: info\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 6\n  mentions:\n    - round: 5\n      reviewers: [1, 2]\n      note: \"lachance2024cka→2022, klabunde→2023\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 5\n      action: \"Paper Agent 修正 bib 条目\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R5-M5\"\n  summary: \"Figure 2 标注字体偏小 / 颜色区分度不足\"\n  category: format\n  severity: info\n  status: in_progress\n  first_raised_round: 5\n  last_seen_round: 8\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R1-M2 指出 Figure 2 信息密度过高。视觉审查标记 page 7-8 figure panel axis labels 偏小。\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 5\n      action: \"增大字号 + 添加不同 line style\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-N1\"\n  summary: \"GSM8K 单基准 GRPO 主实验，Title/Abstract 做一般性声明\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 6\n  mentions:\n    - round: 6\n      reviewers: [1, 2]\n      note: \"双 Reviewer 共识 critical。\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未单独提及——MATH-500 和 MBPP 已存在。\"\n  action_items:\n    - round: 6\n      action: \"MF1: MBPP probe eval\"\n      assigned_to: agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-N2\"\n  summary: \"CKA-only layer 分布混杂——72.5% 剪枝集中 early layers，优势可能来自 layer 分布而非 diversity\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 7\n  mentions:\n    - round: 6\n      reviewers: [1]\n      note: \"R1-N3 提出。\"\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R2 详细展开。granularity 不匹配无法解耦。\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未直接复现\"\n  action_items:\n    - round: 7\n      action: \"创建 same-granularity layer-biased baseline\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-N3\"\n  summary: \"缺失高度相关文献：RL Finetunes Small Subnetworks (2505.11711)\"\n  category: writing\n  severity: critical\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Paper Agent 添加引用并在 Related Work/Discussion 讨论\"\n  resolution_round: 6\n\n- id: \"R6-W1\"\n  summary: \"Reward-accuracy decoupling 未区分 format compliance vs reasoning quality\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 6\n  mentions:\n    - round: 6\n      reviewers: [1, 2]\n      note: \"需报告 EOS rate 和 format compliance rate\"\n    - round: 9\n      reviewers: []\n      note: \"本轮未直接提及\"\n  action_items:\n    - round: 6\n      action: \"Agent 从 eval logs 提取 format compliance / EOS rate\"\n      assigned_to: agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-W2\"\n  summary: \"实验仅覆盖 MLP channel pruning，Title/Abstract 未限定 scope\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 7\n  resolution: \"Title 改为 'How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in Reasoning LLMs'\"\n  resolution_round: 7\n\n- id: \"R6-W3\"\n  summary: \"遗漏 3 篇相关工作\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"Paper Agent 验证并添加引用\"\n  resolution_round: 6\n\n- id: \"R6-W4\"\n  summary: \"Welch's t-test at N=3 统计功效极低，缺 effect size 和 CI\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 7\n  resolution: \"Cohen's d + 95% CI 已加入正文\"\n  resolution_round: 7\n\n- id: \"R6-W5\"\n  summary: \"15%/25% sparsity 实验为 single-seed\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 9\n  mentions:\n    - round: 6\n      reviewers: [2]\n      note: \"R2-W5 交叉回应提出。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W2/W3 再次提出 15% 和 25% 单 seed 问题。R2 交叉回应对 W3 部分反驳（25% 非核心 claim）。\"\n  action_items:\n    - round: 6\n      action: \"15%/25% 在 Limitations 标注\"\n      assigned_to: agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-W6\"\n  summary: \"RASP 表现差于 Standard 缺乏充分解释——乘法形式 artifact\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 6\n  last_seen_round: 9\n  mentions:\n    - round: 6\n      reviewers: [1]\n      note: \"需分析 importance 和 CKA overlap 的相关性\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R2-W3 详细论证：α=1.0 collapse + α=2.0 本质 CKA-dominant。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N2 正式升为 Critical：乘法形式 I(h)=0 退化未与加法替代对比。R2 交叉回应完全同意——两个 Reviewer 互补论证 RASP 整个参数空间的问题：一端退化(α=1.0)，另一端等价 CKA-only(α=2.0)。缺少加法形式无法判断 collapse 原因。\"\n  action_items:\n    - round: 9\n      action: \"跑 additive combination baseline β·I(h)+(1-β)·(1-F(h))；最低限度在论文中讨论乘法 vs 加法选择理由\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-W7\"\n  summary: \"Table 1 脚注 'Only redundancy-based pruning sustains RL recovery' 与 Random 排第二矛盾\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"脚注措辞已修改\"\n  resolution_round: 6\n\n- id: \"R6-W8\"\n  summary: \"Section 5 Discussion 偏薄（仅半页）\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 6\n  last_seen_round: 9\n  mentions:\n    - round: 6\n      reviewers: [1, 2]\n      note: \"建议讨论 CKA 与 RL exploration 关系\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R2-W6 再次提出。Section 5 仅约 7-8 行。\"\n    - round: 9\n      reviewers: [2]\n      note: \"R2-W5 再次提出 Discussion 被放 Appendix，spectrum 实用价值不清。R1 Q6 暗示 floor ablation 缺乏 Standard 对照。\"\n  action_items:\n    - round: 8\n      action: \"扩充 Discussion 至少半栏\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-M1\"\n  summary: \"Reward-accuracy decoupling 首次使用时无正式定义\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 6\n  resolution: \"首次使用处添加正式定义\"\n  resolution_round: 6\n\n- id: \"R6-M2\"\n  summary: \"Figure 2 y 轴未标注 mean vs peak reward\"\n  category: format\n  severity: info\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 6\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 6\n      action: \"修改 Figure 2 y-axis label\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R6-M3\"\n  summary: \"Eq.1 未写出 Taylor expansion 完整数学形式\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 6\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 6\n      action: \"Paper Agent 补充 Eq.1 完整数学形式\"\n      assigned_to: paper_agent\n      status: in_progress\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 7 Issues — Carried forward\n# ============================================================\n\n- id: \"R7-N1\"\n  summary: \"Dose-response 中 max_completion_length 不一致（Random: 512, 其他: 1024）构成关键混杂变量\"\n  category: experiment\n  severity: critical\n  status: open\n  first_raised_round: 7\n  last_seen_round: 9\n  mentions:\n    - round: 7\n      reviewers: [1, 2]\n      note: \"双 Reviewer 独立提出。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"再次确认。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N3 明确提出'violates controlled experiment design'。R2 交叉回应 AGREE with nuance（核心 CKA vs Standard 比较不受影响，但 spectrum ordering 含 Random 部分不可信）。合并到 R5-W4 统一追踪。\"\n  action_items:\n    - round: 7\n      action: \"统一所有方法 max_completion_length=1024 重跑\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-N2\"\n  summary: \"Abstract overclaiming 'holds across sparsity levels'——仅 20-25% 窗口成立\"\n  category: framing\n  severity: critical\n  status: open\n  first_raised_round: 7\n  last_seen_round: 9\n  mentions:\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R1-N4 提出，R2 完全同意。\"\n    - round: 9\n      reviewers: [2]\n      note: \"R2-C3 再次提出：有效窗口仅 20-25%，30% 全面崩塌，Abstract 用 'moderate sparsity' 模糊处理，实际压缩比约 12-15%。R1 交叉回应隐含同意（W2/W3 讨论 15%/25% 边界条件）。\"\n  action_items:\n    - round: 7\n      action: \"Abstract 改为 'at moderate sparsity (20-25%)' 限定\"\n      assigned_to: paper_agent\n      status: open\n    - round: 9\n      action: \"正文和 Abstract 必须明确标注实际有效压缩比（~12-15%）而非仅报告 sparsity 百分比\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-W1\"\n  summary: \"Decoupling 缺少形式化等价性检验（TOST ε=2pp post-hoc）\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 7\n  last_seen_round: 9\n  mentions:\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R1-W3 提出，R2 同意。\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"论文已包含 TOST 但 ε=2pp 选择需 justify。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W1 再次提出 ε=2pp 缺乏 a priori justification。R2 交叉回应同意——ε=1pp 部分结论不成立。\"\n  action_items:\n    - round: 8\n      action: \"justify ε=2pp 选择（引用 GSM8K 文献中 meaningful difference threshold）\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-W2\"\n  summary: \"MBPP 结果统计不显著却被用作 decoupling 支持证据\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 7\n  last_seen_round: 7\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未直接提及\"\n  action_items:\n    - round: 7\n      action: \"正文引用 MBPP 时加注 'not statistically significant'\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-W3\"\n  summary: \"Calibration 数据量 M 在正文中未明确指定\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 7\n  last_seen_round: 9\n  mentions:\n    - round: 7\n      reviewers: [1, 2]\n      note: \"R1-W1 提出，R2 同意。\"\n    - round: 9\n      reviewers: [1]\n      note: \"R1-W6 再次提出 Calibration M=512 importance score 稳定性未验证。R2 交叉回应部分反驳（Taylor expansion 是标准做法，M=512 已超 LLM-Pruner）。\"\n  action_items:\n    - round: 7\n      action: \"在 Section 3.2 或 4.1 明确指定 M 及选择依据\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-W4\"\n  summary: \"Throughput regression（-19%）未在 Limitations 讨论\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 7\n  last_seen_round: 7\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 7\n      action: \"在 Limitations 添加 throughput regression 讨论\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R7-W5\"\n  summary: \"Title/叙事焦点与实际恢复来源错位——SFT 贡献 ~60pp 而 GRPO <1pp\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 7\n  last_seen_round: 9\n  mentions:\n    - round: 7\n      reviewers: [1]\n      note: \"R1 交叉回应 [NEW FINDING]\"\n    - round: 8\n      reviewers: [1, 2]\n      note: \"双 Reviewer 详细论证。\"\n    - round: 9\n      reviewers: [2]\n      note: \"R2-W1 再次提出 Title/叙事与 SFT-dominant 发现的错位。R1 交叉回应隐含同意。\"\n  action_items:\n    - round: 8\n      action: \"Discussion 显式讨论 'SFT 主导恢复' 的含义及 GRPO 实际贡献的定位\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 8 Issues — Carried forward\n# ============================================================\n\n- id: \"R8-N1\"\n  summary: \"RASP 方法贡献叙事自相矛盾——α=2.0 本质 CKA-dominant，'平衡 importance 与 diversity' 不准确\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R2-W3 详细论证。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N1 和 R2-C2 同时独立提出。R2 交叉回应补充：Table 1 中 RASP(α=2.0) Peak Rew = CKA-only Peak Rew = 0.354（完全相同），RASP 框架的额外 parametric 复杂性未带来任何 recovery capacity 增益。accuracy 差 1.72pp 落在单 seed 不可信区间。双 Reviewer 合力否定 RASP 全参数空间。\"\n  action_items:\n    - round: 9\n      action: \"重新定位论文：从 'RASP as method contribution' 改为 'empirical study of criterion effects'；RASP 降级为 exploratory analysis 之一\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-N2\"\n  summary: \"Random baseline max_completion_length=512（vs 其他方法 1024）构成不公平比较\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R1 列 Critical，R2 列 Warning。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"合并追踪于 R7-N1/R5-W4。\"\n  action_items:\n    - round: 8\n      action: \"统一 Random 的 max_completion_length=1024 重跑\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-N3\"\n  summary: \"RASP 函数形式（乘法）缺乏理论推导，可能人为导致 α=1.0 collapse\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"R1-W4 提出，R2 同意。\"\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N2 升为 Critical：I(h)=0 退化是 RASP 败给 CKA-only 的根本原因，加法形式不存在此退化。R2 交叉回应完全同意——补充两个维度互补：R1 关注 α=1.0 端（collapse），R2 关注 α=2.0 端（CKA 等价），合证 RASP 全空间有问题。\"\n  action_items:\n    - round: 9\n      action: \"跑 additive baseline β·I(h)+(1-β)·(1-F(h))（低成本实验）；或至少在论文中详细讨论乘法选择的理由和 I(h)=0 退化的含义\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-N4\"\n  summary: \"TOST ε=2pp margin post-hoc selection 嫌疑\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [1, 2]\n      note: \"Director 判定 Info。\"\n    - round: 9\n      reviewers: [1]\n      note: \"R1-W1 再次明确提出。合并追踪于 R7-W1。\"\n  action_items:\n    - round: 8\n      action: \"justify ε=2pp 选择\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-N5\"\n  summary: \"30% sparsity 全面 collapse 限制方法实用窗口（仅 20-25%）\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [2]\n      note: \"R2-W7 提出。\"\n    - round: 9\n      reviewers: [2]\n      note: \"R2-C3 升为 Critical：实际压缩比约 12-15%，实用价值受限。R1 在 W2/W3 中讨论了 15%/25% 边界但对实用价值限制的判断不如 R2 强硬——R1 认为论文定位 controlled study 而非 practical tool。Director 判定升为 Warning（非 reject 级别但需在论文中诚实面对）。\"\n  action_items:\n    - round: 9\n      action: \"Abstract/正文必须诚实标注实际有效压缩比；Discussion 讨论突破方向\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-N6\"\n  summary: \"缺失高度相关文献\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 8\n      reviewers: [2]\n      note: \"R2 识别 3 篇缺失。\"\n    - round: 9\n      reviewers: [1]\n      note: \"R1 提出新缺失：Molchanov et al. (2019) 'Importance Estimation for Neural Network Pruning'——加法形式多标准组合先例。\"\n  action_items:\n    - round: 8\n      action: \"验证并添加 Li et al. (2504.02010) 和 'Can Pruning Improve Reasoning?' (2505.14582)\"\n      assigned_to: paper_agent\n      status: open\n    - round: 9\n      action: \"添加 Molchanov et al. (2019) 作为加法形式 multi-criteria 组合的先例引用\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-M1\"\n  summary: \"Recovery capacity 概念先用后定义\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 8\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items: []\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-M2\"\n  summary: \"无代码/checkpoint 发布承诺\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 8\n  last_seen_round: 8\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 8\n      action: \"在 Conclusion 或 Abstract 添加代码/checkpoint 发布承诺\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R8-M3\"\n  summary: \"Lottery Ticket Hypothesis 联系过于表面\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 8\n  last_seen_round: 8\n  mentions:\n    - round: 9\n      reviewers: []\n      note: \"本轮未提及\"\n  action_items:\n    - round: 8\n      action: \"弱化 LTH 类比或加说明两者的本质区别\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n# ============================================================\n# Round 9 New Issues\n# ============================================================\n\n- id: \"R9-N1\"\n  summary: \"RASP 被全参数空间否定——α=1.0 乘法退化 collapse，α=2.0 等价 CKA-only（Peak Rew 相同），α→∞ 即 CKA-only\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N1 + R2-C2 独立提出，交叉回应中双方完全同意。R2 补充关键数据：Table 1 RASP(α=2.0) Peak Rew = CKA-only Peak Rew = 0.354。这是本轮最核心共识——RASP 作为方法贡献在整个参数空间都不优于其端点。\"\n  action_items:\n    - round: 9\n      action: \"论文重新定位为 empirical study；RASP 降级为 exploratory analysis；核心贡献改为 controlled comparison framework + decoupling 发现\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-N2\"\n  summary: \"乘法形式 I(h)×(1-F(h))^α 的 I(h)=0 退化缺少加法形式对照——无法区分 artifact vs 真实 tradeoff\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-N2 首次作为独立 Critical 提出。R2 交叉回应完全同意——两人互补：R1 关注 α=1.0 端（collapse 可能是数值 artifact），R2 关注 α=2.0 端（CKA 等价）。合证 RASP 函数形式的选择缺乏 justification。引用 Molchanov et al. (2019) 作为加法先例。\"\n  action_items:\n    - round: 9\n      action: \"跑 additive baseline（成本低，单 seed 即可初步验证）；如加法下 α=1.0 不 collapse，则乘法形式选择需重大修改\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-N3\"\n  summary: \"Random baseline max_completion_length=512 违反受控实验自称的 'hold everything else constant'\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1 列 Critical（直接影响 spectrum），R2 AGREE with nuance（核心 CKA vs Standard 比较不受影响，Random 非核心对照）。Director 判定 Warning——不太可能翻转核心 spectrum ordering，但违反论文自身声明。合并追踪于 R5-W4/R7-N1。\"\n  action_items:\n    - round: 9\n      action: \"统一 Random max_completion_length=1024 重跑；或正文明确标注此偏差并讨论影响\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-W1\"\n  summary: \"300-step extended training 未报告 step-by-step accuracy 曲线（仅报 100 和 300 终值）\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W4 提出，R2 交叉回应同意。如 CKA-only 在 150-200 步仍上升而 Standard plateau，这是有信息量的。且 300 步远少于 RLVR 文献常见预算（1000-5000 步）。\"\n  action_items:\n    - round: 9\n      action: \"报告 100/150/200/250/300 步 accuracy trajectory；或在 Limitations 讨论为何 300 步足够\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-W2\"\n  summary: \"Limitations 关于 Random seed 的表述与正文矛盾（Limitations 称单 seed 但实际 3 seeds）\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1, 2]\n      note: \"R1-W5 提出，R2 交叉回应同意。此类不一致降低审稿人对其他声称的信任度。\"\n  action_items:\n    - round: 9\n      action: \"修正 Limitations section 关于 Random seed 数量的表述\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-W3\"\n  summary: \"Ji et al. (2026) 对比 overclaiming\"\n  category: framing\n  severity: warning\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [2]\n      note: \"R2-W2 提出。R1 在交叉回应中未直接评论。\"\n  action_items:\n    - round: 9\n      action: \"弱化与 Ji et al. 的对比措辞，承认实验设置差异\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-W4\"\n  summary: \"Qwen2.5-Math-7B GRPO 验证缺失\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [2]\n      note: \"R2-W4 提出。跨架构验证仅 SFT，GRPO 结论无法泛化。与 R5-N2 相关。\"\n  action_items:\n    - round: 9\n      action: \"补充 Qwen2.5-Math-7B GRPO 或在论文中明确限定 GRPO claim 仅适用于 DeepSeek-R1-Distill-Qwen-7B\"\n      assigned_to: agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n\n- id: \"R9-M1\"\n  summary: \"缺失引用：Molchanov et al. (2019) 'Importance Estimation for Neural Network Pruning'——加法形式多标准组合先例\"\n  category: writing\n  severity: info\n  status: open\n  first_raised_round: 9\n  last_seen_round: 9\n  mentions:\n    - round: 9\n      reviewers: [1]\n      note: \"R1 Missing References 提出。加法形式 multi-criteria 组合的重要先例。\"\n  action_items:\n    - round: 9\n      action: \"验证并添加 Molchanov et al. (2019)\"\n      assigned_to: paper_agent\n      status: open\n  resolution: \"\"\n  resolution_round: null\n"
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-25T21:32:03.061934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_17/projects/recovery_aware_struct_prune/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 33008}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__update_review_issues",
+            "elapsed_ms": 151
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-25T21:33:48.269840+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__submit_review_report_to_research_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "tool_args": {
+              "report": "# Round 9 审稿报告\n\n**Venue**: EMNLP 2026 (via ARR)\n**论文**: \"How Pruning Criteria Shape Post-RLVR Recovery: A Controlled Study of Structured MLP Pruning in Reasoning LLMs\"\n**评审人**: Reviewer 1（方法严谨性 + 实验设计）、Reviewer 2（新颖性 + 完整性）\n**模式**: Fresh（重新审稿）\n\n---\n\n## Summary\n\n本文提出 RASP（Recovery-Aware Structured Pruning），通过乘法形式结合 importance score 和 CKA-based diversity score 进行 MLP 结构化剪枝，并系统研究不同剪枝标准对 GRPO 恢复训练的影响。核心发现是 \"recovery capacity spectrum\"（CKA-only > RASP > Random > Standard）和 \"reward-accuracy decoupling\"（GRPO 提升 reward 但 accuracy 改变 <1pp）。\n\n然而，RASP 方法被自身消融实验否定：CKA-only（RASP 的 α→∞ 极端情况）在 recovery capacity 上与 RASP 最优配置（α=2.0）完全相同（Peak Rew = 0.354），而 accuracy 差异仅 1.72pp（单 seed，不可信）。论文最终推荐 CKA-only 而非 RASP——方法贡献不成立。\n\n---\n\n## Strengths\n\n**S1** [双 Reviewer 共识] 受控实验设计理念在 pruning 文献中罕见——isolation design 使得 criterion effect 可比较。实验设计哲学值得推广。\n\n**S2** [双 Reviewer 共识] Reward-accuracy decoupling 是 genuinely surprising 的实证发现，对 RLVR 社区理解 post-pruning RL recovery 有参考价值。\n\n**S3** [Reviewer 1] f₀/gradient norm/KL divergence 等多维训练动态分析工具有独立价值，提供了比 final accuracy 更丰富的诊断视角。\n\n**S4** [Reviewer 1] 跨模型（Qwen2.5-Math-7B SFT）、跨尺度（1.5B）验证展示了系统性 validation 意识，即使覆盖面有限。\n\n**S5** [Reviewer 2] Recovery capacity spectrum 作为描述性框架有参考价值（即使 RASP 贡献不成立）。\n\n**S6** [双 Reviewer 共识] 写作清晰，Figure 2 有效传达实验设计，超参数报告详尽，代码已匿名开源。Reproducibility 评 4/5。\n\n---\n\n## Weaknesses\n\n### Critical\n\n**C1** [双 Reviewer 共识] **RASP 方法贡献被全参数空间否定**\n- α=1.0（名义\"平衡\"点）：reward collapse（Peak Rew 0.061，四方法最差）\n- α=2.0（最优配置）：Peak Rew = CKA-only Peak Rew = 0.354（完全相同）；accuracy +1.72pp 为单 seed 不可信\n- α→∞：即 CKA-only 本身\n- 论文最终推荐 CKA-only 而非 RASP——当提出的方法被其自身特例超越时，方法贡献不成立\n- **影响**: 论文定位需从 \"method paper\" 转为 \"empirical study\"\n\n**C2** [双 Reviewer 共识] **乘法形式 I(h)=0 退化未与加法替代对比**\n- $S_{RASP}(h) = I(h) \\times (1-F(h))^\\alpha$ 意味着 $I(h)=0$ 的结构无论 diversity 多高都被零化\n- 这恰恰是 α=1.0 collapse 的可能机制——高 diversity 但低 importance 的结构被不当移除\n- 加法形式 $S = \\beta \\cdot I(h) + (1-\\beta) \\cdot (1-F(h))$ 不存在此退化，是自然的 ablation 对照\n- 缺少此对照无法判断 collapse 是乘法 artifact 还是 tradeoff 本质\n- 先例存在：Molchanov et al. (2019) \"Importance Estimation for Neural Network Pruning\"\n\n**C3** [双 Reviewer 共识] **RASP 全部 α 变体仅单 seed，dose-response 曲线不可靠**\n- CKA-only/Standard/Random 各 3 seeds，但 RASP 全部 α 值（0.5-4.0）均单 seed\n- Inverted-U 结论完全基于单次运行\n- α=2.0 的 66.11% vs CKA-only 64.39±0.19% 的 1.72pp 差距：RASP 方差未知\n- 如果 RASP 方差与 CKA-only 相当（~0.19pp），1.72pp 可能显著；但 RASP 跨 α 表现巨变（从 collapse 到 66%）暗示高方差\n- **连续 5 轮 Critical 未解决**（Round 5 至今）\n\n**C4** [Reviewer 2, R1 部分同意] **Reward-accuracy decoupling 可能是 SFT 天花板效应 artifact**\n- SFT 已恢复 ~60pp accuracy（从 post-prune ~4% 到 ~64%），GRPO 无 headroom\n- 15% sparsity 数据自相矛盾：GRPO amplifies CKA-only vs Standard gap (+1.51pp)，说明低 sparsity 下 GRPO 确实能放大差异——暗示 20% 下的 \"decoupling\" 是 headroom 耗尽\n- 需消融实验：在 SFT 恢复不充分条件下验证 GRPO 是否产生 accuracy 差异\n\n**C5** [双 Reviewer 共识] **Cross-architecture 泛化严重不足——所有模型共享 Qwen2.5 base**\n- Title 用 \"Reasoning LLMs\"（复数）但仅验证 Qwen2.5 架构族\n- Qwen2.5-Math-7B 仅有 SFT 验证，GRPO 缺失\n- 1.5B 同属 Qwen2.5 family（跨尺度但非跨架构）\n- **连续 5 轮 Critical 未解决**（Round 5 至今）\n\n### Warning\n\n**W1** [双 Reviewer 共识] Random baseline max_completion_length=512 vs 其他方法 1024，违反受控设计自称的 \"hold everything else constant\"。核心 CKA vs Standard 比较不受影响，但 spectrum 含 Random 的排序不可信。\n\n**W2** [双 Reviewer 共识] TOST ε=2pp 缺乏 a priori justification。如果 ε=1pp，部分 \"等价\" 结论不成立。需引用文献或 power analysis 论证 2pp 的实际意义。\n\n**W3** [Reviewer 1, R2 同意] 15% sparsity 下 GRPO 放大 CKA 优势（+1.51pp），Standard Δ=-0.93pp 接近 1pp 边界——decoupling 并非在所有 \"moderate sparsity\" 下普遍成立。\n\n**W4** [Reviewer 1, R2 同意] 300-step extended training 仅报告终值（100 步和 300 步），缺少中间步骤 accuracy trajectory。300 步远少于 RLVR 文献常见预算（1000-5000 步）。\n\n**W5** [Reviewer 2] Title/叙事焦点与 SFT-dominant 发现错位——SFT 贡献 ~60pp 恢复而 GRPO <1pp，但叙事聚焦 GRPO。\n\n**W6** [Reviewer 2] Ji et al. (2026) 对比 overclaiming——实验设置差异未充分讨论。\n\n**W7** [Reviewer 2] Discussion 被放 Appendix，正文 Section 5 仅约 7-8 行，缺少 spectrum 部署指导意义和机制解释。\n\n**W8** [Reviewer 1, R2 同意] Limitations 关于 Random seed 的表述（称 \"单 seed\"）与正文矛盾（实际 3 seeds）。此类不一致降低审稿人对其他声称的信任度。\n\n**W9** [Reviewer 2] 有效窗口仅 20-25% MLP sparsity（实际压缩比约 12-15%），30% 全面崩塌。Abstract 用 \"moderate sparsity\" 模糊处理。论文定位 controlled study 可接受，但需诚实面对实用限制。\n\n### Minor\n\n**M1** [Reviewer 1, R2 同意] Recovery capacity 概念先用后定义——Section 1 使用该术语但 Section 3 才定义。\n\n**M2** [Reviewer 1] Calibration M=512 importance score 稳定性未独立验证（CKA ranking 稳定性已验证但 importance 未验证）。R2 部分反驳：Taylor expansion 是标准做法，M=512 超过 LLM-Pruner 的 calibration 规模。\n\n**M3** [Reviewer 1, R2 同意] 25% sparsity 单 seed，Standard Δ=+0.99pp 恰在 1pp 边界。R2 反驳严重程度：25% 非核心 claim 支撑。\n\n---\n\n## Questions\n\nQ1: 如果跑 additive baseline $S = \\beta \\cdot I(h) + (1-\\beta) \\cdot (1-F(h))$，α=1.0 对应配置是否仍 collapse？这将判定 collapse 归因于乘法 artifact 还是 tradeoff 本质。\n\nQ2: 如果 α=2.0 补跑 3 seeds 方差很大（e.g., σ>1pp），RASP 相关叙事是否需要全部删除？\n\nQ3: 在 SFT 步数减少（如仅 50% SFT steps）的条件下，GRPO 是否能产生显著 accuracy 差异？这将验证 decoupling 是否为天花板效应。\n\nQ4: 为什么不统一 Random 的 max_completion_length 为 1024？成本极低（单 seed 约几小时 GPU）。\n\nQ5: 15% sparsity 下 GRPO 放大差异与 20% 下 decoupling 的矛盾如何解释？\n\nQ6: Extended training 150-200 步的 accuracy 曲线是否可用？\n\n---\n\n## Missing References\n\n1. **Molchanov et al. (2019)** \"Importance Estimation for Neural Network Pruning\" — 加法形式多标准组合先例，直接相关于 RASP vs additive 对比\n2. **Li et al. (2025, arXiv:2504.02010)** \"When Reasoning Meets Compression\" — 直接 benchmark 剪枝对 DeepSeek-R1 推理影响（Round 8 已提出，仍缺失）\n3. **\"Can Pruning Improve Reasoning?\" (2025, arXiv:2505.14582)** — 剪枝与推理能力关系（Round 8 已提出，仍缺失）\n\n---\n\n## External Review\n\n**状态**: 未请求（not_requested）\n\n---\n\n## Visual Layout Check\n\n**状态**: Agent 错误（rate limit hit）\n- 视觉审查 Agent 因 rate limit 退出，未产出有效 findings\n- 建议后续手动检查或重试\n\n---\n\n## Overall Assessment\n\n**Score: 3.0 (Findings)**\n**Confidence: 4/5**\n**双 Reviewer 一致**\n\n### 评分理由\n\n**为什么不是 3.5+ (Conference)**:\n- 核心方法贡献 RASP 被自身消融否定——论文的方法新颖性基本为零\n- 乘法形式缺少加法对照，无法判断核心消融结论的归因\n- RASP 全部 α 变体单 seed，dose-response 结论统计不可靠\n- 跨架构泛化严重不足（连续 5 轮未解决）\n- Decoupling 可能是 SFT 天花板 artifact（未排除）\n\n**为什么不是 2.5 (Borderline Findings)**:\n- 受控实验设计哲学在 pruning 文献中有方法论价值\n- Reward-accuracy decoupling 即使是初步发现也对 RLVR 社区有参考价值\n- 核心比较（CKA-only vs Standard）有 3-seed 统计验证\n- 写作质量高，再现性好\n- Training dynamics 多维分析工具有独立价值\n\n### 修改路径建议（如目标 Findings 接收）\n\n1. **必做**: 重新定位为 empirical study；RASP 降级为 exploratory analysis\n2. **必做**: Title 限定为具体架构或加 \"A Case Study\"\n3. **强烈建议**: 跑 additive baseline（成本低），α=2.0 至少 3 seeds\n4. **强烈建议**: 统一 Random max_completion_length=1024\n5. **建议**: 正文 Discussion 扩充；诚实标注 12-15% 实际压缩比\n\n---\n\n## Detailed Comments\n\n### 给作者的核心建议\n\n本文最大的问题不是实验不够多，而是**定位错误**。当前论文试图同时作为 method paper（RASP）和 empirical study（spectrum + decoupling），但数据明确否定了 RASP 的方法贡献。如果重新定位为纯 empirical study——\"受控实验揭示 CKA-based diversity preservation 是 RLVR recovery 的关键因素，且 reward 信号与 accuracy 解耦\"——现有数据足以支撑 Findings 级别的贡献。\n\n具体来说：\n- Section 3.3 的 RASP 公式推导可保留但作为 \"exploration of criterion combination\" 而非核心方法贡献\n- Abstract 的第一句应改为 empirical finding 而非 method proposal\n- 核心贡献列表应以 controlled experiment framework 和 decoupling finding 为主\n\n### Reviewer 交叉共识度\n\n| 问题 | R1 | R2 | 共识 |\n|------|----|----|------|\n| RASP 全空间否定 | Critical (N1) | Critical (C2) | 完全一致 |\n| 乘法 vs 加法 | Critical (N2) | AGREE | 完全一致 |\n| 单 seed 不可靠 | Critical (N4) | Critical (强烈同意) | 完全一致 |\n| Random 超参不一致 | Critical (N3) | Warning (nuance) | 方向一致，严重程度小分歧 |\n| SFT 天花板 | Warning (隐含) | Critical (C1) | 方向一致，R2 更强硬 |\n| 有效窗口窄 | Warning (W2/W3) | Critical (C3) | 方向一致，R2 更强硬 |\n| TOST ε=2pp | Warning (W1) | AGREE | 一致 |\n| 25% sparsity | Warning (W3) | REBUT (非核心) | 小分歧 |\n| Calibration M=512 | Warning (W6) | REBUT (标准做法) | 小分歧 |\n\n交叉回应后无未解决的重大矛盾。",
+              "project": "recovery_aware_struct_prune",
+              "reviewer_ids_acknowledged": "[1, 2]",
+              "cross_response_reviewer_ids": "[1, 2]",
+              "overall_score": "3.0 Findings",
+              "review_chat_id": "oc_40839c097b00df44480b45ab767f59cf"
+            }
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-25T21:33:52.033691+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_04e6cf8fe41be27a49d5657e80962f12:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "tool": "mcp__agent-ml-research__submit_review_report_to_research_director",
+            "elapsed_ms": 3763
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-25T21:33:59.912527+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 9 审稿完成。\n\n**最终评分：3.0 (Findings)**，双 Reviewer 一致。\n\n核心判定：\n- RASP 方法贡献被全参数空间否定（5 个 Critical 中 3 个直接针对 RASP）\n- 论文需从 method paper 重新定位为 empirical study\n- 受控实验框架和 decoupling 发现仍有 Findings 级别价值\n\n报告已投递给 Research Director，Issue Tracker 已同步更新（新增 R9-N1~N3, R9-W1~W4, R9-M1；多个历史 issue 更新 last_seen_round=9）。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director"
+          },
+          "id": "event-000736"
+        }
+      ]
+    },
+    {
+      "number": 59,
+      "messages": [
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-25T21:34:00.948313+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 2 审稿结果]:\n交叉回应已提交。逐条回应了 R1 的 N1-N4 和 W1-W6：\n\n- **N1/N2/N4**：全部 AGREE，与我的 N2 形成互补——R1 从 \"论文推荐 CKA-only 否定 RASP\" 和 \"乘法退化\" 角度，我从 \"α=2.0 CKA-dominant\" 角度，共同否定 RASP 的方法贡献\n- **N3**（Random 超参不一致）：AGREE with nuance——违反控制原则但不太可能翻转 spectrum ordering\n- **W3**：REBUT——25% 单 seed 问题真实但非核心 claim 支撑\n- **W6**：REBUT——Appendix H 的 CKA 稳定性数据和 Taylor expansion 文献标准提供了间接支持\n\n维持 Overall 3.0（Findings）不变。\n\n---\n\n[Reviewer 1 审稿意见]:\n## Reviewer 1 对 Reviewer 2 的交叉回应\n\n### Critical 问题\n\n**[AGREE with nuance] R2-C1: Decoupling 可能是 SFT 天花板效应的 artifact**\n- 同意需要排除此替代解释，但 CKA-only reward 从 0.15 升至 0.354 说明模型在 RL 意义上 IS learning，只是不反映在 accuracy 上——这超出简单 ceiling 能解释的范围\n- 与我的 N1/N2 互补：C1 质疑 decoupling 是否真实，N1/N2 质疑 RASP 是否有贡献\n- 建议作者做 \"SFT under-trained + GRPO\" 消融（如 0.5 epoch SFT 后接 GRPO），观察有 headroom 时 GRPO 能否提升 accuracy\n\n**[AGREE] R2-C2: RASP α=2.0 本质是 CKA-dominant**\n- 完全同意，与我的 N1 一致。α=0.5→1.0→2.0 的趋势（Table 5）说明只有 diversity overwhelm importance 时才恢复——这不是\"平衡\"，是 importance 在拖后腿\n- 强化了我 N2 的论点：additive baseline 可能证实 importance 的贡献是 marginal 的\n\n**[PARTIALLY AGREE] R2-C3: 有效窗口仅 20-25%，实用价值受限**\n- R2 的压缩比估计偏低：论文报告 19% 参数减少、28% 显存减少（非 12-15%）\n- 不构成 reject 级别问题——如果论文定位为 scientific study（理解 pruning→RL 交互），压缩比不是核心评判标准\n- 但 Abstract 的 \"moderate sparsity\" 确实应明确标注\n\n### Warning 问题\n\n**[AGREE] R2-W1**: Title/叙事错位——核心发现是 SFT-dominant 但标题暗示 RLVR-centric\n**[CANNOT FULLY EVALUATE] R2-W2**: 需 R2 指出具体 overclaiming 句子\n**[AGREE] R2-W3**: 三个模型均为 Qwen2.5 家族，generalization 受限\n**[AGREE] R2-W4**: Math-7B GRPO 缺失，与我的观察一致\n**[PARTIALLY AGREE] R2-W5**: Discussion 放 Appendix 常见但本文反直觉发现需更多主文讨论\n**[PARTIALLY AGREE] R2-W6**: Spectrum 的诊断工具价值未被充分阐述\n\n### 综合评估\n\nR2 与我评分一致（3.0），critical issues 互补——我聚焦方法设计和实验控制，R2 聚焦解释层面和 impact。共同指向：empirical finding 有价值但需更强证据，method contribution 不成立，应定位为 controlled empirical study。\n\n如果作者能 (1) 补 additive baseline, (2) 修 Random max_len, (3) α=2.0 补 3 seeds, (4) 做 SFT under-trained 消融——有潜力升至 3.5，当前 3.0。\n\n---\n\n[Reviewer 1 审稿结果]:\n交叉回应已提交。\n\n核心判断：R2 和我从不同角度审查，结论高度一致——**Overall 3.0 (Findings)**。我的 N1-N4 指出方法和实验控制缺陷，R2 的 C1/C3 指出解释和 impact 限制。两组问题互补，共同指向论文应重新定位为 empirical study 而非 method paper。最大分歧在 C3（实用价值）：R2 担忧压缩比过低，我认为 scientific study 不应以压缩比为主要标准。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director",
+            "source": "review_reviewer_2"
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-25T21:34:11.000514+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Round 9 审稿流程已完成。报告已投递至 Research Director。\n\n**最终结论**: 双 Reviewer 一致 3.0 (Findings)，核心共识是 RASP 方法贡献不成立（全参数空间否定），论文应重新定位为 empirical study。唯一轻微分歧在 C3 实用价值（R2 更担忧压缩比，R1 认为 scientific study 不以此为标准）——不影响最终评分。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_40839c097b00df44480b45ab767f59cf:director"
+          },
+          "id": "event-000738"
+        }
+      ]
+    }
+  ]
+}

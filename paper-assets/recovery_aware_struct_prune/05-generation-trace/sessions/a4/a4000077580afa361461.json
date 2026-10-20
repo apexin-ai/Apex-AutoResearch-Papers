@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a4000077580afa361461",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "ssh submit grpo alpha4 math500 westd1",
+  "task_key": "worker_ssh_submit_grpo_alpha4_math500_westd1_20260523T000129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_submit_grpo_alpha4_math500_westd1_20260523T000129_result.json",
+    "occurrence": 1,
+    "bytes": 520,
+    "sha256": "c3bdb7044474d709ff8caa4b348cdc6329b6e5737e0f1734fdfa935d2656849f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已成功提交：\n\n| 项目 | 值 |\n|------|-----|\n| **PID** | 89536 |\n| **tmux session** | `eval_math500_grpo_rasp_alpha4p0_20` |\n| **GPU** | westd-32935 cuda:1 |\n| **状态** | RUNNING（模型加载中，CPU 258%，GPU 内存尚未分配，预计 1-2 分钟后上 GPU） |\n| **输出** | `/root/autodl-tmp/recovery_aware_struct_prune/results/eval_math500_grpo_rasp_alpha4p0_20.json` |\n| **日志** | `/root/autodl-tmp/recovery_aware_struct_prune/logs/eval_math500_grpo_rasp_alpha4p0_20.log` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-submit-grpo-alpha4-math500-westd1.md"
+}

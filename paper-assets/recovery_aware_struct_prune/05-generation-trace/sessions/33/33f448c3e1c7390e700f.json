@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "33f448c3e1c7390e700f",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "ops westb v7 fix",
+  "task_key": "worker_ops_westb-v7-fix_20260515T142306",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_westb-v7-fix_20260515T142306.log",
+    "occurrence": 1,
+    "bytes": 1257461,
+    "sha256": "ab2c562a46f51b4d9b045dd8090cd9706da3a33fc5272154e763e2ba476ee44c"
+  },
+  "statistics": {
+    "messages": 484,
+    "user_turns": 0,
+    "tool_calls": 178,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 123,
+      "tool_call": 178,
+      "tool_result": 178,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "33f448c3e1c7390e700f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "33f448c3e1c7390e700f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "33f448c3e1c7390e700f-part-0003.json",
+          "message_count": 124
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-westb-v7-fix.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5cd18cae460746c85e67",
+  "project": "recovery_aware_struct_prune",
+  "kind": "result",
+  "title": "code e1c resume sft pipeline",
+  "task_key": "worker_code_e1c_resume_sft_pipeline_20260518T123442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_e1c_resume_sft_pipeline_20260518T123442_result.json",
+    "occurrence": 1,
+    "bytes": 793,
+    "sha256": "da1cf841e512e9c3cf6ee9485f1c8d7fc03012207fd48b69c94f196671f42b18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态汇报\n\n**SFT pipeline 无需恢复 — 三个 1.5B SFT 全部完成。**\n\n| 模型 | 状态 | 权重验证 | Registry |\n|------|------|----------|----------|\n| sft_cka_only_20_1p5b | 完成 (12:09) | shapes match per_layer_intermediate_size | DONE/success |\n| sft_standard_20_1p5b | 完成 (12:17) | OK | DONE/success |\n| sft_rasp_20_1p5b | 完成 (12:29) | OK | DONE/success |\n\n**GPU 占用：**\n- **cuda:0**: PID 803652 — `eval_gsm8k.py` on pruned_standard_20_1p5b (quick, max_samples=100), 3.6GB, ~4min\n- **cuda:1**: PID 765350 — `eval_math500.py` on grpo_cka_only_20, 30.6GB, 435/500 (87%), 预计 1-2h 完成\n\n**磁盘**: 98% (5.8G free)\n\n前一个 worker 的 SFT 训练和 registry 更新已全部完成，失败点应在后续步骤。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-e1c-resume-sft-pipeline.md"
+}

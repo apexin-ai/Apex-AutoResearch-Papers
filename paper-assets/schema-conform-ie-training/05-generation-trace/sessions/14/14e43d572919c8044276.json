@@ -1,0 +1,86 @@
+{
+  "schema_version": "1.0",
+  "id": "14e43d572919c8044276",
+  "project": "schema-conform-ie-training",
+  "kind": "worker",
+  "title": "deploy final setup and dryrun",
+  "task_key": "worker_deploy_final-setup-and-dryrun_20260512T094847",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_deploy_final-setup-and-dryrun_20260512T094847.log",
+    "occurrence": 1,
+    "bytes": 1244358,
+    "sha256": "ec22d6770280355d96013fdb3d5040a217ec726d0b2d6dd4e200a184c7d6ae4c"
+  },
+  "statistics": {
+    "messages": 457,
+    "user_turns": 3,
+    "tool_calls": 160,
+    "roles": {
+      "log": 1,
+      "system": 28,
+      "record": 2,
+      "assistant": 103,
+      "tool_call": 160,
+      "tool_result": 160,
+      "user": 3
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 115,
+      "chunks": [
+        {
+          "path": "14e43d572919c8044276-part-0001.json",
+          "message_count": 115
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "14e43d572919c8044276-part-0001.json",
+          "message_count": 9
+        },
+        {
+          "path": "14e43d572919c8044276-part-0002.json",
+          "message_count": 49
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "14e43d572919c8044276-part-0002.json",
+          "message_count": 131
+        },
+        {
+          "path": "14e43d572919c8044276-part-0003.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 95,
+      "chunks": [
+        {
+          "path": "14e43d572919c8044276-part-0003.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/deploy-final-setup-and-dryrun.md"
+}

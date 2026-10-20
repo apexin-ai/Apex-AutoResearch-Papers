@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0",
+  "id": "ada7d42cef92229d2b03",
+  "project": "recovery_aware_struct_prune",
+  "kind": "worker",
+  "title": "check gpu utilization westd",
+  "task_key": "worker_check_gpu_utilization_westd_20260516T211945",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gpu_utilization_westd_20260516T211945.log",
+    "occurrence": 1,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "statistics": {
+    "messages": 0,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {},
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [],
+  "readable_path": "readable/worker-executions/check-gpu-utilization-westd.md"
+}
