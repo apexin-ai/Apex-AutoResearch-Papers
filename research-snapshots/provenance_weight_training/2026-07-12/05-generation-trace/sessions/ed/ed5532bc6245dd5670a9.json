@@ -1,0 +1,124 @@
+{
+  "schema_version": "1.0",
+  "id": "ed5532bc6245dd5670a9",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #10。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - GPU 分配：4× RTX PRO 6000 Blackwell",
+  "task_key": "97d6ced6-3e59-47d6-8847-51a51f1a7edb",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/97d6ced6-3e59-47d6-8847-51a51f1a7edb.jsonl",
+    "occurrence": 1,
+    "bytes": 598156,
+    "sha256": "12f55e2d8cf46d514adbfa75f6bbe6e91e329b53e074e078e9c8c53c499852b8"
+  },
+  "statistics": {
+    "messages": 138,
+    "user_turns": 7,
+    "tool_calls": 32,
+    "roles": {
+      "record": 37,
+      "user": 7,
+      "assistant": 30,
+      "tool_call": 32,
+      "tool_result": 32
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 63,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 63
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 21,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 21
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 12,
+      "chunks": [
+        {
+          "path": "ed5532bc6245dd5670a9-part-0001.json",
+          "message_count": 7
+        },
+        {
+          "path": "ed5532bc6245dd5670a9-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-handoff-research-reviewer-loop-10-task-context-1-gpu-4-rtx-pro-6000-blackwell.md"
+}

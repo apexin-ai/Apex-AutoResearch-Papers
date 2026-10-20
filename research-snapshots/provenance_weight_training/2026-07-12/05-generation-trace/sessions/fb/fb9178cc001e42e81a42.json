@@ -1,0 +1,569 @@
+{
+  "schema_version": "1.0",
+  "id": "fb9178cc001e42e81a42",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: For a research proposal review, I need to verify: 1. \"SuperDyno\" ICLR 2025 humanoid neural dynamics - verify this paper ",
+  "task_key": "agent-a6cf77a0047a23b0c",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/agent-a6cf77a0047a23b0c.jsonl",
+    "occurrence": 1,
+    "bytes": 27134,
+    "sha256": "8df15a387e5ab3cf9cb25a703ef8be13d41a1d08b4e198f7100a6b61551bfe98"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 4,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 4,
+      "tool_result": 4
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-10T19:21:57.852Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "For a research proposal review, I need to verify:\n\n1. \"SuperDyno\" ICLR 2025 humanoid neural dynamics - verify this paper exists and what it does\n2. \"Humanoid Hanoi\" arXiv:2602.13850 skill composition distribution shift - verify this paper\n3. \"FALCON\" arXiv:2505.06776 force-adaptive humanoid loco-manipulation - verify this paper\n4. Search for: \"learned dynamics\" OR \"neural dynamics\" humanoid skill composition feasibility 2025 2026 - are there papers that learn dynamics models specifically for predicting skill composition success?\n\nUse WebSearch for each query. Report what you find."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "9b9ebae5-ea89-443c-82ad-9f786b68d79f",
+            "agentId": "a6cf77a0047a23b0c",
+            "type": "user",
+            "uuid": "d59b9652-48ab-45c1-9e86-16f6a31f9326",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-10T19:21:59.628Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for each of these papers and research areas to verify them for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d59b9652-48ab-45c1-9e86-16f6a31f9326",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS1UjF5LBUqNB4oHcuR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8a04de52-07d2-426c-b2e8-149545839486",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018mZGir1ovCWkypLRBJ67LS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 579,
+                "cache_read_input_tokens": 13649,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 579,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-10T19:21:59.645Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MjcGs5EJJXVvWgmBwVcnqy",
+              "name": "WebSearch",
+              "input": {
+                "query": "SuperDyno ICLR 2025 humanoid neural dynamics"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a04de52-07d2-426c-b2e8-149545839486",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS1UjF5LBUqNB4oHcuR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ca31dce4-8eaf-43fe-9830-54bfdbcf859c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018mZGir1ovCWkypLRBJ67LS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 579,
+                "cache_read_input_tokens": 13649,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 579,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              }
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-10T19:21:59.791Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01CBZfirGH6KGj68tjQjxSnJ",
+              "name": "WebSearch",
+              "input": {
+                "query": "Humanoid Hanoi arXiv:2602.13850 skill composition distribution shift"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca31dce4-8eaf-43fe-9830-54bfdbcf859c",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS1UjF5LBUqNB4oHcuR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "23f8d39f-e498-454d-b5d8-3da2b8b055c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018mZGir1ovCWkypLRBJ67LS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 579,
+                "cache_read_input_tokens": 13649,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 579
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 13649,
+                    "cache_creation_input_tokens": 579,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 579,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-10T19:21:59.795Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GdbeTEJ5cJuJqLKn2D68Qk",
+              "name": "WebSearch",
+              "input": {
+                "query": "FALCON arXiv:2505.06776 force-adaptive humanoid loco-manipulation"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23f8d39f-e498-454d-b5d8-3da2b8b055c6",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS1UjF5LBUqNB4oHcuR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6dbab8a3-b9b0-4b02-9748-c35c2a67ad1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018mZGir1ovCWkypLRBJ67LS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 579,
+                "cache_read_input_tokens": 13649,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 579
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 13649,
+                    "cache_creation_input_tokens": 579,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 579,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-10T19:21:59.799Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Rnsg4Y2Hwj8xPjpttQKS9G",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"learned dynamics\" OR \"neural dynamics\" humanoid skill composition feasibility 2025 2026"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dbab8a3-b9b0-4b02-9748-c35c2a67ad1d",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS1UjF5LBUqNB4oHcuR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "2bb83e3e-c9a1-4115-be12-9075d1c4d708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_018mZGir1ovCWkypLRBJ67LS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 579,
+                "cache_read_input_tokens": 13649,
+                "output_tokens": 249,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 579
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 249,
+                    "cache_read_input_tokens": 13649,
+                    "cache_creation_input_tokens": 579,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 579,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-10T19:22:05.365Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01CBZfirGH6KGj68tjQjxSnJ",
+              "type": "tool_result",
+              "content": "Web search results for query: \"Humanoid Hanoi arXiv:2602.13850 skill composition distribution shift\"\n\nLinks: [{\"title\":\"Humanoid Hanoi: Investigating Shared Whole-Body Control for Skill-Based Box Rearrangement\",\"url\":\"https://arxiv.org/html/2602.13850\"},{\"title\":\"[2602.13850] Humanoid Hanoi: Investigating Shared Whole-Body Control for Skill-Based Box Rearrangement\",\"url\":\"https://arxiv.org/abs/2602.13850\"},{\"title\":\"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub\",\"url\":\"https://github.com/YanjieZe/awesome-humanoid-robot-learning\"},{\"title\":\"LessMimic: Long-Horizon Humanoid Interaction with Unified Distance Field Representations\",\"url\":\"https://arxiv.org/html/2602.21723\"},{\"title\":\"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors\",\"url\":\"https://arxiv.org/html/2501.02116v1\"},{\"title\":\"Human-Humanoid Robots Cross-Embodiment Behavior-Skill Transfer Using Decomposed Adversarial Learning from Demonstration\",\"url\":\"https://arxiv.org/html/2412.15166\"},{\"title\":\"Skill Expansion and Composition in Parameter Space\",\"url\":\"https://arxiv.org/html/2502.05932v2\"},{\"title\":\"[2602.02473] HumanX: Toward Agile and Generalizable Humanoid Interaction Skills from Human Videos\",\"url\":\"https://arxiv.org/abs/2602.02473\"},{\"title\":\"Iterative Closed-Loop Motion Synthesis for Scaling the Capabilities of Humanoid Control\",\"url\":\"https://arxiv.org/html/2602.21599\"},{\"title\":\"[2602.21723] LessMimic: Long-Horizon Humanoid Interaction with Unified Distance Field Representations\",\"url\":\"https://arxiv.org/abs/2602.21723\"}]\n\nBased on the search results, here's what the paper arXiv:2602.13850 \"Humanoid Hanoi\" is about:\n\nThe paper investigates a skill-based framework for humanoid box rearrangement that enables long-horizon execution by sequencing reusable skills at the task level, where all skills execute through a shared, task-agnostic whole-body controller (WBC), providing a consistent closed-loop interface for skill composition.\n\nThe key challenge addressed relates to distribution shift: naively reusing the same pretrained WBC can reduce robustness over long horizons, as new skills and their compositions induce shifted state and command distributions. The authors address this with a simple data aggregation procedure that augments shared-WBC training with rollouts from closed-loop skill execution under domain randomization.\n\nTo evaluate the approach, they introduce Humanoid Hanoi, a long-horizon Tower-of-Hanoi box rearrangement benchmark, and report results in simulation and on the Digit V3 humanoid robot.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "23f8d39f-e498-454d-b5d8-3da2b8b055c6",
+            "isSidechain": true,
+            "promptId": "9b9ebae5-ea89-443c-82ad-9f786b68d79f",
+            "agentId": "a6cf77a0047a23b0c",
+            "type": "user",
+            "uuid": "a5602488-aeeb-4bb0-9f64-27c0df802c2c",
+            "sourceToolAssistantUUID": "23f8d39f-e498-454d-b5d8-3da2b8b055c6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-10T19:22:06.416Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MjcGs5EJJXVvWgmBwVcnqy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"SuperDyno ICLR 2025 humanoid neural dynamics\"\n\nLinks: [{\"title\":\"Published as a workshop paper at ICLR 2025\",\"url\":\"https://openreview.net/pdf/b3031990328dd52267a571b265c15328bf6d6120.pdf\"},{\"title\":\"SuperDyno: Scalable Humanoid Whole-Body Control via Differentiable Neural Network Dynamics\",\"url\":\"https://dynamics-humanoid.github.io/dynamics-humanoid/\"},{\"title\":\"ICLR 2025 Papers\",\"url\":\"https://iclr.cc/virtual/2025/papers.html\"},{\"title\":\"Scalable Humanoid Whole-Body Control via Differentiable Neural Network Dynamics | OpenReview\",\"url\":\"https://openreview.net/forum?id=FPgKt7bA8w\"},{\"title\":\"ICLR 2025 Workshops\",\"url\":\"https://iclr.cc/virtual/2025/events/workshop\"},{\"title\":\"ICLR 2025 Schedule\",\"url\":\"https://iclr.cc/virtual/2025/calendar\"},{\"title\":\"GitHub - YanjieZe/Paper-List: A paper list of my history reading. Robotics, Learning, Vision. · GitHub\",\"url\":\"https://github.com/YanjieZe/Paper-List\"},{\"title\":\"GitHub - Songwxuan/Embodied-AI-Paper-TopConf: [Actively Maintained🔥] A list of Embodied AI papers accepted by top conferences (ICLR, NeurIPS, ICML, RSS, CoRL, ICRA, IROS, CVPR, ICCV, ECCV).\",\"url\":\"https://github.com/Songwxuan/Embodied-AI-Paper-TopConf\"},{\"title\":\"Real-world humanoid locomotion with reinforcement learning | Science Robotics\",\"url\":\"https://www.science.org/doi/10.1126/scirobotics.adi9579\"},{\"title\":\"7th Robot Learning Workshop: Towards Robots with Human-Level Abilities\",\"url\":\"https://iclr.cc/virtual/2025/workshop/23997\"}]\n\nBased on the search results, I found comprehensive information about SuperDyno:\n\n## SuperDyno: Scalable Humanoid Whole-Body Control via Differentiable Neural Network Dynamics\n\nSuperDyno was published as a workshop paper at ICLR 2025, authored by Yu Lei, Zhengyi Luo, Tairan He, Jinkun Cao, Guanya Shi, and Kris Kitani from Carnegie Mellon University's Robotics Institute.\n\n### Overview\nThe work proposes a novel framework that combines supervised learning and reinforcement learning for scalable humanoid controller learning. The framework combines supervised learning and reinforcement learning for scalable humanoid controller learning using a learned neural dynamics model.\n\n### Key Contributions\nThe method achieves significantly higher sample efficiency and lower tracking error compared to prior approaches, scaling seamlessly to datasets with tens of thousands of motion clips. Medium-sized neural dynamics models can serve as a differentiable neural simulator for accurate prediction and effective policy optimization.\n\n### Technical Approach\nA key benefit of the learned neural network dynamics model is differentiability, as the differentiable world models bridge the gap between the simulation and control policy, allowing gradients of the loss function to be back-propagated to supervise the policy directly.\n\n### Project Resources\nThe project has a website available at https://dynamics-humanoid.github.io/dynamics-humanoid/, and the paper is available on OpenReview.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ca31dce4-8eaf-43fe-9830-54bfdbcf859c",
+            "isSidechain": true,
+            "promptId": "9b9ebae5-ea89-443c-82ad-9f786b68d79f",
+            "agentId": "a6cf77a0047a23b0c",
+            "type": "user",
+            "uuid": "a85beed0-2f92-4400-bde8-884cf24451f1",
+            "sourceToolAssistantUUID": "ca31dce4-8eaf-43fe-9830-54bfdbcf859c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-10T19:22:06.996Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GdbeTEJ5cJuJqLKn2D68Qk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"FALCON arXiv:2505.06776 force-adaptive humanoid loco-manipulation\"\n\nLinks: [{\"title\":\"[2505.06776] FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\",\"url\":\"https://arxiv.org/abs/2505.06776\"},{\"title\":\"FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\",\"url\":\"https://arxiv.org/html/2505.06776v1\"},{\"title\":\"FALCON\",\"url\":\"https://lecar-lab.github.io/falcon-humanoid/\"},{\"title\":\"GitHub - LeCAR-Lab/FALCON: [L4DC 2026] \\\"FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\\\" · GitHub\",\"url\":\"https://github.com/LeCAR-Lab/FALCON\"},{\"title\":\"(PDF) FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\",\"url\":\"https://www.researchgate.net/publication/391675402_FALCON_Learning_Force-Adaptive_Humanoid_Loco-Manipulation\"},{\"title\":\"FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\",\"url\":\"https://www.emergentmind.com/papers/2505.06776\"},{\"title\":\"CHIP: Adaptive Compliance for Humanoid Control through Hindsight Perturbation\",\"url\":\"https://arxiv.org/html/2512.14689\"},{\"title\":\"FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\",\"url\":\"https://lecar-lab.github.io/falcon-humanoid/static/falcon.pdf\"},{\"title\":\"EgoHumanoid: Unlocking In-the-Wild Loco-Manipulation with Robot-Free Egocentric Demonstration\",\"url\":\"https://arxiv.org/html/2602.10106v1\"},{\"title\":\"Robust Visuomotor Control for Humanoid Loco-Manipulation Using Hybrid Reinforcement Learning - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC12292580/\"}]\n\nBased on the search results, here's information about the FALCON paper (arXiv:2505.06776):\n\n## Overview\n\nFALCON is a dual-agent reinforcement-learning-based framework for robust force-adaptive humanoid loco-manipulation.\n\n## Key Technical Approach\n\nFALCON decomposes whole-body control into two specialized agents: (1) a lower-body agent ensuring stable locomotion under external force disturbances, and (2) an upper-body agent precisely tracking end-effector positions with implicit adaptive force compensation. These two agents are jointly trained in simulation with a force curriculum that progressively escalates the magnitude of external force exerted on the end effector while respecting torque limits.\n\n## Results and Performance\n\nExperiments demonstrate that, compared to the baselines, FALCON achieves 2x more accurate upper-body joint tracking, while maintaining robust locomotion under force disturbances and achieving faster training convergence. Moreover, FALCON enables policy training without embodiment-specific reward or curriculum tuning. Using the same training setup, policies are deployed across multiple humanoids, enabling forceful loco-manipulation tasks such as transporting payloads (0-20N force), cart-pulling (0-100N), and door-opening (0-40N) in the real world.\n\n## Authors and Publication\n\nThe paper was submitted on May 10, 2025, with a revised version (v2) on November 16, 2025, by authors from Carnegie Mellon University, Field AI, and Nissan USA.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dbab8a3-b9b0-4b02-9748-c35c2a67ad1d",
+            "isSidechain": true,
+            "promptId": "9b9ebae5-ea89-443c-82ad-9f786b68d79f",
+            "agentId": "a6cf77a0047a23b0c",
+            "type": "user",
+            "uuid": "7b77b9fe-ab11-464d-8600-41523647071b",
+            "sourceToolAssistantUUID": "6dbab8a3-b9b0-4b02-9748-c35c2a67ad1d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-10T19:22:07.061Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Rnsg4Y2Hwj8xPjpttQKS9G",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"learned dynamics\" OR \"neural dynamics\" humanoid skill composition feasibility 2025 2026\"\n\nLinks: [{\"title\":\"GitHub - YanjieZe/awesome-humanoid-robot-learning: A Paper List for Humanoid Robot Learning. · GitHub\",\"url\":\"https://github.com/YanjieZe/awesome-humanoid-robot-learning\"},{\"title\":\"Advancements in humanoid robot dynamics and learning-based locomotion control methods\",\"url\":\"https://www.oaepublish.com/articles/ir.2025.32\"},{\"title\":\"Humanoid Locomotion and Manipulation: Current Progress and Challenges in Control, Planning, and Learning *co-corresponding authors\",\"url\":\"https://arxiv.org/html/2501.02116v1\"},{\"title\":\"Neural Robot Dynamics\",\"url\":\"https://arxiv.org/pdf/2508.15755\"},{\"title\":\"A review of learning-based dynamics models for robotic manipulation | Science Robotics\",\"url\":\"https://www.science.org/doi/10.1126/scirobotics.adt1497\"},{\"title\":\"AI Humanoid Robots 2026: Technology, Builders & Future\",\"url\":\"https://www.articsledge.com/post/ai-humanoid-robots\"},{\"title\":\"Real-world humanoid locomotion with reinforcement learning | Science Robotics\",\"url\":\"https://www.science.org/doi/10.1126/scirobotics.adi9579\"},{\"title\":\"Humanoids 2025 Program | Wednesday October 1, 2025\",\"url\":\"https://ras.papercept.net/conferences/scripts/rtf/ICHR25_ContentListWeb_2.html\"},{\"title\":\"Humanoid Robots News | AI Breakthroughs, Robotics Trends & Synthetic Updates\",\"url\":\"https://humanoid.press/\"},{\"title\":\"GitHub - jonyzhang2023/awesome-embodied-vla-va-vln: A curated list of state-of-the-art research in embodied AI, focusing on vision-language-action (VLA) models, vision-language navigation (VLN), and related multimodal learning approaches. · GitHub\",\"url\":\"https://github.com/jonyzhang2023/awesome-embodied-vla-va-vln\"}]\n\nBased on the web search results, here's what I found regarding learned/neural dynamics and humanoid skill composition feasibility in 2025-2026:\n\n## Recent Research and Developments\n\nNeural Robot Dynamics (NeRD) is a learned robot-specific dynamics model for predicting the evolution of articulated rigid-body states under contact constraints, featuring a hybrid prediction framework where it replaces only application-agnostic simulation modules and leverages a robot-centric state representation.\n\nLearning-based models offer an alternative by learning predictive dynamics directly from raw sensory data, capturing hard-to-model factors, reasoning about uncertainty, and accelerating high-precision simulations too slow for real-time control.\n\n## Humanoid Skill Composition and Feasibility\n\nThe research community is actively exploring skill composition for humanoids. Recent work includes \"Compose Your Policies! Improving Diffusion-based or Flow-based Robot Policies via Test-time Distribution-level Composition\" published in 2025-2026, which directly addresses policy composition methods.\n\nHumanoid robots have great potential to perform various human-level skills involving locomotion, manipulation, and cognitive capabilities. Recent papers from 2025-2026 demonstrate feasibility of complex skill learning, including physics-based humanoid whole-body control for learning highly-dynamic skills and work on general motion tracking policies for high dynamic humanoid whole-body control.\n\n## Current Status\n\nThe sector continues shifting from prototypes to commercial pilots and production scaling, with multiple companies deploying humanoid robots in real-world manufacturing environments as of 2026.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bb83e3e-c9a1-4115-be12-9075d1c4d708",
+            "isSidechain": true,
+            "promptId": "9b9ebae5-ea89-443c-82ad-9f786b68d79f",
+            "agentId": "a6cf77a0047a23b0c",
+            "type": "user",
+            "uuid": "a5e25cb8-115a-431f-bde9-8df5db157b17",
+            "sourceToolAssistantUUID": "2bb83e3e-c9a1-4115-be12-9075d1c4d708",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-10T19:22:17.787Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Research Verification Results\n\n### 1. SuperDyno - ICLR 2025 ✓ VERIFIED\n**Status:** Paper exists and is confirmed\n- **Full Title:** \"Scalable Humanoid Whole-Body Control via Differentiable Neural Network Dynamics\"\n- **Publication:** Workshop paper at ICLR 2025\n- **What it does:** Proposes a framework combining supervised and reinforcement learning for scalable humanoid controller learning using learned neural dynamics models. The key innovation is using differentiable neural network dynamics as a simulator for accurate prediction and effective policy optimization.\n- **Key benefit:** Achieves higher sample efficiency, lower tracking error, and scales to datasets with tens of thousands of motion clips.\n- **Project:** https://dynamics-humanoid.github.io/dynamics-humanoid/\n\n### 2. Humanoid Hanoi - arXiv:2602.13850 ✓ VERIFIED\n**Status:** Paper exists and is confirmed\n- **Full Title:** \"Humanoid Hanoi: Investigating Shared Whole-Body Control for Skill-Based Box Rearrangement\"\n- **Focus:** Addresses distribution shift in skill composition by using a shared whole-body controller (WBC) for executing multiple skills\n- **What it does:** Implements a long-horizon Tower-of-Hanoi box rearrangement benchmark and tackles the problem that skill composition causes state and command distribution shifts that reduce robustness\n- **Solution:** Uses data aggregation with domain randomization to augment shared-WBC training with closed-loop skill execution rollouts\n- **Validation:** Tested in simulation and on Digit V3 humanoid robot\n\n### 3. FALCON - arXiv:2505.06776 ✓ VERIFIED\n**Status:** Paper exists and is confirmed\n- **Full Title:** \"FALCON: Learning Force-Adaptive Humanoid Loco-Manipulation\"\n- **What it does:** Dual-agent RL framework for robust force-adaptive humanoid loco-manipulation that decomposes control into lower-body (stable locomotion) and upper-body (end-effector tracking with implicit force compensation) agents\n- **Key results:** 2x more accurate upper-body tracking vs baselines while maintaining robust locomotion; tested on real-world tasks including payload transport (0-20N), cart-pulling (0-100N), and door-opening (0-40N)\n- **Venue:** L4DC 2026\n- **Authors:** CMU, Field AI, Nissan USA\n\n### 4. Learned/Neural Dynamics for Skill Composition - LIMITED FINDINGS\n**Status:** Related work exists, but limited specific papers on this exact topic\n- **Found:** SuperDyno (above) uses learned neural dynamics for control, and \"Neural Robot Dynamics\" (NeRD) is a learned dynamics model for predicting articulated rigid-body states\n- **General trend:** The research community is exploring skill composition and learned dynamics models, but there appear to be few papers specifically focused on using learned dynamics to predict skill composition feasibility\n- **Related research:** \"Compose Your Policies! Improving Diffusion-based or Flow-based Robot Policies via Test-time Distribution-level Composition\" addresses policy composition methods (2025-2026)\n\n---\n\nSources:\n- [SuperDyno on OpenReview](https://openreview.net/forum?id=FPgKt7bA8w)\n- [SuperDyno Project Website](https://dynamics-humanoid.github.io/dynamics-humanoid/)\n- [Humanoid Hanoi on arXiv](https://arxiv.org/abs/2602.13850)\n- [FALCON on arXiv](https://arxiv.org/abs/2505.06776)\n- [FALCON Project Website](https://lecar-lab.github.io/falcon-humanoid/)\n- [Neural Robot Dynamics on arXiv](https://arxiv.org/pdf/2508.15755)\n- [Learning-based Dynamics Models Review](https://www.science.org/doi/10.1126/scirobotics.adt1497)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5e25cb8-115a-431f-bde9-8df5db157b17",
+            "isSidechain": true,
+            "agentId": "a6cf77a0047a23b0c",
+            "requestId": "req_011CauS2A8LKmve2JLK2YuHU",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d2c95265-8602-4bf0-bd8f-411b0a0987d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "c9f1e88d-7547-445a-bdb2-8a60925de079",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01GEkFMFju7BWpZ5kjTGMSdC",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 4540,
+                "cache_read_input_tokens": 14228,
+                "output_tokens": 952,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4540
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 952,
+                    "cache_read_input_tokens": 14228,
+                    "cache_creation_input_tokens": 4540,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4540,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              }
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-for-a-research-proposal-review-i-need-to-verify-1-superdyno-iclr-2025-humanoid.md"
+}

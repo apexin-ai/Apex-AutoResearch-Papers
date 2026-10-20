@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "c3fe7fbbe042de5a979f",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics - exp_id: permuted_score_control_seed42 - proj",
+  "task_key": "060a699d-7bb1-4f74-a0a2-0fdc65ae2506",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/060a699d-7bb1-4f74-a0a2-0fdc65ae2506.jsonl",
+    "occurrence": 1,
+    "bytes": 815507,
+    "sha256": "eed0e458d6eacfadcdf7d9c3850c42a4156cf639fbcefc450cec34ca8f4dd926"
+  },
+  "statistics": {
+    "messages": 107,
+    "user_turns": 3,
+    "tool_calls": 26,
+    "roles": {
+      "record": 30,
+      "user": 3,
+      "assistant": 22,
+      "tool_call": 26,
+      "tool_result": 26
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c3fe7fbbe042de5a979f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 102,
+      "chunks": [
+        {
+          "path": "c3fe7fbbe042de5a979f-part-0001.json",
+          "message_count": 52
+        },
+        {
+          "path": "c3fe7fbbe042de5a979f-part-0002.json",
+          "message_count": 50
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "c3fe7fbbe042de5a979f-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "c3fe7fbbe042de5a979f-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-process-exited-without-valid-w-b-metrics-exp-id-permuted-score-control-se.md"
+}

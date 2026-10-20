@@ -1,0 +1,1207 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ef5841ff0a7bdfcb52d2",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run OOD PPL eval for 1.7B models on dual GPUs",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98"
+              }
+            }
+          ],
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-20T14:50:04.379Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018hThuX9dzbvZMt7nmhwZxi",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41312",
+                "command": "ps -p 489059 -o pid,etime",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "585a3fa7-85f4-4d30-9530-2c9fe50e0a11",
+            "isSidechain": false,
+            "requestId": "req_011CbE1MsHnCZwWDRLBtcemG",
+            "type": "assistant",
+            "uuid": "0d7a93da-4a21-415d-b602-38985254ec56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Eoqoi4JSVHrjexnuDgiEqe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 459,
+                "cache_read_input_tokens": 114973,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 459,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 114973,
+                    "cache_creation_input_tokens": 459,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 459
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-20T14:50:04.834Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018hThuX9dzbvZMt7nmhwZxi",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n489059       10:03\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0d7a93da-4a21-415d-b602-38985254ec56",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "4e0a4034-6a99-4269-824c-e38fdc0fd70c",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"   PID     ELAPSED\\\\n489059       10:03\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n489059       10:03\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "0d7a93da-4a21-415d-b602-38985254ec56",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-20T14:50:04.994Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JoEw8gKAkoUJmYwCcDdYY7",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41312",
+                "command": "wc -c /tmp/eval_adaptive_1_7b_wiki.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4e0a4034-6a99-4269-824c-e38fdc0fd70c",
+            "isSidechain": false,
+            "requestId": "req_011CbE1MsHnCZwWDRLBtcemG",
+            "type": "assistant",
+            "uuid": "3b5e7083-8527-4a4a-914a-1664b74e4e35",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Eoqoi4JSVHrjexnuDgiEqe",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 459,
+                "cache_read_input_tokens": 114973,
+                "output_tokens": 217,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 459,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 217,
+                    "cache_read_input_tokens": 114973,
+                    "cache_creation_input_tokens": 459,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 459
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-20T14:50:05.455Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JoEw8gKAkoUJmYwCcDdYY7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1824 /tmp/eval_adaptive_1_7b_wiki.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3b5e7083-8527-4a4a-914a-1664b74e4e35",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "a5cc9e0b-6f31-47b8-9731-7159161a2ea1",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"1824 /tmp/eval_adaptive_1_7b_wiki.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"1824 /tmp/eval_adaptive_1_7b_wiki.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "3b5e7083-8527-4a4a-914a-1664b74e4e35",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-20T14:50:08.258Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Log grew to 1824 bytes. The eval is likely done. Let me check the JSON result.",
+              "signature": "EpMCCmMIDRgCKkC96Qw2Jp1s2947R//QSKDoHp1s/VA1fuHjJUfdEcDPmpYSUEMZqeZKezx35+LFfTpCFXBOEH+RIloC5yPXNgNlMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDOBcUz0EA3JFnGJcTRoM78zGy5BRwg55WBSsIjC7wpOxhRex9Wuzddlmc2k5oXCHf+XSbjgF/FGVXKdpmoSY8XnmPSH3qFKMoBOLWMIqXkosLME5aobfbScIIIFkpVZuZgmRQ5AhsPuAQ8t/VRDrkn1NwrRGFq0fBjObnmYZVzULUdh8iXGedBt/dhMJBPIIDh7VgoaftHCoK3V9Ndo5w5XhKgddkUh/A/fp89MYAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a5cc9e0b-6f31-47b8-9731-7159161a2ea1",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NBKjQ5LziKSUxwj45",
+            "type": "assistant",
+            "uuid": "1784c7cc-1876-4218-bc4d-55e501856fd2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmDUxt44sDzHgdwNz2EK7z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 460,
+                "cache_read_input_tokens": 115432,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 115432,
+                    "cache_creation_input_tokens": 460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-20T14:50:09.264Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Adaptive wiki log 增长了（939→1824）。查看结果。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1784c7cc-1876-4218-bc4d-55e501856fd2",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NBKjQ5LziKSUxwj45",
+            "type": "assistant",
+            "uuid": "cc688979-1fb3-4c4e-a2ef-df8b22aac91a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmDUxt44sDzHgdwNz2EK7z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 460,
+                "cache_read_input_tokens": 115432,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 115432,
+                    "cache_creation_input_tokens": 460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-20T14:50:09.489Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PL2YxpNaDKjke6JAVsHYvE",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westd-41312",
+                "command": "cat /tmp/eval_adaptive_1_7b_wiki.json",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cc688979-1fb3-4c4e-a2ef-df8b22aac91a",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NBKjQ5LziKSUxwj45",
+            "type": "assistant",
+            "uuid": "40d69ce9-45c1-442b-9bbb-cb58ff064d25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NmDUxt44sDzHgdwNz2EK7z",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 460,
+                "cache_read_input_tokens": 115432,
+                "output_tokens": 175,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 460,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 175,
+                    "cache_read_input_tokens": 115432,
+                    "cache_creation_input_tokens": 460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 460
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000728"
+        },
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-20T14:50:09.943Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PL2YxpNaDKjke6JAVsHYvE",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_1_7b_seed42_v5/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.393791495003815,\\\\n    \\\\\\\"perplexity\\\\\\\": 10.95495094314204,\\\\n    \\\\\\\"num_tokens\\\\\\\": 27000339,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 597.9,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "40d69ce9-45c1-442b-9bbb-cb58ff064d25",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "698bc0d5-fae7-4e0e-af6c-e251e1a5f215",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"adaptive_1_7b_seed42_v5/final\\\\\\\": {\\\\n    \\\\\\\"loss\\\\\\\": 2.393791495003815,\\\\n    \\\\\\\"perplexity\\\\\\\": 10.95495094314204,\\\\n    \\\\\\\"num_tokens\\\\\\\": 27000339,\\\\n    \\\\\\\"elapsed_seconds\\\\\\\": 597.9,\\\\n    \\\\\\\"checkpoint\\\\\\\": \\\\\\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\\\\\"\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"adaptive_1_7b_seed42_v5/final\\\": {\\n    \\\"loss\\\": 2.393791495003815,\\n    \\\"perplexity\\\": 10.95495094314204,\\n    \\\"num_tokens\\\": 27000339,\\n    \\\"elapsed_seconds\\\": 597.9,\\n    \\\"checkpoint\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\"\\n  }\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+              }
+            },
+            "sourceToolAssistantUUID": "40d69ce9-45c1-442b-9bbb-cb58ff064d25",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-20T14:50:09.946Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "698bc0d5-fae7-4e0e-af6c-e251e1a5f215",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "34ed7ea8-b0d5-4b92-9b53-9d2aafd897ce",
+                "timestamp": "2026-05-20T14:50:09.946Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-20T14:50:15.780Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "All 4 evals complete! Let me summarize the results:\n\n**Uniform 1.7B:**\n- OWT PPL: 13.2908 (loss=2.5871)\n- Wikipedia PPL: 10.9186 (loss=2.3905)\n\n**Adaptive 1.7B:**\n- OWT PPL: 13.2819 (loss=2.5864)\n- Wikipedia PPL: 10.9550 (loss=2.3938)\n\n**Δ (adaptive - uniform):**\n- OWT: 13.28 - 13.29 = -0.01 (adaptive slightly better)\n\n\n- Wikipedia: 10.95 - 10.92 = +0.03 (adaptive slightly worse)\n\nNow I'm updating the registry for both experiments.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34ed7ea8-b0d5-4b92-9b53-9d2aafd897ce",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "f8b48908-8f20-4362-8337-3675e7cda582",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-20T14:50:15.781Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 个 eval 完成。更新 registry。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8b48908-8f20-4362-8337-3675e7cda582",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "b40e0ebf-1043-4c35-ba31-c3a638f3ca18",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000732"
+        },
+        {
+          "source_line": 733,
+          "timestamp": "2026-05-20T14:50:16.973Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JtvnrZFU2265ykzGjMsymT",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "uniform_1_7b_seed42_v5",
+                "field": "eval_ppl_openwebtext",
+                "value": 13.291,
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b40e0ebf-1043-4c35-ba31-c3a638f3ca18",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "9a3eda3e-66b3-4466-8607-0390f0042f45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000733"
+        },
+        {
+          "source_line": 734,
+          "timestamp": "2026-05-20T14:50:17.822Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JtvnrZFU2265ykzGjMsymT",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"uniform_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:09.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:17.466Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:12.203Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 453123, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:46.196Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.3, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.56, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 17630, \\\"eval_ppl_holdout\\\": 13.28, \\\"downstream_arc_easy_acc_norm\\\": 0.7235, \\\"downstream_arc_challenge_acc_norm\\\": 0.4334, \\\"downstream_hellaswag_acc_norm\\\": 0.6107, \\\"downstream_piqa_acc_norm\\\": 0.7432, \\\"downstream_winogrande_acc\\\": 0.6172, \\\"downstream_mean\\\": 0.6256}, \\\"completed_at\\\": \\\"2026-05-20T14:11:51.458Z\\\", \\\"eval_ppl_openwebtext\\\": 13.291}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8407}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a3eda3e-66b3-4466-8607-0390f0042f45",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "5e85ab11-956e-43d6-96fa-46bde2337db6",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"uniform_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:09.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:17.466Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:12.203Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 453123, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:46.196Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.3, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.56, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 17630, \\\"eval_ppl_holdout\\\": 13.28, \\\"downstream_arc_easy_acc_norm\\\": 0.7235, \\\"downstream_arc_challenge_acc_norm\\\": 0.4334, \\\"downstream_hellaswag_acc_norm\\\": 0.6107, \\\"downstream_piqa_acc_norm\\\": 0.7432, \\\"downstream_winogrande_acc\\\": 0.6172, \\\"downstream_mean\\\": 0.6256}, \\\"completed_at\\\": \\\"2026-05-20T14:11:51.458Z\\\", \\\"eval_ppl_openwebtext\\\": 13.291}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8407}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"uniform_1_7b_seed42_v5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:51:09.912Z\", \"updated_at\": \"2026-05-20T14:50:17.466Z\", \"hypothesis\": \"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T08:52:12.203Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"pid\": 453123, \"log_path\": \"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\", \"submitted_at\": \"2026-05-20T08:52:46.196Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"N/A (from-scratch training)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 19145.3, \"gpu_hours\": 5.32}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.56, \"total_steps\": 6103, \"train_runtime_s\": 17630, \"eval_ppl_holdout\": 13.28, \"downstream_arc_easy_acc_norm\": 0.7235, \"downstream_arc_challenge_acc_norm\": 0.4334, \"downstream_hellaswag_acc_norm\": 0.6107, \"downstream_piqa_acc_norm\": 0.7432, \"downstream_winogrande_acc\": 0.6172, \"downstream_mean\": 0.6256}, \"completed_at\": \"2026-05-20T14:11:51.458Z\", \"eval_ppl_openwebtext\": 13.291}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8407}}"
+              }
+            },
+            "sourceToolAssistantUUID": "9a3eda3e-66b3-4466-8607-0390f0042f45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000734"
+        },
+        {
+          "source_line": 735,
+          "timestamp": "2026-05-20T14:50:17.985Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VtqnpM19LYTh6wwHQzfkdh",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "uniform_1_7b_seed42_v5",
+                "field": "eval_ppl_wikipedia",
+                "value": 10.919,
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e85ab11-956e-43d6-96fa-46bde2337db6",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "93c04ada-4415-4dca-8b0a-9a40bafafb9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000735"
+        },
+        {
+          "source_line": 736,
+          "timestamp": "2026-05-20T14:50:18.847Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VtqnpM19LYTh6wwHQzfkdh",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"uniform_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:09.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:18.493Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:12.203Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 453123, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:46.196Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.3, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.56, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 17630, \\\"eval_ppl_holdout\\\": 13.28, \\\"downstream_arc_easy_acc_norm\\\": 0.7235, \\\"downstream_arc_challenge_acc_norm\\\": 0.4334, \\\"downstream_hellaswag_acc_norm\\\": 0.6107, \\\"downstream_piqa_acc_norm\\\": 0.7432, \\\"downstream_winogrande_acc\\\": 0.6172, \\\"downstream_mean\\\": 0.6256}, \\\"completed_at\\\": \\\"2026-05-20T14:11:51.458Z\\\", \\\"eval_ppl_openwebtext\\\": 13.291, \\\"eval_ppl_wikipedia\\\": 10.919}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.853}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93c04ada-4415-4dca-8b0a-9a40bafafb9a",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "2561da13-501d-4949-8d6c-9cd93c077eff",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"uniform_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:09.912Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:18.493Z\\\", \\\"hypothesis\\\": \\\"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:12.203Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"pid\\\": 453123, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:46.196Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.3, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 7.56, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 17630, \\\"eval_ppl_holdout\\\": 13.28, \\\"downstream_arc_easy_acc_norm\\\": 0.7235, \\\"downstream_arc_challenge_acc_norm\\\": 0.4334, \\\"downstream_hellaswag_acc_norm\\\": 0.6107, \\\"downstream_piqa_acc_norm\\\": 0.7432, \\\"downstream_winogrande_acc\\\": 0.6172, \\\"downstream_mean\\\": 0.6256}, \\\"completed_at\\\": \\\"2026-05-20T14:11:51.458Z\\\", \\\"eval_ppl_openwebtext\\\": 13.291, \\\"eval_ppl_wikipedia\\\": 10.919}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.853}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"uniform_1_7b_seed42_v5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:51:09.912Z\", \"updated_at\": \"2026-05-20T14:50:18.493Z\", \"hypothesis\": \"Uniform baseline at 1.7B model scale (seed=42). From-scratch on westd-41312 cuda:0. v5 replaces v4 (disk full at step 500). 176GB available after cleanup.\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-20T08:52:12.203Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method uniform --contamination_ratio 0.4 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:0\", \"pid\": 453123, \"log_path\": \"~/runs/provenance_weight_training/uniform_1_7b_seed42_v5.log\", \"submitted_at\": \"2026-05-20T08:52:46.196Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"N/A (from-scratch training)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 19145.3, \"gpu_hours\": 5.32}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/uniform_1_7b_seed42_v5/final\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 7.56, \"total_steps\": 6103, \"train_runtime_s\": 17630, \"eval_ppl_holdout\": 13.28, \"downstream_arc_easy_acc_norm\": 0.7235, \"downstream_arc_challenge_acc_norm\": 0.4334, \"downstream_hellaswag_acc_norm\": 0.6107, \"downstream_piqa_acc_norm\": 0.7432, \"downstream_winogrande_acc\": 0.6172, \"downstream_mean\": 0.6256}, \"completed_at\": \"2026-05-20T14:11:51.458Z\", \"eval_ppl_openwebtext\": 13.291, \"eval_ppl_wikipedia\": 10.919}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.853}}"
+              }
+            },
+            "sourceToolAssistantUUID": "93c04ada-4415-4dca-8b0a-9a40bafafb9a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000736"
+        },
+        {
+          "source_line": 737,
+          "timestamp": "2026-05-20T14:50:18.873Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TVYZgtJxxpLNWRFfJ4kBAm",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "adaptive_1_7b_seed42_v5",
+                "field": "eval_ppl_openwebtext",
+                "value": 13.282,
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2561da13-501d-4949-8d6c-9cd93c077eff",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "75565fa0-1726-45fd-a86d-a4552da58ad3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000737"
+        },
+        {
+          "source_line": 738,
+          "timestamp": "2026-05-20T14:50:19.596Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BMk1tUhaW9wDnqfhkkKXih",
+              "name": "mcp__agent-ml-research__update_registry",
+              "input": {
+                "exp_id": "adaptive_1_7b_seed42_v5",
+                "field": "eval_ppl_wikipedia",
+                "value": 10.955,
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75565fa0-1726-45fd-a86d-a4552da58ad3",
+            "isSidechain": false,
+            "requestId": "req_011CbE1NWXPbFxCubraYdfif",
+            "type": "assistant",
+            "uuid": "6fd0ec2c-df53-4212-afc1-66639ec53eb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Dc3tAJLuHu8XEmuj9eHXCB",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 504,
+                "cache_read_input_tokens": 115892,
+                "output_tokens": 730,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 504,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 730,
+                    "cache_read_input_tokens": 115892,
+                    "cache_creation_input_tokens": 504,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 504
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000738"
+        },
+        {
+          "source_line": 739,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "6fd0ec2c-df53-4212-afc1-66639ec53eb8",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98"
+              }
+            }
+          ],
+          "id": "event-000739"
+        },
+        {
+          "source_line": 740,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run OOD PPL eval for 1.7B models on dual GPUs",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98"
+              }
+            }
+          ],
+          "id": "event-000740"
+        },
+        {
+          "source_line": 741,
+          "timestamp": "2026-05-20T14:50:19.772Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TVYZgtJxxpLNWRFfJ4kBAm",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:11.055Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:19.398Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:14.451Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 453200, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:48.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.2, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.139, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 18540, \\\"eval_ppl_holdout\\\": 13.27, \\\"downstream_arc_easy_acc_norm\\\": 0.7176, \\\"downstream_arc_challenge_acc_norm\\\": 0.4403, \\\"downstream_hellaswag_acc_norm\\\": 0.6164, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6069, \\\"downstream_mean\\\": 0.6251}, \\\"completed_at\\\": \\\"2026-05-20T14:11:53.445Z\\\", \\\"eval_ppl_openwebtext\\\": 13.282}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8917}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75565fa0-1726-45fd-a86d-a4552da58ad3",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "e10f4b2c-314c-45b4-86f9-2cfe9a3dd5a2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:11.055Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:19.398Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:14.451Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 453200, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:48.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.2, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.139, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 18540, \\\"eval_ppl_holdout\\\": 13.27, \\\"downstream_arc_easy_acc_norm\\\": 0.7176, \\\"downstream_arc_challenge_acc_norm\\\": 0.4403, \\\"downstream_hellaswag_acc_norm\\\": 0.6164, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6069, \\\"downstream_mean\\\": 0.6251}, \\\"completed_at\\\": \\\"2026-05-20T14:11:53.445Z\\\", \\\"eval_ppl_openwebtext\\\": 13.282}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8917}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"adaptive_1_7b_seed42_v5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:51:11.055Z\", \"updated_at\": \"2026-05-20T14:50:19.398Z\", \"hypothesis\": \"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T08:52:14.451Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"pid\": 453200, \"log_path\": \"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\", \"submitted_at\": \"2026-05-20T08:52:48.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"N/A (from-scratch training)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 19145.2, \"gpu_hours\": 5.32}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 9.139, \"total_steps\": 6103, \"train_runtime_s\": 18540, \"eval_ppl_holdout\": 13.27, \"downstream_arc_easy_acc_norm\": 0.7176, \"downstream_arc_challenge_acc_norm\": 0.4403, \"downstream_hellaswag_acc_norm\": 0.6164, \"downstream_piqa_acc_norm\": 0.7443, \"downstream_winogrande_acc\": 0.6069, \"downstream_mean\": 0.6251}, \"completed_at\": \"2026-05-20T14:11:53.445Z\", \"eval_ppl_openwebtext\": 13.282}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8917}}"
+              }
+            },
+            "sourceToolAssistantUUID": "75565fa0-1726-45fd-a86d-a4552da58ad3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000741"
+        },
+        {
+          "source_line": 742,
+          "timestamp": "2026-05-20T14:50:20.644Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BMk1tUhaW9wDnqfhkkKXih",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:11.055Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:20.275Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:14.451Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 453200, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:48.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.2, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.139, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 18540, \\\"eval_ppl_holdout\\\": 13.27, \\\"downstream_arc_easy_acc_norm\\\": 0.7176, \\\"downstream_arc_challenge_acc_norm\\\": 0.4403, \\\"downstream_hellaswag_acc_norm\\\": 0.6164, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6069, \\\"downstream_mean\\\": 0.6251}, \\\"completed_at\\\": \\\"2026-05-20T14:11:53.445Z\\\", \\\"eval_ppl_openwebtext\\\": 13.282, \\\"eval_ppl_wikipedia\\\": 10.955}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8591}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fd0ec2c-df53-4212-afc1-66639ec53eb8",
+            "isSidechain": false,
+            "promptId": "f96452c9-9d3c-4b6a-95af-ced4d55dd985",
+            "type": "user",
+            "uuid": "057fc426-e43c-4b25-a31e-d3b5c9835635",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"adaptive_1_7b_seed42_v5\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T08:51:11.055Z\\\", \\\"updated_at\\\": \\\"2026-05-20T14:50:20.275Z\\\", \\\"hypothesis\\\": \\\"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-20T08:52:14.451Z\\\"}, \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\\\\\"\\\", \\\"server\\\": \\\"westd-41312\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"pid\\\": 453200, \\\"log_path\\\": \\\"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T08:52:48.288Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"data/scored_data.jsonl\\\", \\\"data_count\\\": 371499, \\\"model_name\\\": \\\"Qwen3-1.7B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (from-scratch training)\\\", \\\"eval_data\\\": \\\"N/A (training experiment)\\\", \\\"wall_clock_seconds\\\": 19145.2, \\\"gpu_hours\\\": 5.32}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\\\", \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"train_loss\\\": 9.139, \\\"total_steps\\\": 6103, \\\"train_runtime_s\\\": 18540, \\\"eval_ppl_holdout\\\": 13.27, \\\"downstream_arc_easy_acc_norm\\\": 0.7176, \\\"downstream_arc_challenge_acc_norm\\\": 0.4403, \\\"downstream_hellaswag_acc_norm\\\": 0.6164, \\\"downstream_piqa_acc_norm\\\": 0.7443, \\\"downstream_winogrande_acc\\\": 0.6069, \\\"downstream_mean\\\": 0.6251}, \\\"completed_at\\\": \\\"2026-05-20T14:11:53.445Z\\\", \\\"eval_ppl_openwebtext\\\": 13.282, \\\"eval_ppl_wikipedia\\\": 10.955}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8591}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"exp_id\": \"adaptive_1_7b_seed42_v5\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:51:11.055Z\", \"updated_at\": \"2026-05-20T14:50:20.275Z\", \"hypothesis\": \"Adaptive (dual-constrained) at 1.7B model scale (seed=42, τ=0.8, ρ=0.4). From-scratch on westd-41312 cuda:1. v5 replaces v4 (disk full at step 500). Paired with uniform_1_7b_seed42_v5 for scaling claim.\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-20T08:52:14.451Z\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/provenance_weight_training && PYTHONUNBUFFERED=1 WANDB_MODE=disabled python -u training/pretrain_weighted.py --data_path data/scored_data.jsonl --output_dir /root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5 --model_name models/Qwen/Qwen3-1.7B --weighting_method adaptive --contamination_ratio 0.4 --tau 0.8 --num_train_tokens 200000000 --batch_size 4 --gradient_accumulation_steps 4 --learning_rate 5e-5 --max_length 2048 --seed 42 --save_steps 500 --logging_steps 10 --bf16 --save_total_limit 3\\\"\", \"server\": \"westd-41312\", \"gpu\": \"cuda:1\", \"pid\": 453200, \"log_path\": \"~/runs/provenance_weight_training/adaptive_1_7b_seed42_v5.log\", \"submitted_at\": \"2026-05-20T08:52:48.288Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/scored_data.jsonl\", \"data_count\": 371499, \"model_name\": \"Qwen3-1.7B\", \"seed\": 42, \"checkpoint_source\": \"N/A (from-scratch training)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 19145.2, \"gpu_hours\": 5.32}, \"checkpoint_path\": \"/root/autodl-tmp/provenance_weight_training/output/models/adaptive_1_7b_seed42_v5/final\", \"conclusion\": \"success\", \"metrics\": {\"train_loss\": 9.139, \"total_steps\": 6103, \"train_runtime_s\": 18540, \"eval_ppl_holdout\": 13.27, \"downstream_arc_easy_acc_norm\": 0.7176, \"downstream_arc_challenge_acc_norm\": 0.4403, \"downstream_hellaswag_acc_norm\": 0.6164, \"downstream_piqa_acc_norm\": 0.7443, \"downstream_winogrande_acc\": 0.6069, \"downstream_mean\": 0.6251}, \"completed_at\": \"2026-05-20T14:11:53.445Z\", \"eval_ppl_openwebtext\": 13.282, \"eval_ppl_wikipedia\": 10.955}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8591}}"
+              }
+            },
+            "sourceToolAssistantUUID": "6fd0ec2c-df53-4212-afc1-66639ec53eb8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000742"
+        },
+        {
+          "source_line": 743,
+          "timestamp": "2026-05-20T14:50:27.955Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n## 1.7B OOD PPL 结果\n\n| Model | OpenWebText | Wikipedia |\n|-------|------------|-----------|\n| uniform_1_7b | **13.291** | **10.919** |\n| adaptive_1_7b | **13.282** | **10.955** |\n| Δ (adaptive − uniform) | **−0.009** | **+0.036** |\n\n两个模型在 OOD 数据上几乎无差异。Adaptive 在 OWT 上微弱优势（−0.009），在 Wikipedia 上微弱劣势（+0.036），差异都在噪声范围内。与 0.6B 的格局一致——adaptive weighting 在 OOD 泛化上未显著偏离 uniform baseline。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "057fc426-e43c-4b25-a31e-d3b5c9835635",
+            "isSidechain": false,
+            "requestId": "req_011CbE1PJNvaUpkvoUVn2iEf",
+            "type": "assistant",
+            "uuid": "98169097-5085-48f6-ac41-1678e73f0459",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KMK4U3j2WuiRKUVFP7xNwm",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4926,
+                "cache_read_input_tokens": 116396,
+                "output_tokens": 221,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4926,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 221,
+                    "cache_read_input_tokens": 116396,
+                    "cache_creation_input_tokens": 4926,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4926
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000743"
+        },
+        {
+          "source_line": 744,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "98169097-5085-48f6-ac41-1678e73f0459",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98"
+              }
+            }
+          ],
+          "id": "event-000744"
+        },
+        {
+          "source_line": 745,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Run OOD PPL eval for 1.7B models on dual GPUs",
+                "sessionId": "2b0deb7e-56e0-4d54-9938-ded8e41cbf98"
+              }
+            }
+          ],
+          "id": "event-000745"
+        }
+      ]
+    }
+  ]
+}

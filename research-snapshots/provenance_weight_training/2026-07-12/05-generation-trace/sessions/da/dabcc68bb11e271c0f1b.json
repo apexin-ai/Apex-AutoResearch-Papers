@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "dabcc68bb11e271c0f1b",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 项目：provenance_weight_training Venue：emnlp-2026 论文目录：/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance",
+  "task_key": "e312ca03-34a6-4359-8633-42c4d99a8b31",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/e312ca03-34a6-4359-8633-42c4d99a8b31.jsonl",
+    "occurrence": 1,
+    "bytes": 792461,
+    "sha256": "77b5cfc9a3138ea8d84bfcdecbf96578c2dceb6722235cd01fbcea4045b57353"
+  },
+  "statistics": {
+    "messages": 206,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "record": 45,
+      "user": 1,
+      "assistant": 38,
+      "tool_call": 61,
+      "tool_result": 61
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "dabcc68bb11e271c0f1b-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 204,
+      "chunks": [
+        {
+          "path": "dabcc68bb11e271c0f1b-part-0001.json",
+          "message_count": 103
+        },
+        {
+          "path": "dabcc68bb11e271c0f1b-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-provenance-weight-training-venue-emnlp-2026-home-ubuntu-agent-ml-research-idea-copy-3.md"
+}

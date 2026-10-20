@@ -1,0 +1,109 @@
+{
+  "schema_version": "1.0",
+  "session_id": "ce2745c905973426f97b",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-13T04:48:45.962Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The proposal claims \"+2.9% improvement retaining 78/512 tokens\" but the actual paper says +2.6%. A minor inaccuracy. Now let me compile the full review.\n\n```json\n{\n  \"verdict\": \"revise\",\n  \"scores\": {\n    \"novelty\": {\n      \"score\": 3,\n      \"rationale\": \"The extension from BC-IB's continuous compression to discrete token selection under distribution shift is a genuine gap, but the theoretical machinery (PAC-Bayes DA + IB bounds) is a relatively straightforward combination of existing tools. The phase transition analysis partially overlaps with 'How Much Information Can a Vision Token Hold?' (arXiv 2602.02539, Feb 2026), which already identifies Stable/Instability/Collapse phases in vision token capacity. CAIB (arXiv 2601.04361, Jan 2026) already combines IB with domain adaptation. The contribution is more of a synthesis-and-application than a fundamental theoretical advance.\"\n    },\n    \"feasibility\": {\n      \"score\": 3,\n      \"rationale\": \"Three major risks: (1) PAC-Bayes bounds are known to be vacuous for large models — at 7B VLA scale, the derived bound will almost certainly be numerically uninformative, reducing the theoretical contribution to qualitative trend prediction; (2) MI estimation in 7B representations remains extremely challenging per arXiv 2506.00330, and cross-estimator consistency between MINE, LMI, and linear probes is far from guaranteed; (3) OpenVLA has not been validated on MetaWorld MT50 in existing literature, creating a potential experiment pipeline risk.\"\n    },\n    \"clarity\": {\n      \"score\": 4,\n      \"rationale\": \"The three-part framework is well-structured, the positioning relative to BC-IB is now clear, and the Saxe et al. rebuttal (designed vs emergent compression) is well-argued. The mathematical formulation is sketched but the discrete IB formalization (Z ⊂ X) has subtle issues that need more care.\"\n    },\n    \"impact\": {\n      \"score\": 3,\n      \"rationale\": \"If successful, this would provide the first theoretical framework connecting VLA token pruning to generalization under distribution shift. However, practical impact is limited by likely vacuous bounds — practitioners won't use a bound that says 'error ≤ 347%' even if relative trends are informative. The phase transition k* prediction could be valuable but only if it actually matches empirical thresholds across diverse tasks, which the risk notes already acknowledge as uncertain.\"\n    }\n  },\n  \"issues\": [\n    \"MISSING RELATED WORK — 'How Much Information Can a Vision Token Hold? A Scaling Law for Recognition Limits in VLMs' (arXiv 2602.02539, Feb 2026) already identifies a three-phase transition (Stable/Instability/Collapse) in vision token capacity and derives a probabilistic scaling law. While targeting VLMs for recognition rather than VLAs for action prediction, this directly overlaps with the proposed 'phase transition analysis' in Part 2. The proposal must cite this work and clearly differentiate its phase transition characterization (IB-based k* for action prediction) from this recognition-capacity phase transition.\",\n    \"MISSING RELATED WORK — 'Causally-Aware Information Bottleneck for Domain Adaptation' (arXiv 2601.04361, Jan 2026) directly combines Information Bottleneck with domain adaptation for handling covariate shift, including a Variational IB encoder for high-dimensional data. This is a core theoretical building block of the proposal and must be cited and differentiated from.\",\n    \"VACUOUS BOUNDS AT SCALE — PAC-Bayes generalization bounds are well-documented to be vacuous (trivially ≥1) for overparameterized deep networks. Recent work confirms that 'empirically, PAC-Bayes certificates are never tighter than frequentist test-set bounds.' For a 7B-parameter VLA, the proposed bound combining PAC-Bayes + IB + domain divergence will almost certainly be numerically uninformative. The proposal must honestly acknowledge this limitation and reframe the theoretical contribution — either focus on relative trends and ordinal predictions (which weakens the 'bound' framing), or target non-vacuous bounds using data-dependent priors (which adds significant complexity).\",\n    \"DISCRETE IB FORMALIZATION SUBTLETY — When Z ⊂ X is a deterministic subset selection, I(X;Z) has specific mathematical properties that differ from the continuous variational bottleneck in BC-IB. If Z is a deterministic function of a selection mask, I(X;Z) = H(Z) since Z is perfectly determined by X. The proposal needs a careful formalization — either through stochastic selection (Gumbel-softmax relaxation as in LightVLA) or by redefining the IB objective for the discrete case (e.g., via the selected token indices rather than the token values). This mathematical subtlety is not addressed.\",\n    \"CIRCULAR REASONING RISK in domain gap reduction claim — The theoretical argument that 'task-conditioned token pruning tightens the bound by reducing the effective domain gap' assumes that pruned tokens disproportionately carry domain-specific information. But this is the very claim the theory should derive/prove, not assume. If this is an assumption, the bound's applicability is conditional on a property that must be verified empirically for each pruning method, which weakens the theoretical generality.\",\n    \"MINOR FACTUAL ERROR — LightVLA achieves +2.6% improvement on LIBERO per the actual paper (arXiv 2509.12594), not +2.9% as stated. The token retention number (78/512) should be verified.\",\n    \"ADDITIONAL MISSING VLA TOKEN PRUNING WORKS — Several concurrent VLA pruning methods are not cited: VLA-Pruner (arXiv 2511.16449, temporal-aware dual-level pruning), ETA-VLA (arXiv 2603.25766, temporal fusion + sparsification), EcoVLA (arXiv 2602.00780, environment-aware adaptive pruning). While primarily engineering papers, they represent the complete competitive landscape and reviewers will expect them.\",\n    \"METAWORLD MT50 FEASIBILITY — No published work demonstrates OpenVLA 7B fine-tuning and evaluation on MetaWorld MT50. The OneWM-VLA result (47.9%→61.3% on MT50) uses a 2B backbone. Integrating OpenVLA 7B with MetaWorld MT50 may require non-trivial engineering effort not accounted for in the timeline.\"\n  ],\n  \"feedback\": \"The revision meaningfully addressed Round 1 feedback — BC-IB differentiation is now clear, Saxe et al. is handled well, GIB synergy is properly scoped as empirical, and MI estimation uses multiple approaches. However, several issues remain that must be resolved for top-venue quality:\\n\\n1. **Acknowledge bound vacuity honestly**: This is the most critical theoretical issue. Add a subsection explicitly discussing that PAC-Bayes bounds at VLA scale will likely be vacuous in absolute terms, and reposition the theoretical contribution as providing (a) ordinal predictions about when pruning helps/hurts generalization, (b) a principled framework for token budget selection via k*, and (c) qualitative insights about the relationship between compression and domain gap — rather than claiming numerically tight bounds. This is defensible and honest; claiming tight bounds at 7B scale would be immediately challenged by reviewers familiar with PAC-Bayes literature.\\n\\n2. **Fix the discrete IB formalization**: Address the mathematical subtlety that deterministic subset selection Z ⊂ X makes I(X;Z) = H(Z). Consider two approaches: (a) model token selection as a stochastic process (aligning with differentiable pruning methods like LightVLA's Gumbel-softmax), or (b) reformulate using the selection mask M as the bottleneck variable, where I(X;M) captures how much information about the full observation the mask reveals. This is a solvable issue but must be addressed explicitly.\\n\\n3. **Cite and differentiate from arXiv 2602.02539**: The phase transition in vision token capacity (Stable/Instability/Collapse) is already documented for VLMs. Your k* analysis should be positioned as complementary — theirs characterizes recognition capacity limits, yours characterizes action-prediction information thresholds via IB theory, which additionally predicts how k* varies with task complexity.\\n\\n4. **Address the circularity in domain gap reduction**: Either (a) prove that task-conditioned pruning preferentially removes domain-variant tokens (which would require assumptions about the data distribution structure), or (b) make this an empirically testable prediction of the theory rather than an assumption. Option (b) is more honest: 'our bound predicts that if pruning reduces domain-variant information disproportionately, the generalization gap will tighten; we empirically verify this by comparing task-conditioned vs. random pruning.'\\n\\n5. **Add missing citations**: arXiv 2602.02539, arXiv 2601.04361, VLA-Pruner, ETA-VLA, EcoVLA. Fix the LightVLA accuracy (+2.6%, not +2.9%).\\n\\n6. **De-risk MetaWorld MT50**: Either verify that OpenVLA 7B can be fine-tuned on MetaWorld MT50 (check if the observation/action spaces are compatible with OpenVLA's architecture), or replace with LIBERO-90 cross-suite transfer as the primary distribution-shift testbed, which has established OpenVLA baselines.\",\n  \"reason\": \"Genuine theoretical gap identified but execution faces fundamental challenges: PAC-Bayes bounds will be vacuous at 7B scale, the discrete IB formalization has an unaddressed mathematical subtlety, and several competing/related works from early 2026 are missing.\"\n}\n```"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2f232158-facd-4e83-96a6-3228d69940fa",
+            "isSidechain": false,
+            "requestId": "req_011CayxmVFEUCX8GxV8pM17J",
+            "type": "assistant",
+            "uuid": "09cb1e1f-0fc9-4acb-bdfe-b5125e5bef5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/",
+            "sessionId": "980f40b8-95b2-44bf-82bc-890de7ea1936",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01K4GFREovN216yuj7mdwvbK",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 312,
+                "cache_read_input_tokens": 78637,
+                "output_tokens": 2359,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 312,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2359,
+                    "cache_read_input_tokens": 78637,
+                    "cache_creation_input_tokens": 312,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 312
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-13 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+                "leafUuid": "09cb1e1f-0fc9-4acb-bdfe-b5125e5bef5d",
+                "sessionId": "980f40b8-95b2-44bf-82bc-890de7ea1936"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "VLA Token Pruning Theory via Distribution-Shift IB Bounds",
+                "sessionId": "980f40b8-95b2-44bf-82bc-890de7ea1936"
+              }
+            }
+          ],
+          "id": "event-000174"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0",
+  "id": "abd1c146f17d710515fc",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: provenance_weight_training ## 运行环境 - 服务器名: westd-41312 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "25e5201f-5173-4fe6-bdfc-0fe76abfd573",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/25e5201f-5173-4fe6-bdfc-0fe76abfd573.jsonl",
+    "occurrence": 1,
+    "bytes": 1833473,
+    "sha256": "f66e99cf02ca64638062441e6c5122ddf03afe5a34a1225a412d64aefff2db7e"
+  },
+  "statistics": {
+    "messages": 1281,
+    "user_turns": 2,
+    "tool_calls": 528,
+    "roles": {
+      "record": 171,
+      "user": 2,
+      "assistant": 51,
+      "tool_call": 528,
+      "tool_result": 528,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "abd1c146f17d710515fc-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1248,
+      "chunks": [
+        {
+          "path": "abd1c146f17d710515fc-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0007.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 31,
+      "chunks": [
+        {
+          "path": "abd1c146f17d710515fc-part-0007.json",
+          "message_count": 10
+        },
+        {
+          "path": "abd1c146f17d710515fc-part-0008.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-provenance-weight-training-westd-41312-ssh-root-ssh-execute-su-copy-64.md"
+}

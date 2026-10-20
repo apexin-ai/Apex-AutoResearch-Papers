@@ -1,0 +1,527 @@
+{
+  "schema_version": "1.0",
+  "session_id": "bbb188b74d377aab1f95",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T18:54:55.429Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AVRGRmRq3naSLAeReceEa7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## D062 coupling rule 已验证 (2026-05-17)\\\\n\\\\nbs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。\\\\n- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)\\\\n- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)\\\\n- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)\\\\n\\\\n结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。\\\\n\\\\n## Batch-adaptive τ 方向关闭 (2026-05-17)\\\\n\\\\n两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。\\\\n\\\\n## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)\\\\n\\\\ngrid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。\\\\n\\\\n## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)\\\\n\\\\nAdaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。\\\\nadaptive 方差仅为 uniform 的一半。\\\\n\\\\n## ρ=0.2 adaptive 无效 (2026-05-17)\\\\n\\\\nD068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。\\\\n\\\\n## Grid-b 曲线平坦性 (2026-05-17)\\\\n\\\\n[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。\\\\n\\\\n## 30476 SIGKILL 事件 (2026-05-17)\\\\n\\\\n4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。\\\\n\\\\n## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive\\\\n\\\\nPPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)\\\\n\\\\n## 1.7B 规模验证 — positive (2026-05-18) — Line B\\\\n\\\\nQwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。\\\\nPlan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。\\\\n\\\\n## Multi-Detector 结论 (2026-05-18, 更新)\\\\n\\\\n| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |\\\\n|----------|-----|-------------|-------------|---|------|\\\\n| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |\\\\n| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |\\\\n| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |\\\\n\\\\n**关键洞察：AUC 不是充分条件。**\\\\n- N-gram: b*≈0（信号太弱，算法正确不干预）\\\\n- GPT-2: b* 活跃 1.17-9.66（信号够强但方向有问题 — 算法积极 reweight 但 reweight 错了）\\\\n- TF-IDF: b* 活跃且有效\\\\n\\\\n分类器 (TF-IDF+LR) 直接学 human vs synthetic 边界，score 语义干净。PPL-based detector 的 score 混合了文本复杂度/领域差异，导致 reweighting 方向错误。Paper 应 frame 为\\\\\\\"detector type > AUC\\\\\\\"而非简单 AUC threshold。\\\\n\\\\n## 30476 路径注意 (2026-05-18)\\\\n\\\\n- eval 数据：`data/human/eval_holdout.jsonl`（NOT `data/eval_holdout.jsonl`）\\\\n- output_dir：`/root/autodl-tmp/output/models/`（NOT `/root/autodl-tmp/provenance_weight_training/output/models/`）\\\\n\\\\n## B=16 adaptive 优势放大 (2026-05-21)\\\\n\\\\nbs=16 (n_min=8) 的 Δ(adaptive−uniform) = −0.063，比 bs=4 (n_min=2) 的 seed42 Δ = −0.041 放大了 1.5x。\\\\n- bs16_adaptive: holdout=17.631, owt=18.309, wiki=15.286\\\\n- bs16_uniform: holdout=17.694, owt=18.364, wiki=15.337\\\\n- Uniform 不受 batch size 影响（bs4=17.694, bs16=17.694），改善全在 adaptive 侧\\\\n- 机制：更大 batch → n_min 绝对值更大 → weight distribution 有更多自由度做细粒度调节\\\\n- 注意：仅 seed42 单 seed，不能写 \\\\\\\"consistently amplifies\\\\\\\"，建议用 \\\\\\\"maintained and appears to grow\\\\\\\"\\\\n\\\\n## D&R v2 修正后结论翻转 (2026-05-21)\\\\n\\\\n旧 filtered 数据方向反了（q>0.5, 保留 85% 合成数据），修正后 D&R PPL=17.651 比 uniform 18.062 好 −0.412。epoch confound 假说不成立——D&R 优势来自数据质量。\\\\n\\\", \\\"total_chars\\\": 2906, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1de52787-976a-438e-8da0-7b78a8387c00",
+            "isSidechain": false,
+            "promptId": "9b9441a8-4e8e-4f38-9429-661603e22c08",
+            "type": "user",
+            "uuid": "02cac23d-f84c-4e6b-b2d0-529726b2200f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## D062 coupling rule 已验证 (2026-05-17)\\\\n\\\\nbs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。\\\\n- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)\\\\n- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)\\\\n- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)\\\\n\\\\n结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。\\\\n\\\\n## Batch-adaptive τ 方向关闭 (2026-05-17)\\\\n\\\\n两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。\\\\n\\\\n## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)\\\\n\\\\ngrid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。\\\\n\\\\n## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)\\\\n\\\\nAdaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。\\\\nadaptive 方差仅为 uniform 的一半。\\\\n\\\\n## ρ=0.2 adaptive 无效 (2026-05-17)\\\\n\\\\nD068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。\\\\n\\\\n## Grid-b 曲线平坦性 (2026-05-17)\\\\n\\\\n[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。\\\\n\\\\n## 30476 SIGKILL 事件 (2026-05-17)\\\\n\\\\n4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。\\\\n\\\\n## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive\\\\n\\\\nPPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)\\\\n\\\\n## 1.7B 规模验证 — positive (2026-05-18) — Line B\\\\n\\\\nQwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。\\\\nPlan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。\\\\n\\\\n## Multi-Detector 结论 (2026-05-18, 更新)\\\\n\\\\n| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |\\\\n|----------|-----|-------------|-------------|---|------|\\\\n| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |\\\\n| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |\\\\n| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |\\\\n\\\\n**关键洞察：AUC 不是充分条件。**\\\\n- N-gram: b*≈0（信号太弱，算法正确不干预）\\\\n- GPT-2: b* 活跃 1.17-9.66（信号够强但方向有问题 — 算法积极 reweight 但 reweight 错了）\\\\n- TF-IDF: b* 活跃且有效\\\\n\\\\n分类器 (TF-IDF+LR) 直接学 human vs synthetic 边界，score 语义干净。PPL-based detector 的 score 混合了文本复杂度/领域差异，导致 reweighting 方向错误。Paper 应 frame 为\\\\\\\"detector type > AUC\\\\\\\"而非简单 AUC threshold。\\\\n\\\\n## 30476 路径注意 (2026-05-18)\\\\n\\\\n- eval 数据：`data/human/eval_holdout.jsonl`（NOT `data/eval_holdout.jsonl`）\\\\n- output_dir：`/root/autodl-tmp/output/models/`（NOT `/root/autodl-tmp/provenance_weight_training/output/models/`）\\\\n\\\\n## B=16 adaptive 优势放大 (2026-05-21)\\\\n\\\\nbs=16 (n_min=8) 的 Δ(adaptive−uniform) = −0.063，比 bs=4 (n_min=2) 的 seed42 Δ = −0.041 放大了 1.5x。\\\\n- bs16_adaptive: holdout=17.631, owt=18.309, wiki=15.286\\\\n- bs16_uniform: holdout=17.694, owt=18.364, wiki=15.337\\\\n- Uniform 不受 batch size 影响（bs4=17.694, bs16=17.694），改善全在 adaptive 侧\\\\n- 机制：更大 batch → n_min 绝对值更大 → weight distribution 有更多自由度做细粒度调节\\\\n- 注意：仅 seed42 单 seed，不能写 \\\\\\\"consistently amplifies\\\\\\\"，建议用 \\\\\\\"maintained and appears to grow\\\\\\\"\\\\n\\\\n## D&R v2 修正后结论翻转 (2026-05-21)\\\\n\\\\n旧 filtered 数据方向反了（q>0.5, 保留 85% 合成数据），修正后 D&R PPL=17.651 比 uniform 18.062 好 −0.412。epoch confound 假说不成立——D&R 优势来自数据质量。\\\\n\\\", \\\"total_chars\\\": 2906, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\", \"content\": \"# Memory\\n\\n## D062 coupling rule 已验证 (2026-05-17)\\n\\nbs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。\\n- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)\\n- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)\\n- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)\\n\\n结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。\\n\\n## Batch-adaptive τ 方向关闭 (2026-05-17)\\n\\n两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。\\n\\n## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)\\n\\ngrid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。\\n\\n## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)\\n\\nAdaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。\\nadaptive 方差仅为 uniform 的一半。\\n\\n## ρ=0.2 adaptive 无效 (2026-05-17)\\n\\nD068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。\\n\\n## Grid-b 曲线平坦性 (2026-05-17)\\n\\n[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。\\n\\n## 30476 SIGKILL 事件 (2026-05-17)\\n\\n4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。\\n\\n## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive\\n\\nPPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)\\n\\n## 1.7B 规模验证 — positive (2026-05-18) — Line B\\n\\nQwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。\\nPlan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。\\n\\n## Multi-Detector 结论 (2026-05-18, 更新)\\n\\n| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |\\n|----------|-----|-------------|-------------|---|------|\\n| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |\\n| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |\\n| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |\\n\\n**关键洞察：AUC 不是充分条件。**\\n- N-gram: b*≈0（信号太弱，算法正确不干预）\\n- GPT-2: b* 活跃 1.17-9.66（信号够强但方向有问题 — 算法积极 reweight 但 reweight 错了）\\n- TF-IDF: b* 活跃且有效\\n\\n分类器 (TF-IDF+LR) 直接学 human vs synthetic 边界，score 语义干净。PPL-based detector 的 score 混合了文本复杂度/领域差异，导致 reweighting 方向错误。Paper 应 frame 为\\\"detector type > AUC\\\"而非简单 AUC threshold。\\n\\n## 30476 路径注意 (2026-05-18)\\n\\n- eval 数据：`data/human/eval_holdout.jsonl`（NOT `data/eval_holdout.jsonl`）\\n- output_dir：`/root/autodl-tmp/output/models/`（NOT `/root/autodl-tmp/provenance_weight_training/output/models/`）\\n\\n## B=16 adaptive 优势放大 (2026-05-21)\\n\\nbs=16 (n_min=8) 的 Δ(adaptive−uniform) = −0.063，比 bs=4 (n_min=2) 的 seed42 Δ = −0.041 放大了 1.5x。\\n- bs16_adaptive: holdout=17.631, owt=18.309, wiki=15.286\\n- bs16_uniform: holdout=17.694, owt=18.364, wiki=15.337\\n- Uniform 不受 batch size 影响（bs4=17.694, bs16=17.694），改善全在 adaptive 侧\\n- 机制：更大 batch → n_min 绝对值更大 → weight distribution 有更多自由度做细粒度调节\\n- 注意：仅 seed42 单 seed，不能写 \\\"consistently amplifies\\\"，建议用 \\\"maintained and appears to grow\\\"\\n\\n## D&R v2 修正后结论翻转 (2026-05-21)\\n\\n旧 filtered 数据方向反了（q>0.5, 保留 85% 合成数据），修正后 D&R PPL=17.651 比 uniform 18.062 好 −0.412。epoch confound 假说不成立——D&R 优势来自数据质量。\\n\", \"total_chars\": 2906, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "1de52787-976a-438e-8da0-7b78a8387c00",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T18:55:04.267Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Memory.md doesn't have this failure mode recorded. Let me add it and report to Director.\n\nThe failure mode is: `torch.save IOException during checkpoint save` on westd-41312 — disk space exhaustion on `/root/autodl-tmp`. This is a new pattern for this project.\n\nLet me save memory.md with the new entry appended, and also report to Director.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02cac23d-f84c-4e6b-b2d0-529726b2200f",
+            "isSidechain": false,
+            "requestId": "req_011CbGDqy6xN67Bqbb6vcTyS",
+            "type": "assistant",
+            "uuid": "0dabdc0d-f731-496e-97f9-6e1de4969365",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016YpD9QWUCJ3LL2x9X4iSZC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2427,
+                "cache_read_input_tokens": 64225,
+                "output_tokens": 2610,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2610,
+                    "cache_read_input_tokens": 64225,
+                    "cache_creation_input_tokens": 2427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T18:55:36.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XZ8caAM5Rpyv6ikE2dmkr7",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "provenance_weight_training",
+                "file": "memory.md",
+                "content": "# Memory\n\n## D062 coupling rule 已验证 (2026-05-17)\n\nbs8_auto_nmin_r5 (PPL 17.66) 确认 n_min=⌊B/2⌋ coupling rule 在 bs=8 下有效（n_min=4）。\n- bs=4, n_min=2: adaptive_fix PPL=17.653 (success)\n- bs=8, n_min=4: bs8_auto_nmin_r5 PPL=17.66 (success)\n- bs=8, n_min=2: bs8_nmin2_seed42_r2 PPL=17.73 (negative — n_min 过小导致 over-downweight)\n\n结论：n_min=⌊B/2⌋ 是 Method section 的正式设计原则。n_min 过小 (< B/2) 导致 ESS 约束松弛，b* 过大。\n\n## Batch-adaptive τ 方向关闭 (2026-05-17)\n\n两轮实验均 negative。固定 τ=0.8 + dual constraint 已足够。不再投入资源。\n\n## Claim 2 跨 seed 已由 D074 定稿 (2026-05-18)\n\ngrid b=0.3 三 seed (17.620±0.033) vs adaptive (17.651±0.007)，gap 0.031 在方差内。\n\n## Claim 3 ρ=0.6 三 seed 完整 (2026-05-18)\n\nAdaptive: mean 17.736±0.004 vs Uniform: mean 17.763±0.008, Δ=0.028。\nadaptive 方差仅为 uniform 的一半。\n\n## ρ=0.2 adaptive 无效 (2026-05-17)\n\nD068 决定 Claim 3 scope 限制为 ρ≥0.4, τ∈[0.7,0.8]。ρ=0.2 在 Discussion 报告为 limitation。\n\n## Grid-b 曲线平坦性 (2026-05-17)\n\n[0.2, 0.5] 区间 PPL 极平坦（b=0.2: 17.643, b=0.3: 17.640, b=0.5: 17.651）。adaptive b* 落在平坦区间内。\n\n## 30476 SIGKILL 事件 (2026-05-17)\n\n4 实验同时被 SIGKILL，oom_kill=0，根因不明。教训：查 cgroup 计数器。\n\n## Llama-3.2-3B 跨模型泛化 (2026-05-17) — neutral-to-positive\n\nPPL: adaptive 10.58 vs uniform 10.53 (Δ=+0.05); MMLU: adaptive 53.42% vs uniform 51.85% (Δ=+1.57pp, 3.9σ)\n\n## 1.7B 规模验证 — positive (2026-05-18) — Line B\n\nQwen3-1.7B: adaptive PPL=13.27 vs uniform (Plan B) PPL=13.50, Δ=-0.23。\nPlan B 公平性限制：uniform fresh optimizer。1.7B seed123 from scratch 在跑消除 confound。\n\n## Multi-Detector 结论 (2026-05-18, 更新)\n\n| Detector | AUC | Adaptive PPL | Uniform PPL | Δ | 结论 |\n|----------|-----|-------------|-------------|---|------|\n| TF-IDF+LR | 0.94 | 17.65 | 17.69 | -0.04 | ✅ positive |\n| GPT-2 PPL | 0.913 | **17.79** | 17.69 | **+0.10** | ❌ negative |\n| N-gram PPL | 0.73 | 17.82 | 17.69 | +0.13 | ❌ negative |\n\n**关键洞察：AUC 不是充分条件。**\n- N-gram: b*≈0（信号太弱，算法正确不干预）\n- GPT-2: b* 活跃 1.17-9.66（信号够强但方向有问题 — 算法积极 reweight 但 reweight 错了）\n- TF-IDF: b* 活跃且有效\n\n分类器 (TF-IDF+LR) 直接学 human vs synthetic 边界，score 语义干净。PPL-based detector 的 score 混合了文本复杂度/领域差异，导致 reweighting 方向错误。Paper 应 frame 为\"detector type > AUC\"而非简单 AUC threshold。\n\n## 30476 路径注意 (2026-05-18)\n\n- eval 数据：`data/human/eval_holdout.jsonl`（NOT `data/eval_holdout.jsonl`）\n- output_dir：`/root/autodl-tmp/output/models/`（NOT `/root/autodl-tmp/provenance_weight_training/output/models/`）\n\n## B=16 adaptive 优势放大 (2026-05-21)\n\nbs=16 (n_min=8) 的 Δ(adaptive−uniform) = −0.063，比 bs=4 (n_min=2) 的 seed42 Δ = −0.041 放大了 1.5x。\n- bs16_adaptive: holdout=17.631, owt=18.309, wiki=15.286\n- bs16_uniform: holdout=17.694, owt=18.364, wiki=15.337\n- Uniform 不受 batch size 影响（bs4=17.694, bs16=17.694），改善全在 adaptive 侧\n- 机制：更大 batch → n_min 绝对值更大 → weight distribution 有更多自由度做细粒度调节\n- 注意：仅 seed42 单 seed，不能写 \"consistently amplifies\"，建议用 \"maintained and appears to grow\"\n\n## D&R v2 修正后结论翻转 (2026-05-21)\n\n旧 filtered 数据方向反了（q>0.5, 保留 85% 合成数据），修正后 D&R PPL=17.651 比 uniform 18.062 好 −0.412。epoch confound 假说不成立——D&R 优势来自数据质量。\n\n## [失败模式] 磁盘空间 — westd-41312 checkpoint 保存 (2026-05-21)\n\nbs16_adaptive_tau07_seed123 在 step 500 首次 checkpoint 时 torch.save(optimizer.state_dict()) 因磁盘满 IOException 崩溃（basic_ios::clear: iostream error）。输出目录 `/root/autodl-tmp/provenance_weight_training/output/models/`。修复方案：清理旧 failed 实验 checkpoint + 确认 `/root/autodl-tmp` 剩余空间 > 15GB 后重试。\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0dabdc0d-f731-496e-97f9-6e1de4969365",
+            "isSidechain": false,
+            "requestId": "req_011CbGDqy6xN67Bqbb6vcTyS",
+            "type": "assistant",
+            "uuid": "ccd588b6-2f88-4078-8354-75ca78c60df4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016YpD9QWUCJ3LL2x9X4iSZC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2427,
+                "cache_read_input_tokens": 64225,
+                "output_tokens": 2610,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2610,
+                    "cache_read_input_tokens": 64225,
+                    "cache_creation_input_tokens": 2427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T18:55:36.890Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XZ8caAM5Rpyv6ikE2dmkr7",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ccd588b6-2f88-4078-8354-75ca78c60df4",
+            "isSidechain": false,
+            "promptId": "9b9441a8-4e8e-4f38-9429-661603e22c08",
+            "type": "user",
+            "uuid": "631dd9b8-f7fd-4e79-aebc-3d1bf5a9eea2",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "ccd588b6-2f88-4078-8354-75ca78c60df4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T18:55:47.963Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0149oBTpTEWz8sUqJweLCZ5o",
+              "name": "mcp__agent-ml-research__main_agent_post_to_director",
+              "input": {
+                "text": "[资源] GPU 2/4 运行中 | Worker 1 (GPU 0 / CPU 1) | 磁盘: westd-41312 空间不足（待诊断具体数字）\n\n**bs16_adaptive_tau07_seed123 失败 — 磁盘空间不足**\n\n错误：step 500/6103 首次 checkpoint 保存时 `torch.save(optimizer.state_dict())` IOException。训练本身正常（loss=2.5, lr=4.834e-05）。\n\n根因：westd-41312 的 `/root/autodl-tmp` 磁盘空间耗尽，无法写入 optimizer state (~1.5GB)。\n\n已执行：\n- Registry 更新（conclusion=failed, notes 记录详细错误）\n- 飞书结果卡片已发\n- 已派 Worker 诊断磁盘使用 + 清理旧 failed 实验 checkpoint\n- 新失败模式已写入 memory.md\n\n当前运行中：\n- cuda:1: bs16_uniform_seed123（配对实验，正常运行）\n- cuda:3: detect_remove_q05_v2_seed42（正常运行）\n- cuda:0, cuda:2: 空闲\n\n计划：Worker 完成磁盘清理后，在 cuda:0 重新提交 bs16_adaptive_tau07_seed123。这是 B=16 跨 seed 验证的关键实验（seed42 已成功，Δ=−0.063），需要 seed123 完成配对。",
+                "project": "provenance_weight_training"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "631dd9b8-f7fd-4e79-aebc-3d1bf5a9eea2",
+            "isSidechain": false,
+            "requestId": "req_011CbGDqy6xN67Bqbb6vcTyS",
+            "type": "assistant",
+            "uuid": "95d9dc6b-9838-4fe1-b617-39a669da38ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016YpD9QWUCJ3LL2x9X4iSZC",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2427,
+                "cache_read_input_tokens": 64225,
+                "output_tokens": 2610,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2427,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 2610,
+                    "cache_read_input_tokens": 64225,
+                    "cache_creation_input_tokens": 2427,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2427
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T18:55:49.072Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0149oBTpTEWz8sUqJweLCZ5o",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "95d9dc6b-9838-4fe1-b617-39a669da38ed",
+            "isSidechain": false,
+            "promptId": "9b9441a8-4e8e-4f38-9429-661603e22c08",
+            "type": "user",
+            "uuid": "d7add855-43a5-4bb2-b9b1-d2285f53006b",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_2b6c9bea33a70c93bf4bf04ac36b8df9:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "95d9dc6b-9838-4fe1-b617-39a669da38ed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[CRON] 实验进程异常退出（失败），需要你诊断原因。 详情: Process exited without valid W&B metrics  - exp_id: bs16_adaptive_tau07_seed123 - project: provenance_weight_training - server: westd-41312 - log_path: ~/runs/provenan…",
+                "leafUuid": "d7add855-43a5-4bb2-b9b1-d2285f53006b",
+                "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5"
+              }
+            }
+          ],
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Diagnose experiment process exit failure",
+                "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5"
+              }
+            }
+          ],
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Diagnose experiment process exit failure",
+                "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5"
+              }
+            }
+          ],
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T18:56:07.032Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-21T18:56:07.032Z",
+                "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+                "content": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: bs16_adaptive_tau07_seed123\n- project: provenance_weight_training\n- server: westd-41312\n- log_path: ~/runs/provenance_weight_training/bs16_adaptive_tau07_seed123.log"
+              }
+            }
+          ],
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T18:56:07.033Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-21T18:56:07.033Z",
+                "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5"
+              }
+            }
+          ],
+          "id": "event-000078"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T18:56:07.024Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7add855-43a5-4bb2-b9b1-d2285f53006b",
+            "isSidechain": false,
+            "promptId": "04e923d5-781e-475b-a51e-3adc617d703a",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "a85f1cc6-aacf-40ca-886a-657f63ca284b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T18:56:07.024Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a85f1cc6-aacf-40ca-886a-657f63ca284b",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "04ed33da-9098-4775-8747-26d4ebb81b88",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "2e434ff7-bcd4-43af-ad29-7d9a7a2ee719",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000080"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "messages": [
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T18:56:07.153Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[CRON] 实验进程异常退出（失败），需要你诊断原因。\n详情: Process exited without valid W&B metrics\n\n- exp_id: bs16_adaptive_tau07_seed123\n- project: provenance_weight_training\n- server: westd-41312\n- log_path: ~/runs/provenance_weight_training/bs16_adaptive_tau07_seed123.log"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "04ed33da-9098-4775-8747-26d4ebb81b88",
+            "isSidechain": false,
+            "promptId": "04e923d5-781e-475b-a51e-3adc617d703a",
+            "type": "user",
+            "uuid": "b03210df-b662-4856-ac7d-6b518644e096",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/.claude/sessions/agent_94723152",
+            "sessionId": "91ce9fe3-39af-400c-b8fd-ba3b28b86df5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000081"
+        }
+      ]
+    }
+  ]
+}

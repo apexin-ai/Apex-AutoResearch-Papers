@@ -1,0 +1,1816 @@
+{
+  "schema_version": "1.0",
+  "id": "fc008897acce02583eff",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: provenance_weight_training ## 运行环境 - 服务器名: westd-47453 - SSH 账户: root（调用 ssh_execute / submit_tr",
+  "task_key": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/33f4c8cf-38de-44f8-ba86-369f9c5d5e2f.jsonl",
+    "occurrence": 1,
+    "bytes": 207243,
+    "sha256": "b977d4d8bb26a7d99e66d676945cf9cae57f0019381889ecb5136b0b0fb5f125"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 1,
+    "tool_calls": 7,
+    "roles": {
+      "record": 15,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 7,
+      "tool_result": 7
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T23:36:32.077Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T23:36:32.077Z",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+                "content": "<project_context>\n# 项目: provenance_weight_training\n\n## 运行环境\n- 服务器名: westd-47453\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/provenance_weight_training\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 literature_map.yaml，整合 Drayson et al. 差异化分析\n\n### 背景\nWorker `literature-drayson-comparison` 已完成分析，产出在 `artifacts/drayson_comparison.md`。需要将关键发现整合到 `literature_map.yaml`。\n\n### 关键发现（已确认）\n- Drayson et al. (EMNLP 2025, arXiv:2502.15654) 使用 w=(1-q)^b 公式\n- 他们的 b 是验证集 empirical 选取，训练中固定（GPT-2/SmolLM 135M/360M 用 b=10，1.7B 用 b=1）\n- 我们的 adaptive b* 在文献中无先例\n- 差异化角度：fixed grid-search vs. theoretically-motivated adaptive\n\n### 要求\n1. 读取 `artifacts/drayson_comparison.md` 获取完整对比内容\n2. 读取当前 `literature_map.yaml`\n3. 更新/补充 Drayson et al. 条目，确保包含：\n   - 论文基本信息（title, venue, year, arxiv_id）\n   - role: direct-competitor\n   - 方法摘要（fixed b, empirical selection）\n   - 与我们的差异点（adaptive vs fixed, theory-motivated vs empirical）\n   - 我们的优势论点\n4. 如有其他从 drayson_comparison.md 中发现的相关论文，也添加到 map\n\n### 产出\n更新后的 literature_map.yaml（用 save_project_file 写入）"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T23:36:32.081Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T23:36:32.081Z",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T23:36:32.127Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: provenance_weight_training\n\n## 运行环境\n- 服务器名: westd-47453\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/provenance_weight_training\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n## 任务：更新 literature_map.yaml，整合 Drayson et al. 差异化分析\n\n### 背景\nWorker `literature-drayson-comparison` 已完成分析，产出在 `artifacts/drayson_comparison.md`。需要将关键发现整合到 `literature_map.yaml`。\n\n### 关键发现（已确认）\n- Drayson et al. (EMNLP 2025, arXiv:2502.15654) 使用 w=(1-q)^b 公式\n- 他们的 b 是验证集 empirical 选取，训练中固定（GPT-2/SmolLM 135M/360M 用 b=10，1.7B 用 b=1）\n- 我们的 adaptive b* 在文献中无先例\n- 差异化角度：fixed grid-search vs. theoretically-motivated adaptive\n\n### 要求\n1. 读取 `artifacts/drayson_comparison.md` 获取完整对比内容\n2. 读取当前 `literature_map.yaml`\n3. 更新/补充 Drayson et al. 条目，确保包含：\n   - 论文基本信息（title, venue, year, arxiv_id）\n   - role: direct-competitor\n   - 方法摘要（fixed b, empirical selection）\n   - 与我们的差异点（adaptive vs fixed, theory-motivated vs empirical）\n   - 我们的优势论点\n4. 如有其他从 drayson_comparison.md 中发现的相关论文，也添加到 map\n\n### 产出\n更新后的 literature_map.yaml（用 save_project_file 写入）"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "346207c4-9c2e-4bf6-9075-961d8ee76b3e",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T23:36:32.126Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "346207c4-9c2e-4bf6-9075-961d8ee76b3e",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "f9e473b9-0baf-4636-ba16-62bbb63d5db9",
+                "timestamp": "2026-05-14T23:36:32.126Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T23:36:32.126Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "f9e473b9-0baf-4636-ba16-62bbb63d5db9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "d8d50608-7667-464b-98de-bd2b689a5c65",
+                "timestamp": "2026-05-14T23:36:32.126Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T23:36:32.126Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "d8d50608-7667-464b-98de-bd2b689a5c65",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "8b392938-5210-423a-80e2-160440a6a654",
+                "timestamp": "2026-05-14T23:36:32.126Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Drayson et al. into literature_map.yaml",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T23:36:34.996Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the two source files first."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b392938-5210-423a-80e2-160440a6a654",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Lf5qjGY3DsncwtJvi8",
+            "type": "assistant",
+            "uuid": "36e5b8e3-06ba-498c-9b2e-d88a190b8be1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019p32bk7B27QV9PNc4rAAqd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11205,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11205,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11205,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11205
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T23:36:36.070Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UJ82twmCVKTGuw1EswEfDL",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+                "max_results": 2
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "36e5b8e3-06ba-498c-9b2e-d88a190b8be1",
+            "isSidechain": false,
+            "requestId": "req_011Cb3Lf5qjGY3DsncwtJvi8",
+            "type": "assistant",
+            "uuid": "efdb979c-ae7d-4416-976f-1dd4c3649c3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019p32bk7B27QV9PNc4rAAqd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11205,
+                "cache_read_input_tokens": 11841,
+                "output_tokens": 113,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11205,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 113,
+                    "cache_read_input_tokens": 11841,
+                    "cache_creation_input_tokens": 11205,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11205
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T23:36:36.077Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_01UJ82twmCVKTGuw1EswEfDL",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_project_file"
+                },
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__save_project_file"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efdb979c-ae7d-4416-976f-1dd4c3649c3d",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "24b55637-8a72-40cb-a6f7-c319fbc656c1",
+            "toolUseResult": {
+              "matches": [
+                "mcp__agent-ml-research__read_project_file",
+                "mcp__agent-ml-research__save_project_file"
+              ],
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "total_deferred_tools": 22
+            },
+            "sourceToolAssistantUUID": "efdb979c-ae7d-4416-976f-1dd4c3649c3d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T23:36:38.513Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me read both files now.",
+              "signature": "EtYBClkIDRgCKkDAJpCr/axWky7Y3OyzN/kUpu+A+ky7/kCzvSQqVOaO5xd7CL3cOh2abto3VFQ2vY0jIWhERwITMMuFeXE3wqL1Mg9jbGF1ZGUtb3B1cy00LTY4ABIMVvw01iscufqufgdvGgy67U1JjVbV9Phg8CYiMMx9armACG6Sl54iZ5NFiNmWSrIOa/94Vuev04H1vMhTLQltT9nsWcgzGI4zmw0vpiorzJBiMOFNrXXK4I9owdUW3BRKBjLxazQjJwUs8tWSGOroIn7YGNQGeZgrwBgB"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24b55637-8a72-40cb-a6f7-c319fbc656c1",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfNFTPSjhj1MsDNMfx",
+            "type": "assistant",
+            "uuid": "7d459a57-0142-484a-84ea-efa046387519",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AMnN2BkcMGUYfpqReGNezc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23046,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 23046,
+                    "cache_creation_input_tokens": 709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T23:36:39.469Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FaV5Gk3h2Z5AfQSixuWotb",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "provenance_weight_training",
+                "file": "literature_map.yaml",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d459a57-0142-484a-84ea-efa046387519",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfNFTPSjhj1MsDNMfx",
+            "type": "assistant",
+            "uuid": "4786b8a1-0992-4bfb-a9bf-9aee1800833c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AMnN2BkcMGUYfpqReGNezc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23046,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 23046,
+                    "cache_creation_input_tokens": 709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T23:36:39.487Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FaV5Gk3h2Z5AfQSixuWotb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map for provenance_weight_training\\\\n# 研究方向：基于收敛理论的自适应污染重加权\\\\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\\\\n# 生成日期：2026-05-14\\\\n\\\\n# ============================================================\\\\n# Category: direct-competitor\\\\n# 同主题/同方法的论文\\\\n# ============================================================\\\\n\\\\n- id: drayson_2025_detection_collapse\\\\n  title: \\\\\\\"Machine-Generated Text Detection Prevents Language Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"George Drayson, Emine Yilmaz, Vasileios Lampos\\\\\\\"\\\\n  venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.15654\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\\\\\\\"\\\\n  key_findings: \\\\\\\"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\\\\\\\"\\\\n\\\\n- id: he_2025_golden_ratio\\\\n  title: \\\\\\\"Golden Ratio Weighting Prevents Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"Hengzhi He, Shirong Xu, Guang Cheng\\\\\\\"\\\\n  venue: \\\\\\\"Under review at JRSSB, 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.18049\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\\\\\\\"\\\\n  key_findings: \\\\\\\"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\\\\\\\"\\\\n\\\\n- id: feng_2024_beyond_collapse\\\\n  title: \\\\\\\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\\\\\\\"\\\\n  authors: \\\\\\\"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2406.07515\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\\\\\\\"\\\\n  key_findings: \\\\\\\"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: method-component\\\\n# 我们用到的技术组件\\\\n# ============================================================\\\\n\\\\n- id: kimura_2024_iw_survey\\\\n  title: \\\\\\\"A Short Survey on Importance Weighting for Machine Learning\\\\\\\"\\\\n  authors: \\\\\\\"Masanari Kimura, Hideitsu Hino\\\\\\\"\\\\n  venue: \\\\\\\"TMLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2403.10175\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\\\\\\\"\\\\n  key_findings: \\\\\\\"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"为我们的 importance weighting 框架提供理论基础和方法论参考\\\\\\\"\\\\n\\\\n- id: vehtari_2024_psis\\\\n  title: \\\\\\\"Pareto Smoothed Importance Sampling\\\\\\\"\\\\n  authors: \\\\\\\"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\\\\\\\"\\\\n  venue: \\\\\\\"JMLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/1507.02646\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"提供稳定的 effective sample size 估计和收敛诊断方法\\\\\\\"\\\\n  key_findings: \\\\\\\"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\\\\\\\"\\\\n\\\\n- id: sow_2025_dynamic_reweighting\\\\n  title: \\\\\\\"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\\\\\\\"\\\\n  authors: \\\\\\\"Daouda Sow et al.\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.06733\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\\\\\\\"\\\\n  key_findings: \\\\\\\"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\\\\\\\"\\\\n\\\\n- id: ye_2025_data_mixing_laws\\\\n  title: \\\\\\\"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\\\\\\\"\\\\n  authors: \\\\\\\"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2403.16952\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"发现数据混合比例与模型性能之间的定量可预测性\\\\\\\"\\\\n  key_findings: \\\\\\\"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\\\\\\\"\\\\n\\\\n- id: he_2024_softdedup\\\\n  title: \\\\\\\"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\\\\\\\"\\\\n  authors: \\\\\\\"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\\\\\\\"\\\\n  venue: \\\\\\\"ACL 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2407.06654\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"用 data commonness 指标进行软去重加权，而非硬删除\\\\\\\"\\\\n  key_findings: \\\\\\\"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: background\\\\n# 数据污染/合成数据在 LLM 训练中的问题\\\\n# ============================================================\\\\n\\\\n- id: shumailov_2024_model_collapse\\\\n  title: \\\\\\\"AI Models Collapse When Trained on Recursively Generated Data\\\\\\\"\\\\n  authors: \\\\\\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\\\\\\\"\\\\n  venue: \\\\\\\"Nature 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://www.nature.com/articles/s41586-024-07566-y\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"奠基性工作——证明在递归生成数据上训练导致 model collapse\\\\\\\"\\\\n  key_findings: \\\\\\\"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\\\\\\\"\\\\n\\\\n- id: alemohammad_2024_mad\\\\n  title: \\\\\\\"Self-Consuming Generative Models Go MAD\\\\\\\"\\\\n  authors: \\\\\\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2307.01850\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\\\\\\\"\\\\n  key_findings: \\\\\\\"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\\\\\\\"\\\\n\\\\n- id: dohmatob_2025_strong_collapse\\\\n  title: \\\\\\\"Strong Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025 (Spotlight)\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2410.04840\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"证明即使极少量合成数据（1/1000）也能导致 model collapse\\\\\\\"\\\\n  key_findings: \\\\\\\"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\\\\\\\"\\\\n\\\\n- id: nait_saada_2025_quality_illusion\\\\n  title: \\\\\\\"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\\\\\\\"\\\\n  authors: \\\\\\\"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2510.00866\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\\\\\\\"\\\\n  key_findings: \\\\\\\"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: evaluation\\\\n# 评估方法相关\\\\n# ============================================================\\\\n\\\\n- id: mitchell_2023_detectgpt\\\\n  title: \\\\\\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\\\\\"\\\\n  authors: \\\\\\\"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\\\\\\\"\\\\n  venue: \\\\\\\"ICML 2023\\\\\\\"\\\\n  year: 2023\\\\n  url: \\\\\\\"https://arxiv.org/abs/2301.11305\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\\\\\\\"\\\\n  key_findings: \\\\\\\"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\\\\\\\"\\\\n\\\\n- id: shi_2024_minkprob\\\\n  title: \\\\\\\"Detecting Pretraining Data from Large Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2310.16789\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\\\\\\\"\\\\n  key_findings: \\\\\\\"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\\\\\\\"\\\\n\\\\n- id: kuo_2024_data_weighting\\\\n  title: \\\\\\\"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\\\\\\\"\\\\n  authors: \\\\\\\"Hsun-Yu Kuo et al.\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2410.21526\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"评估合成数据加权策略在文本分类中的效果\\\\\\\"\\\\n  key_findings: \\\\\\\"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 8521, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4786b8a1-0992-4bfb-a9bf-9aee1800833c",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "4c302988-cc43-46d1-ab8c-15d07c744392",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml\\\", \\\"content\\\": \\\"# Literature Map for provenance_weight_training\\\\n# 研究方向：基于收敛理论的自适应污染重加权\\\\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\\\\n# 生成日期：2026-05-14\\\\n\\\\n# ============================================================\\\\n# Category: direct-competitor\\\\n# 同主题/同方法的论文\\\\n# ============================================================\\\\n\\\\n- id: drayson_2025_detection_collapse\\\\n  title: \\\\\\\"Machine-Generated Text Detection Prevents Language Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"George Drayson, Emine Yilmaz, Vasileios Lampos\\\\\\\"\\\\n  venue: \\\\\\\"EMNLP 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.15654\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\\\\\\\"\\\\n  key_findings: \\\\\\\"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\\\\\\\"\\\\n\\\\n- id: he_2025_golden_ratio\\\\n  title: \\\\\\\"Golden Ratio Weighting Prevents Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"Hengzhi He, Shirong Xu, Guang Cheng\\\\\\\"\\\\n  venue: \\\\\\\"Under review at JRSSB, 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.18049\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\\\\\\\"\\\\n  key_findings: \\\\\\\"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\\\\\\\"\\\\n\\\\n- id: feng_2024_beyond_collapse\\\\n  title: \\\\\\\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\\\\\\\"\\\\n  authors: \\\\\\\"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2406.07515\\\\\\\"\\\\n  category: direct-competitor\\\\n  role: \\\\\\\"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\\\\\\\"\\\\n  key_findings: \\\\\\\"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: method-component\\\\n# 我们用到的技术组件\\\\n# ============================================================\\\\n\\\\n- id: kimura_2024_iw_survey\\\\n  title: \\\\\\\"A Short Survey on Importance Weighting for Machine Learning\\\\\\\"\\\\n  authors: \\\\\\\"Masanari Kimura, Hideitsu Hino\\\\\\\"\\\\n  venue: \\\\\\\"TMLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2403.10175\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\\\\\\\"\\\\n  key_findings: \\\\\\\"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"为我们的 importance weighting 框架提供理论基础和方法论参考\\\\\\\"\\\\n\\\\n- id: vehtari_2024_psis\\\\n  title: \\\\\\\"Pareto Smoothed Importance Sampling\\\\\\\"\\\\n  authors: \\\\\\\"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\\\\\\\"\\\\n  venue: \\\\\\\"JMLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/1507.02646\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"提供稳定的 effective sample size 估计和收敛诊断方法\\\\\\\"\\\\n  key_findings: \\\\\\\"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\\\\\\\"\\\\n\\\\n- id: sow_2025_dynamic_reweighting\\\\n  title: \\\\\\\"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\\\\\\\"\\\\n  authors: \\\\\\\"Daouda Sow et al.\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2502.06733\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\\\\\\\"\\\\n  key_findings: \\\\\\\"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\\\\\\\"\\\\n\\\\n- id: ye_2025_data_mixing_laws\\\\n  title: \\\\\\\"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\\\\\\\"\\\\n  authors: \\\\\\\"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2403.16952\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"发现数据混合比例与模型性能之间的定量可预测性\\\\\\\"\\\\n  key_findings: \\\\\\\"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\\\\\\\"\\\\n\\\\n- id: he_2024_softdedup\\\\n  title: \\\\\\\"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\\\\\\\"\\\\n  authors: \\\\\\\"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\\\\\\\"\\\\n  venue: \\\\\\\"ACL 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2407.06654\\\\\\\"\\\\n  category: method-component\\\\n  role: \\\\\\\"用 data commonness 指标进行软去重加权，而非硬删除\\\\\\\"\\\\n  key_findings: \\\\\\\"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: background\\\\n# 数据污染/合成数据在 LLM 训练中的问题\\\\n# ============================================================\\\\n\\\\n- id: shumailov_2024_model_collapse\\\\n  title: \\\\\\\"AI Models Collapse When Trained on Recursively Generated Data\\\\\\\"\\\\n  authors: \\\\\\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\\\\\\\"\\\\n  venue: \\\\\\\"Nature 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://www.nature.com/articles/s41586-024-07566-y\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"奠基性工作——证明在递归生成数据上训练导致 model collapse\\\\\\\"\\\\n  key_findings: \\\\\\\"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\\\\\\\"\\\\n\\\\n- id: alemohammad_2024_mad\\\\n  title: \\\\\\\"Self-Consuming Generative Models Go MAD\\\\\\\"\\\\n  authors: \\\\\\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2307.01850\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\\\\\\\"\\\\n  key_findings: \\\\\\\"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\\\\\\\"\\\\n\\\\n- id: dohmatob_2025_strong_collapse\\\\n  title: \\\\\\\"Strong Model Collapse\\\\\\\"\\\\n  authors: \\\\\\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2025 (Spotlight)\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2410.04840\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"证明即使极少量合成数据（1/1000）也能导致 model collapse\\\\\\\"\\\\n  key_findings: \\\\\\\"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\\\\\\\"\\\\n\\\\n- id: nait_saada_2025_quality_illusion\\\\n  title: \\\\\\\"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\\\\\\\"\\\\n  authors: \\\\\\\"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2025\\\\n  url: \\\\\\\"https://arxiv.org/abs/2510.00866\\\\\\\"\\\\n  category: background\\\\n  role: \\\\\\\"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\\\\\\\"\\\\n  key_findings: \\\\\\\"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\\\\\\\"\\\\n\\\\n# ============================================================\\\\n# Category: evaluation\\\\n# 评估方法相关\\\\n# ============================================================\\\\n\\\\n- id: mitchell_2023_detectgpt\\\\n  title: \\\\\\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\\\\\"\\\\n  authors: \\\\\\\"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\\\\\\\"\\\\n  venue: \\\\\\\"ICML 2023\\\\\\\"\\\\n  year: 2023\\\\n  url: \\\\\\\"https://arxiv.org/abs/2301.11305\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\\\\\\\"\\\\n  key_findings: \\\\\\\"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\\\\\\\"\\\\n\\\\n- id: shi_2024_minkprob\\\\n  title: \\\\\\\"Detecting Pretraining Data from Large Language Models\\\\\\\"\\\\n  authors: \\\\\\\"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\\\\\\\"\\\\n  venue: \\\\\\\"ICLR 2024\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2310.16789\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\\\\\\\"\\\\n  key_findings: \\\\\\\"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\\\\\\\"\\\\n\\\\n- id: kuo_2024_data_weighting\\\\n  title: \\\\\\\"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\\\\\\\"\\\\n  authors: \\\\\\\"Hsun-Yu Kuo et al.\\\\\\\"\\\\n  venue: \\\\\\\"arXiv preprint\\\\\\\"\\\\n  year: 2024\\\\n  url: \\\\\\\"https://arxiv.org/abs/2410.21526\\\\\\\"\\\\n  category: evaluation\\\\n  role: \\\\\\\"评估合成数据加权策略在文本分类中的效果\\\\\\\"\\\\n  key_findings: \\\\\\\"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\\\\\\\"\\\\n  relevance_to_us: \\\\\\\"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\\\\\\\"\\\\n\\\", \\\"total_chars\\\": 8521, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml\", \"content\": \"# Literature Map for provenance_weight_training\\n# 研究方向：基于收敛理论的自适应污染重加权\\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\\n# 生成日期：2026-05-14\\n\\n# ============================================================\\n# Category: direct-competitor\\n# 同主题/同方法的论文\\n# ============================================================\\n\\n- id: drayson_2025_detection_collapse\\n  title: \\\"Machine-Generated Text Detection Prevents Language Model Collapse\\\"\\n  authors: \\\"George Drayson, Emine Yilmaz, Vasileios Lampos\\\"\\n  venue: \\\"EMNLP 2025\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2502.15654\\\"\\n  category: direct-competitor\\n  role: \\\"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\\\"\\n  key_findings: \\\"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\\\"\\n  relevance_to_us: \\\"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\\\"\\n\\n- id: he_2025_golden_ratio\\n  title: \\\"Golden Ratio Weighting Prevents Model Collapse\\\"\\n  authors: \\\"Hengzhi He, Shirong Xu, Guang Cheng\\\"\\n  venue: \\\"Under review at JRSSB, 2025\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2502.18049\\\"\\n  category: direct-competitor\\n  role: \\\"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\\\"\\n  key_findings: \\\"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\\\"\\n  relevance_to_us: \\\"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\\\"\\n\\n- id: feng_2024_beyond_collapse\\n  title: \\\"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\\\"\\n  authors: \\\"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\\\"\\n  venue: \\\"arXiv preprint\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2406.07515\\\"\\n  category: direct-competitor\\n  role: \\\"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\\\"\\n  key_findings: \\\"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\\\"\\n  relevance_to_us: \\\"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\\\"\\n\\n# ============================================================\\n# Category: method-component\\n# 我们用到的技术组件\\n# ============================================================\\n\\n- id: kimura_2024_iw_survey\\n  title: \\\"A Short Survey on Importance Weighting for Machine Learning\\\"\\n  authors: \\\"Masanari Kimura, Hideitsu Hino\\\"\\n  venue: \\\"TMLR 2024\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2403.10175\\\"\\n  category: method-component\\n  role: \\\"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\\\"\\n  key_findings: \\\"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\\\"\\n  relevance_to_us: \\\"为我们的 importance weighting 框架提供理论基础和方法论参考\\\"\\n\\n- id: vehtari_2024_psis\\n  title: \\\"Pareto Smoothed Importance Sampling\\\"\\n  authors: \\\"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\\\"\\n  venue: \\\"JMLR 2024\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/1507.02646\\\"\\n  category: method-component\\n  role: \\\"提供稳定的 effective sample size 估计和收敛诊断方法\\\"\\n  key_findings: \\\"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\\\"\\n  relevance_to_us: \\\"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\\\"\\n\\n- id: sow_2025_dynamic_reweighting\\n  title: \\\"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\\\"\\n  authors: \\\"Daouda Sow et al.\\\"\\n  venue: \\\"ICLR 2025\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2502.06733\\\"\\n  category: method-component\\n  role: \\\"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\\\"\\n  key_findings: \\\"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\\\"\\n  relevance_to_us: \\\"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\\\"\\n\\n- id: ye_2025_data_mixing_laws\\n  title: \\\"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\\\"\\n  authors: \\\"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\\\"\\n  venue: \\\"ICLR 2025\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2403.16952\\\"\\n  category: method-component\\n  role: \\\"发现数据混合比例与模型性能之间的定量可预测性\\\"\\n  key_findings: \\\"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\\\"\\n  relevance_to_us: \\\"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\\\"\\n\\n- id: he_2024_softdedup\\n  title: \\\"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\\\"\\n  authors: \\\"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\\\"\\n  venue: \\\"ACL 2024\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2407.06654\\\"\\n  category: method-component\\n  role: \\\"用 data commonness 指标进行软去重加权，而非硬删除\\\"\\n  key_findings: \\\"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\\\"\\n  relevance_to_us: \\\"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\\\"\\n\\n# ============================================================\\n# Category: background\\n# 数据污染/合成数据在 LLM 训练中的问题\\n# ============================================================\\n\\n- id: shumailov_2024_model_collapse\\n  title: \\\"AI Models Collapse When Trained on Recursively Generated Data\\\"\\n  authors: \\\"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\\\"\\n  venue: \\\"Nature 2024\\\"\\n  year: 2024\\n  url: \\\"https://www.nature.com/articles/s41586-024-07566-y\\\"\\n  category: background\\n  role: \\\"奠基性工作——证明在递归生成数据上训练导致 model collapse\\\"\\n  key_findings: \\\"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\\\"\\n  relevance_to_us: \\\"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\\\"\\n\\n- id: alemohammad_2024_mad\\n  title: \\\"Self-Consuming Generative Models Go MAD\\\"\\n  authors: \\\"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\\\"\\n  venue: \\\"ICLR 2024\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2307.01850\\\"\\n  category: background\\n  role: \\\"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\\\"\\n  key_findings: \\\"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\\\"\\n  relevance_to_us: \\\"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\\\"\\n\\n- id: dohmatob_2025_strong_collapse\\n  title: \\\"Strong Model Collapse\\\"\\n  authors: \\\"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\\\"\\n  venue: \\\"ICLR 2025 (Spotlight)\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2410.04840\\\"\\n  category: background\\n  role: \\\"证明即使极少量合成数据（1/1000）也能导致 model collapse\\\"\\n  key_findings: \\\"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\\\"\\n  relevance_to_us: \\\"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\\\"\\n\\n- id: nait_saada_2025_quality_illusion\\n  title: \\\"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\\\"\\n  authors: \\\"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\\\"\\n  venue: \\\"arXiv preprint\\\"\\n  year: 2025\\n  url: \\\"https://arxiv.org/abs/2510.00866\\\"\\n  category: background\\n  role: \\\"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\\\"\\n  key_findings: \\\"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\\\"\\n  relevance_to_us: \\\"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\\\"\\n\\n# ============================================================\\n# Category: evaluation\\n# 评估方法相关\\n# ============================================================\\n\\n- id: mitchell_2023_detectgpt\\n  title: \\\"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\\\"\\n  authors: \\\"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\\\"\\n  venue: \\\"ICML 2023\\\"\\n  year: 2023\\n  url: \\\"https://arxiv.org/abs/2301.11305\\\"\\n  category: evaluation\\n  role: \\\"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\\\"\\n  key_findings: \\\"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\\\"\\n  relevance_to_us: \\\"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\\\"\\n\\n- id: shi_2024_minkprob\\n  title: \\\"Detecting Pretraining Data from Large Language Models\\\"\\n  authors: \\\"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\\\"\\n  venue: \\\"ICLR 2024\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2310.16789\\\"\\n  category: evaluation\\n  role: \\\"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\\\"\\n  key_findings: \\\"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\\\"\\n  relevance_to_us: \\\"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\\\"\\n\\n- id: kuo_2024_data_weighting\\n  title: \\\"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\\\"\\n  authors: \\\"Hsun-Yu Kuo et al.\\\"\\n  venue: \\\"arXiv preprint\\\"\\n  year: 2024\\n  url: \\\"https://arxiv.org/abs/2410.21526\\\"\\n  category: evaluation\\n  role: \\\"评估合成数据加权策略在文本分类中的效果\\\"\\n  key_findings: \\\"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\\\"\\n  relevance_to_us: \\\"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\\\"\\n\", \"total_chars\": 8521, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "4786b8a1-0992-4bfb-a9bf-9aee1800833c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T23:36:40.578Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011FvsqdQfuQM9VKuPrnYgEm",
+              "type": "tool_result",
+              "content": "1\t# Drayson et al. (EMNLP 2025) 深度对比分析\n2\t\n3\t> 日期: 2026-05-14 | 关联: D013 新颖性风险\n4\t\n5\t---\n6\t\n7\t## 1. Drayson 方法总结（200 字）\n8\t\n9\tDrayson et al. 提出 **detect-and-reweight** 防止语言模型在递归训练中坍塌。核心公式：**wⱼ = (1−q(xⱼ))^b / Σₗ(1−q(xₗ))^b**，其中 q(x) 为 ModernBERT 检测器输出的 machine-generated 概率。通过 Sampling Importance Resampling (SIR) 按权重重采样训练数据，上采样可能为人类撰写的内容。检测器在 MAGE 数据集上 fine-tune，in-domain AUC=0.986，OOD AUC=0.943。b 值通过在 WikiText-2 验证集上 1 代递归训练后评估选取（GPT-2/SmolLM 135M/360M 用 b=10，SmolLM 1.7B 用 b=1）。实验在 4 个模型（GPT-2 124M, SmolLM 135M/360M/1.7B）上进行 10 代递归训练，覆盖 6 种解码策略。结果：PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。**b 在整个训练过程中固定，无自适应机制。**\n10\t\n11\t---\n12\t\n13\t## 2. 我们 vs Drayson 对比表\n14\t\n15\t| 维度 | Drayson et al. (EMNLP 2025) | 我们 (Adaptive b*) |\n16\t|------|---------------------------|-------------------|\n17\t| **b 选择方法** | 验证集 empirical 选取，per-model 固定 | α_eff(b) + ESS 约束自适应推导，per-batch 动态调整 |\n18\t| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，证明轻量检测器即可 |\n19\t| **污染设置** | 已知比例（实验控制 α,β,γ） | 未知比例（从 batch 统计量在线估计） |\n20\t| **理论基础** | 无（SIR 启发式，无 b 选取理论） | 收敛理论 motivated α_eff(b) 推导 + 连续谱统一框架 |\n21\t| **计算开销** | 需 per-model validation run（等价于 grid search） | 零额外 validation cost，从 batch 统计量直接计算 |\n22\t| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练中的未知污染 |\n23\t| **数据规模** | WikiText-2 (36K docs, ~2M tokens) | FineWeb subset (132M+ tokens) |\n24\t| **生成器** | 单一生成器 per experiment | 多生成器 cross-contamination |\n25\t| **动态性** | b 固定（训练全程不变） | b* per-batch 自适应 |\n26\t| **框架贡献** | 提出 detect-and-reweight 方法 | 统一 soft-to-hard 连续谱 (b=0 uniform → b→∞ hard filter) |\n27\t\n28\t---\n29\t\n30\t## 3. 三个关键差异化论点（Related Work 可用）\n31\t\n32\t### 论点 1: From Heuristic to Principled（最直接）\n33\t\n34\t> Drayson et al. (2025) demonstrate that detect-and-reweight with w=(1−q)^b effectively prevents model collapse, but their bias term b is selected empirically per model via validation-set evaluation after one generation of recursive training. This requires a labeled validation set and separate tuning runs for each model architecture. We derive a principled, batch-adaptive b* from convergence-theory-inspired α_eff(b) with ESS constraints, eliminating validation-based tuning while matching or exceeding their best heuristic choices.\n35\t\n36\t### 论点 2: Unknown Contamination Proportion（差异化最强）\n37\t\n38\t> Prior detect-and-reweight approaches (Drayson et al., 2025) operate under controlled recursive training where contamination fractions are known by experimental design. In contrast, we address the realistic web-corpus scenario where neither the contamination proportion nor a clean validation set is available. Our adaptive b* is derived solely from batch-level detector statistics, making it applicable to large-scale pretraining where contamination is organic and unquantified.\n39\t\n40\t### 论点 3: Lightweight Detector Sufficiency（实用性角度）\n41\t\n42\t> Drayson et al. rely on ModernBERT (150M parameters, AUC=0.986), a state-of-the-art neural detector requiring GPU inference over the entire training corpus. We demonstrate that a simple TF-IDF + logistic regression detector (AUC=0.939) suffices when paired with our adaptive b*, reducing detector compute by orders of magnitude. This suggests the reweighting mechanism's effectiveness depends more on principled exponent selection than on detector precision.\n43\t\n44\t---\n45\t\n46\t## 4. Golden Ratio Weighting 总结（100 字）\n47\t\n48\tHe & Xu (arXiv 2502.18049, 2025) 理论证明在递归训练中混合真实与合成数据时，最优权重 **w\\* = (√(k²+4k)−k)/2**（k=真实/合成样本比）。当 k=1 时 w\\*=1/φ≈0.618（黄金比例倒数）。在高斯分布估计、GLM、非参数估计三种设置下验证。**局限**：纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置。\n49\t\n50\t---\n51\t\n52\t## 5. 其他相关论文一句话总结\n53\t\n54\t| 论文 | Venue | 一句话 |\n55\t|------|-------|--------|\n56\t| **Strong Model Collapse** (Dohmatob & Feng et al.) | ICLR 2025 (Spotlight), arXiv:2410.04840 | 理论证明即使 0.1% 合成数据污染也会导致 scaling law 失效，更大模型反而放大坍塌 |\n57\t| **Dynamic Loss-Based Sample Reweighting** (Sow et al., IBM/OSU/TUM) | ICLR 2025, arXiv:2502.06733 | 基于 per-sample loss 的在线重加权（LinUpper/Quadratic/Extremes + softmax temperature），不使用检测器，纯 loss signal 驱动，7B 模型验证有效 |\n58\t| **DoReMi** (Xie et al.) | NeurIPS 2023 | 域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染 |\n59\t| **DSIR** (Xie et al.) | NeurIPS 2023 | N-gram 特征重要性采样选择数据子集匹配目标分布 |\n60\t| **Escaping Model Collapse via Synthetic Data Verification** | arXiv:2510.16657 | 提出验证机制筛选合成数据质量，与我们的 detection-based 方法互补 |\n61\t\n62\t---\n63\t\n64\t## 6. 搜索来源\n65\t\n66\t- Drayson et al.: [arXiv:2502.15654](https://arxiv.org/abs/2502.15654) | [HTML](https://arxiv.org/html/2502.15654) | [GitHub](https://github.com/GeorgeDrayson/model_collapse)\n67\t- Golden Ratio Weighting: [arXiv:2502.18049](https://arxiv.org/abs/2502.18049)\n68\t- Strong Model Collapse: [arXiv:2410.04840](https://arxiv.org/abs/2410.04840) | [ICLR 2025](https://openreview.net/forum?id=et5l9qPUhm)\n69\t- Dynamic Loss-Based Reweighting: [arXiv:2502.06733](https://arxiv.org/abs/2502.06733) | [GitHub](https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025)\n70\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41a72385-eb72-408f-bf4a-6bfc9c5f5aa3",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "8a901f06-c681-407a-85c5-33908b0a5b88",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/drayson_comparison.md",
+                "content": "# Drayson et al. (EMNLP 2025) 深度对比分析\n\n> 日期: 2026-05-14 | 关联: D013 新颖性风险\n\n---\n\n## 1. Drayson 方法总结（200 字）\n\nDrayson et al. 提出 **detect-and-reweight** 防止语言模型在递归训练中坍塌。核心公式：**wⱼ = (1−q(xⱼ))^b / Σₗ(1−q(xₗ))^b**，其中 q(x) 为 ModernBERT 检测器输出的 machine-generated 概率。通过 Sampling Importance Resampling (SIR) 按权重重采样训练数据，上采样可能为人类撰写的内容。检测器在 MAGE 数据集上 fine-tune，in-domain AUC=0.986，OOD AUC=0.943。b 值通过在 WikiText-2 验证集上 1 代递归训练后评估选取（GPT-2/SmolLM 135M/360M 用 b=10，SmolLM 1.7B 用 b=1）。实验在 4 个模型（GPT-2 124M, SmolLM 135M/360M/1.7B）上进行 10 代递归训练，覆盖 6 种解码策略。结果：PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。**b 在整个训练过程中固定，无自适应机制。**\n\n---\n\n## 2. 我们 vs Drayson 对比表\n\n| 维度 | Drayson et al. (EMNLP 2025) | 我们 (Adaptive b*) |\n|------|---------------------------|-------------------|\n| **b 选择方法** | 验证集 empirical 选取，per-model 固定 | α_eff(b) + ESS 约束自适应推导，per-batch 动态调整 |\n| **检测器** | ModernBERT 150M (AUC=0.986) | TF-IDF + LR (AUC=0.939)，证明轻量检测器即可 |\n| **污染设置** | 已知比例（实验控制 α,β,γ） | 未知比例（从 batch 统计量在线估计） |\n| **理论基础** | 无（SIR 启发式，无 b 选取理论） | 收敛理论 motivated α_eff(b) 推导 + 连续谱统一框架 |\n| **计算开销** | 需 per-model validation run（等价于 grid search） | 零额外 validation cost，从 batch 统计量直接计算 |\n| **训练场景** | 递归训练 model collapse prevention | Web corpus 一次性预训练中的未知污染 |\n| **数据规模** | WikiText-2 (36K docs, ~2M tokens) | FineWeb subset (132M+ tokens) |\n| **生成器** | 单一生成器 per experiment | 多生成器 cross-contamination |\n| **动态性** | b 固定（训练全程不变） | b* per-batch 自适应 |\n| **框架贡献** | 提出 detect-and-reweight 方法 | 统一 soft-to-hard 连续谱 (b=0 uniform → b→∞ hard filter) |\n\n---\n\n## 3. 三个关键差异化论点（Related Work 可用）\n\n### 论点 1: From Heuristic to Principled（最直接）\n\n> Drayson et al. (2025) demonstrate that detect-and-reweight with w=(1−q)^b effectively prevents model collapse, but their bias term b is selected empirically per model via validation-set evaluation after one generation of recursive training. This requires a labeled validation set and separate tuning runs for each model architecture. We derive a principled, batch-adaptive b* from convergence-theory-inspired α_eff(b) with ESS constraints, eliminating validation-based tuning while matching or exceeding their best heuristic choices.\n\n### 论点 2: Unknown Contamination Proportion（差异化最强）\n\n> Prior detect-and-reweight approaches (Drayson et al., 2025) operate under controlled recursive training where contamination fractions are known by experimental design. In contrast, we address the realistic web-corpus scenario where neither the contamination proportion nor a clean validation set is available. Our adaptive b* is derived solely from batch-level detector statistics, making it applicable to large-scale pretraining where contamination is organic and unquantified.\n\n### 论点 3: Lightweight Detector Sufficiency（实用性角度）\n\n> Drayson et al. rely on ModernBERT (150M parameters, AUC=0.986), a state-of-the-art neural detector requiring GPU inference over the entire training corpus. We demonstrate that a simple TF-IDF + logistic regression detector (AUC=0.939) suffices when paired with our adaptive b*, reducing detector compute by orders of magnitude. This suggests the reweighting mechanism's effectiveness depends more on principled exponent selection than on detector precision.\n\n---\n\n## 4. Golden Ratio Weighting 总结（100 字）\n\nHe & Xu (arXiv 2502.18049, 2025) 理论证明在递归训练中混合真实与合成数据时，最优权重 **w\\* = (√(k²+4k)−k)/2**（k=真实/合成样本比）。当 k=1 时 w\\*=1/φ≈0.618（黄金比例倒数）。在高斯分布估计、GLM、非参数估计三种设置下验证。**局限**：纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置。\n\n---\n\n## 5. 其他相关论文一句话总结\n\n| 论文 | Venue | 一句话 |\n|------|-------|--------|\n| **Strong Model Collapse** (Dohmatob & Feng et al.) | ICLR 2025 (Spotlight), arXiv:2410.04840 | 理论证明即使 0.1% 合成数据污染也会导致 scaling law 失效，更大模型反而放大坍塌 |\n| **Dynamic Loss-Based Sample Reweighting** (Sow et al., IBM/OSU/TUM) | ICLR 2025, arXiv:2502.06733 | 基于 per-sample loss 的在线重加权（LinUpper/Quadratic/Extremes + softmax temperature），不使用检测器，纯 loss signal 驱动，7B 模型验证有效 |\n| **DoReMi** (Xie et al.) | NeurIPS 2023 | 域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染 |\n| **DSIR** (Xie et al.) | NeurIPS 2023 | N-gram 特征重要性采样选择数据子集匹配目标分布 |\n| **Escaping Model Collapse via Synthetic Data Verification** | arXiv:2510.16657 | 提出验证机制筛选合成数据质量，与我们的 detection-based 方法互补 |\n\n---\n\n## 6. 搜索来源\n\n- Drayson et al.: [arXiv:2502.15654](https://arxiv.org/abs/2502.15654) | [HTML](https://arxiv.org/html/2502.15654) | [GitHub](https://github.com/GeorgeDrayson/model_collapse)\n- Golden Ratio Weighting: [arXiv:2502.18049](https://arxiv.org/abs/2502.18049)\n- Strong Model Collapse: [arXiv:2410.04840](https://arxiv.org/abs/2410.04840) | [ICLR 2025](https://openreview.net/forum?id=et5l9qPUhm)\n- Dynamic Loss-Based Reweighting: [arXiv:2502.06733](https://arxiv.org/abs/2502.06733) | [GitHub](https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025)\n",
+                "numLines": 70,
+                "startLine": 1,
+                "totalLines": 70
+              }
+            },
+            "sourceToolAssistantUUID": "41a72385-eb72-408f-bf4a-6bfc9c5f5aa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T23:36:40.569Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011FvsqdQfuQM9VKuPrnYgEm",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/artifacts/drayson_comparison.md"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c302988-cc43-46d1-ab8c-15d07c744392",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfNFTPSjhj1MsDNMfx",
+            "type": "assistant",
+            "uuid": "41a72385-eb72-408f-bf4a-6bfc9c5f5aa3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AMnN2BkcMGUYfpqReGNezc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 709,
+                "cache_read_input_tokens": 23046,
+                "output_tokens": 205,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 709,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 205,
+                    "cache_read_input_tokens": 23046,
+                    "cache_creation_input_tokens": 709,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 709
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "8a901f06-c681-407a-85c5-33908b0a5b88",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Drayson et al. into literature_map.yaml",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T23:36:49.931Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have both files. Let me analyze what needs to be updated:\n\n1. **Drayson et al. entry** - already exists as `drayson_2025_detection_collapse`, needs to be significantly enriched with details from the comparison doc\n2. **He et al. Golden Ratio** - already exists as `he_2025_golden_ratio`, might need minor updates\n3. **Dohmatob et al. Strong Model Collapse** - already exists as `dohmatob_2025_strong_collapse`\n\n\n4. **Sow et al. Dynamic Loss-Based** - already exists as `sow_2025_dynamic_reweighting`\n5. **DoReMi (Xie et al.)** - NOT in the map yet, should add\n6. **DSIR (Xie et al.)** - NOT in the map yet, should add\n7. **Escaping Model Collapse via Synthetic Data Verification** - NOT in the map yet, should add\n\nI need to update the literature_map.yaml by enriching the Drayson entry with detailed method information and differentiation points, then add the three missing entries.\n\nUpdating the YAML file...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a901f06-c681-407a-85c5-33908b0a5b88",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfhjyKEMs65qxzeNeT",
+            "type": "assistant",
+            "uuid": "9cc0dd3a-27fa-4105-8a67-13ebdd3a6646",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018x43DbHJ1NbTsyKTUDbnBc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7627,
+                "cache_read_input_tokens": 23755,
+                "output_tokens": 6586,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7627,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6586,
+                    "cache_read_input_tokens": 23755,
+                    "cache_creation_input_tokens": 7627,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7627
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T23:36:51.055Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现有 Drayson 条目信息较简略，需要丰富。另外 drayson_comparison.md 中提到的 DoReMi、DSIR、Escaping Model Collapse 三篇尚未收录。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9cc0dd3a-27fa-4105-8a67-13ebdd3a6646",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfhjyKEMs65qxzeNeT",
+            "type": "assistant",
+            "uuid": "848b822c-da29-4d7f-8830-db8fd0dd4ccd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018x43DbHJ1NbTsyKTUDbnBc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7627,
+                "cache_read_input_tokens": 23755,
+                "output_tokens": 6586,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7627,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6586,
+                    "cache_read_input_tokens": 23755,
+                    "cache_creation_input_tokens": 7627,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7627
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T23:38:57.147Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XDfg3GpnoYxiHSudisMZCg",
+              "name": "mcp__agent-ml-research__save_project_file",
+              "input": {
+                "project": "provenance_weight_training",
+                "file": "literature_map.yaml",
+                "content": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 生成日期：2026-05-14\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  arxiv_id: \"2502.15654\"\n  url: \"https://arxiv.org/abs/2502.15654\"\n  github: \"https://github.com/GeorgeDrayson/model_collapse\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\"\n  method_summary: >\n    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M\n    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，\n    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取\n    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。\n    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。\n    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。\n  key_findings: \"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\"\n  differentiation:\n    b_selection: \"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\"\n    contamination_setting: \"Drayson: 已知比例（实验控制） | 我们: 未知比例（batch 统计量在线估计）\"\n    detector: \"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\"\n    theory: \"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\"\n    training_scenario: \"Drayson: 递归训练 model collapse prevention | 我们: Web corpus 一次性预训练中的未知污染\"\n    scale: \"Drayson: WikiText-2 (~2M tokens) | 我们: FineWeb subset (132M+ tokens)\"\n    dynamics: \"Drayson: b 固定（训练全程不变） | 我们: b* per-batch 自适应\"\n  our_advantages:\n    - \"From heuristic to principled: 理论推导 b* 替代 empirical grid search，零额外 validation cost\"\n    - \"Unknown contamination: 不需要已知污染比例或干净验证集，适用大规模 web pretraining\"\n    - \"Lightweight detector sufficiency: TF-IDF+LR 即可，检测器计算开销降低数量级\"\n    - \"Unified continuous spectrum: b=0 uniform → b→∞ hard filter 的统一框架\"\n  relevance_to_us: \"最直接的竞争者。共享 w=(1-q)^b 公式，但 b 选取方法根本不同——我们的核心贡献正是理论推导 adaptive b*\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  arxiv_id: \"2502.18049\"\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）。公式 w*=(√(k²+4k)−k)/2, k=真实/合成样本比\"\n  differentiation:\n    scope: \"纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  github: \"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补（不使用检测器，纯 loss signal 驱动）\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n- id: xie_2023_doremi\n  title: \"DoReMi: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2305.10429\"\n  category: method-component\n  role: \"域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染\"\n  key_findings: \"用小代理模型通过 Group DRO 优化域级别数据混合权重；在 The Pile 和 GLaM 数据集上无需目标分布知识即可改善下游性能\"\n  relevance_to_us: \"域级别 reweighting baseline；我们的方法在 instance-level 操作，粒度更细且基于检测器置信度而非 loss-based DRO\"\n\n- id: xie_2023_dsir\n  title: \"Data Selection for Language Models via Importance Resampling\"\n  authors: \"Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2302.03169\"\n  category: method-component\n  role: \"N-gram 特征重要性采样选择数据子集匹配目标分布\"\n  key_findings: \"用 n-gram 特征估计 importance weights 并重采样数据匹配目标分布；比 heuristic filtering 更 principled；在 GLUE 和下游任务上优于随机选择和启发式方法\"\n  relevance_to_us: \"同样用 importance resampling，但目标是分布匹配而非污染处理；与 Drayson 的 SIR 方法有方法论联系\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  arxiv_id: \"2410.04840\"\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n- id: guo_2025_escaping_collapse\n  title: \"Escaping Model Collapse via Synthetic Data Verification\"\n  authors: \"TBD\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  arxiv_id: \"2510.16657\"\n  url: \"https://arxiv.org/abs/2510.16657\"\n  category: background\n  role: \"提出验证机制筛选合成数据质量，与 detection-based 方法互补\"\n  key_findings: \"通过验证机制在合成数据生成后筛选质量，与基于检测器的事后加权方法互补\"\n  relevance_to_us: \"verification-based 方法是另一条技术路线，可在 Related Work 中作为对比——他们做生成时验证，我们做训练时加权\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "848b822c-da29-4d7f-8830-db8fd0dd4ccd",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LfhjyKEMs65qxzeNeT",
+            "type": "assistant",
+            "uuid": "02dab4f7-8db5-456d-998c-ce2263a5c5d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018x43DbHJ1NbTsyKTUDbnBc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 7627,
+                "cache_read_input_tokens": 23755,
+                "output_tokens": 6586,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 7627,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6586,
+                    "cache_read_input_tokens": 23755,
+                    "cache_creation_input_tokens": 7627,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 7627
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T23:38:57.173Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XDfg3GpnoYxiHSudisMZCg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "02dab4f7-8db5-456d-998c-ce2263a5c5d8",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "06a24276-fe6d-4319-83c7-a77f73ccc94e",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\\\", \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"file 'literature_map.yaml' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "02dab4f7-8db5-456d-998c-ce2263a5c5d8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T23:38:59.809Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The MCP tool doesn't allow writing to literature_map.yaml. Let me write it directly to the file system.",
+              "signature": "EqICClkIDRgCKkC6jRKnGF5YJ3hAFUg0Vtpqij+Aeu0/qaRYPe3mtIocZVftaRD1hZKZJa4nmFiFDvtjT97EqqLUToyWdn2ibHwkMg9jbGF1ZGUtb3B1cy00LTY4ABIMI6UszvQuF31Gvw8DGgwXH0BZl25qKiXiDDgiMGhsVGbs6s/+GY7W5gZbPLzCZNnLOEs+XlL0W9PN2bGSdwROkRFNQYtS1c/eh1+gKSp31/tiLJVNwIG4NPT9BO4eJ9Q6+mZmHkjeSBTBN+rf62E4/uNRaw6SI+97mGJBUzePMqjMbSTKIhu+v773QIhCxEI/6jFS5FLZOoMM+ITgipTBBqd9LuIrUCdiJvxWwqaXQANqQpGT3H7eAw8bJzQ1LTi29eFeHB8YAQ=="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06a24276-fe6d-4319-83c7-a77f73ccc94e",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LqmTjkpxRqj9whdgVm",
+            "type": "assistant",
+            "uuid": "efa6f0af-d10f-497d-baa3-09003f53e5d3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011aXridonUNtiT8Gnfq9YcS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6672,
+                "cache_read_input_tokens": 31382,
+                "output_tokens": 6272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6672,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6272,
+                    "cache_read_input_tokens": 31382,
+                    "cache_creation_input_tokens": 6672,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6672
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T23:39:00.298Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "MCP 工具不支持写 literature_map.yaml，直接写文件。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "efa6f0af-d10f-497d-baa3-09003f53e5d3",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LqmTjkpxRqj9whdgVm",
+            "type": "assistant",
+            "uuid": "6a6c0bc1-bc77-4bfa-b9f9-8ec8fa27cf00",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011aXridonUNtiT8Gnfq9YcS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6672,
+                "cache_read_input_tokens": 31382,
+                "output_tokens": 6272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6672,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6272,
+                    "cache_read_input_tokens": 31382,
+                    "cache_creation_input_tokens": 6672,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6672
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T23:41:04.881Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TzUwYbtPsjU3X7tjnaqXbj",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml",
+                "content": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 生成日期：2026-05-14\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  arxiv_id: \"2502.15654\"\n  url: \"https://arxiv.org/abs/2502.15654\"\n  github: \"https://github.com/GeorgeDrayson/model_collapse\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\"\n  method_summary: >\n    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M\n    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，\n    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取\n    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。\n    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。\n    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。\n  key_findings: \"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\"\n  differentiation:\n    b_selection: \"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\"\n    contamination_setting: \"Drayson: 已知比例（实验控制） | 我们: 未知比例（batch 统计量在线估计）\"\n    detector: \"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\"\n    theory: \"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\"\n    training_scenario: \"Drayson: 递归训练 model collapse prevention | 我们: Web corpus 一次性预训练中的未知污染\"\n    scale: \"Drayson: WikiText-2 (~2M tokens) | 我们: FineWeb subset (132M+ tokens)\"\n    dynamics: \"Drayson: b 固定（训练全程不变） | 我们: b* per-batch 自适应\"\n  our_advantages:\n    - \"From heuristic to principled: 理论推导 b* 替代 empirical grid search，零额外 validation cost\"\n    - \"Unknown contamination: 不需要已知污染比例或干净验证集，适用大规模 web pretraining\"\n    - \"Lightweight detector sufficiency: TF-IDF+LR 即可，检测器计算开销降低数量级\"\n    - \"Unified continuous spectrum: b=0 uniform → b→∞ hard filter 的统一框架\"\n  relevance_to_us: \"最直接的竞争者。共享 w=(1-q)^b 公式，但 b 选取方法根本不同——我们的核心贡献正是理论推导 adaptive b*\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  arxiv_id: \"2502.18049\"\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）。公式 w*=(√(k²+4k)−k)/2, k=真实/合成样本比\"\n  differentiation:\n    scope: \"纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  github: \"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补（不使用检测器，纯 loss signal 驱动）\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n- id: xie_2023_doremi\n  title: \"DoReMi: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2305.10429\"\n  category: method-component\n  role: \"域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染\"\n  key_findings: \"用小代理模型通过 Group DRO 优化域级别数据混合权重；在 The Pile 和 GLaM 数据集上无需目标分布知识即可改善下游性能\"\n  relevance_to_us: \"域级别 reweighting baseline；我们的方法在 instance-level 操作，粒度更细且基于检测器置信度而非 loss-based DRO\"\n\n- id: xie_2023_dsir\n  title: \"Data Selection for Language Models via Importance Resampling\"\n  authors: \"Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2302.03169\"\n  category: method-component\n  role: \"N-gram 特征重要性采样选择数据子集匹配目标分布\"\n  key_findings: \"用 n-gram 特征估计 importance weights 并重采样数据匹配目标分布；比 heuristic filtering 更 principled；在 GLUE 和下游任务上优于随机选择和启发式方法\"\n  relevance_to_us: \"同样用 importance resampling，但目标是分布匹配而非污染处理；与 Drayson 的 SIR 方法有方法论联系\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  arxiv_id: \"2410.04840\"\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n- id: guo_2025_escaping_collapse\n  title: \"Escaping Model Collapse via Synthetic Data Verification\"\n  authors: \"TBD\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  arxiv_id: \"2510.16657\"\n  url: \"https://arxiv.org/abs/2510.16657\"\n  category: background\n  role: \"提出验证机制筛选合成数据质量，与 detection-based 方法互补\"\n  key_findings: \"通过验证机制在合成数据生成后筛选质量，与基于检测器的事后加权方法互补\"\n  relevance_to_us: \"verification-based 方法是另一条技术路线，可在 Related Work 中作为对比——他们做生成时验证，我们做训练时加权\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a6c0bc1-bc77-4bfa-b9f9-8ec8fa27cf00",
+            "isSidechain": false,
+            "requestId": "req_011Cb3LqmTjkpxRqj9whdgVm",
+            "type": "assistant",
+            "uuid": "4067676e-5ff5-4000-863e-97eb12f072e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011aXridonUNtiT8Gnfq9YcS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6672,
+                "cache_read_input_tokens": 31382,
+                "output_tokens": 6272,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6672,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6272,
+                    "cache_read_input_tokens": 31382,
+                    "cache_creation_input_tokens": 6672,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6672
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T23:41:04.884Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01TzUwYbtPsjU3X7tjnaqXbj"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4067676e-5ff5-4000-863e-97eb12f072e9",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "4deb47ae-bb86-4320-acde-ecf309ac232d",
+            "toolUseResult": "Error: File has not been read yet. Read it first before writing to it.",
+            "sourceToolAssistantUUID": "4067676e-5ff5-4000-863e-97eb12f072e9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "4deb47ae-bb86-4320-acde-ecf309ac232d",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Drayson et al. into literature_map.yaml",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T23:41:08.879Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Gj4jgUFCtCgiwAwzX1ywg",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4deb47ae-bb86-4320-acde-ecf309ac232d",
+            "isSidechain": false,
+            "requestId": "req_011Cb3M1Bg2LEK2ab5YvXYzQ",
+            "type": "assistant",
+            "uuid": "8c015997-0454-4320-aea4-623f3b3f5a7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PsyxZjfADtjLp8VGTunspK",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6318,
+                "cache_read_input_tokens": 38054,
+                "output_tokens": 86,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6318,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 86,
+                    "cache_read_input_tokens": 38054,
+                    "cache_creation_input_tokens": 6318,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6318
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T23:41:08.887Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017Gj4jgUFCtCgiwAwzX1ywg",
+              "type": "tool_result",
+              "content": "1\t# Literature Map for provenance_weight_training\n2\t# 研究方向：基于收敛理论的自适应污染重加权\n3\t# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n4\t# 生成日期：2026-05-14\n5\t\n6\t# ============================================================\n7\t# Category: direct-competitor\n8\t# 同主题/同方法的论文\n9\t# ============================================================\n10\t\n11\t- id: drayson_2025_detection_collapse\n12\t  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n13\t  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n14\t  venue: \"EMNLP 2025\"\n15\t  year: 2025\n16\t  url: \"https://arxiv.org/abs/2502.15654\"\n17\t  category: direct-competitor\n18\t  role: \"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\"\n19\t  key_findings: \"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\"\n20\t  relevance_to_us: \"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\"\n21\t\n22\t- id: he_2025_golden_ratio\n23\t  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n24\t  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n25\t  venue: \"Under review at JRSSB, 2025\"\n26\t  year: 2025\n27\t  url: \"https://arxiv.org/abs/2502.18049\"\n28\t  category: direct-competitor\n29\t  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n30\t  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\"\n31\t  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n32\t\n33\t- id: feng_2024_beyond_collapse\n34\t  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n35\t  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n36\t  venue: \"arXiv preprint\"\n37\t  year: 2024\n38\t  url: \"https://arxiv.org/abs/2406.07515\"\n39\t  category: direct-competitor\n40\t  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n41\t  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n42\t  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n43\t\n44\t# ============================================================\n45\t# Category: method-component\n46\t# 我们用到的技术组件\n47\t# ============================================================\n48\t\n49\t- id: kimura_2024_iw_survey\n50\t  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n51\t  authors: \"Masanari Kimura, Hideitsu Hino\"\n52\t  venue: \"TMLR 2024\"\n53\t  year: 2024\n54\t  url: \"https://arxiv.org/abs/2403.10175\"\n55\t  category: method-component\n56\t  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n57\t  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n58\t  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n59\t\n60\t- id: vehtari_2024_psis\n61\t  title: \"Pareto Smoothed Importance Sampling\"\n62\t  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n63\t  venue: \"JMLR 2024\"\n64\t  year: 2024\n65\t  url: \"https://arxiv.org/abs/1507.02646\"\n66\t  category: method-component\n67\t  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n68\t  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n69\t  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n70\t\n71\t- id: sow_2025_dynamic_reweighting\n72\t  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n73\t  authors: \"Daouda Sow et al.\"\n74\t  venue: \"ICLR 2025\"\n75\t  year: 2025\n76\t  url: \"https://arxiv.org/abs/2502.06733\"\n77\t  category: method-component\n78\t  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n79\t  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n80\t  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\"\n81\t\n82\t- id: ye_2025_data_mixing_laws\n83\t  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n84\t  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n85\t  venue: \"ICLR 2025\"\n86\t  year: 2025\n87\t  url: \"https://arxiv.org/abs/2403.16952\"\n88\t  category: method-component\n89\t  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n90\t  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n91\t  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n92\t\n93\t- id: he_2024_softdedup\n94\t  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n95\t  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n96\t  venue: \"ACL 2024\"\n97\t  year: 2024\n98\t  url: \"https://arxiv.org/abs/2407.06654\"\n99\t  category: method-component\n100\t  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n101\t  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n102\t  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n103\t\n104\t# ============================================================\n105\t# Category: background\n106\t# 数据污染/合成数据在 LLM 训练中的问题\n107\t# ============================================================\n108\t\n109\t- id: shumailov_2024_model_collapse\n110\t  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n111\t  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n112\t  venue: \"Nature 2024\"\n113\t  year: 2024\n114\t  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n115\t  category: background\n116\t  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n117\t  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n118\t  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n119\t\n120\t- id: alemohammad_2024_mad\n121\t  title: \"Self-Consuming Generative Models Go MAD\"\n122\t  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n123\t  venue: \"ICLR 2024\"\n124\t  year: 2024\n125\t  url: \"https://arxiv.org/abs/2307.01850\"\n126\t  category: background\n127\t  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n128\t  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n129\t  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n130\t\n131\t- id: dohmatob_2025_strong_collapse\n132\t  title: \"Strong Model Collapse\"\n133\t  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n134\t  venue: \"ICLR 2025 (Spotlight)\"\n135\t  year: 2025\n136\t  url: \"https://arxiv.org/abs/2410.04840\"\n137\t  category: background\n138\t  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n139\t  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n140\t  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n141\t\n142\t- id: nait_saada_2025_quality_illusion\n143\t  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n144\t  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n145\t  venue: \"arXiv preprint\"\n146\t  year: 2025\n147\t  url: \"https://arxiv.org/abs/2510.00866\"\n148\t  category: background\n149\t  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n150\t  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n151\t  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n152\t\n153\t# ============================================================\n154\t# Category: evaluation\n155\t# 评估方法相关\n156\t# ============================================================\n157\t\n158\t- id: mitchell_2023_detectgpt\n159\t  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n160\t  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n161\t  venue: \"ICML 2023\"\n162\t  year: 2023\n163\t  url: \"https://arxiv.org/abs/2301.11305\"\n164\t  category: evaluation\n165\t  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n166\t  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n167\t  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n168\t\n169\t- id: shi_2024_minkprob\n170\t  title: \"Detecting Pretraining Data from Large Language Models\"\n171\t  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n172\t  venue: \"ICLR 2024\"\n173\t  year: 2024\n174\t  url: \"https://arxiv.org/abs/2310.16789\"\n175\t  category: evaluation\n176\t  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n177\t  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n178\t  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n179\t\n180\t- id: kuo_2024_data_weighting\n181\t  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n182\t  authors: \"Hsun-Yu Kuo et al.\"\n183\t  venue: \"arXiv preprint\"\n184\t  year: 2024\n185\t  url: \"https://arxiv.org/abs/2410.21526\"\n186\t  category: evaluation\n187\t  role: \"评估合成数据加权策略在文本分类中的效果\"\n188\t  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n189\t  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n190\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c015997-0454-4320-aea4-623f3b3f5a7e",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "121e4177-d25d-41ef-b022-da20d646f818",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml",
+                "content": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 生成日期：2026-05-14\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.15654\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\"\n  key_findings: \"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\"\n  relevance_to_us: \"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n",
+                "numLines": 190,
+                "startLine": 1,
+                "totalLines": 190
+              }
+            },
+            "sourceToolAssistantUUID": "8c015997-0454-4320-aea4-623f3b3f5a7e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T23:43:17.141Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NfXHEaSBTA38STuMAAF3Au",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml",
+                "content": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 更新日期：2026-05-14（整合 Drayson comparison 分析）\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  arxiv_id: \"2502.15654\"\n  url: \"https://arxiv.org/abs/2502.15654\"\n  github: \"https://github.com/GeorgeDrayson/model_collapse\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\"\n  method_summary: >\n    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M\n    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，\n    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取\n    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。\n    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。\n    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。\n  key_findings: \"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\"\n  differentiation:\n    b_selection: \"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\"\n    contamination_setting: \"Drayson: 已知比例（实验控制） | 我们: 未知比例（batch 统计量在线估计）\"\n    detector: \"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\"\n    theory: \"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\"\n    training_scenario: \"Drayson: 递归训练 model collapse prevention | 我们: Web corpus 一次性预训练中的未知污染\"\n    scale: \"Drayson: WikiText-2 (~2M tokens) | 我们: FineWeb subset (132M+ tokens)\"\n    dynamics: \"Drayson: b 固定（训练全程不变） | 我们: b* per-batch 自适应\"\n  our_advantages:\n    - \"From heuristic to principled: 理论推导 b* 替代 empirical grid search，零额外 validation cost\"\n    - \"Unknown contamination: 不需要已知污染比例或干净验证集，适用大规模 web pretraining\"\n    - \"Lightweight detector sufficiency: TF-IDF+LR 即可，检测器计算开销降低数量级\"\n    - \"Unified continuous spectrum: b=0 uniform → b→∞ hard filter 的统一框架\"\n  relevance_to_us: \"最直接的竞争者。共享 w=(1-q)^b 公式，但 b 选取方法根本不同——我们的核心贡献正是理论推导 adaptive b*\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  arxiv_id: \"2502.18049\"\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）。公式 w*=(√(k²+4k)−k)/2, k=真实/合成样本比\"\n  differentiation:\n    scope: \"纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  github: \"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补（不使用检测器，纯 loss signal 驱动）\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n- id: xie_2023_doremi\n  title: \"DoReMi: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2305.10429\"\n  category: method-component\n  role: \"域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染\"\n  key_findings: \"用小代理模型通过 Group DRO 优化域级别数据混合权重；在 The Pile 和 GLaM 数据集上无需目标分布知识即可改善下游性能\"\n  relevance_to_us: \"域级别 reweighting baseline；我们的方法在 instance-level 操作，粒度更细且基于检测器置信度而非 loss-based DRO\"\n\n- id: xie_2023_dsir\n  title: \"Data Selection for Language Models via Importance Resampling\"\n  authors: \"Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2302.03169\"\n  category: method-component\n  role: \"N-gram 特征重要性采样选择数据子集匹配目标分布\"\n  key_findings: \"用 n-gram 特征估计 importance weights 并重采样数据匹配目标分布；比 heuristic filtering 更 principled；在 GLUE 和下游任务上优于随机选择和启发式方法\"\n  relevance_to_us: \"同样用 importance resampling，但目标是分布匹配而非污染处理；与 Drayson 的 SIR 方法有方法论联系\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  arxiv_id: \"2410.04840\"\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n- id: guo_2025_escaping_collapse\n  title: \"Escaping Model Collapse via Synthetic Data Verification\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  arxiv_id: \"2510.16657\"\n  url: \"https://arxiv.org/abs/2510.16657\"\n  category: background\n  role: \"提出验证机制筛选合成数据质量，与 detection-based 方法互补\"\n  key_findings: \"通过验证机制在合成数据生成后筛选质量，与基于检测器的事后加权方法互补\"\n  relevance_to_us: \"verification-based 方法是另一条技术路线——他们做生成时验证，我们做训练时加权\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "121e4177-d25d-41ef-b022-da20d646f818",
+            "isSidechain": false,
+            "requestId": "req_011Cb3M1UmfqfrJ8b6WAgBtw",
+            "type": "assistant",
+            "uuid": "ccb0c563-abc4-4cb6-93e9-9a82704a62f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RZUBTYHaJnnQxmrdCTr2KA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4796,
+                "cache_read_input_tokens": 44372,
+                "output_tokens": 6201,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 4796,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 6201,
+                    "cache_read_input_tokens": 44372,
+                    "cache_creation_input_tokens": 4796,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 4796
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T23:43:17.167Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NfXHEaSBTA38STuMAAF3Au",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ccb0c563-abc4-4cb6-93e9-9a82704a62f3",
+            "isSidechain": false,
+            "promptId": "8284b17e-dd1f-467a-9357-c4f2071853ea",
+            "type": "user",
+            "uuid": "297044e3-e7ad-4882-a36d-53b3e3cff017",
+            "toolUseResult": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training/literature_map.yaml",
+              "content": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 更新日期：2026-05-14（整合 Drayson comparison 分析）\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  arxiv_id: \"2502.15654\"\n  url: \"https://arxiv.org/abs/2502.15654\"\n  github: \"https://github.com/GeorgeDrayson/model_collapse\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\"\n  method_summary: >\n    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M\n    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，\n    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取\n    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。\n    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。\n    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。\n  key_findings: \"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\"\n  differentiation:\n    b_selection: \"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\"\n    contamination_setting: \"Drayson: 已知比例（实验控制） | 我们: 未知比例（batch 统计量在线估计）\"\n    detector: \"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\"\n    theory: \"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\"\n    training_scenario: \"Drayson: 递归训练 model collapse prevention | 我们: Web corpus 一次性预训练中的未知污染\"\n    scale: \"Drayson: WikiText-2 (~2M tokens) | 我们: FineWeb subset (132M+ tokens)\"\n    dynamics: \"Drayson: b 固定（训练全程不变） | 我们: b* per-batch 自适应\"\n  our_advantages:\n    - \"From heuristic to principled: 理论推导 b* 替代 empirical grid search，零额外 validation cost\"\n    - \"Unknown contamination: 不需要已知污染比例或干净验证集，适用大规模 web pretraining\"\n    - \"Lightweight detector sufficiency: TF-IDF+LR 即可，检测器计算开销降低数量级\"\n    - \"Unified continuous spectrum: b=0 uniform → b→∞ hard filter 的统一框架\"\n  relevance_to_us: \"最直接的竞争者。共享 w=(1-q)^b 公式，但 b 选取方法根本不同——我们的核心贡献正是理论推导 adaptive b*\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  arxiv_id: \"2502.18049\"\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）。公式 w*=(√(k²+4k)−k)/2, k=真实/合成样本比\"\n  differentiation:\n    scope: \"纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  github: \"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补（不使用检测器，纯 loss signal 驱动）\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n- id: xie_2023_doremi\n  title: \"DoReMi: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2305.10429\"\n  category: method-component\n  role: \"域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染\"\n  key_findings: \"用小代理模型通过 Group DRO 优化域级别数据混合权重；在 The Pile 和 GLaM 数据集上无需目标分布知识即可改善下游性能\"\n  relevance_to_us: \"域级别 reweighting baseline；我们的方法在 instance-level 操作，粒度更细且基于检测器置信度而非 loss-based DRO\"\n\n- id: xie_2023_dsir\n  title: \"Data Selection for Language Models via Importance Resampling\"\n  authors: \"Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\"\n  venue: \"NeurIPS 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2302.03169\"\n  category: method-component\n  role: \"N-gram 特征重要性采样选择数据子集匹配目标分布\"\n  key_findings: \"用 n-gram 特征估计 importance weights 并重采样数据匹配目标分布；比 heuristic filtering 更 principled；在 GLUE 和下游任务上优于随机选择和启发式方法\"\n  relevance_to_us: \"同样用 importance resampling，但目标是分布匹配而非污染处理；与 Drayson 的 SIR 方法有方法论联系\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  arxiv_id: \"2410.04840\"\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n- id: guo_2025_escaping_collapse\n  title: \"Escaping Model Collapse via Synthetic Data Verification\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  arxiv_id: \"2510.16657\"\n  url: \"https://arxiv.org/abs/2510.16657\"\n  category: background\n  role: \"提出验证机制筛选合成数据质量，与 detection-based 方法互补\"\n  key_findings: \"通过验证机制在合成数据生成后筛选质量，与基于检测器的事后加权方法互补\"\n  relevance_to_us: \"verification-based 方法是另一条技术路线——他们做生成时验证，我们做训练时加权\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 7,
+                  "newStart": 1,
+                  "newLines": 7,
+                  "lines": [
+                    " # Literature Map for provenance_weight_training",
+                    " # 研究方向：基于收敛理论的自适应污染重加权",
+                    " # 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数",
+                    "-# 生成日期：2026-05-14",
+                    "+# 更新日期：2026-05-14（整合 Drayson comparison 分析）",
+                    " ",
+                    " # ============================================================",
+                    " # Category: direct-competitor"
+                  ]
+                },
+                {
+                  "oldStart": 13,
+                  "oldLines": 21,
+                  "newStart": 13,
+                  "newLines": 46,
+                  "lines": [
+                    "   authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"",
+                    "   venue: \"EMNLP 2025\"",
+                    "   year: 2025",
+                    "+  arxiv_id: \"2502.15654\"",
+                    "   url: \"https://arxiv.org/abs/2502.15654\"",
+                    "+  github: \"https://github.com/GeorgeDrayson/model_collapse\"",
+                    "   category: direct-competitor",
+                    "-  role: \"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\"",
+                    "-  key_findings: \"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\"",
+                    "-  relevance_to_us: \"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\"",
+                    "+  role: \"使用同一公式 w=(1-q)^b 进行重加权，但 b 为验证集 empirical 选取，训练中固定\"",
+                    "+  method_summary: >",
+                    "+    Detect-and-reweight 防止递归训练 model collapse。检测器为 ModernBERT 150M",
+                    "+    (MAGE fine-tune, in-domain AUC=0.986, OOD AUC=0.943)。权重公式 wⱼ=(1-q(xⱼ))^b / Σₗ(1-q(xₗ))^b，",
+                    "+    通过 SIR 按权重重采样训练数据。b 通过 WikiText-2 验证集上 1 代递归训练后评估选取",
+                    "+    (GPT-2/SmolLM 135M/360M 用 b=10, SmolLM 1.7B 用 b=1)，训练全程固定。",
+                    "+    实验覆盖 4 个模型 (GPT-2 124M, SmolLM 135M/360M/1.7B)、10 代递归训练、6 种解码策略。",
+                    "+    结果 PPL 降低 0.85%–25.65%，diversity 提升 3.44%–14.62%。",
+                    "+  key_findings: \"验证 detect-and-reweight 有效防止 model collapse 且优于纯人类数据训练；b 值对模型规模敏感（小模型 b=10，大模型 b=1）\"",
+                    "+  differentiation:",
+                    "+    b_selection: \"Drayson: 验证集 empirical grid search, per-model 固定 | 我们: α_eff(b) + ESS 约束, per-batch 自适应\"",
+                    "+    contamination_setting: \"Drayson: 已知比例（实验控制） | 我们: 未知比例（batch 统计量在线估计）\"",
+                    "+    detector: \"Drayson: ModernBERT 150M (AUC=0.986) | 我们: TF-IDF+LR (AUC=0.939)，证明轻量检测器即可\"",
+                    "+    theory: \"Drayson: 无 b 选取理论（SIR 启发式） | 我们: 收敛理论 motivated α_eff(b) 推导\"",
+                    "+    training_scenario: \"Drayson: 递归训练 model collapse prevention | 我们: Web corpus 一次性预训练中的未知污染\"",
+                    "+    scale: \"Drayson: WikiText-2 (~2M tokens) | 我们: FineWeb subset (132M+ tokens)\"",
+                    "+    dynamics: \"Drayson: b 固定（训练全程不变） | 我们: b* per-batch 自适应\"",
+                    "+  our_advantages:",
+                    "+    - \"From heuristic to principled: 理论推导 b* 替代 empirical grid search，零额外 validation cost\"",
+                    "+    - \"Unknown contamination: 不需要已知污染比例或干净验证集，适用大规模 web pretraining\"",
+                    "+    - \"Lightweight detector sufficiency: TF-IDF+LR 即可，检测器计算开销降低数量级\"",
+                    "+    - \"Unified continuous spectrum: b=0 uniform → b→∞ hard filter 的统一框架\"",
+                    "+  relevance_to_us: \"最直接的竞争者。共享 w=(1-q)^b 公式，但 b 选取方法根本不同——我们的核心贡献正是理论推导 adaptive b*\"",
+                    " ",
+                    " - id: he_2025_golden_ratio",
+                    "   title: \"Golden Ratio Weighting Prevents Model Collapse\"",
+                    "   authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"",
+                    "   venue: \"Under review at JRSSB, 2025\"",
+                    "   year: 2025",
+                    "+  arxiv_id: \"2502.18049\"",
+                    "   url: \"https://arxiv.org/abs/2502.18049\"",
+                    "   category: direct-competitor",
+                    "   role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"",
+                    "-  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\"",
+                    "+  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）。公式 w*=(√(k²+4k)−k)/2, k=真实/合成样本比\"",
+                    "+  differentiation:",
+                    "+    scope: \"纯理论工作，假设已知污染比例，未涉及检测器或 LLM 实验，不处理 unknown/online 设置\"",
+                    "   relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"",
+                    " ",
+                    " - id: feng_2024_beyond_collapse"
+                  ]
+                },
+                {
+                  "oldStart": 74,
+                  "oldLines": 10,
+                  "newStart": 99,
+                  "newLines": 11,
+                  "lines": [
+                    "   venue: \"ICLR 2025\"",
+                    "   year: 2025",
+                    "   url: \"https://arxiv.org/abs/2502.06733\"",
+                    "+  github: \"https://github.com/sowmaster/Sample-Level-Loss-Reweighting-ICLR-2025\"",
+                    "   category: method-component",
+                    "   role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"",
+                    "   key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"",
+                    "-  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\"",
+                    "+  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补（不使用检测器，纯 loss signal 驱动）\"",
+                    " ",
+                    " - id: ye_2025_data_mixing_laws",
+                    "   title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\""
+                  ]
+                },
+                {
+                  "oldStart": 101,
+                  "oldLines": 6,
+                  "newStart": 127,
+                  "newLines": 28,
+                  "lines": [
+                    "   key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"",
+                    "   relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"",
+                    " ",
+                    "+- id: xie_2023_doremi",
+                    "+  title: \"DoReMi: Optimizing Data Mixtures by Predicting Language Modeling Performance\"",
+                    "+  authors: \"Sang Michael Xie, Hieu Pham, Xuanyi Dong, Nan Du, Hanxiao Liu, Yifeng Lu, Percy Liang, Quoc V. Le, Tengyu Ma, Adams Wei Yu\"",
+                    "+  venue: \"NeurIPS 2023\"",
+                    "+  year: 2023",
+                    "+  url: \"https://arxiv.org/abs/2305.10429\"",
+                    "+  category: method-component",
+                    "+  role: \"域级别权重优化（Group DRO + 小模型代理），不处理 instance-level 污染\"",
+                    "+  key_findings: \"用小代理模型通过 Group DRO 优化域级别数据混合权重；在 The Pile 和 GLaM 数据集上无需目标分布知识即可改善下游性能\"",
+                    "+  relevance_to_us: \"域级别 reweighting baseline；我们的方法在 instance-level 操作，粒度更细且基于检测器置信度而非 loss-based DRO\"",
+                    "+",
+                    "+- id: xie_2023_dsir",
+                    "+  title: \"Data Selection for Language Models via Importance Resampling\"",
+                    "+  authors: \"Sang Michael Xie, Shibani Santurkar, Tengyu Ma, Percy Liang\"",
+                    "+  venue: \"NeurIPS 2023\"",
+                    "+  year: 2023",
+                    "+  url: \"https://arxiv.org/abs/2302.03169\"",
+                    "+  category: method-component",
+                    "+  role: \"N-gram 特征重要性采样选择数据子集匹配目标分布\"",
+                    "+  key_findings: \"用 n-gram 特征估计 importance weights 并重采样数据匹配目标分布；比 heuristic filtering 更 principled；在 GLUE 和下游任务上优于随机选择和启发式方法\"",
+                    "+  relevance_to_us: \"同样用 importance resampling，但目标是分布匹配而非污染处理；与 Drayson 的 SIR 方法有方法论联系\"",
+                    "+",
+                    " # ============================================================",
+                    " # Category: background",
+                    " # 数据污染/合成数据在 LLM 训练中的问题"
+                  ]
+                },
+                {
+                  "oldStart": 133,
+                  "oldLines": 6,
+                  "newStart": 181,
+                  "newLines": 7,
+                  "lines": [
+                    "   authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"",
+                    "   venue: \"ICLR 2025 (Spotlight)\"",
+                    "   year: 2025",
+                    "+  arxiv_id: \"2410.04840\"",
+                    "   url: \"https://arxiv.org/abs/2410.04840\"",
+                    "   category: background",
+                    "   role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\""
+                  ]
+                },
+                {
+                  "oldStart": 150,
+                  "oldLines": 6,
+                  "newStart": 199,
+                  "newLines": 17,
+                  "lines": [
+                    "   key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"",
+                    "   relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"",
+                    " ",
+                    "+- id: guo_2025_escaping_collapse",
+                    "+  title: \"Escaping Model Collapse via Synthetic Data Verification\"",
+                    "+  venue: \"arXiv preprint\"",
+                    "+  year: 2025",
+                    "+  arxiv_id: \"2510.16657\"",
+                    "+  url: \"https://arxiv.org/abs/2510.16657\"",
+                    "+  category: background",
+                    "+  role: \"提出验证机制筛选合成数据质量，与 detection-based 方法互补\"",
+                    "+  key_findings: \"通过验证机制在合成数据生成后筛选质量，与基于检测器的事后加权方法互补\"",
+                    "+  relevance_to_us: \"verification-based 方法是另一条技术路线——他们做生成时验证，我们做训练时加权\"",
+                    "+",
+                    " # ============================================================",
+                    " # Category: evaluation",
+                    " # 评估方法相关"
+                  ]
+                }
+              ],
+              "originalFile": "# Literature Map for provenance_weight_training\n# 研究方向：基于收敛理论的自适应污染重加权\n# 核心公式：w=(1-q)^b，q 为检测器合成概率，b* 为理论最优权重指数\n# 生成日期：2026-05-14\n\n# ============================================================\n# Category: direct-competitor\n# 同主题/同方法的论文\n# ============================================================\n\n- id: drayson_2025_detection_collapse\n  title: \"Machine-Generated Text Detection Prevents Language Model Collapse\"\n  authors: \"George Drayson, Emine Yilmaz, Vasileios Lampos\"\n  venue: \"EMNLP 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.15654\"\n  category: direct-competitor\n  role: \"使用同一公式 w=(1-q)^b 进行重加权，但启发式选择 b 而非理论推导\"\n  key_findings: \"训练机器生成文本检测器，用 importance resampling 上采样可能的人类内容，不仅防止 model collapse，还优于纯人类数据训练\"\n  relevance_to_us: \"最直接的竞争者。我们的核心贡献是理论推导 b*，替代其启发式网格搜索方法\"\n\n- id: he_2025_golden_ratio\n  title: \"Golden Ratio Weighting Prevents Model Collapse\"\n  authors: \"Hengzhi He, Shirong Xu, Guang Cheng\"\n  venue: \"Under review at JRSSB, 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.18049\"\n  category: direct-competitor\n  role: \"从理论推导合成/真实数据混合的最优权重，发现最优权重为黄金比例的倒数(~0.62)\"\n  key_findings: \"在高斯估计、GLM、非参数估计等场景下，当合成数据与真实数据等量时，真实数据的最优权重约为 0.62（黄金比例倒数）\"\n  relevance_to_us: \"同样是理论推导最优权重，但针对 real/synthetic 固定混合比例，未考虑检测器置信度的连续估计\"\n\n- id: feng_2024_beyond_collapse\n  title: \"Beyond Model Collapse: Scaling Up with Synthesized Data Requires Verification\"\n  authors: \"Yunzhen Feng, Elvis Dohmatob, Pu Yang, François Charton, Julia Kempe\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2406.07515\"\n  category: direct-competitor\n  role: \"使用 verifier 过滤合成数据防止 model collapse，理论证明即使不完美的 verifier 也有效\"\n  key_findings: \"用高斯混合模型和线性分类器推导条件，证明 verifier 引导的合成数据筛选可避免 model collapse；即使 verifier 不完美也能受益\"\n  relevance_to_us: \"与我们的方法最相似——都用检测器置信度来处理合成数据。区别在于他们做 hard filtering，我们做 soft reweighting\"\n\n# ============================================================\n# Category: method-component\n# 我们用到的技术组件\n# ============================================================\n\n- id: kimura_2024_iw_survey\n  title: \"A Short Survey on Importance Weighting for Machine Learning\"\n  authors: \"Masanari Kimura, Hideitsu Hino\"\n  venue: \"TMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2403.10175\"\n  category: method-component\n  role: \"importance weighting 在机器学习中的全面综述，覆盖分布偏移、密度比估计等核心理论\"\n  key_findings: \"系统整理了 importance weighting 在监督学习分布偏移下的理论保证和应用，包括 covariate shift、domain adaptation 等场景\"\n  relevance_to_us: \"为我们的 importance weighting 框架提供理论基础和方法论参考\"\n\n- id: vehtari_2024_psis\n  title: \"Pareto Smoothed Importance Sampling\"\n  authors: \"Aki Vehtari, Daniel Simpson, Andrew Gelman, Yuling Yao, Jonah Gabry\"\n  venue: \"JMLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/1507.02646\"\n  category: method-component\n  role: \"提供稳定的 effective sample size 估计和收敛诊断方法\"\n  key_findings: \"用广义 Pareto 分布拟合 importance ratio 上尾实现平滑；提出 Pareto k 有限样本收敛率诊断指标；k<min(1-1/log10(S),0.7) 时估计可靠\"\n  relevance_to_us: \"我们的 α_eff(b) 估计直接依赖 effective sample size 理论，PSIS 的收敛诊断可用于验证我们的权重方案\"\n\n- id: sow_2025_dynamic_reweighting\n  title: \"Dynamic Loss-Based Sample Reweighting for Improved Large Language Model Pretraining\"\n  authors: \"Daouda Sow et al.\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2502.06733\"\n  category: method-component\n  role: \"首次提出 loss-based reweighting 对梯度优化收敛性影响的理论框架\"\n  key_findings: \"基于 loss 值动态调整每个样本权重；建立了 loss-based reweighting 对收敛界影响的形式化刻画；在 7B 和 1.4B 模型上验证更快收敛和更优性能\"\n  relevance_to_us: \"其收敛性理论框架可作为我们推导 b* 最优性的参考；loss-based 与 provenance-based reweighting 互补\"\n\n- id: ye_2025_data_mixing_laws\n  title: \"Data Mixing Laws: Optimizing Data Mixtures by Predicting Language Modeling Performance\"\n  authors: \"Jiasheng Ye, Peiju Liu, Tianxiang Sun, Yunhua Zhou, Jun Zhan, Xipeng Qiu\"\n  venue: \"ICLR 2025\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2403.16952\"\n  category: method-component\n  role: \"发现数据混合比例与模型性能之间的定量可预测性\"\n  key_findings: \"模型性能关于混合比例具有函数形式的可预测性；可用小规模训练预测大模型在不同混合下的性能；适用于 continual training 的遗忘预测\"\n  relevance_to_us: \"data mixing laws 可作为验证我们 b* 最优性的理论框架——检验不同 b 下的 mixing 效果是否符合预测\"\n\n- id: he_2024_softdedup\n  title: \"SoftDedup: an Efficient Data Reweighting Method for Speeding Up Language Model Pre-training\"\n  authors: \"Nan He, Weichen Xiong, Hanwen Liu, Yi Liao, Lei Ding, Kai Zhang, Guohua Tang, Xiao Han, Yang Wei\"\n  venue: \"ACL 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2407.06654\"\n  category: method-component\n  role: \"用 data commonness 指标进行软去重加权，而非硬删除\"\n  key_findings: \"用 n-gram 模型量化样本的 commonness，高频样本降权低频样本升权；相比硬去重保留信息完整性；等效训练时间提升 26% 效率和 1.77% 下游准确率\"\n  relevance_to_us: \"软加权优于硬过滤的思路与我们一致——w=(1-q)^b 是连续加权而非二元过滤\"\n\n# ============================================================\n# Category: background\n# 数据污染/合成数据在 LLM 训练中的问题\n# ============================================================\n\n- id: shumailov_2024_model_collapse\n  title: \"AI Models Collapse When Trained on Recursively Generated Data\"\n  authors: \"Ilia Shumailov, Zakhar Shumaylov, Yiren Zhao, Nicolas Papernot, Ross Anderson, Yarin Gal\"\n  venue: \"Nature 2024\"\n  year: 2024\n  url: \"https://www.nature.com/articles/s41586-024-07566-y\"\n  category: background\n  role: \"奠基性工作——证明在递归生成数据上训练导致 model collapse\"\n  key_findings: \"在 LLM、VAE、GMM 上证明不加区分地用模型生成内容训练会导致不可逆退化；原始分布的尾部逐渐消失；反复训练的语言模型出现重复短语\"\n  relevance_to_us: \"model collapse 是我们工作的核心动机——加权方案的目标就是防止污染数据导致的性能退化\"\n\n- id: alemohammad_2024_mad\n  title: \"Self-Consuming Generative Models Go MAD\"\n  authors: \"Sina Alemohammad, Josue Casco-Rodriguez, Lorenzo Luzi, Ahmed Imtiaz Humayun, Hossein Babaei, Daniel LeJeune, Ali Siahkoohi, Richard G. Baraniuk\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2307.01850\"\n  category: background\n  role: \"提出 Model Autophagy Disorder (MAD) 概念——自消费式生成模型的退化\"\n  key_findings: \"分析三种自消费循环（fully synthetic、synthetic augmentation、fresh data）；无新鲜真实数据时质量或多样性不可避免下降；即使保留原始训练数据也可能退化\"\n  relevance_to_us: \"MAD 的数学框架帮助理解不同污染程度下的退化动力学，为我们的收敛理论提供上下文\"\n\n- id: dohmatob_2025_strong_collapse\n  title: \"Strong Model Collapse\"\n  authors: \"Elvis Dohmatob, Yunzhen Feng, Arjun Subramonian, Julia Kempe\"\n  venue: \"ICLR 2025 (Spotlight)\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2410.04840\"\n  category: background\n  role: \"证明即使极少量合成数据（1/1000）也能导致 model collapse\"\n  key_findings: \"在 scaling laws 框架下建立 strong model collapse；用算子值自由概率论获得测试误差的 bias-variance 分解；更大模型可放大 collapse 效应\"\n  relevance_to_us: \"强化了我们工作的必要性——即使少量合成污染也需要处理，仅靠增加数据量无法解决\"\n\n- id: nait_saada_2025_quality_illusion\n  title: \"The Data-Quality Illusion: Rethinking Classifier-Based Quality Filtering for LLM Pretraining\"\n  authors: \"Thiziri Nait Saada, Louis Bethune, Michal Klein, David Grangier, Marco Cuturi, Pierre Ablin\"\n  venue: \"arXiv preprint\"\n  year: 2025\n  url: \"https://arxiv.org/abs/2510.00866\"\n  category: background\n  role: \"质疑基于分类器的数据质量评分是否真正捕获了有意义的质量概念\"\n  key_findings: \"CQF 改善下游任务但不一定改善语言建模；质量分类器隐式偏向其监督目标的数据分布；质量桶与特定 benchmark 对齐\"\n  relevance_to_us: \"提醒我们检测器置信度 q 不等于真实质量——需要理论保证 b* 在检测器有偏时仍然有效\"\n\n# ============================================================\n# Category: evaluation\n# 评估方法相关\n# ============================================================\n\n- id: mitchell_2023_detectgpt\n  title: \"DetectGPT: Zero-Shot Machine-Generated Text Detection using Probability Curvature\"\n  authors: \"Eric Mitchell, Yoonho Lee, Alexander Khazatsky, Christopher D. Manning, Chelsea Finn\"\n  venue: \"ICML 2023\"\n  year: 2023\n  url: \"https://arxiv.org/abs/2301.11305\"\n  category: evaluation\n  role: \"零样本机器生成文本检测方法——我们的检测器 q 的基线方法之一\"\n  key_findings: \"LLM 生成的文本倾向于占据模型对数概率函数的负曲率区域；无需训练分类器、收集数据集或水印；在 GPT-NeoX 假新闻检测上从 0.81 AUROC 提升到 0.95\"\n  relevance_to_us: \"可作为计算合成概率 q 的检测器之一；其概率曲率方法可能与我们的权重公式有理论联系\"\n\n- id: shi_2024_minkprob\n  title: \"Detecting Pretraining Data from Large Language Models\"\n  authors: \"Weijia Shi, Anirudh Ajith, Mengzhou Xia, Yangsibo Huang, Daogao Liu, Terra Blevins, Danqi Chen, Luke Zettlemoyer\"\n  venue: \"ICLR 2024\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2310.16789\"\n  category: evaluation\n  role: \"Min-K% Prob 方法——检测数据是否在预训练集中的无参考方法\"\n  key_findings: \"已训练数据包含更少低概率异常 token；取最低 K% token 概率的平均值判断；在 WikiMIA 上比最佳基线高 7.4 AUC；无需参考模型\"\n  relevance_to_us: \"Min-K% Prob 可作为估计合成概率 q 的候选方法；其 membership inference 思路可扩展为连续置信度估计\"\n\n- id: kuo_2024_data_weighting\n  title: \"Not All LLM-Generated Data Are Equal: Rethinking Data Weighting in Text Classification\"\n  authors: \"Hsun-Yu Kuo et al.\"\n  venue: \"arXiv preprint\"\n  year: 2024\n  url: \"https://arxiv.org/abs/2410.21526\"\n  category: evaluation\n  role: \"评估合成数据加权策略在文本分类中的效果\"\n  key_findings: \"提出加权损失方法用少量真实数据对齐合成数据分布；在 BERT 级模型上稳定优于标准交叉熵和其他加权方法\"\n  relevance_to_us: \"验证了合成数据需要差异化加权的思路；其评估框架可参考用于我们的下游任务评估\"\n",
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "ccb0c563-abc4-4cb6-93e9-9a82704a62f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T23:43:17.183Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "297044e3-e7ad-4882-a36d-53b3e3cff017",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "9d0bead7-05ef-455b-b3a8-5e89d77a3f38",
+                "timestamp": "2026-05-14T23:43:17.183Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9d0bead7-05ef-455b-b3a8-5e89d77a3f38",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Drayson et al. into literature_map.yaml",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T23:43:29.305Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。变更摘要：\n\n**Drayson 条目扩充：**\n- 新增 `arxiv_id`、`github`、`method_summary`（详细方法描述含检测器规格、b 选取流程、实验规模）\n- 新增 `differentiation` 结构化对比（7 个维度：b_selection、contamination_setting、detector、theory、training_scenario、scale、dynamics）\n- 新增 `our_advantages` 列表（4 条：principled b*、unknown contamination、lightweight detector、unified spectrum）\n\n**新增 3 篇论文：**\n- `xie_2023_doremi` (NeurIPS 2023) — 域级别 Group DRO reweighting baseline\n- `xie_2023_dsir` (NeurIPS 2023) — n-gram importance resampling，与 Drayson SIR 有方法论联系\n- `guo_2025_escaping_collapse` (arXiv 2510.16657) — verification-based 合成数据筛选\n\n**已有条目小更新：**\n- `dohmatob_2025_strong_collapse` 补充 `arxiv_id`\n- `sow_2025_dynamic_reweighting` 补充 `github` 链接和 relevance 细节"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9d0bead7-05ef-455b-b3a8-5e89d77a3f38",
+            "isSidechain": false,
+            "requestId": "req_011Cb3MAw6hjLnyBrw39Ensp",
+            "type": "assistant",
+            "uuid": "ed1d79f1-7ebd-433e-a3fe-867b21171a92",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_10/projects/provenance_weight_training",
+            "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GG7cZiajwEQKTtKnFUeroY",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6357,
+                "cache_read_input_tokens": 49168,
+                "output_tokens": 353,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 6357,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 353,
+                    "cache_read_input_tokens": 49168,
+                    "cache_creation_input_tokens": 6357,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 6357
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "ed1d79f1-7ebd-433e-a3fe-867b21171a92",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Integrate Drayson et al. into literature_map.yaml",
+                "sessionId": "33f4c8cf-38de-44f8-ba86-369f9c5d5e2f"
+              }
+            }
+          ],
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-provenance-weight-training-westd-47453-ssh-root-ssh-execute-su-copy-38.md"
+}

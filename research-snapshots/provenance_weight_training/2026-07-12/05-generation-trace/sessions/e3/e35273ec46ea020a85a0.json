@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "e35273ec46ea020a85a0",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: pgpf-collapse-filter ## 运行环境 - 服务器名: bjb1-17606 - SSH 账户: root（调用 ssh_execute / submit_training_",
+  "task_key": "e433bb48-386c-463e-9d11-2dcfb87c6493",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/e433bb48-386c-463e-9d11-2dcfb87c6493.jsonl",
+    "occurrence": 1,
+    "bytes": 498444,
+    "sha256": "43e491ffc9af131d973a3b91655669c8667a7de67f946946b8c1e8d9878b224e"
+  },
+  "statistics": {
+    "messages": 318,
+    "user_turns": 1,
+    "tool_calls": 106,
+    "roles": {
+      "record": 48,
+      "user": 1,
+      "assistant": 57,
+      "tool_call": 106,
+      "tool_result": 106
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "e35273ec46ea020a85a0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 316,
+      "chunks": [
+        {
+          "path": "e35273ec46ea020a85a0-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "e35273ec46ea020a85a0-part-0002.json",
+          "message_count": 138
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-pgpf-collapse-filter-bjb1-17606-ssh-root-ssh-execute-submit-tr.md"
+}

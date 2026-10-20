@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "fa6a8c3e92f63b781f8e",
+  "project": "provenance_weight_training--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: provenance_weight_training - 论文路径: projects/provenance_weight_training/docs/paper/main.",
+  "task_key": "b36962e0-8cc2-416f-a09e-588f750d640e",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/exported-trajectories/account-3/b36962e0-8cc2-416f-a09e-588f750d640e.jsonl",
+    "occurrence": 1,
+    "bytes": 625271,
+    "sha256": "de43442ee7991dc4407e20f77fe013ce36fb0c35a1448f922a56a471739cb796"
+  },
+  "statistics": {
+    "messages": 177,
+    "user_turns": 12,
+    "tool_calls": 40,
+    "roles": {
+      "record": 55,
+      "user": 12,
+      "assistant": 30,
+      "tool_call": 40,
+      "tool_result": 40
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 110,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 110
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "fa6a8c3e92f63b781f8e-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-provenance-weight-training-projects-provenance-weight-training-docs-paper-main-copy-6.md"
+}
